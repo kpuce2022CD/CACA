@@ -1,0 +1,18 @@
+- 원격 저장소 관련 자료
+https://saakmiso.tistory.com/m/9 
+: aws & git 연동 및 독자적인 시스템 생성 관련 자료
+https://jexe.tistory.com/8
+: git 프로젝트 관리 시스템 구축 관련 자료
+https://hoodiejun.tistory.com/15
+: 나만의 git 서버 만들기 (local 만 가능)
+
++ 추가 자료
+https://m.blog.naver.com/jydev/220790906889
+: SVN server (git 아님)
+https://soyoja.com/m/412
+: 개인 형상 관리 서버 만들기
+
+- 그림 부분 표시하기 기능
+픽셀별로 찍어서 메모하는 부분 파이썬 OpenCV 쪽 조사했는데 관련 정보가 하나도 없음 세상에 없는 기능 같음
+사진 메타 데이터로 표시할 수 있는 방법이나 혹은 다른 파일과 호환될 수 있는지 여부 조사 중
+
