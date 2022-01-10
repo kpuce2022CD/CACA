@@ -22,15 +22,17 @@ struct Login: View {
                 Spacer()
                 
                 // input
-                VStack {
-                    HStack { // id input
-                        Image(systemName: "envelope").padding()
-                        TextField("ID", text: $id).padding()
-                    }
-                    HStack { // passwd input
-                        Image(systemName: "lock").padding()
-                        TextField("PASSWORD", text: $passwd).padding()
-                    }
+                VStack(alignment: .center) {
+                    VStack(alignment: .center){
+                        HStack(alignment: .center) { // id input
+                            Image(systemName: "envelope").padding()
+                            TextField("ID", text: $id).padding()
+                        }
+                        HStack(alignment: .center) { // passwd input
+                            Image(systemName: "lock").padding()
+                            TextField("PASSWORD", text: $passwd).padding()
+                        }
+                    }.padding(.horizontal, 200.0)
                     
                     
                     Toggle(isOn: $isOn) { // AUTO LOGIN TOGGLE
@@ -51,12 +53,6 @@ struct Login: View {
                             .background(RoundedRectangle(cornerRadius: 10).strokeBorder())
                     }
                     
-                    // LOGIN BUTTON
-//                    Button(action: login) {
-//                        Text("LOGIN")
-//                    }
-//                    .frame(width: 100, height: 40)
-//                    .background(RoundedRectangle(cornerRadius: 10).strokeBorder())
                     
                 }
                 
@@ -71,7 +67,7 @@ struct Login: View {
                     }
                 }.padding()
             }
-        }
+        }.navigationViewStyle(StackNavigationViewStyle())
     }
     
     func login() -> Bool {
@@ -88,5 +84,6 @@ struct Login: View {
 struct Login_Previews: PreviewProvider {
     static var previews: some View {
         Login()
+.previewInterfaceOrientation(.portrait)
     }
 }
