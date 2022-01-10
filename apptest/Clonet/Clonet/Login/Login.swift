@@ -26,13 +26,17 @@ struct Login: View {
                     VStack(alignment: .center){
                         HStack(alignment: .center) { // id input
                             Image(systemName: "envelope").padding()
-                            TextField("ID", text: $id).padding()
+                            TextField("ID", text: $id)
+                                .frame(width: 200)
+                                .padding()
                         }
                         HStack(alignment: .center) { // passwd input
                             Image(systemName: "lock").padding()
-                            TextField("PASSWORD", text: $passwd).padding()
+                            TextField("PASSWORD", text: $passwd)
+                                .frame(width: 200)
+                                .padding()
                         }
-                    }.padding(.horizontal, 200.0)
+                    }.padding([.leading, .bottom, .trailing])
                     
                     
                     Toggle(isOn: $isOn) { // AUTO LOGIN TOGGLE
@@ -83,7 +87,10 @@ struct Login: View {
 
 struct Login_Previews: PreviewProvider {
     static var previews: some View {
-        Login()
-.previewInterfaceOrientation(.portrait)
+        ForEach(["iPhone 13", "iPhone XS Max", "iPad (9th generation)"], id: \.self) { deviceName in
+            Login()
+                .previewDevice(PreviewDevice(rawValue: deviceName))
+                .previewDisplayName(deviceName)
+        }
     }
 }
