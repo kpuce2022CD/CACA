@@ -11,6 +11,7 @@ struct Login: View {
     @State var id : String = ""
     @State var passwd : String = ""
     @State var isOn = true
+ 
 
     var body: some View {
         NavigationView{
@@ -43,8 +44,8 @@ struct Login: View {
                             .frame(width: 200, height: 40)
                             .background(RoundedRectangle(cornerRadius: 10).strokeBorder())
                     }else{
-                        NavigationLink( destination: LoginCheck(), label: { Text("LOGIN PLEASE")
-                            .foregroundColor(Color.black) })//.hidden()
+                        Text("LOGIN PLEASE")
+                            .foregroundColor(Color.black) //.hidden()
                             .frame(width: 200, height: 40)
                             .background(RoundedRectangle(cornerRadius: 10).strokeBorder())
                     }
@@ -56,7 +57,7 @@ struct Login: View {
 //                    .frame(width: 100, height: 40)
 //                    .background(RoundedRectangle(cornerRadius: 10).strokeBorder())
                     
-                }.padding()
+                }
                 
                 // ID PASSWORD FIND
                 Spacer()
