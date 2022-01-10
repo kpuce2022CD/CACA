@@ -12,6 +12,8 @@ struct Login: View {
     @State var passwd : String = ""
     @State var isOn = true
     
+    @State var loginState = false
+
     var body: some View {
         NavigationView{
             VStack {
@@ -50,10 +52,10 @@ struct Login: View {
                 Spacer()
                 HStack (spacing:20) {
                     Button("ID 찾기") {
-                        /*@START_MENU_TOKEN@*//*@PLACEHOLDER=Action@*/ /*@END_MENU_TOKEN@*/
+                        
                     }
                     Button("PASSWORD 찾기") {
-                        /*@START_MENU_TOKEN@*//*@PLACEHOLDER=Action@*/ /*@END_MENU_TOKEN@*/
+                        
                     }
                 }.padding()
             }
@@ -62,9 +64,12 @@ struct Login: View {
     
     func login(){
         let loginID = User(id: id, password: passwd)
+        
         if(id == "A" && passwd == "A"){
+            loginState = true
             print("aaaa")
         }else{
+            loginState = false
             print("bbbb")
         }
 
