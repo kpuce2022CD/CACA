@@ -37,11 +37,9 @@ struct Login: View {
                     .frame(width: 130, height: 40)
                     .padding()
                     
-                    Button(action: login) { // LOGIN BUTTON
-                        NavigationLink(destination: LoginCheck()){
-                            Text("LOGIN")
-                                .foregroundColor(Color.black)
-                        }
+                    // LOGIN BUTTON
+                    Button(action: login) {
+                        Text("LOGIN")
                     }
                     .frame(width: 100, height: 40)
                     .background(RoundedRectangle(cornerRadius: 10).strokeBorder())
@@ -64,6 +62,12 @@ struct Login: View {
     
     func login(){
         let loginID = User(id: id, password: passwd)
+        if(id == "A" && passwd == "A"){
+            print("aaaa")
+        }else{
+            print("bbbb")
+        }
+
     }
 }
 
