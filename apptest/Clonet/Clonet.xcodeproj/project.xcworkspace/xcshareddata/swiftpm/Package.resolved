@@ -11,6 +11,33 @@
         }
       },
       {
+        "package": "SocketIO",
+        "repositoryURL": "https://github.com/socketio/socket.io-client-swift.git",
+        "state": {
+          "branch": "master",
+          "revision": "a1ed825835a2d8c2555938e96557ccc05e4bebf3",
+          "version": null
+        }
+      },
+      {
+        "package": "Starscream",
+        "repositoryURL": "https://github.com/daltoniam/Starscream",
+        "state": {
+          "branch": null,
+          "revision": "df8d82047f6654d8e4b655d1b1525c64e1059d21",
+          "version": "4.0.4"
+        }
+      },
+      {
+        "package": "swift-nio-zlib-support",
+        "repositoryURL": "https://github.com/apple/swift-nio-zlib-support.git",
+        "state": {
+          "branch": "main",
+          "revision": "cd3ad8e66fb389b80fd84b8b07561452d653e6f7",
+          "version": null
+        }
+      },
+      {
         "package": "SwiftGit2",
         "repositoryURL": "https://github.com/light-tech/SwiftGit2",
         "state": {

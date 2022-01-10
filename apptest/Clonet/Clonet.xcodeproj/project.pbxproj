@@ -19,6 +19,8 @@
 		DA97B6A9278BE05D006C473E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA97B6A8278BE05D006C473E /* ContentView.swift */; };
 		DA97B6AB278BE05E006C473E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DA97B6AA278BE05E006C473E /* Assets.xcassets */; };
 		DA97B6AE278BE05E006C473E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DA97B6AD278BE05E006C473E /* Preview Assets.xcassets */; };
+		DACAA65B278C7BFB007F3918 /* SocketIO in Frameworks */ = {isa = PBXBuildFile; productRef = DACAA65A278C7BFB007F3918 /* SocketIO */; };
+		DACAA65E278C7E5D007F3918 /* SocketIO.swift in Sources */ = {isa = PBXBuildFile; fileRef = DACAA65D278C7E5D007F3918 /* SocketIO.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -41,6 +43,7 @@
 		DA97B6A8278BE05D006C473E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		DA97B6AA278BE05E006C473E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DA97B6AD278BE05E006C473E /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		DACAA65D278C7E5D007F3918 /* SocketIO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocketIO.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,6 +54,7 @@
 				B540D425278C60D400479A63 /* SwiftGit2 in Frameworks */,
 				B540D422278C604200479A63 /* libiconv.tbd in Frameworks */,
 				B540D420278C603900479A63 /* libz.tbd in Frameworks */,
+				DACAA65B278C7BFB007F3918 /* SocketIO in Frameworks */,
 				B540D41E278C602B00479A63 /* SwiftGit2 in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -119,6 +123,7 @@
 				DA97B6AA278BE05E006C473E /* Assets.xcassets */,
 				DA97B6AC278BE05E006C473E /* Preview Content */,
 				B50BD822278C781700A7E3E0 /* GitTest.swift */,
+				DACAA65D278C7E5D007F3918 /* SocketIO.swift */,
 			);
 			path = Clonet;
 			sourceTree = "<group>";
@@ -150,6 +155,7 @@
 			packageProductDependencies = (
 				B540D41D278C602B00479A63 /* SwiftGit2 */,
 				B540D424278C60D400479A63 /* SwiftGit2 */,
+				DACAA65A278C7BFB007F3918 /* SocketIO */,
 			);
 			productName = Clonet;
 			productReference = DA97B6A3278BE05D006C473E /* Clonet.app */;
@@ -181,6 +187,8 @@
 			mainGroup = DA97B69A278BE05D006C473E;
 			packageReferences = (
 				B540D423278C60D400479A63 /* XCRemoteSwiftPackageReference "SwiftGit2" */,
+				DACAA659278C7BFB007F3918 /* XCRemoteSwiftPackageReference "socket.io-client-swift" */,
+				DACAA65C278C7C0B007F3918 /* XCRemoteSwiftPackageReference "swift-nio-zlib-support" */,
 			);
 			productRefGroup = DA97B6A4278BE05D006C473E /* Products */;
 			projectDirPath = "";
@@ -209,6 +217,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3F4B5316278C162500D64A6D /* User.swift in Sources */,
+				DACAA65E278C7E5D007F3918 /* SocketIO.swift in Sources */,
 				3F4B530E278BE92300D64A6D /* Login.swift in Sources */,
 				B50BD823278C781700A7E3E0 /* GitTest.swift in Sources */,
 				DA97B6A9278BE05D006C473E /* ContentView.swift in Sources */,
@@ -429,6 +438,22 @@
 				kind = branch;
 			};
 		};
+		DACAA659278C7BFB007F3918 /* XCRemoteSwiftPackageReference "socket.io-client-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/socketio/socket.io-client-swift.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+		DACAA65C278C7C0B007F3918 /* XCRemoteSwiftPackageReference "swift-nio-zlib-support" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/apple/swift-nio-zlib-support.git";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -440,6 +465,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = B540D423278C60D400479A63 /* XCRemoteSwiftPackageReference "SwiftGit2" */;
 			productName = SwiftGit2;
+		};
+		DACAA65A278C7BFB007F3918 /* SocketIO */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DACAA659278C7BFB007F3918 /* XCRemoteSwiftPackageReference "socket.io-client-swift" */;
+			productName = SocketIO;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
