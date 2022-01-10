@@ -31,6 +31,8 @@ struct Login: View {
                         Image(systemName: "lock").padding()
                         TextField("PASSWORD", text: $passwd).padding()
                     }
+                    
+                    
                     Toggle(isOn: $isOn) { // AUTO LOGIN TOGGLE
                         Text("AUTO")
                     }
