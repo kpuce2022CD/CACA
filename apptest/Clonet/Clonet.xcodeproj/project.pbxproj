@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3F4B530E278BE92300D64A6D /* Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F4B530D278BE92300D64A6D /* Login.swift */; };
+		3F4B5310278BEFD200D64A6D /* LoginInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F4B530F278BEFD200D64A6D /* LoginInput.swift */; };
+		3F4B5312278C07FE00D64A6D /* LoginButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F4B5311278C07FE00D64A6D /* LoginButton.swift */; };
+		3F4B5314278C0A7B00D64A6D /* LoginFind.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F4B5313278C0A7B00D64A6D /* LoginFind.swift */; };
 		DA97B6A7278BE05D006C473E /* ClonetApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA97B6A6278BE05D006C473E /* ClonetApp.swift */; };
 		DA97B6A9278BE05D006C473E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA97B6A8278BE05D006C473E /* ContentView.swift */; };
 		DA97B6AB278BE05E006C473E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DA97B6AA278BE05E006C473E /* Assets.xcassets */; };
@@ -14,6 +18,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3F4B530D278BE92300D64A6D /* Login.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Login.swift; sourceTree = "<group>"; };
+		3F4B530F278BEFD200D64A6D /* LoginInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginInput.swift; sourceTree = "<group>"; };
+		3F4B5311278C07FE00D64A6D /* LoginButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginButton.swift; sourceTree = "<group>"; };
+		3F4B5313278C0A7B00D64A6D /* LoginFind.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginFind.swift; sourceTree = "<group>"; };
 		DA97B6A3278BE05D006C473E /* Clonet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Clonet.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DA97B6A6278BE05D006C473E /* ClonetApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClonetApp.swift; sourceTree = "<group>"; };
 		DA97B6A8278BE05D006C473E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -32,6 +40,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3F4B530C278BE91100D64A6D /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				3F4B530D278BE92300D64A6D /* Login.swift */,
+				3F4B530F278BEFD200D64A6D /* LoginInput.swift */,
+				3F4B5311278C07FE00D64A6D /* LoginButton.swift */,
+				3F4B5313278C0A7B00D64A6D /* LoginFind.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
 		DA97B69A278BE05D006C473E = {
 			isa = PBXGroup;
 			children = (
@@ -51,6 +70,7 @@
 		DA97B6A5278BE05D006C473E /* Clonet */ = {
 			isa = PBXGroup;
 			children = (
+				3F4B530C278BE91100D64A6D /* Login */,
 				DA97B6A6278BE05D006C473E /* ClonetApp.swift */,
 				DA97B6A8278BE05D006C473E /* ContentView.swift */,
 				DA97B6AA278BE05E006C473E /* Assets.xcassets */,
@@ -137,6 +157,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3F4B5312278C07FE00D64A6D /* LoginButton.swift in Sources */,
+				3F4B5310278BEFD200D64A6D /* LoginInput.swift in Sources */,
+				3F4B5314278C0A7B00D64A6D /* LoginFind.swift in Sources */,
+				3F4B530E278BE92300D64A6D /* Login.swift in Sources */,
 				DA97B6A9278BE05D006C473E /* ContentView.swift in Sources */,
 				DA97B6A7278BE05D006C473E /* ClonetApp.swift in Sources */,
 			);
