@@ -10,4 +10,6 @@ import Foundation
 struct User : Codable, Identifiable {
     var id : String
     var password : String
+    
+    
 }

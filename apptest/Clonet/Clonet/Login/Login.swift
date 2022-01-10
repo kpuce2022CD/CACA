@@ -11,8 +11,6 @@ struct Login: View {
     @State var id : String = ""
     @State var passwd : String = ""
     @State var isOn = true
-    
-    @State var loginState = false
 
     var body: some View {
         NavigationView{
@@ -39,12 +37,22 @@ struct Login: View {
                     .frame(width: 130, height: 40)
                     .padding()
                     
-                    // LOGIN BUTTON
-                    Button(action: login) {
-                        Text("LOGIN")
+                    if(id == "A" && passwd == "A"){
+                        NavigationLink( destination: LoginCheck(), label: { Text("LOGIN SUCCESS") })
+                            .frame(width: 200, height: 40)
+                            .background(RoundedRectangle(cornerRadius: 10).strokeBorder())
+                    }else{
+                        NavigationLink( destination: LoginCheck(), label: { Text("LOGIN FAIL") })//.hidden()
+                            .frame(width: 200, height: 40)
+                            .background(RoundedRectangle(cornerRadius: 10).strokeBorder())
                     }
-                    .frame(width: 100, height: 40)
-                    .background(RoundedRectangle(cornerRadius: 10).strokeBorder())
+                    
+                    // LOGIN BUTTON
+//                    Button(action: login) {
+//                        Text("LOGIN")
+//                    }
+//                    .frame(width: 100, height: 40)
+//                    .background(RoundedRectangle(cornerRadius: 10).strokeBorder())
                     
                 }.padding()
                 
@@ -64,12 +72,10 @@ struct Login: View {
     
     func login(){
         let loginID = User(id: id, password: passwd)
-        
         if(id == "A" && passwd == "A"){
-            loginState = true
             print("aaaa")
+            
         }else{
-            loginState = false
             print("bbbb")
         }
 
