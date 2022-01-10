@@ -37,7 +37,7 @@ struct Login: View {
                     .frame(width: 130, height: 40)
                     .padding()
                     
-                    if(id == "A" && passwd == "A"){
+                    if(login()){
                         NavigationLink( destination: LoginCheck(), label: { Text("LOGIN SUCCESS")
                             .foregroundColor(Color.black) })
                             .frame(width: 200, height: 40)
@@ -72,13 +72,12 @@ struct Login: View {
         }
     }
     
-    func login(){
-        let loginID = User(id: id, password: passwd)
-        if(id == "A" && passwd == "A"){
-            print("aaaa")
-            
+    func login() -> Bool {
+        // let loginID = User(id: id, password: passwd)
+        if(id == "B" && passwd == "A"){
+            return true
         }else{
-            print("bbbb")
+            return false
         }
 
     }
