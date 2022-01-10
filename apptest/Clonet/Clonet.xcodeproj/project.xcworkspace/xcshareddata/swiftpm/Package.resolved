@@ -9,6 +9,15 @@
           "revision": "0b01e2b814c8ad5dc0690f1fa9d0e8ffa7461d14",
           "version": null
         }
+      },
+      {
+        "package": "SwiftGit2",
+        "repositoryURL": "https://github.com/light-tech/SwiftGit2",
+        "state": {
+          "branch": "spm",
+          "revision": "03e7f41edf53658958c74db106749923ca9dcda0",
+          "version": null
+        }
       }
     ]
   },
