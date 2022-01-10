@@ -10,6 +10,10 @@
 		3F4B530E278BE92300D64A6D /* Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F4B530D278BE92300D64A6D /* Login.swift */; };
 		3F4B5316278C162500D64A6D /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F4B5315278C162500D64A6D /* User.swift */; };
 		3F4B5318278C17DA00D64A6D /* LoginCheck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F4B5317278C17DA00D64A6D /* LoginCheck.swift */; };
+		B540D41E278C602B00479A63 /* SwiftGit2 in Frameworks */ = {isa = PBXBuildFile; productRef = B540D41D278C602B00479A63 /* SwiftGit2 */; };
+		B540D420278C603900479A63 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = B540D41F278C603900479A63 /* libz.tbd */; };
+		B540D422278C604200479A63 /* libiconv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = B540D421278C604200479A63 /* libiconv.tbd */; };
+		B540D425278C60D400479A63 /* SwiftGit2 in Frameworks */ = {isa = PBXBuildFile; productRef = B540D424278C60D400479A63 /* SwiftGit2 */; };
 		DA97B6A7278BE05D006C473E /* ClonetApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA97B6A6278BE05D006C473E /* ClonetApp.swift */; };
 		DA97B6A9278BE05D006C473E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA97B6A8278BE05D006C473E /* ContentView.swift */; };
 		DA97B6AB278BE05E006C473E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DA97B6AA278BE05E006C473E /* Assets.xcassets */; };
@@ -20,6 +24,16 @@
 		3F4B530D278BE92300D64A6D /* Login.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Login.swift; sourceTree = "<group>"; };
 		3F4B5315278C162500D64A6D /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		3F4B5317278C17DA00D64A6D /* LoginCheck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginCheck.swift; sourceTree = "<group>"; };
+		B540D41B278C5FF300479A63 /* SwiftGit2 */ = {isa = PBXFileReference; lastKnownFileType = folder; name = SwiftGit2; path = ../../../../../Downloads/library/SwiftGit2; sourceTree = "<group>"; };
+		B540D41F278C603900479A63 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
+		B540D421278C604200479A63 /* libiconv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libiconv.tbd; path = usr/lib/libiconv.tbd; sourceTree = SDKROOT; };
+		B593818F278C5E4A00C5B28F /* SwiftGit2 */ = {isa = PBXFileReference; lastKnownFileType = folder; name = SwiftGit2; path = ../../../../../Downloads/library/SwiftGit2; sourceTree = "<group>"; };
+		B5938190278C5E8100C5B28F /* SwiftGit2 */ = {isa = PBXFileReference; lastKnownFileType = folder; name = SwiftGit2; path = ../../../../../Downloads/library/SwiftGit2; sourceTree = "<group>"; };
+		B5938191278C5EAF00C5B28F /* SwiftGit2 */ = {isa = PBXFileReference; lastKnownFileType = folder; name = SwiftGit2; path = ../../../../../Downloads/library/SwiftGit2; sourceTree = "<group>"; };
+		B5938192278C5EE900C5B28F /* SwiftGit2 */ = {isa = PBXFileReference; lastKnownFileType = folder; name = SwiftGit2; path = ../../../../../Downloads/library/SwiftGit2; sourceTree = "<group>"; };
+		B5938193278C5F0900C5B28F /* SwiftGit2 */ = {isa = PBXFileReference; lastKnownFileType = folder; name = SwiftGit2; path = ../../../../../Downloads/library/SwiftGit2; sourceTree = "<group>"; };
+		B5938194278C5F2200C5B28F /* SwiftGit2 */ = {isa = PBXFileReference; lastKnownFileType = folder; name = SwiftGit2; path = ../../../../../Downloads/library/SwiftGit2; sourceTree = "<group>"; };
+		B5938195278C5FB400C5B28F /* SwiftGit2 */ = {isa = PBXFileReference; lastKnownFileType = folder; name = SwiftGit2; path = ../../../../../Downloads/library/SwiftGit2; sourceTree = "<group>"; };
 		DA97B6A3278BE05D006C473E /* Clonet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Clonet.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DA97B6A6278BE05D006C473E /* ClonetApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClonetApp.swift; sourceTree = "<group>"; };
 		DA97B6A8278BE05D006C473E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -32,6 +46,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B540D425278C60D400479A63 /* SwiftGit2 in Frameworks */,
+				B540D422278C604200479A63 /* libiconv.tbd in Frameworks */,
+				B540D420278C603900479A63 /* libz.tbd in Frameworks */,
+				B540D41E278C602B00479A63 /* SwiftGit2 in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -48,11 +66,37 @@
 			path = Login;
 			sourceTree = "<group>";
 		};
+		B540D41C278C602B00479A63 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B540D421278C604200479A63 /* libiconv.tbd */,
+				B540D41F278C603900479A63 /* libz.tbd */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		B593818E278C5E4A00C5B28F /* Packages */ = {
+			isa = PBXGroup;
+			children = (
+				B593818F278C5E4A00C5B28F /* SwiftGit2 */,
+				B5938190278C5E8100C5B28F /* SwiftGit2 */,
+				B5938191278C5EAF00C5B28F /* SwiftGit2 */,
+				B5938192278C5EE900C5B28F /* SwiftGit2 */,
+				B5938193278C5F0900C5B28F /* SwiftGit2 */,
+				B5938194278C5F2200C5B28F /* SwiftGit2 */,
+				B5938195278C5FB400C5B28F /* SwiftGit2 */,
+				B540D41B278C5FF300479A63 /* SwiftGit2 */,
+			);
+			name = Packages;
+			sourceTree = "<group>";
+		};
 		DA97B69A278BE05D006C473E = {
 			isa = PBXGroup;
 			children = (
+				B593818E278C5E4A00C5B28F /* Packages */,
 				DA97B6A5278BE05D006C473E /* Clonet */,
 				DA97B6A4278BE05D006C473E /* Products */,
+				B540D41C278C602B00479A63 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -100,6 +144,10 @@
 			dependencies = (
 			);
 			name = Clonet;
+			packageProductDependencies = (
+				B540D41D278C602B00479A63 /* SwiftGit2 */,
+				B540D424278C60D400479A63 /* SwiftGit2 */,
+			);
 			productName = Clonet;
 			productReference = DA97B6A3278BE05D006C473E /* Clonet.app */;
 			productType = "com.apple.product-type.application";
@@ -128,6 +176,9 @@
 				Base,
 			);
 			mainGroup = DA97B69A278BE05D006C473E;
+			packageReferences = (
+				B540D423278C60D400479A63 /* XCRemoteSwiftPackageReference "SwiftGit2" */,
+			);
 			productRefGroup = DA97B6A4278BE05D006C473E /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -290,12 +341,14 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Clonet/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
+				EXCLUDED_ARCHS = arm64;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -318,12 +371,14 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Clonet/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
+				EXCLUDED_ARCHS = arm64;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -359,6 +414,29 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		B540D423278C60D400479A63 /* XCRemoteSwiftPackageReference "SwiftGit2" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/light-tech/SwiftGit2";
+			requirement = {
+				branch = spm;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		B540D41D278C602B00479A63 /* SwiftGit2 */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = SwiftGit2;
+		};
+		B540D424278C60D400479A63 /* SwiftGit2 */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B540D423278C60D400479A63 /* XCRemoteSwiftPackageReference "SwiftGit2" */;
+			productName = SwiftGit2;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = DA97B69B278BE05D006C473E /* Project object */;
 }
