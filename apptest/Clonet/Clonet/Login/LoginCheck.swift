@@ -8,13 +8,15 @@
 import SwiftUI
 
 struct LoginCheck: View {
+    @State var id = ""
+    
     var body: some View {
-        Text("LoginCheck")
+        Text(id)
     }
 }
 
 struct LoginCheck_Previews: PreviewProvider {
     static var previews: some View {
-        LoginCheck()
+        LoginCheck(id: "asdf")
     }
 }

@@ -11,5 +11,8 @@ struct User : Codable, Identifiable {
     var id : String
     var password : String
     
-    
+    init(){
+        self.id = ""
+        self.password = ""
+    }
 }
