@@ -38,12 +38,12 @@ struct Login: View {
                     .padding()
                     
                     if(login()){
-                        NavigationLink( destination: LoginCheck(), label: { Text("LOGIN SUCCESS")
+                        NavigationLink( destination: LoginCheck(), label: { Text("LOGIN SUCCESS!")
                             .foregroundColor(Color.black) })
                             .frame(width: 200, height: 40)
                             .background(RoundedRectangle(cornerRadius: 10).strokeBorder())
                     }else{
-                        NavigationLink( destination: LoginCheck(), label: { Text("LOGIN FAIL")
+                        NavigationLink( destination: LoginCheck(), label: { Text("LOGIN PLEASE")
                             .foregroundColor(Color.black) })//.hidden()
                             .frame(width: 200, height: 40)
                             .background(RoundedRectangle(cornerRadius: 10).strokeBorder())
