@@ -14,6 +14,8 @@
 		3FD176B4278D4E7D0025CCD2 /* FindIdPw.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD176B3278D4E7D0025CCD2 /* FindIdPw.swift */; };
 		3FD176B9278D72430025CCD2 /* test.json in Resources */ = {isa = PBXBuildFile; fileRef = 3FD176B8278D72430025CCD2 /* test.json */; };
 		3FD176BB278D83510025CCD2 /* JsonTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD176BA278D83510025CCD2 /* JsonTest.swift */; };
+		3FE633B3278DCEAB00143666 /* IamTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE633B2278DCEAB00143666 /* IamTest.swift */; };
+		3FE633B5278DD9AF00143666 /* PageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE633B4278DD9AF00143666 /* PageViewController.swift */; };
 		B50BD823278C781700A7E3E0 /* GitTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50BD822278C781700A7E3E0 /* GitTest.swift */; };
 		B540D41E278C602B00479A63 /* SwiftGit2 in Frameworks */ = {isa = PBXBuildFile; productRef = B540D41D278C602B00479A63 /* SwiftGit2 */; };
 		B540D420278C603900479A63 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = B540D41F278C603900479A63 /* libz.tbd */; };
@@ -35,6 +37,8 @@
 		3FD176B3278D4E7D0025CCD2 /* FindIdPw.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindIdPw.swift; sourceTree = "<group>"; };
 		3FD176B8278D72430025CCD2 /* test.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = test.json; sourceTree = "<group>"; };
 		3FD176BA278D83510025CCD2 /* JsonTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JsonTest.swift; sourceTree = "<group>"; };
+		3FE633B2278DCEAB00143666 /* IamTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IamTest.swift; sourceTree = "<group>"; };
+		3FE633B4278DD9AF00143666 /* PageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageViewController.swift; sourceTree = "<group>"; };
 		B50BD822278C781700A7E3E0 /* GitTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitTest.swift; sourceTree = "<group>"; };
 		B540D41B278C5FF300479A63 /* SwiftGit2 */ = {isa = PBXFileReference; lastKnownFileType = folder; name = SwiftGit2; path = ../../../../../Downloads/library/SwiftGit2; sourceTree = "<group>"; };
 		B540D41F278C603900479A63 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
@@ -105,6 +109,8 @@
 				DACAA65D278C7E5D007F3918 /* SocketIO.swift */,
 				B50BD822278C781700A7E3E0 /* GitTest.swift */,
 				3FD176BA278D83510025CCD2 /* JsonTest.swift */,
+				3FE633B2278DCEAB00143666 /* IamTest.swift */,
+				3FE633B4278DD9AF00143666 /* PageViewController.swift */,
 			);
 			path = Test;
 			sourceTree = "<group>";
@@ -256,6 +262,7 @@
 				3F4B5316278C162500D64A6D /* User.swift in Sources */,
 				3FD176B4278D4E7D0025CCD2 /* FindIdPw.swift in Sources */,
 				DACAA65E278C7E5D007F3918 /* SocketIO.swift in Sources */,
+				3FE633B5278DD9AF00143666 /* PageViewController.swift in Sources */,
 				3F4B530E278BE92300D64A6D /* Login.swift in Sources */,
 				B50BD823278C781700A7E3E0 /* GitTest.swift in Sources */,
 				3FD176BB278D83510025CCD2 /* JsonTest.swift in Sources */,
@@ -263,6 +270,7 @@
 				3FD176B2278D31A50025CCD2 /* Signup.swift in Sources */,
 				3F4B5318278C17DA00D64A6D /* LoginCheck.swift in Sources */,
 				DA97B6A7278BE05D006C473E /* ClonetApp.swift in Sources */,
+				3FE633B3278DCEAB00143666 /* IamTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
