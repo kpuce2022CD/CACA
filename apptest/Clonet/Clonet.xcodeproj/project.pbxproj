@@ -70,12 +70,37 @@
 			isa = PBXGroup;
 			children = (
 				3F4B530D278BE92300D64A6D /* Login.swift */,
-				3F4B5315278C162500D64A6D /* User.swift */,
 				3F4B5317278C17DA00D64A6D /* LoginCheck.swift */,
 				3FD176B1278D31A50025CCD2 /* Signup.swift */,
 				3FD176B3278D4E7D0025CCD2 /* FindIdPw.swift */,
 			);
 			path = Login;
+			sourceTree = "<group>";
+		};
+		3FD176B5278D69BF0025CCD2 /* DataStructure */ = {
+			isa = PBXGroup;
+			children = (
+				3F4B5315278C162500D64A6D /* User.swift */,
+			);
+			path = DataStructure;
+			sourceTree = "<group>";
+		};
+		3FD176B6278D69D50025CCD2 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				DA97B6A8278BE05D006C473E /* ContentView.swift */,
+				DA97B6A6278BE05D006C473E /* ClonetApp.swift */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		3FD176B7278D69EA0025CCD2 /* Test */ = {
+			isa = PBXGroup;
+			children = (
+				DACAA65D278C7E5D007F3918 /* SocketIO.swift */,
+				B50BD822278C781700A7E3E0 /* GitTest.swift */,
+			);
+			path = Test;
 			sourceTree = "<group>";
 		};
 		B540D41C278C602B00479A63 /* Frameworks */ = {
@@ -123,13 +148,12 @@
 		DA97B6A5278BE05D006C473E /* Clonet */ = {
 			isa = PBXGroup;
 			children = (
+				3FD176B6278D69D50025CCD2 /* Main */,
+				3FD176B5278D69BF0025CCD2 /* DataStructure */,
+				3FD176B7278D69EA0025CCD2 /* Test */,
 				3F4B530C278BE91100D64A6D /* Login */,
-				DA97B6A6278BE05D006C473E /* ClonetApp.swift */,
-				DA97B6A8278BE05D006C473E /* ContentView.swift */,
 				DA97B6AA278BE05E006C473E /* Assets.xcassets */,
 				DA97B6AC278BE05E006C473E /* Preview Content */,
-				B50BD822278C781700A7E3E0 /* GitTest.swift */,
-				DACAA65D278C7E5D007F3918 /* SocketIO.swift */,
 			);
 			path = Clonet;
 			sourceTree = "<group>";
