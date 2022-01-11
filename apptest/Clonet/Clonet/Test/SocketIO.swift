@@ -18,7 +18,7 @@ final class Service: ObservableObject {
         let socket = manager.defaultSocket
         socket.on(clientEvent: .connect){ (data, ack) in
             print("Connected")
-            socket.emit("NodeJS Server Port", self.json)
+            socket.emit("NodeJS Server Port", "self.json")
         }
         
         socket.on("iOS Client Port"){ [weak self] (data, ack) in

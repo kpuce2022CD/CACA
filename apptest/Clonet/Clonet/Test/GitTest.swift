@@ -27,10 +27,15 @@ struct GitTest: View {
         VStack {
             Button("Open test Git repo", action: testGitRepo)
             Button("Clone remote Git repo", action: cloneGitRepo)
+            Button("CREATE GIT REPOSITORY", action: createGitRepo)
             ScrollView {
                 Text(message)
             }
         }.padding(5)
+    }
+    
+    func createGitRepo(){
+        
     }
 
     func cloneGitRepo() {
