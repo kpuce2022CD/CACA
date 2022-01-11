@@ -14,11 +14,31 @@ final class Service: ObservableObject {
     
     @Published var messages = [String]()
     
+    let json = """
+[
+    {
+        "id": "aa54kk675thg32",
+        "subject":"math",
+        "grade":"A+"
+    },
+    {
+        "id": "bb54kk675thg42",
+        "subject":"english",
+        "grade":"A0"
+    },
+    {
+        "id": "cc54kk675thg52",
+        "subject":"science",
+        "grade":"B+"
+    }
+]
+"""
+    
     init(){
         let socket = manager.defaultSocket
         socket.on(clientEvent: .connect){ (data, ack) in
             print("Connected")
-            socket.emit("NodeJS Server Port", "Hi Node.JS server!")
+            socket.emit("NodeJS Server Port", self.json)
         }
         
         socket.on("iOS Client Port"){ [weak self] (data, ack) in
