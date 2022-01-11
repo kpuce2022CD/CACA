@@ -7,17 +7,20 @@
 
 import SwiftUI
 import SocketIO
+
 //
 final class Service_login: ObservableObject {
     private var manager = SocketManager(socketURL: URL(string: "ws://localhost:3000")!, config: [.log(true), .compress])
 
     @Published var messages = [String]()
-    @Published var loginJSON = "aaa"
-    init(){
+    @Published var loginJSON = ""
+    @State var json: String = ""
+    
+    init(json: String){
         let socket = manager.defaultSocket
         socket.on(clientEvent: .connect){ (data, ack) in
             print("Connected")
-            socket.emit("login", "self.json")
+            socket.emit("login", json)
         }
 
         socket.on("iOS Client Port"){ [weak self] (data, ack) in
@@ -39,27 +42,19 @@ final class Service_login: ObservableObject {
 
 
 }
+
 struct Login: View {
     @State var id : String = ""
     @State var passwd : String = ""
     @State var isOn = true
-
-//    //login
-//    private var manager = SocketManager(socketURL: URL(string: "ws://localhost:3000")!, config: [.log(true), .compress])
-//    @State var messages = [String]()
-//    var loginJSON = "aaa"
-//
-//    let socket = manager.defaultSocket
-//    socket.on(clientEvent: .connect){ (data, ack) in
-//        print("Connected")
-//        socket.emit("login", "self.json")
-//    }
-//
-//    socket.on(clientEvent: .connect){ (data, ack) in
-//        print("Connected")
-//        socket.emit("login", self.loginJSON)
-//    }
-//    socket.connect()
+    
+    @State var loginJSON = """
+[
+{"user_id": $id,
+"user_pw": $passwd
+}
+]
+"""
     
     
     var body: some View {
@@ -67,7 +62,7 @@ struct Login: View {
             VStack {
                 // title
                 Button(action: {
-                    Service_login()
+                    Service_login(json: loginJSON)
                 }, label: {Text("Login to DB")})
                 Spacer()
                 Text("CLONET")
@@ -130,14 +125,7 @@ struct Login: View {
     
     func login() -> Bool {
         print("func login()")
-        // let loginID = User(id: id, password: passwd)
-//        server_Login.loginJSON = """
-//[
-//    {"user_id": $id,
-//    "user_pw": $passwd
-//    }
-//]
-//"""
+
         
         if(id == "B" && passwd == "A"){
             return true
@@ -147,41 +135,7 @@ struct Login: View {
 
     }
     
-//
-//    func aService_login(){
-//        print("asdf")
-//        var Service_login = Service_login()
-//
-        
-//        //let manager = SocketManager(socketURL: URL(string: "ws://localhost:3000")!, config: [.log(true), .compress])
-//
-////        var _: String = ""
-////        let loginJSON = "aaa"
-////
-//
-//
-//            let socket = SocketManager(socketURL: URL(string: "ws://localhost:3000")!, config: [.log(true), .compress]).defaultSocket
-//            socket.on(clientEvent: .connect){ (data, ack) in
-//                print("Connected")
-//                socket.emit("NodeJS Server Port", "self.json")
-//            }
-////
-//////            socket.on("iOS Client Port"){(data, ack) in
-//////                if let data = data[0] as? [String: String],
-//////                   let rawMessage = data["msg"] {
-//////                    DispatchQueue.main.async {
-//////                        messages.append(rawMessage)
-//////                    }
-//////                }
-//////            }
-////
-////            socket.on(clientEvent: .connect){ (data, ack) in
-////                print("Connected")
-////                socket.emit("login", loginJSON)
-////            }
-////            socket.connect()
-////
-//    }
+
 }
 
 struct Login_Previews: PreviewProvider {
