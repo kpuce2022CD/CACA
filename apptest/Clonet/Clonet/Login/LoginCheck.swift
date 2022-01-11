@@ -11,7 +11,10 @@ struct LoginCheck: View {
     @State var id = ""
     
     var body: some View {
-        Text(id)
+        NavigationView{
+            Text(id)
+        }
+        .navigationBarBackButtonHidden(true)
     }
 }
 

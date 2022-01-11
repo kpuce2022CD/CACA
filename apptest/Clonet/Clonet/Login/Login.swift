@@ -71,7 +71,9 @@ struct Login: View {
                                    label: {Text("ID / PASSWORD 찾기")})
                 }.padding()
             }
-        }.navigationViewStyle(StackNavigationViewStyle())
+        }
+        .navigationViewStyle(StackNavigationViewStyle())
+        .navigationBarBackButtonHidden(true)
     }
     
     func login() -> Bool {
