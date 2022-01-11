@@ -18,24 +18,24 @@ struct Json : Decodable, Identifiable {
 
 typealias Codable = Decodable & Encodable
 
-class GradeStore : ObservableObject {
+class JsonStore : ObservableObject {
     
-    @Published var grades: [Json]
+    @Published var dataJson: [Json]
     
-    init (grades: [Json] = []) {
-        self.grades = grades
+    init (dataJson: [Json] = []) {
+        self.dataJson = dataJson
     }
     
 }
 
 struct JsonTest: View {
-    @ObservedObject var gradeStore: GradeStore = GradeStore(grades: JsonData)
+    @ObservedObject var jsonStore: JsonStore = JsonStore(dataJson: JsonData)
     var body: some View{
-        List(gradeStore.grades) { grade in
+        List(jsonStore.dataJson) { i in
                     HStack {
-                        Text(grade.subject)
+                        Text(i.subject)
                             .font(.largeTitle)
-                        Text(grade.grade)
+                        Text(i.grade)
                             .font(.headline)
             }
         }
