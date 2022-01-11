@@ -6,16 +6,69 @@
 //
 
 import SwiftUI
+import SocketIO
+//
+final class Service_login: ObservableObject {
+    private var manager = SocketManager(socketURL: URL(string: "ws://localhost:3000")!, config: [.log(true), .compress])
 
+    @Published var messages = [String]()
+    @Published var loginJSON = "aaa"
+    init(){
+        let socket = manager.defaultSocket
+        socket.on(clientEvent: .connect){ (data, ack) in
+            print("Connected")
+            socket.emit("login", "self.json")
+        }
+
+        socket.on("iOS Client Port"){ [weak self] (data, ack) in
+            if let data = data[0] as? [String: String],
+               let rawMessage = data["msg"] {
+                DispatchQueue.main.async {
+                    self?.messages.append(rawMessage)
+                }
+            }
+        }
+
+        socket.on(clientEvent: .connect){ (data, ack) in
+            print("Connected")
+            socket.emit("login", self.loginJSON)
+        }
+        socket.connect()
+    }
+
+
+
+}
 struct Login: View {
     @State var id : String = ""
     @State var passwd : String = ""
     @State var isOn = true
 
+//    //login
+//    private var manager = SocketManager(socketURL: URL(string: "ws://localhost:3000")!, config: [.log(true), .compress])
+//    @State var messages = [String]()
+//    var loginJSON = "aaa"
+//
+//    let socket = manager.defaultSocket
+//    socket.on(clientEvent: .connect){ (data, ack) in
+//        print("Connected")
+//        socket.emit("login", "self.json")
+//    }
+//
+//    socket.on(clientEvent: .connect){ (data, ack) in
+//        print("Connected")
+//        socket.emit("login", self.loginJSON)
+//    }
+//    socket.connect()
+    
+    
     var body: some View {
         NavigationView{
             VStack {
                 // title
+                Button(action: {
+                    Service_login()
+                }, label: {Text("Login to DB")})
                 Spacer()
                 Text("CLONET")
                     .font(.title)
@@ -57,7 +110,6 @@ struct Login: View {
                             .background(RoundedRectangle(cornerRadius: 10).strokeBorder())
                     }
                     
-                    
                 }
                 
                 // ID PASSWORD FIND
@@ -77,7 +129,16 @@ struct Login: View {
     }
     
     func login() -> Bool {
+        print("func login()")
         // let loginID = User(id: id, password: passwd)
+//        server_Login.loginJSON = """
+//[
+//    {"user_id": $id,
+//    "user_pw": $passwd
+//    }
+//]
+//"""
+        
         if(id == "B" && passwd == "A"){
             return true
         }else{
@@ -85,6 +146,42 @@ struct Login: View {
         }
 
     }
+    
+//
+//    func aService_login(){
+//        print("asdf")
+//        var Service_login = Service_login()
+//
+        
+//        //let manager = SocketManager(socketURL: URL(string: "ws://localhost:3000")!, config: [.log(true), .compress])
+//
+////        var _: String = ""
+////        let loginJSON = "aaa"
+////
+//
+//
+//            let socket = SocketManager(socketURL: URL(string: "ws://localhost:3000")!, config: [.log(true), .compress]).defaultSocket
+//            socket.on(clientEvent: .connect){ (data, ack) in
+//                print("Connected")
+//                socket.emit("NodeJS Server Port", "self.json")
+//            }
+////
+//////            socket.on("iOS Client Port"){(data, ack) in
+//////                if let data = data[0] as? [String: String],
+//////                   let rawMessage = data["msg"] {
+//////                    DispatchQueue.main.async {
+//////                        messages.append(rawMessage)
+//////                    }
+//////                }
+//////            }
+////
+////            socket.on(clientEvent: .connect){ (data, ack) in
+////                print("Connected")
+////                socket.emit("login", loginJSON)
+////            }
+////            socket.connect()
+////
+//    }
 }
 
 struct Login_Previews: PreviewProvider {

@@ -32,6 +32,8 @@ final class Service: ObservableObject {
         
         socket.connect()
     }
+    
+    
 }
 
 struct SocketIO: View {
