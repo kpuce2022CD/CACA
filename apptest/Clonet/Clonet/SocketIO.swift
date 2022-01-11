@@ -10,7 +10,7 @@ import SocketIO
 import zlib
 
 final class Service: ObservableObject {
-    private var manager = SocketManager(socketURL: URL(string: "ws://localhost:3000")!, config: [.log(true), .compress])
+    private var manager = SocketManager(socketURL: URL(string: "ws://13.125.160.209:3000")!, config: [.log(true), .compress])
     
     @Published var messages = [String]()
     
