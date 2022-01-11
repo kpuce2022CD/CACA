@@ -67,7 +67,7 @@ struct Login: View {
                     NavigationLink(destination: Signup(),
                                    label: {Text("SIGN UP")})
                     // Find ID && PASSWORD
-                    NavigationLink(destination: Signup(),
+                    NavigationLink(destination: FindIdPw(),
                                    label: {Text("ID / PASSWORD 찾기")})
                 }.padding()
             }
