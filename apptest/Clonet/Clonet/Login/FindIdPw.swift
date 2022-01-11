@@ -15,7 +15,7 @@ struct FindIdPw: View {
         NavigationView{
             VStack(alignment: .center)  {
                 Text("FIND ID && PASSWORD")
-                    .font(.title)
+                    .font(.largeTitle)
                     .multilineTextAlignment(.center)
                 
                 Form{
@@ -49,8 +49,9 @@ struct FindIdPw: View {
                 }
             }
         }
+        .hiddenNavigationBarStyle()
         .navigationViewStyle(StackNavigationViewStyle())
-        .navigationBarBackButtonHidden(true)
+        //.navigationBarBackButtonHidden(true)
     
     }
 }
