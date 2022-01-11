@@ -4,7 +4,6 @@
 //
 //  Created by Hye Min Choi on 2022/01/11.
 //
-
 import SwiftUI
 
 struct Signup: View {
