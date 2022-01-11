@@ -1,0 +1,42 @@
+추가적인 조사 & 근거자료
+
+개발언어 파이썬이라고 가정.
+
+1. 전 버전과 지금 버전을 겹쳐서 투명도를 조정하면서 비교 (겹치는 부분을 옮길 수 있음)
+파이썬 OpenCV의 cv2.add() , cv2.addWdighted() 함수 사용.
+두 이미지의 가중치를 다르게 하여, trackbar로 조절함.
+https://opencv-python.readthedocs.io/en/latest/doc/07.imageArithmetic/imageArithmetic.html
+
+슬라이드바 이용하는 tkinter 모듈 사용.
+https://scribblinganything.tistory.com/277
+
+OpenCV, 넘파이 비트 연산
+https://bkshin.tistory.com/entry/OpenCV-9-%EC%9D%B4%EB%AF%B8%EC%A7%80-%EC%97%B0%EC%82%B0
+이미지 연산, 합성, 트랙바를 통한 가중치 값 조절, 각 픽셀에 대한 논리연산, 마스킹 등의 예제
+
+
+2. 작업물에 워터마크(등록된 작가 싸인, 로고 이미지, 닉네임 등 사용) 씌워서 commit.
+Wand : 이미지 매직 파이썬 API 라이브러리
+https://yoonkh.github.io/python/2017/12/10/brain6.html
+
+image.convert() 를 통한 파일 형식 변경, resize()로 크기 변경,
+image.composite() 로 이미지 합성, 'image.watermark() 로 워터마크 삽입' 등의
+wand 모듈에서 사용되는 메소드 및 사용예제들이 정리되어 있음.
+
+파이썬에 워터마크 넣는 영상 (wand 예시)
+https://youtu.be/_y3WS3DJR6Y
+
+Pillow : 이미지 처리 라이브러리. (PIL)
+https://ddolcat.tistory.com/690
+설치 방법, 이미지 출력, 필터링, 저장, 변환, rgb 색상 추출 등의 기능이 들어있음.
+
+https://creativeworks.tistory.com/entry/PYTHON-3-Tutorials-41-Combine-Images-Together-%EC%9D%B4%EB%AF%B8%EC%A7%80-%EB%B3%91%ED%95%A9%ED%95%98%EA%B8%B0-like-watermark%EC%9B%8C%ED%84%B0%EB%A7%88%ED%81%AC
+원본 이미지와, 워터마크로 넣을 이미지 불러오고, 이미지 사이즈 맞춰서
+두 이미지 paste 하여 show 하는 방식.
+
+psd 파일 뿐만이 아닌, pdf 파일에 워터마크 생성하는 방법 (pillow 사용)
+https://herohjk.com/40
+
+<근거자료>
+워터마크를 통한 불법 복제물 유출자 추적 기사
+http://www.kksm.co.kr/news/articleView.html?idxno=496
