@@ -63,12 +63,12 @@ struct Login: View {
                 // ID PASSWORD FIND
                 Spacer()
                 HStack (spacing:20) {
-                    Button("ID 찾기") {
-                        
-                    }
-                    Button("PASSWORD 찾기") {
-                        
-                    }
+                    // Sign up
+                    NavigationLink(destination: Signup(),
+                                   label: {Text("SIGN UP")})
+                    // Find ID && PASSWORD
+                    NavigationLink(destination: Signup(),
+                                   label: {Text("ID / PASSWORD 찾기")})
                 }.padding()
             }
         }.navigationViewStyle(StackNavigationViewStyle())
