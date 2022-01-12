@@ -75,7 +75,8 @@ struct Login: View {
                         }
                         HStack(alignment: .center) { // passwd input
                             Image(systemName: "lock").padding()
-                            TextField("PASSWORD", text: $passwd)
+                            //TextField("PASSWORD", text: $passwd)
+                            SecureField("PASSWORD", text: $passwd)
                                 .frame(width: 200)
                                 .padding()
                         }
