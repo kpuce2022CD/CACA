@@ -8,7 +8,7 @@
 import SwiftUI
 import SocketIO
 
-//
+//로그인 정보 보내기
 final class Service_login: ObservableObject {
     private var manager = SocketManager(socketURL: URL(string: "ws://localhost:3000")!, config: [.log(true), .compress])
 
@@ -21,21 +21,20 @@ final class Service_login: ObservableObject {
         socket.on(clientEvent: .connect){ (data, ack) in
             print("Connected")
             socket.emit("login", json)
-        }
-
-        socket.on("iOS Client Port"){ [weak self] (data, ack) in
-            if let data = data[0] as? [String: String],
-               let rawMessage = data["msg"] {
-                DispatchQueue.main.async {
-                    self?.messages.append(rawMessage)
-                }
-            }
-        }
-
-        socket.on(clientEvent: .connect){ (data, ack) in
-            print("Connected")
             socket.emit("login", self.loginJSON)
+            
+            
+            socket.disconnect()
         }
+        
+        socket.on("login"){ [weak self] (data, ack) in
+            print(data);
+        }
+
+//        socket.on(clientEvent: .connect){ (data, ack) in
+//            print("Connected")
+//            socket.emit("login", self.loginJSON)
+//        }
         socket.connect()
     }
 
@@ -48,17 +47,11 @@ struct Login: View {
     @State var passwd : String = ""
     @State var isOn = true
     
-    @State var loginJSON = """
-[
-{"user_id": $id,
-"user_pw": $passwd
-}
-]
-"""
-    
     
     var body: some View {
         NavigationView{
+            // 로그인 정보를 보내는 변수
+            var loginJSON = "{\"user_id\": \"\(self.id)\", \"user_pw\": \"\(self.passwd)\"}"
             VStack {
                 // title
                 Button(action: {
