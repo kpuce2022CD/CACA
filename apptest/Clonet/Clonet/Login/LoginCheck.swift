@@ -15,7 +15,7 @@ struct LoginCheck: View {
             Text(id)
         }
         .hiddenNavigationBarStyle()
-        .navigationBarBackButtonHidden(true)
+        //.navigationBarBackButtonHidden(true)
     }
 }
 

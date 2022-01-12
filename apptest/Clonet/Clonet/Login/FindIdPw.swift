@@ -6,9 +6,11 @@
 //
 
 import SwiftUI
+import MessageUI
 
 struct FindIdPw: View {
-    @State var email = ""
+    @State var emailID = ""
+    @State var emailPWD = ""
     @State var showingAlert = false
     
     var body: some View {
@@ -20,22 +22,53 @@ struct FindIdPw: View {
                 
                 Form{
                     Section(header: Text("FIND ID")) {
-                        TextField("EMAIL", text: $email)
+                        TextField("EMAIL", text: $emailID)
                             .padding()
                         
-                        Button(action: {
-                                    self.showingAlert = true
+                        if(EmailMatch()){
+                            Button(action: {
+                                self.showingAlert = true
                                 }) {
-                                    Text("complete")
+                                Text("complete")
                                 }
                                 .alert(isPresented: $showingAlert) {
-                                    Alert(title: Text("이메일을 발송하였습니다."), message: Text("입력하신 이메일을 확인해주세요"), dismissButton: .default(Text("확인")))
+                                    Alert(title: Text("아이디 확인"), message: Text(emailID + "의 id는 B입니다"), dismissButton: .default(Text("확인")))
                                 }
+                        }else if(emailID == ""){
+                            Button(action: {
+                                self.showingAlert = true
+                                }) {
+                                Text("complete")
+                                }
+                                .alert(isPresented: $showingAlert) {
+                                    Alert(title: Text("이메일을 입력해주세요."), dismissButton: .default(Text("확인")))
+                                }
+                        }else if(!EmailMatch()){
+                            Button(action: {
+                                self.showingAlert = true
+                                }) {
+                                Text("complete")
+                                }
+                                .alert(isPresented: $showingAlert) {
+                                    Alert(title: Text("아이디 확인 불가"), message: Text("입력하신 이메일을 확인해주세요."), dismissButton: .default(Text("확인")))
+                                }
+                        }
+                        
+                        
+                        
+//                        Button(action: {
+//                                    self.showingAlert = true
+//                                }) {
+//                                    Text("complete")
+//                                }
+//                                .alert(isPresented: $showingAlert) {
+//                                    Alert(title: Text("이메일을 발송하였습니다."), message: Text("입력하신 이메일을 확인해주세요"), dismissButton: .default(Text("확인")))
+//                                }
                     }
                     
                     
                     Section(header: Text("FIND PASSWORD")) {
-                        TextField("EMAIL", text: $email)
+                        TextField("EMAIL", text: $emailPWD)
                             .padding()
                         Button(action: {
                                     self.showingAlert = true
@@ -43,7 +76,7 @@ struct FindIdPw: View {
                                     Text("complete")
                                 }
                                 .alert(isPresented: $showingAlert) {
-                                    Alert(title: Text("이메일을 발송하였습니다."), message: Text("입력하신 이메일을 확인해주세요"), dismissButton: .default(Text("확인")))
+                                    Alert(title: Text(emailPWD + "이메일을 발송하였습니다."), message: Text("입력하신 이메일을 확인해주세요"), dismissButton: .default(Text("확인")))
                                 }
                     }
                 }
@@ -52,7 +85,15 @@ struct FindIdPw: View {
         .hiddenNavigationBarStyle()
         .navigationViewStyle(StackNavigationViewStyle())
         //.navigationBarBackButtonHidden(true)
+    }
     
+    func EmailMatch() -> Bool{
+        print("Matching")
+        if(emailID == "DD"){
+            return true
+        }else{
+            return false
+        }
     }
 }
 
