@@ -21,6 +21,7 @@
 		B540D420278C603900479A63 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = B540D41F278C603900479A63 /* libz.tbd */; };
 		B540D422278C604200479A63 /* libiconv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = B540D421278C604200479A63 /* libiconv.tbd */; };
 		B540D425278C60D400479A63 /* SwiftGit2 in Frameworks */ = {isa = PBXBuildFile; productRef = B540D424278C60D400479A63 /* SwiftGit2 */; };
+		DA253E13278DEE1500AEE18A /* ViewModifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA253E12278DEE1500AEE18A /* ViewModifiers.swift */; };
 		DA97B6A7278BE05D006C473E /* ClonetApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA97B6A6278BE05D006C473E /* ClonetApp.swift */; };
 		DA97B6A9278BE05D006C473E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA97B6A8278BE05D006C473E /* ContentView.swift */; };
 		DA97B6AB278BE05E006C473E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DA97B6AA278BE05E006C473E /* Assets.xcassets */; };
@@ -50,6 +51,7 @@
 		B5938193278C5F0900C5B28F /* SwiftGit2 */ = {isa = PBXFileReference; lastKnownFileType = folder; name = SwiftGit2; path = ../../../../../Downloads/library/SwiftGit2; sourceTree = "<group>"; };
 		B5938194278C5F2200C5B28F /* SwiftGit2 */ = {isa = PBXFileReference; lastKnownFileType = folder; name = SwiftGit2; path = ../../../../../Downloads/library/SwiftGit2; sourceTree = "<group>"; };
 		B5938195278C5FB400C5B28F /* SwiftGit2 */ = {isa = PBXFileReference; lastKnownFileType = folder; name = SwiftGit2; path = ../../../../../Downloads/library/SwiftGit2; sourceTree = "<group>"; };
+		DA253E12278DEE1500AEE18A /* ViewModifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModifiers.swift; sourceTree = "<group>"; };
 		DA97B6A3278BE05D006C473E /* Clonet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Clonet.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DA97B6A6278BE05D006C473E /* ClonetApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClonetApp.swift; sourceTree = "<group>"; };
 		DA97B6A8278BE05D006C473E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -98,6 +100,7 @@
 			children = (
 				DA97B6A8278BE05D006C473E /* ContentView.swift */,
 				DA97B6A6278BE05D006C473E /* ClonetApp.swift */,
+				DA253E12278DEE1500AEE18A /* ViewModifiers.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -269,6 +272,7 @@
 				DA97B6A9278BE05D006C473E /* ContentView.swift in Sources */,
 				3FD176B2278D31A50025CCD2 /* Signup.swift in Sources */,
 				3F4B5318278C17DA00D64A6D /* LoginCheck.swift in Sources */,
+				DA253E13278DEE1500AEE18A /* ViewModifiers.swift in Sources */,
 				DA97B6A7278BE05D006C473E /* ClonetApp.swift in Sources */,
 				3FE633B3278DCEAB00143666 /* IamTest.swift in Sources */,
 			);
