@@ -62,7 +62,10 @@ var userMember = "";        //유저 회원의 정보를 저장
 // 커넥션을 정의합니다.
 // RDS Console 에서 본인이 설정한 값을 입력해주세요.
 var connection = mysql.createConnection({
-
+    host: "-",
+    user: "-",
+    password: "-",
+    database: "clonet_database"
 });
 
 // RDS에 접속합니다.
