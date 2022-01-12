@@ -113,8 +113,6 @@
 			isa = PBXGroup;
 			children = (
 				3FD176B8278D72430025CCD2 /* test.json */,
-				DA5A59D5278EC1A2005FFD58 /* ActivityIndicator.swift */,
-				DA5A59D7278EC1B6005FFD58 /* ActivityIndicatorDemo.swift */,
 				DACAA65D278C7E5D007F3918 /* SocketIO.swift */,
 				B50BD822278C781700A7E3E0 /* GitTest.swift */,
 				3FD176BA278D83510025CCD2 /* JsonTest.swift */,
@@ -122,6 +120,15 @@
 				3FE633B4278DD9AF00143666 /* PageViewController.swift */,
 			);
 			path = Test;
+			sourceTree = "<group>";
+		};
+		3FE633BC278EED9F00143666 /* Test_test */ = {
+			isa = PBXGroup;
+			children = (
+				DA5A59D5278EC1A2005FFD58 /* ActivityIndicator.swift */,
+				DA5A59D7278EC1B6005FFD58 /* ActivityIndicatorDemo.swift */,
+			);
+			path = Test_test;
 			sourceTree = "<group>";
 		};
 		B540D41C278C602B00479A63 /* Frameworks */ = {
@@ -169,6 +176,7 @@
 		DA97B6A5278BE05D006C473E /* Clonet */ = {
 			isa = PBXGroup;
 			children = (
+				3FE633BC278EED9F00143666 /* Test_test */,
 				3FD176B6278D69D50025CCD2 /* Main */,
 				3FD176B5278D69BF0025CCD2 /* DataStructure */,
 				3FD176B7278D69EA0025CCD2 /* Test */,
