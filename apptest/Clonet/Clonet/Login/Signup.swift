@@ -5,18 +5,58 @@
 //  Created by Hye Min Choi on 2022/01/11.
 //
 import SwiftUI
+import SocketIO
+
+//로그인 정보 보내기
+final class Service_signup: ObservableObject {
+    private var manager = SocketManager(socketURL: URL(string: "ws://localhost:3000")!, config: [.log(true), .compress])
+
+    @Published var messages = [String]()
+    @Published var loginJSON = ""
+    @State var json: String = ""
+    
+    init(json: String){
+        let socket = manager.defaultSocket
+        socket.on(clientEvent: .connect){ (data, ack) in
+            print("Connected")
+            socket.emit("login", json)
+            socket.emit("login", self.loginJSON)
+            
+            socket.disconnect()
+        }
+        
+        socket.on("login"){ [weak self] (data, ack) in
+            print(data);
+        }
+
+//        socket.on(clientEvent: .connect){ (data, ack) in
+//            print("Connected")
+//            socket.emit("login", self.loginJSON)
+//        }
+        socket.connect()
+    }
+
+
+
+}
+
 
 struct Signup: View {
     @State var id = ""
     @State var password = ""
     @State var passwordCheck = ""
     @State var email = ""
+    @State var name = ""
     @State var showingAlert = true // SignUP ERROR
     @State var selection: Int? = nil
     
     var body: some View {
         NavigationView{
             VStack(alignment: .center)  {
+                
+                var signupJSON = "{\"user_id\": \"\(self.id)\", \"user_pw\":\"\(self.password)\", \"user_name\":\"\(self.name)\", \"user_email\":\"\(self.email)\"}"
+                
+                Button(action: {Service_signup(json: signupJSON)}, label: {Text("SIGN UP")})
                 Text("SIGN UP")
                     .font(.largeTitle)
                     .multilineTextAlignment(.center)
@@ -34,6 +74,10 @@ struct Signup: View {
                     }
                     Section(header: Text("INPUT YOUR EMAIL")) {
                         TextField("EMAIL", text: $email)
+                            .padding()
+                    }
+                    Section(header: Text("INPUT YOUR NAME")) {
+                        TextField("NAME", text: $name)
                             .padding()
                     }
                     Section{
