@@ -1,0 +1,8 @@
+{
+  "name": "aws-sdk-v3-iam-examples",
+  "version": "1.0.0",
+  "main": "index.js",
+  "dependencies": {
+    "aws-sdk": "^2.7.17"
+  }
+}
