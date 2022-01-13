@@ -89,41 +89,18 @@ struct Login: View {
                     .frame(width: 130, height: 40)
                     .padding()
                     
-                    NavigationLink(destination: LoginCheck(id: id), isActive: $isLogin){
-                        Button(action: {
-                            login(id: id, passwd: passwd)
-                        }){
-                            Text("LOGIN")
-                                .font(.headline)
-                                .padding()
-                                .cornerRadius(10.0)
-                            .foregroundColor(Color.black)
-                            .frame(width: 200, height: 40)
-                        }.ignoresSafeArea()
-                                if(id == "" || passwd == ""){
-                                    Text("")
-                                        .alert(isPresented: $showingAlert){
-                                            Alert(title: Text(""), message: Text("아이디와 비밀번호를 입력하세요."), dismissButton: .default(Text("닫기")))
-                                        }
-                                }else{
-                                    Text("")
-                                        .alert(isPresented: $showingAlert){
-                                            Alert(title: Text("불일치"), message: Text("아이디 또는 비밀번호가 잘못되었습니다."), dismissButton: .default(Text("닫기")))
-                                }
-                            }
-                    }
                     
-//                    if(login()){
-//                        NavigationLink( destination: LoginCheck(id: id), label: { Text("LOGIN SUCCESS!")
-//                            .foregroundColor(Color.black) })
-//                            .frame(width: 200, height: 40)
-//                            .background(RoundedRectangle(cornerRadius: 10).strokeBorder())
-//                    }else{
-//                        Text("LOGIN PLEASE")
-//                            .foregroundColor(Color.black) //.hidden()
-//                            .frame(width: 200, height: 40)
-//                            .background(RoundedRectangle(cornerRadius: 10).strokeBorder())
-//                    }
+                    if(login()){
+                        NavigationLink( destination: LoginCheck(id: id), label: { Text("LOGIN SUCCESS!")
+                            .foregroundColor(Color.black) })
+                            .frame(width: 200, height: 40)
+                            .background(RoundedRectangle(cornerRadius: 10).strokeBorder())
+                    }else{
+                        Text("LOGIN PLEASE")
+                            .foregroundColor(Color.black) //.hidden()
+                            .frame(width: 200, height: 40)
+                            .background(RoundedRectangle(cornerRadius: 10).strokeBorder())
+                    }
                     
                 }
                 
@@ -143,15 +120,14 @@ struct Login: View {
         .navigationBarBackButtonHidden(true)
     }
     
-    func login(id: String, passwd: String){
+    func login() -> Bool {
+        print("func login()")
         if(id == "B" && passwd == "A"){
-            self.passwd=""
-            isLogin = true
+            return true
         }else{
-            showingAlert = true
+            return false
         }
     }
-    
 
 }
 
