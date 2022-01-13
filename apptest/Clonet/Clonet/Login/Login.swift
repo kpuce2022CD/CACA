@@ -128,6 +128,8 @@ struct Login: View {
         }
         .navigationViewStyle(StackNavigationViewStyle())
         .navigationBarBackButtonHidden(true)
+        .navigationBarTitle("")
+        .navigationBarHidden(true)
     }
     
     func login() -> Bool {
