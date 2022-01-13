@@ -60,7 +60,7 @@ struct Login: View {
     var body: some View {
         NavigationView{
             // 로그인 정보를 보내는 변수
-            var loginJSON = "{\"user_id\": \"\(self.id)\", \"user_pw\": \"\(self.passwd)\"}"
+            let loginJSON = "{\"user_id\": \"\(self.id)\", \"user_pw\": \"\(self.passwd)\"}"
             VStack {
                 // title
 //                Button(action: {
@@ -70,6 +70,11 @@ struct Login: View {
                 Text("CLONET")
                     .font(.title)
                 Spacer()
+                /////////////////////////////////////////////////////////////////////////// // 서버에서 받아온 login_result 출력
+                ForEach(service.messages, id: \.self) { msg in
+                    Text(msg).padding()
+                }
+                /////////////////////////////////////////////////////////////////////////////
                 
                 // input
                 VStack(alignment: .center) {
@@ -98,8 +103,8 @@ struct Login: View {
                 
                     
                     ZStack {
-                        NavigationLink(destination: Login(), tag: "signupButton", selection: $selectionString) { }
-                        .buttonStyle(PlainButtonStyle()).frame(width:0).opacity(0)
+                        //NavigationLink(destination: Login(), tag: "signupButton", selection: $selectionString) { }
+                        //.buttonStyle(PlainButtonStyle()).frame(width:0).opacity(0)
                         Button("Login UP") {
                             self.selectionString = "signupButton"
                             service.login_button(json: loginJSON)

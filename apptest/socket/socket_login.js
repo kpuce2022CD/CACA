@@ -58,17 +58,17 @@ io.sockets.on('connection', function(socket){
 var mysql = require("mysql"); // mysql 모듈을 불러옵니다.
 var userMember = "";        //유저 회원의 정보를 저장
 
-// 커넥션을 정의합니다.
-// RDS Console 에서 본인이 설정한 값을 입력해주세요.
-var con = mysql.createConnection({
-    host: "-",
-    user: "-",
-    password: "-",
-    database: "clonet_database"
-});
-
 
 function loginService(id, pw){
+
+    // 커넥션을 정의합니다.
+    // RDS Console 에서 본인이 설정한 값을 입력해주세요.
+    var con = mysql.createConnection({
+        host: "-",
+        user: "-",
+        password: "-",
+        database: "clonet_database"
+    });
 
     // var login_result = "err";
     var query = "SELECT user_id, user_pw FROM user " + "where user_id = \'" + id + "\' " +  "and user_pw = \'" + pw + "\'" ;
@@ -90,9 +90,13 @@ function loginService(id, pw){
                 if(String(rows) == "[object Object]"){
                     console.log("--COMPLETE--")
                     io.sockets.emit("login_result", "true");
+                    con.end();
+                    console.log("--db-end--")
                     return "COMPLETE"
                 }else{
                     io.sockets.emit("login_result", "false");
+                    con.end();
+                    console.log("--db-end--")
                     return "false"
                 }
             });
