@@ -53,24 +53,19 @@ io.sockets.on('connection', function(socket){
         connections.splice(connections.indexOf(socket),1);
     });
 
-    // 회원가입
+    //회원가입
     socket.on('signup', function(data){
-        // io.sockets.emit('login', {msg: data});
 
+        // console.log(data);
+        var jsonSignup = JSON.parse(data);
+        console.log(jsonSignup);
 
-        var jsonLogin = JSON.parse(data);
-        console.log(jsonLogin);
-        // console.log(jsonLogin.user_id);
+        // signupID = jsonSignup.user_id;
+        // signupPW = jsonSignup.user_pw;
+        // signupName = jsonSignup.user_name;
+        // signupEmail = jsonSignup.user_email;
 
-        loginID = jsonLogin.user_id;
-        loginPW = jsonLogin.user_pw;
-
-        var message = loginService(loginID, loginPW);
-
-        if(message=="login success"){
-            io.sockets.emit('login', message );
-        }
-        connections.splice(connections.indexOf(socket),1);
+        // signupService(signupID, signupPW, signupName, signupEmail);
     });
 });
 
@@ -114,3 +109,20 @@ function loginService(id, pw){
 
     return message;
 }
+
+// function signupService(id, pw, name, email) {
+
+//     connection.connect(function(err) {
+//         if (err) {
+//           throw err; // 접속에 실패하면 에러를 throw 합니다.
+//         } else {
+//           // 접속시 쿼리를 보냅니다.
+//           connection.query("INSERT INTO user (user_id, user_pw, user_name, user_email) VALUES ("+id+","+pw+","+name+","+email+")", function(err, result) {
+//             if (err) throw err;      //멤버 정보 저장
+//             console.log("1 record inserted");
+//           });
+//         }
+//       });
+
+    
+// }
