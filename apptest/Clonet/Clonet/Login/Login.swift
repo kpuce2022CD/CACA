@@ -49,7 +49,7 @@ struct Login: View {
     @State var isLogin: Bool = false
     @State var showingAlert: Bool = false
     @State var selection: Int? = nil
-    
+    @State private var selectionString: String? = nil
     
     var body: some View {
         NavigationView{
@@ -57,9 +57,9 @@ struct Login: View {
             var loginJSON = "{\"user_id\": \"\(self.id)\", \"user_pw\": \"\(self.passwd)\"}"
             VStack {
                 // title
-                Button(action: {
-                    Service_login(json: loginJSON)
-                }, label: {Text("Login to DB")})
+//                Button(action: {
+//                    Service_login(json: loginJSON)
+//                }, label: {Text("Login to DB")})
                 Spacer()
                 Text("CLONET")
                     .font(.title)
@@ -91,16 +91,25 @@ struct Login: View {
                     .padding()
                     
                     
-                    if(login()){
-                        NavigationLink( destination: LoginCheck(id: id), label: { Text("LOGIN SUCCESS!")
-                            .foregroundColor(Color.black) })
-                            .frame(width: 200, height: 40)
-                            .background(RoundedRectangle(cornerRadius: 10).strokeBorder())
-                    }else{
-                        Text("LOGIN PLEASE")
-                            .foregroundColor(Color.black) //.hidden()
-                            .frame(width: 200, height: 40)
-                            .background(RoundedRectangle(cornerRadius: 10).strokeBorder())
+//                    if(login()){
+//                        NavigationLink( destination: LoginCheck(id: id), label: { Text("LOGIN SUCCESS!")
+//                            .foregroundColor(Color.black) })
+//                            .frame(width: 200, height: 40)
+//                            .background(RoundedRectangle(cornerRadius: 10).strokeBorder())
+//                    }else{
+//                        Text("LOGIN PLEASE")
+//                            .foregroundColor(Color.black) //.hidden()
+//                            .frame(width: 200, height: 40)
+//                            .background(RoundedRectangle(cornerRadius: 10).strokeBorder())
+//                    }
+                    
+                    ZStack {
+                        NavigationLink(destination: Login(), tag: "signupButton", selection: $selectionString) { }
+                        .buttonStyle(PlainButtonStyle()).frame(width:0).opacity(0)
+                        Button("Login UP") {
+                            self.selectionString = "signupButton"
+                            Service_login(json: loginJSON)
+                        }
                     }
                     
                 }
