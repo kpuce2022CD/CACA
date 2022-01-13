@@ -7,14 +7,51 @@
 
 import SwiftUI
 import MessageUI
+import SocketIO
+
+// 이메일 요청 보내기
+final class Service_FindPW: ObservableObject {
+    private var manager = SocketManager(socketURL: URL(string: "ws://localhost:3000")!, config: [.log(true), .compress])
+    
+    @Published var messages = [String]()
+    @Published var REemail = ""
+    @State var email: String = ""
+    
+    init(email: String){
+        let socket = manager.defaultSocket
+        socket.connect()
+        
+        socket.on(clientEvent: .connect){ (data, ack) in
+            print("Connected")
+            print(email)
+            self.REemail = email
+            socket.emit("EmailAddr", self.REemail)
+            
+            socket.disconnect()
+        }
+    }
+    
+}
 
 struct FindIdPw: View {
     @State var emailID = ""
     @State var emailPWD = ""
     @State var showingAlert = false
     
+    @ObservedObject var service = Service()
+    
     var body: some View {
         NavigationView{
+            
+//            VStack{
+//                Text("Received messages form Node.js: ")
+//                    .font(.largeTitle)
+//                ForEach(service.messages, id: \.self) { msg in
+//                    Text(msg).padding()
+//                }
+//                Spacer()
+//            }
+            
             VStack(alignment: .center)  {
                 Text("FIND ID && PASSWORD")
                     .font(.largeTitle)
@@ -70,8 +107,9 @@ struct FindIdPw: View {
                     Section(header: Text("FIND PASSWORD")) {
                         TextField("EMAIL", text: $emailPWD)
                             .padding()
-                        Button(action: {
-                                    self.showingAlert = true
+                        Button(action:  {
+                            Service_FindPW(email: emailPWD)
+                            self.showingAlert = true
                                 }) {
                                     Text("complete")
                                 }
