@@ -48,7 +48,6 @@ struct Signup: View {
                 // 회원가입 정보 JSON 변환
                 var signupJSON = "{\"user_id\": \"\(self.id)\", \"user_pw\":\"\(self.password)\", \"user_name\":\"\(self.name)\", \"user_email\":\"\(self.email)\"}"
                 
-                Button(action: {Service_signup(json: signupJSON)}, label: {Text("SIGN UP")})
                 Text("SIGN UP")
                     .font(.largeTitle)
                     .multilineTextAlignment(.center)
@@ -103,13 +102,15 @@ struct Signup: View {
 //
 //                    }
                     
-                    NavigationLink(destination: Login(), tag: "signupButton", selection: $selectionString) {
-
+                    ZStack {
+                        NavigationLink(destination: Login(), tag: "signupButton", selection: $selectionString) { }
+                        .buttonStyle(PlainButtonStyle()).frame(width:0).opacity(0)
+                        Button("Sign UP") {
+                            self.selectionString = "signupButton"
+                            Service_login(json: signupJSON)
+                        }
                     }
-                    Button("Sign UP") {
-                        self.selectionString = "signupButton"
-                        Service_login(json: signupJSON)
-                    }
+                    
                 }
                 .background(Color.white)
             }
