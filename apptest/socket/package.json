@@ -9,7 +9,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "socket.io": "*",
-    "express":"*" 
+    "express": "*",
+    "mysql": "^2.18.1",
+    "socket.io": "*"
   }
 }

@@ -52,6 +52,26 @@ io.sockets.on('connection', function(socket){
         }
         connections.splice(connections.indexOf(socket),1);
     });
+
+    // 회원가입
+    socket.on('signup', function(data){
+        // io.sockets.emit('login', {msg: data});
+
+
+        var jsonLogin = JSON.parse(data);
+        console.log(jsonLogin);
+        // console.log(jsonLogin.user_id);
+
+        loginID = jsonLogin.user_id;
+        loginPW = jsonLogin.user_pw;
+
+        var message = loginService(loginID, loginPW);
+
+        if(message=="login success"){
+            io.sockets.emit('login', message );
+        }
+        connections.splice(connections.indexOf(socket),1);
+    });
 });
 
 
@@ -94,33 +114,3 @@ function loginService(id, pw){
 
     return message;
 }
-
-
-
-
-
-
-
-
-// var test_string = 
-// [
-//     {
-//         "id": "aa54kk675thg32",
-//         "subject":"math",
-//         "grade":"A+"
-//     },
-//     {
-//         "id": "bb54kk675thg42",
-//         "subject":"english",
-//         "grade":"A0"
-//     },
-//     {
-//         "id": "cc54kk675thg52",
-//         "subject":"science",
-//         "grade":"B+"
-//     }
-// ];
-
-// var json_to_string = JSON.stringify(test_string)    //받은 데이터 string으로 변환
-// var string_to_json = JSON.parse(json_to_string)     //string -> json
-// console.log(string_to_json[0].id);
