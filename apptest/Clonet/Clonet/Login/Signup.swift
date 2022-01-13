@@ -7,41 +7,27 @@
 import SwiftUI
 import SocketIO
 
-//로그인 정보 보내기
+//회원가입 정보 보내기
 final class Service_signup: ObservableObject {
     private var manager = SocketManager(socketURL: URL(string: "ws://localhost:3000")!, config: [.log(true), .compress])
 
     @Published var messages = [String]()
-    @Published var loginJSON = ""
+    @Published var signupJSON = ""
     @State var json: String = ""
     
     init(json: String){
         let socket = manager.defaultSocket
-        socket.connect()
+        socket.connect()        // 서버 연결
         
-        
-        socket.on(clientEvent: .connect){ (data, ack) in
+        socket.on(clientEvent: .connect){ (data, ack) in        // 서버와 연결되면 회원가입 정보 json 형식으로
             print("Connected")
-//            socket.emit("signup", json)
-            self.loginJSON = json
-            socket.emit("signup", self.loginJSON)
+            self.signupJSON = json
+            socket.emit("signup", self.signupJSON)
             
-            socket.disconnect()
+            socket.disconnect()     // 연결 해제
         }
-        
-//        socket.on("signup"){ [weak self] (data, ack) in
-//            print(data);
-//        }
-
-//        socket.on(clientEvent: .connect){ (data, ack) in
-//            print("Connected")
-//            socket.emit("login", self.loginJSON)
-//        }
     
     }
-
-
-
 }
 
 
@@ -58,6 +44,7 @@ struct Signup: View {
         NavigationView{
             VStack(alignment: .center)  {
                 
+                // 회원가입 정보 JSON 변환
                 var signupJSON = "{\"user_id\": \"\(self.id)\", \"user_pw\":\"\(self.password)\", \"user_name\":\"\(self.name)\", \"user_email\":\"\(self.email)\"}"
                 
                 Button(action: {Service_signup(json: signupJSON)}, label: {Text("SIGN UP")})
