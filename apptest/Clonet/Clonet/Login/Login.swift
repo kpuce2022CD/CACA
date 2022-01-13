@@ -16,7 +16,7 @@ final class Service_login: ObservableObject {
     @Published var loginJSON = ""
     @State var json: String = ""
     
-    init(json: String){
+    func login_button(json: String){
         let socket = manager.defaultSocket
         
         socket.on(clientEvent: .connect){ (data, ack) in
@@ -30,14 +30,15 @@ final class Service_login: ObservableObject {
         }
         
         socket.on("login_result"){ [weak self] (data, ack) in
-            print(data);
+            if let data = data[0] as? [String: String],
+               let rawMessage = data["login_result"] {
+                DispatchQueue.main.async {
+                    self?.messages.append(rawMessage)
+                }
+            }
             socket.disconnect()
         }
 
-//        socket.on(clientEvent: .connect){ (data, ack) in
-//            print("Connected")
-//            socket.emit("login", self.loginJSON)
-//        }
         socket.connect()
     }
 
@@ -46,6 +47,8 @@ final class Service_login: ObservableObject {
 }
 
 struct Login: View {
+    @ObservedObject var service = Service_login()
+    
     @State var id : String = ""
     @State var passwd : String = ""
     @State var isOn = true
@@ -92,13 +95,14 @@ struct Login: View {
                     }
                     .frame(width: 130, height: 40)
                     .padding()
+                
                     
                     ZStack {
                         NavigationLink(destination: Login(), tag: "signupButton", selection: $selectionString) { }
                         .buttonStyle(PlainButtonStyle()).frame(width:0).opacity(0)
                         Button("Login UP") {
                             self.selectionString = "signupButton"
-                            Service_login(json: loginJSON)
+                            service.login_button(json: loginJSON)
                         }
                     }
                     
@@ -117,9 +121,7 @@ struct Login: View {
             }
         }
         .navigationViewStyle(StackNavigationViewStyle())
-        .navigationBarBackButtonHidden(true)
-        .navigationBarTitle("")
-        .navigationBarHidden(true)
+//  
     }
     
     func login() -> Bool {

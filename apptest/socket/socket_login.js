@@ -32,14 +32,7 @@ io.sockets.on('connection', function(socket){
 
         var login_result = loginService(jsonLogin.user_id, jsonLogin.user_pw);
         console.log(login_result);
-        // setTimeout(() => console.log("after"), 2000);
 
-        // if(login_result == "COMPLETE"){
-        //     console.log("------------------")
-        //     io.sockets.emit('login_result', "true");
-        // }else{
-        //     io.sockets.emit('login_result', "false");
-        // }
              
         connections.splice(connections.indexOf(socket),1);
     });

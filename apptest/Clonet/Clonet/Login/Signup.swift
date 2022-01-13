@@ -107,7 +107,7 @@ struct Signup: View {
                         .buttonStyle(PlainButtonStyle()).frame(width:0).opacity(0)
                         Button("Sign UP") {
                             self.selectionString = "signupButton"
-                            Service_login(json: signupJSON)
+                            Service_signup(json: signupJSON)
                         }
                     }
                     
