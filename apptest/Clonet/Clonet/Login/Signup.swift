@@ -24,8 +24,9 @@ final class Service_signup: ObservableObject {
             self.signupJSON = json
             socket.emit("signup", self.signupJSON)
             
-            socket.disconnect()     // 연결 해제
+//            socket.disconnect()     // 연결 해제
         }
+        
     
     }
 }
@@ -39,7 +40,7 @@ struct Signup: View {
     @State var name = ""
     @State var showingAlert = true // SignUP ERROR
     @State var selection: Int? = nil
-    
+    @State private var selectionString: String? = nil
     var body: some View {
         NavigationView{
             VStack(alignment: .center)  {
@@ -71,25 +72,43 @@ struct Signup: View {
                         TextField("NAME", text: $name)
                             .padding()
                     }
-                    Section{
-                        if(signin() && !signinCheck()){
-                            NavigationLink(destination: Login(), tag: 1, selection: $selection){
-                                Button(action: {
-                                    self.selection = 1
-                                }) {
-                                    Text("Sign up")
-                                }
-                            }
-                        }else if(signin() && signinCheck()){
-                            Text("다시 입력해 주세요.")
-                                .alert(isPresented: $showingAlert){
-                                    Alert(title: Text("회원가입 불가"),
-                                    message: Text("같은 아이디가 있습니다."),
-                                          dismissButton: .default(Text("확인")))
-                                }
-                        }else {
-                            Button("Sign up", action: {}).disabled(true)
-                        }
+//                    Section{
+//                        if(signin() && !signinCheck()){
+//                            NavigationLink(destination: Login(), tag: 1, selection: $selection){
+//                                Button(action: {
+//                                    self.selection = 1
+//                                }) {
+//                                    Text("Sign up")
+//                                }
+//                            }
+//                            NavigationLink(destination: Login()){
+//                                Button (action: {Service_signup(json: signupJSON)}, label: {
+//                                    Text("SIGN UP")})
+//                            }
+//
+//
+//                        }else if(signin() && signinCheck()){
+//                            Text("다시 입력해 주세요.")
+//                                .alert(isPresented: $showingAlert){
+//                                    Alert(title: Text("회원가입 불가"),
+//                                    message: Text("같은 아이디가 있습니다."),
+//                                          dismissButton: .default(Text("확인")))
+//                                }
+//                        }else {
+//                            Button("Sign up", action: {}).disabled(true)
+//                        }
+//                    }
+//                    NavigationLink(destination: Login(), isActive: Button (action: {Service_signup(json: signupJSON)}, label: {
+//                        Text("SIGN UP")}),){
+//
+//                    }
+                    
+                    NavigationLink(destination: Login(), tag: "signupButton", selection: $selectionString) {
+
+                    }
+                    Button("Sign UP") {
+                        self.selectionString = "signupButton"
+                        Service_login(json: signupJSON)
                     }
                 }
                 .background(Color.white)
