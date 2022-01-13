@@ -12,28 +12,31 @@ final class Service_signup: ObservableObject {
     private var manager = SocketManager(socketURL: URL(string: "ws://localhost:3000")!, config: [.log(true), .compress])
 
     @Published var messages = [String]()
-    @Published var loginJSON = ""
+//    @Published var loginJSON = ""
     @State var json: String = ""
     
     init(json: String){
         let socket = manager.defaultSocket
+        socket.connect()
+        
+        
         socket.on(clientEvent: .connect){ (data, ack) in
             print("Connected")
-            socket.emit("login", json)
-            socket.emit("login", self.loginJSON)
+            socket.emit("signup", json)
+//            socket.emit("signup", self.loginJSON)
             
             socket.disconnect()
         }
         
-        socket.on("login"){ [weak self] (data, ack) in
-            print(data);
-        }
+//        socket.on("signup"){ [weak self] (data, ack) in
+//            print(data);
+//        }
 
 //        socket.on(clientEvent: .connect){ (data, ack) in
 //            print("Connected")
 //            socket.emit("login", self.loginJSON)
 //        }
-        socket.connect()
+    
     }
 
 
