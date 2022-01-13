@@ -24,11 +24,14 @@ final class Service_login: ObservableObject {
             self.loginJSON = json
             socket.emit("login", self.loginJSON)
             
+            sleep(2)
+            print("login_result")
             socket.disconnect()
         }
         
         socket.on("login_result"){ [weak self] (data, ack) in
             print(data);
+            socket.disconnect()
         }
 
 //        socket.on(clientEvent: .connect){ (data, ack) in

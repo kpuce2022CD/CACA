@@ -78,24 +78,32 @@ var con = mysql.createConnection({
 function loginService(id, pw){
 
     // var login_result = "err";
-    var query = "SELECT * FROM user where user_id = \'" + id + "\' and user_pw = \'" + pw + "\'" ;
+    var query = "SELECT user_id, user_pw FROM user " + "where user_id = \'" + id + "\' " +  "and user_pw = \'" + pw + "\'" ;
     
     // RDS에 접속합니다.
     con.connect(function(err) {
         if (err) {
-            return "err" // throw err; // 접속에 실패하면 에러를 throw 합니다.
+            console.log("database connection err")
+            // return "err" // throw err; // 접속에 실패하면 에러를 throw 합니다.
         } else { // 접속시 쿼리를 보냅니다.
-        con.query(query, function(err, rows, fields) {
-            if(String(rows) == "[object Object]"){
-                console.log("--COMPLETE--")
-                io.sockets.emit("login_result", "true");
-                return "COMPLETE"
-            }else{
-                io.sockets.emit("login_result", "false");
-                return "false"
+            // console.log("before");
+            // setTimeout(() => console.log("after"), 3000);
+            con.query(query, function(err, rows, fields) {
+                console.log("rows : " + String(rows))
+                console.log("rows : " + rows)
+                console.log("err : " + err)
+                console.log("fields : " + fields)
+
+                if(String(rows) == "[object Object]"){
+                    console.log("--COMPLETE--")
+                    io.sockets.emit("login_result", "true");
+                    return "COMPLETE"
+                }else{
+                    io.sockets.emit("login_result", "false");
+                    return "false"
+                }
+            });
             }
-        });
-        }
     });
 }
 
