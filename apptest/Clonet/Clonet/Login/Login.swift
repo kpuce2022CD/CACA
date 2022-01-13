@@ -93,19 +93,6 @@ struct Login: View {
                     .frame(width: 130, height: 40)
                     .padding()
                     
-                    
-//                    if(login()){
-//                        NavigationLink( destination: LoginCheck(id: id), label: { Text("LOGIN SUCCESS!")
-//                            .foregroundColor(Color.black) })
-//                            .frame(width: 200, height: 40)
-//                            .background(RoundedRectangle(cornerRadius: 10).strokeBorder())
-//                    }else{
-//                        Text("LOGIN PLEASE")
-//                            .foregroundColor(Color.black) //.hidden()
-//                            .frame(width: 200, height: 40)
-//                            .background(RoundedRectangle(cornerRadius: 10).strokeBorder())
-//                    }
-                    
                     ZStack {
                         NavigationLink(destination: Login(), tag: "signupButton", selection: $selectionString) { }
                         .buttonStyle(PlainButtonStyle()).frame(width:0).opacity(0)
