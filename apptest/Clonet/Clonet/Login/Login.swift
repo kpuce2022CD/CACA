@@ -18,15 +18,16 @@ final class Service_login: ObservableObject {
     
     init(json: String){
         let socket = manager.defaultSocket
+        
         socket.on(clientEvent: .connect){ (data, ack) in
             print("Connected")
-            socket.emit("login", json)
+            self.loginJSON = json
             socket.emit("login", self.loginJSON)
             
             socket.disconnect()
         }
         
-        socket.on("login"){ [weak self] (data, ack) in
+        socket.on("login_result"){ [weak self] (data, ack) in
             print(data);
         }
 
