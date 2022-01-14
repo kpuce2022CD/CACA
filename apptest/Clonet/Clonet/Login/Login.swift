@@ -8,6 +8,8 @@
 import SwiftUI
 import SocketIO
 
+
+var count = 0
 //로그인 정보 보내기
 final class Service_login: ObservableObject {
     private var manager = SocketManager(socketURL: URL(string: "ws://localhost:3000")!, config: [.log(true), .compress])
@@ -23,19 +25,23 @@ final class Service_login: ObservableObject {
             print("Connected")
             self.loginJSON = json
             socket.emit("login", self.loginJSON)
-            
-            sleep(5)
-            socket.disconnect()
         }
         
+        
         socket.on("login_result"){ [weak self] (data, ack) in
+            
             if let data = data[0] as? [String: String],
                let rawMessage = data["login_RESULT"] {
                 DispatchQueue.main.async {
                     self?.messages.append(rawMessage)
+                    print("rawMessage: ", String(rawMessage))
                     socket.disconnect()
+                    
+                    print("result mmmm:", self?.messages.first)
                 }
             }
+            
+            
         }
 
         socket.connect()
@@ -72,9 +78,9 @@ struct Login: View {
                     .font(.title)
                 Spacer()
                 /////////////////////////////////////////////////////////////////////////// // 서버에서 받아온 login_result 출력
-                ForEach(service.messages, id: \.self) { msg in
-                    Text(msg).padding()
-                }
+//                ForEach(service.messages, id: \.self) { msg in
+//                    Text(msg).padding()
+//                }
                 /////////////////////////////////////////////////////////////////////////////
                 
                 // input
@@ -104,11 +110,16 @@ struct Login: View {
                 
                     
                     ZStack {
-                        //NavigationLink(destination: Login(), tag: "signupButton", selection: $selectionString) { }
-                        //.buttonStyle(PlainButtonStyle()).frame(width:0).opacity(0)
+                        ForEach(service.messages, id: \.self) { msg in
+                            if(msg == "TRUE"){
+                                NavigationLink(destination: EmptyView(), tag: "signupButton", selection: $selectionString) { }
+                                .buttonStyle(PlainButtonStyle()).frame(width:0).opacity(0)
+                            }
+                        }
                         Button("Login UP") {
                             self.selectionString = "signupButton"
                             service.login_button(json: loginJSON)
+                            print("loginJSON: ", loginJSON)
                         }
                     }
                     
