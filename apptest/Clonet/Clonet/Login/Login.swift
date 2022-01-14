@@ -113,12 +113,24 @@ struct Login: View {
                             if(msg == "TRUE"){
                                 NavigationLink(destination: EmptyView(), tag: "signupButton", selection: $selectionString) { }
                                 .buttonStyle(PlainButtonStyle()).frame(width:0).opacity(0)
+                                Button("Login UP") {
+                                    self.selectionString = "signupButton"
+                                }
+                            } else{
+                                NavigationLink(destination: Login(), tag: "signupButton", selection: $selectionString) { }
+                                .buttonStyle(PlainButtonStyle()).frame(width:0).opacity(0)
+                                Button("Login UP") {
+                                    self.selectionString = "signupButton"
+                                }.alert(isPresented: $showingAlert) {
+                                    Alert(title: Text("로그인에 실패했습니다"), message: nil,
+                                          dismissButton: .default(Text("확인")))
+                                }
+                                
                             }
                         }
                         Button("Login UP") {
                             self.selectionString = "signupButton"
                             service.login_button(json: loginJSON)
-                            print("loginJSON: ", loginJSON)
                         }
                     }
                     
