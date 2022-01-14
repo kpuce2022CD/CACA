@@ -24,15 +24,17 @@ final class Service_signup: ObservableObject {
             self.signupJSON = json
             socket.emit("signup", self.signupJSON)
             
-            sleep(5)
-            socket.disconnect()
+//            sleep(5)
+//            socket.disconnect()
         }
         
         socket.on("signup_result"){ [weak self] (data, ack) in
+            print("datadataaa:", data)
             if let data = data[0] as? [String: String],
                let rawMessage = data["signup_RESULT"] {
                 DispatchQueue.main.async {
                     self?.messages.append(rawMessage)
+//                    print("rawMessage: ", data[0])
                     socket.disconnect()
                 }
             }
@@ -66,9 +68,9 @@ struct Signup: View {
                     .multilineTextAlignment(.center)
                 
                 /////////////////////////////////////////////////////////////////////////// // 서버에서 받아온 signup_result 출력
-                ForEach(service.messages, id: \.self) { msg in
-                    Text(msg).padding()
-                }
+//                ForEach(service.messages, id: \.self) { msg in
+//                    Text(msg).padding()
+//                }
                 /////////////////////////////////////////////////////////////////////////////
                 
                 Form{
@@ -92,20 +94,44 @@ struct Signup: View {
                     }
                     
                     ZStack {
-//                        NavigationLink(destination: Login(), tag: "signupButton", selection: $selectionString) { }
-//                        .buttonStyle(PlainButtonStyle()).frame(width:0).opacity(0)
+                        ForEach(service.messages, id: \.self) { msg in
+                            if(msg == "TRUE"){
+                                NavigationLink(destination: Login(), tag: "signupButton", selection: $selectionString) { }
+                                .buttonStyle(PlainButtonStyle()).frame(width:0).opacity(0)
+                                Button("Sign UP") {
+                                    self.selectionString = "signupButton"
+                                    
+                                }.alert(isPresented: $showingAlert) {
+                                    Alert(title: Text("회원가입에 성공했습니다"), message: nil,
+                                          dismissButton: .default(Text("확인")))
+                                }
+                            } else{
+                                NavigationLink(destination: Signup(), tag: "signupButton", selection: $selectionString) { }
+                                .buttonStyle(PlainButtonStyle()).frame(width:0).opacity(0)
+                                Button("Sign UP") {
+                                    self.selectionString = "signupButton"
+                                    
+                                }.alert(isPresented: $showingAlert) {
+                                    Alert(title: Text("회원가입에 실패했습니다"), message: nil,
+                                          dismissButton: .default(Text("확인")))
+                                }
+                            }
+                        }
                         Button("Sign UP") {
                             self.selectionString = "signupButton"
                             service.signup_button(json: signupJSON)
                         }
                     }
-                    
                 }
                 .background(Color.white)
             }
         }
         .hiddenNavigationBarStyle()
         .navigationViewStyle(StackNavigationViewStyle())
+        .navigationViewStyle(StackNavigationViewStyle())
+        .navigationBarBackButtonHidden(true)
+        .navigationBarTitle("")
+        .navigationBarHidden(true)
         //.navigationBarBackButtonHidden(true)
     }
     

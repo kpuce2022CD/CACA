@@ -37,7 +37,6 @@ final class Service_login: ObservableObject {
                     print("rawMessage: ", String(rawMessage))
                     socket.disconnect()
                     
-                    print("result mmmm:", self?.messages.first)
                 }
             }
             
@@ -138,6 +137,10 @@ struct Login: View {
             }
         }
         .navigationViewStyle(StackNavigationViewStyle())
+        .navigationViewStyle(StackNavigationViewStyle())
+        .navigationBarBackButtonHidden(true)
+        .navigationBarTitle("")
+        .navigationBarHidden(true)
 //
     }
     
