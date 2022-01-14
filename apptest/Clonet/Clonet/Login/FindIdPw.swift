@@ -17,28 +17,16 @@ final class Service_FindPW: ObservableObject {
     @Published var REemail = ""
     @State var email: String = ""
     
-    func find_button(email: String, option: String){
+    func find_button(email: String){
         let socket = manager.defaultSocket
         socket.connect()
         
         socket.on(clientEvent: .connect){ (data, ack) in
-            if(option == "ID"){
-//                print("ID Connected")
-//                print(email)
-                self.REemail = email
-                socket.emit("IDEmail", self.REemail)
-                
-                sleep(5)
-                socket.disconnect()
-            }else{
-//                print("PASSWD Connected")
-//                print(email)
-                self.REemail = email
-                socket.emit("EmailAddr", self.REemail)
-                
-                sleep(5)
-                socket.disconnect()
-            }
+            self.REemail = email
+            socket.emit("IDEmail", self.REemail)
+            
+            sleep(2)
+            socket.disconnect()
         }
         
         socket.on("find_result"){ [weak self] (data, ack) in
@@ -61,9 +49,7 @@ struct FindIdPw: View {
     
     @ObservedObject var service = Service_FindPW()
     
-    @State var emailID = ""
-    @State var emailPWD = ""
-    @State var option = ""
+    @State var email = ""
     @State var showingAlert = false
     
     var body: some View {
@@ -81,10 +67,10 @@ struct FindIdPw: View {
                 
                 Form{
                     Section(header: Text("FIND ID")) {
-                        TextField("EMAIL", text: $emailID)
+                        TextField("EMAIL", text: $email)
                             .padding()
                         
-                        if(emailID == ""){ // 이메일을 입력하지 않았을 경우
+                        if(email == ""){ // 이메일을 입력하지 않았을 경우
                             Button(action: {
                                 self.showingAlert = true
                             }) {
@@ -95,14 +81,13 @@ struct FindIdPw: View {
                             }
                         }else{
                                 Button(action: {
-                                    option = "ID"
-                                    service.find_button(email: self.emailID, option: self.option)
+                                    service.find_button(email: self.email)
                                     self.showingAlert=true
                                 }){
                                     Text("complete")
                                 }
                                 .alert(isPresented: $showingAlert){
-                                    Alert(title: Text(emailID + "의 아이디 확인"),dismissButton: .default(Text("확인")))
+                                    Alert(title: Text(email + "의 아이디 확인"),dismissButton: .default(Text("확인")))
                                 }
                             }
                         
@@ -110,17 +95,16 @@ struct FindIdPw: View {
                     
                     
                     Section(header: Text("FIND PASSWORD")) {
-                        TextField("EMAIL", text: $emailPWD)
+                        TextField("EMAIL", text: $email)
                             .padding()
                         Button(action:  {
-                            option = "PASSWD"
-                            service.find_button(email: self.emailID, option: self.option)
+                            service.find_button(email: self.email)
                             self.showingAlert = true
                                 }) {
                                     Text("complete")
                                 }
                                 .alert(isPresented: $showingAlert) {
-                                    Alert(title: Text(emailPWD + "이메일을 발송하였습니다."), message: Text("입력하신 이메일을 확인해주세요"), dismissButton: .default(Text("확인")))
+                                    Alert(title: Text(email + "이메일을 발송하였습니다."), message: Text("입력하신 이메일을 확인해주세요"), dismissButton: .default(Text("확인")))
                                 }
                     }
                 }
@@ -131,14 +115,14 @@ struct FindIdPw: View {
         //.navigationBarBackButtonHidden(true)
     }
     
-    func EmailMatch() -> Bool{
-        print("Matching")
-        if(emailID == "DD"){
-            return true
-        }else{
-            return false
-        }
-    }
+//    func EmailMatch() -> Bool{
+//        print("Matching")
+//        if(emailID == "DD"){
+//            return true
+//        }else{
+//            return false
+//        }
+//    }
 }
 
 struct FindIdPw_Previews: PreviewProvider {

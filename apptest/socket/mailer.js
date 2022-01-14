@@ -43,8 +43,6 @@ io.sockets.on('connection', function(socket){
 
         console.log("before");
         setTimeout(() => console.log("after"), 2000);   
-
-
     });
 
 });
@@ -61,7 +59,7 @@ function DBQuery(email, op){
         host: "-",
         user: "-",
         password: "-",
-        database: "clonet_database"
+        database: "-"
     });
     
     // RDS에 접속합니다.
@@ -73,19 +71,20 @@ function DBQuery(email, op){
             // 접속시 쿼리를 보냅니다.
             // SELECT id FROM info WHERE name ='$name' and email='$email'
             //var email = "saidakin7@gmail.com";
-            var emailQuery = "SELECT user_id, user_pw FROM user WHERE user_email=" + "\'" + email + "\'";
+            var emailQuery = "SELECT user_id, user_pw FROM user WHERE user_email=?";
         
-            // console.log("connection: "+email)
+            console.log("connection: " + email)
         
-            con.query(emailQuery, function(err, result, fields) {
-                console.log("rows : " + String(result))
-                console.log("rows : " + result)
+            con.query(emailQuery, email, function(err, result, fields) {
+                //console.log("%o ^^^^", result.user_id)
+                //console.log("rows : " + String(JSON.stringify(result.user_id)))
+                console.log("rows : " + JSON.stringify(result))
                 console.log("err : " + err)
                 console.log("fields : " + fields)
 
                 if(String(result) == "[object Object]"){
                     console.log("--COMPLETE--")
-                    io.sockets.emit("find_result", {find_RESULT: String(result.user_id)});
+                    io.sockets.emit("find_result", {find_RESULT: result});
                     con.end();
                     console.log("--db-end--")
                     return "COMPLETE"
@@ -95,6 +94,8 @@ function DBQuery(email, op){
                     console.log("--db-end--")
                     return "false"
                 }
+
+               
                 // console.log(result);
                 //     dataList = result.user_pw;
                 //     EmailID = result.user_id;
@@ -117,9 +118,11 @@ function DBQuery(email, op){
                 // }
                 // con.end();
             });
+
         }
     
     });
+
     //connection.end();
     console.log("connection ended");
 
@@ -187,3 +190,6 @@ function sendMail(email, dataList){
         }
     });    
 };
+
+
+
