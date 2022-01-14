@@ -27,11 +27,17 @@ final class Service_FindPW: ObservableObject {
 //                print(email)
                 self.REemail = email
                 socket.emit("IDEmail", self.REemail)
+                
+                sleep(5)
+                socket.disconnect()
             }else{
 //                print("PASSWD Connected")
 //                print(email)
                 self.REemail = email
                 socket.emit("EmailAddr", self.REemail)
+                
+                sleep(5)
+                socket.disconnect()
             }
         }
         

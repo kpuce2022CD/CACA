@@ -23,6 +23,9 @@ final class Service_login: ObservableObject {
             print("Connected")
             self.loginJSON = json
             socket.emit("login", self.loginJSON)
+            
+            sleep(5)
+            socket.disconnect()
         }
         
         socket.on("login_result"){ [weak self] (data, ack) in

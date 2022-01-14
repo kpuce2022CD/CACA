@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "aws-sdk": "^2.1057.0",
     "express": "*",
     "mysql": "^2.18.1",
     "socket.io": "*"

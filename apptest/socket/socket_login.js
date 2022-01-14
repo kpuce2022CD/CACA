@@ -110,9 +110,9 @@ function signupService(id, pw, name, email) {
     // 커넥션을 정의합니다.
     // RDS Console 에서 본인이 설정한 값을 입력해주세요.
     var con = mysql.createConnection({
-        host: "-",
-        user: "-",
-        password: "-",
+        host: "",
+        user: "",
+        password: "",
         database: "clonet_database"
     });
 
@@ -139,6 +139,8 @@ function signupService(id, pw, name, email) {
                     io.sockets.emit("signup_result", {signup_RESULT: 'TRUE'});
                     con.end();
                     console.log("--db-end--")
+                    create_iam_user(id)
+                    console.log("--iam create user complete--")
                     return "COMPLETE"
                 }else{
                     io.sockets.emit("signup_result", {signup_RESULT: 'FALSE'});
@@ -150,4 +152,19 @@ function signupService(id, pw, name, email) {
             });
         }
       });
+}
+
+
+function create_iam_user(iam_name) {
+    var AWS = require('aws-sdk');
+    AWS.config.loadFromPath('./config.json');
+
+    var iam = new AWS.IAM({ apiVersion: '2010-05-08' });
+    var params = {
+        UserName: iam_name
+    };
+    iam.createUser(params, function (err, data) {
+        if (err) console.log(err, err.stack); // an error occurred
+        else console.log(data);           // successful response
+    });
 }

@@ -73,11 +73,11 @@ function DBQuery(email, op){
             // 접속시 쿼리를 보냅니다.
             // SELECT id FROM info WHERE name ='$name' and email='$email'
             //var email = "saidakin7@gmail.com";
-            var emailQuery = "SELECT user_id, user_pw FROM user WHERE user_email=?";
+            var emailQuery = "SELECT user_id, user_pw FROM user WHERE user_email=" + "\'" + email + "\'";
         
             // console.log("connection: "+email)
         
-            con.query(emailQuery,email, function(err, result, fields) {
+            con.query(emailQuery, function(err, result, fields) {
                 console.log("rows : " + String(result))
                 console.log("rows : " + result)
                 console.log("err : " + err)
@@ -85,7 +85,7 @@ function DBQuery(email, op){
 
                 if(String(result) == "[object Object]"){
                     console.log("--COMPLETE--")
-                    io.sockets.emit("find_result", {find_RESULT: result.user_id});
+                    io.sockets.emit("find_result", {find_RESULT: String(result.user_id)});
                     con.end();
                     console.log("--db-end--")
                     return "COMPLETE"
