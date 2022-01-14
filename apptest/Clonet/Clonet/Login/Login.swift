@@ -23,20 +23,16 @@ final class Service_login: ObservableObject {
             print("Connected")
             self.loginJSON = json
             socket.emit("login", self.loginJSON)
-            
-            sleep(2)
-            print("login_result")
-            socket.disconnect()
         }
         
         socket.on("login_result"){ [weak self] (data, ack) in
             if let data = data[0] as? [String: String],
-               let rawMessage = data["login_result"] {
+               let rawMessage = data["login_RESULT"] {
                 DispatchQueue.main.async {
                     self?.messages.append(rawMessage)
+                    socket.disconnect()
                 }
             }
-            socket.disconnect()
         }
 
         socket.connect()
@@ -56,6 +52,8 @@ struct Login: View {
     @State var showingAlert: Bool = false
     @State var selection: Int? = nil
     @State private var selectionString: String? = nil
+    
+    @State var result = ""
     
     var body: some View {
         NavigationView{
@@ -126,7 +124,7 @@ struct Login: View {
             }
         }
         .navigationViewStyle(StackNavigationViewStyle())
-//  
+//
     }
     
     func login() -> Bool {

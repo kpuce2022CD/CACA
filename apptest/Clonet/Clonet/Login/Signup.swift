@@ -15,7 +15,7 @@ final class Service_signup: ObservableObject {
     @Published var signupJSON = ""
     @State var json: String = ""
     
-    init(json: String){
+    func signup_button(json: String){
         let socket = manager.defaultSocket
         socket.connect()        // 서버 연결
         
@@ -23,8 +23,16 @@ final class Service_signup: ObservableObject {
             print("Connected")
             self.signupJSON = json
             socket.emit("signup", self.signupJSON)
-            
-//            socket.disconnect()     // 연결 해제
+        }
+        
+        socket.on("signup_result"){ [weak self] (data, ack) in
+            if let data = data[0] as? [String: String],
+               let rawMessage = data["signup_RESULT"] {
+                DispatchQueue.main.async {
+                    self?.messages.append(rawMessage)
+                    socket.disconnect()
+                }
+            }
         }
         
     
@@ -33,6 +41,8 @@ final class Service_signup: ObservableObject {
 
 
 struct Signup: View {
+    @ObservedObject var service = Service_signup()
+    
     @State var id = ""
     @State var password = ""
     @State var passwordCheck = ""
@@ -51,6 +61,12 @@ struct Signup: View {
                 Text("SIGN UP")
                     .font(.largeTitle)
                     .multilineTextAlignment(.center)
+                
+                /////////////////////////////////////////////////////////////////////////// // 서버에서 받아온 signup_result 출력
+                ForEach(service.messages, id: \.self) { msg in
+                    Text(msg).padding()
+                }
+                /////////////////////////////////////////////////////////////////////////////
                 
                 Form{
                     Section(header: Text("INPUT YOUR ID")) {
@@ -71,43 +87,13 @@ struct Signup: View {
                         TextField("NAME", text: $name)
                             .padding()
                     }
-//                    Section{
-//                        if(signin() && !signinCheck()){
-//                            NavigationLink(destination: Login(), tag: 1, selection: $selection){
-//                                Button(action: {
-//                                    self.selection = 1
-//                                }) {
-//                                    Text("Sign up")
-//                                }
-//                            }
-//                            NavigationLink(destination: Login()){
-//                                Button (action: {Service_signup(json: signupJSON)}, label: {
-//                                    Text("SIGN UP")})
-//                            }
-//
-//
-//                        }else if(signin() && signinCheck()){
-//                            Text("다시 입력해 주세요.")
-//                                .alert(isPresented: $showingAlert){
-//                                    Alert(title: Text("회원가입 불가"),
-//                                    message: Text("같은 아이디가 있습니다."),
-//                                          dismissButton: .default(Text("확인")))
-//                                }
-//                        }else {
-//                            Button("Sign up", action: {}).disabled(true)
-//                        }
-//                    }
-//                    NavigationLink(destination: Login(), isActive: Button (action: {Service_signup(json: signupJSON)}, label: {
-//                        Text("SIGN UP")}),){
-//
-//                    }
                     
                     ZStack {
-                        NavigationLink(destination: Login(), tag: "signupButton", selection: $selectionString) { }
-                        .buttonStyle(PlainButtonStyle()).frame(width:0).opacity(0)
+//                        NavigationLink(destination: Login(), tag: "signupButton", selection: $selectionString) { }
+//                        .buttonStyle(PlainButtonStyle()).frame(width:0).opacity(0)
                         Button("Sign UP") {
                             self.selectionString = "signupButton"
-                            Service_signup(json: signupJSON)
+                            service.signup_button(json: signupJSON)
                         }
                     }
                     
