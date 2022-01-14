@@ -17,18 +17,56 @@ final class Service_FindPW: ObservableObject {
     @Published var REemail = ""
     @State var email: String = ""
     
-    init(email: String){
+    init(email: String, option: String){
         let socket = manager.defaultSocket
+        
+        if(option == "ID"){
+            socket.on(clientEvent: .connect){ (data, ack) in
+                print("Connected")
+                print(email)
+                self.REemail = email
+                socket.emit("IDEmail", self.REemail)
+                
+                sleep(2)
+                socket.disconnect()
+            }
+        }else if(option == "PASSWD"){
+            socket.on(clientEvent: .connect){ (data, ack) in
+                print("Connected")
+                print(email)
+                self.REemail = email
+                socket.emit("EmailAddr", self.REemail)
+                
+                sleep(2)
+                socket.disconnect()
+            }
+        }
+        
+        socket.on("FindID"){ [weak self] (data, ack) in
+            print(email)
+            print(data)
+            if let data = data[0] as? [String: String],
+               let rawMessage = data["msg"] {
+                DispatchQueue.main.async {
+                    self?.messages.append(rawMessage)
+                    socket.disconnect()
+                }
+            }
+        }
+        
+        socket.on("FindPW"){ [weak self] (data, ack) in
+            print(email)
+            print(data)
+            if let data = data[0] as? [String: String],
+               let rawMessage = data["msg"] {
+                DispatchQueue.main.async {
+                    self?.messages.append(rawMessage)
+                    socket.disconnect()
+                }
+            }
+        }
         socket.connect()
         
-        socket.on(clientEvent: .connect){ (data, ack) in
-            print("Connected")
-            print(email)
-            self.REemail = email
-            socket.emit("EmailAddr", self.REemail)
-            
-            socket.disconnect()
-        }
     }
     
 }
@@ -36,13 +74,14 @@ final class Service_FindPW: ObservableObject {
 struct FindIdPw: View {
     @State var emailID = ""
     @State var emailPWD = ""
+    @State var option = ""
     @State var showingAlert = false
     
     @ObservedObject var service = Service()
     
     var body: some View {
         NavigationView{
-            
+
 //            VStack{
 //                Text("Received messages form Node.js: ")
 //                    .font(.largeTitle)
@@ -57,50 +96,38 @@ struct FindIdPw: View {
                     .font(.largeTitle)
                     .multilineTextAlignment(.center)
                 
+                Text("Received messages form Node.js: ")
+                ForEach(service.messages, id: \.self) { msg in
+                    Text(msg).padding()
+                }
+                
                 Form{
                     Section(header: Text("FIND ID")) {
                         TextField("EMAIL", text: $emailID)
                             .padding()
                         
-                        if(EmailMatch()){
+                        if(emailID == ""){ // 이메일을 입력하지 않았을 경우
                             Button(action: {
                                 self.showingAlert = true
-                                }) {
+                            }) {
                                 Text("complete")
+                            }
+                            .alert(isPresented: $showingAlert) {
+                                Alert(title: Text("이메일을 입력해주세요."), dismissButton: .default(Text("확인")))
+                            }
+                        }else{
+                                Button(action: {
+                                    option = "ID"
+                                    Service_FindPW(email: emailID, option: option )
+                                    self.showingAlert=true
+                                }){
+                                    Text("complete")
                                 }
-                                .alert(isPresented: $showingAlert) {
-                                    Alert(title: Text("아이디 확인"), message: Text(emailID + "의 id는 B입니다"), dismissButton: .default(Text("확인")))
+                                .alert(isPresented: $showingAlert){
+                                    Alert(title: Text(emailID + "의 아이디 확인"),dismissButton: .default(Text("확인")))
                                 }
-                        }else if(emailID == ""){
-                            Button(action: {
-                                self.showingAlert = true
-                                }) {
-                                Text("complete")
-                                }
-                                .alert(isPresented: $showingAlert) {
-                                    Alert(title: Text("이메일을 입력해주세요."), dismissButton: .default(Text("확인")))
-                                }
-                        }else if(!EmailMatch()){
-                            Button(action: {
-                                self.showingAlert = true
-                                }) {
-                                Text("complete")
-                                }
-                                .alert(isPresented: $showingAlert) {
-                                    Alert(title: Text("아이디 확인 불가"), message: Text("입력하신 이메일을 확인해주세요."), dismissButton: .default(Text("확인")))
-                                }
-                        }
+                            }
                         
-                        
-                        
-//                        Button(action: {
-//                                    self.showingAlert = true
-//                                }) {
-//                                    Text("complete")
-//                                }
-//                                .alert(isPresented: $showingAlert) {
-//                                    Alert(title: Text("이메일을 발송하였습니다."), message: Text("입력하신 이메일을 확인해주세요"), dismissButton: .default(Text("확인")))
-//                                }
                     }
                     
                     
@@ -108,7 +135,8 @@ struct FindIdPw: View {
                         TextField("EMAIL", text: $emailPWD)
                             .padding()
                         Button(action:  {
-                            Service_FindPW(email: emailPWD)
+                            option = "PASSWD"
+                            Service_FindPW(email: emailPWD, option: option)
                             self.showingAlert = true
                                 }) {
                                     Text("complete")

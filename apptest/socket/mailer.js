@@ -1,17 +1,13 @@
 // connect with iOS
 
 var express = require('express');
+const { syncBuiltinESMExports } = require('module');
 const { getMaxListeners } = require('process');
 var app = express();
 var server = require('http').createServer(app);
 var io = require('socket.io')(server);
 
 connections = [];
-
-function sleep(ms) {
-    const wakeUpTime = Date.now() + ms;
-    while (Date.now() < wakeUpTime) {}
-  }
 
 server.listen(process.env.PORT || 3000);
 console.log('Server is running ...');
@@ -25,32 +21,47 @@ io.sockets.on('connection', function(socket){
         console.log('Disconnect: %s sockets are connected', connections.length);
     });
 
-    socket.on('NodeJS Server Port', function(data){
-        console.log(data);
-        io.sockets.emit('iOS Client Port', {msg: data});
+    // ID 찾기
+    socket.on('IDEmail', function(data){
+        var rcvEmail = data
+        var op = "1"
+        console.log(rcvEmail);
+        DBQuery(rcvEmail,op);
+
+        // console.log("before");
+        // setTimeout(() => console.log("after"), 2000);   
     });
 
     // 이메일 수신
     socket.on('EmailAddr', function(data){
         var rcvEmail = data
+        var op = "2"
         console.log(rcvEmail);
-        setMail(rcvEmail);
+        DBQuery(rcvEmail,op);
+
+        console.log("before");
+        setTimeout(() => console.log("after"), 2000);   
+
+
     });
+
 });
 
-function setMail(email){
+function DBQuery(email, op){
     // DB 연결, 비밀번호 가져옴
     var mysql = require("mysql");
-    var result = "";
+    var EmailID = "";
     var dataList = "";
 
+    console.log("zzzzxfsfafsdfasfsd" + op);
+
     var connection = mysql.createConnection({
-        host: "-",
+        host: "-"
         user: "-",
         password: "-",
-        database: "clonet_database"
+        database: "-"
     });
-
+    
     // RDS에 접속합니다.
     connection.connect(function(err) {
         if (err) {
@@ -58,26 +69,60 @@ function setMail(email){
         } else {
         // 접속시 쿼리를 보냅니다.
         // SELECT id FROM info WHERE name ='$name' and email='$email'
-        //var email = "user1@gmail.com";
-        var emailQuery = "SELECT user_pw FROM user WHERE user_email=?";
-
+        //var email = "saidakin7@gmail.com";
+        var emailQuery = "SELECT user_id, user_pw FROM user WHERE user_email=?";
+    
         console.log("connection: "+email)
-
+    
         connection.query(emailQuery,email, function(err, result, fields) {
             console.log(result);
-            dataList = result.user_pw;
-            for (var data of result){
-                //console.log(data.user_pw);
-                dataList = data.user_pw;
+                dataList = result.user_pw;
+                EmailID = result.user_id;
+                for (var data of result){
+                    //console.log(data.user_pw);
+                    dataList = data.user_pw;
+                    EmailID = data.user_id;
             };
-            console.log("query!!!!!!!!!!!!!!!!!!!!!!!! " + dataList);
-            sendMail(email, dataList);
+            console.log("query!!!!!!!! " + dataList + " !!!!!!!! " + EmailID);
+            if(result == ""){ // DB에 데이터가 존재하지 않을 시
+                IDmatch("noDBDATA");
+                NOPASSWD();
+            } else{
+                if(op == "1"){
+                    IDmatch(EmailID);
+                }else if(op == "2"){
+                    sendMail(email, dataList);
+                }
+            }
+            connection.end();
         });
         }
-
+    
     });
+    //connection.end();
+    console.log("connection ended");
 
 }
+
+// return ID
+function IDmatch(id){
+    if(id == "noDBDATA"){
+        console.log("ID match false");
+        io.sockets.emit('FindID', {msg: 'false'});
+        console.log("전송 완");
+    }else{
+        console.log("ID match true" + id);
+        io.sockets.emit('FindID', {msg: id});
+        console.log("전송 완");
+    }
+}
+
+function NOPASSWD(){
+    console.log("NO EMAIL & PASSWD");
+        io.sockets.emit('FindPW', {msg: 'false'});
+        console.log("전송 완");
+}
+
 
 // send mail
 function sendMail(email, dataList){
@@ -87,7 +132,6 @@ function sendMail(email, dataList){
 
     //require('dotenv').config();
     //const hbs = require('nodemailer-express-handlebars')
-
     
     let transporter = nodemailer.createTransport({
         service: 'gmail',
@@ -122,3 +166,5 @@ function sendMail(email, dataList){
         }
     });    
 };
+
+
