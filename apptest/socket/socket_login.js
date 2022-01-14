@@ -44,12 +44,12 @@ io.sockets.on('connection', function(socket){
         var jsonSignup = JSON.parse(data);
         console.log(jsonSignup);
 
-        // signupID = jsonSignup.user_id;
-        // signupPW = jsonSignup.user_pw;
-        // signupName = jsonSignup.user_name;
-        // signupEmail = jsonSignup.user_email;
 
-        // signupService(signupID, signupPW, signupName, signupEmail);
+        var signup_result = signupService(jsonSignup.user_id, jsonSignup.user_pw, jsonSignup.user_name, jsonSignup.user_email);
+        console.log(signup_result);
+
+        connections.splice(connections.indexOf(socket),1);
+    
     });
 });
 
@@ -89,12 +89,12 @@ function loginService(id, pw){
 
                 if(String(rows) == "[object Object]"){
                     console.log("--COMPLETE--")
-                    io.sockets.emit("login_result", "true");
+                    io.sockets.emit("login_result", {login_RESULT: 'TRUE'});
                     con.end();
                     console.log("--db-end--")
                     return "COMPLETE"
                 }else{
-                    io.sockets.emit("login_result", "false");
+                    io.sockets.emit("login_result", {login_RESULT: 'FALSE'});
                     con.end();
                     console.log("--db-end--")
                     return "false"
@@ -104,19 +104,50 @@ function loginService(id, pw){
     });
 }
 
-// function signupService(id, pw, name, email) {
 
-//     connection.connect(function(err) {
-//         if (err) {
-//           throw err; // 접속에 실패하면 에러를 throw 합니다.
-//         } else {
-//           // 접속시 쿼리를 보냅니다.
-//           connection.query("INSERT INTO user (user_id, user_pw, user_name, user_email) VALUES ("+id+","+pw+","+name+","+email+")", function(err, result) {
-//             if (err) throw err;      //멤버 정보 저장
-//             console.log("1 record inserted");
-//           });
-//         }
-//       });
+function signupService(id, pw, name, email) {
 
+    // 커넥션을 정의합니다.
+    // RDS Console 에서 본인이 설정한 값을 입력해주세요.
+    var con = mysql.createConnection({
+        host: "-",
+        user: "-",
+        password: "-",
+        database: "clonet_database"
+    });
+
+
+    var query = "INSERT INTO user (user_id, user_pw, user_name, user_email) VALUES (\""+id+"\", \""+pw+"\", \""+name+"\", \""+email+"\")";
     
-// }
+    console.log("SignUp Query: " + query);
+
+    con.connect(function(err) {
+        if (err) {
+        //   throw err; // 접속에 실패하면 에러를 throw 합니다.
+            console.log("error connection DB")
+            // return errorMsg;
+        } else {
+          // 접속시 쿼리를 보냅니다.
+            con.query(query, function(err, rows, fields) {
+                console.log("rows : " + String(rows))
+                console.log("rows : " + rows)
+                console.log("err : " + err)
+                console.log("fields : " + fields)
+
+                if(String(rows) == "[object Object]"){
+                    console.log("--COMPLETE--")
+                    io.sockets.emit("signup_result", {signup_RESULT: 'TRUE'});
+                    con.end();
+                    console.log("--db-end--")
+                    return "COMPLETE"
+                }else{
+                    io.sockets.emit("signup_result", {signup_RESULT: 'FALSE'});
+                    con.end();
+                    console.log("--db-end--")
+                    return "false"
+                }
+
+            });
+        }
+      });
+}
