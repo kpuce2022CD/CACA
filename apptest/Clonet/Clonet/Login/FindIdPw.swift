@@ -23,10 +23,10 @@ final class Service_FindPW: ObservableObject {
         
         socket.on(clientEvent: .connect){ (data, ack) in
             self.REemail = email
-            socket.emit("IDEmail", self.REemail)
-            
-            sleep(2)
-            socket.disconnect()
+                       socket.emit("IDEmail", self.REemail)
+
+                       sleep(2)
+                       socket.disconnect()
         }
         
         socket.on("find_result"){ [weak self] (data, ack) in
@@ -39,6 +39,8 @@ final class Service_FindPW: ObservableObject {
                     socket.disconnect()
                 }
             }
+            
+            socket.connect()
         }
         
     }

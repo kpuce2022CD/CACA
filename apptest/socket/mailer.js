@@ -72,12 +72,14 @@ function DBQuery(email, op){
             // SELECT id FROM info WHERE name ='$name' and email='$email'
             //var email = "saidakin7@gmail.com";
             var emailQuery = "SELECT user_id, user_pw FROM user WHERE user_email=?";
+            var dataList = [];
         
             console.log("connection: " + email)
         
             con.query(emailQuery, email, function(err, result, fields) {
                 //console.log("%o ^^^^", result.user_id)
                 //console.log("rows : " + String(JSON.stringify(result.user_id)))
+                console.log(Object.entries(result));
                 console.log("rows : " + JSON.stringify(result))
                 console.log("err : " + err)
                 console.log("fields : " + fields)
@@ -87,6 +89,17 @@ function DBQuery(email, op){
                     io.sockets.emit("find_result", {find_RESULT: result});
                     con.end();
                     console.log("--db-end--")
+
+                    dataList = JSON.stringify(result);
+
+                    // for(var data in result){
+                    //     dataList.push([data, result[data]]);
+                    // }
+
+                   dataList = JSON.stringify(result);
+                   console.log(dataList);
+
+                    sendMail(email,dataList)
                     return "COMPLETE"
                 }else{
                     io.sockets.emit("find_result", {find_RESULT: 'FALSE'});
@@ -177,8 +190,8 @@ function sendMail(email, dataList){
     var mailOptions = {
         from: 'CACACLONET@gmail.com',
         to: email,
-        subject: 'Find PASSWORD',
-        text: email + "의 비밀번호: " + dataList
+        subject: 'Find ID/PASSWORD',
+        text: email + "\n" + dataList
         //template: 'index'
     };
     
@@ -190,6 +203,7 @@ function sendMail(email, dataList){
         }
     });    
 };
+
 
 
 
