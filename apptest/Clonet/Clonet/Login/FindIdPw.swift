@@ -17,79 +17,51 @@ final class Service_FindPW: ObservableObject {
     @Published var REemail = ""
     @State var email: String = ""
     
-    init(email: String, option: String){
+    func find_button(email: String, option: String){
         let socket = manager.defaultSocket
+        socket.connect()
         
-        if(option == "ID"){
-            socket.on(clientEvent: .connect){ (data, ack) in
-                print("Connected")
-                print(email)
+        socket.on(clientEvent: .connect){ (data, ack) in
+            if(option == "ID"){
+//                print("ID Connected")
+//                print(email)
                 self.REemail = email
                 socket.emit("IDEmail", self.REemail)
-                
-                sleep(2)
-                socket.disconnect()
-            }
-        }else if(option == "PASSWD"){
-            socket.on(clientEvent: .connect){ (data, ack) in
-                print("Connected")
-                print(email)
+            }else{
+//                print("PASSWD Connected")
+//                print(email)
                 self.REemail = email
                 socket.emit("EmailAddr", self.REemail)
-                
-                sleep(2)
-                socket.disconnect()
             }
         }
         
-        socket.on("FindID"){ [weak self] (data, ack) in
-            print(email)
-            print(data)
+        socket.on("find_result"){ [weak self] (data, ack) in
+//            print(email)
+//            print(data)
             if let data = data[0] as? [String: String],
-               let rawMessage = data["msg"] {
+               let rawMessage = data["find_RESULT"] {
                 DispatchQueue.main.async {
                     self?.messages.append(rawMessage)
                     socket.disconnect()
                 }
             }
         }
-        
-        socket.on("FindPW"){ [weak self] (data, ack) in
-            print(email)
-            print(data)
-            if let data = data[0] as? [String: String],
-               let rawMessage = data["msg"] {
-                DispatchQueue.main.async {
-                    self?.messages.append(rawMessage)
-                    socket.disconnect()
-                }
-            }
-        }
-        socket.connect()
         
     }
     
 }
 
 struct FindIdPw: View {
+    
+    @ObservedObject var service = Service_FindPW()
+    
     @State var emailID = ""
     @State var emailPWD = ""
     @State var option = ""
     @State var showingAlert = false
     
-    @ObservedObject var service = Service()
-    
     var body: some View {
         NavigationView{
-
-//            VStack{
-//                Text("Received messages form Node.js: ")
-//                    .font(.largeTitle)
-//                ForEach(service.messages, id: \.self) { msg in
-//                    Text(msg).padding()
-//                }
-//                Spacer()
-//            }
             
             VStack(alignment: .center)  {
                 Text("FIND ID && PASSWORD")
@@ -118,7 +90,7 @@ struct FindIdPw: View {
                         }else{
                                 Button(action: {
                                     option = "ID"
-                                    Service_FindPW(email: emailID, option: option )
+                                    service.find_button(email: self.emailID, option: self.option)
                                     self.showingAlert=true
                                 }){
                                     Text("complete")
@@ -136,7 +108,7 @@ struct FindIdPw: View {
                             .padding()
                         Button(action:  {
                             option = "PASSWD"
-                            Service_FindPW(email: emailPWD, option: option)
+                            service.find_button(email: self.emailID, option: self.option)
                             self.showingAlert = true
                                 }) {
                                     Text("complete")
