@@ -24,9 +24,9 @@ io.sockets.on('connection', function(socket){
     // ID 찾기
     socket.on('IDEmail', function(data){
         // var rcvEmail = data
-        var op = "1"
         // console.log(rcvEmail);
-        DBQuery(data,op);
+        console.log(data);
+        DBQuery(data);
 
         connections.splice(connections.indexOf(socket),1);
 
@@ -37,9 +37,8 @@ io.sockets.on('connection', function(socket){
     // 이메일 수신
     socket.on('EmailAddr', function(data){
         var rcvEmail = data
-        var op = "2"
         console.log(rcvEmail);
-        DBQuery(rcvEmail,op);
+        DBQuery(rcvEmail);
 
         console.log("before");
         setTimeout(() => console.log("after"), 2000);   
@@ -47,7 +46,7 @@ io.sockets.on('connection', function(socket){
 
 });
 
-function DBQuery(email, op){
+function DBQuery(email){
     // DB 연결, 비밀번호 가져옴
     var mysql = require("mysql");
     // var EmailID = "";
