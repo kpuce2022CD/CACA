@@ -13,3 +13,6 @@
 * penline01@naver.com
 * pjy0619@kpu.ac.kr
 * petitejini@kpu.ac.kr
+
+## 우리팀 PSD 그림 작가 작품 (PSD test 할 때 사용)
+![image](https://user-images.githubusercontent.com/67986703/149804639-6191fbe9-f511-4b77-bdd2-1556f06cd0c2.png)
