@@ -1,0 +1,7 @@
+경로는 server.js 기준
+
+1. html 또는 jsp 코드는 webmade 폴더에서 읽어올것.
+
+2. css 및 정적 이미지 파일 + j쿼리 및 소켓 io는 public 폴더에서 읽어올것.
+
+3. 위 1~2번 폴더를 포함한 나머지 socket.io 및 node modules 폴더는 js 파일과 같은 경로에 위치할것.
