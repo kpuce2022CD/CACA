@@ -7,6 +7,7 @@
 
 import SwiftUI
 import MessageUI
+import SwiftGit2
 import SocketIO
 
 final class Service_SendInvite: ObservableObject {
@@ -46,11 +47,28 @@ final class Service_SendInvite: ObservableObject {
 }
 
 
+let gitRepoURL = try! FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
+
 struct Repo_Home: View {
     
     @State private var selectionString: String? = nil
     @ObservedObject var userAuth : UserAuth = UserAuth()
     @State private var showAlert = false
+    
+    @State var message = ""
+    
+    @State var lastCMuser : String = ""
+    @State var lastCMmsg : String = ""
+    @State var lastCMtime = Date()
+    
+    let localRepoLocation = gitRepoURL.appendingPathComponent("hye")
+    let remoteRepoLocation = "http://3.36.89.105/git-repositories/hye.git"
+    let test = "http://3.36.89.105/git-repositories/hye.git"
+    
+    init() {
+        // git_libgit2_init()
+        Repository.initialize_libgit2()
+    }
     
     
     var body: some View {
@@ -185,17 +203,19 @@ struct Repo_Home: View {
                         .resizable()
                         .frame(width: 40, height: 40)
                     
+                    // 마지막 커밋한 유저, 브랜치, 날짜
                     VStack (alignment: .leading) {
                         HStack {
                             Text("Last Update by")
-                            Text("kkkingsaida")
+                            Text(lastCMuser)
                                 .bold()
                                 .font(.headline)
                         }
                         HStack {
+                            Text(lastCMmsg)
                             Text("branch")
                                 .bold()
-                            Text("21.09.20")
+                            Text(lastCMtime.dateFormat())
                         }
                     }
                 }
@@ -311,6 +331,100 @@ struct Repo_Home: View {
             .padding(.vertical, 100.0)
         }
     }
+    
+    
+    func createGitRepo(){
+        let remote: URL = URL(string: test)!
+        let result = Repository.create(at: remote)
+        switch result {
+        case let .success(repo):
+            let latestCommit = repo
+                .HEAD()
+                .flatMap {
+                    repo.commit($0.oid)
+                }
+
+            switch latestCommit {
+            case let .success(commit):
+                message = "Latest Commit: \(commit.message) by \(commit.author.name)"
+
+            case let .failure(error):
+                message = "Could not get commit: \(error)"
+            }
+
+        case let .failure(error):
+            message = "Could not open repository: \(error)"
+        }
+    }
+
+    func cloneGitRepo() {
+        let remote: URL = URL(string: remoteRepoLocation)!
+
+        let result = Repository.clone(from: remote, to: localRepoLocation)
+        switch result {
+        case let .success(repo):
+            let latestCommit = repo
+                .HEAD()
+                .flatMap {
+                    repo.commit($0.oid)
+                }
+
+            switch latestCommit {
+            case let .success(commit):
+                message = "Latest Commit: \(commit.message) by \(commit.author.name)"
+
+            case let .failure(error):
+                message = "Could not get commit: \(error)"
+            }
+
+        case let .failure(error):
+            message = "Could not clone repository: \(error)"
+        }
+    }
+    
+//    func branchRepo(){
+//        let result = Repository.remoteBranches
+//        switch result{
+//
+//        }
+//    }
+    
+    
+
+    func loadGitRepo() {
+        let result = Repository.at(localRepoLocation)
+        switch result {
+        case let .success(repo):
+            let latestCommit = repo
+                .HEAD()
+                .flatMap {
+                    repo.commit($0.oid)
+                }
+            
+            switch latestCommit {
+            case let .success(commit):
+                message = "Latest Commit: \(commit.message) by \(commit.author.name)"
+                
+                lastCMmsg = commit.message
+                lastCMuser = commit.author.name
+                lastCMtime = commit.author.time
+                
+            case let .failure(error):
+                message = "Could not get commit: \(error)"
+            }
+            
+        case let .failure(error):
+            message = "Could not open repository: \(error)"
+        }
+    }
+}
+
+extension Date {
+        func dateFormat() -> String {
+                let dateFormatter = DateFormatter()
+            dateFormatter.setLocalizedDateFormatFromTemplate("EEEE, MMM d")
+            return dateFormatter.string(from: self)
+        }
 }
 
 //사용자 추가시 이메일 보내는 alert

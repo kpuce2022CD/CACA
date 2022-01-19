@@ -8,22 +8,10 @@
 import SwiftUI
 import Foundation
 import SocketIO
-struct DynamicList: Identifiable { // 동적 리스트
-    let id: UUID = UUID()
-    let repoName: String
-    let lastModify: String
-}
-
-class ListSample: ObservableObject{
-    @Published var data: [DynamicList] = [
-        DynamicList(repoName: "reposi1", lastModify: "22.01.15")
-    ]
-}
-
 
 final class Service_createRepo: ObservableObject {
     private var manager = SocketManager(socketURL: URL(string: "ws://localhost:3000")!, config: [.log(true), .compress])
-
+    
     @Published var messages = [String]()
     @Published var RepoJSON = ""
     @State var json: String = ""
@@ -46,7 +34,6 @@ final class Service_createRepo: ObservableObject {
                     self?.messages.append(rawMessage)
                     print("rawMessage: ", String(rawMessage))
                     socket.disconnect()
-                    
                 }
             }
         }
@@ -55,28 +42,78 @@ final class Service_createRepo: ObservableObject {
 }
 
 
+// repoName 요청
+final class Service_repoName: ObservableObject {
+    private var manager = SocketManager(socketURL: URL(string: "ws://localhost:3000")!, config: [.log(true), .compress])
+    
+    @Published var result = [String]()
+    @Published var REemail = ""
+    @State var json: String = ""
+    
+    func repoNameQ(json: String){
+        let socket = manager.defaultSocket
+        socket.connect()
+        socket.on(clientEvent: .connect){ (data, ack) in
+            print(json)
+            self.REemail = json
+            socket.emit("userRepo", self.REemail)
+        }
+        
+        socket.on("userRepo"){ [weak self] (data, ack) in
+            //            print(email)
+            //            print(data)
+            if let data = data[0] as? [String: String],
+               let rawMessage = data["repoName_result"] {
+                DispatchQueue.main.async {
+                    self?.result.append(rawMessage)
+                    print("rawMessage: ", String(rawMessage))
+                    socket.disconnect()
+                    
+                }
+            }
+            
+            socket.connect()
+        }
+        
+    }
+    
+}
+
+struct DynamicList: Codable { // 동적 리스트
+    //public var id: UUID = UUID()
+    public var repoName: String
+    //public var lastModify: String
+}
+
+class ListSample: ObservableObject{
+    @Published var data: [DynamicList] = [
+        DynamicList(repoName: "reposi1")
+    ]
+}
+
 struct LoginCheck: View {
     @State var id = ""
     @State private var showAlert = false
     @ObservedObject var userAuth : UserAuth = UserAuth()
+    @ObservedObject var GetRepoName = Service_repoName()
+    
     
     var ProfileImgName: String = "user1"
     var nickName: String = ""
     var userID : String = ""
     
     
-    struct DynamicList: Identifiable { // 동적 리스트
-        let id: UUID = UUID()
-        let repoName: String
-        let lastModify: String
-    }
-    
-    let ListSample: [DynamicList] = [ // 리스트
-        DynamicList(repoName: "reposi1", lastModify: "22.01.15")
-    ]
+    //    struct DynamicList: Identifiable { // 동적 리스트
+    //        let id: UUID = UUID()
+    //        let repoName: String
+    //        let lastModify: String
+    //    }
+    //
+    //    let ListSample: [DynamicList] = [ // 리스트
+    //        DynamicList(repoName: "reposi1", lastModify: "22.01.15")
+    //    ]
     
     var body: some View {
-        
         NavigationView{
             HStack{
                 VStack{
@@ -87,6 +124,15 @@ struct LoginCheck: View {
                     Spacer()
                 }
                 VStack{
+                    Button("getRepo"){
+                        GetRepoName.repoNameQ(json: userAuth.user_id)
+                    }
+                    //
+                    //                    ForEach(GetRepoName.result, id: \.self) { msg in
+                    //                        Text(msg).padding()
+                    //                    }
+                    
+                    
                     HStack{
                         Spacer()
                         Button(action: {
@@ -101,21 +147,30 @@ struct LoginCheck: View {
                         }) {
                             Text("추가")
                             
-                            
                         }
                         .padding()
                     }
+                    
+                    
+                    
                     List{
-                        ForEach(ListSample, id: \.repoName){ i in
+                        ForEach(GetRepoName.result, id: \.self) { msg in
                             VStack{
-                                Text(i.repoName)
-                                    .padding(2)
-                                    .font(.title3)
-                                Text(i.lastModify)
-                                    .font(.body)
+                                Text(msg).padding()
                             }
                         }
                     }
+                    //                                        List{
+                    //                                            ForEach(ListSample, id: \.repoName){ i in
+                    //                                                VStack{
+                    //                                                    Text(i.repoName)
+                    //                                                        .padding(2)
+                    //                                                        .font(.title3)
+                    //                                                    Text(i.lastModify)
+                    //                                                        .font(.body)
+                    //                                                }
+                    //                                            }
+                    //                                        }
                 }
                 
             }
@@ -130,7 +185,7 @@ struct MyAlert: View {
     @State private var text: String = ""
     
     var body: some View {
-//        let loginJSON = "{\"user_id\": \"\(userAuth.user_id)\", \"user_pw\": \"\(userAuth.user_pw)\"}"
+        //        let loginJSON = "{\"user_id\": \"\(userAuth.user_id)\", \"user_pw\": \"\(userAuth.user_pw)\"}"
         VStack {
             Text("저장소 이름").font(.headline).padding()
             
@@ -208,6 +263,6 @@ struct CircleImage: View{
 struct LoginCheck_Previews: PreviewProvider {
     static var previews: some View {
         LoginCheck()
-.previewInterfaceOrientation(.landscapeLeft)
+            .previewInterfaceOrientation(.landscapeLeft)
     }
 }
