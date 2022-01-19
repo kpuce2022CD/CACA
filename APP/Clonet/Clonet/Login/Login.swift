@@ -7,7 +7,7 @@
 
 import SwiftUI
 import SocketIO
-
+import Combine
 
 var count = 0
 //로그인 정보 보내기
@@ -45,16 +45,22 @@ final class Service_login: ObservableObject {
 
         socket.connect()
     }
-
-
-
 }
+
+class UserAuth: ObservableObject {
+    @Published var user_id = ""
+    @Published var user_pw = ""
+    
+}
+
 
 struct Login: View {
     @ObservedObject var service = Service_login()
     
-    @State var id : String = ""
-    @State var passwd : String = ""
+    @ObservedObject var userAuth : UserAuth = UserAuth()
+    
+//    @State var id : String = ""
+//    @State var passwd : String = ""
     @State var isOn = true
     @State var isLogin: Bool = false
     @State var showingAlert: Bool = false
@@ -62,11 +68,13 @@ struct Login: View {
     @State private var selectionString: String? = nil
     
     @State var result = ""
+ 
     
     var body: some View {
-        NavigationView{
+        NavigationView {
             // 로그인 정보를 보내는 변수
-            let loginJSON = "{\"user_id\": \"\(self.id)\", \"user_pw\": \"\(self.passwd)\"}"
+            let loginJSON = "{\"user_id\": \"\(userAuth.user_id)\", \"user_pw\": \"\(userAuth.user_pw)\"}"
+
             VStack {
                 // title
 //                Button(action: {
@@ -87,14 +95,14 @@ struct Login: View {
                     VStack(alignment: .center){
                         HStack(alignment: .center) { // id input
                             Image(systemName: "envelope").padding()
-                            TextField("ID", text: $id)
+                            TextField("ID", text: $userAuth.user_id)
                                 .frame(width: 200)
                                 .padding()
                         }
                         HStack(alignment: .center) { // passwd input
                             Image(systemName: "lock").padding()
                             //TextField("PASSWORD", text: $passwd)
-                            SecureField("PASSWORD", text: $passwd)
+                            SecureField("PASSWORD", text: $userAuth.user_pw)
                                 .frame(width: 200)
                                 .padding()
                         }
@@ -111,7 +119,7 @@ struct Login: View {
                     ZStack {
                         ForEach(service.messages, id: \.self) { msg in
                             if(msg == "TRUE"){
-                                NavigationLink(destination: EmptyView(), tag: "signupButton", selection: $selectionString) { }
+                                NavigationLink(destination: LoginCheck(userAuth: userAuth), tag: "signupButton", selection: $selectionString) { }
                                 .buttonStyle(PlainButtonStyle()).frame(width:0).opacity(0)
                                 Button("Login UP") {
                                     self.selectionString = "signupButton"
@@ -156,14 +164,14 @@ struct Login: View {
 //
     }
     
-    func login() -> Bool {
-        print("func login()")
-        if(id == "B" && passwd == "A"){
-            return true
-        }else{
-            return false
-        }
-    }
+//    func login() -> Bool {
+//        print("func login()")
+//        if(id == "B" && passwd == "A"){
+//            return true
+//        }else{
+//            return false
+//        }
+//    }
 
 }
 

@@ -6,13 +6,56 @@
 //
 
 import SwiftUI
+import MessageUI
+import SocketIO
+
+final class Service_SendInvite: ObservableObject {
+    private var manager = SocketManager(socketURL: URL(string: "ws://localhost:3000")!, config: [.log(true), .compress])
+    
+    @Published var messages = [String]()
+    @Published var REemail = ""
+    @State var email: String = ""
+    
+    func invite_button(email: String){
+        let socket = manager.defaultSocket
+        socket.connect()
+        
+        socket.on(clientEvent: .connect){ (data, ack) in
+            self.REemail = email
+                       socket.emit("invite", self.REemail)
+
+                       sleep(2)
+                       socket.disconnect()
+        }
+        
+        socket.on("invite"){ [weak self] (data, ack) in
+//            print(email)
+//            print(data)
+            if let data = data[0] as? [String: String],
+               let rawMessage = data["find_RESULT"] {
+                DispatchQueue.main.async {
+                    self?.messages.append(rawMessage)
+                    socket.disconnect()
+                }
+            }
+            
+            socket.connect()
+        }
+        
+    }
+}
+
 
 struct Repo_Home: View {
     
     @State private var selectionString: String? = nil
+    @ObservedObject var userAuth : UserAuth = UserAuth()
+    @State private var showAlert = false
     
     
     var body: some View {
+        
+//        Text("\(userAuth.user_id)") //이렇게 쓰면 된다!
         HStack {
             VStack {
                 HStack {
@@ -99,7 +142,7 @@ struct Repo_Home: View {
                         self.selectionString = "branchButton"
                     }) {
                         HStack{
-                            Image(systemName: "list.bullet")
+                            Image(systemName: "square.and.arrow.down")
                             Text("다운로드")
                         }
                         
@@ -229,9 +272,21 @@ struct Repo_Home: View {
                     .resizable()
                     .frame(width: 50, height: 50)
                 
-                Image(systemName: "person.crop.circle.fill.badge.plus")
-                    .resizable()
-                    .frame(width: 60, height: 50)
+                //사용자 추가하기
+                Button(action: {
+                    let alertHC = UIHostingController(rootView: AlertAddPerson())
+                    
+                    alertHC.preferredContentSize = CGSize(width: 300, height: 200)
+                    alertHC.modalPresentationStyle = UIModalPresentationStyle.formSheet
+                    
+                    UIApplication.shared.windows[0].rootViewController?.present(alertHC, animated: true)}){
+                        Image(systemName: "person.crop.circle.fill.badge.plus")
+                            .resizable()
+                            .foregroundColor(Color.black)
+                            .frame(width: 60, height: 50)
+                        
+                    }
+                
                 
                 Spacer()
                 ZStack {
@@ -258,9 +313,50 @@ struct Repo_Home: View {
     }
 }
 
+//사용자 추가시 이메일 보내는 alert
+struct AlertAddPerson: View {
+    @State private var email: String = ""
+    @State private var group: String = "group1" // 임의로 넣은 값 수정해야함
+    @ObservedObject var service_SendInvite = Service_SendInvite()
+    
+    var body: some View {
+
+        VStack {
+//            let emailJSON = "{\"invite_user\": \"\()\", \"invite_email\": \"\(self.email)\", \"user_group\": \"\(self.group)\"}"
+            let emailJSON = "{\"invite_email\": \"\(self.email)\", \"user_group\": \"\(self.group)\"}"
+            Text("사용자 추가").font(.headline).padding()
+
+            TextField("이메일을 입력해주세요", text: $email).textFieldStyle(RoundedBorderTextFieldStyle()).padding()
+            Divider()
+            HStack {
+                Spacer()
+                Button(action: {
+                    service_SendInvite.invite_button(email: emailJSON)
+                    UIApplication.shared.windows[0].rootViewController?.dismiss(animated: true, completion: {})
+                }) {
+
+                    Text("Invite")
+                }
+                Spacer()
+
+                Divider()
+
+                Spacer()
+                Button(action: {
+                    UIApplication.shared.windows[0].rootViewController?.dismiss(animated: true, completion: {})
+                }) {
+                    Text("Cancel")
+                }
+                Spacer()
+            }.padding(0)
+
+
+            }.background(Color(white: 0.9))
+    }
+}
+
 struct Repo_Home_Previews: PreviewProvider {
     static var previews: some View {
         Repo_Home()
-.previewInterfaceOrientation(.landscapeLeft)
     }
 }

@@ -7,7 +7,7 @@
 
 import SwiftUI
 import Foundation
-
+import SocketIO
 struct DynamicList: Identifiable { // 동적 리스트
     let id: UUID = UUID()
     let repoName: String
@@ -20,14 +20,50 @@ class ListSample: ObservableObject{
     ]
 }
 
+
+final class Service_createRepo: ObservableObject {
+    private var manager = SocketManager(socketURL: URL(string: "ws://localhost:3000")!, config: [.log(true), .compress])
+
+    @Published var messages = [String]()
+    @Published var RepoJSON = ""
+    @State var json: String = ""
+    
+    func login_button(json: String){
+        let socket = manager.defaultSocket
+        
+        socket.on(clientEvent: .connect){ (data, ack) in
+            print("Connected")
+            self.RepoJSON = json
+            socket.emit("createRepo", self.RepoJSON)
+        }
+        
+        
+        socket.on("createRepo"){ [weak self] (data, ack) in
+            
+            if let data = data[0] as? [String: String],
+               let rawMessage = data["repo_RESULT"] {
+                DispatchQueue.main.async {
+                    self?.messages.append(rawMessage)
+                    print("rawMessage: ", String(rawMessage))
+                    socket.disconnect()
+                    
+                }
+            }
+        }
+        socket.connect()
+    }
+}
+
+
 struct LoginCheck: View {
     @State var id = ""
     @State private var showAlert = false
+    @ObservedObject var userAuth : UserAuth = UserAuth()
     
     var ProfileImgName: String = "user1"
-    var nickName: String = "유저원"
-    var userID : String = "user1@gmail.com"
-    var lastMsg: String = "연유커피한잔 .. ^^"
+    var nickName: String = ""
+    var userID : String = ""
+    
     
     struct DynamicList: Identifiable { // 동적 리스트
         let id: UUID = UUID()
@@ -40,6 +76,7 @@ struct LoginCheck: View {
     ]
     
     var body: some View {
+        
         NavigationView{
             HStack{
                 VStack{
@@ -93,6 +130,7 @@ struct MyAlert: View {
     @State private var text: String = ""
     
     var body: some View {
+//        let loginJSON = "{\"user_id\": \"\(userAuth.user_id)\", \"user_pw\": \"\(userAuth.user_pw)\"}"
         VStack {
             Text("저장소 이름").font(.headline).padding()
             
@@ -145,14 +183,8 @@ private extension LoginCheck{
         VStack(alignment: .center){
             Text(nickName)
                 .font(.title)
-            Text(userID)
+            Text(userAuth.user_id)
                 .font(.body)
-            HStack(alignment: .center) {
-                Spacer()
-                Text(lastMsg)
-                    .font(.subheadline)
-                Spacer()
-            }
         }
         .padding()
         
@@ -176,5 +208,6 @@ struct CircleImage: View{
 struct LoginCheck_Previews: PreviewProvider {
     static var previews: some View {
         LoginCheck()
+.previewInterfaceOrientation(.landscapeLeft)
     }
 }
