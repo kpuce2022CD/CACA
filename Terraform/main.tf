@@ -11,14 +11,14 @@ terraform { // terraform setting
 
 provider "aws" { // was
   profile = "default"
-  region  = "us-west-2"
+  region  = "ap-northeast-2"
 }
 
 resource "aws_instance" "app_server" { // define component (ec2) // resource type, resource name
-  ami           = "ami-830c94e3"
+  ami           = "ami-01746dccc8c1f786a"
   instance_type = "t2.micro"
 
   tags = {
-    Name = "choihyemin"
+    Name = "choihyemin-terraform-1"
   }
 }
