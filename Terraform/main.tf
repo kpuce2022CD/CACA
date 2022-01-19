@@ -14,11 +14,35 @@ provider "aws" { // was
   region  = "ap-northeast-2"
 }
 
+resource "aws_security_group" "instance" {
+    name = "CLONET_REPOSITORY_SECURITY_GROUP"
+
+    ingress {
+      from_port = 80
+      to_port = 80
+      protocol = "tcp"
+      cidr_blocks = ["0.0.0.0/0"]
+    }
+
+    ingress {
+      from_port = 22
+      to_port = 22
+      protocol = "tcp"
+      cidr_blocks = ["0.0.0.0/0"]
+    }
+
+    lifecycle {
+        create_before_destroy = true
+    }
+}
+
 resource "aws_instance" "app_server" { // define component (ec2) // resource type, resource name
   ami           = "ami-01746dccc8c1f786a"
   instance_type = "t2.micro"
+  vpc_security_group_ids = ["${aws_security_group.instance.id}"]
 
   tags = {
-    Name = "choihyemin-terraform-1"
+    Name = "choihyemin-0119-1512"
   }
+   
 }
