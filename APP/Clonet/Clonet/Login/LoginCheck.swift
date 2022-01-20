@@ -47,8 +47,10 @@ final class Service_repoName: ObservableObject {
     private var manager = SocketManager(socketURL: URL(string: "ws://localhost:3000")!, config: [.log(true), .compress])
     
     @Published var result = [String]()
+    @Published var str2 = [String]()
     @Published var REemail = ""
     @State var json: String = ""
+    
     
     func repoNameQ(json: String){
         let socket = manager.defaultSocket
@@ -60,36 +62,49 @@ final class Service_repoName: ObservableObject {
         }
         
         socket.on("userRepo"){ [weak self] (data, ack) in
-            //            print(email)
-            //            print(data)
             if let data = data[0] as? [String: String],
                let rawMessage = data["repoName_result"] {
-                DispatchQueue.main.async {
+                DispatchQueue.main.async { [self] in
                     self?.result.append(rawMessage)
                     print("rawMessage: ", String(rawMessage))
-                    socket.disconnect()
                     
+                    print("aaa", self!.result)
+                    socket.disconnect()
+
+                    var str = rawMessage
+
+                    let replacements = [
+                        ("repo_name", ""),
+                        ("[",""),
+                        ("]",""),
+                        ("{\"\":\"",""),
+                        ("\"}","")
+                    ]
+
+                    for (search, replacement) in replacements{
+                        str = str.replacingOccurrences(of: search, with: replacement)
+                    }
+                    self?.str2 = str.components(separatedBy: ",")
+                    print("bbbb", self?.str2)
                 }
             }
             
             socket.connect()
         }
-        
     }
-    
 }
 
-struct DynamicList: Codable { // 동적 리스트
-    //public var id: UUID = UUID()
-    public var repoName: String
-    //public var lastModify: String
-}
-
-class ListSample: ObservableObject{
-    @Published var data: [DynamicList] = [
-        DynamicList(repoName: "reposi1")
-    ]
-}
+//struct DynamicList: Codable { // 동적 리스트
+//    //public var id: UUID = UUID()
+//    public var repoName: String
+//    //public var lastModify: String
+//}
+//
+//class ListSample: ObservableObject{
+//    @Published var data: [DynamicList] = [
+//        DynamicList(repoName: "reposi1")
+//    ]
+//}
 
 struct LoginCheck: View {
     @State var id = ""
@@ -101,17 +116,6 @@ struct LoginCheck: View {
     var ProfileImgName: String = "user1"
     var nickName: String = ""
     var userID : String = ""
-    
-    
-    //    struct DynamicList: Identifiable { // 동적 리스트
-    //        let id: UUID = UUID()
-    //        let repoName: String
-    //        let lastModify: String
-    //    }
-    //
-    //    let ListSample: [DynamicList] = [ // 리스트
-    //        DynamicList(repoName: "reposi1", lastModify: "22.01.15")
-    //    ]
     
     var body: some View {
         NavigationView{
@@ -127,11 +131,6 @@ struct LoginCheck: View {
                     Button("getRepo"){
                         GetRepoName.repoNameQ(json: userAuth.user_id)
                     }
-                    //
-                    //                    ForEach(GetRepoName.result, id: \.self) { msg in
-                    //                        Text(msg).padding()
-                    //                    }
-                    
                     
                     HStack{
                         Spacer()
@@ -151,26 +150,15 @@ struct LoginCheck: View {
                         .padding()
                     }
                     
-                    
-                    
                     List{
-                        ForEach(GetRepoName.result, id: \.self) { msg in
+                        ForEach(GetRepoName.str2, id: \.self){ i in
                             VStack{
-                                Text(msg).padding()
+                                Text(i).padding()
+                                    .padding(2)
+                                    .font(.title3)
                             }
                         }
                     }
-                    //                                        List{
-                    //                                            ForEach(ListSample, id: \.repoName){ i in
-                    //                                                VStack{
-                    //                                                    Text(i.repoName)
-                    //                                                        .padding(2)
-                    //                                                        .font(.title3)
-                    //                                                    Text(i.lastModify)
-                    //                                                        .font(.body)
-                    //                                                }
-                    //                                            }
-                    //                                        }
                 }
                 
             }
@@ -180,6 +168,8 @@ struct LoginCheck: View {
         .navigationViewStyle(StackNavigationViewStyle())
     }
 }
+
+
 
 struct MyAlert: View {
     @State private var text: String = ""
