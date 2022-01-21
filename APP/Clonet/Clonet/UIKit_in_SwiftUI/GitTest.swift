@@ -26,6 +26,9 @@ struct GitTest: View {
     @State var lastCMmsg = ""
     @State var lastCMtime = Date()
     
+    @State var OP : OpaquePointer? = nil
+    
+    
     let faceLocation = documentURL.appendingPathComponent("baa")
     let localRepoLocation = documentURL.appendingPathComponent("a")
     let remoteRepoLocation = "http://54.180.94.152/git-repositories/PJY_JJANG.git"
@@ -57,10 +60,13 @@ struct GitTest: View {
         let result = Repository.at(localRepoLocation)
         switch result {
         case let .success(repo):
-
+            OP = repo.pointer
             let add_commit = repo.add(path: ".")
             let sig = Signature(name: "name",email: "name@gmail.com",time: Date(),timeZone: TimeZone.current)
             let latestCommit = repo.commit(message: "asdf", signature: sig)
+            
+            let remote: URL = URL(string: remoteRepoLocation)!
+//            let commit_commit = repo.pushToOrigin()
             
             switch latestCommit {
             case let .success(commit):
@@ -186,9 +192,9 @@ struct GitTest: View {
         }
     }
 }
-
-struct GitTest_Previews : PreviewProvider {
-    static var previews: some View {
-        GitTest()
-    }
-}
+//
+//struct GitTest_Previews : PreviewProvider {
+//    static var previews: some View {
+//        GitTest(POINTER: Repository)
+//    }
+//}

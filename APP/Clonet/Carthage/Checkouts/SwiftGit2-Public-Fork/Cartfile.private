@@ -1,0 +1,4 @@
+github "jspahrsummers/xcconfigs" >= 0.10
+github "Quick/Quick" ~> 1.0
+github "Quick/Nimble" ~> 7.0
+github "ZipArchive/ZipArchive" ~> 1.6

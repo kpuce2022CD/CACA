@@ -40,7 +40,7 @@ struct SocketIO: View {
     @ObservedObject var service = Service()
     
     var body: some View {
-        GitTest()
+//        GitTest()
         VStack{
             Text("Received messages form Node.js: ")
                 .font(.largeTitle)
