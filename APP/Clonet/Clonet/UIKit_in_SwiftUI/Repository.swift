@@ -53,59 +53,62 @@ extension Repository {
     //
     //
     //
-    func shortName() -> String? {
-        return directoryURL?.lastPathComponent
-    }
-    
-    func addAllAndCommit(message: String) -> Result<Commit, NSError> {
-        return addAll().flatMap {
-            commit(message: message, signature: gitAuthor)
-        }
-    }
-    
-    // Stages all files
-    func addAll() -> Result<(), NSError> {
-        return add(path: ".")
-    }
-    
-    func pushToOrigin() {
-        guard let localBranch = HEAD().value as? Branch else {
-            print("Can't push - not on a branch")
-            return
-        }
-        guard let remoteBranch = remoteBranch(named: "origin/master").value else {
-            print("Can't push - no remote branch with name origin/master")
-            return
-        }
-        guard let credentials = ClonetCredentials.get() else {
-            return
-        }
-        
-        let pushResult = remote_A(named: "origin").flatMap {
-            push(remote: $0, branch: localBranch, credentials: credentials)
-        }
-        
-        switch pushResult {
-        case .success:
-            print("Push to origin succeeded")
-        case let .failure(error):
-            print("Push failed: \(error)")
-        }
-    }
     
     
-    public func remote_A(named name: String) -> Result<Remote, NSError> {
-        var pointer: OpaquePointer? = nil
-        let result = git_remote_lookup(&pointer, self.pointer, name)
-        
-        guard result == GIT_OK.rawValue else {
-            return Result.failure(NSError(gitError: result, pointOfFailure: "git_remote_lookup"))
-        }
-    }
     
-    public func push(remote: Remote, branch: Branch, credentials: Credentials){
-        
-    }
-    
-    
+//    func shortName() -> String? {
+//        return directoryURL?.lastPathComponent
+//    }
+//
+//    func addAllAndCommit(message: String) -> Result<Commit, NSError> {
+//        return addAll().flatMap {
+//            commit(message: message, signature: gitAuthor)
+//        }
+//    }
+//
+//    // Stages all files
+//    func addAll() -> Result<(), NSError> {
+//        return add(path: ".")
+//    }
+//
+//    func pushToOrigin() {
+//        guard let localBranch = HEAD().value as? Branch else {
+//            print("Can't push - not on a branch")
+//            return
+//        }
+//        guard let remoteBranch = remoteBranch(named: "origin/master").value else {
+//            print("Can't push - no remote branch with name origin/master")
+//            return
+//        }
+//        guard let credentials = ClonetCredentials.get() else {
+//            return
+//        }
+//
+//        let pushResult = remote_A(named: "origin").flatMap {
+//            push(remote: $0, branch: localBranch, credentials: credentials)
+//        }
+//
+//        switch pushResult {
+//        case .success:
+//            print("Push to origin succeeded")
+//        case let .failure(error):
+//            print("Push failed: \(error)")
+//        }
+//    }
+//
+//
+//    public func remote_A(named name: String) -> Result<Remote, NSError> {
+//        var pointer: OpaquePointer? = nil
+//        let result = git_remote_lookup(&pointer, self.pointer, name)
+//
+//        guard result == GIT_OK.rawValue else {
+//            return Result.failure(NSError(gitError: result, pointOfFailure: "git_remote_lookup"))
+//        }
+//    }
+//
+//    public func push(remote: Remote, branch: Branch, credentials: Credentials){
+//
+//    }
+//
+//
 }

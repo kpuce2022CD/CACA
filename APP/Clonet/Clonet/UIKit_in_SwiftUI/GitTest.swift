@@ -66,7 +66,9 @@ struct GitTest: View {
             let latestCommit = repo.commit(message: "asdf", signature: sig)
             
             let remote: URL = URL(string: remoteRepoLocation)!
-//            let commit_commit = repo.pushToOrigin()
+            let commit_commit = repo.commit(message: "asdf", signature: sig)
+            
+            let commit_push = repo.push(repo, "ubuntu", "asdfqwer", "master")
             
             switch latestCommit {
             case let .success(commit):
