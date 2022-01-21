@@ -25,16 +25,11 @@ struct GitTest: View {
     @State var lastCMuser = ""
     @State var lastCMmsg = ""
     @State var lastCMtime = Date()
-//
-//    static let dateformat: DateFormatter = {
-//           let formatter = DateFormatter()
-//            formatter.dateFormat = "YYYY년 M월 d일"
-//            return formatter
-//        }()
-//
-    let localRepoLocation = documentURL.appendingPathComponent("naa")
-    let remoteRepoLocation = "http://3.36.89.105/git-repositories/hye.git"
-    let test = "http://3.36.89.105/git-repositories/hye.git"
+    
+    let faceLocation = documentURL.appendingPathComponent("baa")
+    let localRepoLocation = documentURL.appendingPathComponent("a")
+    let remoteRepoLocation = "http://54.180.94.152/git-repositories/PJY_JJANG.git"
+    let test = "http://54.180.94.152/git-repositories/PJY_JJANG.git"
     
     init() {
         // git_libgit2_init()
@@ -44,8 +39,10 @@ struct GitTest: View {
     var body: some View {
         VStack {
             Button("Open test Git repo", action: testGitRepo)
+//            Button("LOCATION", action: location)
             Button("Clone remote Git repo", action: cloneGitRepo)
             Button("CREATE GIT REPOSITORY", action: createGitRepo)
+            Button("AT&ADD&COMMIT", action: commitGitRepo)
             ScrollView {
                 Text(message)
                 Text("\n zz")
@@ -53,6 +50,33 @@ struct GitTest: View {
                 Text(lastCMtime.formatDate())
             }
         }.padding(5)
+    }
+    
+    func commitGitRepo() {
+        
+        let result = Repository.at(localRepoLocation)
+        switch result {
+        case let .success(repo):
+
+            let add_commit = repo.add(path: ".")
+            let sig = Signature(name: "name",email: "name@gmail.com",time: Date(),timeZone: TimeZone.current)
+            let latestCommit = repo.commit(message: "asdf", signature: sig)
+            
+            switch latestCommit {
+            case let .success(commit):
+                message = "Latest Commit: \(commit.message) by \(commit.author.name) at \(commit.author.time)"
+                lastCMmsg = commit.message
+                lastCMuser = commit.author.name
+               // lastCMtime = commit.author.time
+                
+            case let .failure(error):
+                message = "Could not get commit: \(error)"
+            }
+            
+        case let .failure(error):
+            message = "Could not clone repository: \(error)"
+        }
+
     }
     
     func createGitRepo(){
@@ -107,9 +131,33 @@ struct GitTest: View {
         }
     }
     
-    func getBranchList(){
-        
-    }
+//    func location(){
+//        let remote: URL = URL(string: remoteRepoLocation)!
+//
+//        let result = Repository.clone(from: remote, to: faceLocation)
+//        switch result {
+//        case let .success(repo):
+//            let latestCommit = repo
+//                .HEAD()
+//                .flatMap {
+//                    repo.commit($0.oid)
+//                }
+//
+//            switch latestCommit {
+//            case let .success(commit):
+//                message = "Latest Commit: \(commit.message) by \(commit.author.name) at \(commit.author.time)"
+//                lastCMmsg = commit.message
+//                lastCMuser = commit.author.name
+//               // lastCMtime = commit.author.time
+//
+//            case let .failure(error):
+//                message = "Could not get commit: \(error)"
+//            }
+//
+//        case let .failure(error):
+//            message = "Could not clone repository: \(error)"
+//        }
+//    }
     
     func testGitRepo() {
         let result = Repository.at(localRepoLocation)
