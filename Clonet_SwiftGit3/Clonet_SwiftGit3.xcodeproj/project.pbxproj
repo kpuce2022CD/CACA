@@ -15,6 +15,7 @@
 		3F95EAC0279B11A4006FFE13 /* Clonet_SwiftGit3UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F95EABF279B11A4006FFE13 /* Clonet_SwiftGit3UITests.swift */; };
 		3F95EAC2279B11A4006FFE13 /* Clonet_SwiftGit3UITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F95EAC1279B11A4006FFE13 /* Clonet_SwiftGit3UITestsLaunchTests.swift */; };
 		3F95EAD0279B1216006FFE13 /* SwiftGit2 in Frameworks */ = {isa = PBXBuildFile; productRef = 3F95EACF279B1216006FFE13 /* SwiftGit2 */; };
+		3F95EAD2279B1384006FFE13 /* GitTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F95EAD1279B1384006FFE13 /* GitTest.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,6 +46,7 @@
 		3F95EABB279B11A4006FFE13 /* Clonet_SwiftGit3UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Clonet_SwiftGit3UITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3F95EABF279B11A4006FFE13 /* Clonet_SwiftGit3UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Clonet_SwiftGit3UITests.swift; sourceTree = "<group>"; };
 		3F95EAC1279B11A4006FFE13 /* Clonet_SwiftGit3UITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Clonet_SwiftGit3UITestsLaunchTests.swift; sourceTree = "<group>"; };
+		3F95EAD1279B1384006FFE13 /* GitTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitTest.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,6 +102,7 @@
 				3F95EAA6279B11A2006FFE13 /* ContentView.swift */,
 				3F95EAA8279B11A4006FFE13 /* Assets.xcassets */,
 				3F95EAAA279B11A4006FFE13 /* Preview Content */,
+				3F95EAD1279B1384006FFE13 /* GitTest.swift */,
 			);
 			path = Clonet_SwiftGit3;
 			sourceTree = "<group>";
@@ -266,6 +269,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3F95EAA7279B11A2006FFE13 /* ContentView.swift in Sources */,
+				3F95EAD2279B1384006FFE13 /* GitTest.swift in Sources */,
 				3F95EAA5279B11A2006FFE13 /* Clonet_SwiftGit3App.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
