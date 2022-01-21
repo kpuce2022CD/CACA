@@ -1,0 +1,16 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "SwiftGit2",
+        "repositoryURL": "https://github.com/App-Maker-Software/SwiftGit3.git",
+        "state": {
+          "branch": "main",
+          "revision": "a2a0873f0e4a07628a5f94d6d360f669e9e5301b",
+          "version": null
+        }
+      }
+    ]
+  },
+  "version": 1
+}
