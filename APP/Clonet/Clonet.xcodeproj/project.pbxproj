@@ -16,6 +16,7 @@
 		3F6A1BBE279A839300146367 /* KeychainAccess in Frameworks */ = {isa = PBXBuildFile; productRef = 3F6A1BBD279A839300146367 /* KeychainAccess */; };
 		3F6A1BC0279A8AF300146367 /* PushOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F6A1BBF279A8AF300146367 /* PushOptions.swift */; };
 		3F6A1BC4279AADDE00146367 /* Result in Frameworks */ = {isa = PBXBuildFile; productRef = 3F6A1BC3279AADDE00146367 /* Result */; };
+		3F95EAD5279B1600006FFE13 /* SwiftGit2 in Frameworks */ = {isa = PBXBuildFile; productRef = 3F95EAD4279B1600006FFE13 /* SwiftGit2 */; };
 		3FD176B2278D31A50025CCD2 /* Signup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD176B1278D31A50025CCD2 /* Signup.swift */; };
 		3FD176B4278D4E7D0025CCD2 /* FindIdPw.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD176B3278D4E7D0025CCD2 /* FindIdPw.swift */; };
 		3FD176B9278D72430025CCD2 /* test.json in Resources */ = {isa = PBXBuildFile; fileRef = 3FD176B8278D72430025CCD2 /* test.json */; };
@@ -69,6 +70,7 @@
 			files = (
 				B540D422278C604200479A63 /* libiconv.tbd in Frameworks */,
 				3F6A1BBE279A839300146367 /* KeychainAccess in Frameworks */,
+				3F95EAD5279B1600006FFE13 /* SwiftGit2 in Frameworks */,
 				B540D420278C603900479A63 /* libz.tbd in Frameworks */,
 				3F6A1BC4279AADDE00146367 /* Result in Frameworks */,
 				DACAA65B278C7BFB007F3918 /* SocketIO in Frameworks */,
@@ -216,6 +218,7 @@
 				DACAA65A278C7BFB007F3918 /* SocketIO */,
 				3F6A1BBD279A839300146367 /* KeychainAccess */,
 				3F6A1BC3279AADDE00146367 /* Result */,
+				3F95EAD4279B1600006FFE13 /* SwiftGit2 */,
 			);
 			productName = Clonet;
 			productReference = DA97B6A3278BE05D006C473E /* Clonet.app */;
@@ -250,6 +253,7 @@
 				DACAA65C278C7C0B007F3918 /* XCRemoteSwiftPackageReference "swift-nio-zlib-support" */,
 				3F6A1BBC279A839300146367 /* XCRemoteSwiftPackageReference "KeychainAccess" */,
 				3F6A1BC2279AADDE00146367 /* XCRemoteSwiftPackageReference "Result" */,
+				3F95EAD3279B1600006FFE13 /* XCRemoteSwiftPackageReference "SwiftGit3" */,
 			);
 			productRefGroup = DA97B6A4278BE05D006C473E /* Products */;
 			projectDirPath = "";
@@ -524,6 +528,14 @@
 				kind = branch;
 			};
 		};
+		3F95EAD3279B1600006FFE13 /* XCRemoteSwiftPackageReference "SwiftGit3" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/App-Maker-Software/SwiftGit3.git";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
 		DACAA659278C7BFB007F3918 /* XCRemoteSwiftPackageReference "socket.io-client-swift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/socketio/socket.io-client-swift.git";
@@ -552,6 +564,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 3F6A1BC2279AADDE00146367 /* XCRemoteSwiftPackageReference "Result" */;
 			productName = Result;
+		};
+		3F95EAD4279B1600006FFE13 /* SwiftGit2 */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3F95EAD3279B1600006FFE13 /* XCRemoteSwiftPackageReference "SwiftGit3" */;
+			productName = SwiftGit2;
 		};
 		DACAA65A278C7BFB007F3918 /* SocketIO */ = {
 			isa = XCSwiftPackageProductDependency;
