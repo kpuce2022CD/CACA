@@ -25,19 +25,17 @@ struct GitTest: View {
     @State var lastCMuser = ""
     @State var lastCMmsg = ""
     @State var lastCMtime = Date()
+
     
-    @State var OP : OpaquePointer? = nil
-    
-    
-    let faceLocation = documentURL.appendingPathComponent("baa")
-    let localRepoLocation = documentURL.appendingPathComponent("a")
+    let faceLocation = documentURL.appendingPathComponent("hey")
+    let localRepoLocation = documentURL.appendingPathComponent("hey")
     let remoteRepoLocation = "http://54.180.94.152/git-repositories/PJY_JJANG.git"
     let test = "http://54.180.94.152/git-repositories/PJY_JJANG.git"
     
-//    init() {
-//        // git_libgit2_init()
-//        Repository.initialize_libgit2()
-//    }
+    init() {
+        // git_libgit2_init()
+        Repository.initialize_libgit2()
+    }
     
     var body: some View {
         VStack {
@@ -55,21 +53,21 @@ struct GitTest: View {
         }.padding(5)
     }
     
+
     func commitGitRepo() {
         
         let result = Repository.at(localRepoLocation)
         switch result {
         case let .success(repo):
-            OP = repo.pointer
+//            OP = repo.pointer
             let add_commit = repo.add(path: ".")
             let sig = Signature(name: "name",email: "name@gmail.com",time: Date(),timeZone: TimeZone.current)
             let latestCommit = repo.commit(message: "asdf", signature: sig)
             
-            let remote: URL = URL(string: remoteRepoLocation)!
-            let commit_commit = repo.commit(message: "asdf", signature: sig)
+//            let _ = repo.push(<#T##repo: Repository##Repository#>, <#T##username: String##String#>, <#T##password: String##String#>, <#T##branch: String?##String?#>)
+            let commit_push = repo.push(repo, "ubuntu", "qwer1234", nil)
             
-            let commit_push = repo.push(repo, "ubuntu", "asdfqwer", "master")
-            
+//            print(commit_push)
             switch latestCommit {
             case let .success(commit):
                 message = "Latest Commit: \(commit.message) by \(commit.author.name) at \(commit.author.time)"
@@ -85,6 +83,10 @@ struct GitTest: View {
             message = "Could not clone repository: \(error)"
         }
 
+    }
+    
+    func push(){
+        
     }
     
     func createGitRepo(){
