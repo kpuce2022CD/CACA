@@ -8,7 +8,7 @@
 import Foundation
 import Result
 import SwiftGit2
-import Clibgit2
+//import Clibgit2
 //import libgit2
 
 
@@ -18,18 +18,18 @@ let gitAuthor = Signature.init(name: "Git Writing", email: "gitwriting@example.c
 extension Repository {
     
     //
-    //    public func push(repo: Repository) -> Result<Repository, NSError>{
-    //        var git_remote : OpaquePointer? = nil
-    ////        let pushUrl = git_remote_pushurl(git_remote)
-    //        let lookup_result = git_remote_lookup(&git_remote, repo.pointer, "origin")
-    //
-    //        var option : git_push_options? = nil
-    //        let push_init_result = git_push_options_init(git_push_options, UInt32(GIT_PUSH_OPTIONS_VERSION))
-    //
-    //        var refspec = "refs/heads/master"
-    //        var refspecs : git_strarray = git_s
-    //        let push_result = git_remote_push(git_remote, <#T##refspecs: UnsafePointer<git_strarray>!##UnsafePointer<git_strarray>!#>, <#T##opts: UnsafePointer<git_push_options>!##UnsafePointer<git_push_options>!#>)
-    //    }
+//        public func push(repo: Repository) -> Result<Repository, NSError>{
+//            var git_remote : OpaquePointer? = nil
+//    //        let pushUrl = git_remote_pushurl(git_remote)
+//            let lookup_result = git_remote_lookup(&git_remote, repo.pointer, "origin")
+//    
+//            var option : git_push_options? = nil
+//            let push_init_result = git_push_options_init(git_push_options, UInt32(GIT_PUSH_OPTIONS_VERSION))
+//    
+//            var refspec = "refs/heads/master"
+//            var refspecs : git_strarray = git_s
+//            let push_result = git_remote_push(git_remote, <#T##refspecs: UnsafePointer<git_strarray>!##UnsafePointer<git_strarray>!#>, <#T##opts: UnsafePointer<git_push_options>!##UnsafePointer<git_push_options>!#>)
+//        }
     
     //
     ////    func push() -> Result<Repository, NSError>{
@@ -65,12 +65,12 @@ extension Repository {
 //            commit(message: message, signature: gitAuthor)
 //        }
 //    }
-//
-//    // Stages all files
-//    func addAll() -> Result<(), NSError> {
-//        return add(path: ".")
-//    }
-//
+
+    // Stages all files
+    func addAll() -> Result<(), NSError> {
+        return add(path: ".")
+    }
+
 //    func pushToOrigin() {
 //        guard let localBranch = HEAD().value as? Branch else {
 //            print("Can't push - not on a branch")
@@ -84,7 +84,7 @@ extension Repository {
 //            return
 //        }
 //
-//        let pushResult = remote_A(named: "origin").flatMap {
+//        let pushResult = remote(named: "origin").flatMap {
 //            push(remote: $0, branch: localBranch, credentials: credentials)
 //        }
 //
@@ -97,7 +97,7 @@ extension Repository {
 //    }
 //
 //
-//    public func remote_A(named name: String) -> Result<Remote, NSError> {
+//    public func remote(named name: String) -> Result<Remote, NSError> {
 //        var pointer: OpaquePointer? = nil
 //        let result = git_remote_lookup(&pointer, self.pointer, name)
 //
@@ -109,6 +109,6 @@ extension Repository {
 //    public func push(remote: Remote, branch: Branch, credentials: Credentials){
 //
 //    }
-//
-//
+
+
 }

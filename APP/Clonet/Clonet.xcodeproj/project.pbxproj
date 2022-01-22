@@ -110,6 +110,7 @@
 		3FD176B6278D69D50025CCD2 /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				B5D184252792B6D1004C7E8F /* Repo_Home.swift */,
 				DA97B6A8278BE05D006C473E /* ContentView.swift */,
 				DA97B6A6278BE05D006C473E /* ClonetApp.swift */,
 				DA253E12278DEE1500AEE18A /* ViewModifiers.swift */,
@@ -185,7 +186,6 @@
 				3F4B530C278BE91100D64A6D /* Login */,
 				DA97B6AA278BE05E006C473E /* Assets.xcassets */,
 				DA97B6AC278BE05E006C473E /* Preview Content */,
-				B5D184252792B6D1004C7E8F /* Repo_Home.swift */,
 			);
 			path = Clonet;
 			sourceTree = "<group>";
@@ -212,6 +212,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				3F95EADB279B1A95006FFE13 /* PBXTargetDependency */,
 			);
 			name = Clonet;
 			packageProductDependencies = (
@@ -304,6 +305,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		3F95EADB279B1A95006FFE13 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			productRef = 3F95EADA279B1A95006FFE13 /* SwiftGit2 */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		DA97B6AF278BE05E006C473E /* Debug */ = {
@@ -434,7 +442,7 @@
 				ENABLE_BITCODE = NO;
 				ENABLE_PREVIEWS = YES;
 				EXCLUDED_ARCHS = arm64;
-				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = "arm64 ios-x86_64-simulator";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -447,6 +455,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
+				"OTHER_LDFLAGS[arch=*]" = "";
 				PRODUCT_BUNDLE_IDENTIFIER = CACA.Clonet;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -466,7 +475,7 @@
 				DEVELOPMENT_TEAM = 9RLMLKY389;
 				ENABLE_BITCODE = NO;
 				ENABLE_PREVIEWS = YES;
-				EXCLUDED_ARCHS = "arm64 x86_64-apple-ios-simulator";
+				EXCLUDED_ARCHS = arm64;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -532,8 +541,8 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/App-Maker-Software/SwiftGit3.git";
 			requirement = {
-				branch = main;
-				kind = branch;
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.2.0;
 			};
 		};
 		DACAA659278C7BFB007F3918 /* XCRemoteSwiftPackageReference "socket.io-client-swift" */ = {
@@ -566,6 +575,11 @@
 			productName = Result;
 		};
 		3F95EAD7279B173D006FFE13 /* SwiftGit2 */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3F95EAD6279B173D006FFE13 /* XCRemoteSwiftPackageReference "SwiftGit3" */;
+			productName = SwiftGit2;
+		};
+		3F95EADA279B1A95006FFE13 /* SwiftGit2 */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 3F95EAD6279B173D006FFE13 /* XCRemoteSwiftPackageReference "SwiftGit3" */;
 			productName = SwiftGit2;

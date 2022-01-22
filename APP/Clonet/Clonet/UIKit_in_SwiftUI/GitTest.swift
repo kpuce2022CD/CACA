@@ -34,15 +34,15 @@ struct GitTest: View {
     let remoteRepoLocation = "http://54.180.94.152/git-repositories/PJY_JJANG.git"
     let test = "http://54.180.94.152/git-repositories/PJY_JJANG.git"
     
-    init() {
-        // git_libgit2_init()
-        Repository.initialize_libgit2()
-    }
+//    init() {
+//        // git_libgit2_init()
+//        Repository.initialize_libgit2()
+//    }
     
     var body: some View {
         VStack {
             Button("Open test Git repo", action: testGitRepo)
-//            Button("LOCATION", action: location)
+            Button("LOCATION", action: location)
             Button("Clone remote Git repo", action: cloneGitRepo)
             Button("CREATE GIT REPOSITORY", action: createGitRepo)
             Button("AT&ADD&COMMIT", action: commitGitRepo)
@@ -139,33 +139,33 @@ struct GitTest: View {
         }
     }
     
-//    func location(){
-//        let remote: URL = URL(string: remoteRepoLocation)!
-//
-//        let result = Repository.clone(from: remote, to: faceLocation)
-//        switch result {
-//        case let .success(repo):
-//            let latestCommit = repo
-//                .HEAD()
-//                .flatMap {
-//                    repo.commit($0.oid)
-//                }
-//
-//            switch latestCommit {
-//            case let .success(commit):
-//                message = "Latest Commit: \(commit.message) by \(commit.author.name) at \(commit.author.time)"
-//                lastCMmsg = commit.message
-//                lastCMuser = commit.author.name
-//               // lastCMtime = commit.author.time
-//
-//            case let .failure(error):
-//                message = "Could not get commit: \(error)"
-//            }
-//
-//        case let .failure(error):
-//            message = "Could not clone repository: \(error)"
-//        }
-//    }
+    func location(){
+        let remote: URL = URL(string: remoteRepoLocation)!
+
+        let result = Repository.clone(from: remote, to: faceLocation)
+        switch result {
+        case let .success(repo):
+            let latestCommit = repo
+                .HEAD()
+                .flatMap {
+                    repo.commit($0.oid)
+                }
+
+            switch latestCommit {
+            case let .success(commit):
+                message = "Latest Commit: \(commit.message) by \(commit.author.name) at \(commit.author.time)"
+                lastCMmsg = commit.message
+                lastCMuser = commit.author.name
+               // lastCMtime = commit.author.time
+
+            case let .failure(error):
+                message = "Could not get commit: \(error)"
+            }
+
+        case let .failure(error):
+            message = "Could not clone repository: \(error)"
+        }
+    }
     
     func testGitRepo() {
         let result = Repository.at(localRepoLocation)

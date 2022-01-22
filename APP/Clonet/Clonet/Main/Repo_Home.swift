@@ -65,10 +65,10 @@ struct Repo_Home: View {
     let remoteRepoLocation = "http://3.36.89.105/git-repositories/hye.git"
     let test = "http://3.36.89.105/git-repositories/hye.git"
     
-    init() {
-        // git_libgit2_init()
-        Repository.initialize_libgit2()
-    }
+//    init() {
+//        // git_libgit2_init()
+//        Repository.initialize_libgit2()
+//    }
     
     
     var body: some View {
