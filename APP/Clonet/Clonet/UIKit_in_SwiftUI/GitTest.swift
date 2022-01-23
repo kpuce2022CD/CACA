@@ -56,16 +56,17 @@ struct GitTest: View {
 
     //MARK: COMMIT
     func commitGitRepo() {
-        
         let result = Repository.at(localRepoLocation)
         switch result {
         case let .success(repo):
-//            OP = repo.pointer
+            //MARK: add
             let add_commit = repo.add(path: ".")
+            
+            //MARK: commit
             let sig = Signature(name: "name",email: "name@gmail.com",time: Date(),timeZone: TimeZone.current)
             let latestCommit = repo.commit(message: "asdf", signature: sig)
             
-//            let _ = repo.push(<#T##repo: Repository##Repository#>, <#T##username: String##String#>, <#T##password: String##String#>, <#T##branch: String?##String?#>)
+            //MARK: push
             let commit_push = repo.push(repo, "ubuntu", "qwer1234", nil)
             
 //            print(commit_push)
@@ -74,7 +75,7 @@ struct GitTest: View {
                 message = "Latest Commit: \(commit.message) by \(commit.author.name) at \(commit.author.time)"
                 lastCMmsg = commit.message
                 lastCMuser = commit.author.name
-               // lastCMtime = commit.author.time
+                lastCMtime = commit.author.time
                 
             case let .failure(error):
                 message = "Could not get commit: \(error)"
