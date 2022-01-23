@@ -30,8 +30,8 @@ struct GitTest: View {
     
     let faceLocation = documentURL.appendingPathComponent("hey")
     let localRepoLocation = documentURL.appendingPathComponent("hey")
-    let remoteRepoLocation = "http://54.180.94.152/git-repositories/PJY_JJANG.git"
-    let test = "http://54.180.94.152/git-repositories/PJY_JJANG.git"
+    let remoteRepoLocation = "http://52.79.235.187/git-repositories/PJY_JJANG.git"
+    let test = "http://52.79.235.187/git-repositories/PJY_JJANG.git"
     
     init() {
         // git_libgit2_init()
@@ -40,10 +40,14 @@ struct GitTest: View {
     
     var body: some View {
         VStack {
-            Button("Open test Git repo", action: atGitRepo)
-            Button("LOCATION", action: location)
-            Button("Clone remote Git repo", action: cloneGitRepo)
-            Button("AT&ADD&COMMIT", action: commitGitRepo)
+            Button("at", action: atGitRepo)
+            Button("Fake_LOCATION", action: location)
+            Button("clone", action: cloneGitRepo)
+            Button("at&add&commit&push", action: commitGitRepo)
+            Button("return remote Branch", action: return_remoteBranch)
+            Button("return local Branch", action: return_localBranch)
+            
+            
             ScrollView {
                 Text(message)
                 Text("\n zz")
@@ -51,6 +55,42 @@ struct GitTest: View {
                 Text(lastCMtime.formatDate())
             }
         }.padding(5)
+    }
+    
+    // MARK: return Branch (REMOTE)
+    func return_remoteBranch(){
+        let result = Repository.at(localRepoLocation)
+        switch result {
+        case let .success(repo):
+            let remoteBranch_result = repo.remoteBranches()
+            switch remoteBranch_result{
+            case let .success(branch):
+                message = "\(branch)"
+            case let .failure(branch):
+                message = "\(branch)"
+            }
+            
+        case let .failure(error):
+            message = "Could not open repository: \(error)"
+        }
+    }
+    
+    // MARK: return Branch (local)
+    func return_localBranch(){
+        let result = Repository.at(localRepoLocation)
+        switch result {
+        case let .success(repo):
+            let remoteBranch_result = repo.localBranches()
+            switch remoteBranch_result{
+            case let .success(branch):
+                message = "\(branch)"
+            case let .failure(branch):
+                message = "\(branch)"
+            }
+            
+        case let .failure(error):
+            message = "Could not open repository: \(error)"
+        }
     }
     
 
@@ -105,7 +145,7 @@ struct GitTest: View {
                 message = "Latest Commit: \(commit.message) by \(commit.author.name) at \(commit.author.time)"
                 lastCMmsg = commit.message
                 lastCMuser = commit.author.name
-               // lastCMtime = commit.author.time
+                lastCMtime = commit.author.time
                 
             case let .failure(error):
                 message = "Could not get commit: \(error)"
