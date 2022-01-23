@@ -19,6 +19,7 @@ extension Date {
         }
 }
 
+//MARK: MAIN
 struct GitTest: View {
     
     @State var message = ""
@@ -39,10 +40,9 @@ struct GitTest: View {
     
     var body: some View {
         VStack {
-            Button("Open test Git repo", action: testGitRepo)
+            Button("Open test Git repo", action: atGitRepo)
             Button("LOCATION", action: location)
             Button("Clone remote Git repo", action: cloneGitRepo)
-            Button("CREATE GIT REPOSITORY", action: createGitRepo)
             Button("AT&ADD&COMMIT", action: commitGitRepo)
             ScrollView {
                 Text(message)
@@ -54,6 +54,7 @@ struct GitTest: View {
     }
     
 
+    //MARK: COMMIT
     func commitGitRepo() {
         
         let result = Repository.at(localRepoLocation)
@@ -85,34 +86,7 @@ struct GitTest: View {
 
     }
     
-    func push(){
-        
-    }
-    
-    func createGitRepo(){
-        let remote: URL = URL(string: test)!
-        let result = Repository.create(at: remote)
-        switch result {
-        case let .success(repo):
-            let latestCommit = repo
-                .HEAD()
-                .flatMap {
-                    repo.commit($0.oid)
-                }
-            
-            switch latestCommit {
-            case let .success(commit):
-                message = "Latest Commit: \(commit.message) by \(commit.author.name)"
-                
-            case let .failure(error):
-                message = "Could not get commit: \(error)"
-            }
-            
-        case let .failure(error):
-            message = "Could not open repository: \(error)"
-        }
-    }
-    
+    //MARK: CLONE
     func cloneGitRepo() {
         let remote: URL = URL(string: remoteRepoLocation)!
         
@@ -141,6 +115,7 @@ struct GitTest: View {
         }
     }
     
+    //MARK: TEST
     func location(){
         let remote: URL = URL(string: remoteRepoLocation)!
 
@@ -169,7 +144,8 @@ struct GitTest: View {
         }
     }
     
-    func testGitRepo() {
+    // MARK: AT
+    func atGitRepo() {
         let result = Repository.at(localRepoLocation)
         switch result {
         case let .success(repo):
@@ -196,9 +172,11 @@ struct GitTest: View {
         }
     }
 }
-//
-//struct GitTest_Previews : PreviewProvider {
-//    static var previews: some View {
-//        GitTest(POINTER: Repository)
-//    }
-//}
+
+
+// MARK: Preview
+struct GitTest_Previews : PreviewProvider {
+    static var previews: some View {
+        GitTest()
+    }
+}
