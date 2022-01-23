@@ -21,13 +21,10 @@ extension Repository {
         
         let credentials: Credentials = Credentials.plaintext(username: username, password: password)
         var options = pushOptions(credentials: credentials)
-//        print(options)
+        
         let repository: OpaquePointer = repo.pointer
         var remote: OpaquePointer? = nil
         let result_git_remote_lookup = git_remote_lookup(&remote, repository, "origin" )
-        
-//        print("asdfaf", remote)
-//        print(result_git_remote_lookup)
         
         
         func localBranches() -> Result<[Branch], NSError> {
@@ -87,9 +84,6 @@ extension Repository {
         gitstr.strings = strings
         gitstr.count = 1
         
-//        print(remote)
-//        print(gitstr)
-//        print(options)
         let push_result = git_remote_push(remote, &gitstr, &options)
         print(push_result)
         git_remote_free(remote)
