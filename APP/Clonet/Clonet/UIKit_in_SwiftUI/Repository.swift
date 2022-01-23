@@ -24,6 +24,7 @@ extension Repository {
         let result_git_remote_lookup = git_remote_lookup(&remote, repo.pointer, "origin" )
         let result = git_branch_create(&gitBranch, repo.pointer, new_branch, nil, 1);
         print("crate_branch : ", result)
+        
     }
     
     // MARK: PUSH
