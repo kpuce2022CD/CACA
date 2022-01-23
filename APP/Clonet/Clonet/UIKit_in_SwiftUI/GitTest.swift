@@ -46,6 +46,7 @@ struct GitTest: View {
             Button("at&add&commit&push", action: commitGitRepo)
             Button("return remote Branch", action: return_remoteBranch)
             Button("return local Branch", action: return_localBranch)
+            Button("create branch", action: create_branch)
             
             
             ScrollView {
@@ -55,6 +56,20 @@ struct GitTest: View {
                 Text(lastCMtime.formatDate())
             }
         }.padding(5)
+    }
+    
+    // MARK: create Branch
+    func create_branch(){
+        var branch_name = "refs/heads/origin/hyemin"
+        let result = Repository.at(localRepoLocation)
+        switch result {
+        case let .success(repo):
+            let createbranch_result = repo.create_branch(repo, branch_name)
+            
+        case let .failure(error):
+            message = "Could not open repository: \(error)"
+        }
+        
     }
     
     // MARK: return Branch (REMOTE)
@@ -74,6 +89,7 @@ struct GitTest: View {
             message = "Could not open repository: \(error)"
         }
     }
+    
     
     // MARK: return Branch (local)
     func return_localBranch(){

@@ -16,6 +16,17 @@ import Clibgit2
 let gitAuthor = Signature.init(name: "Git Writing", email: "gitwriting@example.com")
 
 extension Repository {
+    
+    // MARK: CREATE_BRANCH
+    public func create_branch(_ repo: Repository, _ new_branch: String){
+        var gitBranch: OpaquePointer?
+        var remote: OpaquePointer? = nil
+        let result_git_remote_lookup = git_remote_lookup(&remote, repo.pointer, "origin" )
+        let result = git_branch_create(&gitBranch, repo.pointer, new_branch, nil, 1);
+        print("crate_branch : ", result)
+    }
+    
+    // MARK: PUSH
     public func push(_ repo: Repository, _ username: String, _ password: String, _ branch: String? = nil){
         // todo get this properly
         
