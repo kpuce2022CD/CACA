@@ -12,11 +12,11 @@ import SwiftGit2
 let documentURL = try! FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
 
 extension Date {
-        func formatDate() -> String {
-                let dateFormatter = DateFormatter()
-            dateFormatter.setLocalizedDateFormatFromTemplate("EEEE, MMM d")
-            return dateFormatter.string(from: self)
-        }
+    func formatDate() -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.setLocalizedDateFormatFromTemplate("EEEE, MMM d")
+        return dateFormatter.string(from: self)
+    }
 }
 
 //MARK: MAIN
@@ -26,7 +26,7 @@ struct GitTest: View {
     @State var lastCMuser = ""
     @State var lastCMmsg = ""
     @State var lastCMtime = Date()
-
+    
     
     let faceLocation = documentURL.appendingPathComponent("hey")
     let localRepoLocation = documentURL.appendingPathComponent("hey")
@@ -47,6 +47,7 @@ struct GitTest: View {
             Button("return remote Branch", action: return_remoteBranch)
             Button("return local Branch", action: return_localBranch)
             Button("create branch", action: create_branch)
+            Button("fetch", action: fetchGitRepo)
             
             
             ScrollView {
@@ -109,7 +110,6 @@ struct GitTest: View {
         }
     }
     
-
     //MARK: COMMIT
     func commitGitRepo() {
         let result = Repository.at(localRepoLocation)
@@ -125,7 +125,7 @@ struct GitTest: View {
             //MARK: push
             let commit_push = repo.push(repo, "ubuntu", "qwer1234", nil)
             
-//            print(commit_push)
+            //            print(commit_push)
             switch latestCommit {
             case let .success(commit):
                 message = "Latest Commit: \(commit.message) by \(commit.author.name) at \(commit.author.time)"
@@ -140,7 +140,45 @@ struct GitTest: View {
         case let .failure(error):
             message = "Could not clone repository: \(error)"
         }
-
+        
+    }
+    
+    //MARK: FETCH
+    func fetchGitRepo(){
+        let result = Repository.at(localRepoLocation)
+        switch result {
+        case let .success(repo):
+            let remote = repo.remote(named: "origin")
+            do {
+                //MARK: FETCH_FUNC
+                var remote_r = try remote.get()
+                let fetch_result = repo.fetch(remote_r)
+                switch fetch_result {
+                case let .success(result):
+                    message = "result : \(result)"
+                case let .failure(error):
+                    message = "error : \(error)"
+                }
+                
+//                //MARK: MERGE_FUNC
+//                var merge_commit = Commit.init(repo.pointer)
+//                let merge_result = repo.diff(for: merge_commit)
+//                switch merge_result {
+//                case let .success(diff):
+//                    message = "\(diff)"
+//                case let.failure(error):
+//                    message = "\(error)"
+//                }
+                
+                
+            }catch{
+                print(error)
+            }
+        case let .failure(error):
+            message = "\(error)"
+        }
+        
+        
     }
     
     //MARK: CLONE
@@ -175,7 +213,7 @@ struct GitTest: View {
     //MARK: TEST
     func location(){
         let remote: URL = URL(string: remoteRepoLocation)!
-
+        
         let result = Repository.clone(from: remote, to: faceLocation)
         switch result {
         case let .success(repo):
@@ -184,18 +222,18 @@ struct GitTest: View {
                 .flatMap {
                     repo.commit($0.oid)
                 }
-
+            
             switch latestCommit {
             case let .success(commit):
                 message = "Latest Commit: \(commit.message) by \(commit.author.name) at \(commit.author.time)"
                 lastCMmsg = commit.message
                 lastCMuser = commit.author.name
-               // lastCMtime = commit.author.time
-
+                // lastCMtime = commit.author.time
+                
             case let .failure(error):
                 message = "Could not get commit: \(error)"
             }
-
+            
         case let .failure(error):
             message = "Could not clone repository: \(error)"
         }
