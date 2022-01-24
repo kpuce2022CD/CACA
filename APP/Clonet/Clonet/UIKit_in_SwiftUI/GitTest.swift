@@ -46,7 +46,7 @@ struct GitTest: View {
             Button("at&add&commit&push", action: commitGitRepo)
             Button("return remote Branch", action: return_remoteBranch)
             Button("return local Branch", action: return_localBranch)
-            Button("fetch", action: fetchGitRepo)
+            Button("fetch & merge", action: fetchGitRepo)
             Button("create local branch", action: create_localBranch)
             Button("Checkout Branch", action: checkout_Branch)
             
@@ -177,30 +177,31 @@ struct GitTest: View {
                 switch fetch_result {
                 case let .success(result):
                     message = "result : \(result)"
+                    //MARK: MERGE_FUNC
+                    var merge_result = repo.merge(repo, repo.pointer)
+                    print("merge_result : ", merge_result)
                 case let .failure(error):
                     message = "error : \(error)"
                 }
                 
-//                //MARK: MERGE_FUNC
-//                var merge_commit = Commit.init(repo.pointer)
-//                let merge_result = repo.diff(for: merge_commit)
-//                switch merge_result {
-//                case let .success(diff):
-//                    message = "\(diff)"
-//                case let.failure(error):
-//                    message = "\(error)"
+    
+//                let sigMerge = Signature(name: "name", email: "name@gmail.com", time: Date(), timeZone: TimeZone.current)
+//                let merge_commit = repo.commit(message: "merge11Test", signature: sigMerge)
+//                switch merge_commit{
+//                case let .success(merge):
+//                    let merge_result = repo.merge(for: merge)
+//                    message = "merge result: \(merge_result)"
+//                case let .failure(error):
+//                    message = "error: \(error)"
 //                }
-                
-                
             }catch{
                 print(error)
             }
         case let .failure(error):
             message = "\(error)"
         }
-        
-        
     }
+
     
     //MARK: CLONE
     func cloneGitRepo() {
