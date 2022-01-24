@@ -18,13 +18,51 @@ let gitAuthor = Signature.init(name: "Git Writing", email: "gitwriting@example.c
 extension Repository {
     
     // MARK: CREATE_BRANCH
-    public func create_branch(_ repo: Repository, _ new_branch: String){
-        var gitBranch: OpaquePointer?
+    public func create_localBranch(_ repo: Repository, at commit: Commit, _ branchName: String?){
+
+        let newBranch: String = "\(branchName!)"
+
+        let repository: OpaquePointer = repo.pointer
         var remote: OpaquePointer? = nil
-        let result_git_remote_lookup = git_remote_lookup(&remote, repo.pointer, "origin" )
-        let result = git_branch_create(&gitBranch, repo.pointer, new_branch, nil, 1);
-        print("crate_branch : ", result)
-        
+        let result_git_remote_lookup = git_remote_lookup(&remote, repository, "origin" )
+        if(result_git_remote_lookup < 0){
+            // Error
+        }
+
+        /// git_object, does not exist
+//        let branchResult = repo.remoteBranches()
+        let branchResult = repo.localBranches()
+        switch branchResult {
+        case .success(let branches):
+            for branch in branches {
+                if(branch.name == newBranch){
+                    print("kekw")
+                    let checkoutRet = checkout(branch, strategy: .Force)
+                    print(checkoutRet)
+                    break;
+                } else {
+                    //create the branch....
+
+                    var output: OpaquePointer? = nil
+                    var copy = commit.oid.oid
+                    var pointerToCommitInLibGit2: OpaquePointer? = nil
+
+                    let success = git_object_lookup(&pointerToCommitInLibGit2, repository, &copy, GIT_OBJECT_COMMIT)
+
+                    print(success)
+
+                    let ret = git_branch_create(&output, repository, branchName, pointerToCommitInLibGit2, 1)
+                    print("kek \(ret)")
+//                    let checkoutRet = checkout(branch, strategy: .Force)
+//                    print(checkoutRet)
+                    break;
+                }
+            }
+            break
+        case .failure:
+            print("Failed to get any branches...")
+            break
+        }
     }
     
     // MARK: PUSH

@@ -46,8 +46,8 @@ struct GitTest: View {
             Button("at&add&commit&push", action: commitGitRepo)
             Button("return remote Branch", action: return_remoteBranch)
             Button("return local Branch", action: return_localBranch)
-            Button("create branch", action: create_branch)
             Button("fetch", action: fetchGitRepo)
+            Button("create local branch", action: create_localBranch)
             
             
             ScrollView {
@@ -60,17 +60,23 @@ struct GitTest: View {
     }
     
     // MARK: create Branch
-    func create_branch(){
-        var branch_name = "refs/heads/origin/hyemin"
+    func create_localBranch(){
+        var branch_name = "1327"
+        
         let result = Repository.at(localRepoLocation)
         switch result {
         case let .success(repo):
-            let createbranch_result = repo.create_branch(repo, branch_name)
-            
+            let sig = Signature(name: "name",email: "name@gmail.com",time: Date(),timeZone: TimeZone.current)
+            let branch_commit = repo.commit(message: "create Branchname : " + branch_name, signature: sig)
+            switch branch_commit{
+            case let .success(commit):
+                let createbranch_result = repo.create_localBranch(repo, at: commit, branch_name)
+            case .failure(_):
+                print("error")
+            }
         case let .failure(error):
             message = "Could not open repository: \(error)"
         }
-        
     }
     
     // MARK: return Branch (REMOTE)
