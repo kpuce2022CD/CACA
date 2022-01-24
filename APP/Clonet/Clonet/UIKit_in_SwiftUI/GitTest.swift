@@ -48,6 +48,7 @@ struct GitTest: View {
             Button("return local Branch", action: return_localBranch)
             Button("fetch", action: fetchGitRepo)
             Button("create local branch", action: create_localBranch)
+            Button("Checkout Branch", action: checkout_Branch)
             
             
             ScrollView {
@@ -58,6 +59,20 @@ struct GitTest: View {
             }
         }.padding(5)
     }
+    
+    // MARK: CHECKOUT
+    func checkout_Branch(){
+        var branch_name = "1327"
+        
+        let result = Repository.at(localRepoLocation)
+        switch result {
+        case let .success(repo):
+            let branch_commit = repo.checkout_branch(repo, branchName: branch_name)
+        case let .failure(error):
+            message = "Could not open repository: \(error)"
+        }
+    }
+    
     
     // MARK: create Branch
     func create_localBranch(){

@@ -17,7 +17,89 @@ let gitAuthor = Signature.init(name: "Git Writing", email: "gitwriting@example.c
 
 extension Repository {
     
-    // MARK: CREATE_BRANCH
+    // MARK: CHECKOUT
+    public func checkout_branch(_ repo: Repository, branchName: String?){
+        let newBranch: String = "\(branchName!)"
+
+        let repository: OpaquePointer = repo.pointer
+        var remote: OpaquePointer? = nil
+        let result_git_remote_lookup = git_remote_lookup(&remote, repository, "origin" )
+        if(result_git_remote_lookup < 0){
+            // Error
+        }
+
+        let branchResult = repo.localBranches()
+        switch branchResult {
+        case .success(let branches):
+            for branch in branches {
+                if(branch.name == newBranch){
+                    print("kekw")
+                    let checkoutRet = checkout(branch, strategy: .Force)
+                    print(checkoutRet)
+                    break;
+                } else {
+                    break;
+                }
+            }
+            break
+        case .failure:
+            print("Failed to get any branches...")
+            break
+        }
+    }
+    
+
+    
+    
+//    // MARK: CREATE_REMOTE_BRANCH
+//    public func create_remoteBranch(_ repo: Repository, at commit: Commit, _ branchName: String?){
+//
+//        let newBranch: String = "\(branchName!)"
+//
+//        let repository: OpaquePointer = repo.pointer
+//        var remote: OpaquePointer? = nil
+//        let result_git_remote_lookup = git_remote_lookup(&remote, repository, "origin" )
+//        if(result_git_remote_lookup < 0){
+//            // Error
+//        }
+//
+//        /// git_object, does not exist
+////        let branchResult = repo.remoteBranches()
+//        let branchResult = repo.localBranches()
+//        switch branchResult {
+//        case .success(let branches):
+//            for branch in branches {
+//                if(branch.name == newBranch){
+//                    print("kekw")
+//                    let checkoutRet = checkout(branch, strategy: .Force)
+//                    print(checkoutRet)
+//                    break;
+//                } else {
+//                    //create the branch....
+//
+//                    var output: OpaquePointer? = nil
+//                    var copy = commit.oid.oid
+//                    var pointerToCommitInLibGit2: OpaquePointer? = nil
+//
+//                    let success = git_object_lookup(&pointerToCommitInLibGit2, repository, &copy, GIT_OBJECT_COMMIT)
+//
+//                    print(success)
+//
+//                    let ret = git_branch_create(&output, repository, branchName, pointerToCommitInLibGit2, 1)
+//                    print("kek \(ret)")
+////                    let checkoutRet = checkout(branch, strategy: .Force)
+////                    print(checkoutRet)
+//                    break;
+//                }
+//            }
+//            break
+//        case .failure:
+//            print("Failed to get any branches...")
+//            break
+//        }
+//    }
+    
+    // MARK: CREATE_LOCAL_BRANCH
     public func create_localBranch(_ repo: Repository, at commit: Commit, _ branchName: String?){
 
         let newBranch: String = "\(branchName!)"
@@ -64,6 +146,7 @@ extension Repository {
             break
         }
     }
+    
     
     // MARK: PUSH
     public func push(_ repo: Repository, _ username: String, _ password: String, _ branch: String? = nil){
