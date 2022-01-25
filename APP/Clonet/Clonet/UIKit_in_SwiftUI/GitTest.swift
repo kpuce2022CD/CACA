@@ -161,7 +161,6 @@ struct GitTest: View {
         case let .failure(error):
             message = "Could not clone repository: \(error)"
         }
-        
     }
     
     //MARK: FETCH
@@ -215,7 +214,7 @@ struct GitTest: View {
                 .flatMap {
                     repo.commit($0.oid)
                 }
-            
+        
             switch latestCommit {
             case let .success(commit):
                 message = "Latest Commit: \(commit.message) by \(commit.author.name) at \(commit.author.time)"
