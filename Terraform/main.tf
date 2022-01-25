@@ -37,7 +37,7 @@ resource "aws_security_group" "instance" {
 }
 
 resource "aws_instance" "app_server" { // define component (ec2) // resource type, resource name
-  ami           = "ami-01746dccc8c1f786a"
+  ami           = "ami-08ef25ce7a9264eb4"
   instance_type = "t2.micro"
   vpc_security_group_ids = ["${aws_security_group.instance.id}"]
 
