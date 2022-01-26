@@ -8,6 +8,7 @@
 import SwiftUI
 import Foundation
 import SocketIO
+import SwiftGit2
 
 struct DynamicList: Identifiable { // 동적 리스트
     let id: UUID = UUID()
@@ -92,6 +93,121 @@ final class Service_createRepo: ObservableObject {
         socket.connect()
     }
 }
+// repoName 요청
+final class Service_repoName: ObservableObject {
+    private var manager = SocketManager(socketURL: URL(string: "ws://localhost:3000")!, config: [.log(true), .compress])
+    
+    @Published var result = [String]()
+    @Published var str2 = [String]() // list
+    @Published var REemail = ""
+    @State var json: String = ""
+    
+    
+    func repoNameQ(json: String){
+        let socket = manager.defaultSocket
+        socket.connect()
+        socket.on(clientEvent: .connect){ (data, ack) in
+            print(json)
+            self.REemail = json
+            socket.emit("userRepo", self.REemail)
+        }
+        
+        socket.on("userRepo"){ [weak self] (data, ack) in
+            if let data = data[0] as? [String: String],
+               let rawMessage = data["repoName_result"] {
+                DispatchQueue.main.async { [self] in
+                    self?.result.append(rawMessage)
+                    print("rawMessage: ", String(rawMessage))
+                    
+                    print("aaa", self!.result)
+                    socket.disconnect()
+                    
+                    var str = rawMessage
+                    
+                    let replacements = [
+                        ("repo_name", ""),
+                        ("[",""),
+                        ("]",""),
+                        ("{\"\":\"",""),
+                        ("\"}","")
+                    ]
+                    
+                    for (search, replacement) in replacements{
+                        str = str.replacingOccurrences(of: search, with: replacement)
+                    }
+                    self?.str2 = str.components(separatedBy: ",")
+                    let _ = self?.return_remoteBranch_(userID: json)
+                }
+                
+            }
+            
+            socket.connect()
+        }
+        
+    }
+    
+    ///////////// branch 정보 가져오기
+//    @State var message_branch = "aaa"
+    @State var branchArr : [String] = []
+    @State var resultBranchDic : [String] = []
+    @Published var branchArrList = [[String]]()
+    @State var userID : String = ""
+    @State var repoArr = [String]()
+    
+    
+    
+    init(){
+        Repository.initialize_libgit2()
+    }
+    
+    
+    func return_remoteBranch_(userID : String) -> [[String]]{
+//        let _ = GetRepoName.repoNameQ(json: userID)
+        var message_branch = ""
+        print("GetRepoName:", str2.count)
+        for i in 0..<str2.count {
+            var localRepoLocation = documentURL.appendingPathComponent(str2[i])
+            print("userIDIDIDID", str2[i])
+            var resultBranch : [Branch] = []
+            let result = Repository.at(localRepoLocation)
+            print("userAT:", result)
+            switch result {
+            case let .success(repo):
+                let remoteBranch_result = repo.remoteBranches()
+                switch remoteBranch_result{
+                case let .success(branch):
+                    message_branch = "\(branch)"
+                    print("useraaa:", branch)
+                    resultBranch = branch
+                case let .failure(branch):
+//                    message_branch = "\(branch)"
+                    print("fail")
+                }
+                
+            case let .failure(error):
+//                message_branch = "Could not open repository: \(error)"
+                print("fail")
+            }
+            
+            branchArr = []
+            print("message_branch: ", resultBranch)
+            for i in 0..<resultBranch.count {
+                
+                var index = resultBranch.index(resultBranch.startIndex, offsetBy:i)
+                
+                var s = "\(resultBranch[index])"
+                var branchName = s.split(separator: "\"")
+                
+                self.branchArr.append(String(branchName[3]))
+//                print("message22:", branchArr)
+            }
+            print("aaaa1:", branchArr)
+            branchArrList.append(branchArr)
+        }
+        print("branchArrList", branchArrList)
+        return branchArrList
+    }
+}
 
 
 struct LoginCheck: View {
@@ -101,20 +217,30 @@ struct LoginCheck: View {
     @ObservedObject var userRepo : UserRepo = UserRepo()
     @ObservedObject var service = Service_createRepo()
 
+    @ObservedObject var GetRepoName = Service_repoName()
+    
+    var result_BranchList = [[String]]()
+    var repoArr = [String]()
+    
+    init(userID: String){
+        self.userID = userID
+        Repository.initialize_libgit2()
+        let _ = GetRepoName.repoNameQ(json: userID)
+//        result_BranchList = serviceBranch.return_remoteBranch_(userID: userID, repoArr:repoArr)
+//        branchArrList = GetRepoName.return_remoteBranch_(userID: userID)
+        print("result_branch:", branchArrList)
+    }
+    
+    @State var branchArr : [String] = []
+//    @State var resultBranchDic : [String] = []
+    @State var branchArrList = [[String]]()
+    var repoName = ""
+    
     var ProfileImgName: String = "user1"
     var nickName: String = ""
     var userID : String = ""
     
-   
-    struct DynamicList: Identifiable { // 동적 리스트
-        let id: UUID = UUID()
-        let repoName: String
-        let lastModify: String
-    }
-    
-    let ListSample: [DynamicList] = [ // 리스트
-        DynamicList(repoName: "reposi1", lastModify: "22.01.15")
-    ]
+
     
     var body: some View {
         
@@ -147,14 +273,18 @@ struct LoginCheck: View {
                         .padding()
                     }
                     List{
-                        ForEach(ListSample, id: \.repoName){ i in
-                            VStack{
-                                Text(i.repoName)
-                                    .padding(2)
-                                    .font(.title3)
-                                Text(i.lastModify)
-                                    .font(.body)
+                        ForEach(GetRepoName.str2, id: \.self) { i in
+                           
+                            NavigationLink(destination: Repo_Home(repoName: i, user_id: userID, branch: branchArr)){
+                                VStack{
+                                    Text(i).padding()
+                                        .padding(2)
+                                        .font(.title3)
+                                }
                             }
+                        }
+                        .buttonStyle(PlainButtonStyle())
+                        .onAppear {
                         }
                     }
                 }
@@ -195,8 +325,8 @@ struct MyAlert: View {
 //                    Text("완료")
 //                }
                 ZStack {
-                    NavigationLink(destination: LoginCheck(userAuth: userAuth), tag: "RepoButton", selection: $selectionString) { }
-                    .buttonStyle(PlainButtonStyle()).frame(width:0).opacity(0)
+//                    NavigationLink(destination: LoginCheck(userAuth: userAuth), tag: "RepoButton", selection: $selectionString) { }
+//                    .buttonStyle(PlainButtonStyle()).frame(width:0).opacity(0)
                     Button("완료") {
                         UIApplication.shared.windows[0].rootViewController?.dismiss(animated: true, completion: {})
                         self.selectionString = "RepoButton"
@@ -264,7 +394,7 @@ struct CircleImage: View{
 
 struct LoginCheck_Previews: PreviewProvider {
     static var previews: some View {
-        LoginCheck()
+        LoginCheck(userID: "")
 .previewInterfaceOrientation(.landscapeLeft)
     }
 }

@@ -70,7 +70,20 @@ struct Repo_Home: View {
 //        Repository.initialize_libgit2()
 //    }
     
-    
+
+    var repoName : String
+    var user_id : String
+    var branch : [String]
+
+    init(repoName: String, user_id: String, branch: Array<String>) {
+        // git_libgit2_init()
+        Repository.initialize_libgit2()
+        
+        self.repoName = repoName
+        self.user_id = user_id
+        self.branch = branch
+    }
+
     var body: some View {
         
 //        Text("\(userAuth.user_id)") //이렇게 쓰면 된다!
@@ -79,8 +92,12 @@ struct Repo_Home: View {
                 HStack {
                     Text("표시할 그림 선택 ")
                     Picker(selection: .constant(1), label: Text("Branch")) {
-                        Text("최종").tag(1)
-                        Text("최종최종").tag(2)
+                        //                        Text("최종").tag(1)
+                        //                        Text("최종최종").tag(2)
+                        
+                        ForEach(0..<branch.count) {
+                            Text(branch[$0])
+                        }
                     }
                     .pickerStyle(MenuPickerStyle())
                 }
@@ -151,8 +168,8 @@ struct Repo_Home: View {
                         .background(Color.black)
                         .cornerRadius(15)
                         
-                        NavigationLink(destination: EmptyView(), tag: "branchButton", selection: $selectionString) { }
-                        .buttonStyle(PlainButtonStyle()).frame(width:0).opacity(0)
+//                        NavigationLink(destination: EmptyView(), tag: "branchButton", selection: $selectionString) { }
+//                        .buttonStyle(PlainButtonStyle()).frame(width:0).opacity(0)
                     }
                 }
                 ZStack {
@@ -174,8 +191,8 @@ struct Repo_Home: View {
                     .background(Color.black)
                     .cornerRadius(15)
                     
-                    NavigationLink(destination: EmptyView(), tag: "branchButton", selection: $selectionString) { }
-                    .buttonStyle(PlainButtonStyle()).frame(width:0).opacity(0)
+//                    NavigationLink(destination: EmptyView(), tag: "branchButton", selection: $selectionString) { }
+//                    .buttonStyle(PlainButtonStyle()).frame(width:0).opacity(0)
                 }
                 ZStack {
                     Button(action: {
@@ -192,8 +209,8 @@ struct Repo_Home: View {
                     .background(Color.green)
                     .cornerRadius(15)
                     
-                    NavigationLink(destination: EmptyView(), tag: "branchButton", selection: $selectionString) { }
-                    .buttonStyle(PlainButtonStyle()).frame(width:0).opacity(0)
+//                    NavigationLink(destination: EmptyView(), tag: "branchButton", selection: $selectionString) { }
+//                    .buttonStyle(PlainButtonStyle()).frame(width:0).opacity(0)
                 }
                 .padding(EdgeInsets(top: 0, leading: 0, bottom: 20, trailing: 0))
                 
@@ -471,6 +488,7 @@ struct AlertAddPerson: View {
 
 struct Repo_Home_Previews: PreviewProvider {
     static var previews: some View {
-        Repo_Home()
+        Repo_Home(repoName: "", user_id: "", branch: [])
+
     }
 }
