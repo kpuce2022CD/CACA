@@ -41,16 +41,21 @@ struct GitTest: View {
     var body: some View {
         HStack{
             VStack {
-                Button("at", action: atGitRepo)
-                Button("Fake_LOCATION", action: location)
-                Button("clone", action: cloneGitRepo)
-                Button("at&add&commit&push", action: commitGitRepo)
-                Button("return remote Branch", action: return_remoteBranch)
-                Button("return local Branch", action: return_localBranch)
-                Button("fetch & merge", action: fetchGitRepo)
-                Button("create local branch", action: create_localBranch)
-                Button("Checkout Branch", action: checkout_Branch)
-                Button("REVERT", action: revert)
+                VStack{
+                    Button("at", action: atGitRepo)
+                    Button("Fake_LOCATION", action: location)
+                    Button("clone", action: cloneGitRepo)
+                    Button("at&add&commit&push", action: commitGitRepo)
+                    Button("return remote Branch", action: return_remoteBranch)
+                    Button("return local Branch", action: return_localBranch)
+                }
+                VStack{
+                    Button("create local branch", action: create_localBranch)
+                    Button("Checkout Branch", action: checkout_Branch)
+                    Button("REVERT", action: revert)
+                    Button("fetch", action: fetchGitRepo)
+                    Button("MERGE", action: mergeGitRepo)
+                }
             }
             VStack{
                 ScrollView {
@@ -187,18 +192,34 @@ struct GitTest: View {
         case let .success(repo):
             let remote = repo.remote(named: "origin")
             do {
-                //MARK: FETCH_FUNC
                 let remote_r = try remote.get()
                 let fetch_result = repo.fetch(remote_r)
                 switch fetch_result {
                 case let .success(result):
                     message = "result : \(result)"
-                    //MARK: MERGE_FUNC
-//                    var merge_result = repo.merge(repo)
-//                    print("merge_result : ", merge_result)
                 case let .failure(error):
                     message = "error : \(error)"
                 }
+            }catch{
+                print(error)
+            }
+        case let .failure(error):
+            message = "\(error)"
+        }
+    }
+    
+    //MARK: MERGE
+    func mergeGitRepo(){
+        let result = Repository.at(localRepoLocation)
+        switch result {
+        case let .success(repo):
+            let remote = repo.remote(named: "origin")
+            do {
+                let remote_r = try remote.get()
+                let merge_result = repo.merge(repo)
+                
+                message = "merge result : \(merge_result)"
+
             }catch{
                 print(error)
             }
