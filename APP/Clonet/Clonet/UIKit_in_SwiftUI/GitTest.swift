@@ -39,30 +39,47 @@ struct GitTest: View {
     }
     
     var body: some View {
-        VStack {
-            Button("at", action: atGitRepo)
-            Button("Fake_LOCATION", action: location)
-            Button("clone", action: cloneGitRepo)
-            Button("at&add&commit&push", action: commitGitRepo)
-            Button("return remote Branch", action: return_remoteBranch)
-            Button("return local Branch", action: return_localBranch)
-            Button("fetch & merge", action: fetchGitRepo)
-            Button("create local branch", action: create_localBranch)
-            Button("Checkout Branch", action: checkout_Branch)
-            
-            
-            ScrollView {
-                Text(message)
-                Text("\n zz")
-                Text(lastCMuser + lastCMmsg)
-                Text(lastCMtime.formatDate())
+        HStack{
+            VStack {
+                Button("at", action: atGitRepo)
+                Button("Fake_LOCATION", action: location)
+                Button("clone", action: cloneGitRepo)
+                Button("at&add&commit&push", action: commitGitRepo)
+                Button("return remote Branch", action: return_remoteBranch)
+                Button("return local Branch", action: return_localBranch)
+                Button("fetch & merge", action: fetchGitRepo)
+                Button("create local branch", action: create_localBranch)
+                Button("Checkout Branch", action: checkout_Branch)
+                Button("REVERT", action: revert)
             }
-        }.padding(5)
+            VStack{
+                ScrollView {
+                    Text(message)
+                    Text("\n zz")
+                    Text(lastCMuser + lastCMmsg)
+                    Text(lastCMtime.formatDate())
+                }
+            }.padding(5)
+            
+        }
+        
+    }
+    
+    // MARK: REVERT
+    func revert(){
+        let result = Repository.at(localRepoLocation)
+        switch result {
+        case let .success(repo):
+            let revert_result = repo.revert_commit(repo)
+            message = "\(revert_result)"
+        case let .failure(error):
+            message = "Could not open repository: \(error)"
+        }
     }
     
     // MARK: CHECKOUT
     func checkout_Branch(){
-        var branch_name = "1327"
+        var branch_name = "remotes/origin/master"
         
         let result = Repository.at(localRepoLocation)
         switch result {
@@ -171,28 +188,17 @@ struct GitTest: View {
             let remote = repo.remote(named: "origin")
             do {
                 //MARK: FETCH_FUNC
-                var remote_r = try remote.get()
+                let remote_r = try remote.get()
                 let fetch_result = repo.fetch(remote_r)
                 switch fetch_result {
                 case let .success(result):
                     message = "result : \(result)"
                     //MARK: MERGE_FUNC
-                    var merge_result = repo.merge(repo, repo.pointer)
-                    print("merge_result : ", merge_result)
+//                    var merge_result = repo.merge(repo)
+//                    print("merge_result : ", merge_result)
                 case let .failure(error):
                     message = "error : \(error)"
                 }
-                
-    
-//                let sigMerge = Signature(name: "name", email: "name@gmail.com", time: Date(), timeZone: TimeZone.current)
-//                let merge_commit = repo.commit(message: "merge11Test", signature: sigMerge)
-//                switch merge_commit{
-//                case let .success(merge):
-//                    let merge_result = repo.merge(for: merge)
-//                    message = "merge result: \(merge_result)"
-//                case let .failure(error):
-//                    message = "error: \(error)"
-//                }
             }catch{
                 print(error)
             }

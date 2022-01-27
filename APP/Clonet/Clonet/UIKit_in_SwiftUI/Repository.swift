@@ -18,41 +18,108 @@ let gitAuthor = Signature.init(name: "Git Writing", email: "gitwriting@example.c
 
 extension Repository {
     
-    //MARK: MERGE
-    public func merge(_ repo: Repository, _ fetch_head: OpaquePointer) -> String{
+    
+    //MARK: REVERT
+    public func revert_commit(_ repo: Repository){
         
-        // master
-        let master_checkout = repo.checkout_branch(repo, branchName: "master")
-        var masterMerge: OpaquePointer = repo.pointer
-        var mergeResult = git_diff_merge(masterMerge, fetch_head)
+        var revert_git_oid = git_oid()
+        let nameToIDResult = git_oid_fromstr(&revert_git_oid, "44af94469519000ea2ba4722f9156fc562e2ce36")
         
-//         makebranch
-//        let fetch_checkout_repo = repo.checkout_branch(repo, branchName: "FETCH_HEAD")
-//
-//        var branch_name = "1327"
-//        let localRepoLocation = documentURL.appendingPathComponent("hey2")
-//
-//        // create branch, checkout
-//        let result = Repository.at(localRepoLocation)
-//        switch result {
-//        case let .success(repo):
-//            let sig = Signature(name: "name",email: "name@gmail.com",time: Date(),timeZone: TimeZone.current)
-//            let branch_commit = fetch_checkout_repo.commit(message: "create Branchname : " + branch_name, signature: sig)
-//            switch branch_commit{
-//            case let .success(commit):
-//                let createbranch_result = fetch_checkout_repo.create_localBranch(repo, at: commit, branch_name)
-//                let branch_commit = fetch_checkout_repo.checkout_branch(repo, branchName: branch_name)
-//                let merge_merge = git_diff_merge(fetch_head, fetch_checkout_repo.pointer)
-//            case .failure(_):
-//                print("error")
-//            }
-//        case let .failure(error):
-//            print("Could not open repository: \(error)")
-//        }
-        
-        return "\(mergeResult)"
+        var git_commit_lookup_commit : OpaquePointer? = nil
+        git_commit_lookup(&git_commit_lookup_commit, repo.pointer, &revert_git_oid)
+
+        let result = git_revert(repo.pointer, git_commit_lookup_commit, nil)
+
     }
- 
+    
+    
+    
+    
+    
+    
+//    //MARK: MERGE
+//    public func merge(_ repo: Repository, _ commit: Commit, _ remote : Remote) -> String{
+//////        Branch.init(repo.pointer)?.oid
+////////        var mergeResult = git_diff_merge(repo.pointer, repo.pointer) // from = fetch_head
+////////
+////////
+////        let branch_name : UnsafePointer = UnsafePointer<CChar>("FETCH_HEAD")
+////
+////
+////        git_annotated_commit_from_fetchhead(git_annotated_commit_id(repo.pointer), repo.pointer, branch_name, remote.URL, <#T##id: UnsafePointer<git_oid>!##UnsafePointer<git_oid>!#>)
+////
+////
+////
+////
+////
+//////        let their_heads = UnsafeMutablePointer<OpaquePointer?>(repo.pointer)
+//////        let merge_opts : UnsafePointer = UnsafePointer<git_merge_options>.init(repo.pointer)
+//////        let checkout_opts : UnsafePointer = UnsafePointer<git_checkout_options>.init(repo.pointer)
+////////        let merge_result = git_merge(repo.pointer, their_heads, 1, merge_opts, checkout_opts)
+//////
+//////
+////////        git_merge(<#T##repo: OpaquePointer!##OpaquePointer!#>, <#T##their_heads: UnsafeMutablePointer<OpaquePointer?>!##UnsafeMutablePointer<OpaquePointer?>!#>, <#T##their_heads_len: Int##Int#>, <#T##merge_opts: UnsafePointer<git_merge_options>!##UnsafePointer<git_merge_options>!#>, <#T##checkout_opts: UnsafePointer<git_checkout_options>!##UnsafePointer<git_checkout_options>!#>)
+//        ///
+//        ///
+//        ///
+//        ///
+//        ///
+//        ///
+//        ///
+//
+////        var fetchhead_commit : git_annotated_commit
+////        var get_oid = git_annotated_commit_id(repo.pointer)
+////        git_annotated_commit_lookup(<#T##out: UnsafeMutablePointer<OpaquePointer?>!##UnsafeMutablePointer<OpaquePointer?>?#>, repo.pointer, get_oid)
+//
+//        // 1
+//        git_remote_fetch(repo.pointer, nil, nil, "fetch!")
+//
+//        // 2
+//        var out_o = repo.pointer
+//        var out : UnsafeMutablePointer = UnsafeMutablePointer<OpaquePointer?>.init(out_o)
+//        var remote_url = "http://52.79.235.187/git-repositories/PJY_JJANG.git"
+//        var get_oid = git_annotated_commit_id(repo.pointer)
+//
+//        git_annotated_commit_from_fetchhead(out, repo.pointer, "FETCH_HEAD", remote_url, get_oid)
+//
+//        // 3
+//        let merge_opts : UnsafePointer = UnsafePointer<git_merge_options>.init(repo.pointer)
+//        let checkout_opts : UnsafePointer = UnsafePointer<git_checkout_options>.init(repo.pointer)
+//        git_merge(repo.pointer, out, 1, merge_opts, checkout_opts)
+//
+//        // 4
+//        var id = git_oid()
+//        var sig = UnsafeMutablePointer<UnsafeMutablePointer<git_signature>?>.allocate(capacity: 1)
+//
+//        var tree_id = git_oid()
+//        let oid = OID(tree_id)
+//        let tree = treeLookup(oid: oid)
+//
+//        let error = git_commit_create(&id, repo.pointer, "HEAD", sig.pointee, sig.pointee, "UTF-8", "MERGE MESSAGE", <#T##tree: OpaquePointer!##OpaquePointer!#>, <#T##parent_count: Int##Int#>, <#T##parents: UnsafeMutablePointer<OpaquePointer?>!##UnsafeMutablePointer<OpaquePointer?>!#>)
+//
+//
+//
+//        return "\("merge_result")"
+//    }
+//
+//    public func treeLookup(oid tree_id: OID) throws -> Tree {
+//
+//        // Create tree
+//        let tree : UnsafeMutablePointer<OpaquePointer?> = UnsafeMutablePointer<OpaquePointer?>.allocate(capacity: 1)
+//
+//        var oid = tree_id.oid
+//        let error = git_tree_lookup(tree, pointer.pointee, &oid)
+////        if (error != 0) {
+////
+////            tree.deinitialize()
+////            tree.deallocate(capacity: 1)
+////
+////            throw gitUnknownError("Unable to lookup tree", code: error)
+////        }
+//
+//        return Tree(repository: self, tree: tree)
+//    }
+
     
     // MARK: CHECKOUT
     public func checkout_branch(_ repo: Repository, branchName: String?){
