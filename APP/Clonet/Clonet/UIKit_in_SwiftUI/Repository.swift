@@ -18,41 +18,32 @@ let gitAuthor = Signature.init(name: "Git Writing", email: "gitwriting@example.c
 
 extension Repository {
     
-    //MARK: MERGE
-    public func merge(_ repo: Repository, _ fetch_head: OpaquePointer) -> String{
+    
+    //MARK: REVERT
+    public func revert_commit(_ repo: Repository){
         
-        // master
-        let master_checkout = repo.checkout_branch(repo, branchName: "master")
-        var masterMerge: OpaquePointer = repo.pointer
-        var mergeResult = git_diff_merge(masterMerge, fetch_head)
+        var revert_git_oid = git_oid()
+        let nameToIDResult = git_oid_fromstr(&revert_git_oid, "44af94469519000ea2ba4722f9156fc562e2ce36")
         
-//         makebranch
-//        let fetch_checkout_repo = repo.checkout_branch(repo, branchName: "FETCH_HEAD")
-//
-//        var branch_name = "1327"
-//        let localRepoLocation = documentURL.appendingPathComponent("hey2")
-//
-//        // create branch, checkout
-//        let result = Repository.at(localRepoLocation)
-//        switch result {
-//        case let .success(repo):
-//            let sig = Signature(name: "name",email: "name@gmail.com",time: Date(),timeZone: TimeZone.current)
-//            let branch_commit = fetch_checkout_repo.commit(message: "create Branchname : " + branch_name, signature: sig)
-//            switch branch_commit{
-//            case let .success(commit):
-//                let createbranch_result = fetch_checkout_repo.create_localBranch(repo, at: commit, branch_name)
-//                let branch_commit = fetch_checkout_repo.checkout_branch(repo, branchName: branch_name)
-//                let merge_merge = git_diff_merge(fetch_head, fetch_checkout_repo.pointer)
-//            case .failure(_):
-//                print("error")
-//            }
-//        case let .failure(error):
-//            print("Could not open repository: \(error)")
-//        }
-        
-        return "\(mergeResult)"
+        var git_commit_lookup_commit : OpaquePointer? = nil
+        git_commit_lookup(&git_commit_lookup_commit, repo.pointer, &revert_git_oid)
+
+        let result = git_revert(repo.pointer, git_commit_lookup_commit, nil)
+
     }
- 
+    
+    // MARK: merge
+    public func merge(_ repo: Repository){
+        var git_annotated_commit_from_fetchhead_out : OpaquePointer? = nil
+        var revert_git_oid = git_oid()
+        let nameToIDResult = git_oid_fromstr(&revert_git_oid, "752aa0ffa6ff9cbd69fbfaa7abc7cf0408cb7244")
+        
+        git_annotated_commit_from_fetchhead(&git_annotated_commit_from_fetchhead_out, repo.pointer, "master", "http://52.79.235.187/git-repositories/PJY_JJANG.git", &revert_git_oid)
+
+        
+        git_merge(repo.pointer, &git_annotated_commit_from_fetchhead_out, 1, nil, nil)
+        
+    }
     
     // MARK: CHECKOUT
     public func checkout_branch(_ repo: Repository, branchName: String?){
