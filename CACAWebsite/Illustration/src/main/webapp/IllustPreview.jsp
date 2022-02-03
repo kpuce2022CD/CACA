@@ -13,7 +13,7 @@
 <link rel="stylesheet" type="text/css" href="./css/test.css?ver=1" media="screen">
 </head>
 
-<% String list = request.getParameter("list"); %>
+<% String list = request.getParameter("IllustList"); %>
 
 <body>
 	<header>
