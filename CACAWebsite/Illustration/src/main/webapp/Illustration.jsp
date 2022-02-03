@@ -1,4 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" import="domain.*, java.util.List"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+pageEncoding="UTF-8" import="domain.*, java.util.List"%>
 
 <!DOCTYPE html>
 <html>
@@ -10,12 +11,13 @@
 
 <title>Illustration</title>
 <!-- css 파일 불러올것. ?ver=1은, 기존 url과 다른 url로 인식하여 새로이 불러오게 함. (크롬 캐시 문제) -->
-<link rel="stylesheet" type="text/css" href="./css/test.css?ver=1" media="screen">
+<link rel="stylesheet" type="text/css" href="./css/test.css?ver=1"
+	media="screen">
 
 <style>
 .clicked {
-   border: 1px solid red;
-   color: white;
+	border: 1px solid red;
+	color: white;
 }
 </style>
 
@@ -23,41 +25,59 @@
 
 <body>
 	<header>
-		<nav class = "main-nav">
+		<nav class="main-nav">
 			<a href="#" class="logo">Clonet</a>
-				<ul class = "navlinks">
-					<li><a href="http://localhost:8080/Illustration/IllustrationServlet" onclick = "openPopup()">Put in the link Store</a></li>
-					<li><a href="http://localhost:8080/About/AboutServlet">About</a></li>
-					<li><a href="http://localhost:8080/Contact/ContactServlet">Contact</a></li>
-					<li><a href="http://localhost:8080/Login/LoginServlet">Logout</a></li>
-				</ul>
-			</nav>
+			<ul class="navlinks">
+				<li><a
+					href="http://localhost:8080/Illustration/IllustrationServlet"
+					onclick="openPopup()">Put in the link Store</a></li>
+				<li><a href="http://localhost:8080/About/AboutServlet">About</a></li>
+				<li><a href="http://localhost:8080/Contact/ContactServlet">Contact</a></li>
+				<li><a href="http://localhost:8080/Login/LoginServlet">Logout</a></li>
+			</ul>
+		</nav>
 	</header>
-	
+
 	<section>
-           <% List<IllustVO> IllustList = (List<IllustVO>)request.getAttribute("IllustList");
-            	for(IllustVO vo : IllustList){ %>
-	            <img src = "<%=vo.getDirectory_path() %>" onclick = "inputClickEvent(this)">
-	            <%}%>
-	</section>    
+		<%
+			List<IllustVO> IllustList = (List<IllustVO>) request.getAttribute("IllustList");
+			for (IllustVO vo : IllustList) {
+		%>
+			<img src="<%=vo.getDirectory_path()%>" onclick="inputClickEvent(this, '<%=vo.getDirectory_path()%>')">
+		<%
+			}
+		%>
+		
+		<img src="https://image-store-caca.s3.ap-northeast-2.amazonaws.com/cat.jpg" onclick="openWindow()">
+	</section>
 </body>
 
 <script>
-function inputClickEvent(input){   // 클릭 이벤트 삽입
-	input.addEventListener('click', function(e) {  // input 에 이벤트 리스너 삽입.
-		
+	let IllustList = new Array();
+	var img = document.getElementsByTagName("img");
 
-	if (input.classList.contains("clicked")) {  // clicked는 css 스타일 추가 (외곽선) 해주는 연산.
-   		input.classList.remove("clicked");
-   		
-   		// 클릭 상태일 때 리무브 클릭이므로, false 반환.
+	function openWindow(){
+		window.open('IllustPreview.jsp?IllustList=' + IllustList)
+	}
+	
+	function inputClickEvent(input, s) { // 클릭 이벤트 삽입
+		input.addEventListener('click', function(e) { // input 에 이벤트 리스너 삽입.
 
-		} else {
-			input.classList.add("clicked");
-			// 클릭 상태가 아닐때 클릭 추가이므로 true 반환
-		}
-  	})
-}
+			if (input.classList.contains("clicked")) { // clicked는 css 스타일 추가 (외곽선) 해주는 연산.
+				input.classList.remove("clicked");
+				// 클릭 상태일 때 리무브 클릭이므로, false 반환.
+			    IllustList.remove(s);
+
+			} else {
+				input.classList.add("clicked");
+				// 클릭 상태가 아닐때 클릭 추가이므로 true 반환
+			    IllustList.push(s);
+			}
+
+		})
+	}
+
+
 </script>
 
 </html>
