@@ -1,0 +1,2 @@
+org.apache.maven.index.DefaultIndexerEngine
+org.apache.maven.index.NexusArchetypeDataSource

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feature
+      id="org.eclipse.m2e.pde.feature"
+      label="%featureName"
+      version="1.18.3.20211112-0847"
+      provider-name="%providerName"
+      plugin="org.eclipse.m2e.core">
+
+   <description>
+      %description
+   </description>
+
+   <copyright>
+      %copyright
+   </copyright>
+
+   <requires>
+      <import plugin="org.eclipse.core.runtime" version="3.19.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.pde.ui" version="3.12.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.equinox.frameworkadmin" version="2.1.400" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.m2e.maven.runtime"/>
+      <import plugin="org.eclipse.m2e.core"/>
+      <import plugin="org.eclipse.jface"/>
+   </requires>
+
+   <plugin
+         id="biz.aQute.bndlib"
+         download-size="3569"
+         install-size="8460"
+         version="5.1.2.202007211702"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.m2e.pde"
+         download-size="43"
+         install-size="85"
+         version="1.18.3.20211112-0847"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.m2e.pde.ui"
+         download-size="90"
+         install-size="156"
+         version="1.18.2.20211002-1029"
+         unpack="false"/>
+
+<license url="%licenseURL">
+      %license
+   </license></feature>

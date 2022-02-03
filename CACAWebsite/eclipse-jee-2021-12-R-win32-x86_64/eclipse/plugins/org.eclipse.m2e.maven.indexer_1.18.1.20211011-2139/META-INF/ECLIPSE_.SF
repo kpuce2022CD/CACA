@@ -1,0 +1,59 @@
+Signature-Version: 1.0
+Created-By: 11.0.11 (AdoptOpenJDK)
+SHA-256-Digest-Manifest: p0Iu5dd1G65sWQzkX7AnfI6vKb8x1uwdsManXZSUDjU=
+SHA-256-Digest-Manifest-Main-Attributes: 9Y9h8tsevFFgqTSKDjtI0IjgADjTe/y
+ uCZU/eEgT2bI=
+
+Name: about.html
+SHA-256-Digest: swni1gYh7U8TcC+HZq2z3kw1HPoD1BOXkKabA1BQa+w=
+
+Name: org/apache/maven/index/NexusArchetypeDataSource.class
+SHA-256-Digest: BFZH5dw2/j1Z135hNMlMeJJjYMM9n2O001W8GxXwaEI=
+
+Name: jars/lucene-analyzers-common-5.5.5.jar
+SHA-256-Digest: dbkjVTZB93yDruin6nfMFxAsTfE+3A+AjtRQzCn5Ttc=
+
+Name: jars/lucene-backward-codecs-5.5.5.jar
+SHA-256-Digest: 7KUv8S/JCTZ5yPRKNUnkXocf97Q9cwHTqslJqs719uc=
+
+Name: about_files/LICENSE-2.0.txt
+SHA-256-Digest: pgHwXlfwoswdBsTcqm60MdG9UCR1vmm7cVCWX+ZHJaw=
+
+Name: jars/lucene-core-5.5.5.jar
+SHA-256-Digest: XWBHlFS4D5SvzSizEgIJvUmKEua5+87RJAg/r53rAZU=
+
+Name: META-INF/maven/org.eclipse.m2e/org.eclipse.m2e.maven.indexer/pom.p
+ roperties
+SHA-256-Digest: wEaJXuZNMz+5gx7pBfaFjdFXr1WlPKCAV6b0bJr7WLI=
+
+Name: org/apache/maven/index/DefaultIndexerEngine.class
+SHA-256-Digest: ZqbdxvpLANPRxt0Pi2CzXkEQ6iFN2w8f7MxMCOfX/eY=
+
+Name: jars/indexer-core-6.0.0.jar
+SHA-256-Digest: ZWz8r7fG2PPARblwF93mXRRJQqOp3LwFPuuzJwIitwU=
+
+Name: jars/lucene-queryparser-5.5.5.jar
+SHA-256-Digest: PjShq2zC+PSQrEZOHW8twqX5VJycp+bAU2QB/M4Tqr4=
+
+Name: jars/lucene-sandbox-5.5.5.jar
+SHA-256-Digest: /O4fMzkK4TFkC1D88HiwtSCxvQBlfwmpfmenk9e0qb4=
+
+Name: jars/lucene-join-5.5.5.jar
+SHA-256-Digest: zVBpE8hgJFR8xVDAinLFcf0RHUIDBUrhwZMj5JELFeE=
+
+Name: jars/lucene-highlighter-5.5.5.jar
+SHA-256-Digest: 63ls7ugNb8SFPCU63E5ez6xjGMvGg5UC/k26mp2rt9c=
+
+Name: jars/lucene-queries-5.5.5.jar
+SHA-256-Digest: 6YCv3wEBPfbYazdTaJkwxAeIeAydWUXifjPbijeq6tg=
+
+Name: META-INF/maven/org.eclipse.m2e/org.eclipse.m2e.maven.indexer/pom.x
+ ml
+SHA-256-Digest: DkwUeNTl7kGvgAvF8SOJeKK8svzJEYiYU89gdv6IQAg=
+
+Name: jars/lucene-memory-5.5.5.jar
+SHA-256-Digest: /js9lDMppiwO1PIA5UPabMzg7nhaoKeG5woQ7cyKMjc=
+
+Name: META-INF/sisu/javax.inject.Named
+SHA-256-Digest: WA0pYfFSuXqGwGPC8bZ6k3ERWuJ0J/jWREy2OGM0aSU=
+

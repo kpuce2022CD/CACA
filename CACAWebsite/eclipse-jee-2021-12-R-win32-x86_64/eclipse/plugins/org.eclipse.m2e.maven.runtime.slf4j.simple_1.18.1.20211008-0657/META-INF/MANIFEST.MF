@@ -1,0 +1,63 @@
+Manifest-Version: 1.0
+Created-By: Apache Maven Bundle Plugin
+Build-Jdk-Spec: 11
+Automatic-Module-Name: org.eclipse.m2e.maven.runtime.slf4j.simple
+Bnd-LastModified: 1633676456241
+Build-Jdk: 11.0.2
+Built-By: jenkins
+Bundle-ClassPath: .,jars/slf4j-simple-1.7.30.jar
+Bundle-Description: This bundle provides SLF4j implementation and config
+ uration required to run m2e embedded Maven runtime  in external JVM. Th
+ is bundle is NOT a general purpose slf4j-simple OSGi bundle, it does NO
+ T export  any packages and it CANNOT be used as an OSGI SLF4J implement
+ ation.  This is suboptimal and a better solution would be to either inc
+ lude slf4j-simple as a resource in  org.eclipse.m2e.maven.runtime or us
+ e SLF4J implementation of the running m2e instance. I could not  find a
+ n easy way to implement either of the better solutions, so this one wil
+ l have to do for now.   This bundle is referenced as Require-Bundle by 
+ org.eclipse.m2e.maven.runtime to force installation  of this bundle whe
+ never m2e embedded maven runtime is installed. Because no packages are 
+ exported,  this does not pollute OSGi classpath. Provide-Capability/Req
+ uire-Capability would be cleaner, but  I don't know if these are suppor
+ ted bu P2.
+Bundle-DocURL: https://eclipse.org/m2e
+Bundle-License: https://www.eclipse.org/legal/epl-v20.html
+Bundle-ManifestVersion: 2
+Bundle-Name: M2E SLF4J-Simple Binding for Embedded Maven Runtime
+Bundle-RequiredExecutionEnvironment: JavaSE-11
+Bundle-SymbolicName: org.eclipse.m2e.maven.runtime.slf4j.simple;singleto
+ n:=false
+Bundle-Vendor: Eclipse.org - m2e
+Bundle-Version: 1.18.1.20211008-0657
+Eclipse-BundleShape: dir
+Embed-Dependency: *;scope=compile|runtime
+Embed-Directory: jars
+Embed-Transitive: true
+Embedded-Artifacts: jars/slf4j-simple-1.7.30.jar;g="org.slf4j";a="slf4j-
+ simple";v="1.7.30"
+Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.5))"
+Tool: Bnd-5.1.1.202006162103
+Eclipse-SourceReferences: scm:git:https://github.com/eclipse-m2e/m2e-cor
+ e.git;path="m2e-maven-runtime/org.eclipse.m2e.maven.runtime.slf4j.simpl
+ e";commitId=81d08b78f787dd561c59153c5970199c3bbd682a
+
+Name: about_files/slf4j-simple-LICENSE.txt
+SHA-256-Digest: P3q9nlAlNcbxGkr5Hc/SDRlvR7DAA2QMYTQwgIP2Knw=
+
+Name: about.html
+SHA-256-Digest: zazZm/tWZ2YG3QqOUbdI8adiQIXl5bsrKpIte+GZQDE=
+
+Name: simplelogger.properties
+SHA-256-Digest: bMbuK4YPLw2O0d9/j4QIXsJvHzwA6SwzVfxtY2KKOMs=
+
+Name: jars/slf4j-simple-1.7.30.jar
+SHA-256-Digest: i5J5y/9rn4hZTvrjzwIDm2mVAw7sAj7UOSh0jEFnD+4=
+
+Name: META-INF/maven/org.eclipse.m2e/org.eclipse.m2e.maven.runtime.slf4j
+ .simple/pom.properties
+SHA-256-Digest: f2U8F2N3IFcMEceJ9955/XYBkXANb73zqjouS5Z+vVQ=
+
+Name: META-INF/maven/org.eclipse.m2e/org.eclipse.m2e.maven.runtime.slf4j
+ .simple/pom.xml
+SHA-256-Digest: kHsbMDvuFzZkatr/ystiGQ/f+rMnjBOiHWy5Z96dhb0=
+

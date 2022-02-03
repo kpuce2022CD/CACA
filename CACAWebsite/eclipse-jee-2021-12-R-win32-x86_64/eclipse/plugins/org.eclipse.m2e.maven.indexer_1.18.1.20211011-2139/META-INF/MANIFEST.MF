@@ -1,0 +1,243 @@
+Manifest-Version: 1.0
+Created-By: Apache Maven Bundle Plugin
+Build-Jdk-Spec: 11
+Automatic-Module-Name: org.eclipse.m2e.maven.indexer
+Bnd-LastModified: 1633988487048
+Build-Jdk: 11.0.2
+Built-By: jenkins
+Bundle-ClassPath: .,jars/indexer-core-6.0.0.jar,jars/lucene-core-5.5.5.j
+ ar,jars/lucene-queryparser-5.5.5.jar,jars/lucene-queries-5.5.5.jar,jars
+ /lucene-sandbox-5.5.5.jar,jars/lucene-analyzers-common-5.5.5.jar,jars/l
+ ucene-backward-codecs-5.5.5.jar,jars/lucene-highlighter-5.5.5.jar,jars/
+ lucene-join-5.5.5.jar,jars/lucene-memory-5.5.5.jar
+Bundle-Description: Maven Integration for Eclipse provides tight integra
+ tion		for Maven into the IDE
+Bundle-DocURL: https://eclipse.org/m2e
+Bundle-License: https://www.eclipse.org/legal/epl-v20.html
+Bundle-ManifestVersion: 2
+Bundle-Name: M2E Maven/Nexus Indexer
+Bundle-RequiredExecutionEnvironment: JavaSE-11
+Bundle-SymbolicName: org.eclipse.m2e.maven.indexer;singleton:=false
+Bundle-Vendor: Eclipse.org - m2e
+Bundle-Version: 1.18.1.20211011-2139
+Eclipse-BundleShape: dir
+Embed-Dependency: *;scope=compile|runtime
+Embed-Directory: jars
+Embed-Transitive: true
+Embedded-Artifacts: jars/indexer-core-6.0.0.jar;g="org.apache.maven.inde
+ xer";a="indexer-core";v="6.0.0",jars/lucene-core-5.5.5.jar;g="org.apach
+ e.lucene";a="lucene-core";v="5.5.5",jars/lucene-queryparser-5.5.5.jar;g
+ ="org.apache.lucene";a="lucene-queryparser";v="5.5.5",jars/lucene-queri
+ es-5.5.5.jar;g="org.apache.lucene";a="lucene-queries";v="5.5.5",jars/lu
+ cene-sandbox-5.5.5.jar;g="org.apache.lucene";a="lucene-sandbox";v="5.5.
+ 5",jars/lucene-analyzers-common-5.5.5.jar;g="org.apache.lucene";a="luce
+ ne-analyzers-common";v="5.5.5",jars/lucene-backward-codecs-5.5.5.jar;g=
+ "org.apache.lucene";a="lucene-backward-codecs";v="5.5.5",jars/lucene-hi
+ ghlighter-5.5.5.jar;g="org.apache.lucene";a="lucene-highlighter";v="5.5
+ .5",jars/lucene-join-5.5.5.jar;g="org.apache.lucene";a="lucene-join";v=
+ "5.5.5",jars/lucene-memory-5.5.5.jar;g="org.apache.lucene";a="lucene-me
+ mory";v="5.5.5"
+Export-Package: org.apache.lucene;provider=m2e;mandatory:=provider,org.a
+ pache.lucene.analysis;provider=m2e;mandatory:=provider,org.apache.lucen
+ e.analysis.ar;provider=m2e;mandatory:=provider,org.apache.lucene.analys
+ is.bg;provider=m2e;mandatory:=provider,org.apache.lucene.analysis.br;pr
+ ovider=m2e;mandatory:=provider,org.apache.lucene.analysis.ca;provider=m
+ 2e;mandatory:=provider,org.apache.lucene.analysis.charfilter;provider=m
+ 2e;mandatory:=provider,org.apache.lucene.analysis.cjk;provider=m2e;mand
+ atory:=provider,org.apache.lucene.analysis.ckb;provider=m2e;mandatory:=
+ provider,org.apache.lucene.analysis.commongrams;provider=m2e;mandatory:
+ =provider,org.apache.lucene.analysis.compound;provider=m2e;mandatory:=p
+ rovider,org.apache.lucene.analysis.compound.hyphenation;provider=m2e;ma
+ ndatory:=provider,org.apache.lucene.analysis.core;provider=m2e;mandator
+ y:=provider,org.apache.lucene.analysis.custom;provider=m2e;mandatory:=p
+ rovider,org.apache.lucene.analysis.cz;provider=m2e;mandatory:=provider,
+ org.apache.lucene.analysis.da;provider=m2e;mandatory:=provider,org.apac
+ he.lucene.analysis.de;provider=m2e;mandatory:=provider,org.apache.lucen
+ e.analysis.el;provider=m2e;mandatory:=provider,org.apache.lucene.analys
+ is.en;provider=m2e;mandatory:=provider,org.apache.lucene.analysis.es;pr
+ ovider=m2e;mandatory:=provider,org.apache.lucene.analysis.eu;provider=m
+ 2e;mandatory:=provider,org.apache.lucene.analysis.fa;provider=m2e;manda
+ tory:=provider,org.apache.lucene.analysis.fi;provider=m2e;mandatory:=pr
+ ovider,org.apache.lucene.analysis.fr;provider=m2e;mandatory:=provider,o
+ rg.apache.lucene.analysis.ga;provider=m2e;mandatory:=provider,org.apach
+ e.lucene.analysis.gl;provider=m2e;mandatory:=provider,org.apache.lucene
+ .analysis.hi;provider=m2e;mandatory:=provider,org.apache.lucene.analysi
+ s.hu;provider=m2e;mandatory:=provider,org.apache.lucene.analysis.hunspe
+ ll;provider=m2e;mandatory:=provider,org.apache.lucene.analysis.hy;provi
+ der=m2e;mandatory:=provider,org.apache.lucene.analysis.id;provider=m2e;
+ mandatory:=provider,org.apache.lucene.analysis.in;provider=m2e;mandator
+ y:=provider,org.apache.lucene.analysis.it;provider=m2e;mandatory:=provi
+ der,org.apache.lucene.analysis.lt;provider=m2e;mandatory:=provider,org.
+ apache.lucene.analysis.lv;provider=m2e;mandatory:=provider,org.apache.l
+ ucene.analysis.miscellaneous;provider=m2e;mandatory:=provider,org.apach
+ e.lucene.analysis.ngram;provider=m2e;mandatory:=provider,org.apache.luc
+ ene.analysis.nl;provider=m2e;mandatory:=provider,org.apache.lucene.anal
+ ysis.no;provider=m2e;mandatory:=provider,org.apache.lucene.analysis.pat
+ h;provider=m2e;mandatory:=provider,org.apache.lucene.analysis.pattern;p
+ rovider=m2e;mandatory:=provider,org.apache.lucene.analysis.payloads;pro
+ vider=m2e;mandatory:=provider,org.apache.lucene.analysis.pt;provider=m2
+ e;mandatory:=provider,org.apache.lucene.analysis.query;provider=m2e;man
+ datory:=provider,org.apache.lucene.analysis.reverse;provider=m2e;mandat
+ ory:=provider,org.apache.lucene.analysis.ro;provider=m2e;mandatory:=pro
+ vider,org.apache.lucene.analysis.ru;provider=m2e;mandatory:=provider,or
+ g.apache.lucene.analysis.shingle;provider=m2e;mandatory:=provider,org.a
+ pache.lucene.analysis.sinks;provider=m2e;mandatory:=provider,org.apache
+ .lucene.analysis.snowball;provider=m2e;mandatory:=provider,org.apache.l
+ ucene.analysis.sr;provider=m2e;mandatory:=provider,org.apache.lucene.an
+ alysis.standard;provider=m2e;mandatory:=provider,org.apache.lucene.anal
+ ysis.standard.std40;provider=m2e;mandatory:=provider,org.apache.lucene.
+ analysis.sv;provider=m2e;mandatory:=provider,org.apache.lucene.analysis
+ .synonym;provider=m2e;mandatory:=provider,org.apache.lucene.analysis.th
+ ;provider=m2e;mandatory:=provider,org.apache.lucene.analysis.tokenattri
+ butes;provider=m2e;mandatory:=provider,org.apache.lucene.analysis.tr;pr
+ ovider=m2e;mandatory:=provider,org.apache.lucene.analysis.util;provider
+ =m2e;mandatory:=provider,org.apache.lucene.analysis.wikipedia;provider=
+ m2e;mandatory:=provider,org.apache.lucene.bkdtree;provider=m2e;mandator
+ y:=provider,org.apache.lucene.codecs;provider=m2e;mandatory:=provider,o
+ rg.apache.lucene.codecs.blocktree;provider=m2e;mandatory:=provider,org.
+ apache.lucene.codecs.compressing;provider=m2e;mandatory:=provider,org.a
+ pache.lucene.codecs.idversion;provider=m2e;mandatory:=provider,org.apac
+ he.lucene.codecs.lucene40;provider=m2e;mandatory:=provider,org.apache.l
+ ucene.codecs.lucene41;provider=m2e;mandatory:=provider,org.apache.lucen
+ e.codecs.lucene410;provider=m2e;mandatory:=provider,org.apache.lucene.c
+ odecs.lucene42;provider=m2e;mandatory:=provider,org.apache.lucene.codec
+ s.lucene45;provider=m2e;mandatory:=provider,org.apache.lucene.codecs.lu
+ cene46;provider=m2e;mandatory:=provider,org.apache.lucene.codecs.lucene
+ 49;provider=m2e;mandatory:=provider,org.apache.lucene.codecs.lucene50;p
+ rovider=m2e;mandatory:=provider,org.apache.lucene.codecs.lucene53;provi
+ der=m2e;mandatory:=provider,org.apache.lucene.codecs.lucene54;provider=
+ m2e;mandatory:=provider,org.apache.lucene.codecs.perfield;provider=m2e;
+ mandatory:=provider,org.apache.lucene.collation;provider=m2e;mandatory:
+ =provider,org.apache.lucene.collation.tokenattributes;provider=m2e;mand
+ atory:=provider,org.apache.lucene.document;provider=m2e;mandatory:=prov
+ ider,org.apache.lucene.index;provider=m2e;mandatory:=provider,org.apach
+ e.lucene.index.memory;provider=m2e;mandatory:=provider,org.apache.lucen
+ e.payloads;provider=m2e;mandatory:=provider,org.apache.lucene.queries;p
+ rovider=m2e;mandatory:=provider,org.apache.lucene.queries.function;prov
+ ider=m2e;mandatory:=provider,org.apache.lucene.queries.function.docvalu
+ es;provider=m2e;mandatory:=provider,org.apache.lucene.queries.function.
+ valuesource;provider=m2e;mandatory:=provider,org.apache.lucene.queries.
+ mlt;provider=m2e;mandatory:=provider,org.apache.lucene.queries.payloads
+ ;provider=m2e;mandatory:=provider,org.apache.lucene.queryparser.analyzi
+ ng;provider=m2e;mandatory:=provider,org.apache.lucene.queryparser.class
+ ic;provider=m2e;mandatory:=provider,org.apache.lucene.queryparser.compl
+ exPhrase;provider=m2e;mandatory:=provider,org.apache.lucene.queryparser
+ .ext;provider=m2e;mandatory:=provider,org.apache.lucene.queryparser.fle
+ xible.core;provider=m2e;mandatory:=provider,org.apache.lucene.querypars
+ er.flexible.core.builders;provider=m2e;mandatory:=provider,org.apache.l
+ ucene.queryparser.flexible.core.config;provider=m2e;mandatory:=provider
+ ,org.apache.lucene.queryparser.flexible.core.messages;provider=m2e;mand
+ atory:=provider,org.apache.lucene.queryparser.flexible.core.nodes;provi
+ der=m2e;mandatory:=provider,org.apache.lucene.queryparser.flexible.core
+ .parser;provider=m2e;mandatory:=provider,org.apache.lucene.queryparser.
+ flexible.core.processors;provider=m2e;mandatory:=provider,org.apache.lu
+ cene.queryparser.flexible.core.util;provider=m2e;mandatory:=provider,or
+ g.apache.lucene.queryparser.flexible.messages;provider=m2e;mandatory:=p
+ rovider,org.apache.lucene.queryparser.flexible.precedence;provider=m2e;
+ mandatory:=provider,org.apache.lucene.queryparser.flexible.precedence.p
+ rocessors;provider=m2e;mandatory:=provider,org.apache.lucene.queryparse
+ r.flexible.standard;provider=m2e;mandatory:=provider,org.apache.lucene.
+ queryparser.flexible.standard.builders;provider=m2e;mandatory:=provider
+ ,org.apache.lucene.queryparser.flexible.standard.config;provider=m2e;ma
+ ndatory:=provider,org.apache.lucene.queryparser.flexible.standard.nodes
+ ;provider=m2e;mandatory:=provider,org.apache.lucene.queryparser.flexibl
+ e.standard.parser;provider=m2e;mandatory:=provider,org.apache.lucene.qu
+ eryparser.flexible.standard.processors;provider=m2e;mandatory:=provider
+ ,org.apache.lucene.queryparser.simple;provider=m2e;mandatory:=provider,
+ org.apache.lucene.queryparser.surround.parser;provider=m2e;mandatory:=p
+ rovider,org.apache.lucene.queryparser.surround.query;provider=m2e;manda
+ tory:=provider,org.apache.lucene.queryparser.xml;provider=m2e;mandatory
+ :=provider,org.apache.lucene.queryparser.xml.builders;provider=m2e;mand
+ atory:=provider,org.apache.lucene.rangetree;provider=m2e;mandatory:=pro
+ vider,org.apache.lucene.sandbox.queries;provider=m2e;mandatory:=provide
+ r,org.apache.lucene.sandbox.queries.regex;provider=m2e;mandatory:=provi
+ der,org.apache.lucene.search;provider=m2e;mandatory:=provider,org.apach
+ e.lucene.search.highlight;provider=m2e;mandatory:=provider,org.apache.l
+ ucene.search.join;provider=m2e;mandatory:=provider,org.apache.lucene.se
+ arch.postingshighlight;provider=m2e;mandatory:=provider,org.apache.luce
+ ne.search.similarities;provider=m2e;mandatory:=provider,org.apache.luce
+ ne.search.spans;provider=m2e;mandatory:=provider,org.apache.lucene.sear
+ ch.vectorhighlight;provider=m2e;mandatory:=provider,org.apache.lucene.s
+ tore;provider=m2e;mandatory:=provider,org.apache.lucene.util;provider=m
+ 2e;mandatory:=provider,org.apache.lucene.util.automaton;provider=m2e;ma
+ ndatory:=provider,org.apache.lucene.util.fst;provider=m2e;mandatory:=pr
+ ovider,org.apache.lucene.util.mutable;provider=m2e;mandatory:=provider,
+ org.apache.lucene.util.packed;provider=m2e;mandatory:=provider,org.apac
+ he.maven.index;provider=m2e;mandatory:=provider,org.apache.maven.index.
+ archetype;provider=m2e;mandatory:=provider,org.apache.maven.index.artif
+ act;provider=m2e;mandatory:=provider,org.apache.maven.index.context;pro
+ vider=m2e;mandatory:=provider,org.apache.maven.index.creator;provider=m
+ 2e;mandatory:=provider,org.apache.maven.index.expr;provider=m2e;mandato
+ ry:=provider,org.apache.maven.index.fs;provider=m2e;mandatory:=provider
+ ,org.apache.maven.index.incremental;provider=m2e;mandatory:=provider,or
+ g.apache.maven.index.locator;provider=m2e;mandatory:=provider,org.apach
+ e.maven.index.packer;provider=m2e;mandatory:=provider,org.apache.maven.
+ index.search.grouping;provider=m2e;mandatory:=provider,org.apache.maven
+ .index.treeview;provider=m2e;mandatory:=provider,org.apache.maven.index
+ .updater;provider=m2e;mandatory:=provider,org.apache.maven.index.util;p
+ rovider=m2e;mandatory:=provider,org.apache.maven.index.util.zip;provide
+ r=m2e;mandatory:=provider,META-INF.sisu;x-internal:=true
+Import-Package: org.slf4j;resolution:=optional;version="[1.6.2,2.0.0)",j
+ avax.inject;version="1.0.0"
+Require-Bundle: org.eclipse.m2e.maven.runtime;bundle-version="[1.18.0,1.
+ 19.0)",org.eclipse.m2e.archetype.common;bundle-version="[1.18.0,1.19.0)
+ ",com.google.guava
+Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.7))"
+Tool: Bnd-5.1.1.202006162103
+Eclipse-SourceReferences: scm:git:https://github.com/eclipse-m2e/m2e-cor
+ e.git;path="m2e-maven-runtime/org.eclipse.m2e.maven.indexer";commitId=9
+ 09efaf1a9ab251bfde7acb9562a3d9f1028c18f
+
+Name: about.html
+SHA-256-Digest: pENCRpNJPzb5O3F8RdyoR90pFn6ReYSuj4C5k4a8SN8=
+
+Name: org/apache/maven/index/NexusArchetypeDataSource.class
+SHA-256-Digest: zGWsMVS1I6lmUXdMu/dB7yormDfTjsK8ua8OKOoT8uw=
+
+Name: jars/lucene-analyzers-common-5.5.5.jar
+SHA-256-Digest: 9f0qmpg43Ut9SiEmGq8tRXt7gx08Z0KT5m01ZWnvlKw=
+
+Name: jars/lucene-backward-codecs-5.5.5.jar
+SHA-256-Digest: ti4In1Bbxy3Yq7CtVQQGBM3ZIwbhSHHX/ry/lH3ZxuU=
+
+Name: about_files/LICENSE-2.0.txt
+SHA-256-Digest: z8d0m5b2O9McPEK1xHG/dWgUBT6EfBDz6wA0F7xSPTA=
+
+Name: jars/lucene-core-5.5.5.jar
+SHA-256-Digest: jSeoq07oiDKC13E/Bn5y0c/eHojQ9XAaEZEA7J6G1+E=
+
+Name: META-INF/maven/org.eclipse.m2e/org.eclipse.m2e.maven.indexer/pom.p
+ roperties
+SHA-256-Digest: OpI2zU1vscpZzXZMkm4FpJkxOgcTLvuDhLG4diHFzRo=
+
+Name: org/apache/maven/index/DefaultIndexerEngine.class
+SHA-256-Digest: zbqzXAioK9cah037jB6qXDIBqmU6pJd7H9JwxLUyUVQ=
+
+Name: jars/indexer-core-6.0.0.jar
+SHA-256-Digest: rHm/jOAilrCbl9GqIpzkzk0SSICTMzStKdQOySycwac=
+
+Name: jars/lucene-queryparser-5.5.5.jar
+SHA-256-Digest: ie0xp5nysRoL1cQVU4HANpTSIj+yHTlAzn0Bh2b/Ypo=
+
+Name: jars/lucene-sandbox-5.5.5.jar
+SHA-256-Digest: tRaYvtlx1YJFETXHuLfvcay4Bf5m72p9/t3FJbFONF4=
+
+Name: jars/lucene-join-5.5.5.jar
+SHA-256-Digest: DSQJqU6BN+6Z7wtreUcbp0iMq6Dtq0OoxYhlcAM5v+g=
+
+Name: jars/lucene-highlighter-5.5.5.jar
+SHA-256-Digest: FSaWAKyuzktc+5+1NwaczOe+b6iQ45BRGLtxsQHWUlY=
+
+Name: jars/lucene-queries-5.5.5.jar
+SHA-256-Digest: 8PFcWQz+Pue8X2FzHpr9xbHI7Mv8cVsSow1Ha16iqlw=
+
+Name: META-INF/maven/org.eclipse.m2e/org.eclipse.m2e.maven.indexer/pom.x
+ ml
+SHA-256-Digest: vkpgLFRfJTjR+F+vLDVi2cHJKVt5hr/hCq2WGj0MDXI=
+
+Name: jars/lucene-memory-5.5.5.jar
+SHA-256-Digest: SZdgttQz28pKOF/8/Nbmc+uW8XYclqejxpLbHu+xtwo=
+
+Name: META-INF/sisu/javax.inject.Named
+SHA-256-Digest: G00/+f93gvSS22X/mZM4GHTlDn0PctPNpFop2hhniXo=
+

@@ -1,0 +1,35 @@
+Signature-Version: 1.0
+Created-By: 11.0.11 (AdoptOpenJDK)
+SHA-256-Digest-Manifest: DoXrKmgtejHPlUSu2yrIwm7zuX70CAVt6PJu7Ivu790=
+SHA-256-Digest-Manifest-Main-Attributes: t6WArYpMBKmP9rLCS5x4PEDOEii7jlj
+ nybgV9vpGLAw=
+
+Name: META-INF/maven/org.eclipse.epp/org.eclipse.epp.package.common/pom.
+ xml
+SHA-256-Digest: 8vYtqhr6/S+uFp9kyfJyvOmefDKvs3P8hjtWb91cimU=
+
+Name: about.html
+SHA-256-Digest: CLPBwuGGd87ncwFcy1yuXHxb4IoVLHBzrlP8ReflHc0=
+
+Name: plugin.xml
+SHA-256-Digest: KMSPbqAnPRgQTLPe/rIyAQAL4SchKpkocBHgfMXbJjM=
+
+Name: icons/star@2x.png
+SHA-256-Digest: xIJJaBSyCWWGm00DPxegfyM1TzyB4cMZp7riKu7vclQ=
+
+Name: org/eclipse/epp/common/ContributeHandler.class
+SHA-256-Digest: hXZtil9AwU7pm01UDjiJZHRMYSbl3ZCzaav5kFJi62E=
+
+Name: icons/star.png
+SHA-256-Digest: 5x8il0pqc6F6+gQ9F1W/1zEFUAeaufjMkt0CMfRTYFY=
+
+Name: plugin.properties
+SHA-256-Digest: 1d582w9Rwn87KxFvObA2JJXYHXIgBfLXIUmMICgCWWg=
+
+Name: splash.bmp
+SHA-256-Digest: rMoKCShJuM6CTXGHZmGTti0pO2OJXy+/PNEMX9niotQ=
+
+Name: META-INF/maven/org.eclipse.epp/org.eclipse.epp.package.common/pom.
+ properties
+SHA-256-Digest: DILbgEZeVlfyoQxpDNGfGW0bI3bynXZcvhrmKVSuRbA=
+

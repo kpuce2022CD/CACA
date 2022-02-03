@@ -1,0 +1,24 @@
+{
+  "name": "firefox-debugadapter",
+  "version": "2.9.4",
+  "author": "Holger Benl <hbenl@evandor.de>",
+  "description": "Debug adapter for Firefox",
+  "files": [
+    "adapter.bundle.js",
+    "launcher.bundle.js",
+    "mappings.wasm",
+    "terminator/*",
+    "README.md",
+    "LICENSE"
+  ],
+  "main": "adapter.bundle.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/firefox-devtools/vscode-firefox-debug.git"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/firefox-devtools/vscode-firefox-debug/issues"
+  },
+  "homepage": "https://github.com/firefox-devtools/vscode-firefox-debug"
+}

@@ -1,0 +1,26 @@
+Signature-Version: 1.0
+Created-By: 11.0.11 (AdoptOpenJDK)
+SHA-256-Digest-Manifest: pVF4+DEnttFs0do6zfRqt7boB306FJzC/QqYBGoXZIk=
+SHA-256-Digest-Manifest-Main-Attributes: 7Dubq1tg4LGbRlPae6OH5zQbdRfkCoT
+ A3v7iy/L5+ug=
+
+Name: about_files/slf4j-simple-LICENSE.txt
+SHA-256-Digest: 6ider2669rCP3/7Zu6CakBEnZhnbMUcd8o3P26gpKs0=
+
+Name: about.html
+SHA-256-Digest: 3T6zTt6ZnzY8QMDFOMlNq8i7eMXi0yDmf/YNfwjei4k=
+
+Name: simplelogger.properties
+SHA-256-Digest: ao8NrmY0dkFuOKzg+R3KlL+OR9OuK9WurDJfAwLsJT4=
+
+Name: jars/slf4j-simple-1.7.30.jar
+SHA-256-Digest: dgJkX1vu3XxiZ3s/YdySM4l4uUybg0X1CXQN3Ks8YxI=
+
+Name: META-INF/maven/org.eclipse.m2e/org.eclipse.m2e.maven.runtime.slf4j
+ .simple/pom.properties
+SHA-256-Digest: KaZcjeLKgTCuzNv9BppPpjlDUFOzg+IC3RZOKR7hfI0=
+
+Name: META-INF/maven/org.eclipse.m2e/org.eclipse.m2e.maven.runtime.slf4j
+ .simple/pom.xml
+SHA-256-Digest: vfBjMs6lReqU+JAI5L2oK0z42wuR6d+CluV1xgV9KAs=
+
