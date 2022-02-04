@@ -30,8 +30,6 @@ final class Service_SendInvite: ObservableObject {
         }
         
         socket.on("invite"){ [weak self] (data, ack) in
-//            print(email)
-//            print(data)
             if let data = data[0] as? [String: String],
                let rawMessage = data["find_RESULT"] {
                 DispatchQueue.main.async {
@@ -76,7 +74,6 @@ struct Repo_Home: View {
     var branch : [String]
 
     init(repoName: String, user_id: String, branch: Array<String>) {
-        // git_libgit2_init()
         Repository.initialize_libgit2()
         
         self.repoName = repoName
@@ -167,9 +164,7 @@ struct Repo_Home: View {
                         }
                         .background(Color.black)
                         .cornerRadius(15)
-                        
-//                        NavigationLink(destination: EmptyView(), tag: "branchButton", selection: $selectionString) { }
-//                        .buttonStyle(PlainButtonStyle()).frame(width:0).opacity(0)
+
                     }
                 }
                 ZStack {
@@ -191,8 +186,6 @@ struct Repo_Home: View {
                     .background(Color.black)
                     .cornerRadius(15)
                     
-//                    NavigationLink(destination: EmptyView(), tag: "branchButton", selection: $selectionString) { }
-//                    .buttonStyle(PlainButtonStyle()).frame(width:0).opacity(0)
                 }
                 ZStack {
                     Button(action: {
@@ -208,9 +201,7 @@ struct Repo_Home: View {
                     }
                     .background(Color.green)
                     .cornerRadius(15)
-                    
-//                    NavigationLink(destination: EmptyView(), tag: "branchButton", selection: $selectionString) { }
-//                    .buttonStyle(PlainButtonStyle()).frame(width:0).opacity(0)
+
                 }
                 .padding(EdgeInsets(top: 0, leading: 0, bottom: 20, trailing: 0))
                 
