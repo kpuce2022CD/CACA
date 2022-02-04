@@ -16,5 +16,6 @@ struct Repo_View_Image: View {
 struct Repo_View_Image_Previews: PreviewProvider {
     static var previews: some View {
         Repo_View_Image()
+.previewInterfaceOrientation(.landscapeRight)
     }
 }
