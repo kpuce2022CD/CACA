@@ -15,6 +15,11 @@ struct Repo_View_Git: View {
     @State var userEmail = "UserEmail"
     @State var remoteRepoLocation = "http://52.79.235.187/git-repositories/PJY_JJANG.git"
     
+    init() {
+        // git_libgit2_init()
+        Repository.initialize_libgit2()
+    }
+    
     
     var body: some View {
         VStack{
