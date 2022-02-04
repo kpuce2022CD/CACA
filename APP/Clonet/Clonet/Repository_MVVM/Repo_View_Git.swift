@@ -127,6 +127,7 @@ struct Repo_View_Git: View {
             .background(Color.black)
             .cornerRadius(15)
         }
+        .padding()
     }
 }
 
