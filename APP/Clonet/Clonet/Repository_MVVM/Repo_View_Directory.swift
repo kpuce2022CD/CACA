@@ -8,8 +8,37 @@
 import SwiftUI
 
 struct Repo_View_Directory: View {
+    @State var items = [String]()
+    let faceLocation = documentURL.appendingPathComponent("hey")
+
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack{
+            Button("directory", action: location)
+            List{
+                ForEach(items, id: \.self){ item in
+                    HStack{
+                        Text(item)
+                    }
+                }
+            }
+        }
+    }
+    
+    func location(){
+        let urlString = faceLocation.absoluteString
+        let fileManager = FileManager.default
+        var remoteString = urlString.replacingOccurrences(of: "file://", with: "")
+        
+        do{
+            //let
+            items = try fileManager.contentsOfDirectory(atPath: remoteString)
+            print("aaad: \(items)")
+//            for item in items{
+//                print("Found \(item)")
+//            }
+        }catch{
+            print("error")
+        }
     }
 }
 
