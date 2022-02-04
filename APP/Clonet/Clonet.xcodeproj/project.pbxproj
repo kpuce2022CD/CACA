@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3F41CA6C27ACCBBE0031F6C3 /* Login_Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F41CA6B27ACCBBE0031F6C3 /* Login_Model.swift */; };
+		3F41CA6E27ACCBC90031F6C3 /* Login_View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F41CA6D27ACCBC90031F6C3 /* Login_View.swift */; };
+		3F41CA7027ACCBE80031F6C3 /* Login_ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F41CA6F27ACCBE80031F6C3 /* Login_ViewModel.swift */; };
 		3F4B530E278BE92300D64A6D /* Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F4B530D278BE92300D64A6D /* Login.swift */; };
 		3F4B5316278C162500D64A6D /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F4B5315278C162500D64A6D /* User.swift */; };
 		3F4B5318278C17DA00D64A6D /* LoginCheck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F4B5317278C17DA00D64A6D /* LoginCheck.swift */; };
@@ -37,6 +40,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3F41CA6B27ACCBBE0031F6C3 /* Login_Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Login_Model.swift; sourceTree = "<group>"; };
+		3F41CA6D27ACCBC90031F6C3 /* Login_View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Login_View.swift; sourceTree = "<group>"; };
+		3F41CA6F27ACCBE80031F6C3 /* Login_ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Login_ViewModel.swift; sourceTree = "<group>"; };
 		3F4B530D278BE92300D64A6D /* Login.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Login.swift; sourceTree = "<group>"; };
 		3F4B5315278C162500D64A6D /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		3F4B5317278C17DA00D64A6D /* LoginCheck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginCheck.swift; sourceTree = "<group>"; };
@@ -82,6 +88,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3F41CA6A27ACCB9B0031F6C3 /* Login_MVVM */ = {
+			isa = PBXGroup;
+			children = (
+				3F41CA6B27ACCBBE0031F6C3 /* Login_Model.swift */,
+				3F41CA6D27ACCBC90031F6C3 /* Login_View.swift */,
+				3F41CA6F27ACCBE80031F6C3 /* Login_ViewModel.swift */,
+			);
+			path = Login_MVVM;
+			sourceTree = "<group>";
+		};
 		3F4B530C278BE91100D64A6D /* Login */ = {
 			isa = PBXGroup;
 			children = (
@@ -182,6 +198,7 @@
 		DA97B6A5278BE05D006C473E /* Clonet */ = {
 			isa = PBXGroup;
 			children = (
+				3F41CA6A27ACCB9B0031F6C3 /* Login_MVVM */,
 				3F6A1B982799998600146367 /* Shell */,
 				3FE633BC278EED9F00143666 /* UIKit_in_SwiftUI */,
 				3FD176B6278D69D50025CCD2 /* Main */,
@@ -286,9 +303,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3F41CA6C27ACCBBE0031F6C3 /* Login_Model.swift in Sources */,
 				3F4B5316278C162500D64A6D /* User.swift in Sources */,
 				3F6A1B8F2799862F00146367 /* ShellOut.swift in Sources */,
 				3F6A1BC0279A8AF300146367 /* PushOptions.swift in Sources */,
+				3F41CA7027ACCBE80031F6C3 /* Login_ViewModel.swift in Sources */,
 				3FD176B4278D4E7D0025CCD2 /* FindIdPw.swift in Sources */,
 				DACAA65E278C7E5D007F3918 /* SocketIO.swift in Sources */,
 				3FE633B5278DD9AF00143666 /* PageViewController.swift in Sources */,
@@ -303,6 +322,7 @@
 				3F4B5318278C17DA00D64A6D /* LoginCheck.swift in Sources */,
 				DA253E13278DEE1500AEE18A /* ViewModifiers.swift in Sources */,
 				DA97B6A7278BE05D006C473E /* ClonetApp.swift in Sources */,
+				3F41CA6E27ACCBC90031F6C3 /* Login_View.swift in Sources */,
 				3FE633B3278DCEAB00143666 /* IamTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
