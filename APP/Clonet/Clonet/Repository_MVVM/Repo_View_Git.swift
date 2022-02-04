@@ -14,6 +14,7 @@ struct Repo_View_Git: View {
     @State var UserName = "UserName"
     @State var userEmail = "UserEmail"
     @State var remoteRepoLocation = "http://52.79.235.187/git-repositories/PJY_JJANG.git"
+    @State var commit_msg = "commit_msg"
     
     init() {
         // git_libgit2_init()
@@ -44,7 +45,7 @@ struct Repo_View_Git: View {
             
             // MARK: Commit Button
             Button(action: {
-                commitGitRepo(localRepoLocation: documentURL.appendingPathComponent(RepositoryName), name: UserName, email: userEmail)
+                commitGitRepo(localRepoLocation: documentURL.appendingPathComponent(RepositoryName), name: UserName, email: userEmail, commit_msg: commit_msg)
             }){
                 HStack{
                     Image(systemName: "opticaldiscdrive.fill")
@@ -65,7 +66,7 @@ struct Repo_View_Git: View {
             HStack{
                 // MARK: Clone Button
                 Button(action: {
-                    cloneGitRepo(remoteRepoLocation: remoteRepoLocation, localRepoLocation: documentURL.appendingPathComponent("hey"))
+                    cloneGitRepo(remoteRepoLocation: remoteRepoLocation, localRepoLocation: documentURL.appendingPathComponent(RepositoryName))
                 }){
                     HStack{
                         Image(systemName: "square.and.arrow.down")
@@ -104,7 +105,7 @@ struct Repo_View_Git: View {
             
             // MARK: Branch
             Button(action: {
-                
+                BranchGitRepo(localRepoLocation: documentURL.appendingPathComponent(RepositoryName))
             }){
                 HStack{
                     Image(systemName: "arrow.triangle.branch")
@@ -148,7 +149,7 @@ struct Repo_View_Git: View {
     
     
     //MARK: COMMIT_FUNC
-    func commitGitRepo(localRepoLocation localRepoLocation: URL, name name: String, email email: String) {
+    func commitGitRepo(localRepoLocation localRepoLocation: URL, name name: String, email email: String, commit_msg commit_msg : String) {
         let result = Repository.at(localRepoLocation)
         switch result {
         case let .success(repo):
@@ -157,7 +158,7 @@ struct Repo_View_Git: View {
             
             //MARK: commit
             let sig = Signature(name: name,email: email, time: Date(),timeZone: TimeZone.current)
-            let latestCommit = repo.commit(message: "asdf", signature: sig)
+            let latestCommit = repo.commit(message: commit_msg, signature: sig)
             
             //MARK: push
             let commit_push = repo.push(repo, "ubuntu", "qwer1234", nil)
@@ -183,6 +184,67 @@ struct Repo_View_Git: View {
 
         case let .failure(error):
             print("CLONE FAIL")
+        }
+    }
+    
+    //MARK: Branch_Alert_FUNC
+    func BranchGitRepo(localRepoLocation localRepoLocation : URL){
+        let alert = UIAlertController(title: "브랜치", message: "변경할 브랜치를 선택하세요", preferredStyle: UIAlertController.Style.alert)
+        
+        let defaultAction =  UIAlertAction(title: "Create Branch", style: UIAlertAction.Style.default)
+        let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertAction.Style.cancel, handler: nil)
+        alert.addAction(defaultAction)
+        alert.addAction(cancelAction)
+        
+        // return Branch
+        var resultBranch : [Branch] = []
+        var branchArr : [String] = []
+        
+        let result = Repository.at(localRepoLocation)
+        switch result {
+        case let .success(repo):
+            let remoteBranch_result = repo.remoteBranches()
+            switch remoteBranch_result{
+            case let .success(branch):
+                resultBranch = branch
+            case let .failure(branch):
+                print("return Branch FAIL")
+            }
+        case let .failure(error):
+            print("return Branch FAIL")
+        }
+        
+        // Filter Branch
+        for i in 0..<resultBranch.count {
+            var index = resultBranch.index(resultBranch.startIndex, offsetBy:i)
+            var s = "\(resultBranch[index])"
+            var branchName = s.split(separator: "\"")
+            branchArr.append(String(branchName[3]))
+        }
+        
+        for branchArr_number in branchArr {
+            let destructiveAction = UIAlertAction(title: branchArr_number, style: UIAlertAction.Style.destructive){(_) in
+                // 버튼 클릭시 실행되는 코드 // Checkout
+                checkout_Branch(localRepoLocation: localRepoLocation, branchname: branchArr_number)
+            }
+            alert.addAction(destructiveAction)
+        }
+
+        
+        
+
+    }
+    
+    //MARK: CHECKOUT_FUNC
+    func checkout_Branch(localRepoLocation localRepoLocation : URL, branchname branchname : String){
+        var branch_name = "remotes/origin/" + branchname
+        
+        let result = Repository.at(localRepoLocation)
+        switch result {
+        case let .success(repo):
+            let branch_commit = repo.checkout_branch(repo, branchName: branch_name)
+        case let .failure(error):
+            print("CHECKOUT FAIL")
         }
     }
 }
