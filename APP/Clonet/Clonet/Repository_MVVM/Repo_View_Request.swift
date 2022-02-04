@@ -13,7 +13,7 @@ struct Repo_View_Request: View {
     @State var RequestText = ["RequestText1", "RequestText2", "RequestText3"]
     
     var body: some View {
-        
+
         // Request 목록 불러오기
         ScrollView(){
             ForEach(0..<RequestName.count){listCount in

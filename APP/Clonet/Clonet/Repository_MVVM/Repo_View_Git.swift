@@ -10,7 +10,7 @@ import SwiftUI
 struct Repo_View_Git: View {
     var body: some View {
         VStack{
-            // RollBack Button
+            // MARK: RollBack Button
             Button(action: {
                 
             }){
@@ -29,7 +29,7 @@ struct Repo_View_Git: View {
             .background(Color.black)
             .cornerRadius(15)
             
-            // Commit Button
+            // MARK: Commit Button
             Button(action: {
                 
             }){
@@ -50,7 +50,7 @@ struct Repo_View_Git: View {
             
             // Clone & Pull Button
             HStack{
-                // Clone Button
+                // MARK: Clone Button
                 Button(action: {
                     
                 }){
@@ -69,7 +69,7 @@ struct Repo_View_Git: View {
                 .background(Color.black)
                 .cornerRadius(15)
                 
-                // Pull Button
+                // MARK: Pull Button
                 Button(action: {
                     
                 }){
@@ -89,7 +89,7 @@ struct Repo_View_Git: View {
                 .cornerRadius(15)
             }
             
-            // Branch
+            // MARK: Branch
             Button(action: {
                 
             }){
@@ -108,7 +108,7 @@ struct Repo_View_Git: View {
             .background(Color.black)
             .cornerRadius(15)
             
-            // Export
+            // MARK: Export
             Button(action: {
                 
             }){
