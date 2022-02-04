@@ -38,10 +38,7 @@ final class Service_login: ObservableObject {
                     
                 }
             }
-            
-            
         }
-
         socket.connect()
     }
 }
