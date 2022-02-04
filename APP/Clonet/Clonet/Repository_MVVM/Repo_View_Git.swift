@@ -6,8 +6,16 @@
 //
 
 import SwiftUI
+import SwiftGit2
 
 struct Repo_View_Git: View {
+    
+    @State var RepositoryName = "hey"
+    @State var UserName = "UserName"
+    @State var userEmail = "UserEmail"
+    @State var remoteRepoLocation = "http://52.79.235.187/git-repositories/PJY_JJANG.git"
+    
+    
     var body: some View {
         VStack{
             // MARK: RollBack Button
@@ -31,7 +39,7 @@ struct Repo_View_Git: View {
             
             // MARK: Commit Button
             Button(action: {
-                
+                commitGitRepo(localRepoLocation: documentURL.appendingPathComponent(RepositoryName), name: UserName, email: userEmail)
             }){
                 HStack{
                     Image(systemName: "opticaldiscdrive.fill")
@@ -52,7 +60,7 @@ struct Repo_View_Git: View {
             HStack{
                 // MARK: Clone Button
                 Button(action: {
-                    
+                    cloneGitRepo(remoteRepoLocation: remoteRepoLocation, localRepoLocation: documentURL.appendingPathComponent("hey"))
                 }){
                     HStack{
                         Image(systemName: "square.and.arrow.down")
@@ -128,6 +136,49 @@ struct Repo_View_Git: View {
             .cornerRadius(15)
         }
         .padding()
+    }
+    
+    
+    
+    
+    
+    //MARK: COMMIT_FUNC
+    func commitGitRepo(localRepoLocation localRepoLocation: URL, name name: String, email email: String) {
+        let result = Repository.at(localRepoLocation)
+        switch result {
+        case let .success(repo):
+            //MARK: add
+            let add_commit = repo.add(path: ".")
+            
+            //MARK: commit
+            let sig = Signature(name: name,email: email, time: Date(),timeZone: TimeZone.current)
+            let latestCommit = repo.commit(message: "asdf", signature: sig)
+            
+            //MARK: push
+            let commit_push = repo.push(repo, "ubuntu", "qwer1234", nil)
+
+            
+        case let .failure(error):
+            print("COMMIT FAIL")
+        }
+    }
+    
+    //MARK: CLONE_FUNC
+    func cloneGitRepo(remoteRepoLocation remoteRepoLocation : String, localRepoLocation localRepoLocation : URL) {
+        let remote: URL = URL(string: remoteRepoLocation)!
+        
+        let result = Repository.clone(from: remote, to: localRepoLocation)
+        switch result {
+        case let .success(repo):
+            let latestCommit = repo
+                .HEAD()
+                .flatMap {
+                    repo.commit($0.oid)
+                }
+
+        case let .failure(error):
+            print("CLONE FAIL")
+        }
     }
 }
 
