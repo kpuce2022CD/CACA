@@ -9,7 +9,9 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        GitTest()
+        Repo_View()
+//        Repo_Home(repoName: "repoName", user_id: "user_Id", branch: ["branch1", "branch2"])
+//        GitTest()
 //        Login()
         // ActivityIndicatorDemo()
     }

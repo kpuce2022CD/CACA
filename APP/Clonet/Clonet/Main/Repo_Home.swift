@@ -10,39 +10,39 @@ import MessageUI
 import SwiftGit2
 import SocketIO
 
-final class Service_SendInvite: ObservableObject {
-    private var manager = SocketManager(socketURL: URL(string: "ws://localhost:3000")!, config: [.log(true), .compress])
-    
-    @Published var messages = [String]()
-    @Published var REemail = ""
-    @State var email: String = ""
-    
-    func invite_button(email: String){
-        let socket = manager.defaultSocket
-        socket.connect()
-        
-        socket.on(clientEvent: .connect){ (data, ack) in
-            self.REemail = email
-                       socket.emit("invite", self.REemail)
-
-                       sleep(2)
-                       socket.disconnect()
-        }
-        
-        socket.on("invite"){ [weak self] (data, ack) in
-            if let data = data[0] as? [String: String],
-               let rawMessage = data["find_RESULT"] {
-                DispatchQueue.main.async {
-                    self?.messages.append(rawMessage)
-                    socket.disconnect()
-                }
-            }
-            
-            socket.connect()
-        }
-        
-    }
-}
+//final class Service_SendInvite: ObservableObject {
+//    private var manager = SocketManager(socketURL: URL(string: "ws://localhost:3000")!, config: [.log(true), .compress])
+//
+//    @Published var messages = [String]()
+//    @Published var REemail = ""
+//    @State var email: String = ""
+//
+//    func invite_button(email: String){
+//        let socket = manager.defaultSocket
+//        socket.connect()
+//
+//        socket.on(clientEvent: .connect){ (data, ack) in
+//            self.REemail = email
+//                       socket.emit("invite", self.REemail)
+//
+//                       sleep(2)
+//                       socket.disconnect()
+//        }
+//
+//        socket.on("invite"){ [weak self] (data, ack) in
+//            if let data = data[0] as? [String: String],
+//               let rawMessage = data["find_RESULT"] {
+//                DispatchQueue.main.async {
+//                    self?.messages.append(rawMessage)
+//                    socket.disconnect()
+//                }
+//            }
+//
+//            socket.connect()
+//        }
+//
+//    }
+//}
 
 
 let gitRepoURL = try! FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
@@ -82,16 +82,11 @@ struct Repo_Home: View {
     }
 
     var body: some View {
-        
-//        Text("\(userAuth.user_id)") //이렇게 쓰면 된다!
         HStack {
             VStack {
                 HStack {
                     Text("표시할 그림 선택 ")
                     Picker(selection: .constant(1), label: Text("Branch")) {
-                        //                        Text("최종").tag(1)
-                        //                        Text("최종최종").tag(2)
-                        
                         ForEach(0..<branch.count) {
                             Text(branch[$0])
                         }
@@ -122,7 +117,7 @@ struct Repo_Home: View {
                     NavigationLink(destination: EmptyView(), tag: "branchButton", selection: $selectionString) { }
                     .buttonStyle(PlainButtonStyle()).frame(width:0).opacity(0)
                 }
-//                list.bullet
+                
                 HStack {
                     ZStack {
                         Button(action: {
@@ -339,31 +334,6 @@ struct Repo_Home: View {
             .padding(.vertical, 100.0)
         }
     }
-    
-    
-    func createGitRepo(){
-        let remote: URL = URL(string: test)!
-        let result = Repository.create(at: remote)
-        switch result {
-        case let .success(repo):
-            let latestCommit = repo
-                .HEAD()
-                .flatMap {
-                    repo.commit($0.oid)
-                }
-
-            switch latestCommit {
-            case let .success(commit):
-                message = "Latest Commit: \(commit.message) by \(commit.author.name)"
-
-            case let .failure(error):
-                message = "Could not get commit: \(error)"
-            }
-
-        case let .failure(error):
-            message = "Could not open repository: \(error)"
-        }
-    }
 
     func cloneGitRepo() {
         let remote: URL = URL(string: remoteRepoLocation)!
@@ -431,7 +401,7 @@ extension Date {
 struct AlertAddPerson: View {
     @State private var email: String = ""
     @State private var group: String = "group1" // 임의로 넣은 값 수정해야함
-    @ObservedObject var service_SendInvite = Service_SendInvite()
+//    @ObservedObject var service_SendInvite = Service_SendInvite()
     
     var body: some View {
 
@@ -445,7 +415,7 @@ struct AlertAddPerson: View {
             HStack {
                 Spacer()
                 Button(action: {
-                    service_SendInvite.invite_button(email: emailJSON)
+//                    service_SendInvite.invite_button(email: emailJSON)
                     UIApplication.shared.windows[0].rootViewController?.dismiss(animated: true, completion: {})
                 }) {
 
