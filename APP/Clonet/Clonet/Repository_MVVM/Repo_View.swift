@@ -9,7 +9,10 @@ import SwiftUI
 
 struct Repo_View: View {
     var body: some View {
-        Repo_View_Image()
+        HStack{
+            Repo_View_Image()
+            Repo_View_Git()
+        }
     }
 }
 
