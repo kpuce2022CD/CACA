@@ -7,37 +7,33 @@
 
 import SwiftUI
 
-struct Repo_View_Directory: View {
-    @State var items = [String]()
-    let faceLocation = documentURL.appendingPathComponent("hey")
-
-    var body: some View {
-        VStack{
-            Button("directory", action: location)
-            List{
-                ForEach(items, id: \.self){ item in
-                    HStack{
-                        Text(item)
-                    }
-                }
-            }
-        }
-    }
+final class getFileList: ObservableObject{
+    @Published var items = [String]()
     
-    func location(){
-        let urlString = faceLocation.absoluteString
+    // MARK: GET FILE LIST
+    func location(repoName: String){
+        print("reponame: \(repoName)")
+        
+        let urlString = documentURL.appendingPathComponent(repoName).absoluteString
         let fileManager = FileManager.default
         var remoteString = urlString.replacingOccurrences(of: "file://", with: "")
-        
         do{
-            //let
             items = try fileManager.contentsOfDirectory(atPath: remoteString)
-            print("aaad: \(items)")
-//            for item in items{
-//                print("Found \(item)")
-//            }
+            print(items)
         }catch{
             print("error")
+        }
+    }
+}
+
+struct Repo_View_Directory: View {
+    @ObservedObject var dataList = getFileList()
+    
+    var body: some View {
+        List{
+            ForEach(dataList.items, id: \.self){ i in
+                Text(i)
+            }
         }
     }
 }
