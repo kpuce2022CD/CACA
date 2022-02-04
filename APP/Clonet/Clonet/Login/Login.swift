@@ -9,7 +9,6 @@ import SwiftUI
 import SocketIO
 import Combine
 
-var count = 0
 //로그인 정보 보내기
 final class Service_login: ObservableObject {
     private var manager = SocketManager(socketURL: URL(string: "ws://localhost:3000")!, config: [.log(true), .compress])
@@ -50,7 +49,6 @@ final class Service_login: ObservableObject {
 class UserAuth: ObservableObject {
     @Published var user_id = ""
     @Published var user_pw = ""
-    
 }
 
 
