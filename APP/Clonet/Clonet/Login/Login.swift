@@ -56,11 +56,8 @@ class UserAuth: ObservableObject {
 
 struct Login: View {
     @ObservedObject var service = Service_login()
-    
     @ObservedObject var userAuth : UserAuth = UserAuth()
     
-//    @State var id : String = ""
-//    @State var passwd : String = ""
     @State var isOn = true
     @State var isLogin: Bool = false
     @State var showingAlert: Bool = false
@@ -76,19 +73,11 @@ struct Login: View {
             let loginJSON = "{\"user_id\": \"\(userAuth.user_id)\", \"user_pw\": \"\(userAuth.user_pw)\"}"
 
             VStack {
-                // title
-//                Button(action: {
-//                    Service_login(json: loginJSON)
-//                }, label: {Text("Login to DB")})
                 Spacer()
                 Text("CLONET")
                     .font(.title)
                 Spacer()
-                /////////////////////////////////////////////////////////////////////////// // 서버에서 받아온 login_result 출력
-//                ForEach(service.messages, id: \.self) { msg in
-//                    Text(msg).padding()
-//                }
-                /////////////////////////////////////////////////////////////////////////////
+
                 
                 // input
                 VStack(alignment: .center) {
@@ -161,17 +150,8 @@ struct Login: View {
         .navigationBarBackButtonHidden(true)
         .navigationBarTitle("")
         .navigationBarHidden(true)
-//
     }
     
-//    func login() -> Bool {
-//        print("func login()")
-//        if(id == "B" && passwd == "A"){
-//            return true
-//        }else{
-//            return false
-//        }
-//    }
 
 }
 
