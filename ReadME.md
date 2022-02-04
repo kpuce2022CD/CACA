@@ -15,4 +15,5 @@
 * petitejini@kpu.ac.kr
 
 ## Swift Prototype
-![Uploading 이름 없는 노트북 (1) (1)-13.jpg…]()
+
+![이름 없는 노트북 (1) (1)-13](https://user-images.githubusercontent.com/79956705/152505419-da832116-a7cd-41ed-8733-8b624ac267a5.jpg)
