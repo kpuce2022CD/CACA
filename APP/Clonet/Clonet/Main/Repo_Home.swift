@@ -389,15 +389,7 @@ struct Repo_Home: View {
             message = "Could not clone repository: \(error)"
         }
     }
-    
-//    func branchRepo(){
-//        let result = Repository.remoteBranches
-//        switch result{
-//
-//        }
-//    }
-    
-    
+
 
     func loadGitRepo() {
         let result = Repository.at(localRepoLocation)
