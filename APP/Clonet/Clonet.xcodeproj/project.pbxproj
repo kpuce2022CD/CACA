@@ -38,8 +38,6 @@
 		B540D420278C603900479A63 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = B540D41F278C603900479A63 /* libz.tbd */; };
 		B540D422278C604200479A63 /* libiconv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = B540D421278C604200479A63 /* libiconv.tbd */; };
 		B5D184262792B6D1004C7E8F /* Repo_Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D184252792B6D1004C7E8F /* Repo_Home.swift */; };
-		B5F6B9A127AE8CD200C46E4B /* Apollo in Frameworks */ = {isa = PBXBuildFile; productRef = B5F6B9A027AE8CD200C46E4B /* Apollo */; };
-		B5F6B9A327AE8CD200C46E4B /* ApolloWebSocket in Frameworks */ = {isa = PBXBuildFile; productRef = B5F6B9A227AE8CD200C46E4B /* ApolloWebSocket */; };
 		DA253E13278DEE1500AEE18A /* ViewModifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA253E12278DEE1500AEE18A /* ViewModifiers.swift */; };
 		DA97B6A7278BE05D006C473E /* ClonetApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA97B6A6278BE05D006C473E /* ClonetApp.swift */; };
 		DA97B6A9278BE05D006C473E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA97B6A8278BE05D006C473E /* ContentView.swift */; };
@@ -99,8 +97,6 @@
 				3F772E0A279C70BC0047F693 /* SwiftGit2 in Frameworks */,
 				B540D420278C603900479A63 /* libz.tbd in Frameworks */,
 				3F6A1BC4279AADDE00146367 /* Result in Frameworks */,
-				B5F6B9A327AE8CD200C46E4B /* ApolloWebSocket in Frameworks */,
-				B5F6B9A127AE8CD200C46E4B /* Apollo in Frameworks */,
 				DACAA65B278C7BFB007F3918 /* SocketIO in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -276,8 +272,6 @@
 				3F6A1BBD279A839300146367 /* KeychainAccess */,
 				3F6A1BC3279AADDE00146367 /* Result */,
 				3F772E09279C70BC0047F693 /* SwiftGit2 */,
-				B5F6B9A027AE8CD200C46E4B /* Apollo */,
-				B5F6B9A227AE8CD200C46E4B /* ApolloWebSocket */,
 			);
 			productName = Clonet;
 			productReference = DA97B6A3278BE05D006C473E /* Clonet.app */;
@@ -313,7 +307,6 @@
 				3F6A1BBC279A839300146367 /* XCRemoteSwiftPackageReference "KeychainAccess" */,
 				3F6A1BC2279AADDE00146367 /* XCRemoteSwiftPackageReference "Result" */,
 				3F772E08279C6FC40047F693 /* XCRemoteSwiftPackageReference "SwiftGit2" */,
-				B5F6B99F27AE8CD200C46E4B /* XCRemoteSwiftPackageReference "apollo-ios" */,
 			);
 			productRefGroup = DA97B6A4278BE05D006C473E /* Products */;
 			projectDirPath = "";
@@ -608,14 +601,6 @@
 				kind = branch;
 			};
 		};
-		B5F6B99F27AE8CD200C46E4B /* XCRemoteSwiftPackageReference "apollo-ios" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/apollographql/apollo-ios";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 0.3.0;
-			};
-		};
 		DACAA659278C7BFB007F3918 /* XCRemoteSwiftPackageReference "socket.io-client-swift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/socketio/socket.io-client-swift.git";
@@ -649,16 +634,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 3F772E08279C6FC40047F693 /* XCRemoteSwiftPackageReference "SwiftGit2" */;
 			productName = SwiftGit2;
-		};
-		B5F6B9A027AE8CD200C46E4B /* Apollo */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = B5F6B99F27AE8CD200C46E4B /* XCRemoteSwiftPackageReference "apollo-ios" */;
-			productName = Apollo;
-		};
-		B5F6B9A227AE8CD200C46E4B /* ApolloWebSocket */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = B5F6B99F27AE8CD200C46E4B /* XCRemoteSwiftPackageReference "apollo-ios" */;
-			productName = ApolloWebSocket;
 		};
 		DACAA65A278C7BFB007F3918 /* SocketIO */ = {
 			isa = XCSwiftPackageProductDependency;
