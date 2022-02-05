@@ -9,6 +9,7 @@ import SwiftUI
 import SwiftGit2
 
 struct Repo_View_Git: View {
+    @ObservedObject var directory = getFileList()
     
     @State var RepositoryName = "hey"
     @State var UserName = "UserName"
@@ -70,6 +71,7 @@ struct Repo_View_Git: View {
                 // MARK: Clone Button
                 Button(action: {
                     cloneGitRepo(remoteRepoLocation: remoteRepoLocation, localRepoLocation: documentURL.appendingPathComponent(RepositoryName))
+                    directory.location(repoName: RepositoryName)
                 }){
                     HStack{
                         Image(systemName: "square.and.arrow.down")
