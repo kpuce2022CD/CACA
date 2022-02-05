@@ -14,7 +14,7 @@
 * pjy0619@kpu.ac.kr
 * petitejini@kpu.ac.kr
 
-### Apollo
+## Apollo
 https://studio.apollographql.com/org/clonet/graphs
 
 ## Swift Prototype
