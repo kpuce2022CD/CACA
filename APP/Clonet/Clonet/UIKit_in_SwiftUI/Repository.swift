@@ -17,7 +17,13 @@ import Clibgit2
 let gitAuthor = Signature.init(name: "Git Writing", email: "gitwriting@example.com")
 
 extension Repository {
-    
+    //MARK: Log
+//    public func log_list(_ repo: Repository, argc : Int, argv : Array<OpaquePointer>){
+    public func log_list(_ repo: Repository){
+      
+        
+        
+    }
     
     //MARK: REVERT
     public func revert_commit(_ repo: Repository){

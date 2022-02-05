@@ -9,7 +9,21 @@ import SwiftUI
 
 struct Repo_View_Log: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        List{
+//            ForEach(GetRepoName.str2, id: \.self) { i in
+//
+//                NavigationLink(destination: Repo_Home(repoName: i, user_id: userID, branch: branchArr)){
+//                    VStack{
+//                        Text(i).padding()
+//                            .padding(2)
+//                            .font(.title3)
+//                    }
+//                }
+//            }
+//            .buttonStyle(PlainButtonStyle())
+//            .onAppear {
+//            }
+        }
     }
 }
 
