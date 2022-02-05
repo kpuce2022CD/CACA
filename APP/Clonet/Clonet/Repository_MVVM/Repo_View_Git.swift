@@ -240,11 +240,9 @@ struct Repo_View_Git: View {
 
     
     //MARK: CHECKOUT_FUNC
-    func checkout_Branch(localRepoLocation localRepoLocation : URL, branchname branchname : String){
-        //var branch_name = "remotes/origin/" + branchname
-        var branch_name = branchname
-        
+    func checkout_Branch(localRepoLocation localRepoLocation : URL, branchname branch_name : String){
         let result = Repository.at(localRepoLocation)
+        print("branch_name : ", branch_name)
         switch result {
         case let .success(repo):
             let branch_commit = repo.checkout_branch(repo, branchName: branch_name)
