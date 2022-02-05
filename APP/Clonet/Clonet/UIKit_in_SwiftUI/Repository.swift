@@ -95,7 +95,6 @@ extension Repository {
         }
 
         /// git_object, does not exist
-//        let branchResult = repo.remoteBranches()
         let branchResult = repo.localBranches()
         switch branchResult {
         case .success(let branches):
@@ -118,8 +117,6 @@ extension Repository {
 
                     let ret = git_branch_create(&output, repository, branchName, pointerToCommitInLibGit2, 1)
                     print("kek \(ret)")
-//                    let checkoutRet = checkout(branch, strategy: .Force)
-//                    print(checkoutRet)
                     break;
                 }
             }

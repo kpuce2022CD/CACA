@@ -186,6 +186,7 @@ struct GitTest: View {
                 lastCMmsg = commit.message
                 lastCMuser = commit.author.name
                 lastCMtime = commit.author.time
+            
                 
             case let .failure(error):
                 message = "Could not get commit: \(error)"
