@@ -38,6 +38,9 @@
 		B540D420278C603900479A63 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = B540D41F278C603900479A63 /* libz.tbd */; };
 		B540D422278C604200479A63 /* libiconv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = B540D421278C604200479A63 /* libiconv.tbd */; };
 		B5D184262792B6D1004C7E8F /* Repo_Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D184252792B6D1004C7E8F /* Repo_Home.swift */; };
+		B5F6B9B027AED04900C46E4B /* Apollo in Frameworks */ = {isa = PBXBuildFile; productRef = B5F6B9AF27AED04900C46E4B /* Apollo */; };
+		B5F6B9B227AED04900C46E4B /* ApolloWebSocket in Frameworks */ = {isa = PBXBuildFile; productRef = B5F6B9B127AED04900C46E4B /* ApolloWebSocket */; };
+		B5F6B9B627AED60D00C46E4B /* schema.json in Resources */ = {isa = PBXBuildFile; fileRef = B5F6B9B527AED60D00C46E4B /* schema.json */; };
 		DA253E13278DEE1500AEE18A /* ViewModifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA253E12278DEE1500AEE18A /* ViewModifiers.swift */; };
 		DA97B6A7278BE05D006C473E /* ClonetApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA97B6A6278BE05D006C473E /* ClonetApp.swift */; };
 		DA97B6A9278BE05D006C473E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA97B6A8278BE05D006C473E /* ContentView.swift */; };
@@ -78,6 +81,7 @@
 		B540D41F278C603900479A63 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		B540D421278C604200479A63 /* libiconv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libiconv.tbd; path = usr/lib/libiconv.tbd; sourceTree = SDKROOT; };
 		B5D184252792B6D1004C7E8F /* Repo_Home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Repo_Home.swift; sourceTree = "<group>"; };
+		B5F6B9B527AED60D00C46E4B /* schema.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = schema.json; sourceTree = "<group>"; };
 		DA253E12278DEE1500AEE18A /* ViewModifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModifiers.swift; sourceTree = "<group>"; };
 		DA97B6A3278BE05D006C473E /* Clonet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Clonet.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DA97B6A6278BE05D006C473E /* ClonetApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClonetApp.swift; sourceTree = "<group>"; };
@@ -97,6 +101,8 @@
 				3F772E0A279C70BC0047F693 /* SwiftGit2 in Frameworks */,
 				B540D420278C603900479A63 /* libz.tbd in Frameworks */,
 				3F6A1BC4279AADDE00146367 /* Result in Frameworks */,
+				B5F6B9B227AED04900C46E4B /* ApolloWebSocket in Frameworks */,
+				B5F6B9B027AED04900C46E4B /* Apollo in Frameworks */,
 				DACAA65B278C7BFB007F3918 /* SocketIO in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -229,6 +235,7 @@
 		DA97B6A5278BE05D006C473E /* Clonet */ = {
 			isa = PBXGroup;
 			children = (
+				B5F6B9B527AED60D00C46E4B /* schema.json */,
 				3F41CA7127AD16F10031F6C3 /* Repository_MVVM */,
 				3F41CA6A27ACCB9B0031F6C3 /* Login_MVVM */,
 				3F6A1B982799998600146367 /* Shell */,
@@ -258,6 +265,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = DA97B6B1278BE05E006C473E /* Build configuration list for PBXNativeTarget "Clonet" */;
 			buildPhases = (
+				B5F6B9B327AED09A00C46E4B /* Apollo */,
 				DA97B69F278BE05D006C473E /* Sources */,
 				DA97B6A0278BE05D006C473E /* Frameworks */,
 				DA97B6A1278BE05D006C473E /* Resources */,
@@ -272,6 +280,8 @@
 				3F6A1BBD279A839300146367 /* KeychainAccess */,
 				3F6A1BC3279AADDE00146367 /* Result */,
 				3F772E09279C70BC0047F693 /* SwiftGit2 */,
+				B5F6B9AF27AED04900C46E4B /* Apollo */,
+				B5F6B9B127AED04900C46E4B /* ApolloWebSocket */,
 			);
 			productName = Clonet;
 			productReference = DA97B6A3278BE05D006C473E /* Clonet.app */;
@@ -307,6 +317,7 @@
 				3F6A1BBC279A839300146367 /* XCRemoteSwiftPackageReference "KeychainAccess" */,
 				3F6A1BC2279AADDE00146367 /* XCRemoteSwiftPackageReference "Result" */,
 				3F772E08279C6FC40047F693 /* XCRemoteSwiftPackageReference "SwiftGit2" */,
+				B5F6B9AE27AED04900C46E4B /* XCRemoteSwiftPackageReference "apollo-ios" */,
 			);
 			productRefGroup = DA97B6A4278BE05D006C473E /* Products */;
 			projectDirPath = "";
@@ -322,6 +333,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B5F6B9B627AED60D00C46E4B /* schema.json in Resources */,
 				DA97B6AE278BE05E006C473E /* Preview Assets.xcassets in Resources */,
 				DA97B6AB278BE05E006C473E /* Assets.xcassets in Resources */,
 				3FD176B9278D72430025CCD2 /* test.json in Resources */,
@@ -329,6 +341,27 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		B5F6B9B327AED09A00C46E4B /* Apollo */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = Apollo;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n# Don't run this during index builds\nif [ $ACTION = \"indexbuild\" ]; then exit 0; fi\n\n# Go to the build root and search up the chain to find the Derived Data Path where the source packages are checked out.\nDERIVED_DATA_CANDIDATE=\"${BUILD_ROOT}\"\n\nwhile ! [ -d \"${DERIVED_DATA_CANDIDATE}/SourcePackages\" ]; do\n  if [ \"${DERIVED_DATA_CANDIDATE}\" = / ]; then\n    echo >&2 \"error: Unable to locate SourcePackages directory from BUILD_ROOT: '${BUILD_ROOT}'\"\n    exit 1\n  fi\n\n  DERIVED_DATA_CANDIDATE=\"$(dirname \"${DERIVED_DATA_CANDIDATE}\")\"\ndone\n\n# Grab a reference to the directory where scripts are checked out\nSCRIPT_PATH=\"${DERIVED_DATA_CANDIDATE}/SourcePackages/checkouts/apollo-ios/scripts\"\n\nif [ -z \"${SCRIPT_PATH}\" ]; then\n    echo >&2 \"error: Couldn't find the CLI script in your checked out SPM packages; make sure to add the framework to your project.\"\n    exit 1\nfi\n\ncd \"${SRCROOT}/${TARGET_NAME}\"\n#\"${SCRIPT_PATH}\"/run-bundled-codegen.sh codegen:generate --target=swift --includes=./**/*.graphql --localSchemaFile=\"schema.json\" API.swift\n\n\"${SCRIPT_PATH}\"/run-bundled-codegen.sh schema:download --endpoint=\"https://apollo-fullstack-tutorial.herokuapp.com/graphql\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		DA97B69F278BE05D006C473E /* Sources */ = {
@@ -601,6 +634,14 @@
 				kind = branch;
 			};
 		};
+		B5F6B9AE27AED04900C46E4B /* XCRemoteSwiftPackageReference "apollo-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/apollographql/apollo-ios";
+			requirement = {
+				kind = exactVersion;
+				version = 0.49.0;
+			};
+		};
 		DACAA659278C7BFB007F3918 /* XCRemoteSwiftPackageReference "socket.io-client-swift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/socketio/socket.io-client-swift.git";
@@ -634,6 +675,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 3F772E08279C6FC40047F693 /* XCRemoteSwiftPackageReference "SwiftGit2" */;
 			productName = SwiftGit2;
+		};
+		B5F6B9AF27AED04900C46E4B /* Apollo */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B5F6B9AE27AED04900C46E4B /* XCRemoteSwiftPackageReference "apollo-ios" */;
+			productName = Apollo;
+		};
+		B5F6B9B127AED04900C46E4B /* ApolloWebSocket */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B5F6B9AE27AED04900C46E4B /* XCRemoteSwiftPackageReference "apollo-ios" */;
+			productName = ApolloWebSocket;
 		};
 		DACAA65A278C7BFB007F3918 /* SocketIO */ = {
 			isa = XCSwiftPackageProductDependency;
