@@ -11,8 +11,10 @@ import MobileCoreServices
 final class getFileList: ObservableObject{
     @State var repoName_test = "test"
     @Published var items = [String]()
+    @Published var text : String = ""
     init(){
         location(repoName: self.repoName_test)
+        text = printLine(fileName: "test.txt")
     }
     // MARK: GET FILE LIST
     func location(repoName: String){
@@ -28,6 +30,23 @@ final class getFileList: ObservableObject{
             print("error")
         }
     }
+    
+    func printLine(fileName: String) -> String {
+        let filename = fileName
+        var str1: String
+        var myCounter: Int
+        do {
+            let contents = try String(contentsOfFile: filename)
+            let lines = contents.split(separator:"\n")
+            myCounter = lines.count
+            str1 = String(myCounter)
+            } catch {
+                return (error.localizedDescription)
+            }
+            return str1
+    }
+    
+
 }
 
 struct DocumentPicker : UIViewControllerRepresentable {
@@ -72,7 +91,7 @@ struct Repo_View_Directory: View {
     @State var CommitMessage : String = "Commit Message"
     @State var location = "test"
     @State var fileNameImg = "mumani.psd"
-    @State var text: String = ""
+//    @State var text: String = ""
     @State private var editREADME : Bool = true
     
     
@@ -104,6 +123,8 @@ struct Repo_View_Directory: View {
                             Button(i, action: {
                                 fileNameImg = i
                                 if(i == "README.md"){
+//                                    text = printLine(fileName: i)
+//                                    print("text", text)
                                     editREADME = true
                                 } else{
                                     editREADME = false
@@ -133,13 +154,17 @@ struct Repo_View_Directory: View {
                         .padding(EdgeInsets(top: 0, leading: 15, bottom: 0, trailing: 0))
                 }
                 if editREADME {
-                    TextEditor(text: $text)
-                        .padding()
-                        .foregroundColor(Color.black)
-                        .lineSpacing(5) //줄 간격
+                    VStack{
+                        TextEditor(text: $dataList.text)
+                            .padding()
+                            .foregroundColor(Color.black)
+                            .lineSpacing(5) //줄 간격
+                        
+                            .frame(width: 500, height: 500)
+                            .border(Color.yellow, width: 1)
+                        Button("Save", action: {})
+                    }
                     
-                        .frame(width: 500, height: 500)
-                        .border(Color.yellow, width: 1)
                 } else {
                     Image(uiImage: load(fileName: fileNameImg)!)
                         .resizable()
@@ -147,21 +172,7 @@ struct Repo_View_Directory: View {
                         .frame(width: 500, height: 500)
                         .padding()
                 }
-                if(fileNameImg == "README.MD"){
-//                    TextEditor(text: $text)
-//                        .padding()
-//                        .foregroundColor(Color.black)
-//                        .lineSpacing(5) //줄 간격
-//
-//                        .frame(width: 500, height: 500)
-//                        .border(Color.yellow, width: 1)
-                } else{
-//                    Image(uiImage: load(fileName: fileNameImg)!)
-//                        .resizable()
-//                        .aspectRatio(contentMode: .fit) // Image 깨지지 않게 크기 처리
-//                        .frame(width: 500, height: 500)
-//                        .padding()
-                }
+
             }
         }
     }
@@ -176,6 +187,21 @@ struct Repo_View_Directory: View {
         }
         return nil
     }
+    
+//    func printLine(fileName: String) -> String {
+//        let filename = fileName
+//        var str1: String
+//        var myCounter: Int
+//        do {
+//            let contents = try String(contentsOfFile: filename)
+//            let lines = contents.split(separator:"\n")
+//            myCounter = lines.count
+//            str1 = String(myCounter)
+//            } catch {
+//                return (error.localizedDescription)
+//            }
+//            return str1
+//    }
     
     
     
