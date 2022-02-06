@@ -8,5 +8,10 @@ struct Launches: Decodable {
         self.cursor = ""
         self.hasMore = false
     }
+    
+    init(_ launches: LaunchData?){
+        self.cursor = launches?.cursor ?? ""
+        self.hasMore = launches?.hasMore ?? false
+    }
 
 }

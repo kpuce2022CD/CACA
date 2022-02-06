@@ -9,7 +9,7 @@ import Foundation
 import Apollo
 
 final class LaunchViewModel: ObservableObject {
-    @Published var launches: [Launches] = []
+    @Published var launches: Launches = Launches.init()
     
     init(){
         fetch()
@@ -22,7 +22,7 @@ final class LaunchViewModel: ObservableObject {
 //            print("Success! Result: \(graphQLResult)")
               if let launches = graphQLResult.data?.launches {
                   print("Success! Result: \(launches.hasMore) \(launches.cursor)")
-//                      self.launches = self.process(data: launches)
+                  self.launches = self.process(data: launches)
               } else if let errors = graphQLResult.errors {
                       print("GraphQL errors \(errors)")
               }
@@ -33,8 +33,8 @@ final class LaunchViewModel: ObservableObject {
         }
     }
     
-//    func process(data: LaunchData) -> [Launches.Launch] {
-//        return Launches(data).launches
-//    }
+    func process(data: LaunchData) -> Launches {
+        return Launches(data)
+    }
 
 }

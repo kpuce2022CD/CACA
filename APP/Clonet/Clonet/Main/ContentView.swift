@@ -8,15 +8,15 @@
 import SwiftUI
 
 struct ContentView: View {
-    @EnvironmentObject var launchViewModel: LaunchViewModel
+    @EnvironmentObject var launchViewModela: LaunchViewModel
     
     var body: some View {
         
-        HStack {
+        VStack {
             Text("Apollo")
-//            ForEach(launchViewModel.launches){ launch in
-//                Text(launch.id)
-//            }
+            Text("\(launchViewModela.launches.cursor)")
+            Text("\(String(launchViewModela.launches.hasMore))")
+            
         }
         
 //        LaunchViewModel()
