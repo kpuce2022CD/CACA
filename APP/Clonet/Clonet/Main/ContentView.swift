@@ -8,8 +8,17 @@
 import SwiftUI
 
 struct ContentView: View {
+    @EnvironmentObject var launchViewModel: LaunchViewModel
+    
     var body: some View {
-        Text("Apollo")
+        
+        HStack {
+            Text("Apollo")
+//            ForEach(launchViewModel.launches){ launch in
+//                Text(launch.id)
+//            }
+        }
+        
 //        LaunchViewModel()
 //        Repo_View_Log()
 //        Repo_Home(repoName: "repoName", user_id: "user_Id", branch: ["branch1", "branch2"])
@@ -21,6 +30,6 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        ContentView().environmentObject(LaunchViewModel())
     }
 }

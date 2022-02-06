@@ -13,6 +13,7 @@
 		3F323A1027AF8D25001709AF /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F323A0F27AF8D25001709AF /* Network.swift */; };
 		3F323A1227AF8D47001709AF /* LaunchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F323A1127AF8D47001709AF /* LaunchViewModel.swift */; };
 		3F323A1427AF8D60001709AF /* ApolloGraphQLAPP.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F323A1327AF8D60001709AF /* ApolloGraphQLAPP.swift */; };
+		3F323A1627AF8FE2001709AF /* LauchModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F323A1527AF8FE2001709AF /* LauchModel.swift */; };
 		3F41CA6C27ACCBBE0031F6C3 /* Login_Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F41CA6B27ACCBBE0031F6C3 /* Login_Model.swift */; };
 		3F41CA6E27ACCBC90031F6C3 /* Login_View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F41CA6D27ACCBC90031F6C3 /* Login_View.swift */; };
 		3F41CA7027ACCBE80031F6C3 /* Login_ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F41CA6F27ACCBE80031F6C3 /* Login_ViewModel.swift */; };
@@ -62,6 +63,7 @@
 		3F323A0F27AF8D25001709AF /* Network.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
 		3F323A1127AF8D47001709AF /* LaunchViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LaunchViewModel.swift; sourceTree = "<group>"; };
 		3F323A1327AF8D60001709AF /* ApolloGraphQLAPP.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApolloGraphQLAPP.swift; sourceTree = "<group>"; };
+		3F323A1527AF8FE2001709AF /* LauchModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LauchModel.swift; sourceTree = "<group>"; };
 		3F41CA6B27ACCBBE0031F6C3 /* Login_Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Login_Model.swift; sourceTree = "<group>"; };
 		3F41CA6D27ACCBC90031F6C3 /* Login_View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Login_View.swift; sourceTree = "<group>"; };
 		3F41CA6F27ACCBE80031F6C3 /* Login_ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Login_ViewModel.swift; sourceTree = "<group>"; };
@@ -245,6 +247,7 @@
 		DA97B6A5278BE05D006C473E /* Clonet */ = {
 			isa = PBXGroup;
 			children = (
+				3F323A1527AF8FE2001709AF /* LauchModel.swift */,
 				3F323A1327AF8D60001709AF /* ApolloGraphQLAPP.swift */,
 				3F323A1127AF8D47001709AF /* LaunchViewModel.swift */,
 				3F323A0F27AF8D25001709AF /* Network.swift */,
@@ -393,6 +396,7 @@
 				3F41CA7F27AD36FF0031F6C3 /* Repo_View_Request.swift in Sources */,
 				3F6A1BC0279A8AF300146367 /* PushOptions.swift in Sources */,
 				3F323A1027AF8D25001709AF /* Network.swift in Sources */,
+				3F323A1627AF8FE2001709AF /* LauchModel.swift in Sources */,
 				3F41CA7027ACCBE80031F6C3 /* Login_ViewModel.swift in Sources */,
 				3F41CA7327AD17180031F6C3 /* Repo_Model.swift in Sources */,
 				3FD176B4278D4E7D0025CCD2 /* FindIdPw.swift in Sources */,
