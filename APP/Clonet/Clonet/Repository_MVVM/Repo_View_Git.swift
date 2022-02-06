@@ -11,10 +11,10 @@ import SwiftGit2
 struct Repo_View_Git: View {
     @ObservedObject var directory = getFileList()
     
-    @State var RepositoryName = "hey"
+    @State var RepositoryName = "test"
     @State var UserName = "UserName"
     @State var userEmail = "UserEmail"
-    @State var remoteRepoLocation = "http://52.79.235.187/git-repositories/PJY_JJANG.git"
+    @State var remoteRepoLocation = "http://13.125.173.134/git-repositories/TEST.git"
     @State var commit_msg = "commit_msg"
     @State var branchArr : [String] = []
     

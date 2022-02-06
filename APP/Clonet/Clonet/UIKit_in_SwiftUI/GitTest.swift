@@ -28,10 +28,10 @@ struct GitTest: View {
     @State var lastCMtime = Date()
     
     
-    let faceLocation = documentURL.appendingPathComponent("hey")
-    let localRepoLocation = documentURL.appendingPathComponent("hey")
-    let remoteRepoLocation = "http://52.79.235.187/git-repositories/PJY_JJANG.git"
-    let test = "http://52.79.235.187/git-repositories/PJY_JJANG.git"
+    let faceLocation = documentURL.appendingPathComponent("test")
+    let localRepoLocation = documentURL.appendingPathComponent("test")
+    let remoteRepoLocation = "http://13.125.173.134/git-repositories/TEST.git"
+    let test = "http://13.125.173.134/git-repositories/TEST.git"
     
     init() {
         // git_libgit2_init()

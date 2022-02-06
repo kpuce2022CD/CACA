@@ -9,8 +9,11 @@ import SwiftUI
 import MobileCoreServices
 
 final class getFileList: ObservableObject{
+    @State var repoName_test = "test"
     @Published var items = [String]()
-    
+    init(){
+        location(repoName: self.repoName_test)
+    }
     // MARK: GET FILE LIST
     func location(repoName: String){
         print("reponame: \(repoName)")
@@ -63,6 +66,7 @@ struct Repo_View_Directory: View {
     @State var alert = false
     
     var body: some View {
+        
         VStack{
             Button(action:{
                 self.show.toggle()
@@ -76,10 +80,13 @@ struct Repo_View_Directory: View {
                 Alert(title: Text("Message"), message: Text("Upload Successfully"), dismissButton: .default(Text("OK")))
             }
             List{
+                
                 ForEach(dataList.items, id: \.self){ i in
                     Text(i)
                 }
-            }
+            }.onAppear(perform: {
+                print("list", dataList.items)
+            })
         }
     }
 }

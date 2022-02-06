@@ -12,15 +12,15 @@ struct ContentView: View {
     
     var body: some View {
         
-        VStack {
-            Text("Apollo")
-            Text("\(launchViewModela.launches.cursor)")
-            Text("\(String(launchViewModela.launches.hasMore))")
-            
-        }
+//        VStack {
+//            Text("Apollo")
+//            Text("\(launchViewModela.launches.cursor)")
+//            Text("\(String(launchViewModela.launches.hasMore))")
+//
+//        }
         
 //        LaunchViewModel()
-//        Repo_View_Log()
+        Repo_View()
 //        Repo_Home(repoName: "repoName", user_id: "user_Id", branch: ["branch1", "branch2"])
 //        GitTest()
 //        Login()
