@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
+//        LaunchViewModel()
 //        Repo_View_Log()
 //        Repo_Home(repoName: "repoName", user_id: "user_Id", branch: ["branch1", "branch2"])
         GitTest()
