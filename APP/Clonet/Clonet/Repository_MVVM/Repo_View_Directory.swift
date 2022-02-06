@@ -60,6 +60,7 @@ struct DocumentPicker : UIViewControllerRepresentable {
     }
 }
 
+
 struct Repo_View_Directory: View {
     @ObservedObject var dataList = getFileList()
     @State var show = false
@@ -71,7 +72,10 @@ struct Repo_View_Directory: View {
     @State var CommitMessage : String = "Commit Message"
     @State var location = "test"
     @State var fileNameImg = "mumani.psd"
-
+    @State var text: String = ""
+    @State private var editREADME : Bool = true
+    
+    
     var documentsUrl: URL {
         return FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
     }
@@ -96,7 +100,17 @@ struct Repo_View_Directory: View {
                     
                     ForEach(dataList.items, id: \.self){ i in
 //                        Text(i)
-                        Button(i, action: {fileNameImg = i})
+                        if(i != ".git"){
+                            Button(i, action: {
+                                fileNameImg = i
+                                if(i == "README.md"){
+                                    editREADME = true
+                                } else{
+                                    editREADME = false
+                                }
+                            })
+                        }
+                        
                     }
                 }.frame(width: 300)
             }
@@ -118,13 +132,36 @@ struct Repo_View_Directory: View {
                     Text(CommitMessage)
                         .padding(EdgeInsets(top: 0, leading: 15, bottom: 0, trailing: 0))
                 }
-                
-                // 선택한 이미지
-                Image(uiImage: load(fileName: fileNameImg)!)
-                    .resizable()
-                    .aspectRatio(contentMode: .fit) // Image 깨지지 않게 크기 처리
-                    .frame(width: 500, height: 500)
-                    .padding()
+                if editREADME {
+                    TextEditor(text: $text)
+                        .padding()
+                        .foregroundColor(Color.black)
+                        .lineSpacing(5) //줄 간격
+                    
+                        .frame(width: 500, height: 500)
+                        .border(Color.yellow, width: 1)
+                } else {
+                    Image(uiImage: load(fileName: fileNameImg)!)
+                        .resizable()
+                        .aspectRatio(contentMode: .fit) // Image 깨지지 않게 크기 처리
+                        .frame(width: 500, height: 500)
+                        .padding()
+                }
+                if(fileNameImg == "README.MD"){
+//                    TextEditor(text: $text)
+//                        .padding()
+//                        .foregroundColor(Color.black)
+//                        .lineSpacing(5) //줄 간격
+//
+//                        .frame(width: 500, height: 500)
+//                        .border(Color.yellow, width: 1)
+                } else{
+//                    Image(uiImage: load(fileName: fileNameImg)!)
+//                        .resizable()
+//                        .aspectRatio(contentMode: .fit) // Image 깨지지 않게 크기 처리
+//                        .frame(width: 500, height: 500)
+//                        .padding()
+                }
             }
         }
     }
