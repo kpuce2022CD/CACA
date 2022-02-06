@@ -7,6 +7,7 @@
 
 import SwiftUI
 import MobileCoreServices
+import Foundation
 
 final class getFileList: ObservableObject{
     @State var repoName_test = "test"
@@ -63,6 +64,22 @@ final class getFileList: ObservableObject{
             catch {print("fail to load readme")}
         }
         return result
+    }
+    
+    func readMEsave(text: String) {
+        var fileName : String = "README.md"
+//        let filename = getDocumentsDirectory().appendingPathComponent(repoName_test+"/"+fileName)
+
+        if let dir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
+        let fileURL = dir.appendingPathComponent(repoName_test+"/"+fileName)
+        do {
+            try text.write(to: fileURL, atomically: true, encoding: String.Encoding.utf8)
+            print("save success")
+        } catch {
+            // failed to write file – bad permissions, bad filename, missing permissions, or more likely it can't be converted to the encoding
+            print("save fail")
+            }
+        }
     }
     
 
@@ -181,7 +198,7 @@ struct Repo_View_Directory: View {
                         
                             .frame(width: 500, height: 500)
                             .border(Color.yellow, width: 1)
-                        Button("Save", action: {})
+                        Button("Save", action: {dataList.readMEsave(text: dataList.text)})
                     }
                     
                 } else {
