@@ -14,7 +14,7 @@ final class getFileList: ObservableObject{
     @Published var text : String = ""
     init(){
         location(repoName: self.repoName_test)
-        text = printLine(fileName: "test.txt")
+        text = readMELoad(fileName: "README.md")
     }
     // MARK: GET FILE LIST
     func location(repoName: String){
@@ -44,6 +44,25 @@ final class getFileList: ObservableObject{
                 return (error.localizedDescription)
             }
             return str1
+    }
+    
+    func readMELoad(fileName: String) -> String {
+        var result = ""
+         
+        //if you get access to the directory
+        if let dir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
+         
+            //prepare file url
+            let fileURL = dir.appendingPathComponent(repoName_test+"/"+fileName)
+         
+            do {
+                result = try String(contentsOf: fileURL, encoding: .utf8)
+                print(result)
+                return result
+            }
+            catch {print("fail to load readme")}
+        }
+        return result
     }
     
 
