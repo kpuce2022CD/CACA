@@ -10,8 +10,10 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@apollo/federation": "^0.34.0",
     "apollo-server": "^3.6.2",
     "graphql": "^16.3.0",
+    "knex": "^1.0.2",
     "mysql": "^2.18.1"
   }
 }
