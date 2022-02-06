@@ -20,7 +20,7 @@ final class LaunchViewModel: ObservableObject {
           case .success(let graphQLResult):
             print("Success! Result: \(graphQLResult)")
           case .failure(let error):
-            print("Failure!!! Error: \(error)")
+            print("Failure! Error: \(error)")
           }
         }
     }

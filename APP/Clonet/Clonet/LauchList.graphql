@@ -1,0 +1,6 @@
+query LaunchList{
+  launches {
+    cursor
+    hasMore
+  }
+}
