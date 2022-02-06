@@ -96,7 +96,7 @@ struct Signup: View {
                     ZStack {
                         ForEach(service.messages, id: \.self) { msg in
                             if(msg == "TRUE"){
-                                NavigationLink(destination: Login(), tag: "signupButton", selection: $selectionString) { }
+                                NavigationLink(destination: Login_View(), tag: "signupButton", selection: $selectionString) { }
                                 .buttonStyle(PlainButtonStyle()).frame(width:0).opacity(0)
                                 Button("Sign UP") {
                                     self.selectionString = "signupButton"
