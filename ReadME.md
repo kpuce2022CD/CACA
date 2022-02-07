@@ -4,7 +4,7 @@
 
 ## 개발환경
 #### 📱 APP 📱
-<img src="https://img.shields.io/badge/SwiftUI-F05138?style=flat-square&logo=Swift&logoColor=white"/> <img src="https://img.shields.io/badge/ApolloGraphQL-E10098?style=flat-square&logo=ApolloGraphQL&logoColor=white"/>
+<img src="https://img.shields.io/badge/SwiftUI-F05138?style=flat-square&logo=Swift&logoColor=white"/> <img src="https://img.shields.io/badge/Apollo-311C87?style=flat-square&logo=ApolloGraphQL&logoColor=white"/> <img src="https://img.shields.io/badge/GraphQL-E10098?style=flat-square&logo=GraphQL&logoColor=white"/> 
 
 #### 💻 WEB 💻
 <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=JavaScript&logoColor=white"/> <img src="https://img.shields.io/badge/Docker-2496ED?style=flat-square&logo=Docker&logoColor=white"/> <img src="https://img.shields.io/badge/ApacheKafka-231F20?style=flat-square&logo=ApacheKafka&logoColor=white"/>
