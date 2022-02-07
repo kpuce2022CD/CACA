@@ -20,9 +20,9 @@ struct ContentView: View {
 //        }
         
 //        LaunchViewModel()
-        Repo_View()
+//        Repo_View()
 //        Repo_Home(repoName: "repoName", user_id: "user_Id", branch: ["branch1", "branch2"])
-//        GitTest()
+        GitTest()
 //        Login()
         // ActivityIndicatorDemo()
     }
