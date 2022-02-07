@@ -4,6 +4,8 @@ CREATE DATABASE clonet_database default CHARACTER SET UTF8;
 show databases;
 use clonet_database;
 
+show tables;
+
 create table user(
 	user_id char(10) primary key not null,
     user_pw char(20) not null,
@@ -16,14 +18,16 @@ create table user(
 
 create table repository(
 	repo_name char(15) primary key not null,
-    repo_ec2_ip char(15) not null,
-    directory_path char(50) not null,
-    read_me varchar(100)
+    repo_ec2_ip char(15) not null
 );
 
-create table repo_group(
-	group_id char(15) primary key not null,
-    group_host char(15) not null
+create table mapping_repo_group(
+	user_id char(10) not null,
+    repo_name char(15) not null,
+    
+    primary key(user_id, group_id),
+    foreign key (user_id) references user (user_id),
+    foreign key (repo_name) references repository (repo_name)
 );
 
 create table mapping_repo_group(
