@@ -6,6 +6,20 @@ use clonet_database;
 
 show tables;
 
+drop table user;
+drop table repository;
+drop table mapping_repo_user;
+
+select * from user;
+select * from repository;
+
+delete from user where user_pw="";
+
+insert into user values ("user_id", "", "", "", "", "", "");
+
+SELECT @@AUTOCOMMIT;
+SET AUTOCOMMIT = 1;
+
 create table user(
 	user_id char(10) primary key not null,
     user_pw char(20) not null,
@@ -21,11 +35,13 @@ create table repository(
     repo_ec2_ip char(15) not null
 );
 
-create table mapping_repo_group(
-	user_id char(10) not null,
-    repo_name char(15) not null,
+select * from mapping_repo_user;
+
+create table mapping_repo_user(
+	user_id char(10),
+    repo_name char(10),
     
-    primary key(user_id, group_id),
+    primary key(user_id, repo_name),
     foreign key (user_id) references user (user_id),
     foreign key (repo_name) references repository (repo_name)
 );
