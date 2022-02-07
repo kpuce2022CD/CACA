@@ -1,5 +1,6 @@
 const graphql = require('graphql');
-
+const fs = require('fs');
+const shell = require('shelljs');
 const {ApolloServer, gql} = require('apollo-server');
 // const { default: knex } = require('knex');
 // const { GraphQLSchema } = graphql;
@@ -32,11 +33,18 @@ const knex = require('knex')({
     user_id: String,
     repo_name: String
   }
+  type log {
+    user_id: String
+    commit_id: String
+    commit_msg: String
+    date: String
+  }
 
   type Query {
     User: [User],
     Repository: [Repository],
     mapping_repo_user: [mapping_repo_user],
+    log: [log]
 
     login(user_id: String): [User],
     findId(user_email: String): [User],
@@ -61,6 +69,38 @@ const resolvers = {
     User: () => knex("user").select("*"),
     Repository: () => knex("repository").select("*"),
     mapping_repo_user: () => knex("mapping_repo_user").select("*"),
+    log: () => {
+
+      var repository_name = "TEST"
+      var mkdir = "mkdir /var/www/html/git-repositories/" + repository_name + ".git"
+      var ip = "13.125.173.134"
+
+
+      var location = "/Users/jiyoung/Library/Developer/CoreSimulator/Devices/FDBC90DB-31E1-4B75-9D2C-9A0A45BD88BE/data/Containers/Data/Application/E221CCA4-E1B2-446A-B34A-AF7A8E6C43C7/Documents/test"
+      var createJSON = 'cd ' + location + ';' + 'git log --pretty=format:\'{%n  \"commit\":"%H",%n  \"commit_msg\":\"%s\",%n  \"user\":\"%aN\",%n  \"date\":\"%aD\" %n}\', > logJSON.json';
+
+      var cd = 'ssh -i \"/Users/jiyoung/Downloads/CLONET_AMI.pem\" ubuntu@' + ip + ' "'+ createJSON + '\"';
+      if(shell.exec(createJSON).code !== 0) {
+          shell.echo('Error: command failed');
+      }
+
+      var location = '/Users/jiyoung/Library/Developer/CoreSimulator/Devices/FDBC90DB-31E1-4B75-9D2C-9A0A45BD88BE/data/Containers/Data/Application/E221CCA4-E1B2-446A-B34A-AF7A8E6C43C7/Documents/test/logJSON.json'
+      fs.readFile(location, 'utf8' , (err, data) => {
+        if (err) {
+          console.error(err)
+          return
+        }
+        function replacer(key, value) {
+          if (typeof value === 'string') {
+            return undefined;
+          }
+          return value;
+        }
+        const log = JSON.parse("[" + data.slice(0, -1) + "]");
+        console.log(log)
+        return log
+      })
+    },
 
     login: (parent, args, context, info) => knex("user").select("*").where('user_id', args.user_id), // login
     findId: (parent, args, context, info) => knex("user").select("*").where('user_email', args.user_email), // findId
