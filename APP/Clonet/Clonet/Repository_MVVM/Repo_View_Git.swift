@@ -90,7 +90,8 @@ struct Repo_View_Git: View {
                 
                 // MARK: Pull Button
                 Button(action: {
-                    
+                    fetchGitRepo(localRepoLocation: documentURL.appendingPathComponent(RepositoryName))
+                    mergeGitRepo(localRepoLocation: documentURL.appendingPathComponent(RepositoryName),remoteRepoLocation: remoteRepoLocation, hexString: "752aa0ffa6ff9cbd69fbfaa7abc7cf0408cb7244")
                 }){
                     HStack{
                         Image(systemName: "square.and.arrow.down")
@@ -224,6 +225,55 @@ struct Repo_View_Git: View {
             print(error)
         }
     }
+    
+    //MARK: FETCH_FUNC
+    func fetchGitRepo(localRepoLocation localRepoLocation:URL){
+        let result = Repository.at(localRepoLocation)
+        switch result {
+        case let .success(repo):
+            let remote = repo.remote(named: "origin")
+            do {
+                let remote_r = try remote.get()
+                let fetch_result = repo.fetch(remote_r)
+                switch fetch_result {
+                case let .success(result):
+                    let message = "result : \(result)"
+                    print("fetch1 result: \(result)")
+                case let .failure(error):
+                    let message = "error : \(error)"
+                    print("fetch1 error: \(error)")
+                }
+            }catch{
+                print(error)
+            }
+        case let .failure(error):
+            let message = "\(error)"
+            print("fetch1 failed: \(error)")
+        }
+    }
+    
+    //MARK: MERGE_FUNC
+    func mergeGitRepo(localRepoLocation localRepoLocation: URL, remoteRepoLocation remoteRepoLocation : String, hexString : String){
+        let result = Repository.at(localRepoLocation)
+        let hexString = hexString
+        
+        switch result {
+        case let .success(repo):
+            let remote = repo.remote(named: "origin")
+            do {
+                let remote_r = try remote.get()
+                let merge_result = repo.merge_func(repo, remoteRepoLocation: remoteRepoLocation, hexString: hexString )
+
+                let message = "merge result : \(merge_result)"
+
+            }catch{
+                print(error)
+            }
+        case let .failure(error):
+            let message = "\(error)"
+        }
+    }
+    
     
     //MARK: Branch_Alert_FUNC
     func BranchGitRepo(localRepoLocation localRepoLocation : URL) -> [String]{

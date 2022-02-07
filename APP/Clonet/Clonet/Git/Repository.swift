@@ -52,6 +52,21 @@ extension Repository {
         
     }
     
+    // MARK: merge for Repo_View_Git
+    public func merge_func(_ repo: Repository, remoteRepoLocation remoteRepoLocation: String, hexString: String){
+        let hexString = "87565b91eaa52e994da3be7abc59cc1457a50625"
+        
+        var git_annotated_commit_from_fetchhead_out : OpaquePointer? = nil
+        var revert_git_oid = git_oid()
+        let nameToIDResult = git_oid_fromstr(&revert_git_oid, hexString)
+        
+        git_annotated_commit_from_fetchhead(&git_annotated_commit_from_fetchhead_out, repo.pointer, "master", remoteRepoLocation, &revert_git_oid)
+
+        
+        git_merge(repo.pointer, &git_annotated_commit_from_fetchhead_out, 1, nil, nil)
+    }
+    
+    
     // MARK: CHECKOUT
     public func checkout_branch(_ repo: Repository, branchName: String?){
         let newBranch: String = "\(branchName!)"
