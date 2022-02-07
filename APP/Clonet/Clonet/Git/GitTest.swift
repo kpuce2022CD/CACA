@@ -86,7 +86,7 @@ struct GitTest: View {
         let result = Repository.at(localRepoLocation)
         switch result {
         case let .success(repo):
-            let revert_result = repo.revert_commit(repo)
+            let revert_result = repo.revert_commit(repo, revert_id: "")
             message = "\(revert_result)"
         case let .failure(error):
             message = "Could not open repository: \(error)"

@@ -7,14 +7,14 @@
 
 import SwiftUI
 
-//@main
-//struct ClonetApp: App {
-//    var body: some Scene {
-//        WindowGroup {
-//            ContentView()
-//        }
-//    }
-//}
+@main
+struct ClonetApp: App {
+    var body: some Scene {
+        WindowGroup {
+            ContentView()
+        }
+    }
+}
 
 
 //@main

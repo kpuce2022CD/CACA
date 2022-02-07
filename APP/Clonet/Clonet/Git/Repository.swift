@@ -26,10 +26,11 @@ extension Repository {
     }
     
     //MARK: REVERT
-    public func revert_commit(_ repo: Repository){
+    public func revert_commit(_ repo: Repository, revert_id: String){
         
         var revert_git_oid = git_oid()
-        let nameToIDResult = git_oid_fromstr(&revert_git_oid, "44af94469519000ea2ba4722f9156fc562e2ce36")
+//        let nameToIDResult = git_oid_fromstr(&revert_git_oid, "44af94469519000ea2ba4722f9156fc562e2ce36")
+        let nameToIDResult = git_oid_fromstr(&revert_git_oid, revert_id)
         
         var git_commit_lookup_commit : OpaquePointer? = nil
         git_commit_lookup(&git_commit_lookup_commit, repo.pointer, &revert_git_oid)

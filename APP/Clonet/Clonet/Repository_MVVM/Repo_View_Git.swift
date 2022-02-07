@@ -19,7 +19,7 @@ struct Repo_View_Git: View {
     @State var branchArr : [String] = []
     
     @State private var showingAlert = false
-    
+    @State var revert_id : String = "9f0dffc923175290d2e975287c6c9ffc683fc7a4"
     init() {
         // git_libgit2_init()
         Repository.initialize_libgit2()
@@ -28,9 +28,9 @@ struct Repo_View_Git: View {
     
     var body: some View {
         VStack{
-            // MARK: RollBack Button
+            // MARK: RollBack Button : 아직 안됨 확인 필수!
             Button(action: {
-                
+                rollbackGit(localRepoLocation: documentURL.appendingPathComponent(RepositoryName), name: UserName, email: userEmail, commit_msg: commit_msg, revert_id: self.revert_id)
             }){
                 HStack{
                     Image(systemName: "arrow.counterclockwise")
@@ -162,7 +162,28 @@ struct Repo_View_Git: View {
     }
     
     
-    
+    // MARK: ROLLBACK_FUNC
+    func rollbackGit(localRepoLocation localRepoLocation: URL, name name: String, email email: String, commit_msg commit_msg : String, revert_id: String){
+        var message : String
+        let result = Repository.at(localRepoLocation)
+        switch result {
+        case let .success(repo):
+            //MARK: revert
+            let revert_result = repo.revert_commit(repo, revert_id: revert_id)
+            
+            //MARK: commit
+            let sig = Signature(name: name,email: email, time: Date(),timeZone: TimeZone.current)
+            let latestCommit = repo.commit(message: commit_msg, signature: sig)
+            
+            //MARK: push
+            let commit_push = repo.push(repo, "ubuntu", "qwer1234", nil)
+            message = "\(revert_result)"
+            print(message)
+        case let .failure(error):
+            message = "Could not open repository: \(error)"
+            print(message)
+        }
+    }
     
     
     //MARK: COMMIT_FUNC
