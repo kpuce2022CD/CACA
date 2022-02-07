@@ -43,7 +43,7 @@ final class Login_ViewModel : ObservableObject {
 //    }
 }
 
-final class UserAuth: ObservableObject {
+final class UserAuth : ObservableObject {
     @Published var user_id = ""
     @Published var user_pw = ""
 }
