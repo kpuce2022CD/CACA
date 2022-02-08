@@ -126,13 +126,9 @@ struct Signup: View {
                 .background(Color.white)
             }
         }
+        .navigationBarBackButtonHidden(true)
         .hiddenNavigationBarStyle()
         .navigationViewStyle(StackNavigationViewStyle())
-        .navigationViewStyle(StackNavigationViewStyle())
-        .navigationBarBackButtonHidden(true)
-        .navigationBarTitle("")
-        .navigationBarHidden(true)
-        //.navigationBarBackButtonHidden(true)
     }
     
     func signin() -> Bool {
