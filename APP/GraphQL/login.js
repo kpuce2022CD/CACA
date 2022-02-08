@@ -2,8 +2,8 @@ const graphql = require('graphql');
 const fs = require('fs');
 const shell = require('shelljs');
 const {ApolloServer, gql} = require('apollo-server');
-// const { default: knex } = require('knex');
-// const { GraphQLSchema } = graphql;
+const express = require('express');
+
 const knex = require('knex')({
   client: 'mysql',
   connection: {
@@ -44,7 +44,7 @@ const knex = require('knex')({
     User: [User],
     Repository: [Repository],
     mapping_repo_user: [mapping_repo_user],
-    log: [log]
+    log(repo_name: String): [log]
 
     login(user_id: String): [User],
     findId(user_email: String): [User],
@@ -69,22 +69,19 @@ const resolvers = {
     User: () => knex("user").select("*"),
     Repository: () => knex("repository").select("*"),
     mapping_repo_user: () => knex("mapping_repo_user").select("*"),
-    log: () => {
+    log: (parent, args, context, info) => {
 
-      var repository_name = "TEST"
-      var mkdir = "mkdir /var/www/html/git-repositories/" + repository_name + ".git"
-      var ip = "13.125.173.134"
+      var repository_name = args.repo_name
+      var location = "/var/www/html/git-repositories/" + repository_name + ".git"
 
-
-      var location = "/Users/jiyoung/Library/Developer/CoreSimulator/Devices/FDBC90DB-31E1-4B75-9D2C-9A0A45BD88BE/data/Containers/Data/Application/E221CCA4-E1B2-446A-B34A-AF7A8E6C43C7/Documents/test"
+      // create JSON git log
       var createJSON = 'cd ' + location + ';' + 'git log --pretty=format:\'{%n  \"commit\":"%H",%n  \"commit_msg\":\"%s\",%n  \"user\":\"%aN\",%n  \"date\":\"%aD\" %n}\', > logJSON.json';
-
-      var cd = 'ssh -i \"/Users/jiyoung/Downloads/CLONET_AMI.pem\" ubuntu@' + ip + ' "'+ createJSON + '\"';
       if(shell.exec(createJSON).code !== 0) {
           shell.echo('Error: command failed');
       }
 
-      var location = '/Users/jiyoung/Library/Developer/CoreSimulator/Devices/FDBC90DB-31E1-4B75-9D2C-9A0A45BD88BE/data/Containers/Data/Application/E221CCA4-E1B2-446A-B34A-AF7A8E6C43C7/Documents/test/logJSON.json'
+      // read JSON git log
+      var locationJSON = location + "/logJSON.json"
       fs.readFile(location, 'utf8' , (err, data) => {
         if (err) {
           console.error(err)
@@ -97,7 +94,6 @@ const resolvers = {
           return value;
         }
         const log = JSON.parse("[" + data.slice(0, -1) + "]");
-        console.log(log)
         return log
       })
     },
@@ -137,31 +133,6 @@ const resolvers = {
       .then(function(result){})
       return args.user_id
     },
-
-    ////
-    // insertUser: (parent, args, context, info) => {
-    //   knex('user').insert({user_id: args.user_id})
-    //   .then(function(result){
-        
-    //   })
-    //   return args.user_id
-    // },
-
-    // deleteUser: (parent, args, context, info) => {
-    //   knex('user').del().where('user_id', 'f')
-    //   .then(function(result){
-        
-    //   })
-    //   return args.user_id
-    // },
-
-    // updateUser: (parent, args, context, info) => {
-    //   knex('user').update({user_id: args.new_id}).where('user_id', args.user_id)
-    //   .then(function(result){
-        
-    //   })
-    //   return args.new_id
-    // }
   }
 };
 
@@ -174,3 +145,4 @@ const server = new ApolloServer({
 server.listen().then(({ url }) => {
   console.log(`🚀  Server ready at ${url}`);
   });
+
