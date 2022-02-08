@@ -8,17 +8,11 @@
 import SwiftUI
 
 struct Login_View: View {
-    @ObservedObject var viewModel = Login_ViewModel()
+    @StateObject private var viewModel = Login_ViewModel()
     @ObservedObject var userAuth_VM : UserAuth = UserAuth()
     
-    @State var isOn = true
-    @State var isLogin: Bool = false
-    @State var showingAlert: Bool = false
-    @State var selection: Int? = nil
     @State private var selectionString: String? = nil
-    
-    @State var result = ""
-    
+
     var body: some View {
         NavigationView {
             VStack {
@@ -26,7 +20,6 @@ struct Login_View: View {
                 Text("CLONET")
                     .font(.title)
                 Spacer()
-
                 
                 // input
                 VStack(alignment: .center) {
@@ -47,7 +40,7 @@ struct Login_View: View {
                     }.padding([.leading, .bottom, .trailing])
                     
                     
-                    Toggle(isOn: $isOn) { // AUTO LOGIN TOGGLE
+                    Toggle(isOn: $viewModel.isOn) { // AUTO LOGIN TOGGLE
                         Text("AUTO")
                     }
                     .frame(width: 130, height: 40)
@@ -66,7 +59,7 @@ struct Login_View: View {
                                 .buttonStyle(PlainButtonStyle()).frame(width:0).opacity(0)
                                 Button("Login") {
                                     self.selectionString = "signupButton"
-                                }.alert(isPresented: $showingAlert) {
+                                }.alert(isPresented: $viewModel.showingAlert) {
                                     Alert(title: Text("로그인에 실패했습니다"), message: nil,
                                           dismissButton: .default(Text("확인")))
                                 }

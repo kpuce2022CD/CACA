@@ -14,12 +14,13 @@ struct Repo_View_Git: View {
     @State var RepositoryName = "test"
     @State var UserName = "UserName"
     @State var userEmail = "UserEmail"
-    @State var remoteRepoLocation = "http://13.125.173.134/git-repositories/TEST.git"
+    @State var remoteRepoLocation = "http://13.125.221.143/git-repositories/ho.git"
     @State var commit_msg = "commit_msg"
     @State var branchArr : [String] = []
     
     @State private var showingAlert = false
-    @State var revert_id : String = "9f0dffc923175290d2e975287c6c9ffc683fc7a4"
+    @State var revert_id : String = "f6208e911787230629069d9f0586df1f1ea2d27b"
+    @State var merge_id : String = "752aa0ffa6ff9cbd69fbfaa7abc7cf0408cb7244"
     init() {
         // git_libgit2_init()
         Repository.initialize_libgit2()
@@ -28,7 +29,7 @@ struct Repo_View_Git: View {
     
     var body: some View {
         VStack{
-            // MARK: RollBack Button : 아직 안됨 확인 필수!
+            // MARK: RollBack Button
             Button(action: {
                 rollbackGit(localRepoLocation: documentURL.appendingPathComponent(RepositoryName), name: UserName, email: userEmail, commit_msg: commit_msg, revert_id: self.revert_id)
             }){
@@ -90,8 +91,10 @@ struct Repo_View_Git: View {
                 
                 // MARK: Pull Button
                 Button(action: {
+                    // MARK: FETCH
                     fetchGitRepo(localRepoLocation: documentURL.appendingPathComponent(RepositoryName))
-                    mergeGitRepo(localRepoLocation: documentURL.appendingPathComponent(RepositoryName),remoteRepoLocation: remoteRepoLocation, hexString: "752aa0ffa6ff9cbd69fbfaa7abc7cf0408cb7244")
+                    // MARK: MERGE
+                    mergeGitRepo(localRepoLocation: documentURL.appendingPathComponent(RepositoryName),remoteRepoLocation: remoteRepoLocation, hexString: merge_id)
                 }){
                     HStack{
                         Image(systemName: "square.and.arrow.down")
