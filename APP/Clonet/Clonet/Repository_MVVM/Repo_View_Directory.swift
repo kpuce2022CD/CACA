@@ -81,8 +81,6 @@ final class getFileList: ObservableObject{
             }
         }
     }
-    
-
 }
 
 struct DocumentPicker : UIViewControllerRepresentable {

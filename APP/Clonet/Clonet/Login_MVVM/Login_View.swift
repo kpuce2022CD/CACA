@@ -12,14 +12,25 @@ struct Login_View: View {
     @ObservedObject var userAuth_VM : UserAuth = UserAuth()
     
     @State private var selectionString: String? = nil
-
+    
     var body: some View {
         NavigationView {
-            VStack {
-                Spacer()
-                Text("CLONET")
-                    .font(.title)
-                Spacer()
+            VStack(alignment: .center) {
+                //Spacer(minLength: 10.0)
+                HStack(alignment: .center){
+                    Image("clonet_logo_white")
+                        .resizable()
+                        .scaledToFit()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width: 80, height: 80)
+                        .shadow(radius: 5)
+                    
+                    Text("CLONET")
+                        .font(.largeTitle)
+                        .bold()
+                        .padding()
+                }
+                Spacer(minLength: 25.0)
                 
                 // input
                 VStack(alignment: .center) {
@@ -40,12 +51,7 @@ struct Login_View: View {
                     }.padding([.leading, .bottom, .trailing])
                     
                     
-                    Toggle(isOn: $viewModel.isOn) { // AUTO LOGIN TOGGLE
-                        Text("AUTO")
-                    }
-                    .frame(width: 130, height: 40)
-                    .padding()
-                    
+                    // Login Btn
                     ZStack {
                         ForEach(viewModel.login_msg, id: \.self) { msg in
                             if(msg == "TRUE"){
@@ -59,7 +65,8 @@ struct Login_View: View {
                                 .buttonStyle(PlainButtonStyle()).frame(width:0).opacity(0)
                                 Button("Login") {
                                     self.selectionString = "signupButton"
-                                }.alert(isPresented: $viewModel.showingAlert) {
+                                }
+                                .alert(isPresented: $viewModel.showingAlert) {
                                     Alert(title: Text("로그인에 실패했습니다"), message: nil,
                                           dismissButton: .default(Text("확인")))
                                 }
@@ -70,7 +77,26 @@ struct Login_View: View {
                             viewModel.login(id: userAuth_VM.user_id, passwd: userAuth_VM.user_pw)
                         }
                     }
+                    .font(.headline)
+                    .foregroundColor(.white)
+                    .frame(width: 250, height: 10)
+                    .padding()
+                    //.background(LinearGradient(gradient: Gradient(colors: [.purple, .blue]), startPoint: .top, endPoint: .bottom).edgesIgnoringSafeArea(.all))
+                    .background(
+                        AngularGradient(gradient: Gradient(colors: [Color.purple, Color.blue]),
+                                        center: .topLeading,
+                                        angle: .degrees(180 + 45))
+                    )
+                    .cornerRadius(15.0)
                 }
+                
+                Toggle(isOn: $viewModel.isOn) { // AUTO LOGIN TOGGLE
+                    Text("AUTO")
+                }
+                .frame(width: 140, height: 20)
+                .padding()
+                .tint(.blue)
+                
                 
                 // ID PASSWORD FIND
                 Spacer()
@@ -78,9 +104,11 @@ struct Login_View: View {
                     // Sign up
                     NavigationLink(destination: Signup(),
                                    label: {Text("SIGN UP")})
+                        .padding()
                     // Find ID && PASSWORD
                     NavigationLink(destination: FindIdPw(),
                                    label: {Text("ID / PASSWORD 찾기")})
+                        //.padding()
                 }.padding()
             }
         }

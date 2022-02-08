@@ -26,7 +26,6 @@ struct Repo_View_Git: View {
         Repository.initialize_libgit2()
     }
     
-    
     var body: some View {
         VStack{
             // MARK: RollBack Button

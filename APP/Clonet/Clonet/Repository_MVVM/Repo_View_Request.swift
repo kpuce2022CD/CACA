@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct Repo_View_Request: View {
-    
     @State var RequestName = ["RequestName1", "RequestName2", "RequestName3"]
     @State var RequestText = ["RequestText1", "RequestText2", "RequestText3"]
     
