@@ -14,13 +14,14 @@ struct Repo_View_Git: View {
     @State var RepositoryName = "test"
     @State var UserName = "UserName"
     @State var userEmail = "UserEmail"
-    @State var remoteRepoLocation = "http://13.125.221.143/git-repositories/ho.git"
+    @State var remoteRepoLocation = "http://3.34.194.172/git-repositories/ho.git"
     @State var commit_msg = "commit_msg"
     @State var branchArr : [String] = []
     
     @State private var showingAlert = false
     @State var revert_id : String = "f6208e911787230629069d9f0586df1f1ea2d27b"
     @State var merge_id : String = "752aa0ffa6ff9cbd69fbfaa7abc7cf0408cb7244"
+    @State var addFileName : String = "."
     init() {
         // git_libgit2_init()
         Repository.initialize_libgit2()
@@ -49,7 +50,8 @@ struct Repo_View_Git: View {
             
             // MARK: Commit Button
             Button(action: {
-                commitGitRepo(localRepoLocation: documentURL.appendingPathComponent(RepositoryName), name: UserName, email: userEmail, commit_msg: commit_msg)
+                alertView()
+//                commitGitRepo(localRepoLocation: documentURL.appendingPathComponent(RepositoryName), name: UserName, email: userEmail, commit_msg: commit_msg)
             }){
                 HStack{
                     Image(systemName: "opticaldiscdrive.fill")
@@ -190,12 +192,13 @@ struct Repo_View_Git: View {
     
     
     //MARK: COMMIT_FUNC
-    func commitGitRepo(localRepoLocation localRepoLocation: URL, name name: String, email email: String, commit_msg commit_msg : String) {
+    func commitGitRepo(localRepoLocation localRepoLocation: URL, name name: String, email email: String, commit_msg commit_msg : String, addFileName addFileName: String) {
+        print("commit btn clicked!! ")
         let result = Repository.at(localRepoLocation)
         switch result {
         case let .success(repo):
             //MARK: add
-            let add_commit = repo.add(path: ".")
+            let add_commit = repo.add(path: addFileName)
             
             //MARK: commit
             let sig = Signature(name: name,email: email, time: Date(),timeZone: TimeZone.current)
@@ -322,6 +325,35 @@ struct Repo_View_Git: View {
         case let .failure(error):
             print(error)
         }
+    }
+    
+    // MARK: alertView
+    func alertView(){
+        print("!!commit alertView clicked")
+        let alert = UIAlertController(title: "commig message", message: "Enter your message", preferredStyle: .alert)
+        
+        alert.addTextField{ i in
+            i.placeholder = "commit msg"
+        }
+        
+        let completeAction = UIAlertAction(title: "Complete", style: .default){ (_) in
+            print("complete clicked")
+            commit_msg = alert.textFields![0].text!
+            print("commit complete: \(commit_msg)")
+            commitGitRepo(localRepoLocation: documentURL.appendingPathComponent(RepositoryName), name: UserName, email: userEmail, commit_msg: commit_msg, addFileName: addFileName)
+        }
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .destructive){ (_) in
+            print("cancel clicked")
+        }
+        
+        alert.addAction(completeAction)
+        alert.addAction(cancelAction)
+        
+        UIApplication.shared.windows.first?.rootViewController?.present(alert, animated: true, completion: {
+            
+        })
+        
     }
 }
 
