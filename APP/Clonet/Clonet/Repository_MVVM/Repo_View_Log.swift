@@ -6,24 +6,28 @@
 //
 
 import SwiftUI
+import Foundation
+import Apollo
 
 struct Repo_View_Log: View {
+    @StateObject var log_repoViewModel_a = log_repo_ViewModel()
+    
     var body: some View {
-        List{
-//            ForEach(GetRepoName.str2, id: \.self) { i in
-//
-//                NavigationLink(destination: Repo_Home(repoName: i, user_id: userID, branch: branchArr)){
-//                    VStack{
-//                        Text(i).padding()
-//                            .padding(2)
-//                            .font(.title3)
-//                    }
+        List(log_repoViewModel_a.Log_repo_list, id: \.id) { log_l in
+            Text(log_l.userId + " : " + log_l.commitMsg)
+        }
+//        VStack{
+//            ForEach(log_repoViewModel_a.Log_repo_list, id: \.id) { s in
+//                VStack{
+//                    Text("commitMsg: \(s.commitMsg)")
+//                    Text("userId: \(s.userId)")
+//                    Text("commitId: \(s.commitId)")
+//                    Text("date: \(s.date)")
+//                    Text("--")
 //                }
 //            }
-//            .buttonStyle(PlainButtonStyle())
-//            .onAppear {
-//            }
-        }
+//        }
+        
     }
 }
 
