@@ -17,13 +17,11 @@ final class log_repo_ViewModel: ObservableObject{
     }
     
     func fetch(){
-//        var Log_repo_list : [Log_repo] = []
         Network.shared.apollo.fetch(query: LogRepoQuery(repo_name: "TEST")){ result in
             switch result {
             case .success(let graphQLResult):
                 
                 if let log_repos = graphQLResult.data?.logRepo {
-//                    print("Success! Result: \(log_repos.indices) \(log_repos.count)")
                     for i in log_repos.indices{
                         self.launches = self.process(data: graphQLResult.data?.logRepo![i] ?? logrepoData.init(commitMsg: "", date: "", commitId: "", userId: ""))
                         self.Log_repo_list.append(self.launches)
