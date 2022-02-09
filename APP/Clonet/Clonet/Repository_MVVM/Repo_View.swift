@@ -10,12 +10,12 @@ import SwiftUI
 struct Repo_View: View {
     var body: some View {
         HStack{
-            Repo_View_Directory()
-//            Repo_View_Image()
-            VStack{
-                Repo_View_Request()
-                Repo_View_Git()
-            }
+//            Repo_View_Directory()
+            Repo_View_Log()
+//            VStack{
+//                Repo_View_Request()
+//                Repo_View_Git()
+//            }
         }
     }
 }

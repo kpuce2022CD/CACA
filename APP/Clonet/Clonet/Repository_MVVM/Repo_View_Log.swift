@@ -6,10 +6,20 @@
 //
 
 import SwiftUI
+import Foundation
+import Apollo
 
 struct Repo_View_Log: View {
+    @StateObject var log_repoViewModela = log_repo_ViewModel()
+    
     var body: some View {
-        List{
+        VStack{
+            Text("commitMsg: \(log_repoViewModela.launches.commitMsg)")
+            Text("userId: \(log_repoViewModela.launches.userId)")
+            Text("commitId: \(log_repoViewModela.launches.commitId)")
+            Text("date: \(log_repoViewModela.launches.date)")
+        }
+//        List{
 //            ForEach(GetRepoName.str2, id: \.self) { i in
 //
 //                NavigationLink(destination: Repo_Home(repoName: i, user_id: userID, branch: branchArr)){
@@ -23,7 +33,7 @@ struct Repo_View_Log: View {
 //            .buttonStyle(PlainButtonStyle())
 //            .onAppear {
 //            }
-        }
+//        }
     }
 }
 
