@@ -21,6 +21,7 @@
 		3F4B39EA27B38D4E00EC0D8C /* schema.json in Resources */ = {isa = PBXBuildFile; fileRef = 3F4B39E927B38D4E00EC0D8C /* schema.json */; };
 		3F4B39EC27B38E8600EC0D8C /* LaunchList.graphql in Resources */ = {isa = PBXBuildFile; fileRef = 3F4B39EB27B38E8600EC0D8C /* LaunchList.graphql */; };
 		3F4B39F027B3A26E00EC0D8C /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F4B39EF27B3A26E00EC0D8C /* API.swift */; };
+		3F4B39F227B3A55A00EC0D8C /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F4B39F127B3A55A00EC0D8C /* Network.swift */; };
 		3F4B530E278BE92300D64A6D /* Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F4B530D278BE92300D64A6D /* Login.swift */; };
 		3F4B5318278C17DA00D64A6D /* LoginCheck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F4B5317278C17DA00D64A6D /* LoginCheck.swift */; };
 		3F6A1BB6279A814900146367 /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F6A1BB5279A814900146367 /* Repository.swift */; };
@@ -63,6 +64,7 @@
 		3F4B39E927B38D4E00EC0D8C /* schema.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = schema.json; sourceTree = "<group>"; };
 		3F4B39EB27B38E8600EC0D8C /* LaunchList.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = LaunchList.graphql; sourceTree = "<group>"; };
 		3F4B39EF27B3A26E00EC0D8C /* API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
+		3F4B39F127B3A55A00EC0D8C /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
 		3F4B530D278BE92300D64A6D /* Login.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Login.swift; sourceTree = "<group>"; };
 		3F4B5317278C17DA00D64A6D /* LoginCheck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginCheck.swift; sourceTree = "<group>"; };
 		3F6A1BB5279A814900146367 /* Repository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Repository.swift; sourceTree = "<group>"; };
@@ -224,6 +226,7 @@
 				3F4B530C278BE91100D64A6D /* Login */,
 				DA97B6AA278BE05E006C473E /* Assets.xcassets */,
 				DA97B6AC278BE05E006C473E /* Preview Content */,
+				3F4B39F127B3A55A00EC0D8C /* Network.swift */,
 			);
 			path = Clonet;
 			sourceTree = "<group>";
@@ -372,6 +375,7 @@
 				3F4B5318278C17DA00D64A6D /* LoginCheck.swift in Sources */,
 				DA253E13278DEE1500AEE18A /* ViewModifiers.swift in Sources */,
 				DA97B6A7278BE05D006C473E /* ClonetApp.swift in Sources */,
+				3F4B39F227B3A55A00EC0D8C /* Network.swift in Sources */,
 				3F41CA6E27ACCBC90031F6C3 /* Login_View.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
