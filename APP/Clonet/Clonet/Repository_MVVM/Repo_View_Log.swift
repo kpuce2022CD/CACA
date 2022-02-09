@@ -21,8 +21,8 @@ struct Repo_View_Log: View {
 //                VStack{
 //                    Text("commitMsg: \(s.commitMsg)")
 //                    Text("userId: \(s.userId)")
-//                    Text("commitId: \(log_repoViewModel_a.launches.commitId)")
-//                    Text("date: \(log_repoViewModel_a.launches.date)")
+//                    Text("commitId: \(s.commitId)")
+//                    Text("date: \(s.date)")
 //                    Text("--")
 //                }
 //            }
