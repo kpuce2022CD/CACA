@@ -213,7 +213,7 @@ final class Service_repoName: ObservableObject {
 struct LoginCheck: View {
     @State var id = ""
     @State private var showAlert = false
-    @ObservedObject var userAuth : UserAuth = UserAuth()
+//    @ObservedObject var userAuth : UserAuth = UserAuth()
     @ObservedObject var userRepo : UserRepo = UserRepo()
     @ObservedObject var service = Service_createRepo()
 
@@ -257,12 +257,12 @@ struct LoginCheck: View {
                     HStack{
                         Spacer()
                         Button(action: {
-                            let alertHC = UIHostingController(rootView: MyAlert(userAuth:userAuth))
-                            
-                            alertHC.preferredContentSize = CGSize(width: 300, height: 200)
-                            alertHC.modalPresentationStyle = UIModalPresentationStyle.formSheet
-                            
-                            UIApplication.shared.windows[0].rootViewController?.present(alertHC, animated: true)
+//                            let alertHC = UIHostingController(rootView: MyAlert(userAuth:userAuth))
+//
+//                            alertHC.preferredContentSize = CGSize(width: 300, height: 200)
+//                            alertHC.modalPresentationStyle = UIModalPresentationStyle.formSheet
+//
+//                            UIApplication.shared.windows[0].rootViewController?.present(alertHC, animated: true)
                             
                             
                         }) {
@@ -299,7 +299,7 @@ struct LoginCheck: View {
 
 struct MyAlert: View {
 //    @State private var text: String = ""
-    @ObservedObject var userAuth : UserAuth = UserAuth()
+//    @ObservedObject var userAuth : UserAuth = UserAuth()
     @ObservedObject var service = Service_createRepo()
     @ObservedObject var userRepo : UserRepo = UserRepo()
     @State private var selectionString: String? = nil
@@ -307,7 +307,7 @@ struct MyAlert: View {
     
     
     var body: some View {
-        let RepoJSON = "{\"user_id\": \"\(userAuth.user_id)\", \"repo_name\": \"\(userRepo.Repo_name)\", \"Repo_ec2_ip\": \"\(userRepo.Repo_ec2_ip)\", \"directory_path\": \"\(userRepo.directory_path)\"}"
+//        let RepoJSON = "{\"user_id\": \"\(userAuth.user_id)\", \"repo_name\": \"\(userRepo.Repo_name)\", \"Repo_ec2_ip\": \"\(userRepo.Repo_ec2_ip)\", \"directory_path\": \"\(userRepo.directory_path)\"}"
         VStack {
             Text("저장소 이름").font(.headline).padding()
             
@@ -330,7 +330,7 @@ struct MyAlert: View {
                     Button("완료") {
                         UIApplication.shared.windows[0].rootViewController?.dismiss(animated: true, completion: {})
                         self.selectionString = "RepoButton"
-                        service.create_Repo(json: RepoJSON)
+//                        service.create_Repo(json: RepoJSON)
                     }
                 }
                 
@@ -370,8 +370,8 @@ private extension LoginCheck{
         VStack(alignment: .center){
             Text(nickName)
                 .font(.title)
-            Text(userAuth.user_id)
-                .font(.body)
+//            Text(userAuth.user_id)
+//                .font(.body)
         }
         .padding()
         

@@ -8,9 +8,12 @@
 import Foundation
 import SwiftUI
 import Network
+import Apollo
 
 final class Login_ViewModel : ObservableObject {
-    @ObservedObject var userAuth : UserAuth = UserAuth()
+    @Published var logins: Logins = Logins.init()
+    
+//    @ObservedObject var userAuth : UserAuth = UserAuth()
     @ObservedObject var login_Model = Login_Model()
     
     @Published var login_msg = [String]()
@@ -21,35 +24,59 @@ final class Login_ViewModel : ObservableObject {
     @Published var showingAlert: Bool = false
     @Published var selection: Int? = nil
     
-    private static let defaultID = "user1"
-    private static let defaultpw = "passwd1"
+    @State private var user : [LoginQuery.Data.Login] = []
     
     init(){
-        login(id: Self.defaultID, passwd: Self.defaultpw)
+        isLogin = false
+        login(id: "", passwd: "")
     }
     
-    func login(id: String, passwd: String){
-        if(id == "aa" && passwd == "11"){
-            result = true
-        }else {
-            result = false
+    func login(id: String, passwd: String) {
+        
+        Network.shared.apollo.fetch(query: LoginQuery(userId: id)) { result in // Change the query name to your query name
+            switch result {
+            case .success(let graphQLResult):
+                if let logins = graphQLResult.data?.login{
+                    print("Success! Result: \(logins.indices) \(logins.count)")
+//                    print("\(graphQLResult)")
+//                    DispatchQueue.main.sync {
+//                    self.user = logins
+////                    }
+//
+//                    print("\(logins)")
+                    for i in logins.indices{
+                        self.logins = self.process(data: logins[i] ?? LoginData.init(userId: "", userPw: "", userName: "", userEmail: "", profilePic: "", about: "", contact: ""))
+                    }
+                    
+                    if(passwd == self.logins.user_pw){
+                        print("asdf: Login Success")
+                        print("passasdf", passwd, self.logins.user_pw)
+                        print("asdfas", passwd)
+                        self.isLogin = true
+                        
+                    } else {
+                        print("asdf: Login Fail")
+                        print("asdfas", passwd)
+                        print("asdffail", self.logins.user_pw)
+                        print("Login Fail")
+                        self.isLogin = false
+                    }
+                } else if let errors = graphQLResult.errors {
+//                    print("GraphQL errors \(errors)")
+                }
+                
+            case .failure(let error):
+                print("Failure! Error: \(error)")
+            }
         }
-//        userAuth.user_id = id
-//        userAuth.user_pw = passwd
-//
-//        // 로그인 정보를 보내는 변수
-//        let loginJSON = "{\"user_id\": \"\(userAuth.user_id)\", \"user_pw\": \"\(userAuth.user_pw)\"}"
-//
-//        login_Model.login_button(json: loginJSON)
-//
-//        if(login_Model.messages != []){
-//            self.login_msg = login_Model.messages
-//            print("login1 msg: \(login_msg)")
-//        }
+    }
+    
+    func process(data: LoginData) -> Logins {
+        return Logins(data)
     }
 }
 
-final class UserAuth : ObservableObject {
-    @Published var user_id = ""
-    @Published var user_pw = ""
-}
+//final class UserAuth : ObservableObject {
+//    @Published var user_id = ""
+//    @Published var user_pw = ""
+//}

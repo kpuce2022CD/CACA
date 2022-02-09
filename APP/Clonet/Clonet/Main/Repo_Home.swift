@@ -50,7 +50,7 @@ let gitRepoURL = try! FileManager.default.url(for: .documentDirectory, in: .user
 struct Repo_Home: View {
     
     @State private var selectionString: String? = nil
-    @ObservedObject var userAuth : UserAuth = UserAuth()
+//    @ObservedObject var userAuth : UserAuth = UserAuth()
     @State private var showAlert = false
     
     @State var message = ""
