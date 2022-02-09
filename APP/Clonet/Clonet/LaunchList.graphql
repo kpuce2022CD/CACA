@@ -1,4 +1,4 @@
-query Query($userId: String, $userEmail: String, $findPwUserId2: String, $repoListUserId2: String, $selectProfilePicUserId2: String, $checkUserUserId2: String, $repoName: String, $selectRepoRepoName2: String, $repoEc2Ip: String, $logRepoRepoName2: String) {
+query User {
   User {
     user_id
     user_pw
@@ -8,14 +8,21 @@ query Query($userId: String, $userEmail: String, $findPwUserId2: String, $repoLi
     about
     contact
   }
+}
+query Repository{
   Repository {
     repo_name
     repo_ec2_ip
   }
+}
+query mapping_repo_user{
   mapping_repo_user {
     user_id
     repo_name
   }
+}
+
+query login($userId: String){
   login(user_id: $userId) {
     user_id
     user_pw
@@ -25,6 +32,8 @@ query Query($userId: String, $userEmail: String, $findPwUserId2: String, $repoLi
     about
     contact
   }
+}
+query findId($userEmail: String){
   findId(user_email: $userEmail) {
     user_id
     user_pw
@@ -34,7 +43,9 @@ query Query($userId: String, $userEmail: String, $findPwUserId2: String, $repoLi
     about
     contact
   }
-  findPw(user_id: $findPwUserId2) {
+}
+query findPw($user_id: String){
+  findPw(user_id: $user_id) {
     user_id
     user_pw
     user_name
@@ -43,11 +54,15 @@ query Query($userId: String, $userEmail: String, $findPwUserId2: String, $repoLi
     about
     contact
   }
-  repoList(user_id: $repoListUserId2) {
+}
+query repoList($user_id: String){
+  repoList(user_id: $user_id) {
     user_id
     repo_name
   }
-  select_profilePic(user_id: $selectProfilePicUserId2) {
+}
+query select_profilePic($user_id: String){
+  select_profilePic(user_id: $user_id) {
     user_id
     user_pw
     user_name
@@ -56,7 +71,9 @@ query Query($userId: String, $userEmail: String, $findPwUserId2: String, $repoLi
     about
     contact
   }
-  checkUser(user_id: $checkUserUserId2) {
+}
+query checkUser ($user_id: String){
+  checkUser(user_id: $user_id) {
     user_id
     user_pw
     user_name
@@ -65,19 +82,27 @@ query Query($userId: String, $userEmail: String, $findPwUserId2: String, $repoLi
     about
     contact
   }
-  groupUser(repo_name: $repoName) {
+}
+query groupUser($repo_name: String){
+  groupUser(repo_name: $repo_name) {
     user_id
     repo_name
   }
-  select_repo(repo_name: $selectRepoRepoName2) {
+}
+query select_repo($repo_name: String) {
+  select_repo(repo_name: $repo_name) {
     repo_name
     repo_ec2_ip
   }
-  select_ec2(repo_ec2_ip: $repoEc2Ip) {
+}
+query select_ec2($repo_ec2_ip: String){
+  select_ec2(repo_ec2_ip: $repo_ec2_ip) {
     repo_name
     repo_ec2_ip
   }
-  log_repo(repo_name: $logRepoRepoName2) {
+}
+query log_repo($repo_name: String){
+  log_repo(repo_name: $repo_name) {
     commit_msg
     date
     commit_id
@@ -85,9 +110,16 @@ query Query($userId: String, $userEmail: String, $findPwUserId2: String, $repoLi
   }
 }
 
-mutation Mutation($signupUserId2: String, $userPw: String, $userName: String, $signupUserEmail2: String, $createRepoRepoName2: String, $createRepoRepoEc2Ip2: String, $createRepoUserId2: String, $insertProfilePicUserId2: String, $profilePic: String, $plusUserUserId2: String, $plusUserRepoName2: String) {
-  signup(user_id: $signupUserId2, user_pw: $userPw, user_name: $userName, user_email: $signupUserEmail2)
-  create_repo(repo_name: $createRepoRepoName2, repo_ec2_ip: $createRepoRepoEc2Ip2, user_id: $createRepoUserId2)
-  insert_profilePic(user_id: $insertProfilePicUserId2, profilePic: $profilePic)
-  plusUser(user_id: $plusUserUserId2, repo_name: $plusUserRepoName2)
+
+mutation signup($user_id: String, $user_pw: String, $user_name: String, $user_email: String){
+  signup(user_id: $user_id, user_pw: $user_pw, user_name: $user_name, user_email: $user_email)
+}
+mutation create_repo ($repo_name: String, $repo_ec2_ip: String, $user_id: String){
+  create_repo(repo_name: $repo_name, repo_ec2_ip: $repo_ec2_ip, user_id: $user_id)
+}
+mutation insert_profilePic($user_id: String, $profilePic: String){
+  insert_profilePic(user_id: $user_id, profilePic: $profilePic)
+}
+mutation plusUser($user_id: String, $repo_name: String){
+  plusUser(user_id: $user_id, repo_name: $repo_name)
 }

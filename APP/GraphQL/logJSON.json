@@ -1,0 +1,1956 @@
+{
+  "commit_id":"0ad1650c99e25c64b9a40438164cc9830242d57a",
+  "commit_msg":"ApolloGraphQL Client Setting Complete",
+  "user_id":"papavhub",
+ "date":"Wed, 9 Feb 2022 14:59:32 +0900" 
+},
+{
+  "commit_id":"bca4751a58184656f818096d0f3a3892f8e60dc1",
+  "commit_msg":"Merge branch 'develop-1.1' of https://github.com/kpuce2022CD/CACA into develop-1.1",
+  "user_id":"Jimin731",
+ "date":"Wed, 9 Feb 2022 14:41:27 +0900" 
+},
+{
+  "commit_id":"f87389da4ce2d708069c633aee95c9f8a7ac4e5b",
+  "commit_msg":"commit msg & add file",
+  "user_id":"Jimin731",
+ "date":"Wed, 9 Feb 2022 14:41:23 +0900" 
+},
+{
+  "commit_id":"82131484731d899ea07bb2ecffa662b8db6eeabb",
+  "commit_msg":"ApolloGraphQL Server COMPLETE",
+  "user_id":"papavhub",
+ "date":"Wed, 9 Feb 2022 14:38:53 +0900" 
+},
+{
+  "commit_id":"54f91730e29e2989ecfb1a6d9519e38bec014ecb",
+  "commit_msg":"Merge remote-tracking branch 'refs/remotes/origin/develop-1.1' into develop-1.1",
+  "user_id":"papavhub",
+ "date":"Tue, 8 Feb 2022 22:07:43 +0900" 
+},
+{
+  "commit_id":"bb652a5e59c1999a91f85d533530dace21956cbf",
+  "commit_msg":"ApolloGraphQL Cloud Server",
+  "user_id":"papavhub",
+ "date":"Tue, 8 Feb 2022 22:07:37 +0900" 
+},
+{
+  "commit_id":"e12d4ae13558442b6e336755a7674426f71cfa3a",
+  "commit_msg":"login design",
+  "user_id":"Jimin731",
+ "date":"Tue, 8 Feb 2022 20:49:23 +0900" 
+},
+{
+  "commit_id":"bd65a97003ac058d252bfedc7dd94df9536a1bdf",
+  "commit_msg":"revert test complete",
+  "user_id":"Jimin731",
+ "date":"Tue, 8 Feb 2022 14:41:07 +0900" 
+},
+{
+  "commit_id":"e9cee2c05928a3f30f8c4d4ba2b04845739a61f8",
+  "commit_msg":"Update ReadME.md",
+  "user_id":"ChoiHyeMin",
+ "date":"Tue, 8 Feb 2022 13:04:23 +0900" 
+},
+{
+  "commit_id":"4b521605e42c9a683e2a2528b844a1b52e18b86e",
+  "commit_msg":"Re Setting",
+  "user_id":"papavhub",
+ "date":"Tue, 8 Feb 2022 12:43:37 +0900" 
+},
+{
+  "commit_id":"36d9351f1599143472374be8fc667b7a60e4f51b",
+  "commit_msg":"git fetch & merge to repoView",
+  "user_id":"Jimin731",
+ "date":"Tue, 8 Feb 2022 01:04:57 +0900" 
+},
+{
+  "commit_id":"8d95d6819bf5988d38406020bc711bbe672904cf",
+  "commit_msg":"Merge remote-tracking branch 'refs/remotes/origin/develop-1.1' into develop-1.1",
+  "user_id":"pjy7814",
+ "date":"Mon, 7 Feb 2022 23:59:37 +0900" 
+},
+{
+  "commit_id":"eddf9154e43ecb2861d9cc9055b5b991cddb4264",
+  "commit_msg":"git rollback ing",
+  "user_id":"pjy7814",
+ "date":"Mon, 7 Feb 2022 23:59:30 +0900" 
+},
+{
+  "commit_id":"c7675d95f983ede7ad77410236e4c6fb3f49c677",
+  "commit_msg":"commit",
+  "user_id":"papavhub",
+ "date":"Mon, 7 Feb 2022 23:52:55 +0900" 
+},
+{
+  "commit_id":"6bb057cd80ae2fd034246e64162f1b010c8ecc3b",
+  "commit_msg":"Apollo Server Log COMPLETE",
+  "user_id":"papavhub",
+ "date":"Mon, 7 Feb 2022 23:51:39 +0900" 
+},
+{
+  "commit_id":"d0f7feed5b19d78439cfbab4041cd9f95b0c70cb",
+  "commit_msg":"Apollo Server COMPLETE",
+  "user_id":"papavhub",
+ "date":"Mon, 7 Feb 2022 23:43:09 +0900" 
+},
+{
+  "commit_id":"5174e943029cc90e399b9a38c70288ea899bfd68",
+  "commit_msg":"Merge remote-tracking branch 'refs/remotes/origin/develop-1.1' into develop-1.1",
+  "user_id":"papavhub",
+ "date":"Mon, 7 Feb 2022 22:48:34 +0900" 
+},
+{
+  "commit_id":"5b31002edd2669c428693e1c81c9d78043de3c1c",
+  "commit_msg":"Knex insert, select, update, delete",
+  "user_id":"papavhub",
+ "date":"Mon, 7 Feb 2022 22:48:15 +0900" 
+},
+{
+  "commit_id":"321c255e1efc87c1fe643b415902c1813ef28e5f",
+  "commit_msg":"Update index.js",
+  "user_id":"Jiyoung Park",
+ "date":"Mon, 7 Feb 2022 22:18:31 +0900" 
+},
+{
+  "commit_id":"db137b2ac40476ce5426a1b6af16d377f81bfdea",
+  "commit_msg":"Update server.js",
+  "user_id":"Jiyoung Park",
+ "date":"Mon, 7 Feb 2022 22:14:58 +0900" 
+},
+{
+  "commit_id":"73c42ef3b7a03a90a8a6d8ec4b41d3e7a85c03be",
+  "commit_msg":"Update gitLogJSON.js",
+  "user_id":"Jiyoung Park",
+ "date":"Mon, 7 Feb 2022 19:26:27 +0900" 
+},
+{
+  "commit_id":"54774cb327336388fea0fcd32ce0a6a72bdb10a3",
+  "commit_msg":"Merge remote-tracking branch 'refs/remotes/origin/develop-1.1' into develop-1.1",
+  "user_id":"papavhub",
+ "date":"Mon, 7 Feb 2022 16:27:41 +0900" 
+},
+{
+  "commit_id":"0463fdfe617fdf35ea697299da541175d935ea48",
+  "commit_msg":"ApolloGraphQL client ing",
+  "user_id":"papavhub",
+ "date":"Mon, 7 Feb 2022 16:27:20 +0900" 
+},
+{
+  "commit_id":"bf19b60c079509760d9f33c93f7d7b9af15367a2",
+  "commit_msg":"gitLogJSON",
+  "user_id":"pjy7814",
+ "date":"Mon, 7 Feb 2022 15:32:47 +0900" 
+},
+{
+  "commit_id":"4e864c49ea2830131d4201c0bff34719d17376ad",
+  "commit_msg":"login viewModel",
+  "user_id":"Jimin731",
+ "date":"Mon, 7 Feb 2022 14:50:29 +0900" 
+},
+{
+  "commit_id":"9efe81a3705c831ecbc060a94dd9a08f8acca26d",
+  "commit_msg":"Update ReadME.md",
+  "user_id":"jimin Yoon",
+ "date":"Mon, 7 Feb 2022 14:18:02 +0900" 
+},
+{
+  "commit_id":"8ccce774117ec10b5460a7a52992fb8d344324db",
+  "commit_msg":"Update ReadME.md",
+  "user_id":"jimin Yoon",
+ "date":"Mon, 7 Feb 2022 14:13:43 +0900" 
+},
+{
+  "commit_id":"58b34ad3d9248a39d0f8fa7e6c147211a8ed18d5",
+  "commit_msg":"Update ReadME.md",
+  "user_id":"jimin Yoon",
+ "date":"Mon, 7 Feb 2022 14:11:06 +0900" 
+},
+{
+  "commit_id":"fe43f0d1f3e99b89d2465fabafc51947bc9ff43a",
+  "commit_msg":"Update ReadME.md",
+  "user_id":"jimin Yoon",
+ "date":"Mon, 7 Feb 2022 14:08:28 +0900" 
+},
+{
+  "commit_id":"9c8958a2180e86be2e87f7a9bd1fcc7e2dc2f574",
+  "commit_msg":"Update ReadME.md",
+  "user_id":"jimin Yoon",
+ "date":"Mon, 7 Feb 2022 14:07:21 +0900" 
+},
+{
+  "commit_id":"5e10cc2842a10070f46dd64c5c58d9cb8d93eea6",
+  "commit_msg":"Update ReadME.md",
+  "user_id":"jimin Yoon",
+ "date":"Mon, 7 Feb 2022 14:05:05 +0900" 
+},
+{
+  "commit_id":"0c47843154b1713a310485abb63b97b4b6eca32a",
+  "commit_msg":"Update ReadME.md",
+  "user_id":"jimin Yoon",
+ "date":"Mon, 7 Feb 2022 14:02:43 +0900" 
+},
+{
+  "commit_id":"827771185e229b11bceb09a1cc90255e7bdcc1a1",
+  "commit_msg":"Update ReadME.md",
+  "user_id":"jimin Yoon",
+ "date":"Mon, 7 Feb 2022 14:01:41 +0900" 
+},
+{
+  "commit_id":"bdfb18992893228a5df021d4cbd569851c49fbdf",
+  "commit_msg":"Update ReadME.md",
+  "user_id":"jimin Yoon",
+ "date":"Mon, 7 Feb 2022 13:57:37 +0900" 
+},
+{
+  "commit_id":"4ec125a50799b6f5bdfd36dfe87a90c3f3b2990a",
+  "commit_msg":"Update ReadME.md",
+  "user_id":"jimin Yoon",
+ "date":"Mon, 7 Feb 2022 13:44:58 +0900" 
+},
+{
+  "commit_id":"b879356959f4772a5c1ed28ead278fec2dd67823",
+  "commit_msg":"fix Structure",
+  "user_id":"papavhub",
+ "date":"Mon, 7 Feb 2022 13:38:50 +0900" 
+},
+{
+  "commit_id":"35eb6533b8506dbece98a45fc2937b61bad71047",
+  "commit_msg":"Merge remote-tracking branch 'refs/remotes/origin/develop-1.1' into develop-1.1",
+  "user_id":"papavhub",
+ "date":"Mon, 7 Feb 2022 13:34:31 +0900" 
+},
+{
+  "commit_id":"287c09828e6da16abf2d8c9544b0ed49a3a7e1bd",
+  "commit_msg":"sql",
+  "user_id":"papavhub",
+ "date":"Mon, 7 Feb 2022 13:34:07 +0900" 
+},
+{
+  "commit_id":"eeb1223dd339b636aed3f3b943c0259181c72e0d",
+  "commit_msg":"Merge remote-tracking branch 'refs/remotes/origin/develop-1.1' into develop-1.1",
+  "user_id":"pjy7814",
+ "date":"Sun, 6 Feb 2022 22:24:35 +0900" 
+},
+{
+  "commit_id":"a7f6310861d77961471b245b88696115d8af7787",
+  "commit_msg":"login MVVM",
+  "user_id":"Jimin731",
+ "date":"Sun, 6 Feb 2022 22:24:13 +0900" 
+},
+{
+  "commit_id":"84f6f53c05a2c85ccef303fb9cc3e00988299f9d",
+  "commit_msg":"save README",
+  "user_id":"pjy7814",
+ "date":"Sun, 6 Feb 2022 22:23:19 +0900" 
+},
+{
+  "commit_id":"fe2a7d16fe92ba84a8c22fcc8440771767800b0d",
+  "commit_msg":"load Readme",
+  "user_id":"pjy7814",
+ "date":"Sun, 6 Feb 2022 22:08:10 +0900" 
+},
+{
+  "commit_id":"77945ac37a09c7a992be8d217e4e0569d3b6f389",
+  "commit_msg":"field readme",
+  "user_id":"pjy7814",
+ "date":"Sun, 6 Feb 2022 21:56:03 +0900" 
+},
+{
+  "commit_id":"dbaa9605b41d1f4ac5f0f1bc11515d285821d13e",
+  "commit_msg":"Merge remote-tracking branch 'refs/remotes/origin/develop-1.1' into develop-1.1",
+  "user_id":"pjy7814",
+ "date":"Sun, 6 Feb 2022 21:24:59 +0900" 
+},
+{
+  "commit_id":"7cff56f653387095d8f27423b4cbb162e199a8f6",
+  "commit_msg":"readme message edit",
+  "user_id":"pjy7814",
+ "date":"Sun, 6 Feb 2022 21:24:53 +0900" 
+},
+{
+  "commit_id":"6ab748ac5e2f959134db27b1ec821bae680cf35f",
+  "commit_msg":"Merge remote-tracking branch 'refs/remotes/origin/develop-1.1' into develop-1.1",
+  "user_id":"papavhub",
+ "date":"Sun, 6 Feb 2022 21:22:26 +0900" 
+},
+{
+  "commit_id":"413407cf343a5bd9f249bfc882c6145b06e5dbe5",
+  "commit_msg":"Apollo Server Sync COMPLETE",
+  "user_id":"papavhub",
+ "date":"Sun, 6 Feb 2022 21:21:51 +0900" 
+},
+{
+  "commit_id":"f7351030169c492f315c44fe56f3c552d0ec18c4",
+  "commit_msg":"image load",
+  "user_id":"pjy7814",
+ "date":"Sun, 6 Feb 2022 19:33:37 +0900" 
+},
+{
+  "commit_id":"ccd9a12b9d0189e0c73441382b23eb30a49337ad",
+  "commit_msg":"Merge remote-tracking branch 'refs/remotes/origin/develop-1.1' into develop-1.1",
+  "user_id":"pjy7814",
+ "date":"Sun, 6 Feb 2022 18:39:23 +0900" 
+},
+{
+  "commit_id":"d7da596a46ffc290f74f3fdc0816efdc1a1ade98",
+  "commit_msg":"img load",
+  "user_id":"pjy7814",
+ "date":"Sun, 6 Feb 2022 18:39:05 +0900" 
+},
+{
+  "commit_id":"f0b13f2ee81e471de9f0fd7facea0c42f9312562",
+  "commit_msg":"Comments",
+  "user_id":"papavhub",
+ "date":"Sun, 6 Feb 2022 18:36:26 +0900" 
+},
+{
+  "commit_id":"dbc0f8f56041735a4d4b20b3e634dc44c2d1d294",
+  "commit_msg":"Apollo&GraphQL Server COMPLETE",
+  "user_id":"papavhub",
+ "date":"Sun, 6 Feb 2022 18:06:05 +0900" 
+},
+{
+  "commit_id":"4a250d48ac7f3c16d48acc62602f9dd7c1177008",
+  "commit_msg":"ReName",
+  "user_id":"papavhub",
+ "date":"Sun, 6 Feb 2022 16:44:19 +0900" 
+},
+{
+  "commit_id":"1d1a653ac6ff4e9ccdec31e7844e1d298e3e791c",
+  "commit_msg":"Apollo&GraphQL MVVM COMPLETE",
+  "user_id":"papavhub",
+ "date":"Sun, 6 Feb 2022 15:16:09 +0900" 
+},
+{
+  "commit_id":"6e6970d97b5922177947c887516b6199157b9066",
+  "commit_msg":"Apollo&GraphQL ViewModel&Model COMPLETE",
+  "user_id":"papavhub",
+ "date":"Sun, 6 Feb 2022 14:57:11 +0900" 
+},
+{
+  "commit_id":"1b5cee0b7a7d34e7407498216af3f23563b64c88",
+  "commit_msg":"Apollo & GraphQL View Setting COMPLETE",
+  "user_id":"papavhub",
+ "date":"Sun, 6 Feb 2022 14:08:15 +0900" 
+},
+{
+  "commit_id":"c3ee1ba725b06d33b66b31da95b16170d3bef197",
+  "commit_msg":"Merge remote-tracking branch 'refs/remotes/origin/develop-1.1' into develop-1.1",
+  "user_id":"papavhub",
+ "date":"Sun, 6 Feb 2022 12:55:18 +0900" 
+},
+{
+  "commit_id":"fa99453cf01681333c7b2d3664d3cc07c229fe47",
+  "commit_msg":"Apollo & GraphQL Setting",
+  "user_id":"papavhub",
+ "date":"Sun, 6 Feb 2022 12:54:58 +0900" 
+},
+{
+  "commit_id":"b2a90d2597e288745ef492689e612f4bdb76e751",
+  "commit_msg":"Update ReadME.md",
+  "user_id":"ChoiHyeMin",
+ "date":"Sun, 6 Feb 2022 01:15:43 +0900" 
+},
+{
+  "commit_id":"5e8d16a2eade2385e8320d75281dc2ec2eb7e9cb",
+  "commit_msg":"Update ReadME.md",
+  "user_id":"ChoiHyeMin",
+ "date":"Sun, 6 Feb 2022 01:15:19 +0900" 
+},
+{
+  "commit_id":"accda1487810deb52f1515e3ba2239bbf083038e",
+  "commit_msg":"graphql client",
+  "user_id":"pjy7814",
+ "date":"Sun, 6 Feb 2022 01:01:07 +0900" 
+},
+{
+  "commit_id":"03d5ea88520df7a4d4581858df957c4fc9e1dcc3",
+  "commit_msg":"Update index.js",
+  "user_id":"Jiyoung Park",
+ "date":"Sun, 6 Feb 2022 00:06:04 +0900" 
+},
+{
+  "commit_id":"53ad4af02298c93c243e3781f6f049a034205bb3",
+  "commit_msg":"delete library",
+  "user_id":"papavhub",
+ "date":"Sun, 6 Feb 2022 00:04:56 +0900" 
+},
+{
+  "commit_id":"34f99f19c7bfcb1473f8692749596f879100dfd1",
+  "commit_msg":"Merge remote-tracking branch 'refs/remotes/origin/develop-1.1' into develop-1.1",
+  "user_id":"pjy7814",
+ "date":"Sat, 5 Feb 2022 21:39:00 +0900" 
+},
+{
+  "commit_id":"30651806a9525ac4589789c189467bb81d819557",
+  "commit_msg":"graph ql ing",
+  "user_id":"pjy7814",
+ "date":"Sat, 5 Feb 2022 21:38:42 +0900" 
+},
+{
+  "commit_id":"163bba78a7a941313ce26e305cfbf343bfc3d521",
+  "commit_msg":"WEB",
+  "user_id":"papavhub",
+ "date":"Sat, 5 Feb 2022 19:39:35 +0900" 
+},
+{
+  "commit_id":"c1a598702c37cfb70dd140591a3d075270c4249c",
+  "commit_msg":"delete WEB",
+  "user_id":"papavhub",
+ "date":"Sat, 5 Feb 2022 19:36:49 +0900" 
+},
+{
+  "commit_id":"064f93ac93ef6485e81c0370b11f47d08a100618",
+  "commit_msg":"document picker",
+  "user_id":"Jimin731",
+ "date":"Sat, 5 Feb 2022 17:12:13 +0900" 
+},
+{
+  "commit_id":"9d61e302cb7bb325e632c0e8251ee1f1c54aaaf0",
+  "commit_msg":"Update ReadME.md",
+  "user_id":"ChoiHyeMin",
+ "date":"Sat, 5 Feb 2022 14:57:15 +0900" 
+},
+{
+  "commit_id":"605babee6ecb95b990468980a116bc8e059f11c0",
+  "commit_msg":"Comments",
+  "user_id":"papavhub",
+ "date":"Sat, 5 Feb 2022 14:54:56 +0900" 
+},
+{
+  "commit_id":"e7f1403cf441503aebc64350fbd8687ba6d32728",
+  "commit_msg":"Merge remote-tracking branch 'refs/remotes/origin/develop-1.1' into develop-1.1",
+  "user_id":"papavhub",
+ "date":"Sat, 5 Feb 2022 14:47:58 +0900" 
+},
+{
+  "commit_id":"8164d0c1dda4fd6629000284ae61b5352bc22caf",
+  "commit_msg":"comments",
+  "user_id":"papavhub",
+ "date":"Sat, 5 Feb 2022 14:47:45 +0900" 
+},
+{
+  "commit_id":"9f58f8f9e4958b9c766102672a417c7ea9cc66f4",
+  "commit_msg":"file list cloneBtn",
+  "user_id":"Jimin731",
+ "date":"Sat, 5 Feb 2022 01:57:26 +0900" 
+},
+{
+  "commit_id":"f90b0ba150fe4da5e58b539929afcc1270a73d44",
+  "commit_msg":"SwiftUI + Branch, Checkout COMPLETE",
+  "user_id":"papavhub",
+ "date":"Sat, 5 Feb 2022 01:10:10 +0900" 
+},
+{
+  "commit_id":"e32b0e63f5209f681eb267770c1e8d76a674116c",
+  "commit_msg":"Merge remote-tracking branch 'refs/remotes/origin/develop-1.1' into develop-1.1",
+  "user_id":"papavhub",
+ "date":"Sat, 5 Feb 2022 00:39:03 +0900" 
+},
+{
+  "commit_id":"dd056656431e2ef7583f590d72522e205b448eac",
+  "commit_msg":"SwiftUI + Branch COMPLETE",
+  "user_id":"papavhub",
+ "date":"Sat, 5 Feb 2022 00:38:43 +0900" 
+},
+{
+  "commit_id":"c6707366462fd176b5476a61e0db98a6439ab012",
+  "commit_msg":"file list",
+  "user_id":"Jimin731",
+ "date":"Sat, 5 Feb 2022 00:09:58 +0900" 
+},
+{
+  "commit_id":"56c2fa31ae8d982d77cdb7ed54cd9fe2c696ed47",
+  "commit_msg":"SwiftUI + git init",
+  "user_id":"papavhub",
+ "date":"Sat, 5 Feb 2022 00:03:13 +0900" 
+},
+{
+  "commit_id":"88115651db06e3332a8a245b4a0262cc979a9b42",
+  "commit_msg":"SwiftUI + COMMIT, CLONE",
+  "user_id":"papavhub",
+ "date":"Sat, 5 Feb 2022 00:02:21 +0900" 
+},
+{
+  "commit_id":"fe99277e41c9e5fc9db37197464c67246aac0c2f",
+  "commit_msg":"Comments",
+  "user_id":"papavhub",
+ "date":"Fri, 4 Feb 2022 23:50:34 +0900" 
+},
+{
+  "commit_id":"a647ca4b804244dd6bbcfd0173f68615e7a2df15",
+  "commit_msg":"Repo_View_Request Design COMPLETE",
+  "user_id":"papavhub",
+ "date":"Fri, 4 Feb 2022 22:38:44 +0900" 
+},
+{
+  "commit_id":"cc6167e08d3237719faa8acea1a156acfca2fa50",
+  "commit_msg":"Repo_View_Git COMPLETE",
+  "user_id":"papavhub",
+ "date":"Fri, 4 Feb 2022 21:38:33 +0900" 
+},
+{
+  "commit_id":"26abfc3ef5ab381248288e1bbe934ff160eb469a",
+  "commit_msg":"Repo_View_Image COMPLETE",
+  "user_id":"papavhub",
+ "date":"Fri, 4 Feb 2022 20:51:12 +0900" 
+},
+{
+  "commit_id":"d1af1904d708a5f0ecb94fccf32db98d0dc90a3e",
+  "commit_msg":"setting",
+  "user_id":"papavhub",
+ "date":"Fri, 4 Feb 2022 20:35:43 +0900" 
+},
+{
+  "commit_id":"e9ea503d944e53eb049cfb1192e80d1795b336ea",
+  "commit_msg":"Merge remote-tracking branch 'refs/remotes/origin/develop-1.1' into develop-1.1",
+  "user_id":"papavhub",
+ "date":"Fri, 4 Feb 2022 19:28:28 +0900" 
+},
+{
+  "commit_id":"b73d875951d6fea26eb6cf44ed7dd998511f66f1",
+  "commit_msg":"Repo MVVM File",
+  "user_id":"papavhub",
+ "date":"Fri, 4 Feb 2022 19:28:11 +0900" 
+},
+{
+  "commit_id":"4a4c44db6ce9c10958364361e33b924f14f00813",
+  "commit_msg":"Update ReadME.md",
+  "user_id":"Jiyoung Park",
+ "date":"Fri, 4 Feb 2022 18:37:03 +0900" 
+},
+{
+  "commit_id":"15c14ed3258a3fa5224267da1fbd30da71dde3a1",
+  "commit_msg":"Create ReadME.md",
+  "user_id":"Jiyoung Park",
+ "date":"Fri, 4 Feb 2022 18:31:48 +0900" 
+},
+{
+  "commit_id":"94be3a23b43ba733a85a9466d593e733701ebb94",
+  "commit_msg":"Update ReadME.md",
+  "user_id":"Jiyoung Park",
+ "date":"Fri, 4 Feb 2022 18:31:19 +0900" 
+},
+{
+  "commit_id":"43c26f5549efdddf96d23d993cab0898beced736",
+  "commit_msg":"Comments",
+  "user_id":"papavhub",
+ "date":"Fri, 4 Feb 2022 16:49:43 +0900" 
+},
+{
+  "commit_id":"cbfeffbca4ee54625fd14da0ae274fdee69fb66c",
+  "commit_msg":"Comments",
+  "user_id":"papavhub",
+ "date":"Fri, 4 Feb 2022 16:48:30 +0900" 
+},
+{
+  "commit_id":"703cb9999bd5fba6f6e96645d5377f2dec17f436",
+  "commit_msg":"comments",
+  "user_id":"papavhub",
+ "date":"Fri, 4 Feb 2022 15:48:18 +0900" 
+},
+{
+  "commit_id":"7dbea5d561b8a18190470f80547d3f89ae760f86",
+  "commit_msg":"delete comments",
+  "user_id":"papavhub",
+ "date":"Fri, 4 Feb 2022 11:59:36 +0900" 
+},
+{
+  "commit_id":"ddc1019958b96d51f8f6218d4a06e060db00a168",
+  "commit_msg":"delete Comments",
+  "user_id":"papavhub",
+ "date":"Fri, 4 Feb 2022 11:56:43 +0900" 
+},
+{
+  "commit_id":"c5a9471324780b1ada5ab3ad28078a04da82cd65",
+  "commit_msg":"Login file MVVM",
+  "user_id":"papavhub",
+ "date":"Fri, 4 Feb 2022 11:50:43 +0900" 
+},
+{
+  "commit_id":"5f47b459c65ab2dec1c1bdb7f9a52e925b7ec935",
+  "commit_msg":"comments",
+  "user_id":"papavhub",
+ "date":"Fri, 4 Feb 2022 11:39:18 +0900" 
+},
+{
+  "commit_id":"7ee4141c7ab82a4957ba9fef909ad8c0175a6515",
+  "commit_msg":"Update Illustration.jsp",
+  "user_id":"ChoiHyeMin",
+ "date":"Thu, 3 Feb 2022 20:13:45 +0900" 
+},
+{
+  "commit_id":"5ce70960b321a1b2c92749601777eb0d913f8554",
+  "commit_msg":"Update IllustPreview.jsp",
+  "user_id":"ChoiHyeMin",
+ "date":"Thu, 3 Feb 2022 20:13:21 +0900" 
+},
+{
+  "commit_id":"4f5daf605544d9faade027c7fd60cd67231deabd",
+  "commit_msg":"website",
+  "user_id":"Kang-user1",
+ "date":"Thu, 3 Feb 2022 17:34:36 +0900" 
+},
+{
+  "commit_id":"88e88f04651b917cb75eaada5b09134072f268aa",
+  "commit_msg":"unused folder delete",
+  "user_id":"Kang-user1",
+ "date":"Thu, 3 Feb 2022 16:38:24 +0900" 
+},
+{
+  "commit_id":"b2402d8b8c1e87efbc61966b8957e13c9e49d147",
+  "commit_msg":"Merge branch 'develop-1.1' of https://github.com/kpuce2022CD/CACA into develop-1.1",
+  "user_id":"Kang-user1",
+ "date":"Fri, 28 Jan 2022 12:39:06 +0900" 
+},
+{
+  "commit_id":"0806eea134cf631eec756a27e5f0e9a7d4e2ff8f",
+  "commit_msg":"website",
+  "user_id":"Kang-user1",
+ "date":"Fri, 28 Jan 2022 12:38:41 +0900" 
+},
+{
+  "commit_id":"da975ecabec845d537acabcc22d8ea1719ebd0bf",
+  "commit_msg":"documents",
+  "user_id":"papavhub",
+ "date":"Thu, 27 Jan 2022 14:57:16 +0900" 
+},
+{
+  "commit_id":"d2495dc915b6a60ca508132c3196f683909acd68",
+  "commit_msg":"merge COMPLETE:",
+  "user_id":"papavhub",
+ "date":"Thu, 27 Jan 2022 14:56:25 +0900" 
+},
+{
+  "commit_id":"902013c6d9ba9f2220af00132e3aee8613d5165c",
+  "commit_msg":"Merge remote-tracking branch 'refs/remotes/origin/develop-1.1' into develop-1.1",
+  "user_id":"papavhub",
+ "date":"Thu, 27 Jan 2022 13:45:45 +0900" 
+},
+{
+  "commit_id":"fc8a4974d172fc6b11b26f99e4e1d7226d32328e",
+  "commit_msg":"git revert COMPLETE",
+  "user_id":"papavhub",
+ "date":"Thu, 27 Jan 2022 13:45:24 +0900" 
+},
+{
+  "commit_id":"7e52d7a5e7051d7d71b529f049c50346af382ece",
+  "commit_msg":"repository checkout ing",
+  "user_id":"pjy7814",
+ "date":"Wed, 26 Jan 2022 16:24:14 +0900" 
+},
+{
+  "commit_id":"5a42ce250556f2477fc01e89911c0f2b2869d123",
+  "commit_msg":"mvc website (db url must erased.)",
+  "user_id":"Kang-user1",
+ "date":"Wed, 26 Jan 2022 01:56:04 +0900" 
+},
+{
+  "commit_id":"a6a15ae9dbe21941f9f52c02a4817d868a0d4cc7",
+  "commit_msg":"Merge branch 'develop-1.1' of https://github.com/kpuce2022CD/CACA into develop-1.1",
+  "user_id":"Jimin731",
+ "date":"Tue, 25 Jan 2022 14:35:43 +0900" 
+},
+{
+  "commit_id":"b7e9567f6d8c3b07b491530bacea97b9d80239bb",
+  "commit_msg":"commit",
+  "user_id":"Jimin731",
+ "date":"Tue, 25 Jan 2022 14:35:39 +0900" 
+},
+{
+  "commit_id":"7afed0a25367dbd4133345ef09d3161dfaa5f52b",
+  "commit_msg":"create Initial commit + fix terraform ami ..",
+  "user_id":"papavhub",
+ "date":"Tue, 25 Jan 2022 11:56:07 +0900" 
+},
+{
+  "commit_id":"a75fbec8e53fbec067027908edd3a24e265e1e66",
+  "commit_msg":"fetch file",
+  "user_id":"Jimin731",
+ "date":"Tue, 25 Jan 2022 01:32:46 +0900" 
+},
+{
+  "commit_id":"1c70a217d2fa1a71d4c35d9046be6bc96058cd34",
+  "commit_msg":"checkout branch COMPLETE",
+  "user_id":"papavhub",
+ "date":"Mon, 24 Jan 2022 15:52:40 +0900" 
+},
+{
+  "commit_id":"07b1eb2da6f2e1a2d31c631519e6d55900db5f51",
+  "commit_msg":"Create Local Branch COMPLETE",
+  "user_id":"papavhub",
+ "date":"Mon, 24 Jan 2022 13:28:03 +0900" 
+},
+{
+  "commit_id":"94983f3d812eee25f6a3fa80582a44e28bd06396",
+  "commit_msg":"repoList & fetch",
+  "user_id":"Jimin731",
+ "date":"Mon, 24 Jan 2022 13:20:10 +0900" 
+},
+{
+  "commit_id":"8bf50b5b9e132bbbc43704272dde84102bd81914",
+  "commit_msg":"Client Repo Create",
+  "user_id":"Jiyoung Park",
+ "date":"Sun, 23 Jan 2022 20:40:14 +0900" 
+},
+{
+  "commit_id":"e1d237508fdf13e65f7bf5634a61eda677ab1dba",
+  "commit_msg":".DS_Store",
+  "user_id":"papavhub",
+ "date":"Sun, 23 Jan 2022 20:36:44 +0900" 
+},
+{
+  "commit_id":"35bce132b9119d5a90d88f906b136048fc664298",
+  "commit_msg":"rm DS_Store",
+  "user_id":"papavhub",
+ "date":"Sun, 23 Jan 2022 20:35:19 +0900" 
+},
+{
+  "commit_id":"66e54e032550b87e3626c1d05915341d81493ee7",
+  "commit_msg":".gitignore",
+  "user_id":"papavhub",
+ "date":"Sun, 23 Jan 2022 20:33:33 +0900" 
+},
+{
+  "commit_id":"38d21a44028836d82a01dbbe777349a3bc99be25",
+  "commit_msg":"Merge remote-tracking branch 'refs/remotes/origin/develop-1.9' into develop-1.9",
+  "user_id":"papavhub",
+ "date":"Sun, 23 Jan 2022 20:28:45 +0900" 
+},
+{
+  "commit_id":"704f65422590bb7e79f5b492d6f11b86be5f58dc",
+  "commit_msg":"commit",
+  "user_id":"papavhub",
+ "date":"Sun, 23 Jan 2022 20:28:27 +0900" 
+},
+{
+  "commit_id":"6be87d622429a8891107c510601fed2016dd0086",
+  "commit_msg":"create Repository Server",
+  "user_id":"Jiyoung Park",
+ "date":"Sun, 23 Jan 2022 20:24:12 +0900" 
+},
+{
+  "commit_id":"25a4ac74558dc9f7e1b8ce18c3ebfcbc66072697",
+  "commit_msg":"create branch",
+  "user_id":"papavhub",
+ "date":"Sun, 23 Jan 2022 20:19:12 +0900" 
+},
+{
+  "commit_id":"9b37d87f12d964b5ff88b924be4bc08bee425cf4",
+  "commit_msg":"comments",
+  "user_id":"papavhub",
+ "date":"Sun, 23 Jan 2022 17:59:26 +0900" 
+},
+{
+  "commit_id":"803bbb4001907be2b453239a8548e302e2892a03",
+  "commit_msg":"return remote&local Branches",
+  "user_id":"papavhub",
+ "date":"Sun, 23 Jan 2022 17:56:09 +0900" 
+},
+{
+  "commit_id":"f93adf98ce1fa9fe9158994494cc9c41b56eb623",
+  "commit_msg":"git comments",
+  "user_id":"papavhub",
+ "date":"Sun, 23 Jan 2022 16:15:11 +0900" 
+},
+{
+  "commit_id":"794bc17b3e5b321c08288039137a260bec3141ef",
+  "commit_msg":"comments",
+  "user_id":"papavhub",
+ "date":"Sun, 23 Jan 2022 16:09:31 +0900" 
+},
+{
+  "commit_id":"3de0c8897226dcd610c4eaa4f2790661d18d72c2",
+  "commit_msg":"Fix Library && COMPLETE add, commit, push",
+  "user_id":"papavhub",
+ "date":"Sun, 23 Jan 2022 02:19:12 +0900" 
+},
+{
+  "commit_id":"76d3015496dc0660ba754980fe8fe4f6c044b726",
+  "commit_msg":"commit",
+  "user_id":"papavhub",
+ "date":"Sat, 22 Jan 2022 16:29:31 +0900" 
+},
+{
+  "commit_id":"1cf5d4d20822d824ad04c6e15ba2c0d54668d34e",
+  "commit_msg":"commit",
+  "user_id":"papavhub",
+ "date":"Sat, 22 Jan 2022 01:35:42 +0900" 
+},
+{
+  "commit_id":"27ff72598795c216f2bbb413b53e1d257b56e1df",
+  "commit_msg":"commit",
+  "user_id":"papavhub",
+ "date":"Sat, 22 Jan 2022 01:34:34 +0900" 
+},
+{
+  "commit_id":"3f3e03d1f3fa19b0ed09edfd81ac62eecf77429d",
+  "commit_msg":"commit",
+  "user_id":"papavhub",
+ "date":"Sat, 22 Jan 2022 01:31:26 +0900" 
+},
+{
+  "commit_id":"deec5ddfa7dc12bb05fecdabcc803fb4edfdb3b3",
+  "commit_msg":"commit",
+  "user_id":"papavhub",
+ "date":"Sat, 22 Jan 2022 01:28:54 +0900" 
+},
+{
+  "commit_id":"8d739eabcc065b5f92ba223a994982b85daf37c0",
+  "commit_msg":"add SwiftGit3 Library",
+  "user_id":"papavhub",
+ "date":"Sat, 22 Jan 2022 01:26:41 +0900" 
+},
+{
+  "commit_id":"3103137559ab78ce1f17169160c86d7f3e80ee30",
+  "commit_msg":"commit",
+  "user_id":"papavhub",
+ "date":"Sat, 22 Jan 2022 01:15:32 +0900" 
+},
+{
+  "commit_id":"9ca0ce4c9d9ae4700cdb96d64811fe01b25497c8",
+  "commit_msg":"commit",
+  "user_id":"papavhub",
+ "date":"Sat, 22 Jan 2022 01:10:07 +0900" 
+},
+{
+  "commit_id":"226fbc256d4a38e6b7a2b4a47101e6b579815091",
+  "commit_msg":"commit",
+  "user_id":"papavhub",
+ "date":"Sat, 22 Jan 2022 01:05:08 +0900" 
+},
+{
+  "commit_id":"df59853c9fdb4d83c15ab4fe7e75bd3b076c48ae",
+  "commit_msg":"test",
+  "user_id":"pjy7814",
+ "date":"Sat, 22 Jan 2022 01:03:13 +0900" 
+},
+{
+  "commit_id":"3e2055a33efff181e89ca12356e15faf0398b1a1",
+  "commit_msg":"commit",
+  "user_id":"papavhub",
+ "date":"Sat, 22 Jan 2022 00:57:22 +0900" 
+},
+{
+  "commit_id":"28d0df40d5f53ee6187f98b2f706d639ab9b528e",
+  "commit_msg":"commit",
+  "user_id":"papavhub",
+ "date":"Sat, 22 Jan 2022 00:53:03 +0900" 
+},
+{
+  "commit_id":"a091ea8734b55c930b5095f44066f2d2de507f02",
+  "commit_msg":"commit",
+  "user_id":"papavhub",
+ "date":"Sat, 22 Jan 2022 00:51:43 +0900" 
+},
+{
+  "commit_id":"65469c9a89af61668cc8f53e141b9e6b395b5f6e",
+  "commit_msg":"Merge remote-tracking branch 'refs/remotes/origin/develop-1.9' into develop-1.9",
+  "user_id":"papavhub",
+ "date":"Sat, 22 Jan 2022 00:44:23 +0900" 
+},
+{
+  "commit_id":"fe4f9237e73d104425d2d813d204c1d899eac4e4",
+  "commit_msg":"commit",
+  "user_id":"papavhub",
+ "date":"Sat, 22 Jan 2022 00:43:59 +0900" 
+},
+{
+  "commit_id":"ea41fce89c099bfb5d3424fe55cf28ec2fd057be",
+  "commit_msg":"mvc db connect + page link",
+  "user_id":"Kang-user1",
+ "date":"Fri, 21 Jan 2022 21:04:07 +0900" 
+},
+{
+  "commit_id":"a5ba4413339a53a146c2a5aef5dc62b4e7f85243",
+  "commit_msg":"commit",
+  "user_id":"papavhub",
+ "date":"Fri, 21 Jan 2022 13:39:41 +0900" 
+},
+{
+  "commit_id":"4ebc941f4b5d8d8b90f693b64a4ce1ffce15f385",
+  "commit_msg":"commit",
+  "user_id":"papavhub",
+ "date":"Fri, 21 Jan 2022 13:39:10 +0900" 
+},
+{
+  "commit_id":"f2aaf972eac5c1981eb124abdf9fc3977dfc9009",
+  "commit_msg":"Merge remote-tracking branch 'refs/remotes/origin/develop-1.9' into develop-1.9",
+  "user_id":"paapvhub",
+ "date":"Fri, 21 Jan 2022 13:33:43 +0900" 
+},
+{
+  "commit_id":"341631c2a0481f42965955c1341df12475c37329",
+  "commit_msg":"app add commit COMPLETE",
+  "user_id":"paapvhub",
+ "date":"Fri, 21 Jan 2022 13:32:10 +0900" 
+},
+{
+  "commit_id":"aae7e937e2599022e9be5df01a76f7b3ce7ae149",
+  "commit_msg":"Merge branch 'develop-1.9' of https://github.com/kpuce2022CD/CACA into develop-1.9",
+  "user_id":"Kang-user1",
+ "date":"Fri, 21 Jan 2022 01:56:46 +0900" 
+},
+{
+  "commit_id":"0979cd079f7f475b0b735a6170f4f4b0f4adc54a",
+  "commit_msg":"mvc website",
+  "user_id":"Kang-user1",
+ "date":"Fri, 21 Jan 2022 01:56:21 +0900" 
+},
+{
+  "commit_id":"905f77704c27d309f4cb6e52e7c8a1d3c0476549",
+  "commit_msg":"repoList View",
+  "user_id":"Jimin731",
+ "date":"Thu, 20 Jan 2022 19:06:44 +0900" 
+},
+{
+  "commit_id":"dc6fe0b3d1e141e0bf781d9881ceca8676c1a8e8",
+  "commit_msg":"Update CLONET.pem",
+  "user_id":"ChoiHyeMin",
+ "date":"Thu, 20 Jan 2022 02:19:08 +0900" 
+},
+{
+  "commit_id":"765fc6373ce167a213db44e2d5e1ccaa6bbfcf4f",
+  "commit_msg":" fix create repository",
+  "user_id":"paapvhub",
+ "date":"Wed, 19 Jan 2022 21:45:45 +0900" 
+},
+{
+  "commit_id":"8f4d90061fa004588c2e9f9086dba217db9e78c7",
+  "commit_msg":"get RepoList",
+  "user_id":"Jimin731",
+ "date":"Wed, 19 Jan 2022 20:18:30 +0900" 
+},
+{
+  "commit_id":"c6afaec653e2eba876e0363f418d8eaefd264392",
+  "commit_msg":"create_repository with nodejs",
+  "user_id":"paapvhub",
+ "date":"Wed, 19 Jan 2022 19:39:32 +0900" 
+},
+{
+  "commit_id":"174e5f7dffc9e969d1be8525ab46ceff8e710b02",
+  "commit_msg":"+dynamic img (url erased)",
+  "user_id":"Kang-user1",
+ "date":"Wed, 19 Jan 2022 17:02:40 +0900" 
+},
+{
+  "commit_id":"7121605553954fa7b46953c70f16bbc72ddf35b1",
+  "commit_msg":"terraform ec2 repository + security group",
+  "user_id":"papav-hub",
+ "date":"Wed, 19 Jan 2022 15:21:04 +0900" 
+},
+{
+  "commit_id":"89c1f8ccbc3b982649320c21a5fad124a3028543",
+  "commit_msg":"create instance using terraform from ami",
+  "user_id":"papav-hub",
+ "date":"Wed, 19 Jan 2022 13:06:14 +0900" 
+},
+{
+  "commit_id":"97e7e18c732066f171b974d7a3fdc51719fe0f1c",
+  "commit_msg":"gitTest",
+  "user_id":"Jimin731",
+ "date":"Wed, 19 Jan 2022 12:49:21 +0900" 
+},
+{
+  "commit_id":"40a03a2f55dd2a34e77e899766d70546a2c3c53b",
+  "commit_msg":"로그인 후 홈 수정",
+  "user_id":"pjy7814",
+ "date":"Wed, 19 Jan 2022 12:43:45 +0900" 
+},
+{
+  "commit_id":"06604a70da75a0ea8acf6c9becd316d0d695a720",
+  "commit_msg":"+ contact",
+  "user_id":"Kang-user1",
+ "date":"Wed, 19 Jan 2022 01:53:50 +0900" 
+},
+{
+  "commit_id":"84633431dacbac34fb97051f5988d304c8b006d4",
+  "commit_msg":"website db edit",
+  "user_id":"Kang-user1",
+ "date":"Wed, 19 Jan 2022 01:04:02 +0900" 
+},
+{
+  "commit_id":"c34c3a8131db1618b00e027ac373156d4049c54e",
+  "commit_msg":"web_main (db url must be erased)",
+  "user_id":"Kang-user1",
+ "date":"Tue, 18 Jan 2022 21:33:56 +0900" 
+},
+{
+  "commit_id":"c8ca2a569bee0d32e2062e00b8409e603ac8c451",
+  "commit_msg":"webtest",
+  "user_id":"Kang-user1",
+ "date":"Tue, 18 Jan 2022 10:41:23 +0900" 
+},
+{
+  "commit_id":"a937baf29fed0ab33b8b2f30c679fd3e245dc4b6",
+  "commit_msg":"remove",
+  "user_id":"Kang-user1",
+ "date":"Tue, 18 Jan 2022 10:38:35 +0900" 
+},
+{
+  "commit_id":"ffcf1908aff4240c1b84fb6d75944e0db47335d3",
+  "commit_msg":"session",
+  "user_id":"Kang-user1",
+ "date":"Tue, 18 Jan 2022 09:34:10 +0900" 
+},
+{
+  "commit_id":"134416fae37a1ab755aa3e2196b7f3cf99e71665",
+  "commit_msg":"Update ReadME.md",
+  "user_id":"ChoiHyeMin",
+ "date":"Tue, 18 Jan 2022 01:16:59 +0900" 
+},
+{
+  "commit_id":"6da90af6e51b974423fba8e5729e9771fef188dc",
+  "commit_msg":"Update ReadME.md",
+  "user_id":"ChoiHyeMin",
+ "date":"Tue, 18 Jan 2022 01:15:20 +0900" 
+},
+{
+  "commit_id":"8c43f6bdadcaf1e7598c783c8fb47b604271279f",
+  "commit_msg":"fix",
+  "user_id":"papav-hub",
+ "date":"Tue, 18 Jan 2022 01:14:00 +0900" 
+},
+{
+  "commit_id":"64bac05b980574aa1b0519be697b28552d827359",
+  "commit_msg":"fix",
+  "user_id":"papav-hub",
+ "date":"Tue, 18 Jan 2022 01:13:14 +0900" 
+},
+{
+  "commit_id":"2991ac8787dd42e08f76e924d5744d661859e746",
+  "commit_msg":"start Terraform",
+  "user_id":"papav-hub",
+ "date":"Tue, 18 Jan 2022 00:30:57 +0900" 
+},
+{
+  "commit_id":"f86afa349376e6aa8014403ffe79129bba0a0eb7",
+  "commit_msg":"apptest NO_USE",
+  "user_id":"papav-hub",
+ "date":"Tue, 18 Jan 2022 00:30:25 +0900" 
+},
+{
+  "commit_id":"813a0fe0ff11f81f21a6afdf15c4a4ba0886e47a",
+  "commit_msg":"database",
+  "user_id":"pjy7814",
+ "date":"Mon, 17 Jan 2022 14:04:34 +0900" 
+},
+{
+  "commit_id":"67a3d2986f2a37c3fc0138cb2d9c5dd2041c02e2",
+  "commit_msg":"mailer update",
+  "user_id":"Jimin731",
+ "date":"Sun, 16 Jan 2022 23:43:12 +0900" 
+},
+{
+  "commit_id":"a58928d30fd63dd6cd933c23e751e8fa5e1979bb",
+  "commit_msg":"socket",
+  "user_id":"Kang-user1",
+ "date":"Sun, 16 Jan 2022 19:49:44 +0900" 
+},
+{
+  "commit_id":"59b24db660f8d9125875a60a9e2d3834d78d2fa0",
+  "commit_msg":"web",
+  "user_id":"Kang-user1",
+ "date":"Sun, 16 Jan 2022 19:48:47 +0900" 
+},
+{
+  "commit_id":"ce48173c831f5199ac0867d78a1d57c04acb62d5",
+  "commit_msg":"loginCheck UI",
+  "user_id":"Jimin731",
+ "date":"Sat, 15 Jan 2022 17:28:19 +0900" 
+},
+{
+  "commit_id":"1fc79634c3d117a93a92a832346ed8fb1292b91d",
+  "commit_msg":"Repository UI",
+  "user_id":"pjy7814",
+ "date":"Sat, 15 Jan 2022 17:05:51 +0900" 
+},
+{
+  "commit_id":"2b4499545f12ad8c092ca5da2262c48ca25309b4",
+  "commit_msg":"email-form complete",
+  "user_id":"papav-hub",
+ "date":"Sat, 15 Jan 2022 15:25:05 +0900" 
+},
+{
+  "commit_id":"e03a4af5f4eb1354ae8086a8e10a003b25e42b09",
+  "commit_msg":"aws group bucket",
+  "user_id":"pjy7814",
+ "date":"Sat, 15 Jan 2022 01:25:37 +0900" 
+},
+{
+  "commit_id":"9228784191572961583d1a725124aa762aed391a",
+  "commit_msg":"fault fix",
+  "user_id":"papav-hub",
+ "date":"Sat, 15 Jan 2022 01:18:34 +0900" 
+},
+{
+  "commit_id":"4b7d5716c8600207275eabe1257559a1a0c0017b",
+  "commit_msg":"DB",
+  "user_id":"Kang-user1",
+ "date":"Sat, 15 Jan 2022 01:12:41 +0900" 
+},
+{
+  "commit_id":"656c83d0b8fc7347aca7a496d4413001e0c7662e",
+  "commit_msg":"Update Login.swift",
+  "user_id":"Jiyoung Park",
+ "date":"Fri, 14 Jan 2022 23:51:47 +0900" 
+},
+{
+  "commit_id":"b247618ef14e30b690fe76f8dec22eb2e1378fcb",
+  "commit_msg":"repush find ID/PW",
+  "user_id":"Jimin731",
+ "date":"Fri, 14 Jan 2022 23:48:26 +0900" 
+},
+{
+  "commit_id":"213f4005951b59f95e26e66ef3b4f0182332904e",
+  "commit_msg":"repush",
+  "user_id":"Jimin731",
+ "date":"Fri, 14 Jan 2022 23:46:52 +0900" 
+},
+{
+  "commit_id":"ecf9c5a9d425b4f19d33b217fc759c559062a475",
+  "commit_msg":"ID/PW find",
+  "user_id":"Jimin731",
+ "date":"Fri, 14 Jan 2022 18:03:08 +0900" 
+},
+{
+  "commit_id":"14b4f7346dd831a0b7c6312ffad60a961f481b9d",
+  "commit_msg":"회원가입 버튼",
+  "user_id":"pjy7814",
+ "date":"Fri, 14 Jan 2022 17:57:20 +0900" 
+},
+{
+  "commit_id":"5c7d25d61d7c2fcf2d119ea270d551b1f39061c2",
+  "commit_msg":"Create Group",
+  "user_id":"papav-hub",
+ "date":"Fri, 14 Jan 2022 17:32:55 +0900" 
+},
+{
+  "commit_id":"2be43d3e671c57c005489707cdba03b398c2a205",
+  "commit_msg":"navigation Login",
+  "user_id":"pjy7814",
+ "date":"Fri, 14 Jan 2022 16:49:13 +0900" 
+},
+{
+  "commit_id":"70f155150b3649ba8cae819389f61c21b6dd750c",
+  "commit_msg":"login + create iam user",
+  "user_id":"papav-hub",
+ "date":"Fri, 14 Jan 2022 16:31:04 +0900" 
+},
+{
+  "commit_id":"5383e1a19c62437b9e2dfab59c7358bee4d90a28",
+  "commit_msg":"Update FindIdPw.swift",
+  "user_id":"ChoiHyeMin",
+ "date":"Fri, 14 Jan 2022 15:37:45 +0900" 
+},
+{
+  "commit_id":"ba6664e5f724c87e1f5cde3f6dea751d7326d252",
+  "commit_msg":"Update mailer.js",
+  "user_id":"ChoiHyeMin",
+ "date":"Fri, 14 Jan 2022 15:36:52 +0900" 
+},
+{
+  "commit_id":"72a2f1942058b0fb9a971eaa8b9ee82b5d8bd89c",
+  "commit_msg":"repushes",
+  "user_id":"Jimin731",
+ "date":"Fri, 14 Jan 2022 14:50:47 +0900" 
+},
+{
+  "commit_id":"a1769e5b301fc08ecc78e67c2a38a349b66f1a6b",
+  "commit_msg":"socket_login.js",
+  "user_id":"papav-hub",
+ "date":"Fri, 14 Jan 2022 14:44:43 +0900" 
+},
+{
+  "commit_id":"0806f97fb14cb4b1a87371e727760b6e8a6216ed",
+  "commit_msg":"login&signup socket fix",
+  "user_id":"papav-hub",
+ "date":"Fri, 14 Jan 2022 14:43:12 +0900" 
+},
+{
+  "commit_id":"32f86b2ec713fc83ade7929e8f16d038d5bb37a2",
+  "commit_msg":"server-db socket accuracy up",
+  "user_id":"papav-hub",
+ "date":"Fri, 14 Jan 2022 01:35:26 +0900" 
+},
+{
+  "commit_id":"b0d6857bf073a58d85ff2a781585f2a42b67cc6d",
+  "commit_msg":"login socket fix",
+  "user_id":"papav-hub",
+ "date":"Fri, 14 Jan 2022 00:08:08 +0900" 
+},
+{
+  "commit_id":"e384067eca8f544f294f60d0bbb28744404e9797",
+  "commit_msg":"login db-server-app",
+  "user_id":"papav-hub",
+ "date":"Thu, 13 Jan 2022 23:29:07 +0900" 
+},
+{
+  "commit_id":"4861dbe613a4d7861ba824950c55f4dd2b94fb07",
+  "commit_msg":"Merge remote-tracking branch 'refs/remotes/origin/develop-1.0' into develop-1.0",
+  "user_id":"papav-hub",
+ "date":"Thu, 13 Jan 2022 23:13:55 +0900" 
+},
+{
+  "commit_id":"7c3a43ec67c70e455f17bccb78a7a21fbfbde89f",
+  "commit_msg":"db-server-app doing",
+  "user_id":"papav-hub",
+ "date":"Thu, 13 Jan 2022 23:13:20 +0900" 
+},
+{
+  "commit_id":"62cf401abd4de0e8f8acb1e30f133f259294e53c",
+  "commit_msg":"Update ReadME.md",
+  "user_id":"Jiyoung Park",
+ "date":"Thu, 13 Jan 2022 22:40:44 +0900" 
+},
+{
+  "commit_id":"b4252d5dd12845204acd475e3d6a2d99716b91a0",
+  "commit_msg":"Update ReadME.md",
+  "user_id":"Jiyoung Park",
+ "date":"Thu, 13 Jan 2022 22:38:47 +0900" 
+},
+{
+  "commit_id":"60be27a9cb8a5af45664560947613564e36d152c",
+  "commit_msg":"login navigation title hidden",
+  "user_id":"papav-hub",
+ "date":"Thu, 13 Jan 2022 22:26:11 +0900" 
+},
+{
+  "commit_id":"64219e5aca66adf8fc5af3b428b70918c8b1f645",
+  "commit_msg":"login ui fix",
+  "user_id":"ChoiHyeMin",
+ "date":"Thu, 13 Jan 2022 22:17:49 +0900" 
+},
+{
+  "commit_id":"7b67db0be5b9f18008b695251e28d8f2a40c8a5f",
+  "commit_msg":"login up",
+  "user_id":"pjy7814",
+ "date":"Thu, 13 Jan 2022 22:06:55 +0900" 
+},
+{
+  "commit_id":"df5c12a26c548eb36b08c676a09dc141978b309b",
+  "commit_msg":"Update ReadME.md",
+  "user_id":"jimin Yoon",
+ "date":"Thu, 13 Jan 2022 21:54:16 +0900" 
+},
+{
+  "commit_id":"bb596f968f5d138c82d5d84b4f809fc11d8464c1",
+  "commit_msg":"Update ReadME.md",
+  "user_id":"jimin Yoon",
+ "date":"Thu, 13 Jan 2022 21:50:01 +0900" 
+},
+{
+  "commit_id":"148b6a7d4faf4897adc096cd5fe04c04641a755c",
+  "commit_msg":"Update ReadME.md",
+  "user_id":"jimin Yoon",
+ "date":"Thu, 13 Jan 2022 21:47:20 +0900" 
+},
+{
+  "commit_id":"616ec4a290761619ad8b5aa3b54499be25fc516a",
+  "commit_msg":"Update ReadME.md",
+  "user_id":"jimin Yoon",
+ "date":"Thu, 13 Jan 2022 21:47:11 +0900" 
+},
+{
+  "commit_id":"76fcf8603e9c9ebe001890e6f11c9cacbc0df199",
+  "commit_msg":"Update ReadME.md",
+  "user_id":"jimin Yoon",
+ "date":"Thu, 13 Jan 2022 21:46:24 +0900" 
+},
+{
+  "commit_id":"e5cb1f69e7e5350df19644bc566adc06865a0a10",
+  "commit_msg":"create Bucket COMPLETE",
+  "user_id":"papav-hub",
+ "date":"Thu, 13 Jan 2022 20:46:59 +0900" 
+},
+{
+  "commit_id":"3fec1dc162ef294c8d32d44d6146263e0326e064",
+  "commit_msg":"combine signup",
+  "user_id":"pjy7814",
+ "date":"Thu, 13 Jan 2022 20:43:40 +0900" 
+},
+{
+  "commit_id":"d8ac2915cb876eab2a8f2fe03610094f4dac5a93",
+  "commit_msg":"send mail",
+  "user_id":"Jimin731",
+ "date":"Thu, 13 Jan 2022 20:35:36 +0900" 
+},
+{
+  "commit_id":"f8f51b886e9aeb88c2cc586053185c49b07b2483",
+  "commit_msg":"signup button",
+  "user_id":"pjy7814",
+ "date":"Thu, 13 Jan 2022 17:04:09 +0900" 
+},
+{
+  "commit_id":"9b180a4703804fdd550e75a17f0939406b62ff42",
+  "commit_msg":"login server",
+  "user_id":"papav-hub",
+ "date":"Thu, 13 Jan 2022 16:01:54 +0900" 
+},
+{
+  "commit_id":"0325bf7433d3fb38fe6429e2c6380b6173bc03b9",
+  "commit_msg":"login Update",
+  "user_id":"Jimin731",
+ "date":"Thu, 13 Jan 2022 12:12:33 +0900" 
+},
+{
+  "commit_id":"22d7fc42c9d3f72e781b4f02d7ff73f3bce4d289",
+  "commit_msg":"signup ing",
+  "user_id":"pjy7814",
+ "date":"Thu, 13 Jan 2022 11:53:52 +0900" 
+},
+{
+  "commit_id":"249811580e077da583580ba8d27514b6926eaca7",
+  "commit_msg":"server signup",
+  "user_id":"Jiyoung Park",
+ "date":"Thu, 13 Jan 2022 11:32:07 +0900" 
+},
+{
+  "commit_id":"85e1889df97c72c8b538f0de3ecbb4f775048725",
+  "commit_msg":"login socket error complete",
+  "user_id":"papav-hub",
+ "date":"Thu, 13 Jan 2022 11:26:48 +0900" 
+},
+{
+  "commit_id":"21a6a3e440e3bf8d7f48437877df68b9efb9d74f",
+  "commit_msg":"Merge remote-tracking branch 'refs/remotes/origin/develop' into develop",
+  "user_id":"pjy7814",
+ "date":"Thu, 13 Jan 2022 11:14:44 +0900" 
+},
+{
+  "commit_id":"5a026ecb45d5582d34513a91d2ba494ea019dbe1",
+  "commit_msg":"signup server",
+  "user_id":"pjy7814",
+ "date":"Thu, 13 Jan 2022 11:13:40 +0900" 
+},
+{
+  "commit_id":"cbe83c7a8e4b6813c9694dfd00d810c018a5c501",
+  "commit_msg":"back",
+  "user_id":"Jimin731",
+ "date":"Thu, 13 Jan 2022 00:47:46 +0900" 
+},
+{
+  "commit_id":"698a7cf093a2e45150d4b094e555e80fc7e1cdf6",
+  "commit_msg":"signUp ing",
+  "user_id":"pjy7814",
+ "date":"Thu, 13 Jan 2022 00:42:40 +0900" 
+},
+{
+  "commit_id":"62e87b2046f1abc8c35507329937e76a76945a16",
+  "commit_msg":"DB login",
+  "user_id":"Kang-user1",
+ "date":"Wed, 12 Jan 2022 23:58:52 +0900" 
+},
+{
+  "commit_id":"6f97c4f9f9ac6b478e5b1c8b06a14934222682f5",
+  "commit_msg":"PSW Field",
+  "user_id":"Jimin731",
+ "date":"Wed, 12 Jan 2022 23:47:09 +0900" 
+},
+{
+  "commit_id":"98b6673699d1ef5989dae4486ba516a6d1f8316d",
+  "commit_msg":"login Update",
+  "user_id":"Jimin731",
+ "date":"Wed, 12 Jan 2022 23:44:18 +0900" 
+},
+{
+  "commit_id":"876b5b7c970038c5ea0fd422826c91f06c588128",
+  "commit_msg":"re server",
+  "user_id":"Jiyoung Park",
+ "date":"Wed, 12 Jan 2022 23:41:47 +0900" 
+},
+{
+  "commit_id":"fe6d0cd8b5176ce5ca4e7cfa4f53151c24dbb294",
+  "commit_msg":"Create Iam User COMPLETE",
+  "user_id":"papav-hub",
+ "date":"Wed, 12 Jan 2022 23:38:38 +0900" 
+},
+{
+  "commit_id":"c7c0f16c01de257a3976b7c101cfbaba4c5a43a2",
+  "commit_msg":"login server",
+  "user_id":"Jiyoung Park",
+ "date":"Wed, 12 Jan 2022 22:31:00 +0900" 
+},
+{
+  "commit_id":"af96449bd430ad7dba1ae73bbcc1d911cb34579e",
+  "commit_msg":"login",
+  "user_id":"pjy7814",
+ "date":"Wed, 12 Jan 2022 22:20:54 +0900" 
+},
+{
+  "commit_id":"d6d583a564177af2460687bebeea8fe219667d7a",
+  "commit_msg":"fix directory structure",
+  "user_id":"papav-hub",
+ "date":"Wed, 12 Jan 2022 20:06:38 +0900" 
+},
+{
+  "commit_id":"da419a119e0f35c0cf93a7c3750f3d8526c2c01a",
+  "commit_msg":"UIKIT -> SwiftUI",
+  "user_id":"Jimin731",
+ "date":"Wed, 12 Jan 2022 17:00:05 +0900" 
+},
+{
+  "commit_id":"32ba8ef4678c0cc439c880abee13e350a29bae0b",
+  "commit_msg":"Merge remote-tracking branch 'refs/remotes/origin/master'",
+  "user_id":"papav-hub",
+ "date":"Wed, 12 Jan 2022 10:14:32 +0900" 
+},
+{
+  "commit_id":"69d75304384281e17663f52e0d08937c27436507",
+  "commit_msg":"comment",
+  "user_id":"papav-hub",
+ "date":"Wed, 12 Jan 2022 10:14:19 +0900" 
+},
+{
+  "commit_id":"a8eb925e694e6b456d9352eff20c94a4c6f3585e",
+  "commit_msg":"Add files via upload",
+  "user_id":"xoghk5746",
+ "date":"Wed, 12 Jan 2022 06:39:15 +0900" 
+},
+{
+  "commit_id":"90090efe335fd989eee36987631876dcc2534589",
+  "commit_msg":"Merge branch 'master' of https://github.com/kpuce2022CD/CACA",
+  "user_id":"Kang-user1",
+ "date":"Wed, 12 Jan 2022 06:03:44 +0900" 
+},
+{
+  "commit_id":"af12ab67292c962526eac7c24070cc2308e66a4e",
+  "commit_msg":"webpage link",
+  "user_id":"Kang-user1",
+ "date":"Wed, 12 Jan 2022 05:55:10 +0900" 
+},
+{
+  "commit_id":"2ce60c375ea2e002e37f332c1009b3235b0fbe0d",
+  "commit_msg":"login server",
+  "user_id":"pjy7814",
+ "date":"Wed, 12 Jan 2022 02:06:53 +0900" 
+},
+{
+  "commit_id":"05f551ad5379799061837d7863ad4b0c716cfda4",
+  "commit_msg":"SignUpUI & ViewModifiers",
+  "user_id":"Jimin731",
+ "date":"Wed, 12 Jan 2022 01:57:35 +0900" 
+},
+{
+  "commit_id":"bbb2c4532df4aa1201236b0e83c8792ed1920110",
+  "commit_msg":"swift to server",
+  "user_id":"pjy7814",
+ "date":"Wed, 12 Jan 2022 01:18:04 +0900" 
+},
+{
+  "commit_id":"fa50dbadc3d90aec1347bec8b3db9a2d8362be90",
+  "commit_msg":"add PageViewController to use swift in swiftui",
+  "user_id":"papav-hub",
+ "date":"Wed, 12 Jan 2022 00:32:28 +0900" 
+},
+{
+  "commit_id":"ce4cfa9d696bca1714314081e0dc700c9d9a2ea3",
+  "commit_msg":"iOS Json Parsing",
+  "user_id":"Jimin731",
+ "date":"Tue, 11 Jan 2022 20:51:19 +0900" 
+},
+{
+  "commit_id":"d699433214ac114054bd9c0b7966f703b3102911",
+  "commit_msg":"iOS json parsing",
+  "user_id":"Jimin731",
+ "date":"Tue, 11 Jan 2022 20:40:17 +0900" 
+},
+{
+  "commit_id":"7a6feb25a7a0c095471c8ad3c9689bd6266b4c2c",
+  "commit_msg":"create git repository doing",
+  "user_id":"papav-hub",
+ "date":"Tue, 11 Jan 2022 18:46:46 +0900" 
+},
+{
+  "commit_id":"c4ace1dd25c4af85e70cf86ba2d6054ec93cb106",
+  "commit_msg":"error fix",
+  "user_id":"papav-hub",
+ "date":"Tue, 11 Jan 2022 18:32:11 +0900" 
+},
+{
+  "commit_id":"603d1329484b31fca2e3c8e730d8380e88b11e18",
+  "commit_msg":"add json file",
+  "user_id":"papav-hub",
+ "date":"Tue, 11 Jan 2022 18:28:29 +0900" 
+},
+{
+  "commit_id":"c22f70aab002ca73a67184a0640ef833b97414ab",
+  "commit_msg":"json test",
+  "user_id":"papav-hub",
+ "date":"Tue, 11 Jan 2022 17:24:47 +0900" 
+},
+{
+  "commit_id":"f758788d4a71cbd88cd3fa7976837ab56e08ec4e",
+  "commit_msg":"fix structure",
+  "user_id":"papav-hub",
+ "date":"Tue, 11 Jan 2022 16:32:34 +0900" 
+},
+{
+  "commit_id":"fff05b493665f93f830b2fcfe31b30a65fd93fdf",
+  "commit_msg":"add cloud server ip",
+  "user_id":"papav-hub",
+ "date":"Tue, 11 Jan 2022 15:13:37 +0900" 
+},
+{
+  "commit_id":"45830749ca228ec2b702dcf39ff040382779bc9e",
+  "commit_msg":"fix navigation destination",
+  "user_id":"papav-hub",
+ "date":"Tue, 11 Jan 2022 15:09:23 +0900" 
+},
+{
+  "commit_id":"888baf614e48725ab29d80e558befe6b2f0386bd",
+  "commit_msg":"find id && password design complete",
+  "user_id":"papav-hub",
+ "date":"Tue, 11 Jan 2022 14:52:28 +0900" 
+},
+{
+  "commit_id":"2e706198d886cb69f23d63d065cf1df11996d963",
+  "commit_msg":"signin design complete",
+  "user_id":"papav-hub",
+ "date":"Tue, 11 Jan 2022 14:33:42 +0900" 
+},
+{
+  "commit_id":"1fc9e7026356c59ff138aae010d99656bb8731ea",
+  "commit_msg":"add signup && find id/password",
+  "user_id":"papav-hub",
+ "date":"Tue, 11 Jan 2022 13:37:23 +0900" 
+},
+{
+  "commit_id":"f88a7698be2085359e1cb01695086d82bb0a30a1",
+  "commit_msg":"SocketIO",
+  "user_id":"Jimin731",
+ "date":"Mon, 10 Jan 2022 23:49:45 +0900" 
+},
+{
+  "commit_id":"751c8d081ec10a247e6f86ad44010f5d4010d616",
+  "commit_msg":"git test",
+  "user_id":"pjy7814",
+ "date":"Mon, 10 Jan 2022 23:30:31 +0900" 
+},
+{
+  "commit_id":"54ea335eddca1133cc566b6992f3d2640539355f",
+  "commit_msg":"Merge remote-tracking branch 'refs/remotes/origin/master'",
+  "user_id":"pjy7814",
+ "date":"Mon, 10 Jan 2022 23:28:09 +0900" 
+},
+{
+  "commit_id":"327ca13243bba8fa3f48d2a9c5dc35d9a6d6ad85",
+  "commit_msg":"git test",
+  "user_id":"pjy7814",
+ "date":"Mon, 10 Jan 2022 23:27:17 +0900" 
+},
+{
+  "commit_id":"19678824838a83acd28c12b12910d5d89cb7ea03",
+  "commit_msg":"fix ipad design",
+  "user_id":"papav-hub",
+ "date":"Mon, 10 Jan 2022 22:12:44 +0900" 
+},
+{
+  "commit_id":"4730b554974b29950447204614e379bbf1bc6b96",
+  "commit_msg":"test",
+  "user_id":"papav-hub",
+ "date":"Mon, 10 Jan 2022 22:00:14 +0900" 
+},
+{
+  "commit_id":"5a5e0f9490592aa85034032cfc7de9bfaf61189f",
+  "commit_msg":"add ipad design",
+  "user_id":"papav-hub",
+ "date":"Mon, 10 Jan 2022 21:59:04 +0900" 
+},
+{
+  "commit_id":"9f590b859e279f99b9105e95105f806f0888ac0f",
+  "commit_msg":"clibgit2, swiftgit2 추가",
+  "user_id":"pjy7814",
+ "date":"Mon, 10 Jan 2022 21:46:55 +0900" 
+},
+{
+  "commit_id":"89e5ee4d1e5b14b021d23e0d95b1f3c0b8ca5ce7",
+  "commit_msg":"comment",
+  "user_id":"papav-hub",
+ "date":"Mon, 10 Jan 2022 19:22:15 +0900" 
+},
+{
+  "commit_id":"0c0b7c4a4aec0e0ea7189f750ebc01af83611920",
+  "commit_msg":"값 넘기기",
+  "user_id":"papav-hub",
+ "date":"Mon, 10 Jan 2022 19:19:38 +0900" 
+},
+{
+  "commit_id":"6dde8b5a876bf61b8d92a7a638914aa6ff8bef64",
+  "commit_msg":"login bug fix",
+  "user_id":"papav-hub",
+ "date":"Mon, 10 Jan 2022 19:11:53 +0900" 
+},
+{
+  "commit_id":"1a2f62779031b8df10acb45de62d9e286d75cbe5",
+  "commit_msg":"label change",
+  "user_id":"papav-hub",
+ "date":"Mon, 10 Jan 2022 19:06:36 +0900" 
+},
+{
+  "commit_id":"cd7a1dcf18c99341a0a3f2a6bdb723f9fa4ebea7",
+  "commit_msg":"add login function",
+  "user_id":"papav-hub",
+ "date":"Mon, 10 Jan 2022 19:05:56 +0900" 
+},
+{
+  "commit_id":"7b0717a7a4c2b2ca8da1d2b4368949658f162d93",
+  "commit_msg":"font color",
+  "user_id":"papav-hub",
+ "date":"Mon, 10 Jan 2022 19:04:16 +0900" 
+},
+{
+  "commit_id":"7991c4ef6a6773f9daaac3e9ee051bd30789ec75",
+  "commit_msg":"login navigation complete",
+  "user_id":"papav-hub",
+ "date":"Mon, 10 Jan 2022 19:02:52 +0900" 
+},
+{
+  "commit_id":"7c54709dfa8480f1bb06a340a0af282a75212d1a",
+  "commit_msg":"login fix",
+  "user_id":"papav-hub",
+ "date":"Mon, 10 Jan 2022 17:07:28 +0900" 
+},
+{
+  "commit_id":"58df8210e33fa37846d2fa7b70b31a0ee00b00e8",
+  "commit_msg":"login Action",
+  "user_id":"papav-hub",
+ "date":"Mon, 10 Jan 2022 16:52:38 +0900" 
+},
+{
+  "commit_id":"a31357e609313f09642368685861c9784e9f76f4",
+  "commit_msg":"login design fix",
+  "user_id":"papav-hub",
+ "date":"Mon, 10 Jan 2022 16:38:46 +0900" 
+},
+{
+  "commit_id":"c991de2c49ffa59df4dcb06a2720c4cee5cb2f8d",
+  "commit_msg":"test",
+  "user_id":"papav-hub",
+ "date":"Mon, 10 Jan 2022 15:58:57 +0900" 
+},
+{
+  "commit_id":"1d14350936968db26439a9c9b738cd66f4607a8e",
+  "commit_msg":"commit",
+  "user_id":"papav-hub",
+ "date":"Mon, 10 Jan 2022 15:58:24 +0900" 
+},
+{
+  "commit_id":"42a8f2d5ba46db40684b5b23c436d2e7025e4f3c",
+  "commit_msg":"Login Design",
+  "user_id":"papav-hub",
+ "date":"Mon, 10 Jan 2022 15:53:28 +0900" 
+},
+{
+  "commit_id":"9f0682ceef2f725a15e03a98aa6bac2dac4750a5",
+  "commit_msg":"commit",
+  "user_id":"papav-hub",
+ "date":"Mon, 10 Jan 2022 13:00:26 +0900" 
+},
+{
+  "commit_id":"4940a9099ed54685a1dfbab00ba85458948cc98b",
+  "commit_msg":"initial commit",
+  "user_id":"Jimin731",
+ "date":"Mon, 10 Jan 2022 12:38:41 +0900" 
+},
+{
+  "commit_id":"6cf08d4f5d77e4447099d15b441b04e22c066570",
+  "commit_msg":"initial commit",
+  "user_id":"Jimin731",
+ "date":"Mon, 10 Jan 2022 12:23:01 +0900" 
+},
+{
+  "commit_id":"8a7a4c4bce1b9e0af467901441317dd5732a9db7",
+  "commit_msg":"제안서 ppt",
+  "user_id":"jimin Yoon",
+ "date":"Thu, 6 Jan 2022 10:53:15 +0900" 
+},
+{
+  "commit_id":"76625fc81f0b684269b56128e912fbd62abc9948",
+  "commit_msg":"Delete 웹페이지 구성.pptx",
+  "user_id":"xoghk5746",
+ "date":"Thu, 6 Jan 2022 10:48:21 +0900" 
+},
+{
+  "commit_id":"28bf2238a63fd0042d6a259f704b45d9c11356b0",
+  "commit_msg":"Add files via upload",
+  "user_id":"xoghk5746",
+ "date":"Thu, 6 Jan 2022 10:48:10 +0900" 
+},
+{
+  "commit_id":"9480b0d620e4ace763d3c93128a7d364fb5f911a",
+  "commit_msg":"Add files via upload",
+  "user_id":"xoghk5746",
+ "date":"Thu, 6 Jan 2022 06:24:17 +0900" 
+},
+{
+  "commit_id":"56f0e53d2718871129213dca2aa2c6c8683ba832",
+  "commit_msg":"Delete 웹페이지 구성.pptx",
+  "user_id":"xoghk5746",
+ "date":"Thu, 6 Jan 2022 06:23:45 +0900" 
+},
+{
+  "commit_id":"d252aa410baf8eae3f11d1ae5508dda671706198",
+  "commit_msg":"Add files via upload",
+  "user_id":"xoghk5746",
+ "date":"Thu, 6 Jan 2022 06:10:09 +0900" 
+},
+{
+  "commit_id":"7db4281ee06e7be7a96cc1cda84abd0928477a83",
+  "commit_msg":"Update ReadME.md",
+  "user_id":"ChoiHyeMin",
+ "date":"Sun, 2 Jan 2022 16:56:18 +0900" 
+},
+{
+  "commit_id":"01423089c266825c3900735381b6bc0eca3bbcf2",
+  "commit_msg":"Update ReadME.md",
+  "user_id":"ChoiHyeMin",
+ "date":"Sun, 2 Jan 2022 16:55:51 +0900" 
+},
+{
+  "commit_id":"21ea2ebc3171ea1f477f2f7f412e4d85614a8cf5",
+  "commit_msg":"Delete js directory",
+  "user_id":"xoghk5746",
+ "date":"Fri, 31 Dec 2021 09:27:24 +0900" 
+},
+{
+  "commit_id":"b6490bbf356d24473a73b54474a5473f8a086113",
+  "commit_msg":"Delete vendor directory",
+  "user_id":"xoghk5746",
+ "date":"Fri, 31 Dec 2021 09:27:18 +0900" 
+},
+{
+  "commit_id":"5e9ddb63218aa3d9b02f7f1d3108028277efd432",
+  "commit_msg":"Delete CNAME",
+  "user_id":"xoghk5746",
+ "date":"Fri, 31 Dec 2021 09:27:07 +0900" 
+},
+{
+  "commit_id":"942926632fa875596a29f33d72bcec6a7bf9e5c9",
+  "commit_msg":"Delete .nojekyll",
+  "user_id":"xoghk5746",
+ "date":"Fri, 31 Dec 2021 09:27:01 +0900" 
+},
+{
+  "commit_id":"ddca8916a5572605043c32c8a621bb6e5d38fb7a",
+  "commit_msg":"Delete package.json",
+  "user_id":"xoghk5746",
+ "date":"Fri, 31 Dec 2021 09:26:49 +0900" 
+},
+{
+  "commit_id":"1d94e2287411ded0ac05e8ac86218e62fb8355e2",
+  "commit_msg":"Add files via upload",
+  "user_id":"xoghk5746",
+ "date":"Fri, 31 Dec 2021 09:26:38 +0900" 
+},
+{
+  "commit_id":"5a26b3f78e65ce7ad810c5ca2a7494a977fde491",
+  "commit_msg":"Delete gulpfile.js",
+  "user_id":"xoghk5746",
+ "date":"Fri, 31 Dec 2021 09:25:22 +0900" 
+},
+{
+  "commit_id":"bce9a711c2a9a5633174b8eb114af4276c76643e",
+  "commit_msg":"Delete img directory",
+  "user_id":"xoghk5746",
+ "date":"Fri, 31 Dec 2021 09:25:12 +0900" 
+},
+{
+  "commit_id":"5d908941f59bc3c7fed660eccb54e686fa6e45bb",
+  "commit_msg":"Delete css directory",
+  "user_id":"xoghk5746",
+ "date":"Fri, 31 Dec 2021 09:25:04 +0900" 
+},
+{
+  "commit_id":"0e8df7a3ca9cd42da745be4d0567911d669dbb1d",
+  "commit_msg":"Delete index.html",
+  "user_id":"xoghk5746",
+ "date":"Fri, 31 Dec 2021 09:24:54 +0900" 
+},
+{
+  "commit_id":"6de5d2d5f71437a0cc3335b6109d7f8d404565be",
+  "commit_msg":"readme commit",
+  "user_id":"Jimin731",
+ "date":"Tue, 28 Dec 2021 15:55:57 +0900" 
+},
+{
+  "commit_id":"724b6ccade1d3a99e15407dab50e5a2515059f7f",
+  "commit_msg":"Create CNAME",
+  "user_id":"xoghk5746",
+ "date":"Tue, 28 Dec 2021 00:57:56 +0900" 
+},
+{
+  "commit_id":"7bde3478d0e982fd25611047ab79275a13d3c1f1",
+  "commit_msg":"Delete CNAME",
+  "user_id":"xoghk5746",
+ "date":"Tue, 28 Dec 2021 00:47:44 +0900" 
+},
+{
+  "commit_id":"258d981a8363fa0745d6196a6cda4b9eba8e8f47",
+  "commit_msg":"Create CNAME",
+  "user_id":"xoghk5746",
+ "date":"Tue, 28 Dec 2021 00:47:36 +0900" 
+},
+{
+  "commit_id":"c8b6e3f1bed21f2ae1e2504fff91acfdebb9f7be",
+  "commit_msg":"Delete CNAME",
+  "user_id":"xoghk5746",
+ "date":"Tue, 28 Dec 2021 00:27:27 +0900" 
+},
+{
+  "commit_id":"ab180ab9998d26600fb883736c04ea1054ebb4ba",
+  "commit_msg":"Add files via upload",
+  "user_id":"xoghk5746",
+ "date":"Tue, 28 Dec 2021 00:27:13 +0900" 
+},
+{
+  "commit_id":"937a600c59cec2dcda71fd0b28acaafe5bc918d6",
+  "commit_msg":"Add files via upload",
+  "user_id":"xoghk5746",
+ "date":"Tue, 28 Dec 2021 00:26:55 +0900" 
+},
+{
+  "commit_id":"21b800f2b3000d2a2d70602b4ffe909afce61121",
+  "commit_msg":"Delete webtest directory",
+  "user_id":"xoghk5746",
+ "date":"Tue, 28 Dec 2021 00:25:54 +0900" 
+},
+{
+  "commit_id":"b26923d884e9e4b1e4613ce1d713ea1a30255c70",
+  "commit_msg":"Delete CNAME",
+  "user_id":"xoghk5746",
+ "date":"Tue, 28 Dec 2021 00:25:07 +0900" 
+},
+{
+  "commit_id":"f386cdcc003403ee1aad243754dcb440cfac4c0e",
+  "commit_msg":"Create CNAME",
+  "user_id":"xoghk5746",
+ "date":"Tue, 28 Dec 2021 00:24:56 +0900" 
+},
+{
+  "commit_id":"dac06a5509c7f280c0f1c0bca75cfb76a1c59c1a",
+  "commit_msg":"Delete index.html",
+  "user_id":"xoghk5746",
+ "date":"Tue, 28 Dec 2021 00:22:12 +0900" 
+},
+{
+  "commit_id":"0b02ad6e11b8998fbedc47d3f5c53763d3f9e14d",
+  "commit_msg":"Add files via upload",
+  "user_id":"xoghk5746",
+ "date":"Tue, 28 Dec 2021 00:21:53 +0900" 
+},
+{
+  "commit_id":"fc5088bf95c69a1b0e8cb76cec93a5047c977f2d",
+  "commit_msg":"Update index.html",
+  "user_id":"xoghk5746",
+ "date":"Mon, 27 Dec 2021 22:46:03 +0900" 
+},
+{
+  "commit_id":"8a94f354c9724229359923ca7c9260b375f1abd5",
+  "commit_msg":"Create CNAME",
+  "user_id":"xoghk5746",
+ "date":"Mon, 27 Dec 2021 22:34:47 +0900" 
+},
+{
+  "commit_id":"313d693c075b28a43352dfecf281a5b738483873",
+  "commit_msg":"Delete CNAME",
+  "user_id":"xoghk5746",
+ "date":"Mon, 27 Dec 2021 22:34:40 +0900" 
+},
+{
+  "commit_id":"d78e64127920763b2c900b963652797a653b4956",
+  "commit_msg":"Create CNAME",
+  "user_id":"xoghk5746",
+ "date":"Mon, 27 Dec 2021 22:33:48 +0900" 
+},
+{
+  "commit_id":"bb393de8a4dd05c607ec577c20a57bd89665ed30",
+  "commit_msg":"Delete CNAME",
+  "user_id":"xoghk5746",
+ "date":"Mon, 27 Dec 2021 22:32:28 +0900" 
+},
+{
+  "commit_id":"ce8a6396e91b8e49703d6ae554bd0aac8d1615be",
+  "commit_msg":"Create CNAME",
+  "user_id":"xoghk5746",
+ "date":"Mon, 27 Dec 2021 22:17:07 +0900" 
+},
+{
+  "commit_id":"ae68e7731b1eff1ba225c51c5767855051809ad0",
+  "commit_msg":"Create index.html",
+  "user_id":"xoghk5746",
+ "date":"Mon, 27 Dec 2021 22:08:01 +0900" 
+},
+{
+  "commit_id":"de656cc5a48bbec05fa0b7224a81ab14cc7e7b9b",
+  "commit_msg":"Delete index.html",
+  "user_id":"xoghk5746",
+ "date":"Mon, 27 Dec 2021 22:07:49 +0900" 
+},
+{
+  "commit_id":"bb66c12de57cbc04ed1c8872d6620f2b1bca21d6",
+  "commit_msg":"Rename test.html to index.html",
+  "user_id":"xoghk5746",
+ "date":"Mon, 27 Dec 2021 22:04:33 +0900" 
+},
+{
+  "commit_id":"1a504b01703b940cff1d9de7ed5ceaa4680bb1c2",
+  "commit_msg":"Delete CNAME",
+  "user_id":"xoghk5746",
+ "date":"Mon, 27 Dec 2021 22:03:56 +0900" 
+},
+{
+  "commit_id":"93ce9b1cd7572d65ff82c5fe28018c9a5b8bf439",
+  "commit_msg":"Create CNAME",
+  "user_id":"xoghk5746",
+ "date":"Mon, 27 Dec 2021 21:54:35 +0900" 
+},
+{
+  "commit_id":"f5a46f2f0a16ff78a7d0cd1a0ed870ab3547df59",
+  "commit_msg":"Create .nojekyll",
+  "user_id":"xoghk5746",
+ "date":"Mon, 27 Dec 2021 21:42:47 +0900" 
+},
+{
+  "commit_id":"13a3e297f19ce7d1ca8d27a78efb871a96bda919",
+  "commit_msg":"Create test.html",
+  "user_id":"xoghk5746",
+ "date":"Mon, 27 Dec 2021 21:39:42 +0900" 
+},
+{
+  "commit_id":"b054cc6373a990293768fd6dc6b34bbc543b89b9",
+  "commit_msg":"Create ReadME.md",
+  "user_id":"jimin Yoon",
+ "date":"Thu, 23 Dec 2021 11:44:27 +0900" 
+},
+{
+  "commit_id":"4be6aa6eac889114dcb738bc2bd9d5e99864b425",
+  "commit_msg":"Add files via upload",
+  "user_id":"xoghk5746",
+ "date":"Mon, 6 Dec 2021 18:16:52 +0900" 
+},
+{
+  "commit_id":"05ef92a5013b4f9698273cb59e6db0f2eb1073c3",
+  "commit_msg":"test",
+  "user_id":"pjy7814",
+ "date":"Sun, 5 Dec 2021 17:32:12 +0900" 
+},
+{
+  "commit_id":"0e618a38631e35f58f109cb410cbc5caca0d3119",
+  "commit_msg":"test",
+  "user_id":"pjy7814",
+ "date":"Sun, 5 Dec 2021 17:25:31 +0900" 
+},
+{
+  "commit_id":"f3979e8ca3d8b621c3053987da895ce82faeec98",
+  "commit_msg":"회의록",
+  "user_id":"pjy7814",
+ "date":"Sat, 4 Dec 2021 16:18:52 +0900" 
+},
+{
+  "commit_id":"8e5b3cf8bcc19e3ca837b9981bc1d9eebd8a2d33",
+  "commit_msg":"commit",
+  "user_id":"papav-hub",
+ "date":"Sat, 4 Dec 2021 14:12:23 +0900" 
+},
