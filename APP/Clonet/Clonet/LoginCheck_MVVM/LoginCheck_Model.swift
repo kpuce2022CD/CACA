@@ -6,3 +6,21 @@
 //
 
 import Foundation
+
+typealias RepoListData = RepoListQuery.Data.RepoList
+
+struct RepoNameList: Decodable{
+    var id = UUID()
+    var repo_name: String
+    var user_id: String
+
+    init(){
+        self.repo_name = ""
+        self.user_id = ""
+    }
+
+    init(_ repoList: RepoListData?){
+        self.repo_name = repoList?.repoName ?? ""
+        self.user_id = repoList?.userId ?? ""
+    }
+}
