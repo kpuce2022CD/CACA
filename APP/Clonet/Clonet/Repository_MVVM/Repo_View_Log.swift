@@ -11,20 +11,22 @@ import Apollo
 
 struct Repo_View_Log: View {
     @StateObject var log_repoViewModel_a = log_repo_ViewModel()
-    //    @StateObject var log_list =log_repo_ViewModel()
     
     var body: some View {
-        VStack{
-            ForEach(log_repoViewModel_a.Log_repo_list, id: \.id) { s in
-                VStack{
-                    Text("commitMsg: \(s.commitMsg)")
-                    Text("userId: \(s.userId)")
-                    Text("commitId: \(log_repoViewModel_a.launches.commitId)")
-                    Text("date: \(log_repoViewModel_a.launches.date)")
-                    Text("--")
-                }
-            }
+        List(log_repoViewModel_a.Log_repo_list, id: \.id) { log_l in
+            Text(log_l.userId + " : " + log_l.commitMsg)
         }
+//        VStack{
+//            ForEach(log_repoViewModel_a.Log_repo_list, id: \.id) { s in
+//                VStack{
+//                    Text("commitMsg: \(s.commitMsg)")
+//                    Text("userId: \(s.userId)")
+//                    Text("commitId: \(log_repoViewModel_a.launches.commitId)")
+//                    Text("date: \(log_repoViewModel_a.launches.date)")
+//                    Text("--")
+//                }
+//            }
+//        }
         
     }
 }
