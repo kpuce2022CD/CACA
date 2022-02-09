@@ -6,12 +6,15 @@
 //
 
 import os
+import Foundation
+import SwiftUI
 
 //import Foundation
 
 typealias logrepoData = LogRepoQuery.Data.LogRepo
 
 struct Log_repo: Decodable {
+    var id = UUID()
     var commitMsg : String
     var date : String
     var commitId : String

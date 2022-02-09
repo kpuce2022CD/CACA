@@ -10,15 +10,33 @@ import Foundation
 import Apollo
 
 struct Repo_View_Log: View {
-    @StateObject var log_repoViewModela = log_repo_ViewModel()
+    @StateObject var log_repoViewModel_a = log_repo_ViewModel()
+    //    @StateObject var log_list =log_repo_ViewModel()
     
     var body: some View {
         VStack{
-            Text("commitMsg: \(log_repoViewModela.launches.commitMsg)")
-            Text("userId: \(log_repoViewModela.launches.userId)")
-            Text("commitId: \(log_repoViewModela.launches.commitId)")
-            Text("date: \(log_repoViewModela.launches.date)")
+            ForEach(log_repoViewModel_a.Log_repo_list, id: \.id) { s in
+                VStack{
+                    Text("commitMsg: \(s.commitMsg)")
+                    Text("userId: \(s.userId)")
+                    Text("commitId: \(log_repoViewModel_a.launches.commitId)")
+                    Text("date: \(log_repoViewModel_a.launches.date)")
+                    Text("--")
+                }
+            }
         }
+        
+    }
+}
+
+//            VStack{
+//                Text("commitMsg: \(log_repoViewModel_a.launches.commitMsg)")
+//                Text("userId: \(log_repoViewModel_a.launches.userId)")
+//                Text("commitId: \(log_repoViewModel_a.launches.commitId)")
+//                Text("date: \(log_repoViewModel_a.launches.date)")
+//            }
+//        }
+//}
 //        List{
 //            ForEach(GetRepoName.str2, id: \.self) { i in
 //
@@ -34,8 +52,8 @@ struct Repo_View_Log: View {
 //            .onAppear {
 //            }
 //        }
-    }
-}
+//    }
+//}
 
 struct Repo_View_Log_Previews: PreviewProvider {
     static var previews: some View {
