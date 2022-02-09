@@ -1,0 +1,93 @@
+query Query($userId: String, $userEmail: String, $findPwUserId2: String, $repoListUserId2: String, $selectProfilePicUserId2: String, $checkUserUserId2: String, $repoName: String, $selectRepoRepoName2: String, $repoEc2Ip: String, $logRepoRepoName2: String) {
+  User {
+    user_id
+    user_pw
+    user_name
+    user_email
+    profilePic
+    about
+    contact
+  }
+  Repository {
+    repo_name
+    repo_ec2_ip
+  }
+  mapping_repo_user {
+    user_id
+    repo_name
+  }
+  login(user_id: $userId) {
+    user_id
+    user_pw
+    user_name
+    user_email
+    profilePic
+    about
+    contact
+  }
+  findId(user_email: $userEmail) {
+    user_id
+    user_pw
+    user_name
+    user_email
+    profilePic
+    about
+    contact
+  }
+  findPw(user_id: $findPwUserId2) {
+    user_id
+    user_pw
+    user_name
+    user_email
+    profilePic
+    about
+    contact
+  }
+  repoList(user_id: $repoListUserId2) {
+    user_id
+    repo_name
+  }
+  select_profilePic(user_id: $selectProfilePicUserId2) {
+    user_id
+    user_pw
+    user_name
+    user_email
+    profilePic
+    about
+    contact
+  }
+  checkUser(user_id: $checkUserUserId2) {
+    user_id
+    user_pw
+    user_name
+    user_email
+    profilePic
+    about
+    contact
+  }
+  groupUser(repo_name: $repoName) {
+    user_id
+    repo_name
+  }
+  select_repo(repo_name: $selectRepoRepoName2) {
+    repo_name
+    repo_ec2_ip
+  }
+  select_ec2(repo_ec2_ip: $repoEc2Ip) {
+    repo_name
+    repo_ec2_ip
+  }
+  log_repo(repo_name: $logRepoRepoName2) {
+    commit_msg
+    date
+    commit_id
+    user_id
+  }
+}
+
+mutation Mutation($signupUserId2: String, $userPw: String, $userName: String, $signupUserEmail2: String, $createRepoRepoName2: String, $createRepoRepoEc2Ip2: String, $createRepoUserId2: String, $insertProfilePicUserId2: String, $profilePic: String, $plusUserUserId2: String, $plusUserRepoName2: String) {
+  signup(user_id: $signupUserId2, user_pw: $userPw, user_name: $userName, user_email: $signupUserEmail2)
+  create_repo(repo_name: $createRepoRepoName2, repo_ec2_ip: $createRepoRepoEc2Ip2, user_id: $createRepoUserId2)
+  insert_profilePic(user_id: $insertProfilePicUserId2, profilePic: $profilePic)
+  plusUser(user_id: $plusUserUserId2, repo_name: $plusUserRepoName2)
+}

@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3F323A1D27B0FBC8001709AF /* graphql.txt in Resources */ = {isa = PBXBuildFile; fileRef = 3F323A1C27B0FBC8001709AF /* graphql.txt */; };
 		3F41CA6C27ACCBBE0031F6C3 /* Login_Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F41CA6B27ACCBBE0031F6C3 /* Login_Model.swift */; };
 		3F41CA6E27ACCBC90031F6C3 /* Login_View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F41CA6D27ACCBC90031F6C3 /* Login_View.swift */; };
 		3F41CA7027ACCBE80031F6C3 /* Login_ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F41CA6F27ACCBE80031F6C3 /* Login_ViewModel.swift */; };
@@ -19,6 +18,9 @@
 		3F41CA7F27AD36FF0031F6C3 /* Repo_View_Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F41CA7E27AD36FF0031F6C3 /* Repo_View_Request.swift */; };
 		3F41CA8127AD37140031F6C3 /* Repo_View_Git.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F41CA8027AD37140031F6C3 /* Repo_View_Git.swift */; };
 		3F41CA8327AD37250031F6C3 /* Repo_View_Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F41CA8227AD37250031F6C3 /* Repo_View_Image.swift */; };
+		3F4B39EA27B38D4E00EC0D8C /* schema.json in Resources */ = {isa = PBXBuildFile; fileRef = 3F4B39E927B38D4E00EC0D8C /* schema.json */; };
+		3F4B39EC27B38E8600EC0D8C /* LaunchList.graphql in Resources */ = {isa = PBXBuildFile; fileRef = 3F4B39EB27B38E8600EC0D8C /* LaunchList.graphql */; };
+		3F4B39EE27B38F7900EC0D8C /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F4B39ED27B38F7900EC0D8C /* API.swift */; };
 		3F4B530E278BE92300D64A6D /* Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F4B530D278BE92300D64A6D /* Login.swift */; };
 		3F4B5318278C17DA00D64A6D /* LoginCheck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F4B5317278C17DA00D64A6D /* LoginCheck.swift */; };
 		3F6A1BB6279A814900146367 /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F6A1BB5279A814900146367 /* Repository.swift */; };
@@ -47,7 +49,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		3F323A1C27B0FBC8001709AF /* graphql.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = graphql.txt; sourceTree = "<group>"; };
 		3F41CA6B27ACCBBE0031F6C3 /* Login_Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Login_Model.swift; sourceTree = "<group>"; };
 		3F41CA6D27ACCBC90031F6C3 /* Login_View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Login_View.swift; sourceTree = "<group>"; };
 		3F41CA6F27ACCBE80031F6C3 /* Login_ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Login_ViewModel.swift; sourceTree = "<group>"; };
@@ -59,6 +60,9 @@
 		3F41CA7E27AD36FF0031F6C3 /* Repo_View_Request.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Repo_View_Request.swift; sourceTree = "<group>"; };
 		3F41CA8027AD37140031F6C3 /* Repo_View_Git.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Repo_View_Git.swift; sourceTree = "<group>"; };
 		3F41CA8227AD37250031F6C3 /* Repo_View_Image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Repo_View_Image.swift; sourceTree = "<group>"; };
+		3F4B39E927B38D4E00EC0D8C /* schema.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = schema.json; sourceTree = "<group>"; };
+		3F4B39EB27B38E8600EC0D8C /* LaunchList.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = LaunchList.graphql; sourceTree = "<group>"; };
+		3F4B39ED27B38F7900EC0D8C /* API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		3F4B530D278BE92300D64A6D /* Login.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Login.swift; sourceTree = "<group>"; };
 		3F4B5317278C17DA00D64A6D /* LoginCheck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginCheck.swift; sourceTree = "<group>"; };
 		3F6A1BB5279A814900146367 /* Repository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Repository.swift; sourceTree = "<group>"; };
@@ -209,6 +213,9 @@
 		DA97B6A5278BE05D006C473E /* Clonet */ = {
 			isa = PBXGroup;
 			children = (
+				3F4B39ED27B38F7900EC0D8C /* API.swift */,
+				3F4B39E927B38D4E00EC0D8C /* schema.json */,
+				3F4B39EB27B38E8600EC0D8C /* LaunchList.graphql */,
 				3F41CA7127AD16F10031F6C3 /* Repository_MVVM */,
 				3F41CA6A27ACCB9B0031F6C3 /* Login_MVVM */,
 				3FE633BC278EED9F00143666 /* Git */,
@@ -217,7 +224,6 @@
 				3F4B530C278BE91100D64A6D /* Login */,
 				DA97B6AA278BE05E006C473E /* Assets.xcassets */,
 				DA97B6AC278BE05E006C473E /* Preview Content */,
-				3F323A1C27B0FBC8001709AF /* graphql.txt */,
 			);
 			path = Clonet;
 			sourceTree = "<group>";
@@ -305,8 +311,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3F323A1D27B0FBC8001709AF /* graphql.txt in Resources */,
 				DA97B6AE278BE05E006C473E /* Preview Assets.xcassets in Resources */,
+				3F4B39EA27B38D4E00EC0D8C /* schema.json in Resources */,
+				3F4B39EC27B38E8600EC0D8C /* LaunchList.graphql in Resources */,
 				DA97B6AB278BE05E006C473E /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -330,7 +337,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n# Don't run this during index builds\nif [ $ACTION = \"indexbuild\" ]; then exit 0; fi\n\n# Go to the build root and search up the chain to find the Derived Data Path where the source packages are checked out.\nDERIVED_DATA_CANDIDATE=\"${BUILD_ROOT}\"\n\nwhile ! [ -d \"${DERIVED_DATA_CANDIDATE}/SourcePackages\" ]; do\n  if [ \"${DERIVED_DATA_CANDIDATE}\" = / ]; then\n    echo >&2 \"error: Unable to locate SourcePackages directory from BUILD_ROOT: '${BUILD_ROOT}'\"\n    exit 1\n  fi\n\n  DERIVED_DATA_CANDIDATE=\"$(dirname \"${DERIVED_DATA_CANDIDATE}\")\"\ndone\n\n# Grab a reference to the directory where scripts are checked out\nSCRIPT_PATH=\"${DERIVED_DATA_CANDIDATE}/SourcePackages/checkouts/apollo-ios/scripts\"\n\nif [ -z \"${SCRIPT_PATH}\" ]; then\n    echo >&2 \"error: Couldn't find the CLI script in your checked out SPM packages; make sure to add the framework to your project.\"\n    exit 1\nfi\n\ncd \"${SRCROOT}/Clonet\"\n#\"${SCRIPT_PATH}\"/run-bundled-codegen.sh codegen:generate --target=swift --includes=./**/*.graphql --localSchemaFile=\"schema.json\" API.swift\n\n#\"${SCRIPT_PATH}\"/run-bundled-codegen.sh schema:download --endpoint=\"https://apollo-fullstack-tutorial.herokuapp.com/graphql\"\n";
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n# Don't run this during index builds\nif [ $ACTION = \"indexbuild\" ]; then exit 0; fi\n\n# Go to the build root and search up the chain to find the Derived Data Path where the source packages are checked out.\nDERIVED_DATA_CANDIDATE=\"${BUILD_ROOT}\"\n\nwhile ! [ -d \"${DERIVED_DATA_CANDIDATE}/SourcePackages\" ]; do\n  if [ \"${DERIVED_DATA_CANDIDATE}\" = / ]; then\n    echo >&2 \"error: Unable to locate SourcePackages directory from BUILD_ROOT: '${BUILD_ROOT}'\"\n    exit 1\n  fi\n\n  DERIVED_DATA_CANDIDATE=\"$(dirname \"${DERIVED_DATA_CANDIDATE}\")\"\ndone\n\n# Grab a reference to the directory where scripts are checked out\nSCRIPT_PATH=\"${DERIVED_DATA_CANDIDATE}/SourcePackages/checkouts/apollo-ios/scripts\"\n\nif [ -z \"${SCRIPT_PATH}\" ]; then\n    echo >&2 \"error: Couldn't find the CLI script in your checked out SPM packages; make sure to add the framework to your project.\"\n    exit 1\nfi\n\ncd \"${SRCROOT}/Clonet\"\n\"${SCRIPT_PATH}\"/run-bundled-codegen.sh codegen:generate --target=swift --includes=./**/*.graphql --localSchemaFile=\"schema.json\" API.swift\n\n#\"${SCRIPT_PATH}\"/run-bundled-codegen.sh schema:download --endpoint=\"http://3.34.194.172:4000/\"\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -346,6 +353,7 @@
 				3F6A1BC0279A8AF300146367 /* PushOptions.swift in Sources */,
 				3F41CA7027ACCBE80031F6C3 /* Login_ViewModel.swift in Sources */,
 				3F41CA7327AD17180031F6C3 /* Repo_Model.swift in Sources */,
+				3F4B39EE27B38F7900EC0D8C /* API.swift in Sources */,
 				3FD176B4278D4E7D0025CCD2 /* FindIdPw.swift in Sources */,
 				DACAA65E278C7E5D007F3918 /* SocketIO.swift in Sources */,
 				3F41CA7D27AD36EE0031F6C3 /* Repo_View_Log.swift in Sources */,
