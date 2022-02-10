@@ -54,7 +54,6 @@ extension Repository {
     
     // MARK: merge for Repo_View_Git
     public func merge_func(_ repo: Repository, remoteRepoLocation remoteRepoLocation: String, hexString: String){
-        let hexString = "87565b91eaa52e994da3be7abc59cc1457a50625"
         
         var git_annotated_commit_from_fetchhead_out : OpaquePointer? = nil
         var revert_git_oid = git_oid()

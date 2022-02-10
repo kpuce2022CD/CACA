@@ -21,8 +21,8 @@ struct Repo_View_Git: View {
     @State var branchArr : [String] = []
     
     @State private var showingAlert = false
-    @State var revert_id : String = "f6208e911787230629069d9f0586df1f1ea2d27b"
-    @State var merge_id : String = "752aa0ffa6ff9cbd69fbfaa7abc7cf0408cb7244"
+    @State var revert_id : String = "fb45bc7469e87b0ae1b92f44ac44fd52828f6921"
+    @State var merge_id : String = ""
     @State var addFileName : String = "."
     
     // Toast Variables
@@ -40,13 +40,6 @@ struct Repo_View_Git: View {
         self.userID = userID
         
     }
-    
-//    func getRepoIP() -> String{
-//
-//        remoteRepoLocation = "http://" + log_repoViewModel_a.repoIP_Addr + "/git-repositories/" + self.repo_n + ".git"
-//        print("location_test", location_test)
-//        return location_test
-//    }
     
     var body: some View {
         
@@ -115,10 +108,15 @@ struct Repo_View_Git: View {
                 
                 // MARK: Pull Button
                 Button(action: {
+           
+                    log_repoViewModel_a.repo_n = self.repo_n
+                    log_repoViewModel_a.appear()
+            
                     // MARK: FETCH
                     fetchGitRepo(localRepoLocation: documentURL.appendingPathComponent(repo_n))
                     // MARK: MERGE
-                    mergeGitRepo(localRepoLocation: documentURL.appendingPathComponent(repo_n),remoteRepoLocation: log_repoViewModel_a.repoIP_Addr, hexString: merge_id)
+                    mergeGitRepo(localRepoLocation: documentURL.appendingPathComponent(repo_n),remoteRepoLocation: log_repoViewModel_a.repoIP_Addr, hexString: log_repoViewModel_a.Log_repo_list.first?.commitId ?? "")
+                    print("log_repoViewModel_a.launches.commitId",log_repoViewModel_a.Log_repo_list.first?.commitId)
                 }){
                     HStack{
                         Image(systemName: "square.and.arrow.down")
@@ -242,7 +240,6 @@ struct Repo_View_Git: View {
             .onAppear(){
                 log_repoViewModel_a.repo_n = self.repo_n
                 log_repoViewModel_a.appear()
-                
             }
             .padding()
         }
@@ -342,7 +339,6 @@ struct Repo_View_Git: View {
     //MARK: MERGE_FUNC
     func mergeGitRepo(localRepoLocation localRepoLocation: URL, remoteRepoLocation remoteRepoLocation : String, hexString : String){
         let result = Repository.at(localRepoLocation)
-        let hexString = hexString
         
         switch result {
         case let .success(repo):
