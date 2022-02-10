@@ -12,6 +12,7 @@ import SwiftUI
 //import Foundation
 
 typealias logrepoData = LogRepoQuery.Data.LogRepo
+typealias iprepoData = SelectRepoQuery.Data.SelectRepo
 
 struct Log_repo: Decodable {
     var id = UUID()
@@ -34,4 +35,19 @@ struct Log_repo: Decodable {
         self.userId = launches?.userId ?? ""
     }
 
+}
+
+struct Ip_repo : Decodable {
+    var repo_name : String
+    var repo_ec2_ip : String
+    
+    init(){
+        self.repo_name = ""
+        self.repo_ec2_ip = ""
+    }
+    
+    init(_ launches: iprepoData?){
+        self.repo_name = launches?.repoName ?? ""
+        self.repo_ec2_ip = launches?.repoEc2Ip ?? ""
+    }
 }

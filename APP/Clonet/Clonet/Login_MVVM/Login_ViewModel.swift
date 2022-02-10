@@ -24,8 +24,6 @@ final class Login_ViewModel : ObservableObject {
     @Published var showingAlert: Bool = false
     @Published var selection: Int? = nil
     
-    @State private var user : [LoginQuery.Data.Login] = []
-    
     init(){
         isLogin = false
         login(id: "", passwd: "")

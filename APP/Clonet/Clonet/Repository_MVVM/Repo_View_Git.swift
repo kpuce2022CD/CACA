@@ -13,10 +13,10 @@ struct Repo_View_Git: View {
     
     @ObservedObject var directory = getFileList()
     
-    @State var RepositoryName = "test"
-    @State var UserName = "UserName"
+//    @State var RepositoryName = ""
+    @State var UserName = ""
     @State var userEmail = "UserEmail"
-    @State var remoteRepoLocation = "http://3.34.194.172/git-repositories/ho.git"
+    @State var remoteRepoLocation = "http://3.34.194.172/git-repositories/TEST.git"
     @State var commit_msg = "commit_msg"
     @State var branchArr : [String] = []
     
@@ -27,22 +27,30 @@ struct Repo_View_Git: View {
     
     // Toast Variables
     @State var repo_n: String
+    @State var userID: String
     @StateObject var log_repoViewModel_a = log_repo_ViewModel()
+//    var location_test = "http://" + log_repoViewModel.repoIP_Addr + "/git-repositories/" + self.repo_n + ".git"
     @State private var presentingToast: Bool = false
     @State private var log_number1 = 0
     @State private var log_number2 = 0
     
-    init(repo_n: String) {
+    init(repo_n: String, userID: String) {
         self.repo_n = repo_n
         Repository.initialize_libgit2()
+        self.userID = userID
     }
+    
+//    func getRepoIP()->String{
+//        log_repoViewModel_a.repoIP_Addr
+//        var location_test = "http://" + log_repoViewModel.repoIP_Addr + "/git-repositories/" + self.repo_n + ".git"
+//    }
     
     var body: some View {
         
         VStack{
             // MARK: RollBack Button
             Button(action: {
-                rollbackGit(localRepoLocation: documentURL.appendingPathComponent(RepositoryName), name: UserName, email: userEmail, commit_msg: commit_msg, revert_id: self.revert_id)
+                rollbackGit(localRepoLocation: documentURL.appendingPathComponent(repo_n), name: userID, email: userEmail, commit_msg: commit_msg, revert_id: self.revert_id)
             }){
                 HStack{
                     Image(systemName: "arrow.counterclockwise")
@@ -62,7 +70,7 @@ struct Repo_View_Git: View {
             // MARK: Commit Button
             Button(action: {
                 alertView()
-                //                commitGitRepo(localRepoLocation: documentURL.appendingPathComponent(RepositoryName), name: UserName, email: userEmail, commit_msg: commit_msg)
+                //                commitGitRepo(localRepoLocation: documentURL.appendingPathComponent(repo_n), name: UserName, email: userEmail, commit_msg: commit_msg)
             }){
                 HStack{
                     Image(systemName: "opticaldiscdrive.fill")
@@ -83,8 +91,8 @@ struct Repo_View_Git: View {
             HStack{
                 // MARK: Clone Button
                 Button(action: {
-                    cloneGitRepo(remoteRepoLocation: remoteRepoLocation, localRepoLocation: documentURL.appendingPathComponent(RepositoryName))
-                    directory.location(repoName: RepositoryName)
+                    cloneGitRepo(remoteRepoLocation: remoteRepoLocation, localRepoLocation: documentURL.appendingPathComponent(repo_n))
+                    directory.location(repoName: repo_n)
                 }){
                     HStack{
                         Image(systemName: "square.and.arrow.down")
@@ -104,9 +112,9 @@ struct Repo_View_Git: View {
                 // MARK: Pull Button
                 Button(action: {
                     // MARK: FETCH
-                    fetchGitRepo(localRepoLocation: documentURL.appendingPathComponent(RepositoryName))
+                    fetchGitRepo(localRepoLocation: documentURL.appendingPathComponent(repo_n))
                     // MARK: MERGE
-                    mergeGitRepo(localRepoLocation: documentURL.appendingPathComponent(RepositoryName),remoteRepoLocation: remoteRepoLocation, hexString: merge_id)
+                    mergeGitRepo(localRepoLocation: documentURL.appendingPathComponent(repo_n),remoteRepoLocation: remoteRepoLocation, hexString: merge_id)
                 }){
                     HStack{
                         Image(systemName: "square.and.arrow.down")
@@ -127,7 +135,7 @@ struct Repo_View_Git: View {
             // MARK: Branch Button
             Button(action: {
                 showingAlert = true
-                branchArr = BranchGitRepo(localRepoLocation: documentURL.appendingPathComponent(RepositoryName))
+                branchArr = BranchGitRepo(localRepoLocation: documentURL.appendingPathComponent(repo_n))
                 
             })
             {
@@ -148,7 +156,7 @@ struct Repo_View_Git: View {
             .alert("Branch", isPresented: $showingAlert){
                 ForEach(branchArr, id: \.self){b in
                     Button(b){
-                        checkout_Branch(localRepoLocation: documentURL.appendingPathComponent(RepositoryName), branchname: b)
+                        checkout_Branch(localRepoLocation: documentURL.appendingPathComponent(repo_n), branchname: b)
                     }
                 }
                 Button("Cancel", role: .cancel){}
@@ -230,6 +238,7 @@ struct Repo_View_Git: View {
             .onAppear(){
                 log_repoViewModel_a.repo_n = self.repo_n
                 log_repoViewModel_a.appear()
+                
             }
             .padding()
         }
@@ -409,7 +418,7 @@ struct Repo_View_Git: View {
             print("complete clicked")
             commit_msg = alert.textFields![0].text!
             print("commit complete: \(commit_msg)")
-            commitGitRepo(localRepoLocation: documentURL.appendingPathComponent(RepositoryName), name: UserName, email: userEmail, commit_msg: commit_msg, addFileName: addFileName)
+            commitGitRepo(localRepoLocation: documentURL.appendingPathComponent(repo_n), name: userID, email: userEmail, commit_msg: commit_msg, addFileName: addFileName)
         }
         
         let cancelAction = UIAlertAction(title: "Cancel", style: .destructive){ (_) in
@@ -428,6 +437,6 @@ struct Repo_View_Git: View {
 
 struct Repo_View_Git_Previews: PreviewProvider {
     static var previews: some View {
-        Repo_View_Git(repo_n: "TEST")
+        Repo_View_Git(repo_n: "", userID: "")
     }
 }
