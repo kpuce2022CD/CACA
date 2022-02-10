@@ -10,13 +10,15 @@ import MobileCoreServices
 import Foundation
 
 final class getFileList: ObservableObject{
-    @State var repoName_test = "test"
+    @State var repoName_test = "TEST"
     @Published var items = [String]()
     @Published var text : String = ""
+    
     init(){
         location(repoName: self.repoName_test)
         text = readMELoad(fileName: "README.md")
     }
+    
     // MARK: GET FILE LIST
     func location(repoName: String){
         print("reponame: \(repoName)")
@@ -31,34 +33,15 @@ final class getFileList: ObservableObject{
             print("error")
         }
     }
-    
-    func printLine(fileName: String) -> String {
-        let filename = fileName
-        var str1: String
-        var myCounter: Int
-        do {
-            let contents = try String(contentsOfFile: filename)
-            let lines = contents.split(separator:"\n")
-            myCounter = lines.count
-            str1 = String(myCounter)
-            } catch {
-                return (error.localizedDescription)
-            }
-            return str1
-    }
-    
+
+    // MARK: READ STRING FILE
     func readMELoad(fileName: String) -> String {
         var result = ""
-         
-        //if you get access to the directory
         if let dir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
-         
-            //prepare file url
             let fileURL = dir.appendingPathComponent(repoName_test+"/"+fileName)
-         
+            
             do {
                 result = try String(contentsOf: fileURL, encoding: .utf8)
-                print(result)
                 return result
             }
             catch {print("fail to load readme")}
@@ -66,23 +49,23 @@ final class getFileList: ObservableObject{
         return result
     }
     
+    // MARK: SAVE STRING FILE
+    // MARK: 이 함수 README.md 말고 다른 파일도 저장할 수 있도록 바꿔주세요
     func readMEsave(text: String) {
         var fileName : String = "README.md"
-//        let filename = getDocumentsDirectory().appendingPathComponent(repoName_test+"/"+fileName)
-
         if let dir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
-        let fileURL = dir.appendingPathComponent(repoName_test+"/"+fileName)
-        do {
-            try text.write(to: fileURL, atomically: true, encoding: String.Encoding.utf8)
-            print("save success")
-        } catch {
-            // failed to write file – bad permissions, bad filename, missing permissions, or more likely it can't be converted to the encoding
-            print("save fail")
+            let fileURL = dir.appendingPathComponent(repoName_test+"/"+fileName)
+            do {
+                try text.write(to: fileURL, atomically: true, encoding: String.Encoding.utf8)
+                print("save success")
+            } catch {
+                print("save fail")
             }
         }
     }
 }
 
+// MARK: DocumentPicker Struct
 struct DocumentPicker : UIViewControllerRepresentable {
     func makeCoordinator() -> Coordinator {
         return DocumentPicker.Coordinator(parent1: self)
@@ -98,7 +81,7 @@ struct DocumentPicker : UIViewControllerRepresentable {
         return picker
     }
     func updateUIViewController(_ uiViewController: UIDocumentPickerViewController, context: UIViewControllerRepresentableContext<DocumentPicker>){
-
+        
     }
     
     class Coordinator : NSObject,UIDocumentPickerDelegate{
@@ -109,6 +92,13 @@ struct DocumentPicker : UIViewControllerRepresentable {
         func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentsAt urls: [URL]) {
             print(urls)
             // code
+            let fileManager = FileManager.default
+            let directoryURL = documentURL.appendingPathComponent("TEST/cat.png")
+            do{
+                try fileManager.copyItem(at: urls.first!, to: directoryURL)
+            }catch let e {
+                print("fileManager Error")
+            }
         }
     }
 }
@@ -123,7 +113,7 @@ struct Repo_View_Directory: View {
     @State var ImageName : String = "Clonet_logo"
     @State var CommitTime : String = "21.09.20"
     @State var CommitMessage : String = "Commit Message"
-    @State var location = "test"
+    @State var location = "TEST"
     @State var fileNameImg = "mumani.psd"
     @State private var editREADME : Bool = true
     
@@ -136,6 +126,7 @@ struct Repo_View_Directory: View {
         HStack{
             
             VStack{
+                // MARK: Document Picker Button (To add)
                 Button(action:{
                     self.show.toggle()
                 }){
@@ -150,13 +141,11 @@ struct Repo_View_Directory: View {
                 List{
                     
                     ForEach(dataList.items, id: \.self){ i in
-//                        Text(i)
+                        //                        Text(i)
                         if(i != ".git"){
                             Button(i, action: {
                                 fileNameImg = i
                                 if(i == "README.md"){
-//                                    text = printLine(fileName: i)
-//                                    print("text", text)
                                     editREADME = true
                                 } else{
                                     editREADME = false
@@ -204,11 +193,12 @@ struct Repo_View_Directory: View {
                         .frame(width: 500, height: 500)
                         .padding()
                 }
-
+                
             }
         }
     }
     
+    // MARK: LOAD IMAGE FILE
     private func load(fileName: String) -> UIImage? {
         let fileURL = documentsUrl.appendingPathComponent(location+"/"+fileName)
         do {
@@ -219,23 +209,6 @@ struct Repo_View_Directory: View {
         }
         return nil
     }
-    
-//    func printLine(fileName: String) -> String {
-//        let filename = fileName
-//        var str1: String
-//        var myCounter: Int
-//        do {
-//            let contents = try String(contentsOfFile: filename)
-//            let lines = contents.split(separator:"\n")
-//            myCounter = lines.count
-//            str1 = String(myCounter)
-//            } catch {
-//                return (error.localizedDescription)
-//            }
-//            return str1
-//    }
-    
-    
     
 }
 
