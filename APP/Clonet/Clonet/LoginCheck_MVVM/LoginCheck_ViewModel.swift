@@ -87,7 +87,7 @@ final class LoginCheck_ViewModel: ObservableObject {
     
     @ObservedObject var login_ViewModel = Login_ViewModel()
     @Published var repoName = "ddd"
-    @Published var user_id = "user1"
+    @Published var user_id = ""
     
     init(){
         fetch(user_id: user_id)
@@ -128,7 +128,7 @@ final class LoginCheck_ViewModel: ObservableObject {
     }
     
     // MARK: ProfileImage
-    var ProfileImgName: String = "user1"
+    var ProfileImgName: String = ""
     var nickName: String = ""
     var userID : String = ""
     
@@ -148,37 +148,6 @@ final class LoginCheck_ViewModel: ObservableObject {
         .padding()
         
     }
-    
-
-    //
-    //    init(){
-    //        fetch(user_id: user_id)
-    //    }
-    //
-    
-    //
-    ////    func fetch(user_id: String) {
-    ////        Network.shared.apollo.fetch(query: RepoListQuery(user_id: user_id)) { result in // Change the query name to your query name
-    ////            switch result {
-    ////            case .success(let graphQLResult):
-    ////                print("Success! Result: \(graphQLResult)")
-    ////                print("Success! Result2 graphQL: \((graphQLResult.data?.repoList)!)")
-    ////
-    ////                if let repoNameList = graphQLResult.data?.repoList {
-    ////                    print("Success! Result: \(repoNameList.indices) \(repoNameList.count)")
-    ////                    for i in repoNameList.indices{
-    ////                        self.process(data: graphQLResult.data?.repoList![i] ?? RepoListData.init(userId: "", repoName: ""))
-    ////                    }
-    ////                }else if let errors = graphQLResult.errors {
-    ////                    print("GraphQL errors \(errors)")
-    ////                }
-    ////
-    ////            case .failure(let error):
-    ////                print("GraphQL Failure! Error: \(error)")
-    ////            }
-    ////        }
-    ////    }
-    //
     //    func create_repo(repoName: String){
     //        Network.shared.apollo.perform(mutation: <#T##GraphQLMutation#>)
     //    }

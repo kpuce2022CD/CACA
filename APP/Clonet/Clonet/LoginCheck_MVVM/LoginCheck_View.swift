@@ -14,29 +14,15 @@ struct LoginCheck_View: View {
     @StateObject var logincheck_ViewModel = LoginCheck_ViewModel()
     @State private var showAlert = false
     
-    var userID : String = "user1"
+    var userID : String = ""
     
     init(userID: String){
         self.userID = userID
     }
     
     var body: some View {
-        VStack{
-            ForEach(logincheck_ViewModel.Repo_List, id: \.id) { s in
-                VStack{
-                    Text("commitMsg: \(s.repo_name)")
-                    Text("userId: \(s.user_id)")
-                    Text("--")
-                }
-            }
-        }
-        
-        
         NavigationView{
             HStack{
-                Button(action: {logincheck_ViewModel.fetch(user_id: userID)}){
-                    Text("viewmodel")
-                }
                 VStack{
                     Spacer()
                     logincheck_ViewModel.UserMainImage
@@ -57,7 +43,15 @@ struct LoginCheck_View: View {
                     
                     
                     List{
-                        Text("\(logincheck_ViewModel.launches.repo_name)")
+                        ForEach(logincheck_ViewModel.Repo_List, id: \.id) { s in
+                            NavigationLink(destination: Repo_View()){
+                                VStack{
+                                    Text("commitMsg: \(s.repo_name)")
+                                    Text("userId: \(s.user_id)")
+                                    Text("--")
+                                }
+                            }
+                        }
                         //                        ForEach(logincheck_ViewModel.Repo_List, id: \.self) { i in
                         //                            VStack{
                         //                                Text().padding()
@@ -73,13 +67,13 @@ struct LoginCheck_View: View {
                         ////                                }
                         ////                            }
                         //                        }
-                            .buttonStyle(PlainButtonStyle())
-                            .onAppear {
-                            }
+                        .buttonStyle(PlainButtonStyle())
                     }
                 }
-                
             }
+        }
+        .onAppear {
+            logincheck_ViewModel.fetch(user_id: userID)
         }
         .navigationBarBackButtonHidden(true)
         .hiddenNavigationBarStyle()
