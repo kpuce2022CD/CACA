@@ -59,15 +59,15 @@ struct Login_View: View {
                     ZStack {
 //                        ForEach(viewModel.login_msg, id: \.self) { msg in
                             if(viewModel.isLogin == true){
-                                NavigationLink(destination: LoginCheck(userID: userID), tag: "true", selection: $selectionString) { }
+                                NavigationLink(destination: LoginCheck_View(), tag: "true", selection: $selectionString) { }
                                 .buttonStyle(PlainButtonStyle()).frame(width:0).opacity(0)
 //                                Button("Login") {
 //                                    self.selectionString = "signupButton"
 //                                }
 //                                .onAppear(perform: {print(viewModel.isLogin)})
                             } else{
-//                                NavigationLink(destination: Login_View(), tag: "true", selection: $selectionString) { }
-//                                .buttonStyle(PlainButtonStyle()).frame(width:0).opacity(0)
+                                NavigationLink(destination: Login_View(), tag: "true", selection: $selectionString) { }
+                                .buttonStyle(PlainButtonStyle()).frame(width:0).opacity(0)
                                 
 //                                Button("Login") {
 //                                    self.selectionString = "signupButton"

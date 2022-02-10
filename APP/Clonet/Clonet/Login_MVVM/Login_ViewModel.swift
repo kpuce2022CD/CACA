@@ -48,7 +48,7 @@ final class Login_ViewModel : ObservableObject {
                         self.logins = self.process(data: logins[i] ?? LoginData.init(userId: "", userPw: "", userName: "", userEmail: "", profilePic: "", about: "", contact: ""))
                     }
                     
-                    if(passwd == self.logins.user_pw){
+                    if(passwd == self.logins.user_pw && self.logins.user_pw != ""){
                         print("asdf: Login Success")
                         print("passasdf", passwd, self.logins.user_pw)
                         print("asdfas", passwd)
