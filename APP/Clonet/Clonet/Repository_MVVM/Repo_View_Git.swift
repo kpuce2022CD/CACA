@@ -186,7 +186,7 @@ struct Repo_View_Git: View {
         }
         .background(Color.black)
         .cornerRadius(15)
-        .toast(isPresented: $presentingToast, dismissAfter: 2.0){
+        .toast(isPresented: $presentingToast){ // , dismissAfter: 2.0
             ToastView {
                 VStack{
                     Text("hello")
