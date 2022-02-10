@@ -11,14 +11,18 @@ import Foundation
 import ToastUI
 
 final class getFileList: ObservableObject{
-    @State var repoName_test = "TEST"
+    @State var repoName = ""
     @Published var items = [String]()
     @Published var text : String = ""
     @State var saveCheck : Bool = true
     
     init(){
-        location(repoName: self.repoName_test)
+        location(repoName: self.repoName)
         text = readMELoad(fileName: "README.md")
+    }
+    
+    func first(repo_n: String){
+        self.repoName = repo_n
     }
     
     // MARK: GET FILE LIST
@@ -40,7 +44,7 @@ final class getFileList: ObservableObject{
     func readMELoad(fileName: String) -> String {
         var result = ""
         if let dir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
-            let fileURL = dir.appendingPathComponent(repoName_test+"/"+fileName)
+            let fileURL = dir.appendingPathComponent(repoName+"/"+fileName)
             
             do {
                 result = try String(contentsOf: fileURL, encoding: .utf8)
@@ -56,7 +60,7 @@ final class getFileList: ObservableObject{
     func readMEsave(text: String){
         var fileName : String = "README.md"
         if let dir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
-            let fileURL = dir.appendingPathComponent(repoName_test+"/"+fileName)
+            let fileURL = dir.appendingPathComponent(repoName+"/"+fileName)
             do {
                 try text.write(to: fileURL, atomically: true, encoding: String.Encoding.utf8)
                 print("save success")
@@ -73,10 +77,12 @@ final class getFileList: ObservableObject{
 // MARK: DocumentPicker Struct
 struct DocumentPicker : UIViewControllerRepresentable {
     func makeCoordinator() -> Coordinator {
-        return DocumentPicker.Coordinator(parent1: self)
+        return DocumentPicker.Coordinator(parent1: self, repo_name: repo_name, img_name: img_name)
     }
     
     @Binding var alert : Bool
+    @Binding var repo_name: String
+    @Binding var img_name: String
     
     func makeUIViewController(context: UIViewControllerRepresentableContext<DocumentPicker>) ->
     UIDocumentPickerViewController{
@@ -91,14 +97,19 @@ struct DocumentPicker : UIViewControllerRepresentable {
     
     class Coordinator : NSObject,UIDocumentPickerDelegate{
         var parent : DocumentPicker
-        init(parent1: DocumentPicker){
+        var repo_name: String
+        var img_name: String
+        
+        init(parent1: DocumentPicker, repo_name: String, img_name: String){
             parent = parent1
+            self.repo_name = repo_name
+            self.img_name = img_name
         }
         func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentsAt urls: [URL]) {
             print(urls)
             // add File
             let fileManager = FileManager.default
-            let directoryURL = documentURL.appendingPathComponent("TEST/cat.png")
+            let directoryURL = documentURL.appendingPathComponent("\(self.repo_name)/cat.png")
             do{
                 try fileManager.copyItem(at: urls.first!, to: directoryURL)
             }catch let e {
@@ -129,6 +140,7 @@ struct Repo_View_Directory: View {
     init(repo_n: String, ec2_id: String){
         self.repo_n = repo_n
         self.ec2_id = ec2_id
+        dataList.first(repo_n: repo_n)
     }
     
     var documentsUrl: URL {
@@ -146,7 +158,7 @@ struct Repo_View_Directory: View {
                     Text("Document Picker")
                 }
                 .sheet(isPresented: $show){
-                    DocumentPicker(alert: self.$alert)
+                    DocumentPicker(alert: self.$alert, repo_name: self.$repo_n, img_name: self.$fileNameImg)
                 }
                 .alert(isPresented: $alert) {
                     Alert(title: Text("Message"), message: Text("Upload Successfully"), dismissButton: .default(Text("OK")))
@@ -221,8 +233,8 @@ struct Repo_View_Directory: View {
 }
 
 
-//struct Repo_View_Directory_Previews: PreviewProvider {
-//    static var previews: some View {
-//        Repo_View_Directory
-//    }
-//}
+struct Repo_View_Directory_Previews: PreviewProvider {
+    static var previews: some View {
+        Repo_View_Directory(repo_n: "TEST", ec2_id: "3.34.194.172")
+    }
+}
