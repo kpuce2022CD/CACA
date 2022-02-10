@@ -59,7 +59,7 @@ struct Login_View: View {
                     ZStack {
 //                        ForEach(viewModel.login_msg, id: \.self) { msg in
                             if(viewModel.isLogin == true){
-                                NavigationLink(destination: LoginCheck_View(), tag: "true", selection: $selectionString) { }
+                                NavigationLink(destination: LoginCheck_View(userID: userID), tag: "true", selection: $selectionString) { }
                                 .buttonStyle(PlainButtonStyle()).frame(width:0).opacity(0)
 //                                Button("Login") {
 //                                    self.selectionString = "signupButton"

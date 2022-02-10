@@ -8,6 +8,14 @@
 import SwiftUI
 
 struct Repo_View: View {
+    var userID : String = ""
+    var repoName : String = ""
+    
+    init(userID: String, repoName: String){
+        self.userID = userID
+        self.repoName = repoName
+    }
+    
     var body: some View {
         HStack{
             VStack{
@@ -24,6 +32,6 @@ struct Repo_View: View {
 
 struct Repo_View_Previews: PreviewProvider {
     static var previews: some View {
-        Repo_View()
+        Repo_View(userID: "", repoName: "")
     }
 }
