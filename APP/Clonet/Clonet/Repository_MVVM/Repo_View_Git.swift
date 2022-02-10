@@ -28,8 +28,8 @@ struct Repo_View_Git: View {
     @State var repo_n: String
     @StateObject var log_repoViewModel_a = log_repo_ViewModel()
     @State private var presentingToast: Bool = false
-    @State private var log_number = 0
-    @State private var log_numbers : [String] = []
+    @State private var log_number1 = 0
+    @State private var log_number2 = 0
     
     init(repo_n: String) {
         self.repo_n = repo_n
@@ -195,18 +195,27 @@ struct Repo_View_Git: View {
             .cornerRadius(15)
             .toast(isPresented: $presentingToast){ // , dismissAfter: 2.0
                 ToastView {
-                    
-                    VStack{
-                        List(log_repoViewModel_a.Log_repo_list, id: \.id) { log_l in
-                            Text(log_l.userId + " : " + log_l.commitMsg)
+                    NavigationView {
+                        Form {
+                            Section {
+                                Picker("Choose First Diff Commit", selection: $log_number1) {
+                                    ForEach(log_repoViewModel_a.Log_repo_list.indices) {
+                                        Text("\(log_repoViewModel_a.Log_repo_list[$0].userId) : \(log_repoViewModel_a.Log_repo_list[$0].commitMsg)")
+                                    }
+                                }
+                                Picker("Choose Second Diff Commit", selection: $log_number2) {
+                                    ForEach(log_repoViewModel_a.Log_repo_list.indices) {
+                                        Text("\(log_repoViewModel_a.Log_repo_list[$0].userId) : \(log_repoViewModel_a.Log_repo_list[$0].commitMsg)")
+                                    }
+                                }
+                            }
                         }
                     }
-                    .onAppear(){
-                        log_repoViewModel_a.repo_n = self.repo_n
-                        log_repoViewModel_a.appear()
-                    }
-                    .pickerStyle(SegmentedPickerStyle())
                 }
+            }
+            .onAppear(){
+                log_repoViewModel_a.repo_n = self.repo_n
+                log_repoViewModel_a.appear()
             }
             .padding()
         }
