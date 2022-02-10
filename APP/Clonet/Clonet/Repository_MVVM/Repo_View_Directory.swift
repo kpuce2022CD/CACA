@@ -17,12 +17,12 @@ final class getFileList: ObservableObject{
     @State var saveCheck : Bool = true
     
     init(){
-        location(repoName: self.repoName)
         text = readMELoad(fileName: "README.md")
     }
     
     func first(repo_n: String){
-        self.repoName = repo_n
+//        self.repoName = repo_n
+        location(repoName: repo_n)
     }
     
     // MARK: GET FILE LIST
@@ -34,7 +34,7 @@ final class getFileList: ObservableObject{
         var remoteString = urlString.replacingOccurrences(of: "file://", with: "")
         do{
             items = try fileManager.contentsOfDirectory(atPath: remoteString)
-            print(items)
+            print("items : \(items)")
         }catch{
             print("error")
         }
@@ -140,11 +140,22 @@ struct Repo_View_Directory: View {
     init(repo_n: String, ec2_id: String){
         self.repo_n = repo_n
         self.ec2_id = ec2_id
-        dataList.first(repo_n: repo_n)
+        dataList.first(repo_n: self.repo_n)
     }
     
     var documentsUrl: URL {
         return FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+    }
+    
+    func delteFile(at offsets: IndexSet){
+        let fileManager = FileManager.default
+        let directoryURL = documentURL.appendingPathComponent("\(self.repo_n)/" + "\(offsets)")
+        print("offsets: \(offsets)")
+        do{
+            try fileManager.removeItem(at: directoryURL)
+        }catch let e {
+            print("\(e)")
+        }
     }
     
     var body: some View {
@@ -163,10 +174,9 @@ struct Repo_View_Directory: View {
                 .alert(isPresented: $alert) {
                     Alert(title: Text("Message"), message: Text("Upload Successfully"), dismissButton: .default(Text("OK")))
                 }
+                // MARK: Show File List
                 List{
-                    
                     ForEach(dataList.items, id: \.self){ i in
-                        //                        Text(i)
                         if(i != ".git"){
                             Button(i, action: {
                                 fileNameImg = i
@@ -179,11 +189,12 @@ struct Repo_View_Directory: View {
                         }
                         
                     }
+                    .onDelete(perform: delteFile)
                 }.frame(width: 300)
             }
             
             
-            //Repo_View_Image
+            //MARK: Repo_View_Image
             VStack{
                 if editREADME {
                     VStack{
