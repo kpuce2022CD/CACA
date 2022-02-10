@@ -10,6 +10,7 @@ import SwiftGit2
 import ToastUI
 
 struct Repo_View_Git: View {
+    
     @ObservedObject var directory = getFileList()
     
     @State var RepositoryName = "test"
@@ -24,13 +25,19 @@ struct Repo_View_Git: View {
     @State var merge_id : String = "752aa0ffa6ff9cbd69fbfaa7abc7cf0408cb7244"
     @State var addFileName : String = "."
     
+    @State var repo_n: String
+    @StateObject var log_repoViewModel_a = log_repo_ViewModel()
     @State private var presentingToast: Bool = false
+    @State private var log_number = 0
+    @State private var log_numbers : [String] = []
     
-    init() {
+    init(repo_n: String) {
+        self.repo_n = repo_n
         Repository.initialize_libgit2()
     }
     
     var body: some View {
+        
         VStack{
             // MARK: RollBack Button
             Button(action: {
@@ -54,7 +61,7 @@ struct Repo_View_Git: View {
             // MARK: Commit Button
             Button(action: {
                 alertView()
-//                commitGitRepo(localRepoLocation: documentURL.appendingPathComponent(RepositoryName), name: UserName, email: userEmail, commit_msg: commit_msg)
+                //                commitGitRepo(localRepoLocation: documentURL.appendingPathComponent(RepositoryName), name: UserName, email: userEmail, commit_msg: commit_msg)
             }){
                 HStack{
                     Image(systemName: "opticaldiscdrive.fill")
@@ -120,7 +127,7 @@ struct Repo_View_Git: View {
             Button(action: {
                 showingAlert = true
                 branchArr = BranchGitRepo(localRepoLocation: documentURL.appendingPathComponent(RepositoryName))
-
+                
             })
             {
                 HStack{
@@ -145,7 +152,7 @@ struct Repo_View_Git: View {
                 }
                 Button("Cancel", role: .cancel){}
             }
-
+            
             
             // MARK: Export Button
             Button(action: {
@@ -165,37 +172,44 @@ struct Repo_View_Git: View {
             }
             .background(Color.black)
             .cornerRadius(15)
-
-        
-        
-        // MARK: Diff Button
-        Button(action: {
-            presentingToast = true
-        }){
-            HStack{
-                Image(systemName: "slider.horizontal.below.square.filled.and.square")
-                Text("Compare")
-            }
             
-            .frame(width: 200, height: 50)
-            .foregroundColor(.white)
-            .overlay(
-                RoundedRectangle(cornerRadius: 15)
-                    .stroke(Color.white, lineWidth: 2)
-            )
-        }
-        .background(Color.black)
-        .cornerRadius(15)
-        .toast(isPresented: $presentingToast){ // , dismissAfter: 2.0
-            ToastView {
-                VStack{
-                    Text("hello")
+            
+            
+            // MARK: Diff Button
+            Button(action: {
+                presentingToast = true
+            }){
+                HStack{
+                    Image(systemName: "slider.horizontal.below.square.filled.and.square")
+                    Text("Compare")
+                }
+                
+                .frame(width: 200, height: 50)
+                .foregroundColor(.white)
+                .overlay(
+                    RoundedRectangle(cornerRadius: 15)
+                        .stroke(Color.white, lineWidth: 2)
+                )
+            }
+            .background(Color.black)
+            .cornerRadius(15)
+            .toast(isPresented: $presentingToast){ // , dismissAfter: 2.0
+                ToastView {
+                    
+                    VStack{
+                        List(log_repoViewModel_a.Log_repo_list, id: \.id) { log_l in
+                            Text(log_l.userId + " : " + log_l.commitMsg)
+                        }
+                    }
+                    .onAppear(){
+                        log_repoViewModel_a.repo_n = self.repo_n
+                        log_repoViewModel_a.appear()
+                    }
+                    .pickerStyle(SegmentedPickerStyle())
                 }
             }
+            .padding()
         }
-            
-        }
-        .padding()
     }
     
     
@@ -238,7 +252,7 @@ struct Repo_View_Git: View {
             
             //MARK: push
             let commit_push = repo.push(repo, "ubuntu", "qwer1234", nil)
-
+            
             
         case let .failure(error):
             print(error)
@@ -257,7 +271,7 @@ struct Repo_View_Git: View {
                 .flatMap {
                     repo.commit($0.oid)
                 }
-
+            
         case let .failure(error):
             print(error)
         }
@@ -300,9 +314,9 @@ struct Repo_View_Git: View {
             do {
                 let remote_r = try remote.get()
                 let merge_result = repo.merge_func(repo, remoteRepoLocation: remoteRepoLocation, hexString: hexString )
-
+                
                 let message = "merge result : \(merge_result)"
-
+                
             }catch{
                 print(error)
             }
@@ -345,7 +359,7 @@ struct Repo_View_Git: View {
         
         return branchArr
     }
-
+    
     
     //MARK: CHECKOUT_FUNC
     func checkout_Branch(localRepoLocation localRepoLocation : URL, branchname branch_name : String){
@@ -391,6 +405,6 @@ struct Repo_View_Git: View {
 
 struct Repo_View_Git_Previews: PreviewProvider {
     static var previews: some View {
-        Repo_View_Git()
+        Repo_View_Git(repo_n: "TEST")
     }
 }

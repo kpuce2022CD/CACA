@@ -125,14 +125,12 @@ struct Repo_View_Directory: View {
     @State var CommitMessage : String = "Commit Message"
     @State var location = "test"
     @State var fileNameImg = "mumani.psd"
-//    @State var text: String = ""
     @State private var editREADME : Bool = true
     
     
     var documentsUrl: URL {
         return FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
     }
-    //////////////
     
     var body: some View {
         HStack{
