@@ -56,6 +56,7 @@ struct GitTest: View {
                     Button("fetch", action: fetchGitRepo)
                     Button("MERGE", action: mergeGitRepo)
                     Button("LOG", action: log)
+                    Button("_RESET_", action: reset)
                 }
             }
             VStack{
@@ -70,6 +71,19 @@ struct GitTest: View {
         }
         
     }
+    
+    //MARK: reset
+    func reset(){
+        let result = Repository.at(localRepoLocation)
+        switch result {
+        case let .success(repo):
+            let reset_result = repo.log_reset(repo)
+            message = "\(reset_result)"
+        case let .failure(error):
+            message = "Could not open repository: \(error)"
+        }
+    }
+    
     //MARK: LOG
     func log(){
         let result = Repository.at(localRepoLocation)
