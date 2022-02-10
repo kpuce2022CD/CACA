@@ -30,8 +30,8 @@ struct GitTest: View {
     
     let faceLocation = documentURL.appendingPathComponent("test")
     let localRepoLocation = documentURL.appendingPathComponent("test")
-    let remoteRepoLocation = "http://13.125.173.134/git-repositories/TEST.git"
-    let test = "http://13.125.173.134/git-repositories/TEST.git"
+    let remoteRepoLocation = "http://3.34.194.172/git-repositories/TEST.git"
+    let test = "http://3.34.194.172/git-repositories/TEST.git"
     
     init() {
         // git_libgit2_init()
@@ -55,7 +55,7 @@ struct GitTest: View {
                     Button("REVERT", action: revert)
                     Button("fetch", action: fetchGitRepo)
                     Button("MERGE", action: mergeGitRepo)
-                    Button("LOG", action: log)
+//                    Button("LOG", action: log)
                     Button("_RESET_", action: reset)
                 }
             }
@@ -84,17 +84,17 @@ struct GitTest: View {
         }
     }
     
-    //MARK: LOG
-    func log(){
-        let result = Repository.at(localRepoLocation)
-        switch result {
-        case let .success(repo):
-            let revert_result = repo.log_list(repo)
-            message = "\(revert_result)"
-        case let .failure(error):
-            message = "Could not open repository: \(error)"
-        }
-    }
+//    //MARK: LOG
+//    func log(){
+//        let result = Repository.at(localRepoLocation)
+//        switch result {
+//        case let .success(repo):
+//            let revert_result = repo.log_list(repo)
+//            message = "\(revert_result)"
+//        case let .failure(error):
+//            message = "Could not open repository: \(error)"
+//        }
+//    }
     // MARK: REVERT
     func revert(){
         let result = Repository.at(localRepoLocation)
