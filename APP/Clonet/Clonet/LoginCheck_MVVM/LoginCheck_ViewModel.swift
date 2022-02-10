@@ -30,7 +30,7 @@ struct MyAlert: View {
     @State private var selectionString: String? = nil
     @State var showingAlert = true
     @State var input_repoName = ""
-    
+    var uuserID = ""
     
     var body: some View {
         //        let RepoJSON = "{\"user_id\": \"\(userAuth.user_id)\", \"repo_name\": \"\(userRepo.Repo_name)\", \"Repo_ec2_ip\": \"\(userRepo.Repo_ec2_ip)\", \"directory_path\": \"\(userRepo.directory_path)\"}"
@@ -38,7 +38,7 @@ struct MyAlert: View {
             VStack {
                 Text("저장소 이름").font(.headline).padding()
                 
-                TextField("내용을 입력해주세요", text: $input_repoName).textFieldStyle(RoundedBorderTextFieldStyle()).padding()
+                TextField("내용을 입력해주세요.", text: $input_repoName).textFieldStyle(RoundedBorderTextFieldStyle()).padding()
                 Divider()
                 HStack {
                     Spacer()
@@ -57,7 +57,7 @@ struct MyAlert: View {
                         Button("완료") {
                             UIApplication.shared.windows[0].rootViewController?.dismiss(animated: true, completion: {})
                             self.selectionString = "RepoButton"
-                            loginCheck_ViewModel.repoName = input_repoName
+                            loginCheck_ViewModel.create_repo(repoName: input_repoName, user_id: uuserID)
                             //                            service.create_Repo(json: RepoJSON)
                         }
                     }
@@ -86,11 +86,27 @@ final class LoginCheck_ViewModel: ObservableObject {
     @Published var Repo_List: [RepoNameList] = []
     
     @ObservedObject var login_ViewModel = Login_ViewModel()
-    @Published var repoName = "ddd"
+    @Published var repoName = ""
     @Published var user_id = ""
     
     init(){
         fetch(user_id: user_id)
+        create_repo(repoName: repoName, user_id: user_id)
+    }
+    
+    func create_repo(repoName: String, user_id: String){
+        if(repoName != ""){
+            Network.shared.apollo.perform(mutation: CreateRepoMutation(repo_name: repoName, repo_ec2_ip: "ec2_ip", user_id: user_id)){ result in
+                switch result{
+                case .success(let graphQLResult):
+                    print("create_repo Success :\(graphQLResult.data?.createRepo)")
+                case .failure(let error):
+                    print("create_repo Failed \(error)")
+                }
+            }
+        }else {
+            print("create_repo Failed: empty reponame")
+        }
     }
     
     func fetch(user_id: String){
@@ -118,8 +134,8 @@ final class LoginCheck_ViewModel: ObservableObject {
         return RepoNameList(data)
     }
     
-    func loginCheck_alert(user_id: String){
-        let alertHC = UIHostingController(rootView: MyAlert())//userAuth:userAuth))
+    func loginCheck_alert(userID : String){
+        let alertHC = UIHostingController(rootView: MyAlert(uuserID: userID))//userAuth:userAuth))
         
         alertHC.preferredContentSize = CGSize(width: 300, height: 200)
         alertHC.modalPresentationStyle = UIModalPresentationStyle.formSheet
@@ -129,8 +145,8 @@ final class LoginCheck_ViewModel: ObservableObject {
     
     // MARK: ProfileImage
     var ProfileImgName: String = ""
-    var nickName: String = ""
-    var userID : String = ""
+//    var nickName: String = ""
+//    var userID : String = ""
     
     var UserMainImage: some View{
         CircleImage(image: Image(ProfileImgName))
@@ -140,16 +156,12 @@ final class LoginCheck_ViewModel: ObservableObject {
     
     var UserInfo: some View {
         VStack(alignment: .center){
-            Text(nickName)
-                .font(.title)
             Text(user_id)
-                .font(.body)
+                .font(.title)
+//            Text(user_id)
+//                .font(.body)
         }
         .padding()
         
     }
-    //    func create_repo(repoName: String){
-    //        Network.shared.apollo.perform(mutation: <#T##GraphQLMutation#>)
-    //    }
-    
 }
