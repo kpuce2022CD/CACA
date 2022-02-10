@@ -7,6 +7,7 @@
 
 import SwiftUI
 import SwiftGit2
+import ToastUI
 
 struct Repo_View_Git: View {
     @ObservedObject var directory = getFileList()
@@ -22,8 +23,10 @@ struct Repo_View_Git: View {
     @State var revert_id : String = "f6208e911787230629069d9f0586df1f1ea2d27b"
     @State var merge_id : String = "752aa0ffa6ff9cbd69fbfaa7abc7cf0408cb7244"
     @State var addFileName : String = "."
+    
+    @State private var presentingToast: Bool = false
+    
     init() {
-        // git_libgit2_init()
         Repository.initialize_libgit2()
     }
     
@@ -113,7 +116,7 @@ struct Repo_View_Git: View {
                 .cornerRadius(15)
             }
             
-            // MARK: Branch
+            // MARK: Branch Button
             Button(action: {
                 showingAlert = true
                 branchArr = BranchGitRepo(localRepoLocation: documentURL.appendingPathComponent(RepositoryName))
@@ -144,7 +147,7 @@ struct Repo_View_Git: View {
             }
 
             
-            // MARK: Export
+            // MARK: Export Button
             Button(action: {
                 
             }){
@@ -162,6 +165,35 @@ struct Repo_View_Git: View {
             }
             .background(Color.black)
             .cornerRadius(15)
+
+        
+        
+        // MARK: Diff Button
+        Button(action: {
+            presentingToast = true
+        }){
+            HStack{
+                Image(systemName: "slider.horizontal.below.square.filled.and.square")
+                Text("Compare")
+            }
+            
+            .frame(width: 200, height: 50)
+            .foregroundColor(.white)
+            .overlay(
+                RoundedRectangle(cornerRadius: 15)
+                    .stroke(Color.white, lineWidth: 2)
+            )
+        }
+        .background(Color.black)
+        .cornerRadius(15)
+        .toast(isPresented: $presentingToast){ // , dismissAfter: 2.0
+            ToastView {
+                VStack{
+                    Text("hello")
+                }
+            }
+        }
+            
         }
         .padding()
     }
