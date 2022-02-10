@@ -336,7 +336,7 @@ struct Repo_View_Git: View {
             i.placeholder = "commit msg"
         }
         
-        let completeAction = UIAlertAction(title: "Complete", style: .default){ (_) in
+        let completeAction = UIAlertAction(title: "Save", style: .default){ (_) in
             print("complete clicked")
             commit_msg = alert.textFields![0].text!
             print("commit complete: \(commit_msg)")
