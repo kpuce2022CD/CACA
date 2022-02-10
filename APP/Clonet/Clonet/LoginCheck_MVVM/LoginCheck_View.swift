@@ -23,7 +23,6 @@ struct LoginCheck_View: View {
     var body: some View {
         NavigationView{
             HStack{
-                Text(userID)
                 VStack{
                     Spacer()
                     logincheck_ViewModel.UserMainImage
