@@ -49,16 +49,9 @@ final class Login_ViewModel : ObservableObject {
                     }
                     
                     if(passwd == self.logins.user_pw && self.logins.user_pw != ""){
-                        print("asdf: Login Success")
-                        print("passasdf", passwd, self.logins.user_pw)
-                        print("asdfas", passwd)
                         self.isLogin = true
                         
                     } else {
-                        print("asdf: Login Fail")
-                        print("asdfas", passwd)
-                        print("asdffail", self.logins.user_pw)
-                        print("Login Fail")
                         self.isLogin = false
                     }
                 } else if let errors = graphQLResult.errors {
