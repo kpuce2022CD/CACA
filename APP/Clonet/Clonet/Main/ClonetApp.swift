@@ -15,15 +15,3 @@ struct ClonetApp: App {
         }
     }
 }
-
-
-//@main
-//struct ClonetApp: App {
-//    @StateObject var launchViewModel = LaunchViewModel()
-//
-//    var body: some Scene {
-//        WindowGroup {
-//            ContentView().environmentObject(launchViewModel)
-//        }
-//    }
-//}
