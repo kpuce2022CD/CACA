@@ -96,7 +96,7 @@ struct DocumentPicker : UIViewControllerRepresentable {
         }
         func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentsAt urls: [URL]) {
             print(urls)
-            // code
+            // add File
             let fileManager = FileManager.default
             let directoryURL = documentURL.appendingPathComponent("TEST/cat.png")
             do{
@@ -204,7 +204,7 @@ struct Repo_View_Directory: View {
                             self.saveCheck = dataList.saveCheck
                             print("self.saveCheck \(saveCheck) : Repo_View")
                         })
-                            .toast(isPresented: $saveCheck, dismissAfter: 1.0) {
+                            .toast(isPresented: $saveCheck, dismissAfter: 0.5) {
                                 print("SAVE SUCCESS")
                             } content: {
                                 ToastView("SAVE SUCCESS")
