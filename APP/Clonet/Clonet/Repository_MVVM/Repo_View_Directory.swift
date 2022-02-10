@@ -99,6 +99,7 @@ struct DocumentPicker : UIViewControllerRepresentable {
         var parent : DocumentPicker
         var repo_name: String
         var img_name: String
+
         
         init(parent1: DocumentPicker, repo_name: String, img_name: String){
             parent = parent1
@@ -106,10 +107,13 @@ struct DocumentPicker : UIViewControllerRepresentable {
             self.img_name = img_name
         }
         func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentsAt urls: [URL]) {
-            print(urls)
+            print("ursl \(urls)")
+            guard let selectedFileURL = urls.first else {
+                return
+            }
             // add File
             let fileManager = FileManager.default
-            let directoryURL = documentURL.appendingPathComponent("\(self.repo_name)/cat.png")
+            let directoryURL = documentURL.appendingPathComponent("\(self.repo_name)/\(selectedFileURL.lastPathComponent)")
             do{
                 try fileManager.copyItem(at: urls.first!, to: directoryURL)
             }catch let e {
@@ -147,16 +151,17 @@ struct Repo_View_Directory: View {
         return FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
     }
     
-    func delteFile(at offsets: IndexSet){
-        let fileManager = FileManager.default
-        let directoryURL = documentURL.appendingPathComponent("\(self.repo_n)/" + "\(offsets)")
-        print("offsets: \(offsets)")
-        do{
-            try fileManager.removeItem(at: directoryURL)
-        }catch let e {
-            print("\(e)")
-        }
-    }
+//    func delteFile(at offsets: IndexSet){
+//        print("offsets \(offsets)")
+//        let fileManager = FileManager.default
+////        let directoryURL = documentURL.appendingPathComponent("\(self.repo_n)/" + "\(        dataList.items.index(<#T##i: Int##Int#>, offsetBy: <#T##Int#>))")
+////        print("offsets: \(offsets)")
+////        do{
+////            try fileManager.removeItem(at: directoryURL)
+////        }catch let e {
+////            print("\(e)")
+////        }
+//    }
     
     var body: some View {
         HStack{
@@ -187,9 +192,9 @@ struct Repo_View_Directory: View {
                                 }
                             })
                         }
-                        
                     }
-                    .onDelete(perform: delteFile)
+//                    .onDelete(perform: )
+//                    .onDelete(perform: dataList. delteFile)
                 }.frame(width: 300)
             }
             
