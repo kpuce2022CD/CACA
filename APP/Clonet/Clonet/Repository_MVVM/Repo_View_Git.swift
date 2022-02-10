@@ -21,7 +21,7 @@ struct Repo_View_Git: View {
     @State var branchArr : [String] = []
     
     @State private var showingAlert = false
-    @State var revert_id : String = "fb45bc7469e87b0ae1b92f44ac44fd52828f6921"
+    @State var reset_id : String = "356416c04523dd14d04165a69a14b257636ec8a5"
     @State var merge_id : String = ""
     @State var addFileName : String = "."
     
@@ -47,7 +47,7 @@ struct Repo_View_Git: View {
         VStack{
             // MARK: RollBack Button
             Button(action: {
-                rollbackGit(localRepoLocation: documentURL.appendingPathComponent(repo_n), name: userID, email: userEmail, commit_msg: commit_msg, revert_id: self.revert_id)
+                rollbackGit(localRepoLocation: documentURL.appendingPathComponent(repo_n), name: userID, email: userEmail, commit_msg: commit_msg, reset_id: self.reset_id)
             }){
                 HStack{
                     Image(systemName: "arrow.counterclockwise")
@@ -247,27 +247,28 @@ struct Repo_View_Git: View {
     
     
     // MARK: ROLLBACK_FUNC
-    func rollbackGit(localRepoLocation localRepoLocation: URL, name name: String, email email: String, commit_msg commit_msg : String, revert_id: String){
-        var message : String
+    func rollbackGit(localRepoLocation localRepoLocation: URL, name name: String, email email: String, commit_msg commit_msg : String, reset_id: String){
+        var message : String = ""
         let result = Repository.at(localRepoLocation)
         switch result {
         case let .success(repo):
-            //MARK: revert
-            let revert_result = repo.revert_commit(repo, revert_id: revert_id)
             
+            //MARK: reset
+            let reset_result = repo.log_reset(repo, reset_id: reset_id)
             //MARK: commit
             let sig = Signature(name: name,email: email, time: Date(),timeZone: TimeZone.current)
             let latestCommit = repo.commit(message: commit_msg, signature: sig)
             
             //MARK: push
             let commit_push = repo.push(repo, "ubuntu", "qwer1234", nil)
-            message = "\(revert_result)"
             print(message)
         case let .failure(error):
             message = "Could not open repository: \(error)"
             print(message)
         }
+            
     }
+    
     
     
     //MARK: COMMIT_FUNC
