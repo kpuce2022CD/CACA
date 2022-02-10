@@ -42,7 +42,7 @@ extension Repository {
     public func merge(_ repo: Repository){
         var git_annotated_commit_from_fetchhead_out : OpaquePointer? = nil
         var revert_git_oid = git_oid()
-        let nameToIDResult = git_oid_fromstr(&revert_git_oid, "752aa0ffa6ff9cbd69fbfaa7abc7cf0408cb7244")
+//        let nameToIDResult = git_oid_fromstr(&revert_git_oid, "752aa0ffa6ff9cbd69fbfaa7abc7cf0408cb7244")
         
         git_annotated_commit_from_fetchhead(&git_annotated_commit_from_fetchhead_out, repo.pointer, "master", "http://52.79.235.187/git-repositories/PJY_JJANG.git", &revert_git_oid)
 
@@ -59,7 +59,6 @@ extension Repository {
         let nameToIDResult = git_oid_fromstr(&revert_git_oid, hexString)
         
         git_annotated_commit_from_fetchhead(&git_annotated_commit_from_fetchhead_out, repo.pointer, "master", remoteRepoLocation, &revert_git_oid)
-
         
         git_merge(repo.pointer, &git_annotated_commit_from_fetchhead_out, 1, nil, nil)
     }
