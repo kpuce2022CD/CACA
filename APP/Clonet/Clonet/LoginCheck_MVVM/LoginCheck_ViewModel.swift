@@ -38,7 +38,7 @@ struct MyAlert: View {
             VStack {
                 Text("저장소 이름").font(.headline).padding()
                 
-                TextField("내용을 입력해주세요 \(uuserID)", text: $input_repoName).textFieldStyle(RoundedBorderTextFieldStyle()).padding()
+                TextField("내용을 입력해주세요.", text: $input_repoName).textFieldStyle(RoundedBorderTextFieldStyle()).padding()
                 Divider()
                 HStack {
                     Spacer()
@@ -95,18 +95,17 @@ final class LoginCheck_ViewModel: ObservableObject {
     }
     
     func create_repo(repoName: String, user_id: String){
-        print("create_repo: \(repoName), \(user_id)")
         if(repoName != ""){
             Network.shared.apollo.perform(mutation: CreateRepoMutation(repo_name: repoName, repo_ec2_ip: "ec2_ip", user_id: user_id)){ result in
                 switch result{
                 case .success(let graphQLResult):
-                    print("create_repo S :\(graphQLResult.data?.createRepo)")
+                    print("create_repo Success :\(graphQLResult.data?.createRepo)")
                 case .failure(let error):
-                    print("create_repo F \(error)")
+                    print("create_repo Failed \(error)")
                 }
             }
         }else {
-            print("create_repo F: empty reponame")
+            print("create_repo Failed: empty reponame")
         }
     }
     
@@ -136,7 +135,6 @@ final class LoginCheck_ViewModel: ObservableObject {
     }
     
     func loginCheck_alert(userID : String){
-        print("create_repo USerID:\(userID)")
         let alertHC = UIHostingController(rootView: MyAlert(uuserID: userID))//userAuth:userAuth))
         
         alertHC.preferredContentSize = CGSize(width: 300, height: 200)
