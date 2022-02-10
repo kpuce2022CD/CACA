@@ -86,6 +86,7 @@ final class LoginCheck_ViewModel: ObservableObject {
     @Published var Repo_List: [RepoNameList] = []
     
     @ObservedObject var login_ViewModel = Login_ViewModel()
+    @Published var repoIP = "3.34.194.172"
     @Published var repoName = ""
     @Published var user_id = ""
     
@@ -96,7 +97,7 @@ final class LoginCheck_ViewModel: ObservableObject {
     
     func create_repo(repoName: String, user_id: String){
         if(repoName != ""){
-            Network.shared.apollo.perform(mutation: CreateRepoMutation(repo_name: repoName, repo_ec2_ip: "ec2_ip", user_id: user_id)){ result in
+            Network.shared.apollo.perform(mutation: CreateRepoMutation(repo_name: repoName, repo_ec2_ip: repoIP, user_id: user_id)){ result in
                 switch result{
                 case .success(let graphQLResult):
                     print("create_repo Success :\(graphQLResult.data?.createRepo)")
