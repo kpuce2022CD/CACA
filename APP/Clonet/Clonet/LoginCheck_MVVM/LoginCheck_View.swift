@@ -23,6 +23,7 @@ struct LoginCheck_View: View {
     var body: some View {
         NavigationView{
             HStack{
+                Text(userID)
                 VStack{
                     Spacer()
                     logincheck_ViewModel.UserMainImage
@@ -34,7 +35,7 @@ struct LoginCheck_View: View {
                     HStack{
                         Spacer()
                         Button(action: {
-                            logincheck_ViewModel.loginCheck_alert(user_id: userID)
+                            logincheck_ViewModel.loginCheck_alert(userID: userID)
                         }) {
                             Text("추가")
                         }
