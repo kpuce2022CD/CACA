@@ -25,6 +25,7 @@ struct Repo_View_Git: View {
     @State var merge_id : String = "752aa0ffa6ff9cbd69fbfaa7abc7cf0408cb7244"
     @State var addFileName : String = "."
     
+    // Toast Variables
     @State var repo_n: String
     @StateObject var log_repoViewModel_a = log_repo_ViewModel()
     @State private var presentingToast: Bool = false
