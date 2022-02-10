@@ -209,6 +209,19 @@ struct Repo_View_Git: View {
                                     }
                                 }
                             }
+                            Section{
+                                Button {
+                                    presentingToast = false
+                                } label: {
+                                    Text("OK")
+                                }
+                                Button {
+                                    presentingToast = false
+                                } label: {
+                                    Text("CANCEL")
+                                }
+
+                            }
                         }
                     }
                 }
