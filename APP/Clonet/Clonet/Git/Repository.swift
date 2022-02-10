@@ -20,7 +20,13 @@ extension Repository {
     
     //MARK: reset
     public func log_reset(_ repo: Repository){
-
+        var revert_git_oid = git_oid()
+        let nameToIDResult = git_oid_fromstr(&revert_git_oid, "2e199aec6e2309ac707c293c03fb475dc7b254b5")
+        
+        var target: OpaquePointer? = nil
+        git_object_lookup(&target, repo.pointer, &revert_git_oid, GIT_OBJECT_COMMIT)
+        
+        git_reset(repo.pointer, target, GIT_RESET_HARD, nil)
     }
     
     
