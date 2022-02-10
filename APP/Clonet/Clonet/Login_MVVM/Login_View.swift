@@ -66,8 +66,8 @@ struct Login_View: View {
 //                                }
 //                                .onAppear(perform: {print(viewModel.isLogin)})
                             } else{
-//                                NavigationLink(destination: Login_View(), tag: "true", selection: $selectionString) { }
-//                                .buttonStyle(PlainButtonStyle()).frame(width:0).opacity(0)
+                                NavigationLink(destination: Login_View(), tag: "true", selection: $selectionString) { }
+                                .buttonStyle(PlainButtonStyle()).frame(width:0).opacity(0)
                                 
 //                                Button("Login") {
 //                                    self.selectionString = "signupButton"
