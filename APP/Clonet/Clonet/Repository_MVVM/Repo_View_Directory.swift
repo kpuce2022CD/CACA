@@ -151,21 +151,27 @@ struct Repo_View_Directory: View {
         return FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
     }
     
-//    func delteFile(at offsets: IndexSet){
-//        print("offsets \(offsets)")
-//        let fileManager = FileManager.default
-////        let directoryURL = documentURL.appendingPathComponent("\(self.repo_n)/" + "\(        dataList.items.index(<#T##i: Int##Int#>, offsetBy: <#T##Int#>))")
-////        print("offsets: \(offsets)")
-////        do{
-////            try fileManager.removeItem(at: directoryURL)
-////        }catch let e {
-////            print("\(e)")
-////        }
-//    }
+    func deleteFile(at offsets: IndexSet){
+        print("IndexSet \(offsets[offsets.startIndex])")
+        print("IndexSet name : " + "\(self.repo_n)/" + "\(dataList.items[offsets[offsets.startIndex]])")
+        
+        // delete File
+        let fileManager = FileManager.default
+        let path = documentsUrl.path
+        print("path: \(path)/\(self.repo_n)/\(dataList.items[offsets[offsets.startIndex]])")
+        print("offsets: \(offsets)")
+        do{
+            try fileManager.removeItem(atPath: path + "/\(self.repo_n)/" + "\(dataList.items[offsets[offsets.startIndex]])")
+        }catch let e {
+            print("\(e)")
+        }
+        
+        dataList.items.remove(atOffsets: offsets)
+        
+    }
     
     var body: some View {
         HStack{
-            
             VStack{
                 // MARK: Document Picker Button (To add)
                 Button(action:{
@@ -181,20 +187,24 @@ struct Repo_View_Directory: View {
                 }
                 // MARK: Show File List
                 List{
-                    ForEach(dataList.items, id: \.self){ i in
-                        if(i != ".git"){
-                            Button(i, action: {
-                                fileNameImg = i
-                                if(i == "README.md"){
-                                    editREADME = true
-                                } else{
-                                    editREADME = false
-                                }
-                            })
+
+                        ForEach(dataList.items, id: \.self){ i in
+                            if(i != ".git"){
+                                Button(i, action: {
+                                    fileNameImg = i
+                                    if(i == "README.md"){
+                                        editREADME = true
+                                    } else{
+                                        editREADME = false
+                                    }
+                                })
+                            }
                         }
+                        .onDelete{
+                            deleteFile(at: $0)
+
                     }
-//                    .onDelete(perform: )
-//                    .onDelete(perform: dataList. delteFile)
+                    
                 }.frame(width: 300)
             }
             
