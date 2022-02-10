@@ -28,9 +28,10 @@ final class log_repo_ViewModel: ObservableObject{
                 if let ip_repos = graphQLResult.data?.selectRepo {
                     for i in ip_repos.indices{
                         self.launches_ip = self.process_ip(data: ip_repos[i] ?? iprepoData.init(repoName: "", repoEc2Ip: ""))
-                        print("launces_ip:", self.launches_ip.repo_ec2_ip)
-                        self.repoIP_Addr = self.launches_ip.repo_ec2_ip
-                        
+//                        print("launces_ip:", self.launches_ip.repo_ec2_ip)
+//                        self.repoIP_Addr = self.launches_ip.repo_ec2_ip
+                        self.repoIP_Addr = "http://" + self.launches_ip.repo_ec2_ip + "/git-repositories/" + self.repo_n + ".git"
+                        print("launces_ip:", self.repoIP_Addr)
                     }
                 } else if let errors = graphQLResult.errors {
                     print("GraphQL errors \(errors)")

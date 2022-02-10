@@ -16,7 +16,7 @@ struct Repo_View_Git: View {
 //    @State var RepositoryName = ""
     @State var UserName = ""
     @State var userEmail = "UserEmail"
-    @State var remoteRepoLocation = "http://3.34.194.172/git-repositories/TEST.git"
+//    @State var remoteRepoLocation = "http://3.34.194.172/git-repositories/TEST.git"
     @State var commit_msg = "commit_msg"
     @State var branchArr : [String] = []
     
@@ -38,14 +38,18 @@ struct Repo_View_Git: View {
         self.repo_n = repo_n
         Repository.initialize_libgit2()
         self.userID = userID
+        
     }
     
-//    func getRepoIP()->String{
-//        log_repoViewModel_a.repoIP_Addr
-//        var location_test = "http://" + log_repoViewModel.repoIP_Addr + "/git-repositories/" + self.repo_n + ".git"
+//    func getRepoIP() -> String{
+//
+//        remoteRepoLocation = "http://" + log_repoViewModel_a.repoIP_Addr + "/git-repositories/" + self.repo_n + ".git"
+//        print("location_test", location_test)
+//        return location_test
 //    }
     
     var body: some View {
+        
         
         VStack{
             // MARK: RollBack Button
@@ -91,7 +95,7 @@ struct Repo_View_Git: View {
             HStack{
                 // MARK: Clone Button
                 Button(action: {
-                    cloneGitRepo(remoteRepoLocation: remoteRepoLocation, localRepoLocation: documentURL.appendingPathComponent(repo_n))
+                    cloneGitRepo(remoteRepoLocation: log_repoViewModel_a.repoIP_Addr, localRepoLocation: documentURL.appendingPathComponent(repo_n))
                     directory.location(repoName: repo_n)
                 }){
                     HStack{
@@ -114,7 +118,7 @@ struct Repo_View_Git: View {
                     // MARK: FETCH
                     fetchGitRepo(localRepoLocation: documentURL.appendingPathComponent(repo_n))
                     // MARK: MERGE
-                    mergeGitRepo(localRepoLocation: documentURL.appendingPathComponent(repo_n),remoteRepoLocation: remoteRepoLocation, hexString: merge_id)
+                    mergeGitRepo(localRepoLocation: documentURL.appendingPathComponent(repo_n),remoteRepoLocation: log_repoViewModel_a.repoIP_Addr, hexString: merge_id)
                 }){
                     HStack{
                         Image(systemName: "square.and.arrow.down")
