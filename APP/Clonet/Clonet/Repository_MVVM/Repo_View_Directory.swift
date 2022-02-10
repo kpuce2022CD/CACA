@@ -120,9 +120,6 @@ struct Repo_View_Directory: View {
     @State var alert = false
     
     //Repo_View_Image
-    @State var ImageName : String = "Clonet_logo"
-    @State var CommitTime : String = "21.09.20"
-    @State var CommitMessage : String = "Commit Message"
     @State var fileNameImg = "" // to Store File Name picked
     @State private var editREADME : Bool = true // determine README or not
     @State var saveCheck : Bool = false
@@ -176,20 +173,6 @@ struct Repo_View_Directory: View {
             
             //Repo_View_Image
             VStack{
-                // 선택한 이미지 상세 정보
-                VStack (alignment: .leading){
-                    HStack {
-                        Text(ImageName)
-                            .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
-                            .bold()
-                        Text(CommitTime)
-                            .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
-                            .bold()
-                    }
-                    .padding(EdgeInsets(top: 0, leading: 15, bottom: 0, trailing: 0))
-                    Text(CommitMessage)
-                        .padding(EdgeInsets(top: 0, leading: 15, bottom: 0, trailing: 0))
-                }
                 if editREADME {
                     VStack{
                         TextEditor(text: $dataList.text)
