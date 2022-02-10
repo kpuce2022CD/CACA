@@ -44,11 +44,11 @@ struct LoginCheck_View: View {
                     
                     List{
                         ForEach(logincheck_ViewModel.Repo_List, id: \.id) { s in
-                            NavigationLink(destination: Repo_View()){
+                            NavigationLink(destination: Repo_View(userID: userID, repoName: s.repo_name)){
                                 VStack{
-                                    Text("commitMsg: \(s.repo_name)")
-                                    Text("userId: \(s.user_id)")
-                                    Text("--")
+                                    Text("repo_name: \(s.repo_name)")
+//                                    Text("userId: \(s.user_id)")
+//                                    Text("--")
                                 }
                             }
                         }
