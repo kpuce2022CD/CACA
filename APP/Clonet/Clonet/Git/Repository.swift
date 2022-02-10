@@ -19,9 +19,9 @@ let gitAuthor = Signature.init(name: "Git Writing", email: "gitwriting@example.c
 extension Repository {
     
     //MARK: reset
-    public func log_reset(_ repo: Repository){
+    public func log_reset(_ repo: Repository, reset_id: String){
         var revert_git_oid = git_oid()
-        let nameToIDResult = git_oid_fromstr(&revert_git_oid, "2e199aec6e2309ac707c293c03fb475dc7b254b5")
+        let nameToIDResult = git_oid_fromstr(&revert_git_oid, reset_id)
         
         var target: OpaquePointer? = nil
         git_object_lookup(&target, repo.pointer, &revert_git_oid, GIT_OBJECT_COMMIT)
