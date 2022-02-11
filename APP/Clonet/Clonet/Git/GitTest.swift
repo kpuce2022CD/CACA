@@ -55,8 +55,9 @@ struct GitTest: View {
                     Button("REVERT", action: revert)
                     Button("fetch", action: fetchGitRepo)
                     Button("MERGE", action: mergeGitRepo)
+                    Button("PUSH_F", action: push_f_GitRepo)
 //                    Button("LOG", action: log)
-//                    Button("_RESET_", action: reset)
+                    Button("_RESET_", action: reset)
                 }
             }
             VStack{
@@ -73,16 +74,16 @@ struct GitTest: View {
     }
     
     //MARK: reset
-//    func reset(){
-//        let result = Repository.at(localRepoLocation)
-//        switch result {
-//        case let .success(repo):
-//            let reset_result = repo.log_reset(repo, reset_id)
-//            message = "\(reset_result)"
-//        case let .failure(error):
-//            message = "Could not open repository: \(error)"
-//        }
-//    }
+    func reset(){
+        let result = Repository.at(localRepoLocation)
+        switch result {
+        case let .success(repo):
+            let reset_result = repo.log_reset(repo, reset_id: "422e3629784174487a9a1e063e36dd9908b02283")
+            message = "\(reset_result)"
+        case let .failure(error):
+            message = "Could not open repository: \(error)"
+        }
+    }
     
 //    //MARK: LOG
 //    func log(){
@@ -95,13 +96,30 @@ struct GitTest: View {
 //            message = "Could not open repository: \(error)"
 //        }
 //    }
+    
+    
+    func push_f_GitRepo(){
+        let result = Repository.at(localRepoLocation)
+        switch result {
+        case let .success(repo):
+            //MARK: push
+            let commit_push = repo.push_force(repo, "ubuntu", "qwer1234", nil)
+            
+        case let .failure(error):
+            message = "Could not clone repository: \(error)"
+        }
+    }
+    
+    
+    
     // MARK: REVERT
     func revert(){
         let result = Repository.at(localRepoLocation)
         switch result {
         case let .success(repo):
-            let revert_result = repo.revert_commit(repo, revert_id: "")
+            let revert_result = repo.revert_commit(repo, revert_id: "2eb46f67fd3249b1bd93262b4cb26f68271fcdf6")
             message = "\(revert_result)"
+            print(message)
         case let .failure(error):
             message = "Could not open repository: \(error)"
         }
