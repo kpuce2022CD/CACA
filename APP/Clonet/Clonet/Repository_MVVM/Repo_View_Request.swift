@@ -16,16 +16,16 @@ struct Repo_View_Request: View {
 
         // Request 목록 불러오기
         ScrollView(){
-            ForEach(0..<RequestName.count){listCount in
-                HStack(){
-                    Image(systemName: "person.circle.fill")
-                    Text(RequestName[listCount])
-                    Text(" : ")
-                    Text(RequestText[listCount])
-                }
-                .padding(.bottom, 2.0)
-                .frame(maxWidth: .infinity)
-            }
+//            ForEach(0..<RequestName.count){listCount in
+//                HStack(){
+//                    Image(systemName: "person.circle.fill")
+//                    Text(RequestName[listCount])
+//                    Text(" : ")
+//                    Text(RequestText[listCount])
+//                }
+//                .padding(.bottom, 2.0)
+//                .frame(maxWidth: .infinity)
+//            }
             Button(action: {
                 let alertHC = UIHostingController(rootView: AddUserAlert())
                 
