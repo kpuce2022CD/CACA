@@ -13,10 +13,10 @@ struct Repo_View_Git: View {
     
     @ObservedObject var directory = getFileList()
     
-//    @State var RepositoryName = ""
+    //    @State var RepositoryName = ""
     @State var UserName = ""
     @State var userEmail = "UserEmail"
-//    @State var remoteRepoLocation = "http://3.34.194.172/git-repositories/TEST.git"
+    //    @State var remoteRepoLocation = "http://3.34.194.172/git-repositories/TEST.git"
     @State var commit_msg = "commit_msg"
     @State var branchArr : [String] = []
     
@@ -29,8 +29,9 @@ struct Repo_View_Git: View {
     @State var repo_n: String
     @State var userID: String
     @StateObject var log_repoViewModel_a = log_repo_ViewModel()
-//    var location_test = "http://" + log_repoViewModel.repoIP_Addr + "/git-repositories/" + self.repo_n + ".git"
+    //    var location_test = "http://" + log_repoViewModel.repoIP_Addr + "/git-repositories/" + self.repo_n + ".git"
     @State private var presentingToast: Bool = false
+    @State private var presentingToast2: Bool = false
     @State private var log_number1 = 0
     @State private var log_number2 = 0
     
@@ -47,7 +48,8 @@ struct Repo_View_Git: View {
         VStack{
             // MARK: RollBack Button
             Button(action: {
-                rollbackGit(localRepoLocation: documentURL.appendingPathComponent(repo_n), name: userID, email: userEmail, commit_msg: commit_msg, reset_id: self.reset_id)
+//                rollbackGit(localRepoLocation: documentURL.appendingPathComponent(repo_n), name: userID, email: userEmail, commit_msg: commit_msg, reset_id: self.reset_id)
+                presentingToast = true
             }){
                 HStack{
                     Image(systemName: "arrow.counterclockwise")
@@ -60,9 +62,42 @@ struct Repo_View_Git: View {
                     RoundedRectangle(cornerRadius: 15)
                         .stroke(Color.white, lineWidth: 2)
                 )
+            }.toast(isPresented: $presentingToast){ // , dismissAfter: 2.0
+                ToastView {
+                    NavigationView {
+                        Form {
+                            Section {
+                                Picker("Choose First Diff Commit", selection: $log_number1) {
+                                    ForEach(log_repoViewModel_a.Log_repo_list.indices) {
+                                        Text("\(log_repoViewModel_a.Log_repo_list[$0].userId) : \(log_repoViewModel_a.Log_repo_list[$0].commitMsg)")
+                                    }
+                                    
+                                }
+                            }
+                            Section{
+                                Button {
+                                    presentingToast = false
+                                    rollbackGit(localRepoLocation: documentURL.appendingPathComponent(repo_n), name: userID, email: userEmail, commit_msg: commit_msg, reset_id: log_repoViewModel_a.Log_repo_list[log_number1].commitId)
+                                } label: {
+                                    Text("OK")
+                                }
+                                Button {
+                                    presentingToast = false
+                                } label: {
+                                    Text("CANCEL")
+                                }
+                                
+                            }
+                        }
+                    }
+                }
             }
             .background(Color.black)
             .cornerRadius(15)
+            .onAppear(){
+                log_repoViewModel_a.repo_n = self.repo_n
+                log_repoViewModel_a.appear()
+            }
             
             // MARK: Commit Button
             Button(action: {
@@ -108,10 +143,10 @@ struct Repo_View_Git: View {
                 
                 // MARK: Pull Button
                 Button(action: {
-           
+                    
                     log_repoViewModel_a.repo_n = self.repo_n
                     log_repoViewModel_a.appear()
-            
+                    
                     // MARK: FETCH
                     fetchGitRepo(localRepoLocation: documentURL.appendingPathComponent(repo_n))
                     // MARK: MERGE
@@ -188,7 +223,7 @@ struct Repo_View_Git: View {
             
             // MARK: Diff Button
             Button(action: {
-                presentingToast = true
+                presentingToast2 = true
             }){
                 HStack{
                     Image(systemName: "slider.horizontal.below.square.filled.and.square")
@@ -204,7 +239,7 @@ struct Repo_View_Git: View {
             }
             .background(Color.black)
             .cornerRadius(15)
-            .toast(isPresented: $presentingToast){ // , dismissAfter: 2.0
+            .toast(isPresented: $presentingToast2){ // , dismissAfter: 2.0
                 ToastView {
                     NavigationView {
                         Form {
@@ -222,16 +257,16 @@ struct Repo_View_Git: View {
                             }
                             Section{
                                 Button {
-                                    presentingToast = false
+                                    presentingToast2 = false
                                 } label: {
                                     Text("OK")
                                 }
                                 Button {
-                                    presentingToast = false
+                                    presentingToast2 = false
                                 } label: {
                                     Text("CANCEL")
                                 }
-
+                                
                             }
                         }
                     }
@@ -254,19 +289,16 @@ struct Repo_View_Git: View {
         case let .success(repo):
             
             //MARK: reset
-            let reset_result = repo.log_reset(repo, reset_id: reset_id)
-            //MARK: commit
-            let sig = Signature(name: name,email: email, time: Date(),timeZone: TimeZone.current)
-            let latestCommit = repo.commit(message: commit_msg, signature: sig)
+            let reset_result = repo.log_reset(repo, reset_id: log_repoViewModel_a.Log_repo_list.first?.commitId ?? "")
             
-            //MARK: push
-            let commit_push = repo.push(repo, "ubuntu", "qwer1234", nil)
+            //MARK: push_force
+            let commit_push_force = repo.push_force(repo, "ubuntu", "qwer1234", nil)
             print(message)
         case let .failure(error):
             message = "Could not open repository: \(error)"
             print(message)
         }
-            
+        
     }
     
     

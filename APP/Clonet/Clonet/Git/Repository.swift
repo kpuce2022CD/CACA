@@ -46,7 +46,6 @@ extension Repository {
         var options = git_revert_options_init(&git_revert_option, UInt32(GIT_REVERT_OPTIONS_VERSION))
 
         let result = git_revert(repo.pointer, git_commit_lookup_commit, &git_revert_option)
-//        git_revert(<#T##repo: OpaquePointer!##OpaquePointer!#>, <#T##commit: OpaquePointer!##OpaquePointer!#>, <#T##given_opts: UnsafePointer<git_revert_options>!##UnsafePointer<git_revert_options>!#>)
 
         print("revert_commit \(result)")
 
@@ -256,7 +255,7 @@ extension Repository {
         return options
     }
     
-    // MARK: PUSH
+    // MARK: PUSH_FORCE
     public func push_force(_ repo: Repository, _ username: String, _ password: String, _ branch: String? = nil){
         // todo get this properly
         
