@@ -111,7 +111,7 @@ const resolvers = {
       return args.user_id
     },
     create_repo: (parent, args, context, info) => {
-      knex('repository').insert({ repo_name: args.repo_name, repo_ec2_ip: args.repo_ec2_ip }) // create_repo
+      knex('Repository').insert({ repo_name: args.repo_name, repo_ec2_ip: args.repo_ec2_ip }) // create_repo
         .then(function (result) { })
 
       knex('mapping_repo_user').insert({ repo_name: args.repo_name, user_id: args.user_id }) // create_repo
@@ -122,13 +122,13 @@ const resolvers = {
       var ip = args.user_id
 
       var new_repo = "cp -R /var/www/html/git-repositories/CLONET.git /var/www/html/git-repositories/" + repository_name + ".git"
-      if(shell.exec('ssh -i \"/CLONETCACA.pem\" ubuntu@' + ip + ' "' + new_repo + '\"').code !== 0) {
+      if(shell.exec(new_repo).code !== 0) {
         shell.echo('Error: command failed')
         shell.exit(1)
       }
         
-      var new_repo = "chmod -R 777 /var/www/html/git-repositories/" + repository_name + ".git"
-      if(shell.exec('ssh -i \"/CLONETCACA.pem\" ubuntu@' + ip + ' "' + new_repo + '\"').code !== 0) {
+      var repo_777 = "chmod -R 777 /var/www/html/git-repositories/" + repository_name + ".git"
+      if(shell.exec(repo_777).code !== 0) {
         shell.echo('Error: command failed')
         shell.exit(1)
       }
