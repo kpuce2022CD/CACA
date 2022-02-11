@@ -9,6 +9,7 @@ import Foundation
 import Apollo
 import SwiftUI
 import SwiftSMTP
+import ToastUI
 
 final class log_repo_ViewModel: ObservableObject{
     @Published var launches: Log_repo = Log_repo.init()
@@ -16,6 +17,7 @@ final class log_repo_ViewModel: ObservableObject{
     @Published var Log_repo_list : [Log_repo] = []
     @Published var repo_n: String = ""
     @Published var repoIP_Addr : String = ""
+
     
     func appear(){
         fetch(Repo_Name: self.repo_n)
@@ -93,6 +95,9 @@ struct AddUserAlert: View {
     @State var input_userEmail = ""
     var uuserID = ""
     
+    @State private var presentingToast_true: Bool = false
+    @State private var presentingToast_false: Bool = false
+    
     var body: some View {
         VStack {
             VStack {
@@ -127,7 +132,10 @@ struct AddUserAlert: View {
                         
                         smtp.send(mail){ (error) in
                             if let error = error {
+                                presentingToast_false = true
                                 print(error)
+                            }else{
+                                presentingToast_true = true
                             }
                         }
                         
@@ -136,6 +144,18 @@ struct AddUserAlert: View {
                     }) {
                         Text("Invite")
                     }
+//                    .toast(isPresented: $presentingToast_true, dismissAfter: 5.0){
+//                        print("성공")
+//                    } content: {
+//                        ToastView("메일 전송 성공!")
+//                            .toastViewStyle(IndefiniteProgressToastViewStyle())
+//                    }
+//                    .toast(isPresented: $presentingToast_false, dismissAfter: 5.0){
+//                        print("성공")
+//                    } content: {
+//                        ToastView("메일 전송 실패")
+//                            .toastViewStyle(IndefiniteProgressToastViewStyle())
+//                    }
                     
                     Spacer()
                     
