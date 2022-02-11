@@ -68,9 +68,9 @@ struct Signup: View {
                     .multilineTextAlignment(.center)
                 
                 /////////////////////////////////////////////////////////////////////////// // 서버에서 받아온 signup_result 출력
-//                ForEach(service.messages, id: \.self) { msg in
-//                    Text(msg).padding()
-//                }
+    //                ForEach(service.messages, id: \.self) { msg in
+    //                    Text(msg).padding()
+    //                }
                 /////////////////////////////////////////////////////////////////////////////
                 
                 Form{
@@ -125,10 +125,11 @@ struct Signup: View {
                 }
                 .background(Color.white)
             }
+            .ignoresSafeArea(edges: .top)
         }
-        .navigationBarBackButtonHidden(true)
         .hiddenNavigationBarStyle()
         .navigationViewStyle(StackNavigationViewStyle())
+        
     }
     
     func signin() -> Bool {

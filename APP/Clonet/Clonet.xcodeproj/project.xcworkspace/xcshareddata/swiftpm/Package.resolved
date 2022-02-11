@@ -11,6 +11,33 @@
         }
       },
       {
+        "package": "Cryptor",
+        "repositoryURL": "https://github.com/Kitura/BlueCryptor.git",
+        "state": {
+          "branch": null,
+          "revision": "88fc6e132f41ece53e49acc0e4f67b0331c15b90",
+          "version": "2.0.1"
+        }
+      },
+      {
+        "package": "Socket",
+        "repositoryURL": "https://github.com/Kitura/BlueSocket.git",
+        "state": {
+          "branch": null,
+          "revision": "dd924c3bc2c1c144c42b8dda3896f1a03115ded4",
+          "version": "2.0.2"
+        }
+      },
+      {
+        "package": "SSLService",
+        "repositoryURL": "https://github.com/Kitura/BlueSSLService.git",
+        "state": {
+          "branch": null,
+          "revision": "c249988fb748749739144e7f554710552acdc0bd",
+          "version": "2.0.1"
+        }
+      },
+      {
         "package": "Clibgit2",
         "repositoryURL": "https://github.com/light-tech/Clibgit2.git",
         "state": {
@@ -26,6 +53,15 @@
           "branch": "master",
           "revision": "6299daec1d74be12164fec090faf9ed14d0da9d6",
           "version": null
+        }
+      },
+      {
+        "package": "LoggerAPI",
+        "repositoryURL": "https://github.com/Kitura/LoggerAPI.git",
+        "state": {
+          "branch": null,
+          "revision": "e82d34eab3f0b05391082b11ea07d3b70d2f65bb",
+          "version": "1.9.200"
         }
       },
       {
@@ -65,12 +101,39 @@
         }
       },
       {
+        "package": "swift-argument-parser",
+        "repositoryURL": "https://github.com/apple/swift-argument-parser",
+        "state": {
+          "branch": null,
+          "revision": "6b2aa2748a7881eebb9f84fb10c01293e15b52ca",
+          "version": "0.5.0"
+        }
+      },
+      {
+        "package": "swift-log",
+        "repositoryURL": "https://github.com/apple/swift-log.git",
+        "state": {
+          "branch": null,
+          "revision": "5d66f7ba25daf4f94100e7022febf3c75e37a6c7",
+          "version": "1.4.2"
+        }
+      },
+      {
         "package": "swift-nio-zlib-support",
         "repositoryURL": "https://github.com/apple/swift-nio-zlib-support.git",
         "state": {
           "branch": "main",
           "revision": "cd3ad8e66fb389b80fd84b8b07561452d653e6f7",
           "version": null
+        }
+      },
+      {
+        "package": "SwiftSMTP",
+        "repositoryURL": "https://github.com/Kitura/Swift-SMTP.git",
+        "state": {
+          "branch": null,
+          "revision": "4b7666bb8cee33f0cb367786af17b9a2ebb63047",
+          "version": "6.0.0"
         }
       },
       {

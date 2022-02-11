@@ -21,64 +21,67 @@ struct LoginCheck_View: View {
     }
     
     var body: some View {
-        NavigationView{
-            HStack{
-                VStack{
+        HStack{
+            VStack{
+                Spacer()
+                logincheck_ViewModel.UserMainImage
+                    .padding()
+                logincheck_ViewModel.UserInfo
+                Spacer()
+            }
+            VStack{
+                HStack{
                     Spacer()
-                    logincheck_ViewModel.UserMainImage
-                        .padding()
-                    logincheck_ViewModel.UserInfo
-                    Spacer()
-                }
-                VStack{
-                    HStack{
-                        Spacer()
-                        Button(action: {
-                            logincheck_ViewModel.loginCheck_alert(userID: userID)
-                        }) {
-                            Text("추가")
-                        }
-                        .padding()
+                    Button(action: {
+                        logincheck_ViewModel.loginCheck_alert(userID: userID)
+                    }) {
+                        Text("추가")
                     }
-                    
-                    
-                    List{
-                        ForEach(logincheck_ViewModel.Repo_List, id: \.id) { s in
-                            NavigationLink(destination: Repo_View(userID: userID, repoName: s.repo_name)){
-                                VStack{
-                                    Text("repo_name: \(s.repo_name)")
-//                                    Text("userId: \(s.user_id)")
-//                                    Text("--")
-                                }
+                    .padding()
+                }
+                
+                
+                List{
+                    ForEach(logincheck_ViewModel.Repo_List, id: \.id) { s in
+                        NavigationLink(destination: Repo_View(userID: userID, repoName: s.repo_name)){
+                            VStack{
+                                Text("repo_name: \(s.repo_name)")
+                                //                                    Text("userId: \(s.user_id)")
+                                //                                    Text("--")
                             }
                         }
-                        //                        ForEach(logincheck_ViewModel.Repo_List, id: \.self) { i in
-                        //                            VStack{
-                        //                                Text().padding()
-                        //                                    .padding(2)
-                        //                                    .font(.title3)
-                        //                            }
-                        //
-                        ////                            NavigationLink(destination: Repo_Home(repoName: i, user_id: userID)){
-                        ////                                VStack{
-                        ////                                    Text(i).padding()
-                        ////                                        .padding(2)
-                        ////                                        .font(.title3)
-                        ////                                }
-                        ////                            }
-                        //                        }
-                        .buttonStyle(PlainButtonStyle())
                     }
+                    //                        ForEach(logincheck_ViewModel.Repo_List, id: \.self) { i in
+                    //                            VStack{
+                    //                                Text().padding()
+                    //                                    .padding(2)
+                    //                                    .font(.title3)
+                    //                            }
+                    //
+                    ////                            NavigationLink(destination: Repo_Home(repoName: i, user_id: userID)){
+                    ////                                VStack{
+                    ////                                    Text(i).padding()
+                    ////                                        .padding(2)
+                    ////                                        .font(.title3)
+                    ////                                }
+                    ////                            }
+                    //                        }
+                    .buttonStyle(PlainButtonStyle())
                 }
             }
         }
         .onAppear {
             logincheck_ViewModel.fetch(user_id: userID)
         }
+        .ignoresSafeArea(edges: .top)
         .navigationBarBackButtonHidden(true)
         .hiddenNavigationBarStyle()
         .navigationViewStyle(StackNavigationViewStyle())
     }
+    
+    //        NavigationView{
+    //
+    //    }
 }
 
 struct LoginCheck_View_Previews: PreviewProvider {
