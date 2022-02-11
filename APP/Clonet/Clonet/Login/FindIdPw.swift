@@ -56,16 +56,18 @@ struct FindIdPw: View {
     
     var body: some View {
         NavigationView{
-            
             VStack(alignment: .center)  {
-                Text("FIND ID && PASSWORD")
-                    .font(.largeTitle)
-                    .multilineTextAlignment(.center)
-                
-                Text("Received messages form Node.js: ")
-                ForEach(service.messages, id: \.self) { msg in
-                    Text(msg).padding()
+                VStack{
+                    Text("FIND ID && PASSWORD")
+                        .font(.largeTitle)
+                        .multilineTextAlignment(.center)
+                    
+                    Text("Received messages form Node.js: ")
+                    ForEach(service.messages, id: \.self) { msg in
+                        Text(msg).padding()
+                    }
                 }
+//                .ignoresSafeArea(edges: .top)
                 
                 Form{
                     Section(header: Text("FIND ID")) {
@@ -111,10 +113,10 @@ struct FindIdPw: View {
                     }
                 }
             }
+            .ignoresSafeArea(.container, edges: .top)
         }
         .hiddenNavigationBarStyle()
         .navigationViewStyle(StackNavigationViewStyle())
-        //.navigationBarBackButtonHidden(true)
     }
     
 //    func EmailMatch() -> Bool{
