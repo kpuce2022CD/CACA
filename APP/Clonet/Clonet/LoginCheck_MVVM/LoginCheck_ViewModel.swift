@@ -81,6 +81,8 @@ struct MyAlert: View {
 }
 
 
+// MARK: LoginCheck_ViewModel
+
 final class LoginCheck_ViewModel: ObservableObject {
     @Published var launches: RepoNameList = RepoNameList.init()
     @Published var Repo_List: [RepoNameList] = []
@@ -93,6 +95,10 @@ final class LoginCheck_ViewModel: ObservableObject {
     init(){
         fetch(user_id: user_id)
         create_repo(repoName: repoName, user_id: user_id)
+    }
+    
+    func first(user_id: String){
+        self.user_id = user_id
     }
     
     func create_repo(repoName: String, user_id: String){
@@ -143,32 +149,30 @@ final class LoginCheck_ViewModel: ObservableObject {
         
         UIApplication.shared.windows[0].rootViewController?.present(alertHC, animated: true)
     }
-    
-    // MARK: ProfileImage
-    var ProfileImgName: String = ""
-//    var nickName: String = ""
-//    var userID : String = ""
-    
-    var UserMainImage: some View{
-//        CircleImage(image: Image(ProfileImgName))
-        
-    Image(systemName: "person.circle.fill")
-            .resizable()
-            .frame(width: 150, height: 150)
-            .clipShape(Circle())
-            .overlay(Circle().stroke(Color.indigo, lineWidth: 3))
-            .offset(y: -130)
-            .padding(.bottom, -130)
-    }
-    
-    var UserInfo: some View {
-        VStack(alignment: .center){
-            Text(user_id)
-                .font(.title)
-//            Text(user_id)
-//                .font(.body)
-        }
-        .padding()
-        
-    }
 }
+    
+//    // MARK: ProfileImage
+//    var ProfileImgName: String = ""
+////    var nickName: String = ""
+////    var userID : String = ""
+//
+//    var UserMainImage: some View{
+////        CircleImage(image: Image(ProfileImgName))
+//    Image(systemName: "person.circle.fill")
+//            .resizable()
+//            .frame(width: 150, height: 150)
+//            .clipShape(Circle())
+//            .overlay(Circle().stroke(Color.indigo, lineWidth: 3))
+//            .offset(y: -130)
+//            .padding(.bottom, -130)
+//    }
+//
+//    var UserInfo: some View {
+//        VStack(alignment: .center){
+//            Text(user_id)
+//                .font(.title)
+//        }
+//        .padding()
+//
+//    }
+//}

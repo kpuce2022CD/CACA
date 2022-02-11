@@ -14,20 +14,31 @@ struct LoginCheck_View: View {
     @StateObject var logincheck_ViewModel = LoginCheck_ViewModel()
     @State private var showAlert = false
     
-    var userID : String = ""
+    @State var userID : String
     
-    init(userID: String){
-        self.userID = userID
-    }
+//    init(userID: String){
+//        self.userID = userID
+//    }
     
     var body: some View {
         NavigationView{
             HStack{
                 VStack{
                     Spacer()
-                    logincheck_ViewModel.UserMainImage
+                    //        CircleImage(image: Image(ProfileImgName))
+                    Image(systemName: "person.circle.fill")
+                        .resizable()
+                        .frame(width: 150, height: 150)
+                        .clipShape(Circle())
+                        .overlay(Circle().stroke(Color.indigo, lineWidth: 3))
+                        .offset(y: -130)
+                        .padding(.bottom, -130)
                         .padding()
-                    logincheck_ViewModel.UserInfo
+                    VStack(alignment: .center){
+                        Text(userID)
+                            .font(.title)
+                    }
+                    .padding()
                     Spacer()
                 }
                 VStack{
@@ -40,7 +51,7 @@ struct LoginCheck_View: View {
                         }
                         .padding()
                     }
-
+                    
                     
                     List{
                         ForEach(logincheck_ViewModel.Repo_List, id: \.id) { s in
@@ -52,7 +63,7 @@ struct LoginCheck_View: View {
                                 }
                             }
                             .ignoresSafeArea(edges: .all)
-
+                            
                         }
                         //                        ForEach(logincheck_ViewModel.Repo_List, id: \.self) { i in
                         //                            VStack{
