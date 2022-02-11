@@ -24,6 +24,7 @@ struct Repo_View_Log: View {
         }.onAppear(){
             log_repoViewModel_a.repo_n = self.repo_n
             log_repoViewModel_a.appear()
+            print("log_repoViewModel_a \(log_repoViewModel_a.Log_repo_list)")
         }
         
     }

@@ -167,8 +167,11 @@ struct Repo_View_Directory: View {
         }
         
         dataList.items.remove(atOffsets: offsets)
-        
     }
+    
+//    func moveFile(){
+//        
+//    }
     
     var body: some View {
         HStack{
@@ -202,10 +205,13 @@ struct Repo_View_Directory: View {
                     }
                     .onDelete{
                         deleteFile(at: $0)
-                        
                     }
+//                    .onMove{_,_ in
+//                        moveFile()
+//                    }
                     
                 }.frame(width: 300)
+//                    .toolbar { EditButton() }
             }
             
             
