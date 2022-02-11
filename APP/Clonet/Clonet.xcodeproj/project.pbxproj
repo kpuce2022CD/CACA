@@ -23,6 +23,7 @@
 		3F4B39F027B3A26E00EC0D8C /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F4B39EF27B3A26E00EC0D8C /* API.swift */; };
 		3F4B39F227B3A55A00EC0D8C /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F4B39F127B3A55A00EC0D8C /* Network.swift */; };
 		3F4B3A0427B4BAEF00EC0D8C /* ToastUI in Frameworks */ = {isa = PBXBuildFile; productRef = 3F4B3A0327B4BAEF00EC0D8C /* ToastUI */; };
+		3F4B3A0727B69EC700EC0D8C /* SwiftSMTP in Frameworks */ = {isa = PBXBuildFile; productRef = 3F4B3A0627B69EC700EC0D8C /* SwiftSMTP */; };
 		3F4B530E278BE92300D64A6D /* Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F4B530D278BE92300D64A6D /* Login.swift */; };
 		3F4B5318278C17DA00D64A6D /* LoginCheck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F4B5317278C17DA00D64A6D /* LoginCheck.swift */; };
 		3F6A1BB6279A814900146367 /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F6A1BB5279A814900146367 /* Repository.swift */; };
@@ -103,6 +104,7 @@
 			files = (
 				B540D422278C604200479A63 /* libiconv.tbd in Frameworks */,
 				3F6A1BBE279A839300146367 /* KeychainAccess in Frameworks */,
+				3F4B3A0727B69EC700EC0D8C /* SwiftSMTP in Frameworks */,
 				3F772E0A279C70BC0047F693 /* SwiftGit2 in Frameworks */,
 				B540D420278C603900479A63 /* libz.tbd in Frameworks */,
 				3F6A1BC4279AADDE00146367 /* Result in Frameworks */,
@@ -233,10 +235,10 @@
 		DA97B6A5278BE05D006C473E /* Clonet */ = {
 			isa = PBXGroup;
 			children = (
-				DA5B3CF227B3A4A10086C6EE /* LoginCheck_MVVM */,
 				3F4B39EF27B3A26E00EC0D8C /* API.swift */,
 				3F4B39E927B38D4E00EC0D8C /* schema.json */,
 				3F4B39EB27B38E8600EC0D8C /* LaunchList.graphql */,
+				DA5B3CF227B3A4A10086C6EE /* LoginCheck_MVVM */,
 				3F41CA7127AD16F10031F6C3 /* Repository_MVVM */,
 				3F41CA6A27ACCB9B0031F6C3 /* Login_MVVM */,
 				3FE633BC278EED9F00143666 /* Git */,
@@ -283,6 +285,7 @@
 				B5F6B9AF27AED04900C46E4B /* Apollo */,
 				B5F6B9B127AED04900C46E4B /* ApolloWebSocket */,
 				3F4B3A0327B4BAEF00EC0D8C /* ToastUI */,
+				3F4B3A0627B69EC700EC0D8C /* SwiftSMTP */,
 			);
 			productName = Clonet;
 			productReference = DA97B6A3278BE05D006C473E /* Clonet.app */;
@@ -320,6 +323,7 @@
 				3F772E08279C6FC40047F693 /* XCRemoteSwiftPackageReference "SwiftGit2" */,
 				B5F6B9AE27AED04900C46E4B /* XCRemoteSwiftPackageReference "apollo-ios" */,
 				3F4B3A0227B4BAEF00EC0D8C /* XCRemoteSwiftPackageReference "ToastUI" */,
+				3F4B3A0527B69EC700EC0D8C /* XCRemoteSwiftPackageReference "Swift-SMTP" */,
 			);
 			productRefGroup = DA97B6A4278BE05D006C473E /* Products */;
 			projectDirPath = "";
@@ -626,6 +630,14 @@
 				minimumVersion = 2.0.0;
 			};
 		};
+		3F4B3A0527B69EC700EC0D8C /* XCRemoteSwiftPackageReference "Swift-SMTP" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Kitura/Swift-SMTP.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.0.0;
+			};
+		};
 		3F6A1BBC279A839300146367 /* XCRemoteSwiftPackageReference "KeychainAccess" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/kishikawakatsumi/KeychainAccess.git";
@@ -681,6 +693,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 3F4B3A0227B4BAEF00EC0D8C /* XCRemoteSwiftPackageReference "ToastUI" */;
 			productName = ToastUI;
+		};
+		3F4B3A0627B69EC700EC0D8C /* SwiftSMTP */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3F4B3A0527B69EC700EC0D8C /* XCRemoteSwiftPackageReference "Swift-SMTP" */;
+			productName = SwiftSMTP;
 		};
 		3F6A1BBD279A839300146367 /* KeychainAccess */ = {
 			isa = XCSwiftPackageProductDependency;
