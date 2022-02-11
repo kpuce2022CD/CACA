@@ -21,7 +21,7 @@ final class getFileList: ObservableObject{
     }
     
     func first(repo_n: String){
-//        self.repoName = repo_n
+        //        self.repoName = repo_n
         location(repoName: repo_n)
     }
     
@@ -99,7 +99,7 @@ struct DocumentPicker : UIViewControllerRepresentable {
         var parent : DocumentPicker
         var repo_name: String
         var img_name: String
-
+        
         
         init(parent1: DocumentPicker, repo_name: String, img_name: String){
             parent = parent1
@@ -187,22 +187,22 @@ struct Repo_View_Directory: View {
                 }
                 // MARK: Show File List
                 List{
-
-                        ForEach(dataList.items, id: \.self){ i in
-                            if(i != ".git"){
-                                Button(i, action: {
-                                    fileNameImg = i
-                                    if(i == "README.md"){
-                                        editREADME = true
-                                    } else{
-                                        editREADME = false
-                                    }
-                                })
-                            }
+                    
+                    ForEach(dataList.items, id: \.self){ i in
+                        if(i != ".git"){
+                            Button(i, action: {
+                                fileNameImg = i
+                                if(i == "README.md"){
+                                    editREADME = true
+                                } else{
+                                    editREADME = false
+                                }
+                            })
                         }
-                        .onDelete{
-                            deleteFile(at: $0)
-
+                    }
+                    .onDelete{
+                        deleteFile(at: $0)
+                        
                     }
                     
                 }.frame(width: 300)
