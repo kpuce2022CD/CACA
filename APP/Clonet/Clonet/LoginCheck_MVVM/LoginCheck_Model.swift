@@ -9,7 +9,7 @@ import Foundation
 
 typealias RepoListData = RepoListQuery.Data.RepoList
 
-struct RepoNameList: Decodable{
+struct RepoNameList: Decodable, Equatable{
     var id = UUID()
     var repo_name: String
     var user_id: String
@@ -22,5 +22,11 @@ struct RepoNameList: Decodable{
     init(_ repoList: RepoListData?){
         self.repo_name = repoList?.repoName ?? ""
         self.user_id = repoList?.userId ?? ""
+    }
+    
+    static func == (lhs: RepoNameList, rhs: RepoNameList) -> Bool {
+        return lhs.id == rhs.id &&
+        lhs.repo_name == rhs.repo_name &&
+        lhs.user_id == rhs.user_id
     }
 }

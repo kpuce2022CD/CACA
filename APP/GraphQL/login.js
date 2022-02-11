@@ -122,13 +122,13 @@ const resolvers = {
       var ip = args.user_id
 
       var new_repo = "cp -R /var/www/html/git-repositories/CLONET.git /var/www/html/git-repositories/" + repository_name + ".git"
-      if(shell.exec('ssh -i \"/Users/Jimin1/Documents/keypair/CLONETCACA.pem\" ubuntu@' + ip + ' "' + new_repo + '\"').code !== 0) {
+      if(shell.exec('ssh -i \"/CLONETCACA.pem\" ubuntu@' + ip + ' "' + new_repo + '\"').code !== 0) {
         shell.echo('Error: command failed')
         shell.exit(1)
       }
         
       var new_repo = "chmod -R 777 /var/www/html/git-repositories/" + repository_name + ".git"
-      if(shell.exec('ssh -i \"/Users/Jimin1/Documents/keypair/CLONETCACA.pem\" ubuntu@' + ip + ' "' + new_repo + '\"').code !== 0) {
+      if(shell.exec('ssh -i \"/CLONETCACA.pem\" ubuntu@' + ip + ' "' + new_repo + '\"').code !== 0) {
         shell.echo('Error: command failed')
         shell.exit(1)
       }
