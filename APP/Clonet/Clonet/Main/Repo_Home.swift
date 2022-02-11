@@ -297,7 +297,7 @@ struct Repo_Home: View {
                 
                 //사용자 추가하기
                 Button(action: {
-                    let alertHC = UIHostingController(rootView: AlertAddPerson())
+                    let alertHC = UIHostingController(rootView: AddUserAlert())
                     
                     alertHC.preferredContentSize = CGSize(width: 300, height: 200)
                     alertHC.modalPresentationStyle = UIModalPresentationStyle.formSheet
@@ -395,48 +395,6 @@ extension Date {
             dateFormatter.setLocalizedDateFormatFromTemplate("EEEE, MMM d")
             return dateFormatter.string(from: self)
         }
-}
-
-//사용자 추가시 이메일 보내는 alert
-struct AlertAddPerson: View {
-    @State private var email: String = ""
-    @State private var group: String = "group1" // 임의로 넣은 값 수정해야함
-//    @ObservedObject var service_SendInvite = Service_SendInvite()
-    
-    var body: some View {
-
-        VStack {
-//            let emailJSON = "{\"invite_user\": \"\()\", \"invite_email\": \"\(self.email)\", \"user_group\": \"\(self.group)\"}"
-            let emailJSON = "{\"invite_email\": \"\(self.email)\", \"user_group\": \"\(self.group)\"}"
-            Text("사용자 추가").font(.headline).padding()
-
-            TextField("이메일을 입력해주세요", text: $email).textFieldStyle(RoundedBorderTextFieldStyle()).padding()
-            Divider()
-            HStack {
-                Spacer()
-                Button(action: {
-//                    service_SendInvite.invite_button(email: emailJSON)
-                    UIApplication.shared.windows[0].rootViewController?.dismiss(animated: true, completion: {})
-                }) {
-
-                    Text("Invite")
-                }
-                Spacer()
-
-                Divider()
-
-                Spacer()
-                Button(action: {
-                    UIApplication.shared.windows[0].rootViewController?.dismiss(animated: true, completion: {})
-                }) {
-                    Text("Cancel")
-                }
-                Spacer()
-            }.padding(0)
-
-
-            }.background(Color(white: 0.9))
-    }
 }
 
 struct Repo_Home_Previews: PreviewProvider {

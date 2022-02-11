@@ -8,6 +8,7 @@
 import Foundation
 import Apollo
 import SwiftUI
+import SwiftSMTP
 
 final class log_repo_ViewModel: ObservableObject{
     @Published var launches: Log_repo = Log_repo.init()
@@ -85,7 +86,6 @@ final class log_repo_ViewModel: ObservableObject{
 }
 
 struct AddUserAlert: View {
-    //    @ObservedObject var userAuth : UserAuth = UserAuth()
     @ObservedObject var loginCheck_ViewModel = LoginCheck_ViewModel()
     
     @State private var selectionString: String? = nil
@@ -96,17 +96,45 @@ struct AddUserAlert: View {
     var body: some View {
         VStack {
             VStack {
-                Text("저장소 이름").font(.headline).padding()
+                Text("사용자 추가하기").font(.headline).padding()
                 
-                TextField("내용을 입력해주세요.", text: $input_userEmail).textFieldStyle(RoundedBorderTextFieldStyle()).padding()
+                TextField("추가할 사용자의 이메일을 입력해주세요.", text: $input_userEmail).textFieldStyle(RoundedBorderTextFieldStyle()).padding()
                 Divider()
+                
+                
                 HStack {
                     Spacer()
-                    ZStack {
-                        Button("완료") {
-                            UIApplication.shared.windows[0].rootViewController?.dismiss(animated: true, completion: {})
-                            self.selectionString = "RepoButton"
+                    Button(action: {
+                        
+                        // Send Email
+                        let smtp = SMTP(
+                            hostname: "smtp.gmail.com",
+                            email: "clonet.caca@gmail.com",
+                            password: "qweR1234@"
+                        )
+                        
+                        let NewUser = input_userEmail.components(separatedBy: "@")
+                        
+                        let mail_from = Mail.User(name: "clonet.caca", email: "clonet.caca@gmail.com")
+                        let mail_to = Mail.User(name: NewUser[0], email: input_userEmail)
+                        
+                        let mail = Mail(
+                            from: mail_from,
+                            to: [mail_to],
+                            subject: "Invite to CLONET",
+                            text: "WELCOME"
+                        )
+                        
+                        smtp.send(mail){ (error) in
+                            if let error = error {
+                                print(error)
+                            }
                         }
+                        
+                        UIApplication.shared.windows[0].rootViewController?.dismiss(animated: true, completion: {})
+                        
+                    }) {
+                        Text("Invite")
                     }
                     
                     Spacer()
@@ -117,7 +145,7 @@ struct AddUserAlert: View {
                     Button(action: {
                         UIApplication.shared.windows[0].rootViewController?.dismiss(animated: true, completion: {})
                     }) {
-                        Text("취소")
+                        Text("Cancel")
                     }
                     Spacer()
                 }.padding(0)

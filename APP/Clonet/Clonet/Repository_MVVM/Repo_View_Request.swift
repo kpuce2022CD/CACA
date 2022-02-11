@@ -27,7 +27,7 @@ struct Repo_View_Request: View {
                 .frame(maxWidth: .infinity)
             }
             Button(action: {
-                let alertHC = UIHostingController(rootView: AlertAddPerson())
+                let alertHC = UIHostingController(rootView: AddUserAlert())
                 
                 alertHC.preferredContentSize = CGSize(width: 300, height: 200)
                 alertHC.modalPresentationStyle = UIModalPresentationStyle.formSheet
