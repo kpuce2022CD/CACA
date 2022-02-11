@@ -7,6 +7,7 @@
 
 import Foundation
 import Apollo
+import SwiftUI
 
 final class log_repo_ViewModel: ObservableObject{
     @Published var launches: Log_repo = Log_repo.init()
@@ -72,4 +73,56 @@ final class log_repo_ViewModel: ObservableObject{
         return Ip_repo(data)
     }
     
+    
+    func loginCheck_alert(userID : String){
+        let alert = UIHostingController(rootView: AddUserAlert(uuserID: userID))
+        
+        alert.preferredContentSize = CGSize(width: 300, height: 200)
+        alert.modalPresentationStyle = UIModalPresentationStyle.formSheet
+        
+        UIApplication.shared.windows[0].rootViewController?.present(alert, animated: true)
+    }
+}
+
+struct AddUserAlert: View {
+    //    @ObservedObject var userAuth : UserAuth = UserAuth()
+    @ObservedObject var loginCheck_ViewModel = LoginCheck_ViewModel()
+    
+    @State private var selectionString: String? = nil
+    @State var showingAlert = true
+    @State var input_userEmail = ""
+    var uuserID = ""
+    
+    var body: some View {
+        VStack {
+            VStack {
+                Text("저장소 이름").font(.headline).padding()
+                
+                TextField("내용을 입력해주세요.", text: $input_userEmail).textFieldStyle(RoundedBorderTextFieldStyle()).padding()
+                Divider()
+                HStack {
+                    Spacer()
+                    ZStack {
+                        Button("완료") {
+                            UIApplication.shared.windows[0].rootViewController?.dismiss(animated: true, completion: {})
+                            self.selectionString = "RepoButton"
+                        }
+                    }
+                    
+                    Spacer()
+                    
+                    Divider()
+                    
+                    Spacer()
+                    Button(action: {
+                        UIApplication.shared.windows[0].rootViewController?.dismiss(animated: true, completion: {})
+                    }) {
+                        Text("취소")
+                    }
+                    Spacer()
+                }.padding(0)
+                
+            }.background(Color(white: 0.9))
+        }
+    }
 }
