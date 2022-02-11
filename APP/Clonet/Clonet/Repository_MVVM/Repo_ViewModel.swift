@@ -51,6 +51,7 @@ final class log_repo_ViewModel: ObservableObject{
                     for i in log_repos.indices{
                         self.launches = self.process(data: graphQLResult.data?.logRepo![i] ?? logrepoData.init(commitMsg: "", date: "", commitId: "", userId: ""))
                         self.Log_repo_list.append(self.launches)
+                        print("Log_repo_list", log_repos)
                     }
                 } else if let errors = graphQLResult.errors {
                     print("GraphQL errors \(errors)")
