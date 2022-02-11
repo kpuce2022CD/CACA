@@ -10,7 +10,7 @@ import Apollo
 import SwiftUI
 
 struct CircleImage: View{
-    var image :Image
+    var image : Image
     var imgHW : CGFloat = 150
     
     var body: some View{
@@ -150,7 +150,13 @@ final class LoginCheck_ViewModel: ObservableObject {
 //    var userID : String = ""
     
     var UserMainImage: some View{
-        CircleImage(image: Image(ProfileImgName))
+//        CircleImage(image: Image(ProfileImgName))
+        
+    Image(systemName: "person.circle.fill")
+            .resizable()
+            .frame(width: 150, height: 150)
+            .clipShape(Circle())
+            .overlay(Circle().stroke(Color.indigo, lineWidth: 3))
             .offset(y: -130)
             .padding(.bottom, -130)
     }
