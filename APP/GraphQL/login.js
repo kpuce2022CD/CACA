@@ -91,7 +91,6 @@ const resolvers = {
       var location = "/var/www/html/git-repositories/" + repository_name + ".git"
 
       // create JSON git log
-      // var createJSON = 'cd ' + location + ';' + 'git log --pretty=format:\'{%n  \"commit\":"%H",%n  \"commit_msg\":\"%s\",%n  \"user\":\"%aN\",%n  \"date\":\"%aD\" %n}\', > logJSON.json';
       var createJSON = 'cd ' + location + ';' + 'git log --pretty=format:\'{%n  "commit_id":"%H",%n  "commit_msg":"%s",%n  "user_id":"%aN",%n "date":"%aD" %n}\', > logJSON.json';
 
 
@@ -117,6 +116,23 @@ const resolvers = {
 
       knex('mapping_repo_user').insert({ repo_name: args.repo_name, user_id: args.user_id }) // create_repo
         .then(function (result) { })
+
+      // create REMOTE repo in EC2
+      var repository_name = args.repo_name
+      var ip = args.user_id
+
+      var new_repo = "cp -R /var/www/html/git-repositories/CLONET.git /var/www/html/git-repositories/" + repository_name + ".git"
+      if(shell.exec('ssh -i \"/Users/Jimin1/Documents/keypair/CLONETCACA.pem\" ubuntu@' + ip + ' "' + new_repo + '\"').code !== 0) {
+        shell.echo('Error: command failed')
+        shell.exit(1)
+      }
+        
+      var new_repo = "chmod -R 777 /var/www/html/git-repositories/" + repository_name + ".git"
+      if(shell.exec('ssh -i \"/Users/Jimin1/Documents/keypair/CLONETCACA.pem\" ubuntu@' + ip + ' "' + new_repo + '\"').code !== 0) {
+        shell.echo('Error: command failed')
+        shell.exit(1)
+      }
+
       return args.repo_name
     },
     insert_profilePic: (parent, args, context, info) => {
