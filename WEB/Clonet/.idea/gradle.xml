@@ -1,16 +1,64 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="GradleMigrationSettings" migrationVersion="1" />
   <component name="GradleSettings">
     <option name="linkedExternalProjectsSettings">
       <GradleProjectSettings>
-        <option name="delegatedBuild" value="false" />
-        <option name="testRunner" value="PLATFORM" />
         <option name="distributionType" value="DEFAULT_WRAPPED" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/About_Customer" />
+        <option name="gradleJvm" value="liberica-11" />
         <option name="modules">
           <set>
-            <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/About_Customer" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+      <GradleProjectSettings>
+        <option name="distributionType" value="DEFAULT_WRAPPED" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/About_Edit_User" />
+        <option name="gradleJvm" value="liberica-11" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$/About_Edit_User" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+      <GradleProjectSettings>
+        <option name="distributionType" value="DEFAULT_WRAPPED" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/Home" />
+        <option name="gradleJvm" value="liberica-11" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$/Home" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+      <GradleProjectSettings>
+        <option name="distributionType" value="DEFAULT_WRAPPED" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/Illust_Customer" />
+        <option name="gradleJvm" value="liberica-11" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$/Illust_Customer" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+      <GradleProjectSettings>
+        <option name="distributionType" value="DEFAULT_WRAPPED" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/Illust_Select_User" />
+        <option name="gradleJvm" value="liberica-11" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$/Illust_Select_User" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+      <GradleProjectSettings>
+        <option name="distributionType" value="DEFAULT_WRAPPED" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/Login" />
+        <option name="gradleJvm" value="liberica-11" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$/Login" />
           </set>
         </option>
       </GradleProjectSettings>

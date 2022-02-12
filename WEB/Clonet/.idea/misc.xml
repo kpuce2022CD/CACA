@@ -1,6 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="ProjectRootManager" version="2" project-jdk-name="11" project-jdk-type="JavaSDK">
+  <component name="ExternalStorageConfigurationManager" enabled="true" />
+  <component name="FrameworkDetectionExcludesConfiguration">
+    <file type="web" url="file://$PROJECT_DIR$/About_Customer" />
+    <file type="web" url="file://$PROJECT_DIR$/About_Edit_User" />
+    <file type="web" url="file://$PROJECT_DIR$/Home" />
+    <file type="web" url="file://$PROJECT_DIR$/Illust_Customer" />
+    <file type="web" url="file://$PROJECT_DIR$/Illust_Select_User" />
+    <file type="web" url="file://$PROJECT_DIR$/Login" />
+  </component>
+  <component name="MavenProjectsManager">
+    <option name="originalFiles">
+      <list>
+        <option value="$PROJECT_DIR$/Contact_Edit_User/pom.xml" />
+        <option value="$PROJECT_DIR$/Contact_Customer/pom.xml" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectRootManager">
     <output url="file://$PROJECT_DIR$/out" />
   </component>
 </project>
