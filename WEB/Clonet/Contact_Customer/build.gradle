@@ -24,7 +24,7 @@ tasks.named('test') {
 }
 
 bootWar {
-    archiveBaseName = 'About_Customer'
-    archiveFileName = 'About_Customer.war'
+    archiveBaseName = 'Contact_Customer'
+    archiveFileName = 'Contact_Customer.war'
     archiveVersion = "0.0.0"
 }
