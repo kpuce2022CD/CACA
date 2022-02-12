@@ -19,6 +19,12 @@ dependencies {
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
 
+bootWar {
+    archiveBaseName = 'Illust_Select_User'
+    archiveFileName = 'Illust_Select_User.war'
+    archiveVersion = "0.0.0"
+}
+
 tasks.named('test') {
     useJUnitPlatform()
 }
