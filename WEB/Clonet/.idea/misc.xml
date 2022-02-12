@@ -11,7 +11,7 @@
     <file type="web" url="file://$PROJECT_DIR$/Illust_Select_User" />
     <file type="web" url="file://$PROJECT_DIR$/Login" />
   </component>
-  <component name="ProjectRootManager" version="2" project-jdk-name="11" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager">
     <output url="file://$PROJECT_DIR$/out" />
   </component>
 </project>

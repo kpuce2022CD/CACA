@@ -1,4 +1,4 @@
 FROM openjdk:8-jdk-alpine
-ARG JAR_FILE_PATH=/build/libs/*.war
-COPY ${JAR_FILE_PATH} Home.war
-ENTRYPOINT ["java","-jar","./Home.war"]
+ARG JAR_FILE_PATH=target/*.jar
+COPY ${JAR_FILE_PATH} Home.jar
+ENTRYPOINT ["java","-jar","./Home.jar"]
