@@ -51,8 +51,6 @@ struct LoginCheck_View: View {
                         }
                         .padding()
                     }
-                    
-                    
                     List{
                         ForEach(logincheck_ViewModel.Repo_List, id: \.id) { s in
                             NavigationLink(destination: Repo_View(userID: userID, repoName: s.repo_name)){
@@ -82,20 +80,22 @@ struct LoginCheck_View: View {
                         //                        }
                         .buttonStyle(PlainButtonStyle())
                     }
+                    .ignoresSafeArea(.all)
+                    .navigationBarTitle("")
+                    .navigationBarHidden(true)
+                    .hiddenNavigationBarStyle()
                 }
             }
-            
-            .ignoresSafeArea(edges: .all)
         }
-        .onAppear {
-            logincheck_ViewModel.fetch(user_id: userID)
-        }
-        .ignoresSafeArea(edges: .all)
+        .ignoresSafeArea(.all)
         .navigationBarBackButtonHidden(true)
         .navigationBarTitle("")
         .navigationBarHidden(true)
         .hiddenNavigationBarStyle()
-        .navigationViewStyle(StackNavigationViewStyle())
+//        .navigationViewStyle(StackNavigationViewStyle())
+        .onAppear {
+            logincheck_ViewModel.fetch(user_id: userID)
+        }
     }
 }
 

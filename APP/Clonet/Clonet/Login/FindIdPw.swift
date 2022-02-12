@@ -23,15 +23,15 @@ final class Service_FindPW: ObservableObject {
         
         socket.on(clientEvent: .connect){ (data, ack) in
             self.REemail = email
-                       socket.emit("IDEmail", self.REemail)
-
-                       sleep(2)
-                       socket.disconnect()
+            socket.emit("IDEmail", self.REemail)
+            
+            sleep(2)
+            socket.disconnect()
         }
         
         socket.on("find_result"){ [weak self] (data, ack) in
-//            print(email)
-//            print(data)
+            //            print(email)
+            //            print(data)
             if let data = data[0] as? [String: String],
                let rawMessage = data["find_RESULT"] {
                 DispatchQueue.main.async {
@@ -57,17 +57,21 @@ struct FindIdPw: View {
     var body: some View {
         NavigationView{
             VStack(alignment: .center)  {
-                VStack{
-                    Text("FIND ID && PASSWORD")
-                        .font(.largeTitle)
-                        .multilineTextAlignment(.center)
-                    
-                    Text("Received messages form Node.js: ")
-                    ForEach(service.messages, id: \.self) { msg in
-                        Text(msg).padding()
-                    }
-                }
-//                .ignoresSafeArea(edges: .top)
+                //                VStack{
+                //
+                //                    Text("Received messages form Node.js: ")
+                //                    ForEach(service.messages, id: \.self) { msg in
+                //                        Text(msg).padding()
+                //                    }
+                //                }
+                
+                Text("FIND ID && PASSWORD")
+                    .font(.largeTitle)
+                    .multilineTextAlignment(.center)
+                    .ignoresSafeArea(edges: .bottom)
+                    .navigationBarTitle("")
+                    .navigationBarHidden(true)
+                    .hiddenNavigationBarStyle()
                 
                 Form{
                     Section(header: Text("FIND ID")) {
@@ -84,16 +88,16 @@ struct FindIdPw: View {
                                 Alert(title: Text("이메일을 입력해주세요."), dismissButton: .default(Text("확인")))
                             }
                         }else{
-                                Button(action: {
-                                    service.find_button(email: self.email)
-                                    self.showingAlert=true
-                                }){
-                                    Text("complete")
-                                }
-                                .alert(isPresented: $showingAlert){
-                                    Alert(title: Text(email + "의 아이디 확인"),dismissButton: .default(Text("확인")))
-                                }
+                            Button(action: {
+                                service.find_button(email: self.email)
+                                self.showingAlert=true
+                            }){
+                                Text("complete")
                             }
+                            .alert(isPresented: $showingAlert){
+                                Alert(title: Text(email + "의 아이디 확인"),dismissButton: .default(Text("확인")))
+                            }
+                        }
                         
                     }
                     
@@ -104,29 +108,29 @@ struct FindIdPw: View {
                         Button(action:  {
                             service.find_button(email: self.email)
                             self.showingAlert = true
-                                }) {
-                                    Text("complete")
-                                }
-                                .alert(isPresented: $showingAlert) {
-                                    Alert(title: Text(email + "이메일을 발송하였습니다."), message: Text("입력하신 이메일을 확인해주세요"), dismissButton: .default(Text("확인")))
-                                }
+                        }) {
+                            Text("complete")
+                        }
+                        .alert(isPresented: $showingAlert) {
+                            Alert(title: Text(email + "이메일을 발송하였습니다."), message: Text("입력하신 이메일을 확인해주세요"), dismissButton: .default(Text("확인")))
+                        }
                     }
                 }
             }
-            .ignoresSafeArea(.container, edges: .top)
+            //            .ignoresSafeArea(.container, edges: .top)
         }
         .hiddenNavigationBarStyle()
         .navigationViewStyle(StackNavigationViewStyle())
     }
     
-//    func EmailMatch() -> Bool{
-//        print("Matching")
-//        if(emailID == "DD"){
-//            return true
-//        }else{
-//            return false
-//        }
-//    }
+    //    func EmailMatch() -> Bool{
+    //        print("Matching")
+    //        if(emailID == "DD"){
+    //            return true
+    //        }else{
+    //            return false
+    //        }
+    //    }
 }
 
 struct FindIdPw_Previews: PreviewProvider {

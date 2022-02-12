@@ -1,5 +1,4 @@
-FROM adoptopenjdk/openjdk11
-CMD ["./mvnw", "clean", "package"]
-ARG JAR_FILE_PATH=gradle/wrapper/gradle-wrapper.jar
-COPY ${JAR_FILE_PATH} Illust_Customer.jar
-ENTRYPOINT ["java","-jar","/Illust_Customer.jar"]
+FROM openjdk:8-jdk-alpine
+ARG JAR_FILE_PATH=target/*.war
+COPY ${JAR_FILE_PATH} Illust_Customer.war
+ENTRYPOINT ["java","-war","./Illust_Customer.war"]

@@ -66,6 +66,10 @@ struct Signup: View {
                 Text("SIGN UP")
                     .font(.largeTitle)
                     .multilineTextAlignment(.center)
+                    .ignoresSafeArea(edges: .bottom)
+                    .navigationBarTitle("")
+                    .navigationBarHidden(true)
+                    .hiddenNavigationBarStyle()
                 
                 /////////////////////////////////////////////////////////////////////////// // 서버에서 받아온 signup_result 출력
     //                ForEach(service.messages, id: \.self) { msg in
@@ -125,7 +129,7 @@ struct Signup: View {
                 }
                 .background(Color.white)
             }
-            .ignoresSafeArea(edges: .top)
+//            .ignoresSafeArea(edges: .top)
         }
         .hiddenNavigationBarStyle()
         .navigationViewStyle(StackNavigationViewStyle())
