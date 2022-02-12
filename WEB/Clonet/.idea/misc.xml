@@ -5,17 +5,11 @@
     <file type="web" url="file://$PROJECT_DIR$/About_Customer" />
     <file type="web" url="file://$PROJECT_DIR$/About_Edit_User" />
     <file type="web" url="file://$PROJECT_DIR$/Contact_Customer" />
+    <file type="web" url="file://$PROJECT_DIR$/Contact_Edit_User" />
     <file type="web" url="file://$PROJECT_DIR$/Home" />
     <file type="web" url="file://$PROJECT_DIR$/Illust_Customer" />
     <file type="web" url="file://$PROJECT_DIR$/Illust_Select_User" />
     <file type="web" url="file://$PROJECT_DIR$/Login" />
-  </component>
-  <component name="MavenProjectsManager">
-    <option name="originalFiles">
-      <list>
-        <option value="$PROJECT_DIR$/Contact_Edit_User/pom.xml" />
-      </list>
-    </option>
   </component>
   <component name="ProjectRootManager" version="2" project-jdk-name="11" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/out" />

@@ -35,6 +35,16 @@
       </GradleProjectSettings>
       <GradleProjectSettings>
         <option name="distributionType" value="DEFAULT_WRAPPED" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/Contact_Edit_User" />
+        <option name="gradleJvm" value="liberica-11" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$/Contact_Edit_User" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+      <GradleProjectSettings>
+        <option name="distributionType" value="DEFAULT_WRAPPED" />
         <option name="externalProjectPath" value="$PROJECT_DIR$/Home" />
         <option name="gradleJvm" value="liberica-11" />
         <option name="modules">
