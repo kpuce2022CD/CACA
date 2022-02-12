@@ -1,0 +1,97 @@
+version: '3'
+services:
+  About_Customer:
+    build:
+      context: .
+      dockerfile: ./About_Customer/Dockerfile
+    container_name: About_Customer_con
+    volumes:
+      - ./About_Customer:/app
+    ports:
+      - 2000:2000
+    networks:
+      - clonet_network
+
+  About_Edit_User:
+    build:
+      context: .
+      dockerfile: ./About_Edit_User/Dockerfile
+    container_name: About_Edit_User_con
+    volumes:
+      - ./About_Edit_User:/app
+    ports:
+      - 2001:2001
+    networks:
+      - clonet_network
+
+  Contact_Customer:
+    build:
+      context: .
+      dockerfile: ./Contact_Customer/Dockerfile
+    container_name: Contact_Customer_con
+    volumes:
+      - ./Contact_Customer:/app
+    ports:
+      - 2002:2002
+    networks:
+      - clonet_network
+
+  Contact_Edit_User:
+    build:
+      context: .
+      dockerfile: ./Contact_Edit_User/Dockerfile
+    container_name: Contact_Edit_User_con
+    volumes:
+      - ./Contact_Edit_User:/app
+    ports:
+      - 2003:2003
+    networks:
+      - clonet_network
+
+  Home:
+    build:
+      context: .
+      dockerfile: ./Home/Dockerfile
+    container_name: Home_con
+    volumes:
+      - ./Home:/app
+    ports:
+      - 2004:2004
+    networks:
+      - clonet_network
+
+  Illust_Customer:
+    build:
+      context: .
+      dockerfile: ./Illust_Customer/Dockerfile
+    container_name: Illust_Customer_con
+    volumes:
+      - ./Illust_Customer:/app
+    ports:
+      - 2005:2005
+    networks:
+      - clonet_network
+
+  Illust_Select_User:
+    build:
+      context: .
+      dockerfile: ./Illust_Select_User/Dockerfile
+    container_name: Illust_Select_User_con
+    volumes:
+      - ./Illust_Select_User:/app
+    ports:
+      - 2006:2006
+    networks:
+      - clonet_network
+
+  Login:
+    build:
+      context: .
+      dockerfile: ./Login/Dockerfile
+    container_name: Login_con
+    volumes:
+      - ./Login:/app
+    ports:
+      - 2007:2007
+    networks:
+      - clonet_network
