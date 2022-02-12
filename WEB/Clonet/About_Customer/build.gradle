@@ -22,3 +22,9 @@ dependencies {
 tasks.named('test') {
 	useJUnitPlatform()
 }
+
+bootWar {
+	archiveBaseName = 'About_Customer'
+	archiveFileName = 'About_Customer.war'
+	archiveVersion = "0.0.0"
+}
