@@ -1,6 +1,66 @@
 version: '3'
 
 services:
+  about_customer:
+    build:
+      context: .
+      dockerfile: ./About_Customer/Dockerfile
+      args:
+        JAR_FILE: ./About_Customer/build/libs/*.jar
+    container_name: about_customer_con
+    volumes:
+      - ./About_Customer:/app
+    ports:
+      - 2000:8080
+    networks:
+      - clonet_network
+    restart: always
+
+  about_edit_user:
+    build:
+      context: .
+      dockerfile: ./About_Edit_User/Dockerfile
+      args:
+        JAR_FILE: ./About_Edit_User/build/libs/*.jar
+    container_name: about_edit_user_con
+    volumes:
+      - ./About_Edit_User:/app
+    ports:
+      - 2001:8080
+    networks:
+      - clonet_network
+    restart: always
+
+  contact_customer:
+    build:
+      context: .
+      dockerfile: ./Contact_Customer/Dockerfile
+      args:
+        JAR_FILE: ./Contact_Customer/build/libs/*.jar
+    container_name: contact_customer_con
+    volumes:
+      - ./Contact_Customer:/app
+    ports:
+      - 2002:8080
+    networks:
+      - clonet_network
+    restart: always
+
+  contact_edit_user:
+    build:
+      context: .
+      dockerfile: ./Contact_Edit_User/Dockerfile
+      args:
+        JAR_FILE: ./Contact_Edit_User/build/libs/*.jar
+    container_name: contact_edit_user_con
+    volumes:
+      - ./Contact_Edit_User:/app
+    ports:
+      - 2003:8080
+    networks:
+      - clonet_network
+    restart: always
+
   home:
     build:
       context: .
@@ -11,10 +71,57 @@ services:
     volumes:
       - ./Home:/app
     ports:
-      - 8080:8080
+      - 2004:8080
     networks:
       - clonet_network
     restart: always
+
+  illust_customer:
+    build:
+      context: .
+      dockerfile: ./Illust_Customer/Dockerfile
+      args:
+        JAR_FILE: ./Illust_Customer/build/libs/*.jar
+    container_name: illust_customer_con
+    volumes:
+      - ./Illust_Customer:/app
+    ports:
+      - 2005:8080
+    networks:
+      - clonet_network
+    restart: always
+
+  illust_select_user:
+    build:
+      context: .
+      dockerfile: ./Illust_Select_User/Dockerfile
+      args:
+        JAR_FILE: ./Illust_Select_User/build/libs/*.jar
+    container_name: illust_select_user_con
+    volumes:
+      - ./Illust_Select_User:/app
+    ports:
+      - 2006:8080
+    networks:
+      - clonet_network
+    restart: always
+
+  login:
+    build:
+      context: .
+      dockerfile: ./Login/Dockerfile
+      args:
+        JAR_FILE: ./Login/build/libs/*.jar
+    container_name: login_con
+    volumes:
+      - ./Login:/app
+    ports:
+      - 2007:8080
+    networks:
+      - clonet_network
+    restart: always
+
+
 
 networks:
   clonet_network:

@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: org.springframework.boot:spring-boot-starter-reactor-netty:2.6.3">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework.boot/spring-boot-starter-reactor-netty/2.6.3/9052d4306c64829d2dca6a329decb5e08d03ec54/spring-boot-starter-reactor-netty-2.6.3.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework.boot/spring-boot-starter-reactor-netty/2.6.3/4d456a61d2e938d00f743335dd7651aff362a77e/spring-boot-starter-reactor-netty-2.6.3-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
