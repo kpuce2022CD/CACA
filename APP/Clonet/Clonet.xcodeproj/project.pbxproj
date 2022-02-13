@@ -50,9 +50,20 @@
 		DA97B6A9278BE05D006C473E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA97B6A8278BE05D006C473E /* ContentView.swift */; };
 		DA97B6AB278BE05E006C473E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DA97B6AA278BE05E006C473E /* Assets.xcassets */; };
 		DA97B6AE278BE05E006C473E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DA97B6AD278BE05E006C473E /* Preview Assets.xcassets */; };
+		DA989E1227B96BFD00BF5FF0 /* ClonetTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA989E1127B96BFD00BF5FF0 /* ClonetTests.swift */; };
 		DACAA65B278C7BFB007F3918 /* SocketIO in Frameworks */ = {isa = PBXBuildFile; productRef = DACAA65A278C7BFB007F3918 /* SocketIO */; };
 		DACAA65E278C7E5D007F3918 /* SocketIO.swift in Sources */ = {isa = PBXBuildFile; fileRef = DACAA65D278C7E5D007F3918 /* SocketIO.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		DA989E1327B96BFD00BF5FF0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DA97B69B278BE05D006C473E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = DA97B6A2278BE05D006C473E;
+			remoteInfo = Clonet;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		3F41CA6B27ACCBBE0031F6C3 /* Login_Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Login_Model.swift; sourceTree = "<group>"; };
@@ -94,6 +105,8 @@
 		DA97B6A8278BE05D006C473E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		DA97B6AA278BE05E006C473E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DA97B6AD278BE05E006C473E /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		DA989E0F27B96BFC00BF5FF0 /* ClonetTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ClonetTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		DA989E1127B96BFD00BF5FF0 /* ClonetTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClonetTests.swift; sourceTree = "<group>"; };
 		DACAA65D278C7E5D007F3918 /* SocketIO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocketIO.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -112,6 +125,13 @@
 				3F4B3A0427B4BAEF00EC0D8C /* ToastUI in Frameworks */,
 				B5F6B9B027AED04900C46E4B /* Apollo in Frameworks */,
 				DACAA65B278C7BFB007F3918 /* SocketIO in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DA989E0C27B96BFC00BF5FF0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -219,6 +239,7 @@
 			children = (
 				B593818E278C5E4A00C5B28F /* Packages */,
 				DA97B6A5278BE05D006C473E /* Clonet */,
+				DA989E1027B96BFC00BF5FF0 /* ClonetTests */,
 				DA97B6A4278BE05D006C473E /* Products */,
 				B540D41C278C602B00479A63 /* Frameworks */,
 			);
@@ -228,6 +249,7 @@
 			isa = PBXGroup;
 			children = (
 				DA97B6A3278BE05D006C473E /* Clonet.app */,
+				DA989E0F27B96BFC00BF5FF0 /* ClonetTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -258,6 +280,14 @@
 				DA97B6AD278BE05E006C473E /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		DA989E1027B96BFC00BF5FF0 /* ClonetTests */ = {
+			isa = PBXGroup;
+			children = (
+				DA989E1127B96BFD00BF5FF0 /* ClonetTests.swift */,
+			);
+			path = ClonetTests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -291,6 +321,24 @@
 			productReference = DA97B6A3278BE05D006C473E /* Clonet.app */;
 			productType = "com.apple.product-type.application";
 		};
+		DA989E0E27B96BFC00BF5FF0 /* ClonetTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DA989E1727B96BFD00BF5FF0 /* Build configuration list for PBXNativeTarget "ClonetTests" */;
+			buildPhases = (
+				DA989E0B27B96BFC00BF5FF0 /* Sources */,
+				DA989E0C27B96BFC00BF5FF0 /* Frameworks */,
+				DA989E0D27B96BFC00BF5FF0 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				DA989E1427B96BFD00BF5FF0 /* PBXTargetDependency */,
+			);
+			name = ClonetTests;
+			productName = ClonetTests;
+			productReference = DA989E0F27B96BFC00BF5FF0 /* ClonetTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -303,6 +351,10 @@
 				TargetAttributes = {
 					DA97B6A2278BE05D006C473E = {
 						CreatedOnToolsVersion = 13.2.1;
+					};
+					DA989E0E27B96BFC00BF5FF0 = {
+						CreatedOnToolsVersion = 13.2.1;
+						TestTargetID = DA97B6A2278BE05D006C473E;
 					};
 				};
 			};
@@ -330,6 +382,7 @@
 			projectRoot = "";
 			targets = (
 				DA97B6A2278BE05D006C473E /* Clonet */,
+				DA989E0E27B96BFC00BF5FF0 /* ClonetTests */,
 			);
 		};
 /* End PBXProject section */
@@ -343,6 +396,13 @@
 				3F4B39EA27B38D4E00EC0D8C /* schema.json in Resources */,
 				3F4B39EC27B38E8600EC0D8C /* LaunchList.graphql in Resources */,
 				DA97B6AB278BE05E006C473E /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DA989E0D27B96BFC00BF5FF0 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -408,7 +468,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		DA989E0B27B96BFC00BF5FF0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DA989E1227B96BFD00BF5FF0 /* ClonetTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		DA989E1427B96BFD00BF5FF0 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = DA97B6A2278BE05D006C473E /* Clonet */;
+			targetProxy = DA989E1327B96BFD00BF5FF0 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		DA97B6AF278BE05E006C473E /* Debug */ = {
@@ -598,6 +674,40 @@
 			};
 			name = Release;
 		};
+		DA989E1527B96BFD00BF5FF0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = CACA.ClonetTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Clonet.app/Clonet";
+			};
+			name = Debug;
+		};
+		DA989E1627B96BFD00BF5FF0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = CACA.ClonetTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Clonet.app/Clonet";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -615,6 +725,15 @@
 			buildConfigurations = (
 				DA97B6B2278BE05E006C473E /* Debug */,
 				DA97B6B3278BE05E006C473E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DA989E1727B96BFD00BF5FF0 /* Build configuration list for PBXNativeTarget "ClonetTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DA989E1527B96BFD00BF5FF0 /* Debug */,
+				DA989E1627B96BFD00BF5FF0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
