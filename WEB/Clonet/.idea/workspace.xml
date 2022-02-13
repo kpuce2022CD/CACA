@@ -1,89 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="AutoImportSettings">
-    <option name="autoReloadType" value="SELECTIVE" />
-  </component>
   <component name="ChangeListManager">
-    <list default="true" id="289c10f4-d340-478b-9e9b-c4b2a215ef7b" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/jarRepositories.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/About_Customer/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/About_Customer/Dockerfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/About_Customer/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/About_Customer/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/About_Customer/src/main/java/caca/about_customer/AboutCustomerApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/About_Customer/src/main/java/caca/about_customer/AboutCustomerApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/About_Customer/src/main/java/caca/about_customer/ServletInitializer.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/About_Edit_User/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/About_Edit_User/Dockerfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/About_Edit_User/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/About_Edit_User/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/About_Edit_User/src/main/java/caca/about_edit_user/AboutEditUserApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/About_Edit_User/src/main/java/caca/about_edit_user/AboutEditUserApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/About_Edit_User/src/main/java/caca/about_edit_user/ServletInitializer.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Contact_Customer/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/Contact_Customer/Dockerfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Contact_Customer/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/Contact_Customer/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Contact_Customer/src/main/java/caca/contact_customer/ContactCustomerApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/Contact_Customer/src/main/java/caca/contact_customer/ContactCustomerApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Contact_Customer/src/main/java/caca/contact_customer/ServletInitializer.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Contact_Edit_User/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/Contact_Edit_User/Dockerfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Contact_Edit_User/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/Contact_Edit_User/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Contact_Edit_User/src/main/java/caca/contact_edit_user/ContactEditUserApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/Contact_Edit_User/src/main/java/caca/contact_edit_user/ContactEditUserApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Contact_Edit_User/src/main/java/caca/contact_edit_user/ServletInitializer.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Home/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/Home/Dockerfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Home/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/Home/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Home/src/main/java/caca/home/HomeApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/Home/src/main/java/caca/home/HomeApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Home/src/main/java/caca/home/ServletInitializer.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Illust_Customer/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/Illust_Customer/Dockerfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Illust_Customer/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/Illust_Customer/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Illust_Customer/src/main/java/caca/illust_customer/IllustCustomerApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/Illust_Customer/src/main/java/caca/illust_customer/IllustCustomerApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Illust_Customer/src/main/java/caca/illust_customer/ServletInitializer.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Illust_Select_User/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/Illust_Select_User/Dockerfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Illust_Select_User/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/Illust_Select_User/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Illust_Select_User/src/main/java/caca/illust_select_user/IllustSelectUserApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/Illust_Select_User/src/main/java/caca/illust_select_user/IllustSelectUserApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Illust_Select_User/src/main/java/caca/illust_select_user/ServletInitializer.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Login/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/Login/Dockerfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Login/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/Login/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Login/src/main/java/caca/login/LoginApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/Login/src/main/java/caca/login/LoginApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Login/src/main/java/caca/login/ServletInitializer.java" beforeDir="false" />
-    </list>
+    <list default="true" id="6d6e5eb9-d560-4fea-aab2-9b95c15250ff" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ExternalProjectsData">
-    <projectState path="$PROJECT_DIR$/About_Customer">
-      <ProjectState />
-    </projectState>
-    <projectState path="$PROJECT_DIR$/About_Edit_User">
-      <ProjectState />
-    </projectState>
-    <projectState path="$PROJECT_DIR$/Contact_Customer">
-      <ProjectState />
-    </projectState>
-    <projectState path="$PROJECT_DIR$/Contact_Edit_User">
-      <ProjectState />
-    </projectState>
-    <projectState path="$PROJECT_DIR$/Home">
-      <ProjectState />
-    </projectState>
-    <projectState path="$PROJECT_DIR$/Illust_Customer">
-      <ProjectState />
-    </projectState>
-    <projectState path="$PROJECT_DIR$/Illust_Select_User">
-      <ProjectState />
-    </projectState>
-    <projectState path="$PROJECT_DIR$/Login">
-      <ProjectState />
-    </projectState>
-  </component>
-  <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
-  </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
-  <component name="ProjectId" id="250hqudfQa23qGna9cqZuRGKIXn" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectId" id="252NkPR9fFu2h6RTLoNf1kRU2Ty" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -91,38 +18,54 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="jdk.selected.JAVA_MODULE" value="11" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="project.structure.last.edited" value="Modules" />
-    <property name="project.structure.proportion" value="0.15" />
-    <property name="project.structure.side.proportion" value="0.2" />
+  </component>
+  <component name="RunManager" selected="Docker.docker-compose.yml: Compose Deployment">
+    <configuration name="docker-compose.yml: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
+      <deployment type="docker-compose.yml">
+        <settings>
+          <option name="sourceFilePath" value="docker-compose.yml" />
+        </settings>
+      </deployment>
+      <method v="2" />
+    </configuration>
+    <configuration name="docker-compose.yml.home: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
+      <deployment type="docker-compose.yml">
+        <settings>
+          <option name="envFilePath" value="" />
+          <option name="services">
+            <list>
+              <option value="home" />
+            </list>
+          </option>
+          <option name="sourceFilePath" value="docker-compose.yml" />
+        </settings>
+      </deployment>
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Docker.docker-compose.yml: Compose Deployment" />
+        <item itemvalue="Docker.docker-compose.yml.home: Compose Deployment" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="289c10f4-d340-478b-9e9b-c4b2a215ef7b" name="Changes" comment="" />
-      <created>1644670105512</created>
+      <changelist id="6d6e5eb9-d560-4fea-aab2-9b95c15250ff" name="Changes" comment="" />
+      <created>1644721364516</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1644670105512</updated>
-      <workItem from="1644670106949" duration="466000" />
+      <updated>1644721364516</updated>
+      <workItem from="1644721365549" duration="1826000" />
+      <workItem from="1644727552543" duration="972000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
-  </component>
-  <component name="Vcs.Log.Tabs.Properties">
-    <option name="TAB_STATES">
-      <map>
-        <entry key="MAIN">
-          <value>
-            <State />
-          </value>
-        </entry>
-      </map>
-    </option>
   </component>
 </project>

@@ -1,4 +1,6 @@
-FROM openjdk:8-jdk-alpine
-ARG JAR_FILE_PATH=target/*.jar
-COPY ${JAR_FILE_PATH} Home.jar
-ENTRYPOINT ["java","-jar","./Home.jar"]
+FROM openjdk:11
+ARG JAR_FILE=./Home/target/*.jar
+COPY ${JAR_FILE} app.jar
+EXPOSE 8080
+ENTRYPOINT ["java","-jar","/app.jar"]
+#CMD [ "app.jar" ]
