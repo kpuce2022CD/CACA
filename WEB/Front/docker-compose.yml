@@ -1,0 +1,22 @@
+version: "3"
+services:
+  sample:
+    container_name: portfolio
+    build:
+      context: .
+      dockerfile: ./home_react/Dockerfile
+    volumes:
+      - ".:/app"
+      - "/app/node_modules"
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=development
+    restart: always
+    networks:
+      - clonet_network
+
+
+networks:
+  clonet_network:
+    external: true
