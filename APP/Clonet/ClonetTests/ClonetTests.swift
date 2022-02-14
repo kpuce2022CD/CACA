@@ -10,20 +10,26 @@ import XCTest
 
 class ClonetTests: XCTestCase {
     var loginViewModel: Login_ViewModel!
-    var loginModel: Login_Model!
     
     override func setUp() {
         loginViewModel = .init()
-        loginModel = .init()
     }
     
     func testLoginResult(){
-        let userTest = loginModel.
-        loginViewModel.login(id: "user1", passwd: "passwd")
+        var userID: String = "user1"
+        var userPW: String = "pasffswd"
         
-//        XCTAssertTrue(loginViewModel.successPresented)
+//        let testExpectation = expectation(description: "Expected login completion handler to be called")
+        
+        loginViewModel.login(id: userID, passwd: userPW)
+
+        if(userPW == loginViewModel.logins.user_pw && loginViewModel.logins.user_pw != ""){
+            XCTAssertTrue(loginViewModel.isLogin)
+        }else{
+            XCTAssertFalse(loginViewModel.isLogin)
+        }
     }
-    
+
     
 //    // 메소드 실행 전 모든 상태 reset
 //    override func setUpWithError() throws {

@@ -30,7 +30,6 @@ final class Login_ViewModel : ObservableObject {
     }
     
     func login(id: String, passwd: String) {
-        
         Network.shared.apollo.fetch(query: LoginQuery(userId: id)) { result in // Change the query name to your query name
             switch result {
             case .success(let graphQLResult):
@@ -48,7 +47,6 @@ final class Login_ViewModel : ObservableObject {
                     
                     if(passwd == self.logins.user_pw && self.logins.user_pw != ""){
                         self.isLogin = true
-                        
                     } else {
                         self.isLogin = false
                     }
