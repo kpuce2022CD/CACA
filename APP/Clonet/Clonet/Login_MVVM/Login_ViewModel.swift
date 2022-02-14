@@ -24,6 +24,8 @@ final class Login_ViewModel : ObservableObject {
     @Published var showingAlert: Bool = false
     @Published var selection: Int? = nil
     
+    @Published var paswd: String = ""
+    
     init(){
         isLogin = false
         login(id: "", passwd: "")
