@@ -1,4 +1,5 @@
 {
+  "proxy": "http://localhost:2004",
   "name": "react-dockerized",
   "version": "0.1.0",
   "private": true,
