@@ -18,7 +18,7 @@
 <img src="https://img.shields.io/badge/Github-181717?style=flat-square&logo=Github&logoColor=white"/> <img src="https://img.shields.io/badge/Trello-0052CC?style=flat-square&logo=Trello&logoColor=white"/> 
 
 
-### Git - Commit Message Convention
+## Git - Commit Message Convention
 * Feat: 새로운 기능을 추가할 경우
 * Fix: 버그를 고친 경우
 * Design: CSS 등 사용자 UI 디자인 변경
@@ -34,7 +34,7 @@
 * Remove: 파일을 삭제하는 작업만 수행한 경우
 
 
-### Email
+## Email
 * pavi03@kpu.ac.kr
 * pjy0619@kpu.ac.kr
 * petitejini@kpu.ac.kr
