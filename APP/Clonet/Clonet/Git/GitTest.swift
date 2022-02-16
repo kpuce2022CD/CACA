@@ -28,10 +28,10 @@ struct GitTest: View {
     @State var lastCMtime = Date()
     
     
-    let faceLocation = documentURL.appendingPathComponent("test")
-    let localRepoLocation = documentURL.appendingPathComponent("test")
-    let remoteRepoLocation = "http://3.34.194.172/git-repositories/TEST.git"
-    let test = "http://3.34.194.172/git-repositories/TEST.git"
+    let faceLocation = documentURL.appendingPathComponent("A")
+    let localRepoLocation = documentURL.appendingPathComponent("A")
+    let remoteRepoLocation = "http://3.34.194.172/git-repositories/A.git"
+    let test = "http://3.34.194.172/git-repositories/A.git"
     
     init() {
         // git_libgit2_init()
@@ -56,14 +56,15 @@ struct GitTest: View {
                     Button("fetch", action: fetchGitRepo)
                     Button("MERGE", action: mergeGitRepo)
                     Button("PUSH_F", action: push_f_GitRepo)
-//                    Button("LOG", action: log)
                     Button("_RESET_", action: reset)
+                }
+                VStack{
+                    Button("commit", action: commit)
                 }
             }
             VStack{
                 ScrollView {
                     Text(message)
-                    Text("\n zz")
                     Text(lastCMuser + lastCMmsg)
                     Text(lastCMtime.formatDate())
                 }
@@ -84,18 +85,6 @@ struct GitTest: View {
             message = "Could not open repository: \(error)"
         }
     }
-    
-//    //MARK: LOG
-//    func log(){
-//        let result = Repository.at(localRepoLocation)
-//        switch result {
-//        case let .success(repo):
-//            let revert_result = repo.log_list(repo)
-//            message = "\(revert_result)"
-//        case let .failure(error):
-//            message = "Could not open repository: \(error)"
-//        }
-//    }
     
     
     func push_f_GitRepo(){
@@ -196,6 +185,21 @@ struct GitTest: View {
         }
     }
     
+    func commit(){
+        let result = Repository.at(localRepoLocation)
+        switch result {
+        case let .success(repo):
+            //MARK: add
+            let add_commit = repo.add(path: ".")
+            
+            //MARK: commit
+            let sig = Signature(name: "name",email: "name@gmail.com",time: Date(),timeZone: TimeZone.current)
+            let latestCommit = repo.commit(message: "asdf", signature: sig)
+            
+        case let .failure(error):
+            message = "Could not clone repository: \(error)"
+        }
+    }
     //MARK: COMMIT
     func commitGitRepo() {
         let result = Repository.at(localRepoLocation)
@@ -244,6 +248,8 @@ struct GitTest: View {
                 case let .failure(error):
                     message = "error : \(error)"
                 }
+                print("fetchGitRepo : ", message)
+                print("fetchGitRepo var : ", fetch_result)
             }catch{
                 print(error)
             }
@@ -259,10 +265,13 @@ struct GitTest: View {
         case let .success(repo):
             let remote = repo.remote(named: "origin")
             do {
-                let remote_r = try remote.get()
+//                let remote_r = try remote.get()
                 let merge_result = repo.merge(repo)
                 
+                
                 message = "merge result : \(merge_result)"
+                print("mergeGitRepo : ", message)
+                print("mergeGitRepo var : ", merge_result)
 
             }catch{
                 print(error)

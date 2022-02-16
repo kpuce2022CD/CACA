@@ -149,6 +149,7 @@ struct Repo_View_Git: View {
                     
                     // MARK: FETCH
                     fetchGitRepo(localRepoLocation: documentURL.appendingPathComponent(repo_n))
+                    
                     // MARK: MERGE
                     mergeGitRepo(localRepoLocation: documentURL.appendingPathComponent(repo_n),remoteRepoLocation: log_repoViewModel_a.repoIP_Addr, hexString: log_repoViewModel_a.Log_repo_list.first?.commitId ?? "")
                     print("log_repoViewModel_a.launches.commitId",log_repoViewModel_a.Log_repo_list.first?.commitId)

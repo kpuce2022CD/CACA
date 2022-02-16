@@ -53,14 +53,22 @@ extension Repository {
     
     // MARK: merge
     public func merge(_ repo: Repository){
-        var git_annotated_commit_from_fetchhead_out : OpaquePointer? = nil
         var revert_git_oid = git_oid()
-        //        let nameToIDResult = git_oid_fromstr(&revert_git_oid, "752aa0ffa6ff9cbd69fbfaa7abc7cf0408cb7244")
+        let nameToIDResult = git_oid_fromstr(&revert_git_oid, "194a1dc64fae8d6d3e7479ab99af7b126c721146")
+        print("git_oid_fromstr : ", nameToIDResult)
         
-        git_annotated_commit_from_fetchhead(&git_annotated_commit_from_fetchhead_out, repo.pointer, "master", "http://52.79.235.187/git-repositories/PJY_JJANG.git", &revert_git_oid)
+        var git_annotated_commit_from_fetchhead_out : OpaquePointer? = nil
+        var git_a = git_annotated_commit_from_fetchhead(&git_annotated_commit_from_fetchhead_out, repo.pointer, "FETCH_HEAD", "http://3.34.194.172/git-repositories/A.git", &revert_git_oid)
+        print("git_annotated_commit_from_fetchhead : ", git_a)
         
         
-        git_merge(repo.pointer, &git_annotated_commit_from_fetchhead_out, 1, nil, nil)
+        var git_m = git_merge(repo.pointer, &git_annotated_commit_from_fetchhead_out, 1, nil, nil)
+        print("merge : ", git_m)
+        
+//        var git_s = git_signature()
+//        var git_ss = git_signature_now(&git_s, "name", "email")
+//
+//        var git_c_c = git_commit_create(&revert_git_oid, repo.pointer, <#T##update_ref: UnsafePointer<CChar>!##UnsafePointer<CChar>!#>, gitAuthor, gitAuthor, "merge Success1", "merge Success2", <#T##tree: OpaquePointer!##OpaquePointer!#>, <#T##parent_count: Int##Int#>, <#T##parents: UnsafeMutablePointer<OpaquePointer?>!##UnsafeMutablePointer<OpaquePointer?>!#>)
         
     }
     
