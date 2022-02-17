@@ -74,6 +74,18 @@ struct GitTest: View {
         
     }
     
+    public func push_f_GitRepo(){
+        let result = Repository.at(localRepoLocation)
+        switch result {
+        case let .success(repo):
+            //MARK: push
+            let commit_push = repo.push_force(repo, "ubuntu", "qwer1234", nil)
+            
+        case let .failure(error):
+            print("\(error)")
+        }
+    }
+    
     //MARK: reset
     func reset(){
         let result = Repository.at(localRepoLocation)
@@ -87,17 +99,7 @@ struct GitTest: View {
     }
     
     
-    func push_f_GitRepo(){
-        let result = Repository.at(localRepoLocation)
-        switch result {
-        case let .success(repo):
-            //MARK: push
-            let commit_push = repo.push_force(repo, "ubuntu", "qwer1234", nil)
-            
-        case let .failure(error):
-            message = "Could not clone repository: \(error)"
-        }
-    }
+    
     
     
     
