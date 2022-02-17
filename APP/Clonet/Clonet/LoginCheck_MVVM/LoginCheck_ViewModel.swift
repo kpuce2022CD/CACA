@@ -42,23 +42,11 @@ struct MyAlert: View {
                 Divider()
                 HStack {
                     Spacer()
-                    //                    Button(action: {
-                    //                        UIApplication.shared.windows[0].rootViewController?.dismiss(animated: true, completion: {})
-                    //
-                    //                        service.create_Repo(json: RepoJSON)
-                    //
-                    //                    }) {
-                    //
-                    //                        Text("완료")
-                    //                    }
                     ZStack {
-                        //                                        NavigationLink(destination: LoginCheck_View(userAuth: userAuth), tag: "RepoButton", selection: $selectionString) { }
-                        //                                        .buttonStyle(PlainButtonStyle()).frame(width:0).opacity(0)
                         Button("완료") {
                             UIApplication.shared.windows[0].rootViewController?.dismiss(animated: true, completion: {})
                             self.selectionString = "RepoButton"
                             loginCheck_ViewModel.create_repo(repoName: input_repoName, user_id: uuserID)
-                            //                            service.create_Repo(json: RepoJSON)
                         }
                     }
                     

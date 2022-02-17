@@ -75,8 +75,6 @@ final class getFileList: ObservableObject{
 
 
 
-
-
 // MARK: DocumentPicker Struct
 struct DocumentPicker : UIViewControllerRepresentable {
     func makeCoordinator() -> Coordinator {
@@ -128,7 +126,6 @@ struct DocumentPicker : UIViewControllerRepresentable {
 }
 
 
-
 // MARK: Repo_View_Directory: View
 struct Repo_View_Directory: View {
     
@@ -145,6 +142,8 @@ struct Repo_View_Directory: View {
     @State var fileNameImg = "" // to Store File Name picked
     @State private var editREADME : Bool = true // determine README or not
     @State var saveCheck : Bool = false
+    
+    @State var exportFileName : String = ""
 
     
     
@@ -177,23 +176,6 @@ struct Repo_View_Directory: View {
         dataList.items.remove(atOffsets: offsets)
     }
     
-    func share(
-        items: [Any],
-        excludedActivityTypes: [UIActivity.ActivityType]? = nil
-    ) -> Bool {
-        guard let source = UIApplication.shared.windows.last?.rootViewController else {
-            return false
-        }
-        let vc = UIActivityViewController(
-            activityItems: items,
-            applicationActivities: nil
-        )
-        vc.excludedActivityTypes = excludedActivityTypes
-        vc.popoverPresentationController?.sourceView = source.view
-        source.present(vc, animated: true)
-        return true
-    }
-    
     // MARK: EXPORT
     struct ShareSheet: UIViewControllerRepresentable {
         typealias Callback = (_ activityType: UIActivity.ActivityType?, _ completed: Bool, _ returnedItems: [Any]?, _ error: Error?) -> Void
@@ -222,38 +204,43 @@ struct Repo_View_Directory: View {
     var body: some View {
         HStack{
             VStack{
-                // MARK: Document Picker Button (To add)
-                Button(action:{
-                    self.show.toggle()
-                }){
-                    Text("IMPORT")
-                }
-                .sheet(isPresented: $show){
-                    DocumentPicker(alert: self.$alert, repo_name: self.$repo_n, img_name: self.$fileNameImg)
-                }
-                .alert(isPresented: $alert) {
-                    Alert(title: Text("Message"), message: Text("Upload Successfully"), dismissButton: .default(Text("OK")))
-                }
                 
-                // MARK: EXPORT Document Picker
-                Button(action: {
-                    exportShow = true
-                }) {
-                    Text("Share Me").bold()
-                } .sheet(isPresented: $exportShow) {
-                    
-                    if let dir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
-                        let fileURL = dir.appendingPathComponent(repo_n+"/"+"readMore.jpeg")
-                        ShareSheet(activityItems: [fileURL])
+                HStack{
+                    Spacer()
+                    // MARK: Document Picker Button (To add)
+                    Button(action:{
+                        self.show.toggle()
+                    }){
+                        Image(systemName: "square.and.arrow.down")
+                            .frame(width: 30.0, height: 30.0)
                     }
+                    .sheet(isPresented: $show){
+                        DocumentPicker(alert: self.$alert, repo_name: self.$repo_n, img_name: self.$fileNameImg)
+                    }
+                    .alert(isPresented: $alert) {
+                        Alert(title: Text("Message"), message: Text("Upload Successfully"), dismissButton: .default(Text("OK")))
+                    }
+                    Spacer()
                     
+                    // MARK: EXPORT Document Picker
+                    Button(action: {
+                        exportShow = true
+                    }) {
+                        Image(systemName: "square.and.arrow.up")
+                            .frame(width: 30.0, height: 30.0)
+                    }
+                    .sheet(isPresented: $exportShow) {
+                        if let dir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
+                            let fileURL = dir.appendingPathComponent(repo_n + "/" + "\(fileNameImg)")
+                            ShareSheet(activityItems: [fileURL])
+                        }
+                    }
+                    Spacer()
                 }
-                
-                
+
                 
                 // MARK: Show File List
                 List{
-                    
                     ForEach(dataList.items, id: \.self){ i in
                         if(i != ".git"){
                             Button(i, action: {
@@ -269,12 +256,8 @@ struct Repo_View_Directory: View {
                     .onDelete{
                         deleteFile(at: $0)
                     }
-//                    .onMove{_,_ in
-//                        moveFile()
-//                    }
                     
                 }.frame(width: 300)
-//                    .toolbar { EditButton() }
             }
             
             
