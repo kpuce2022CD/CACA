@@ -70,6 +70,9 @@ extension Repository {
 //
 //        var git_c_c = git_commit_create(&revert_git_oid, repo.pointer, <#T##update_ref: UnsafePointer<CChar>!##UnsafePointer<CChar>!#>, gitAuthor, gitAuthor, "merge Success1", "merge Success2", <#T##tree: OpaquePointer!##OpaquePointer!#>, <#T##parent_count: Int##Int#>, <#T##parents: UnsafeMutablePointer<OpaquePointer?>!##UnsafeMutablePointer<OpaquePointer?>!#>)
         
+
+        
+        
     }
     
     // MARK: merge for Repo_View_Git

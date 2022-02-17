@@ -1,0 +1,33 @@
+version: '3'
+services:
+  about_customer:
+    build:
+      context: .
+      dockerfile: Back/About_Customer/Dockerfile
+      args:
+        JAR_FILE: ./Back/About_Customer/build/libs/*.jar
+    container_name: about_customer_con
+    ports:
+      - 8080:8080
+    networks:
+      clonet_network:
+        ipv4_address: 172.18.0.12
+    restart: always
+
+  about_customer_nginx:
+    build:
+      context: .
+      dockerfile: Front/about_customer/Dockerfile
+    container_name: about_customer_nginx
+    restart: "on-failure"
+    ports:
+      - 8081:80
+    networks:
+      clonet_network:
+        ipv4_address: 172.18.0.11
+
+
+networks:
+  clonet_network:
+    external: true
+
