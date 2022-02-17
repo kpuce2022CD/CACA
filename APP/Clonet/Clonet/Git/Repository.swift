@@ -54,7 +54,7 @@ extension Repository {
     // MARK: merge
     public func merge(_ repo: Repository){
         var revert_git_oid = git_oid()
-        let nameToIDResult = git_oid_fromstr(&revert_git_oid, "194a1dc64fae8d6d3e7479ab99af7b126c721146")
+        let nameToIDResult = git_oid_fromstr(&revert_git_oid, "cb7f62896e0fcae18731727dada7c3a8e2d5b77a")
         print("git_oid_fromstr : ", nameToIDResult)
         
         var git_annotated_commit_from_fetchhead_out : OpaquePointer? = nil
@@ -78,10 +78,12 @@ extension Repository {
         var git_annotated_commit_from_fetchhead_out : OpaquePointer? = nil
         var revert_git_oid = git_oid()
         let nameToIDResult = git_oid_fromstr(&revert_git_oid, hexString)
-        
-        git_annotated_commit_from_fetchhead(&git_annotated_commit_from_fetchhead_out, repo.pointer, "master", remoteRepoLocation, &revert_git_oid)
+        print("hexString", hexString)
+        git_annotated_commit_from_fetchhead(&git_annotated_commit_from_fetchhead_out, repo.pointer, "FETCH_HEAD", remoteRepoLocation, &revert_git_oid)
         
         git_merge(repo.pointer, &git_annotated_commit_from_fetchhead_out, 1, nil, nil)
+    
+        git_repository_state_cleanup(repo.pointer)
     }
     
     
