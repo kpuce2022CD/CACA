@@ -45,6 +45,10 @@
 ## Apollo
 https://studio.apollographql.com/org/clonet/graphs
 
+## Architecture
+![architecture drawio (1)](https://user-images.githubusercontent.com/79956705/154517391-11ddf6dd-3db9-4ace-aea5-000db1a2a703.png)
+
+
 ## Swift Prototype
 ![이름 없는 노트북 (1) (1)-13 2](https://user-images.githubusercontent.com/79956705/152506189-ad6484e2-e19c-4a53-8710-5230461b6c7b.jpg)
 
