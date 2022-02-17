@@ -46,7 +46,7 @@
 https://studio.apollographql.com/org/clonet/graphs
 
 ## Architecture
-![architecture drawio (1)](https://user-images.githubusercontent.com/79956705/154517391-11ddf6dd-3db9-4ace-aea5-000db1a2a703.png)
+![architecture drawio (2)](https://user-images.githubusercontent.com/79956705/154523743-67b6a085-9da8-4683-9091-7f39c4bd2209.png)
 
 
 ## Swift Prototype
