@@ -1,33 +1,198 @@
 version: '3'
 services:
-  about_customer:
+########################################
+  about_customer_front:
+    container_name: about_customer_front_con
+    build:
+      context: .
+      dockerfile: Front/about_customer/Dockerfile
+    ports:
+      - 8001:80
+    networks:
+      clonet_network:
+        ipv4_address: 172.18.0.3
+
+  about_customer_back:
+    container_name: about_customer_back_con
     build:
       context: .
       dockerfile: Back/About_Customer/Dockerfile
       args:
         JAR_FILE: ./Back/About_Customer/build/libs/*.jar
-    container_name: about_customer_con
     ports:
-      - 8080:8080
+      - 8081:8081
     networks:
       clonet_network:
-        ipv4_address: 172.18.0.12
-    restart: always
-
-  about_customer_nginx:
+        ipv4_address: 172.18.0.13
+########################################
+  about_edit_user_front:
+    container_name: about_edit_user_front_con
     build:
       context: .
-      dockerfile: Front/about_customer/Dockerfile
-    container_name: about_customer_nginx
-    restart: "on-failure"
+      dockerfile: Front/about_edit_user/Dockerfile
     ports:
-      - 8081:80
+      - 8002:80
     networks:
       clonet_network:
-        ipv4_address: 172.18.0.11
+        ipv4_address: 172.18.0.4
 
+  about_edit_user_back:
+    container_name: about_edit_user_back_con
+    build:
+      context: .
+      dockerfile: Back/About_Edit_User/Dockerfile
+      args:
+        JAR_FILE: ./Back/About_Edit_User/build/libs/*.jar
+    ports:
+      - 8082:8082
+    networks:
+      clonet_network:
+        ipv4_address: 172.18.0.14
+########################################
+  contact_customer_front:
+    container_name: contact_customer_front_con
+    build:
+      context: .
+      dockerfile: Front/contact_customer/Dockerfile
+    ports:
+      - 8003:80
+    networks:
+      clonet_network:
+        ipv4_address: 172.18.0.5
 
+  contact_customer_back:
+    container_name: contact_customer_back_con
+    build:
+      context: .
+      dockerfile: Back/Contact_Customer/Dockerfile
+      args:
+        JAR_FILE: ./Back/Contact_Customer/build/libs/*.jar
+    ports:
+      - 8083:8083
+    networks:
+      clonet_network:
+        ipv4_address: 172.18.0.15
+########################################
+  contact_edit_user_front:
+    container_name: contact_edit_user_front_con
+    build:
+      context: .
+      dockerfile: Front/contact_edit_user/Dockerfile
+    ports:
+      - 8004:80
+    networks:
+      clonet_network:
+        ipv4_address: 172.18.0.6
+
+  contact_edit_user_back:
+    container_name: contact_edit_user_back_con
+    build:
+      context: .
+      dockerfile: Back/Contact_Edit_User/Dockerfile
+      args:
+        JAR_FILE: ./Back/Contact_Edit_User/build/libs/*.jar
+    ports:
+      - 8084:8084
+    networks:
+      clonet_network:
+        ipv4_address: 172.18.0.16
+########################################
+  home_front:
+    container_name: home_front_con
+    build:
+      context: .
+      dockerfile: Front/home/Dockerfile
+    ports:
+      - 8005:80
+    networks:
+      clonet_network:
+        ipv4_address: 172.18.0.7
+
+  home_back:
+    container_name: home_back_con
+    build:
+      context: .
+      dockerfile: Back/Home/Dockerfile
+      args:
+        JAR_FILE: ./Back/Home/build/libs/*.jar
+    ports:
+      - 8085:8085
+    networks:
+      clonet_network:
+        ipv4_address: 172.18.0.17
+########################################
+  illust_customer_front:
+    container_name: illust_customer_front_con
+    build:
+      context: .
+      dockerfile: Front/illust_customer/Dockerfile
+    ports:
+      - 8006:80
+    networks:
+      clonet_network:
+        ipv4_address: 172.18.0.8
+
+  illust_customer_back:
+    container_name: illust_customer_back_con
+    build:
+      context: .
+      dockerfile: Back/Illust_Customer/Dockerfile
+      args:
+        JAR_FILE: ./Back/Illust_Customer/build/libs/*.jar
+    ports:
+      - 8086:8086
+    networks:
+      clonet_network:
+        ipv4_address: 172.18.0.18
+########################################
+  illust_select_user_front:
+    container_name: illust_select_user_front_con
+    build:
+      context: .
+      dockerfile: Front/illust_select_user/Dockerfile
+    ports:
+      - 8007:80
+    networks:
+      clonet_network:
+        ipv4_address: 172.18.0.9
+
+  illust_select_user_back:
+    container_name: illust_select_user_back_con
+    build:
+      context: .
+      dockerfile: Back/Illust_Select_User/Dockerfile
+      args:
+        JAR_FILE: ./Back/Illust_Select_User/build/libs/*.jar
+    ports:
+      - 8087:8087
+    networks:
+      clonet_network:
+        ipv4_address: 172.18.0.19
+########################################
+  login_front:
+    container_name: login_front_con
+    build:
+      context: .
+      dockerfile: Front/login/Dockerfile
+    ports:
+      - 8008:80
+    networks:
+      clonet_network:
+        ipv4_address: 172.18.0.10
+
+  login_back:
+    container_name: login_back_con
+    build:
+      context: .
+      dockerfile: Back/Login/Dockerfile
+      args:
+        JAR_FILE: ./Back/Login/build/libs/*.jar
+    ports:
+      - 8088:8088
+    networks:
+      clonet_network:
+        ipv4_address: 172.18.0.20
+########################################
 networks:
   clonet_network:
     external: true
-

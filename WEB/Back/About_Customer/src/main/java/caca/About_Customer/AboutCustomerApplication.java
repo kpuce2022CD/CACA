@@ -8,14 +8,15 @@ import org.springframework.web.bind.annotation.RestController;
 @SpringBootApplication
 @RestController
 public class AboutCustomerApplication {
-	@GetMapping("/about_customer")
-	public String home() {
-		return "Hello About Customer World";
+	@GetMapping("/about_customer1")
+	public String about_customer1() {
+		return "Hello about_customer1 World";
 	}
 
-	@GetMapping("/asdf")
-	public String asdf() { return "asdf";}
-
+	@GetMapping("/about_customer2")
+	public String about_customer2() { 
+		return "Hello about_customer2 World";
+	}
 
 	public static void main(String[] args) {
 		SpringApplication.run(AboutCustomerApplication.class, args);

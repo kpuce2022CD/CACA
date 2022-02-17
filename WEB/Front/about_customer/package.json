@@ -1,5 +1,5 @@
 {
-  "proxy": "http://172.18.0.12:8080/",
+  "proxy": "http://172.18.0.13:8080/",
   "name": "about_customer",
   "version": "0.1.0",
   "private": true,

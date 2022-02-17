@@ -1,15 +1,24 @@
+
+
 import logo from './logo.svg';
 import './App.css';
 import { useEffect, useState } from 'react';
 
 function App() {
 
-  const [message, setMessage] = useState("")
+  const [message, setMessage] = useState("1")
+  const [message2, setMessage2] = useState("2")
 
   useEffect(()=>{
-    fetch("/contact_edit_user")
+    fetch("/contact_edit_user1")
         .then(res => res.text())
         .then(m=>setMessage(m))
+  }, [])
+
+  useEffect(()=>{
+    fetch("/contact_edit_user2")
+        .then(res => res.text())
+        .then(m=>setMessage2(m))
   }, [])
 
   return (
@@ -18,7 +27,9 @@ function App() {
           <img src={logo} className="App-logo" alt="logo" />
           <p>
             {message}
-            {/* Edit <code>src/App.js</code> and save to reload. */}
+          </p>
+          <p>
+            {message2}
           </p>
           <a
               className="App-link"

@@ -1,15 +1,26 @@
-FROM node:12-alpine
-MAINTAINER Seo, JeongKuk
+# nginx 이미지를 사용합니다. 뒤에 tag가 없으면 latest 를 사용합니다.
+FROM nginx
 
+# root 에 app 폴더를 생성
 RUN mkdir /app
+
+# work dir 고정
 WORKDIR /app
-ENV PATH /app/node_modules/.bin:$PATH
-COPY package.json /app/package.json
 
-RUN npm install --no-cache
-RUN npm install -g react-scripts
-RUN npm install -g react-router-dom
-RUN apk add --no-cache git
+# work dir 에 build 폴더 생성 /app/build
+RUN mkdir ./build
 
-COPY . /app
-CMD ["npm", "start"]
+# host pc의 현재경로의 build 폴더를 workdir 의 build 폴더로 복사
+ADD ./Front/illust_select_user/build ./build
+
+# nginx 의 default.conf 를 삭제
+RUN rm /etc/nginx/conf.d/default.conf
+
+# host pc 의 nginx.conf 를 아래 경로에 복사
+COPY ./Front/illust_select_user/nginx.conf /etc/nginx/nginx.conf
+
+# 80 포트 오픈
+EXPOSE 80
+
+# container 실행 시 자동으로 실행할 command. nginx 시작함
+CMD ["nginx", "-g", "daemon off;"]

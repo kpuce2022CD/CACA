@@ -6,17 +6,17 @@ import { useEffect, useState } from 'react';
 
 function App() {
 
-  const [message, setMessage] = useState("a")
-  const [message2, setMessage2] = useState("b")
+  const [message, setMessage] = useState("1")
+  const [message2, setMessage2] = useState("2")
 
   useEffect(()=>{
-    fetch("/asdf")
+    fetch("/about_customer1")
         .then(res => res.text())
         .then(m=>setMessage(m))
   }, [])
 
   useEffect(()=>{
-    fetch("/about_customer")
+    fetch("/about_customer2")
         .then(res => res.text())
         .then(m=>setMessage2(m))
   }, [])
@@ -27,11 +27,9 @@ function App() {
           <img src={logo} className="App-logo" alt="logo" />
           <p>
             {message}
-            {/* Edit <code>src/App.js</code> and save to reload. */}
           </p>
           <p>
             {message2}
-            {/* Edit <code>src/App.js</code> and save to reload. */}
           </p>
           <a
               className="App-link"
