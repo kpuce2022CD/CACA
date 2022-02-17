@@ -27,8 +27,7 @@ final class getFileList: ObservableObject{
     
     // MARK: GET FILE LIST
     func location(repoName: String){
-        print("reponame: \(repoName)")
-        
+//        print("reponame: \(repoName)")
         let urlString = documentURL.appendingPathComponent(repoName).absoluteString
         let fileManager = FileManager.default
         var remoteString = urlString.replacingOccurrences(of: "file://", with: "")
@@ -74,6 +73,10 @@ final class getFileList: ObservableObject{
     }
 }
 
+
+
+
+
 // MARK: DocumentPicker Struct
 struct DocumentPicker : UIViewControllerRepresentable {
     func makeCoordinator() -> Coordinator {
@@ -106,8 +109,9 @@ struct DocumentPicker : UIViewControllerRepresentable {
             self.repo_name = repo_name
             self.img_name = img_name
         }
+        
         func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentsAt urls: [URL]) {
-            print("ursl \(urls)")
+//            print("ursl \(urls)")
             guard let selectedFileURL = urls.first else {
                 return
             }
@@ -123,6 +127,8 @@ struct DocumentPicker : UIViewControllerRepresentable {
     }
 }
 
+
+
 // MARK: Repo_View_Directory: View
 struct Repo_View_Directory: View {
     
@@ -132,12 +138,14 @@ struct Repo_View_Directory: View {
     
     @ObservedObject var dataList = getFileList()
     @State var show = false
+    @State var exportShow = false
     @State var alert = false
     
     //Repo_View_Image
     @State var fileNameImg = "" // to Store File Name picked
     @State private var editREADME : Bool = true // determine README or not
     @State var saveCheck : Bool = false
+
     
     
     
@@ -158,8 +166,8 @@ struct Repo_View_Directory: View {
         // delete File
         let fileManager = FileManager.default
         let path = documentsUrl.path
-        print("path: \(path)/\(self.repo_n)/\(dataList.items[offsets[offsets.startIndex]])")
-        print("offsets: \(offsets)")
+//        print("path: \(path)/\(self.repo_n)/\(dataList.items[offsets[offsets.startIndex]])")
+//        print("offsets: \(offsets)")
         do{
             try fileManager.removeItem(atPath: path + "/\(self.repo_n)/" + "\(dataList.items[offsets[offsets.startIndex]])")
         }catch let e {
@@ -169,9 +177,47 @@ struct Repo_View_Directory: View {
         dataList.items.remove(atOffsets: offsets)
     }
     
-//    func moveFile(){
-//        
-//    }
+    func share(
+        items: [Any],
+        excludedActivityTypes: [UIActivity.ActivityType]? = nil
+    ) -> Bool {
+        guard let source = UIApplication.shared.windows.last?.rootViewController else {
+            return false
+        }
+        let vc = UIActivityViewController(
+            activityItems: items,
+            applicationActivities: nil
+        )
+        vc.excludedActivityTypes = excludedActivityTypes
+        vc.popoverPresentationController?.sourceView = source.view
+        source.present(vc, animated: true)
+        return true
+    }
+    
+    // MARK: EXPORT
+    struct ShareSheet: UIViewControllerRepresentable {
+        typealias Callback = (_ activityType: UIActivity.ActivityType?, _ completed: Bool, _ returnedItems: [Any]?, _ error: Error?) -> Void
+        
+        let activityItems: [Any]
+        let applicationActivities: [UIActivity]? = nil
+        let excludedActivityTypes: [UIActivity.ActivityType]? = nil
+        let callback: Callback? = nil
+        
+        func makeUIViewController(context: Context) -> UIActivityViewController {
+            let controller = UIActivityViewController(
+                activityItems: activityItems,
+                applicationActivities: applicationActivities)
+            
+            controller.excludedActivityTypes = excludedActivityTypes
+            controller.completionWithItemsHandler = callback
+            return controller
+        }
+        
+        func updateUIViewController(_ uiViewController: UIActivityViewController, context: Context) {
+            // nothing to do here
+        }
+    }
+
     
     var body: some View {
         HStack{
@@ -180,7 +226,7 @@ struct Repo_View_Directory: View {
                 Button(action:{
                     self.show.toggle()
                 }){
-                    Text("Document Picker")
+                    Text("IMPORT")
                 }
                 .sheet(isPresented: $show){
                     DocumentPicker(alert: self.$alert, repo_name: self.$repo_n, img_name: self.$fileNameImg)
@@ -188,6 +234,23 @@ struct Repo_View_Directory: View {
                 .alert(isPresented: $alert) {
                     Alert(title: Text("Message"), message: Text("Upload Successfully"), dismissButton: .default(Text("OK")))
                 }
+                
+                // MARK: EXPORT Document Picker
+                Button(action: {
+                    exportShow = true
+                }) {
+                    Text("Share Me").bold()
+                } .sheet(isPresented: $exportShow) {
+                    
+                    if let dir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
+                        let fileURL = dir.appendingPathComponent(repo_n+"/"+"readMore.jpeg")
+                        ShareSheet(activityItems: [fileURL])
+                    }
+                    
+                }
+                
+                
+                
                 // MARK: Show File List
                 List{
                     
