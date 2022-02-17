@@ -155,7 +155,8 @@ struct Repo_View_Git: View {
                         // MARK: MERGE
                         mergeGitRepo(localRepoLocation: documentURL.appendingPathComponent(repo_n),remoteRepoLocation: log_repoViewModel_a.repoIP_Addr, hexString: log_repoViewModel_a.Log_repo_list.first?.commitId ?? "")
                         // MARK: COMMIT
-                        commitGitRepo(localRepoLocation: documentURL.appendingPathComponent(repo_n), name: userID, email: userEmail, commit_msg: "merge", addFileName: ".")
+                        var merge_commit_m : String = log_repoViewModel_a.Log_repo_list.first?.commitMsg ?? ""
+                        commitGitRepo(localRepoLocation: documentURL.appendingPathComponent(repo_n), name: userID, email: userEmail, commit_msg: "병합 : \(merge_commit_m)", addFileName: ".")
                         // MARK: PUSH_FORCE
                         push_f_GitRepo(localRepoLocation: documentURL.appendingPathComponent(repo_n))
                         
