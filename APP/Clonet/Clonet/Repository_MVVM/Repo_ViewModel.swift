@@ -10,6 +10,7 @@ import Apollo
 import SwiftUI
 import SwiftSMTP
 import ToastUI
+import Combine
 
 final class log_repo_ViewModel: ObservableObject{
     @Published var launches: Log_repo = Log_repo.init()
@@ -18,12 +19,32 @@ final class log_repo_ViewModel: ObservableObject{
     @Published var repo_n: String = ""
     @Published var repoIP_Addr : String = ""
 
+    private var cancellables = Set<AnyCancellable>()
     
     func appear(){
         fetch(Repo_Name: self.repo_n)
         repoIP(Repo_Name: self.repo_n)
     }
+    
+    init(){
+        repoIP(Repo_Name: self.repo_n)
+        fetch(Repo_Name: self.repo_n)
+        
+        Log_repo_list = []
 
+        self.$Log_repo_list
+            .dropFirst() // 첫번째 항목 버림
+            .sink(receiveValue: {
+                print("save1=\($0)") // 변환사항 print
+            })
+            .store(in: &cancellables) // cancle 호출
+
+        print("save12: \(Log_repo_list)")
+    }
+    
+    deinit{
+        self.cancellables.removeAll()
+    }
     
     func repoIP(Repo_Name: String){
         Network.shared.apollo.fetch(query: SelectRepoQuery(repo_name: Repo_Name)){ result in
