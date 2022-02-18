@@ -19,8 +19,7 @@ final class log_repo_ViewModel: ObservableObject{
     @Published var repo_n: String = ""
     @Published var repoIP_Addr : String = ""
 
-    private var cancellables = Set<AnyCancellable>()
-    
+        
     func appear(){
         fetch(Repo_Name: self.repo_n)
         repoIP(Repo_Name: self.repo_n)
@@ -28,23 +27,28 @@ final class log_repo_ViewModel: ObservableObject{
     
     init(){
         repoIP(Repo_Name: self.repo_n)
-        fetch(Repo_Name: self.repo_n)
         
-        Log_repo_list = []
+        Log_repo_list.removeAll()
+        fetch(Repo_Name: repo_n)
+        print("init : ", Log_repo_list)
+        
+        
+        // combine
+        let provider = (1...5).publisher
+        
+        provider.sink(receiveCompletion: {_ in
+            self.Log_repo_list.removeAll()
+            self.fetch(Repo_Name: self.repo_n)
+            
+        }, receiveValue: {data in
+            print("Log_repo_list fetch")
+            self.Log_repo_list.removeAll()
+            self.fetch(Repo_Name: self.repo_n)
+            print("Log_repo_list", data)
+        })
 
-        self.$Log_repo_list
-            .dropFirst() // 첫번째 항목 버림
-            .sink(receiveValue: {
-                print("save1=\($0)") // 변환사항 print
-            })
-            .store(in: &cancellables) // cancle 호출
+    }
 
-        print("save12: \(Log_repo_list)")
-    }
-    
-    deinit{
-        self.cancellables.removeAll()
-    }
     
     func repoIP(Repo_Name: String){
         Network.shared.apollo.fetch(query: SelectRepoQuery(repo_name: Repo_Name)){ result in
