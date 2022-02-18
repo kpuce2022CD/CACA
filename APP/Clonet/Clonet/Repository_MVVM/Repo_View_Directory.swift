@@ -179,6 +179,7 @@ struct Repo_View_Directory: View {
     }
     
     // MARK: EXPORT
+    
     struct ShareSheet: UIViewControllerRepresentable {
         typealias Callback = (_ activityType: UIActivity.ActivityType?, _ completed: Bool, _ returnedItems: [Any]?, _ error: Error?) -> Void
         
@@ -225,6 +226,7 @@ struct Repo_View_Directory: View {
                     Spacer()
                     
                     // MARK: EXPORT Document Picker
+                    
                     Button(action: {
                         exportShow = true
                     }) {
@@ -233,7 +235,7 @@ struct Repo_View_Directory: View {
                     }
                     .sheet(isPresented: $exportShow) {
                         if let dir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
-                            let fileURL = dir.appendingPathComponent(repo_n + "/" + "\(fileNameImg)")
+                            let fileURL = dir.appendingPathComponent(repo_n + "/")
                             ShareSheet(activityItems: [fileURL])
                         }
                     }
