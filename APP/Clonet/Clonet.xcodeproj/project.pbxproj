@@ -24,11 +24,8 @@
 		3F4B39F227B3A55A00EC0D8C /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F4B39F127B3A55A00EC0D8C /* Network.swift */; };
 		3F4B3A0427B4BAEF00EC0D8C /* ToastUI in Frameworks */ = {isa = PBXBuildFile; productRef = 3F4B3A0327B4BAEF00EC0D8C /* ToastUI */; };
 		3F4B3A0727B69EC700EC0D8C /* SwiftSMTP in Frameworks */ = {isa = PBXBuildFile; productRef = 3F4B3A0627B69EC700EC0D8C /* SwiftSMTP */; };
-		3F4B530E278BE92300D64A6D /* Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F4B530D278BE92300D64A6D /* Login.swift */; };
-		3F4B5318278C17DA00D64A6D /* LoginCheck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F4B5317278C17DA00D64A6D /* LoginCheck.swift */; };
 		3F6A1BB6279A814900146367 /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F6A1BB5279A814900146367 /* Repository.swift */; };
 		3F6A1BBE279A839300146367 /* KeychainAccess in Frameworks */ = {isa = PBXBuildFile; productRef = 3F6A1BBD279A839300146367 /* KeychainAccess */; };
-		3F6A1BC0279A8AF300146367 /* PushOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F6A1BBF279A8AF300146367 /* PushOptions.swift */; };
 		3F6A1BC4279AADDE00146367 /* Result in Frameworks */ = {isa = PBXBuildFile; productRef = 3F6A1BC3279AADDE00146367 /* Result */; };
 		3F772E0A279C70BC0047F693 /* SwiftGit2 in Frameworks */ = {isa = PBXBuildFile; productRef = 3F772E09279C70BC0047F693 /* SwiftGit2 */; };
 		3F772E0C279C71790047F693 /* Credentials.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F772E0B279C71790047F693 /* Credentials.swift */; };
@@ -39,7 +36,6 @@
 		B50BD823278C781700A7E3E0 /* GitTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50BD822278C781700A7E3E0 /* GitTest.swift */; };
 		B540D420278C603900479A63 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = B540D41F278C603900479A63 /* libz.tbd */; };
 		B540D422278C604200479A63 /* libiconv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = B540D421278C604200479A63 /* libiconv.tbd */; };
-		B5D184262792B6D1004C7E8F /* Repo_Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D184252792B6D1004C7E8F /* Repo_Home.swift */; };
 		B5F6B9B027AED04900C46E4B /* Apollo in Frameworks */ = {isa = PBXBuildFile; productRef = B5F6B9AF27AED04900C46E4B /* Apollo */; };
 		B5F6B9B227AED04900C46E4B /* ApolloWebSocket in Frameworks */ = {isa = PBXBuildFile; productRef = B5F6B9B127AED04900C46E4B /* ApolloWebSocket */; };
 		DA253E13278DEE1500AEE18A /* ViewModifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA253E12278DEE1500AEE18A /* ViewModifiers.swift */; };
@@ -81,10 +77,7 @@
 		3F4B39EB27B38E8600EC0D8C /* LaunchList.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = LaunchList.graphql; sourceTree = "<group>"; };
 		3F4B39EF27B3A26E00EC0D8C /* API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		3F4B39F127B3A55A00EC0D8C /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
-		3F4B530D278BE92300D64A6D /* Login.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Login.swift; sourceTree = "<group>"; };
-		3F4B5317278C17DA00D64A6D /* LoginCheck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginCheck.swift; sourceTree = "<group>"; };
 		3F6A1BB5279A814900146367 /* Repository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Repository.swift; sourceTree = "<group>"; };
-		3F6A1BBF279A8AF300146367 /* PushOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushOptions.swift; sourceTree = "<group>"; };
 		3F772E06279C6DED0047F693 /* SwiftGit2 */ = {isa = PBXFileReference; lastKnownFileType = folder; name = SwiftGit2; path = Carthage/Checkouts/SwiftGit2; sourceTree = "<group>"; };
 		3F772E07279C6E210047F693 /* SwiftGit2 */ = {isa = PBXFileReference; lastKnownFileType = folder; name = SwiftGit2; path = Carthage/Checkouts/SwiftGit2; sourceTree = "<group>"; };
 		3F772E0B279C71790047F693 /* Credentials.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Credentials.swift; sourceTree = "<group>"; };
@@ -95,7 +88,6 @@
 		B50BD822278C781700A7E3E0 /* GitTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitTest.swift; sourceTree = "<group>"; };
 		B540D41F278C603900479A63 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		B540D421278C604200479A63 /* libiconv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libiconv.tbd; path = usr/lib/libiconv.tbd; sourceTree = SDKROOT; };
-		B5D184252792B6D1004C7E8F /* Repo_Home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Repo_Home.swift; sourceTree = "<group>"; };
 		DA253E12278DEE1500AEE18A /* ViewModifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModifiers.swift; sourceTree = "<group>"; };
 		DA5B3CF527B3A4D30086C6EE /* LoginCheck_View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginCheck_View.swift; sourceTree = "<group>"; };
 		DA5B3CF727B3A5000086C6EE /* LoginCheck_ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginCheck_ViewModel.swift; sourceTree = "<group>"; };
@@ -166,8 +158,6 @@
 		3F4B530C278BE91100D64A6D /* Login */ = {
 			isa = PBXGroup;
 			children = (
-				3F4B530D278BE92300D64A6D /* Login.swift */,
-				3F4B5317278C17DA00D64A6D /* LoginCheck.swift */,
 				3FD176B1278D31A50025CCD2 /* Signup.swift */,
 				3FD176B3278D4E7D0025CCD2 /* FindIdPw.swift */,
 			);
@@ -177,7 +167,6 @@
 		3FD176B6278D69D50025CCD2 /* Main */ = {
 			isa = PBXGroup;
 			children = (
-				B5D184252792B6D1004C7E8F /* Repo_Home.swift */,
 				DA97B6A8278BE05D006C473E /* ContentView.swift */,
 				DA97B6A6278BE05D006C473E /* ClonetApp.swift */,
 				DA253E12278DEE1500AEE18A /* ViewModifiers.swift */,
@@ -200,7 +189,6 @@
 			children = (
 				B50BD822278C781700A7E3E0 /* GitTest.swift */,
 				3F6A1BB5279A814900146367 /* Repository.swift */,
-				3F6A1BBF279A8AF300146367 /* PushOptions.swift */,
 				3F772E0B279C71790047F693 /* Credentials.swift */,
 			);
 			path = Git;
@@ -439,7 +427,6 @@
 				DA5B3CF827B3A5000086C6EE /* LoginCheck_ViewModel.swift in Sources */,
 				3F41CA6C27ACCBBE0031F6C3 /* Login_Model.swift in Sources */,
 				3F41CA7F27AD36FF0031F6C3 /* Repo_View_Request.swift in Sources */,
-				3F6A1BC0279A8AF300146367 /* PushOptions.swift in Sources */,
 				3F41CA7027ACCBE80031F6C3 /* Login_ViewModel.swift in Sources */,
 				3F41CA7327AD17180031F6C3 /* Repo_Model.swift in Sources */,
 				3F4B39F027B3A26E00EC0D8C /* API.swift in Sources */,
@@ -449,9 +436,7 @@
 				3FE633B5278DD9AF00143666 /* PageViewController.swift in Sources */,
 				3F41CA7927AD17A10031F6C3 /* Repo_View.swift in Sources */,
 				DA5B3CF627B3A4D30086C6EE /* LoginCheck_View.swift in Sources */,
-				3F4B530E278BE92300D64A6D /* Login.swift in Sources */,
 				B50BD823278C781700A7E3E0 /* GitTest.swift in Sources */,
-				B5D184262792B6D1004C7E8F /* Repo_Home.swift in Sources */,
 				3F41CA8327AD37250031F6C3 /* Repo_View_Image.swift in Sources */,
 				3FD176BB278D83510025CCD2 /* JsonTest.swift in Sources */,
 				3F41CA7B27AD36DC0031F6C3 /* Repo_View_Directory.swift in Sources */,
@@ -459,7 +444,6 @@
 				3FD176B2278D31A50025CCD2 /* Signup.swift in Sources */,
 				3F772E0C279C71790047F693 /* Credentials.swift in Sources */,
 				3F6A1BB6279A814900146367 /* Repository.swift in Sources */,
-				3F4B5318278C17DA00D64A6D /* LoginCheck.swift in Sources */,
 				DA5B3CFA27B3A50E0086C6EE /* LoginCheck_Model.swift in Sources */,
 				DA253E13278DEE1500AEE18A /* ViewModifiers.swift in Sources */,
 				DA97B6A7278BE05D006C473E /* ClonetApp.swift in Sources */,
