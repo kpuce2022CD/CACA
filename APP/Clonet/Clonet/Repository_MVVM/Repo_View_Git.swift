@@ -209,26 +209,6 @@ struct Repo_View_Git: View {
             }
             
             
-            // MARK: Export Button
-            Button(action: {
-                
-            }){
-                HStack{
-                    Image(systemName: "arrowshape.turn.up.forward.fill")
-                    Text("Export")
-                }
-                
-                .frame(width: 200, height: 50)
-                .foregroundColor(.white)
-                .overlay(
-                    RoundedRectangle(cornerRadius: 15)
-                        .stroke(Color.white, lineWidth: 2)
-                )
-            }
-            .background(Color.black)
-            .cornerRadius(15)
-            
-            
             
             // MARK: Diff Button
             Button(action: {
