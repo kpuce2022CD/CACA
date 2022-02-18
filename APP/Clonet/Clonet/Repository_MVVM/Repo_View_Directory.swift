@@ -15,13 +15,15 @@ final class getFileList: ObservableObject{
     @Published var items = [String]()
     @Published var text : String = ""
     @State var saveCheck : Bool = true
-    
-    init(){
-        text = readMELoad(fileName: "README.md")
-    }
+    @State var fileName = ""
+
+//    init(){
+//        text = readMELoad(fileName: fileName)
+//    }
     
     func first(repo_n: String){
-        //        self.repoName = repo_n
+        self.repoName = repo_n
+        print("repo_n", repo_n)
         location(repoName: repo_n)
     }
     
@@ -40,14 +42,14 @@ final class getFileList: ObservableObject{
     }
     
     // MARK: READ STRING FILE
-    func readMELoad(fileName: String) -> String {
+    func readMELoad(repoName: String, fileName: String) -> String {
         var result = ""
         if let dir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
             let fileURL = dir.appendingPathComponent(repoName+"/"+fileName)
             
             do {
-                result = try String(contentsOf: fileURL, encoding: .utf8)
-                return result
+                text = try String(contentsOf: fileURL, encoding: .utf8)
+                return text
             }
             catch {print("fail to load readme")}
         }
@@ -56,8 +58,7 @@ final class getFileList: ObservableObject{
     
     // MARK: SAVE STRING FILE
     // MARK: 이 함수 README.md 말고 다른 파일도 저장할 수 있도록 바꿔주세요
-    func readMEsave(text: String){
-        var fileName : String = "README.md"
+    func readMEsave(repoName: String, text: String, fileName: String){
         if let dir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
             let fileURL = dir.appendingPathComponent(repoName+"/"+fileName)
             do {
@@ -140,7 +141,7 @@ struct Repo_View_Directory: View {
     
     //Repo_View_Image
     @State var fileNameImg = "" // to Store File Name picked
-    @State private var editREADME : Bool = true // determine README or not
+    @State private var editText : Bool = true // determine README or not
     @State var saveCheck : Bool = false
     
     @State var exportFileName : String = ""
@@ -152,6 +153,7 @@ struct Repo_View_Directory: View {
         self.repo_n = repo_n
         self.ec2_id = ec2_id
         dataList.first(repo_n: self.repo_n)
+        dataList.repoName = repo_n
     }
     
     var documentsUrl: URL {
@@ -245,11 +247,15 @@ struct Repo_View_Directory: View {
                         if(i != ".git"){
                             Button(i, action: {
                                 fileNameImg = i
-                                if(i == "README.md"){
-                                    editREADME = true
+                                var fileNameTxt = fileNameImg.components(separatedBy: ".")
+                                if(fileNameTxt[1] == "md" || fileNameTxt[1] == "txt"){
+                                    print("dataList:", fileNameImg)
+                                    dataList.readMELoad(repoName: repo_n, fileName: fileNameImg)
+                                    editText = true
                                 } else{
-                                    editREADME = false
+                                    editText = false
                                 }
+                                
                             })
                         }
                     }
@@ -263,7 +269,7 @@ struct Repo_View_Directory: View {
             
             //MARK: Repo_View_Image
             VStack{
-                if editREADME {
+                if editText {
                     VStack{
                         TextEditor(text: $dataList.text)
                             .padding()
@@ -272,8 +278,9 @@ struct Repo_View_Directory: View {
                         
                             .frame(width: 500, height: 500)
                             .border(Color.yellow, width: 1)
+                            .onAppear(perform: {print("dataText: ", dataList.text)})
                         Button("Save", action: {
-                            dataList.readMEsave(text: dataList.text)
+                            dataList.readMEsave(repoName: repo_n, text: dataList.text, fileName: fileNameImg)
                             self.saveCheck = dataList.saveCheck
                             print("self.saveCheck \(saveCheck) : Repo_View")
                         })
