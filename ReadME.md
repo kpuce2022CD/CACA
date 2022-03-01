@@ -55,5 +55,5 @@ https://studio.apollographql.com/org/clonet/graphs
 ![이름 없는 노트북 (1) (1)-13 2](https://user-images.githubusercontent.com/79956705/152506189-ad6484e2-e19c-4a53-8710-5230461b6c7b.jpg)
 
 ## Our Email
-![image](https://user-images.githubusercontent.com/67986703/152916124-30ef40e4-c906-420a-b184-a1e7c8bec27f.png)
+clonet.caca@gmail.com
 
