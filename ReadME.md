@@ -42,6 +42,9 @@ https://trello.com/b/0S6KfZjD/caca
     D[Click Link]-->E[Show portfolio];
 ```
 
+## DB
+https://dbdiagram.io/d/622854b261d06e6eadcb3436
+
 ## Git - Commit Message Convention
 | Command  | Description |
 | -------- | ----------- |
