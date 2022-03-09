@@ -1,26 +1,3 @@
-## Flow Chart
-### APP
-```mermaid
-  graph TD;
-      AA[SignUp]-->A;
-      A[Login]-->B;
-      C-->BB[Invite User];
-      BB-->CC[Send Mail];
-      CC-->C;
-      
-      B[Create Repository]-->C;
-      C[Show Repository]-->D[Clone or Pull];
-      D-->E[Add, Commit, Push];
-      D-->F[Reset];
-      D-->G[Compare];
-      D-->H[Create Branch];
-      D-->J[Show Log];
-      D-->K[Show Request];
-      K-->L[Create Request];
-      H-->I[Checkout Branch];
-```
-### WEB
-
 <div align='center' ><h1> ⋆⁺₊⋆ Clonet ⋆⁺₊⋆ </h1> </div>
             
 <h4> 원격 저장소를 활용한 그림 협업 & 버전관리 툴</h4>
@@ -42,6 +19,28 @@
 
 ## Trello
 https://trello.com/b/0S6KfZjD/caca
+
+## Flow Chart
+### APP
+```mermaid
+  graph TD;
+      AA[SignUp]-->A[Login]-->B;
+      C-->BB[Invite User]-->CC[Send Mail]-->C;
+      
+      B[Create Repository]-->C[Show Repository]-->D[Clone or Pull];
+      D-->E[Add, Commit, Push];
+      D-->F[Reset];
+      D-->G[Compare];
+      D-->H[Create Branch]-->I[Checkout Branch];
+      D-->J[Show Log];
+      D-->K[Show Request]-->L[Create Request];
+```
+### WEB
+```mermaid
+  graph TD;
+    AA[Login]-->A[Select MasterPiece]-->B[Select Thema]-->C[Create Link];
+    D[Click Link]-->E[Show portfolio];
+```
 
 ## Git - Commit Message Convention
 | Command  | Description |
