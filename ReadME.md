@@ -57,3 +57,17 @@ https://studio.apollographql.com/org/clonet/graphs
 ## Our Email
 clonet.caca@gmail.com
 
+## Flow Chart
+```mermaid
+flowchard TD
+A[asdf] --> B(asdfff);
+
+```
+
+```mermaid
+  graph TD;
+      A-->B;
+      A-->C;
+      B-->D;
+      C-->D;
+```
