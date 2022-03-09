@@ -1,3 +1,26 @@
+## Flow Chart
+### APP
+```mermaid
+  graph TD;
+      AA[SignUp]-->A;
+      A[Login]-->B;
+      C-->BB[Invite User];
+      BB-->CC[Send Mail];
+      CC-->C;
+      
+      B[Create Repository]-->C;
+      C[Show Repository]-->D[Clone or Pull];
+      D-->E[Add, Commit, Push];
+      D-->F[Reset];
+      D-->G[Compare];
+      D-->H[Create Branch];
+      D-->J[Show Log];
+      D-->K[Show Request];
+      K-->L[Create Request];
+      H-->I[Checkout Branch];
+```
+### WEB
+
 <div align='center' ><h1> ⋆⁺₊⋆ Clonet ⋆⁺₊⋆ </h1> </div>
             
 <h4> 원격 저장소를 활용한 그림 협업 & 버전관리 툴</h4>
@@ -57,17 +80,3 @@ https://studio.apollographql.com/org/clonet/graphs
 ## Our Email
 clonet.caca@gmail.com
 
-## Flow Chart
-```mermaid
-flowchard TD
-A[asdf] --> B(asdfff);
-
-```
-
-```mermaid
-  graph TD;
-      A-->B;
-      A-->C;
-      B-->D;
-      C-->D;
-```
