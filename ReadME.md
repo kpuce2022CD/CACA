@@ -38,7 +38,7 @@ https://trello.com/b/0S6KfZjD/caca
 ### WEB
 ```mermaid
   graph TD;
-    AA[Login]-->A[Select MasterPiece]-->B[Select Thema]-->C[Create Link];
+    AA[Login]-->A[Select MasterPiece]-->B[Select Theme]-->C[Create Link];
     D[Click Link]-->E[Show portfolio];
 ```
 
