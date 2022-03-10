@@ -24,21 +24,13 @@ function App() {
   return (
       <div className="App">
         <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            {message}
-          </p>
-          <p>
-            {message2}
-          </p>
-          <a
-              className="App-link"
-              href="https://reactjs.org"
-              target="_blank"
-              rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
+          <p>user_name</p>
+          <p>user_email</p>
+          <p>email_context</p>
+          <form>
+            <p><input type="text" name="contact_context" value="contact_context"></p>
+            <p><input type="submit" value="Submit"></p>
+          </form>
         </header>
       </div>
   );
