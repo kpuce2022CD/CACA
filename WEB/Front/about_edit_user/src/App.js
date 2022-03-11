@@ -1,6 +1,7 @@
 
 
 import logo from './logo.svg';
+import add_image from './add_image.png';
 import './App.css';
 import { useEffect, useState } from 'react';
 
@@ -58,7 +59,7 @@ function App() {
         <header className="about_edit_user">
             About_Edit_User
         </header>
-          <img src={logo} className="App-logo" alt="logo" />
+          <img src={add_image} alt="add_image" width={200} height={200}/>
           <input onChange={onChange} value={text} />
           <div>
               <button>Save</button>
