@@ -37,12 +37,8 @@ final class Login_ViewModel : ObservableObject {
             case .success(let graphQLResult):
                 if let logins = graphQLResult.data?.login{
                     print("Success! Result: \(logins.indices) \(logins.count)")
-//                    print("\(graphQLResult)")
-//                    DispatchQueue.main.sync {
-//                    self.user = logins
-////                    }
-//
-//                    print("\(logins)")
+                    print("\(graphQLResult)")
+
                     for i in logins.indices{
                         self.logins = self.process(data: logins[i] ?? LoginData.init(userId: "", userPw: "", userName: "", userEmail: "", profilePic: "", about: "", contact: ""))
                     }
@@ -53,7 +49,7 @@ final class Login_ViewModel : ObservableObject {
                         self.isLogin = false
                     }
                 } else if let errors = graphQLResult.errors {
-//                    print("GraphQL errors \(errors)")
+                    print("GraphQL errors \(errors)")
                 }
                 
             case .failure(let error):
@@ -66,8 +62,3 @@ final class Login_ViewModel : ObservableObject {
         return Logins(data)
     }
 }
-
-//final class UserAuth : ObservableObject {
-//    @Published var user_id = ""
-//    @Published var user_pw = ""
-//}

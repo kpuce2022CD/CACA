@@ -16,6 +16,7 @@ provider "aws" {
 }
 
 resource "aws_security_group" "instance" { // security group
+
     name = "CLONET_REPOSITORY_SECURITY_GROUP"
 
     ingress {
@@ -32,18 +33,42 @@ resource "aws_security_group" "instance" { // security group
       cidr_blocks = ["0.0.0.0/0"]
     }
 
+
+    ingress {
+      from_port = 4000
+      to_port = 4000
+      protocol = "tcp"
+      cidr_blocks = ["0.0.0.0/0"]
+    }
+
+    ingress {
+      from_port = 3306
+      to_port = 3306
+      protocol = "tcp"
+      cidr_blocks = ["0.0.0.0/0"]
+    }
+
+    egress {
+      from_port = 0
+      to_port = 0
+	protocol = "-1"
+      cidr_blocks = ["0.0.0.0/0"]
+    }
+
+
     lifecycle {
         create_before_destroy = true
     }
 }
 
 resource "aws_instance" "app_server" { // define component (ec2) // resource type, resource name
+
   ami           = "ami-014aafc4857e5952f"
   instance_type = "t2.micro"
   vpc_security_group_ids = ["${aws_security_group.instance.id}"]
 
   tags = {
-    Name = "clonet-0311-1740"
+    Name = "CLONET_SERVER"
   }
    
 }
