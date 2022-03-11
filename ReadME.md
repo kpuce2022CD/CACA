@@ -17,8 +17,22 @@
 
 <img src="https://img.shields.io/badge/Github-181717?style=flat-square&logo=Github&logoColor=white"/>
 
+
+## Architecture
+![architecture drawio (3)](https://user-images.githubusercontent.com/79956705/154617966-c5f6b172-c957-42c9-bf8c-0937cddd2c9d.png)
+
 ## Trello
 https://trello.com/b/0S6KfZjD/caca
+## Apollo
+https://studio.apollographql.com/org/clonet/graphs
+
+## To Run
+```
+cd Terraform
+terraform init
+terraform apply
+terraform destroy
+```
 
 ## Flow Chart
 ### APP
@@ -41,7 +55,6 @@ https://trello.com/b/0S6KfZjD/caca
     AA[Login]-->A[Select MasterPiece]-->B[Select Theme]-->C[Create Link];
     D[Click Link]-->E[Show portfolio];
 ```
-
 ## DB
 https://dbdiagram.io/d/622854b261d06e6eadcb3436
 
@@ -69,16 +82,10 @@ https://dbdiagram.io/d/622854b261d06e6eadcb3436
 * pjy0619@kpu.ac.kr
 * petitejini@kpu.ac.kr
 
-## Apollo
-https://studio.apollographql.com/org/clonet/graphs
 
-## Architecture
-![architecture drawio (3)](https://user-images.githubusercontent.com/79956705/154617966-c5f6b172-c957-42c9-bf8c-0937cddd2c9d.png)
-
-
-## Swift Prototype
-![이름 없는 노트북 (1) (1)-13 2](https://user-images.githubusercontent.com/79956705/152506189-ad6484e2-e19c-4a53-8710-5230461b6c7b.jpg)
 
 ## Our Email
 clonet.caca@gmail.com
 
+## Swift Prototype
+![이름 없는 노트북 (1) (1)-13 2](https://user-images.githubusercontent.com/79956705/152506189-ad6484e2-e19c-4a53-8710-5230461b6c7b.jpg)
