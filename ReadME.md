@@ -86,6 +86,3 @@ https://dbdiagram.io/d/622854b261d06e6eadcb3436
 
 ## Our Email
 clonet.caca@gmail.com
-
-## Swift Prototype
-![이름 없는 노트북 (1) (1)-13 2](https://user-images.githubusercontent.com/79956705/152506189-ad6484e2-e19c-4a53-8710-5230461b6c7b.jpg)
