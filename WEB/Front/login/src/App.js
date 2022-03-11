@@ -77,15 +77,18 @@ function App() {
         </header>
         <main className="" id="main-collapse">
           <div className="row">
-            <div>
-              <center>
-                <header>
-                  <img src={logo} className="App-logo" alt="logo" />
-                  <p className="clonet-head">CLONET</p>
-                </header>
-              </center>
+            <center>
+              <div aria-setsize={2}>
+                <div className="form-group">
+                  <input type="text" className="form-control" id="user_id" placeholder="ID"/>
+                </div>
+                <div className="form-group">
+                  <input type="text" className="form-control" id="user_pw" placeholder="Password"/>
+                </div>
+                <button type="submit" className="btn btn-primary btn-lg">Login</button>
+              </div>
+            </center>
 
-            </div>
           </div>
 
 
