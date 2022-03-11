@@ -20,7 +20,7 @@ struct Login_View: View {
     var body: some View {
         NavigationView {
             VStack(alignment: .center) {
-                //Spacer(minLength: 10.0)
+                
                 HStack(alignment: .center){
                     Image("clonet_logo_white")
                         .resizable()
