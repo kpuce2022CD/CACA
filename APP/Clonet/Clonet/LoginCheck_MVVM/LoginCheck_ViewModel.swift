@@ -44,17 +44,9 @@ struct MyAlert: View {
                     ZStack {
                         Button("완료") {
                             UIApplication.shared.windows[0].rootViewController?.dismiss(animated: true, completion: {})
-                            loginCheck_ViewModel.fetch(user_id: uuserID)
                             self.selectionString = "RepoButton"
                             loginCheck_ViewModel.create_repo(repoName: input_repoName, user_id: uuserID)
                             loginCheck_ViewModel.fetch(user_id: uuserID)
-                            loginCheck_ViewModel.fetch(user_id: uuserID)
-                            loginCheck_ViewModel.fetch(user_id: uuserID)
-                            loginCheck_ViewModel.fetch(user_id: uuserID)
-//                            var timer_repo = Timer.scheduledTimer(withTimeInterval: 2, repeats: false, block: { _ in
-//                                loginCheck_ViewModel.fetch(user_id: uuserID)
-//                                print("2")
-//                            })
                         }
                     }
                     
@@ -65,6 +57,7 @@ struct MyAlert: View {
                     Spacer()
                     Button(action: {
                         UIApplication.shared.windows[0].rootViewController?.dismiss(animated: true, completion: {})
+                        loginCheck_ViewModel.fetch(user_id: uuserID)
                     }) {
                         Text("취소")
                     }

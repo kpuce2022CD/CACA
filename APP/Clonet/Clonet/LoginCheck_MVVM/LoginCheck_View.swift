@@ -62,6 +62,8 @@ struct LoginCheck_View: View {
                     .navigationBarHidden(true)
                     .hiddenNavigationBarStyle()
                 }
+            }.refreshable {
+                logincheck_ViewModel.fetch(user_id: userID)
             }
         }
         .ignoresSafeArea(.all)
