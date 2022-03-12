@@ -25,7 +25,7 @@ function App() {
 
   return (
     <div>
-      <h2>aaaaaa</h2>
+//      <h2>aaaaaa</h2>
       <header class="">
         <div class="navbar navbar-default visible-xs">
           <button type="button" class="navbar-toggle collapsed">
