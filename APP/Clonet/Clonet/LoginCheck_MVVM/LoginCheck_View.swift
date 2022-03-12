@@ -75,15 +75,6 @@ struct LoginCheck_View: View {
         .onAppear {
             logincheck_ViewModel.fetch(user_id: userID)
         }
-//        .refreshable {
-//            await LoginCheck_View(userID: userID)
-//        }
+
     }
 }
-
-//struct LoginCheck_View_Previews: PreviewProvider {
-//    static var previews: some View {
-//        LoginCheck_View(userID: "")
-//            .previewInterfaceOrientation(.landscapeLeft)
-//    }
-//}
