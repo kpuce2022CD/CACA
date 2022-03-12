@@ -56,7 +56,7 @@ final class log_repo_ViewModel: ObservableObject{
     }
     
     func fetch(Repo_Name: String){
-        Network.shared.apollo.fetch(query: LogRepoQuery(repo_name: Repo_Name)){ result in
+        Network.shared.apollo.fetch(query: LogRepoQuery(repo_name: Repo_Name), cachePolicy: CachePolicy.fetchIgnoringCacheData){ result in
             switch result {
             case .success(let graphQLResult):
                 if let log_repos = graphQLResult.data?.logRepo {
