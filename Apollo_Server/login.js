@@ -115,6 +115,7 @@ const resolvers = {
 
     // const changesFile = path.join(graphqlStaticDir, 'upcoming-changes.json')
     log_repo: (parent, args, context, info) => {
+
       var repository_name = args.repo_name
       var location = "/var/www/html/git-repositories/" + repository_name + ".git"
 
@@ -128,6 +129,35 @@ const resolvers = {
 
       var locationJSON = location + "/logJSON.json"
       return JSON.parse("[" + fs.readFileSync(locationJSON).slice(0, -1) + "]");
+
+////////////   ////////////   ////////////   ////////////   ////////////   ////////////   ////////////   ////////////   ////////////
+
+
+      // var repository_name = args.repo_name
+      // var location = "/var/www/html/git-repositories/" + repository_name + ".git"
+
+      // // create JSON git log
+      // var createJSON = 'cd ' + location + ';' + 'git log --pretty=format:\'{%n  "commit_id":"%H",%n  "commit_msg":"%s",%n  "user_id":"%aN",%n "date":"%aD" %n}\', > logJSON.json';
+
+
+      // // if (shell.exec(createJSON).code !== 0) {
+      // //   shell.echo('Error: command failed');
+      // // }
+
+      // exec(createJSON, (err, stdout, stderr) => {
+      //   if (err) {
+      //     //some err occurred
+      //     console.error(err)
+      //   } else {
+      //    // the *entire* stdout and stderr (buffered)
+      //    console.log(`stdout: ${stdout}`);
+      //   //  console.log(`stderr: ${stderr}`);
+      //    return JSON.parse("[" + stdout.slice(0, -1) + "]");
+      //   }
+      // });
+
+      // // var locationJSON = location + "/logJSON.json"
+      // // return JSON.parse("[" + fs.readFileSync(locationJSON).slice(0, -1) + "]");
 
     },
 
