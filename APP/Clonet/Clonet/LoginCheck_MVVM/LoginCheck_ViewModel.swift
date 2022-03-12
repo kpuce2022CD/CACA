@@ -76,17 +76,30 @@ final class LoginCheck_ViewModel: ObservableObject {
     @Published var Repo_List: [RepoNameList] = []
     
     @ObservedObject var login_ViewModel = Login_ViewModel()
-    @Published var repoIP = "3.34.194.172"
+    @Published var repoIP = "13.209.116.111"
     @Published var repoName = ""
     @Published var user_id = ""
+    var timer: Timer?
     
     init(){
-        fetch(user_id: user_id)
-        create_repo(repoName: repoName, user_id: user_id)
+//        first(user_id: user_id)
+//        create_repo(repoName: repoName, user_id: user_id)
+    }
+    
+    deinit {
+        timer?.invalidate()
+        timer = nil
     }
     
     func first(user_id: String){
         self.user_id = user_id
+        fetch(user_id: user_id)
+        
+        // Timer to get Data
+        timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block: { _ in
+            self.fetch(user_id: user_id)
+        })
+        
     }
     
     func create_repo(repoName: String, user_id: String){
@@ -105,15 +118,19 @@ final class LoginCheck_ViewModel: ObservableObject {
     }
     
     func fetch(user_id: String){
+        
         Network.shared.apollo.fetch(query: RepoListQuery(user_id: user_id)){ result in
             switch result {
             case .success(let graphQLResult):
+                self.Repo_List = []
                 if let log_repos = graphQLResult.data?.repoList {
                     for i in log_repos.indices{
+                        
                         self.launches = self.process(data: graphQLResult.data?.repoList![i] ?? RepoListData.init(userId: "" , repoName:""))
                         self.Repo_List.append(self.launches)
-                        print("\(self.Repo_List)")
+                        
                     }
+                    print("fetch:\(self.Repo_List)")
                 } else if let errors = graphQLResult.errors {
                     print("GraphQL errors \(errors)")
                 }
@@ -122,10 +139,11 @@ final class LoginCheck_ViewModel: ObservableObject {
                 print("Failure! Error: \(error)")
             }
         }
+        
     }
     
     func process(data: RepoListData) -> RepoNameList {
-        print("\(RepoNameList(data))")
+//        print("\(RepoNameList(data))")
         return RepoNameList(data)
     }
     
@@ -137,6 +155,8 @@ final class LoginCheck_ViewModel: ObservableObject {
         
         UIApplication.shared.windows[0].rootViewController?.present(alertHC, animated: true)
     }
+    
+    
 }
     
 //    // MARK: ProfileImage
