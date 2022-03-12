@@ -19,7 +19,7 @@ struct Repo_View: View {
     var body: some View {
         HStack{
             VStack{
-                Repo_View_Directory(repo_n: repoName, ec2_id: "3.34.194.172")
+                Repo_View_Directory(repo_n: repoName, ec2_id: "13.209.116.111")
             }
             VStack{
                 Repo_View_Request()

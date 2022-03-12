@@ -94,7 +94,7 @@ struct LoginCheck_View: View {
         .hiddenNavigationBarStyle()
 //        .navigationViewStyle(StackNavigationViewStyle())
         .onAppear {
-            logincheck_ViewModel.first(user_id: userID)
+            logincheck_ViewModel.fetch(user_id: userID)
         }
     }
 }
