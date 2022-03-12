@@ -102,6 +102,7 @@ const resolvers = {
     User: () => knex("user").select("*"),
     Repository: () => knex("repository").select("*"),
     mapping_repo_user: () => knex("mapping_repo_user").select("*"),
+    request: () => knex("request").select("*"),
 
     login: (parent, args, context, info) => knex("user").select("*").where('user_id', args.user_id), // login
     findId: (parent, args, context, info) => knex("user").select("*").where('user_email', args.user_email), // findId
