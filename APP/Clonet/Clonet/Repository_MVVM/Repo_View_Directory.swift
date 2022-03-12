@@ -26,9 +26,13 @@ final class getFileList: ObservableObject{
         location(repoName: repo_n)
         
         // Timer to get Data
-        timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block: { _ in
+        timer = Timer.scheduledTimer(withTimeInterval: 2, repeats: true, block: { _ in
             self.location(repoName: repo_n)
         })
+    }
+    
+    deinit {
+        timer?.invalidate()
     }
     
     // MARK: GET FILE LIST
