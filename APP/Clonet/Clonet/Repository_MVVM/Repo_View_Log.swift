@@ -18,7 +18,6 @@ struct Repo_View_Log: View {
     
     init(repo_n: String){
         self.repo_n = repo_n
-        
     }
 
     var body: some View {
