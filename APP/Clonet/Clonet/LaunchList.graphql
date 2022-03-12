@@ -21,6 +21,51 @@ query mapping_repo_user{
     repo_name
   }
 }
+query request {
+    request {
+    user_id
+    repo_name
+    x_pixel
+    y_pixel
+    request_context
+    }
+}
+
+query request_id($user_id: String){
+    request_id(user_id: $user_id) {
+        user_id
+        repo_name
+        x_pixel
+        y_pixel
+        request_context
+    }
+}
+
+query request_repo($repo_name: String){
+    request_repo(repo_name: $repo_name) {
+        user_id
+        repo_name
+        x_pixel
+        y_pixel
+        request_context
+    }
+}
+
+query request_xy($x_pixel: String, $y_pixel: String){
+    request_xy(x_pixel: $x_pixel, y_pixel: $y_pixel) {
+        user_id
+        repo_name
+        x_pixel
+        y_pixel
+        request_context
+    }
+}
+
+query diff_commit($first_commit: String, $second_commit: String){
+    diff_commit($first_commit: String, $second_commit: String){
+        diff_link
+    }
+}
 
 query login($userId: String){
   login(user_id: $userId) {
@@ -123,3 +168,54 @@ mutation insert_profilePic($user_id: String, $profilePic: String){
 mutation plusUser($user_id: String, $repo_name: String){
   plusUser(user_id: $user_id, repo_name: $repo_name)
 }
+
+mutation create_request($user_id: String, $repo_name: String, $x_pixel: String, $y_pixel: String, $request_context: String){
+    create_request(user_id: $user_id, repo_name: $repo_name, x_pixel: $x_pixel, y_pixel: $y_pixel, request_context: $request_context)
+}
+
+mutation insert_contact($user_id: String, $contact: String){
+    insert_contact(user_id: $user_id, contact: $contact)
+}
+
+mutation insert_about($user_id: String, $about: String){
+    insert_about(user_id: $user_id, about: $about)
+}
+
+mutation update_userpw($user_id: String, $user_pw: String){
+    update_userpw(user_id: $user_id, user_pw: $user_pw)
+}
+
+mutation update_name($user_id: String, $user_name: String){
+    update_name(user_id: $user_id, user_name: $user_name)
+}
+
+mutation update_email($user_id: String, $user_email: String){
+    update_email(user_id: $user_id, user_email: $user_email)
+}
+
+mutation update_profilePic($user_id: String, $profilePic: String){
+    update_profilePic(user_id: $user_id, profilePic: $profilePic)
+}
+
+mutation update_about($user_id: String, $about: String){
+    update_about(user_id: $user_id, about: $about)
+}
+
+mutation update_contact($user_id: String, $contact: String){
+    update_contact(user_id: $user_id, contact: $contact)
+}
+
+mutation delete_request_userID($user_id: String){
+    delete_request_userID(user_id: $user_id)
+}
+
+mutation delete_request_userID($user_id: String){
+    delete_request_userID(user_id: $user_id)
+}
+
+mutation delete_request_repo($repo_name: String){
+    delete_request_repo(repo_name: $repo_name)
+}
+
+mutation delete_request_xy($x_pixel: String, $y_pixel: String){
+    delete_request_xy(x_pixel: $x_pixel, y_pixel: $y_pixel)
