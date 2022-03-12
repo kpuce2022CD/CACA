@@ -22,6 +22,7 @@ final class log_repo_ViewModel: ObservableObject{
     
     
     func appear(){
+        Log_repo_list.removeAll()
         fetch(Repo_Name: self.repo_n)
         repoIP(Repo_Name: self.repo_n)
     }

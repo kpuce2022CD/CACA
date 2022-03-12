@@ -38,7 +38,6 @@ struct Repo_View_Git: View {
         self.repo_n = repo_n
         Repository.initialize_libgit2()
         self.userID = userID
-        
     }
     
     var body: some View {
@@ -65,11 +64,10 @@ struct Repo_View_Git: View {
                     NavigationView {
                         Form {
                             Section {
-                                Picker("Choose First Diff Commit", selection: $log_number1) {
+                                Picker("Choose Roll Back Commit", selection: $log_number1) {
                                     ForEach(log_repoViewModel_a.Log_repo_list.indices) {
                                         Text("\(log_repoViewModel_a.Log_repo_list[$0].userId) : \(log_repoViewModel_a.Log_repo_list[$0].commitMsg)")
                                     }
-                                    
                                 }
                             }
                             Section{
@@ -92,15 +90,10 @@ struct Repo_View_Git: View {
             }
             .background(Color.black)
             .cornerRadius(15)
-            .onAppear(){
-                log_repoViewModel_a.repo_n = self.repo_n
-                log_repoViewModel_a.appear()
-            }
             
             // MARK: Commit Button
             Button(action: {
                 alertView()
-                //                commitGitRepo(localRepoLocation: documentURL.appendingPathComponent(repo_n), name: UserName, email: userEmail, commit_msg: commit_msg)
             }){
                 HStack{
                     Image(systemName: "opticaldiscdrive.fill")
@@ -142,6 +135,7 @@ struct Repo_View_Git: View {
                 // MARK: Pull Button
                 Button(action: {
                     DispatchQueue.global().sync{
+                        log_repoViewModel_a.Log_repo_list.removeAll()
                         log_repoViewModel_a.appear()
                         print("repo_n:", log_repoViewModel_a.Log_repo_list.first?.commitId)
                     }
@@ -261,6 +255,7 @@ struct Repo_View_Git: View {
             }
             .onAppear(){
                 log_repoViewModel_a.repo_n = self.repo_n
+                log_repoViewModel_a.Log_repo_list.removeAll()
                 log_repoViewModel_a.appear()
             }
             .padding()
