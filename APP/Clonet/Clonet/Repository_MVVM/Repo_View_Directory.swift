@@ -9,27 +9,30 @@ import SwiftUI
 import MobileCoreServices
 import Foundation
 import ToastUI
+import Combine
 
 final class getFileList: ObservableObject{
     @State var repoName = ""
-    @Published var items = [String]()
+    @Published var items = [String]() // Directory File List
     @Published var text : String = ""
     @State var saveCheck : Bool = true
     @State var fileName = ""
-
-//    init(){
-//        text = readMELoad(fileName: fileName)
-//    }
     
+    //Timer
+    var timer: Timer?
+
     func first(repo_n: String){
         self.repoName = repo_n
-        print("repo_n", repo_n)
         location(repoName: repo_n)
+        
+        // Timer to get Data
+        timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block: { _ in
+            self.location(repoName: repo_n)
+        })
     }
     
     // MARK: GET FILE LIST
     func location(repoName: String){
-//        print("reponame: \(repoName)")
         let urlString = documentURL.appendingPathComponent(repoName).absoluteString
         let fileManager = FileManager.default
         var remoteString = urlString.replacingOccurrences(of: "file://", with: "")
@@ -110,7 +113,6 @@ struct DocumentPicker : UIViewControllerRepresentable {
         }
         
         func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentsAt urls: [URL]) {
-//            print("ursl \(urls)")
             guard let selectedFileURL = urls.first else {
                 return
             }
@@ -167,8 +169,7 @@ struct Repo_View_Directory: View {
         // delete File
         let fileManager = FileManager.default
         let path = documentsUrl.path
-//        print("path: \(path)/\(self.repo_n)/\(dataList.items[offsets[offsets.startIndex]])")
-//        print("offsets: \(offsets)")
+        
         do{
             try fileManager.removeItem(atPath: path + "/\(self.repo_n)/" + "\(dataList.items[offsets[offsets.startIndex]])")
         }catch let e {

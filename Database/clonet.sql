@@ -1,5 +1,5 @@
 
-CREATE DATABASE clonet_database default CHARACTER SET UTF8;
+CREATE DATABASE clonet_database;
 
 show databases;
 use clonet_database;
@@ -11,11 +11,14 @@ drop table repository;
 drop table mapping_repo_user;
 
 select * from user;
-select * from repository;
+select * from Repository;
+select * from mapping_repo_user;
 
-delete from user where user_pw="";
+delete from user where user_id="b";
 
 insert into user values ("user_id", "", "", "", "", "", "");
+insert into repository values("TEST", "3.34.194.172");
+insert into mapping_repo_user values("user1", "TEST");
 
 SELECT @@AUTOCOMMIT;
 SET AUTOCOMMIT = 1;
@@ -35,6 +38,7 @@ create table repository(
     repo_ec2_ip char(15) not null
 );
 
+
 select * from mapping_repo_user;
 
 create table mapping_repo_user(
@@ -43,7 +47,7 @@ create table mapping_repo_user(
     
     primary key(user_id, repo_name),
     foreign key (user_id) references user (user_id),
-    foreign key (repo_name) references repository (repo_name)
+    foreign key (repo_name) references Repository (repo_name)
 );
 
 create table mapping_repo_group(
