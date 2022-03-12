@@ -33,7 +33,6 @@ struct MyAlert: View {
     var uuserID = ""
     
     var body: some View {
-        //        let RepoJSON = "{\"user_id\": \"\(userAuth.user_id)\", \"repo_name\": \"\(userRepo.Repo_name)\", \"Repo_ec2_ip\": \"\(userRepo.Repo_ec2_ip)\", \"directory_path\": \"\(userRepo.directory_path)\"}"
         VStack {
             VStack {
                 Text("저장소 이름").font(.headline).padding()
@@ -45,8 +44,17 @@ struct MyAlert: View {
                     ZStack {
                         Button("완료") {
                             UIApplication.shared.windows[0].rootViewController?.dismiss(animated: true, completion: {})
+                            loginCheck_ViewModel.fetch(user_id: uuserID)
                             self.selectionString = "RepoButton"
                             loginCheck_ViewModel.create_repo(repoName: input_repoName, user_id: uuserID)
+                            loginCheck_ViewModel.fetch(user_id: uuserID)
+                            loginCheck_ViewModel.fetch(user_id: uuserID)
+                            loginCheck_ViewModel.fetch(user_id: uuserID)
+                            loginCheck_ViewModel.fetch(user_id: uuserID)
+//                            var timer_repo = Timer.scheduledTimer(withTimeInterval: 2, repeats: false, block: { _ in
+//                                loginCheck_ViewModel.fetch(user_id: uuserID)
+//                                print("2")
+//                            })
                         }
                     }
                     
@@ -64,13 +72,13 @@ struct MyAlert: View {
                 }.padding(0)
                 
             }.background(Color(white: 0.9))
+            
         }
     }
 }
 
 
 // MARK: LoginCheck_ViewModel
-
 final class LoginCheck_ViewModel: ObservableObject {
     @Published var launches: RepoNameList = RepoNameList.init()
     @Published var Repo_List: [RepoNameList] = []
@@ -82,6 +90,7 @@ final class LoginCheck_ViewModel: ObservableObject {
     var timer: Timer?
     
     init(){
+        fetch(user_id: user_id)
 //        first(user_id: user_id)
 //        create_repo(repoName: repoName, user_id: user_id)
     }
@@ -118,8 +127,7 @@ final class LoginCheck_ViewModel: ObservableObject {
     }
     
     func fetch(user_id: String){
-        
-        Network.shared.apollo.fetch(query: RepoListQuery(user_id: user_id)){ result in
+        Network.shared.apollo.fetch(query: RepoListQuery(user_id: user_id), cachePolicy: CachePolicy.fetchIgnoringCacheData){ result in
             switch result {
             case .success(let graphQLResult):
                 self.Repo_List = []
@@ -143,7 +151,6 @@ final class LoginCheck_ViewModel: ObservableObject {
     }
     
     func process(data: RepoListData) -> RepoNameList {
-//        print("\(RepoNameList(data))")
         return RepoNameList(data)
     }
     
@@ -154,33 +161,9 @@ final class LoginCheck_ViewModel: ObservableObject {
         alertHC.modalPresentationStyle = UIModalPresentationStyle.formSheet
         
         UIApplication.shared.windows[0].rootViewController?.present(alertHC, animated: true)
+        
+        fetch(user_id: userID)
     }
     
     
 }
-    
-//    // MARK: ProfileImage
-//    var ProfileImgName: String = ""
-////    var nickName: String = ""
-////    var userID : String = ""
-//
-//    var UserMainImage: some View{
-////        CircleImage(image: Image(ProfileImgName))
-//    Image(systemName: "person.circle.fill")
-//            .resizable()
-//            .frame(width: 150, height: 150)
-//            .clipShape(Circle())
-//            .overlay(Circle().stroke(Color.indigo, lineWidth: 3))
-//            .offset(y: -130)
-//            .padding(.bottom, -130)
-//    }
-//
-//    var UserInfo: some View {
-//        VStack(alignment: .center){
-//            Text(user_id)
-//                .font(.title)
-//        }
-//        .padding()
-//
-//    }
-//}

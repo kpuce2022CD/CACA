@@ -12,20 +12,14 @@ import SwiftGit2
 
 struct LoginCheck_View: View {
     @StateObject var logincheck_ViewModel = LoginCheck_ViewModel()
-    @State private var showAlert = false
     
     @State var userID : String
-    
-//    init(userID: String){
-//        self.userID = userID
-//    }
     
     var body: some View {
         NavigationView{
             HStack{
                 VStack{
                     Spacer()
-                    //        CircleImage(image: Image(ProfileImgName))
                     Image(systemName: "person.circle.fill")
                         .resizable()
                         .frame(width: 150, height: 150)
@@ -56,28 +50,11 @@ struct LoginCheck_View: View {
                             NavigationLink(destination: Repo_View(userID: userID, repoName: s.repo_name)){
                                 VStack{
                                     Text("repo_name: \(s.repo_name)")
-                                    //                                    Text("userId: \(s.user_id)")
-                                    //                                    Text("--")
                                 }
                             }
                             .ignoresSafeArea(edges: .all)
                             
                         }
-                        //                        ForEach(logincheck_ViewModel.Repo_List, id: \.self) { i in
-                        //                            VStack{
-                        //                                Text().padding()
-                        //                                    .padding(2)
-                        //                                    .font(.title3)
-                        //                            }
-                        //
-                        ////                            NavigationLink(destination: Repo_Home(repoName: i, user_id: userID)){
-                        ////                                VStack{
-                        ////                                    Text(i).padding()
-                        ////                                        .padding(2)
-                        ////                                        .font(.title3)
-                        ////                                }
-                        ////                            }
-                        //                        }
                         .buttonStyle(PlainButtonStyle())
                     }
                     .ignoresSafeArea(.all)
@@ -96,12 +73,15 @@ struct LoginCheck_View: View {
         .onAppear {
             logincheck_ViewModel.fetch(user_id: userID)
         }
+//        .refreshable {
+//            await LoginCheck_View(userID: userID)
+//        }
     }
 }
 
-struct LoginCheck_View_Previews: PreviewProvider {
-    static var previews: some View {
-        LoginCheck_View(userID: "")
-            .previewInterfaceOrientation(.landscapeLeft)
-    }
-}
+//struct LoginCheck_View_Previews: PreviewProvider {
+//    static var previews: some View {
+//        LoginCheck_View(userID: "")
+//            .previewInterfaceOrientation(.landscapeLeft)
+//    }
+//}
