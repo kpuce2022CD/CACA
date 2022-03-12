@@ -38,16 +38,24 @@ const typeDefs = gql
     repo_name: String
   }
   type log {
-    user_id: String
-    commit_id: String
-    commit_msg: String
+    user_id: String,
+    commit_id: String,
+    commit_msg: String,
     date: String
+  }
+  type request {
+    user_id: String,
+    repo_name: String,
+    x_pixel: String,
+    y_pixel: String,
+    request_context: String
   }
 
   type Query {
     User: [User],
     Repository: [Repository],
     mapping_repo_user: [mapping_repo_user],
+    request: [request],
 
     login(user_id: String): [User],
     findId(user_email: String): [User],
@@ -60,12 +68,32 @@ const typeDefs = gql
     select_ec2(repo_ec2_ip: String): [Repository],
 
     log_repo(repo_name: String): [log],
+
+    request_id(user_id: String): [request],
+    request_repo(repo_name: String): [request],
+    request_xy(x_pixel: String, y_pixel: String): [request],
+    diff_commit(first_commit: String, second_commit: String): String,
+
   }
   type Mutation {
     signup(user_id: String, user_pw: String, user_name: String, user_email: String): String,
     create_repo(repo_name: String, repo_ec2_ip: String, user_id: String): String,
     insert_profilePic(user_id: String, profilePic: String): String,
     plusUser(user_id: String, repo_name: String): String,
+
+
+    create_request(user_id: String, repo_name: String, x_pixel: String, y_pixel: String, request_context: String): String,
+    update_userpw(user_id: String, user_pw: String): String,
+    update_name(user_id: String, user_name: String): String,
+    update_email(user_id: String, user_email: String): String,
+    update_profilePic(user_id: String, profilePic: String): String,
+    update_about(user_id: String, about: String): String,
+    update_contact(user_id: String, contact: String): String,
+
+    delete_request_userID(user_id: String): String,
+    delete_request_repo(repo_name: String): String,
+    delete_request_xy(x_pixel: String, y_pixel: String): String
+
   }
   `;
 
@@ -102,6 +130,15 @@ const resolvers = {
       return JSON.parse("[" + fs.readFileSync(locationJSON).slice(0, -1) + "]");
 
     },
+
+     ////////////   ////////////   ////////////   ////////////   ////////////   ////////////   ////////////   ////////////   ////////////
+
+    request_id: (parent, args, context, info) => knex("request").select("*").where('user_id', args.user_id),
+    request_repo: (parent, args, context, info) => knex("request").select("*").where('repo_name', args.repo_name), 
+    request_xy: (parent, args, context, info) => knex("request").select("*").where('x_pixel', args.x_pixel).where('y_pixel', args.y_pixel), 
+    diff_commit: (parent, args, context, info) => {
+      return "diff_commit"
+    }, 
   },
 
   Mutation: {
@@ -145,6 +182,62 @@ const resolvers = {
         .then(function (result) { })
       return args.user_id
     },
+
+    ////////////   ////////////   ////////////   ////////////   ////////////   ////////////   ////////////   ////////////   ////////////
+    create_request: (parent, args, context, info) => {
+      knex('request').insert({ user_id: args.user_id, repo_name: args.repo_name, x_pixel: args.x_pixel, y_pixel: args.y_pixel, request_context: args.request_context })
+        .then(function (result) { })
+      return args.user_id
+    },
+
+    update_userpw: (parent, args, context, info) => {
+      knex('user').update({ user_pw: args.user_pw }).where('user_id', args.user_id)
+      return args.user_pw
+    },
+
+    update_name: (parent, args, context, info) => {
+      knex('user').update({ user_name: args.user_name }).where('user_id', args.user_id)
+      return args.user_name
+    },
+
+    update_email: (parent, args, context, info) => {
+      knex('user').update({ user_email: args.user_email }).where('user_id', args.user_id)
+      return args.user_email
+    },
+
+    update_profilePic: (parent, args, context, info) => {
+      knex('user').update({ profilePic: args.profilePic }).where('user_id', args.user_id)
+      return args.profilePic
+    },
+
+    update_about: (parent, args, context, info) => {
+      knex('user').update({ about: args.about }).where('user_id', args.user_id)
+      return args.about
+    },
+
+    update_contact: (parent, args, context, info) => {
+      knex('user').update({ contact: args.contact }).where('user_id', args.user_id)
+      return args.contact
+    },
+
+
+
+    delete_request_userID: (parent, args, context, info) => {
+      knex('request').del().where('user_id', args.user_id)
+      return args.user_id
+    },
+
+    delete_request_repo: (parent, args, context, info) => {
+      knex('request').del().where('repo_name', args.repo_name)
+      return args.repo_name
+    },
+
+    delete_request_xy: (parent, args, context, info) => {
+      knex('request').del().where('x_pixel', args.x_pixel).where('y_pixel', args.y_pixel)
+      return args.x_pixel
+    },
+
+
   },
 }
 
