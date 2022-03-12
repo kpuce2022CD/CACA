@@ -31,7 +31,6 @@ https://studio.apollographql.com/org/clonet/graphs
 cd Terraform
 terraform init
 terraform apply
-terraform destroy
 ```
 
 ## Flow Chart
