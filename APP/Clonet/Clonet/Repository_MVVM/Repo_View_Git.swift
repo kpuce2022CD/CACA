@@ -29,7 +29,6 @@ struct Repo_View_Git: View {
     @State var repo_n: String
     @State var userID: String
     @StateObject var log_repoViewModel_a = log_repo_ViewModel()
-    //    var location_test = "http://" + log_repoViewModel.repoIP_Addr + "/git-repositories/" + self.repo_n + ".git"
     @State private var presentingToast: Bool = false
     @State private var presentingToast2: Bool = false
     @State private var log_number1 = 0
@@ -48,7 +47,6 @@ struct Repo_View_Git: View {
         VStack{
             // MARK: RollBack Button
             Button(action: {
-                //                rollbackGit(localRepoLocation: documentURL.appendingPathComponent(repo_n), name: userID, email: userEmail, commit_msg: commit_msg, reset_id: self.reset_id)
                 presentingToast = true
             }){
                 HStack{

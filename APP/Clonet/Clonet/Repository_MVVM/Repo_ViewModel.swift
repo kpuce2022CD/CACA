@@ -19,7 +19,8 @@ final class log_repo_ViewModel: ObservableObject{
     @Published var repo_n: String = ""
     @Published var repoIP_Addr : String = ""
 
-        
+    
+    
     func appear(){
         fetch(Repo_Name: self.repo_n)
         repoIP(Repo_Name: self.repo_n)
@@ -27,28 +28,12 @@ final class log_repo_ViewModel: ObservableObject{
     
     init(){
         repoIP(Repo_Name: self.repo_n)
-        
         Log_repo_list.removeAll()
         fetch(Repo_Name: repo_n)
         print("init : ", Log_repo_list)
         
-        
-        // combine
-        let provider = (1...5).publisher
-        
-        provider.sink(receiveCompletion: {_ in
-            self.Log_repo_list.removeAll()
-            self.fetch(Repo_Name: self.repo_n)
-            
-        }, receiveValue: {data in
-            print("Log_repo_list fetch")
-            self.Log_repo_list.removeAll()
-            self.fetch(Repo_Name: self.repo_n)
-            print("Log_repo_list", data)
-        })
-
     }
-
+    
     
     func repoIP(Repo_Name: String){
         Network.shared.apollo.fetch(query: SelectRepoQuery(repo_name: Repo_Name)){ result in
@@ -57,8 +42,6 @@ final class log_repo_ViewModel: ObservableObject{
                 if let ip_repos = graphQLResult.data?.selectRepo {
                     for i in ip_repos.indices{
                         self.launches_ip = self.process_ip(data: ip_repos[i] ?? iprepoData.init(repoName: "", repoEc2Ip: ""))
-//                        print("launces_ip:", self.launches_ip.repo_ec2_ip)
-//                        self.repoIP_Addr = self.launches_ip.repo_ec2_ip
                         self.repoIP_Addr = "http://" + self.launches_ip.repo_ec2_ip + "/git-repositories/" + self.repo_n + ".git"
                         print("launces_ip:", self.repoIP_Addr)
                     }
@@ -80,7 +63,7 @@ final class log_repo_ViewModel: ObservableObject{
                     for i in log_repos.indices{
                         self.launches = self.process(data: graphQLResult.data?.logRepo![i] ?? logrepoData.init(commitMsg: "", date: "", commitId: "", userId: ""))
                         self.Log_repo_list.append(self.launches)
-                        print("Log_repo_list", log_repos)
+                        print("Log_repo_list fetch", log_repos)
                     }
                 } else if let errors = graphQLResult.errors {
                     print("GraphQL errors \(errors)")
@@ -169,18 +152,18 @@ struct AddUserAlert: View {
                     }) {
                         Text("Invite")
                     }
-//                    .toast(isPresented: $presentingToast_true, dismissAfter: 5.0){
-//                        print("성공")
-//                    } content: {
-//                        ToastView("메일 전송 성공!")
-//                            .toastViewStyle(IndefiniteProgressToastViewStyle())
-//                    }
-//                    .toast(isPresented: $presentingToast_false, dismissAfter: 5.0){
-//                        print("성공")
-//                    } content: {
-//                        ToastView("메일 전송 실패")
-//                            .toastViewStyle(IndefiniteProgressToastViewStyle())
-//                    }
+                    //                    .toast(isPresented: $presentingToast_true, dismissAfter: 5.0){
+                    //                        print("성공")
+                    //                    } content: {
+                    //                        ToastView("메일 전송 성공!")
+                    //                            .toastViewStyle(IndefiniteProgressToastViewStyle())
+                    //                    }
+                    //                    .toast(isPresented: $presentingToast_false, dismissAfter: 5.0){
+                    //                        print("성공")
+                    //                    } content: {
+                    //                        ToastView("메일 전송 실패")
+                    //                            .toastViewStyle(IndefiniteProgressToastViewStyle())
+                    //                    }
                     
                     Spacer()
                     
