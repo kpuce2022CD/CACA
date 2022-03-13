@@ -21,7 +21,7 @@ exec(cd_toRepository + ';' + git_ls_tree, (err, stdout, stderr) => { // git ls-t
 
     console.log(blob_id);
 
-    var to_file = "git cat-file -p " + blob_id + " > " + file_name; // blob_id to File
+    var to_file = "git cat-file -p " + blob_id + " > ../../images/" + file_name; // blob_id to File
     exec(cd_toRepository + ";" + to_file, (err, stdout, stderr) => { // git ls-tree
         if (err) {
           console.error(err)

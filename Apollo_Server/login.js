@@ -2,8 +2,9 @@ const graphql = require('graphql');
 const fs = require('fs');
 const shell = require('shelljs');
 const { ApolloServer, gql } = require('apollo-server');
-const path = require('path');
-const { json } = require('body-parser');
+const { exec } = require('child_process');
+// const path = require('path');
+// const { json } = require('body-parser');
 // const pubsub = new PubSub();
 // const express = require('expr ess');
 
@@ -131,7 +132,7 @@ const resolvers = {
       var locationJSON = location + "/logJSON.json"
       return JSON.parse("[" + fs.readFileSync(locationJSON).slice(0, -1) + "]");
 
-////////////   ////////////   ////////////   ////////////   ////////////   ////////////   ////////////   ////////////   ////////////
+      ////////////   ////////////   ////////////   ////////////   ////////////   ////////////   ////////////   ////////////   ////////////
 
 
       // var repository_name = args.repo_name
@@ -162,14 +163,80 @@ const resolvers = {
 
     },
 
-     ////////////   ////////////   ////////////   ////////////   ////////////   ////////////   ////////////   ////////////   ////////////
+    ////////////   ////////////   ////////////   ////////////   ////////////   ////////////   ////////////   ////////////   ////////////
 
     request_id: (parent, args, context, info) => knex("request").select("*").where('user_id', args.user_id),
-    request_repo: (parent, args, context, info) => knex("request").select("*").where('repo_name', args.repo_name), 
-    request_xy: (parent, args, context, info) => knex("request").select("*").where('x_pixel', args.x_pixel).where('y_pixel', args.y_pixel), 
+    request_repo: (parent, args, context, info) => knex("request").select("*").where('repo_name', args.repo_name),
+    request_xy: (parent, args, context, info) => knex("request").select("*").where('x_pixel', args.x_pixel).where('y_pixel', args.y_pixel),
+
+
     diff_commit: (parent, args, context, info) => {
-      return "diff_commit"
-    }, 
+
+      const repository_name = args.repo_name
+      const first_commit_id = args.first_commit
+      const second_commit_id = args.second_commit
+      const file_name = args.file_name
+
+
+      const cd_toRepository = "cd /var/www/html/git-repositories/" + repository_name + ".git/"
+      const first_git_ls_tree = "git ls-tree " + first_commit_id
+      const second_git_ls_tree = "git ls-tree " + second_commit_id
+
+
+      // first 
+      exec(cd_toRepository + ';' + first_git_ls_tree, (err, stdout, stderr) => { // git ls-tree
+        if (err) {
+          console.error(err)
+        } else {
+
+          stdout = stdout.replace(/\n/gi, " ").replace(/\t/gi, " ") // git ls-tree 결과물로 blob 알아내기
+          var ls_files_result = stdout.split(" ");
+
+          var index = ls_files_result.indexOf(file_name);
+          var blob_id = ls_files_result[index - 1]; // 해당 file의 blob_id
+
+          var first_filename = first_commit_id + "_" + file_name
+
+          var to_file = "git cat-file -p " + blob_id + " > ../../images/" + first_filename; // blob_id to File
+          exec(cd_toRepository + ";" + to_file, (err, stdout, stderr) => { // git ls-tree
+            if (err) {
+              console.error(err)
+            } else {
+              console.log("first");
+            }
+          });
+
+        }
+      });
+
+      // second
+      exec(cd_toRepository + ';' + second_git_ls_tree, (err, stdout, stderr) => { // git ls-tree
+        if (err) {
+          console.error(err)
+        } else {
+
+          stdout = stdout.replace(/\n/gi, " ").replace(/\t/gi, " ") // git ls-tree 결과물로 blob 알아내기
+          var ls_files_result = stdout.split(" ");
+
+          var index = ls_files_result.indexOf(file_name);
+          var blob_id = ls_files_result[index - 1]; // 해당 file의 blob_id
+
+          var second_filename = second_commit_id + "_" + file_name
+
+          var to_file = "git cat-file -p " + blob_id + " > ../../images/" + second_filename; // blob_id to File
+          exec(cd_toRepository + ";" + to_file, (err, stdout, stderr) => { // git ls-tree
+            if (err) {
+              console.error(err)
+            } else {
+              console.log("second");
+            }
+          });
+        }
+      });
+
+
+      return `${first_commit}_${second_commit}_${repo_name}_${file_name}`
+    },
   },
 
   Mutation: {
@@ -190,13 +257,13 @@ const resolvers = {
       var ip = args.user_id
 
       var new_repo = "cp -R /var/www/html/git-repositories/CLONET.git /var/www/html/git-repositories/" + repository_name + ".git"
-      if(shell.exec(new_repo).code !== 0) {
+      if (shell.exec(new_repo).code !== 0) {
         shell.echo('Error: command failed')
         shell.exit(1)
       }
-        
+
       var repo_777 = "chmod -R 777 /var/www/html/git-repositories/" + repository_name + ".git"
-      if(shell.exec(repo_777).code !== 0) {
+      if (shell.exec(repo_777).code !== 0) {
         shell.echo('Error: command failed')
         shell.exit(1)
       }
