@@ -20,7 +20,6 @@ struct Repo_View_Git: View {
     
     @State private var showingAlert = false
     @State private var showingAlert_makeBranch = false
-    @State var reset_id : String = "356416c04523dd14d04165a69a14b257636ec8a5"
     @State var merge_id : String = ""
     @State var addFileName : String = "."
     
