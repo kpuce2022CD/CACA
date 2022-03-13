@@ -182,7 +182,7 @@ struct Repo_View_Git: View {
                 {
                     HStack{
                         Image(systemName: "arrow.triangle.branch")
-                        Text("Change Branch")
+                        Text("Change")
                     }
                     
                     .frame(width: 100, height: 50)
@@ -217,7 +217,7 @@ struct Repo_View_Git: View {
                 {
                     HStack{
                         Image(systemName: "arrow.triangle.branch")
-                        Text("Make Branch")
+                        Text("Create")
                     }
                     
                     .frame(width: 100, height: 50)
