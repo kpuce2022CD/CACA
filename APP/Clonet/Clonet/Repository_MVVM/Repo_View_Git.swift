@@ -35,6 +35,8 @@ struct Repo_View_Git: View {
     @State private var log_number2 = 0
     @State private var file_number = 0
     @State private var FileList = getFileList()
+    @State private var presentingToast3: Bool = false
+    @State private var ImgOpacity = 0.5
     
     init(repo_n: String, userID: String) {
         self.repo_n = repo_n
@@ -210,10 +212,10 @@ struct Repo_View_Git: View {
                 //MARK: Make Branch
                 Button(action: {
                     let alertHC = UIHostingController(rootView: createBranch_View(localRepoLocation: repo_n, name: userID, email: userEmail))
-
+                    
                     alertHC.preferredContentSize = CGSize(width: 300, height: 200)
                     alertHC.modalPresentationStyle = UIModalPresentationStyle.formSheet
-
+                    
                     UIApplication.shared.windows[0].rootViewController?.present(alertHC, animated: true)
                     
                 })
@@ -272,6 +274,23 @@ struct Repo_View_Git: View {
                                 Picker("Choose File", selection: $file_number) {
                                     ForEach(FileList.items.indices) {
                                         Text("\(FileList.items[$0])")
+                                    }
+                                }
+                            }
+                            Section {
+                                Button {
+                                    presentingToast3 = true
+                                }label: {
+                                    Text("image diff")
+                                }.toast(isPresented: $presentingToast3){
+                                    VStack{
+                                        ZStack{
+                                            Image("http://13.209.116.111/images/" + log_repoViewModel_a.Log_repo_list[log_number1].commitId + "_" + FileList.items[file_number])
+                                            Image("http://13.209.116.111/images/" + log_repoViewModel_a.Log_repo_list[log_number2].commitId + "_" + FileList.items[file_number])
+                                                .opacity(ImgOpacity)
+                                        }
+                                        Slider(value: $ImgOpacity, in: 0...1)
+                                            .padding()
                                     }
                                 }
                             }
@@ -468,24 +487,24 @@ struct Repo_View_Git: View {
         return branchArr
     }
     
-//    //MARK: Make Branch FUNC
-//    func create_localBranch(localRepoLocation localRepoLocation : URL, branch_name branch_name : String, name name: String, email email: String){
-//
-//        let result = Repository.at(localRepoLocation)
-//        switch result {
-//        case let .success(repo):
-//            let sig = Signature(name: name,email: email, time: Date(),timeZone: TimeZone.current)
-//            let branch_commit = repo.commit(message: "create Branchname : " + branch_name, signature: sig)
-//            switch branch_commit{
-//            case let .success(commit):
-//                let createbranch_result = repo.create_localBranch(repo, at: commit, branch_name)
-//            case .failure(_):
-//                print("error")
-//            }
-//        case let .failure(error):
-//            print("\(error)")
-//        }
-//    }
+    //    //MARK: Make Branch FUNC
+    //    func create_localBranch(localRepoLocation localRepoLocation : URL, branch_name branch_name : String, name name: String, email email: String){
+    //
+    //        let result = Repository.at(localRepoLocation)
+    //        switch result {
+    //        case let .success(repo):
+    //            let sig = Signature(name: name,email: email, time: Date(),timeZone: TimeZone.current)
+    //            let branch_commit = repo.commit(message: "create Branchname : " + branch_name, signature: sig)
+    //            switch branch_commit{
+    //            case let .success(commit):
+    //                let createbranch_result = repo.create_localBranch(repo, at: commit, branch_name)
+    //            case .failure(_):
+    //                print("error")
+    //            }
+    //        case let .failure(error):
+    //            print("\(error)")
+    //        }
+    //    }
     
     
     //MARK: CHECKOUT_FUNC
@@ -544,9 +563,9 @@ struct createBranch_View: View {
     var localRepoLocation : String
     var name : String
     var email : String
-
+    
     var body: some View {
-
+        
         VStack {
             Text("Enter Input Branch Name").font(.headline).padding()
             
@@ -560,13 +579,13 @@ struct createBranch_View: View {
                     create_localBranch(localRepoLocation: documentURL.appendingPathComponent(localRepoLocation), branch_name: new_branch_name, name: name, email: email)
                     UIApplication.shared.windows[0].rootViewController?.dismiss(animated: true, completion: {})
                 }) {
-
+                    
                     Text("Done")
                 }
                 Spacer()
-
+                
                 Divider()
-
+                
                 Spacer()
                 Button(action: {
                     UIApplication.shared.windows[0].rootViewController?.dismiss(animated: true, completion: {})
@@ -575,15 +594,15 @@ struct createBranch_View: View {
                 }
                 Spacer()
             }.padding(0)
-
-
-            }.background(Color(white: 0.9))
+            
+            
+        }.background(Color(white: 0.9))
     }
     
     
     //MARK: Make Branch FUNC
     func create_localBranch(localRepoLocation localRepoLocation : URL, branch_name branch_name : String, name name: String, email email: String){
-
+        
         let result = Repository.at(localRepoLocation)
         switch result {
         case let .success(repo):
