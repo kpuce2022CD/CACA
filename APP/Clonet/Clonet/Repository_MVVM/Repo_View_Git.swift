@@ -286,8 +286,14 @@ struct Repo_View_Git: View {
             }
             .onAppear(){
                 log_repoViewModel_a.repo_n = self.repo_n
-                log_repoViewModel_a.Log_repo_list.removeAll()
                 log_repoViewModel_a.appear()
+                print("log_repoViewModel_a \(log_repoViewModel_a.Log_repo_list)")
+                
+                // Timer to reload log
+                var timer: Timer? = Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block: { _ in
+                    log_repoViewModel_a.Log_repo_list.removeAll()
+                    log_repoViewModel_a.fetch(Repo_Name: repo_n)
+                })
             }
             .padding()
         }
@@ -302,7 +308,7 @@ struct Repo_View_Git: View {
         case let .success(repo):
             
             //MARK: reset
-            let reset_result = repo.log_reset(repo, reset_id: log_repoViewModel_a.Log_repo_list.first?.commitId ?? "")
+            let reset_result = repo.log_reset(repo, reset_id: reset_id ?? "")
             
             //MARK: push_force
             let commit_push_force = repo.push_force(repo, "ubuntu", "qwer1234", nil)
