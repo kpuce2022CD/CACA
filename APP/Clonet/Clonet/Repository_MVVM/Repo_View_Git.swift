@@ -170,34 +170,62 @@ struct Repo_View_Git: View {
                 .background(Color.black)
                 .cornerRadius(15)
             }
+            
+            
+            
             // MARK: Branch Button
-            Button(action: {
-                showingAlert = true
-                branchArr = BranchGitRepo(localRepoLocation: documentURL.appendingPathComponent(repo_n))
-                
-            })
-            {
-                HStack{
-                    Image(systemName: "arrow.triangle.branch")
-                    Text("Branch")
-                }
-                
-                .frame(width: 200, height: 50)
-                .foregroundColor(.white)
-                .overlay(
-                    RoundedRectangle(cornerRadius: 15)
-                        .stroke(Color.white, lineWidth: 2)
-                )
-            }
-            .background(Color.black)
-            .cornerRadius(15)
-            .alert("Branch", isPresented: $showingAlert){
-                ForEach(branchArr, id: \.self){b in
-                    Button(b){
-                        checkout_Branch(localRepoLocation: documentURL.appendingPathComponent(repo_n), branchname: b)
+            HStack{
+                Button(action: {
+                    showingAlert = true
+                    branchArr = BranchGitRepo(localRepoLocation: documentURL.appendingPathComponent(repo_n))
+                    
+                })
+                {
+                    HStack{
+                        Image(systemName: "arrow.triangle.branch")
+                        Text("Change Branch")
                     }
+                    
+                    .frame(width: 100, height: 50)
+                    .foregroundColor(.white)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 15)
+                            .stroke(Color.white, lineWidth: 2)
+                    )
                 }
-                Button("Cancel", role: .cancel){}
+                .background(Color.black)
+                .cornerRadius(15)
+                .alert("Branch", isPresented: $showingAlert){
+                    ForEach(branchArr, id: \.self){b in
+                        Button(b){
+                            checkout_Branch(localRepoLocation: documentURL.appendingPathComponent(repo_n), branchname: b)
+                        }
+                    }
+                    Button("Cancel", role: .cancel){}
+                }
+                
+                
+                //MARK: Make Branch
+                Button(action: {
+                    showingAlert = true
+                    branchArr = BranchGitRepo(localRepoLocation: documentURL.appendingPathComponent(repo_n))
+                    
+                })
+                {
+                    HStack{
+                        Image(systemName: "arrow.triangle.branch")
+                        Text("Make Branch")
+                    }
+                    
+                    .frame(width: 100, height: 50)
+                    .foregroundColor(.white)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 15)
+                            .stroke(Color.white, lineWidth: 2)
+                    )
+                }
+                .background(Color.black)
+                .cornerRadius(15)
             }
             
             
