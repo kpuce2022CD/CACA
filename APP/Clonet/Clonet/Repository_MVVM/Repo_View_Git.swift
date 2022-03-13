@@ -13,14 +13,13 @@ struct Repo_View_Git: View {
     
     @ObservedObject var directory = getFileList()
     
-    //    @State var RepositoryName = ""
     @State var UserName = ""
     @State var userEmail = "UserEmail"
-    //    @State var remoteRepoLocation = "http://3.34.194.172/git-repositories/TEST.git"
     @State var commit_msg = "commit_msg"
     @State var branchArr : [String] = []
     
     @State private var showingAlert = false
+    @State private var showingAlert_makeBranch = false
     @State var reset_id : String = "356416c04523dd14d04165a69a14b257636ec8a5"
     @State var merge_id : String = ""
     @State var addFileName : String = "."
@@ -207,8 +206,12 @@ struct Repo_View_Git: View {
                 
                 //MARK: Make Branch
                 Button(action: {
-                    showingAlert = true
-                    branchArr = BranchGitRepo(localRepoLocation: documentURL.appendingPathComponent(repo_n))
+                    let alertHC = UIHostingController(rootView: createBranch_View(localRepoLocation: repo_n, name: userID, email: userEmail))
+
+                    alertHC.preferredContentSize = CGSize(width: 300, height: 200)
+                    alertHC.modalPresentationStyle = UIModalPresentationStyle.formSheet
+
+                    UIApplication.shared.windows[0].rootViewController?.present(alertHC, animated: true)
                     
                 })
                 {
@@ -446,6 +449,25 @@ struct Repo_View_Git: View {
         return branchArr
     }
     
+//    //MARK: Make Branch FUNC
+//    func create_localBranch(localRepoLocation localRepoLocation : URL, branch_name branch_name : String, name name: String, email email: String){
+//
+//        let result = Repository.at(localRepoLocation)
+//        switch result {
+//        case let .success(repo):
+//            let sig = Signature(name: name,email: email, time: Date(),timeZone: TimeZone.current)
+//            let branch_commit = repo.commit(message: "create Branchname : " + branch_name, signature: sig)
+//            switch branch_commit{
+//            case let .success(commit):
+//                let createbranch_result = repo.create_localBranch(repo, at: commit, branch_name)
+//            case .failure(_):
+//                print("error")
+//            }
+//        case let .failure(error):
+//            print("\(error)")
+//        }
+//    }
+    
     
     //MARK: CHECKOUT_FUNC
     func checkout_Branch(localRepoLocation localRepoLocation : URL, branchname branch_name : String){
@@ -492,5 +514,70 @@ struct Repo_View_Git: View {
 struct Repo_View_Git_Previews: PreviewProvider {
     static var previews: some View {
         Repo_View_Git(repo_n: "", userID: "")
+    }
+}
+
+
+
+struct createBranch_View: View {
+    @State private var new_branch_name: String = ""
+    
+    var localRepoLocation : String
+    var name : String
+    var email : String
+
+    var body: some View {
+
+        VStack {
+            Text("Enter Input Branch Name").font(.headline).padding()
+            
+            TextField("Enter Input Branch Name.", text: $new_branch_name).textFieldStyle(RoundedBorderTextFieldStyle()).padding()
+            
+            
+            Divider()
+            HStack {
+                Spacer()
+                Button(action: {
+                    create_localBranch(localRepoLocation: documentURL.appendingPathComponent(localRepoLocation), branch_name: new_branch_name, name: name, email: email)
+                    UIApplication.shared.windows[0].rootViewController?.dismiss(animated: true, completion: {})
+                }) {
+
+                    Text("Done")
+                }
+                Spacer()
+
+                Divider()
+
+                Spacer()
+                Button(action: {
+                    UIApplication.shared.windows[0].rootViewController?.dismiss(animated: true, completion: {})
+                }) {
+                    Text("Cancel")
+                }
+                Spacer()
+            }.padding(0)
+
+
+            }.background(Color(white: 0.9))
+    }
+    
+    
+    //MARK: Make Branch FUNC
+    func create_localBranch(localRepoLocation localRepoLocation : URL, branch_name branch_name : String, name name: String, email email: String){
+
+        let result = Repository.at(localRepoLocation)
+        switch result {
+        case let .success(repo):
+            let sig = Signature(name: name,email: email, time: Date(),timeZone: TimeZone.current)
+            let branch_commit = repo.commit(message: "create Branchname : " + branch_name, signature: sig)
+            switch branch_commit{
+            case let .success(commit):
+                let createbranch_result = repo.create_localBranch(repo, at: commit, branch_name)
+            case .failure(_):
+                print("error")
+            }
+        case let .failure(error):
+            print("\(error)")
+        }
     }
 }
