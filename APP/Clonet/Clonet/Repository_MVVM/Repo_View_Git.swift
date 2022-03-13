@@ -30,8 +30,12 @@ struct Repo_View_Git: View {
     @StateObject var log_repoViewModel_a = log_repo_ViewModel()
     @State private var presentingToast: Bool = false
     @State private var presentingToast2: Bool = false
+    
+    // Diff
     @State private var log_number1 = 0
     @State private var log_number2 = 0
+    @State private var file_number = 0
+    @State private var FileList = getFileList()
     
     init(repo_n: String, userID: String) {
         self.repo_n = repo_n
@@ -266,9 +270,15 @@ struct Repo_View_Git: View {
                                         Text("\(log_repoViewModel_a.Log_repo_list[$0].userId) : \(log_repoViewModel_a.Log_repo_list[$0].commitMsg)")
                                     }
                                 }
+                                Picker("Choose File", selection: $file_number) {
+                                    ForEach(FileList.items.indices) {
+                                        Text("\(FileList.items[$0])")
+                                    }
+                                }
                             }
                             Section{
                                 Button {
+                                    log_repoViewModel_a.Diff(first_commit: log_repoViewModel_a.Log_repo_list[log_number1].commitId, second_commit: log_repoViewModel_a.Log_repo_list[log_number2].commitId, repo_name: repo_n, file_name: FileList.items[file_number])
                                     presentingToast2 = false
                                 } label: {
                                     Text("OK")
@@ -289,8 +299,12 @@ struct Repo_View_Git: View {
                 log_repoViewModel_a.appear()
                 print("log_repoViewModel_a \(log_repoViewModel_a.Log_repo_list)")
                 
+                // Directory
+                FileList.first(repo_n: repo_n)
+                FileList.location(repoName: repo_n)
+                
                 // Timer to reload log
-                var timer: Timer? = Timer.scheduledTimer(withTimeInterval: 3, repeats: true, block: { _ in
+                var timer: Timer? = Timer.scheduledTimer(withTimeInterval: 6, repeats: true, block: { _ in
                     log_repoViewModel_a.Log_repo_list.removeAll()
                     log_repoViewModel_a.fetch(Repo_Name: repo_n)
                 })

@@ -12,6 +12,7 @@ import SwiftSMTP
 import ToastUI
 import Combine
 
+// MARK: log_repo_ViewModel
 final class log_repo_ViewModel: ObservableObject{
     @Published var launches: Log_repo = Log_repo.init()
     @Published var launches_ip: Ip_repo = Ip_repo.init()
@@ -21,12 +22,6 @@ final class log_repo_ViewModel: ObservableObject{
 
     
     
-    func appear(){
-        Log_repo_list.removeAll()
-        fetch(Repo_Name: self.repo_n)
-        repoIP(Repo_Name: self.repo_n)
-    }
-    
     init(){
         repoIP(Repo_Name: self.repo_n)
         Log_repo_list.removeAll()
@@ -35,7 +30,13 @@ final class log_repo_ViewModel: ObservableObject{
         
     }
     
+    func appear(){
+        Log_repo_list.removeAll()
+        fetch(Repo_Name: self.repo_n)
+        repoIP(Repo_Name: self.repo_n)
+    }
     
+    //MARK: SelectRepoQuery
     func repoIP(Repo_Name: String){
         Network.shared.apollo.fetch(query: SelectRepoQuery(repo_name: Repo_Name)){ result in
             switch result {
@@ -56,6 +57,7 @@ final class log_repo_ViewModel: ObservableObject{
         }
     }
     
+    //MARK: LogRepoQuery
     func fetch(Repo_Name: String){
         Network.shared.apollo.fetch(query: LogRepoQuery(repo_name: Repo_Name), cachePolicy: CachePolicy.fetchIgnoringCacheData){ result in
             switch result {
@@ -72,6 +74,17 @@ final class log_repo_ViewModel: ObservableObject{
                 
             case .failure(let error):
                 print("Failure! Error: \(error)")
+            }
+        }
+    }
+    
+    func Diff(first_commit: String, second_commit: String, repo_name: String, file_name: String){
+        Network.shared.apollo.fetch(query: DiffCommitQuery(first_commit: first_commit, second_commit: second_commit, repo_name: repo_name, file_name: file_name), cachePolicy: CachePolicy.fetchIgnoringCacheData){ result in
+            switch result {
+            case .success(let graphQLResult):
+                print("DiffCommitQuery Success")
+            case .failure(_):
+                print("DiffCommitQuery Failure")
             }
         }
     }
@@ -96,6 +109,8 @@ final class log_repo_ViewModel: ObservableObject{
     }
 }
 
+
+// MARK: AddUserAlert
 struct AddUserAlert: View {
     @ObservedObject var loginCheck_ViewModel = LoginCheck_ViewModel()
     
