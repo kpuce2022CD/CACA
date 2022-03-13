@@ -897,8 +897,13 @@ public final class DiffCommitQuery: GraphQLQuery {
   /// The raw GraphQL definition of this operation.
   public let operationDefinition: String =
     """
-    query diff_commit($first_commit: String, $second_commit: String) {
-      diff_commit(first_commit: $first_commit, second_commit: $second_commit)
+    query diff_commit($first_commit: String, $second_commit: String, $repo_name: String, $file_name: String) {
+      diff_commit(
+        first_commit: $first_commit
+        second_commit: $second_commit
+        repo_name: $repo_name
+        file_name: $file_name
+      )
     }
     """
 
@@ -906,14 +911,18 @@ public final class DiffCommitQuery: GraphQLQuery {
 
   public var first_commit: String?
   public var second_commit: String?
+  public var repo_name: String?
+  public var file_name: String?
 
-  public init(first_commit: String? = nil, second_commit: String? = nil) {
+  public init(first_commit: String? = nil, second_commit: String? = nil, repo_name: String? = nil, file_name: String? = nil) {
     self.first_commit = first_commit
     self.second_commit = second_commit
+    self.repo_name = repo_name
+    self.file_name = file_name
   }
 
   public var variables: GraphQLMap? {
-    return ["first_commit": first_commit, "second_commit": second_commit]
+    return ["first_commit": first_commit, "second_commit": second_commit, "repo_name": repo_name, "file_name": file_name]
   }
 
   public struct Data: GraphQLSelectionSet {
@@ -921,7 +930,7 @@ public final class DiffCommitQuery: GraphQLQuery {
 
     public static var selections: [GraphQLSelection] {
       return [
-        GraphQLField("diff_commit", arguments: ["first_commit": GraphQLVariable("first_commit"), "second_commit": GraphQLVariable("second_commit")], type: .scalar(String.self)),
+        GraphQLField("diff_commit", arguments: ["first_commit": GraphQLVariable("first_commit"), "second_commit": GraphQLVariable("second_commit"), "repo_name": GraphQLVariable("repo_name"), "file_name": GraphQLVariable("file_name")], type: .scalar(String.self)),
       ]
     }
 

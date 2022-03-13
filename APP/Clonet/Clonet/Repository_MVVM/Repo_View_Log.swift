@@ -30,7 +30,7 @@ struct Repo_View_Log: View {
             print("log_repoViewModel_a \(log_repoViewModel_a.Log_repo_list)")
             
             // Timer to reload log
-            var timer: Timer? = Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block: { _ in
+            var timer: Timer? = Timer.scheduledTimer(withTimeInterval: 3, repeats: true, block: { _ in
                 log_repoViewModel_a.Log_repo_list.removeAll()
                 log_repoViewModel_a.fetch(Repo_Name: repo_n)
             })

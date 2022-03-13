@@ -7,6 +7,24 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3F0ADCE727DE181A007F1823 /* schema.json in Resources */ = {isa = PBXBuildFile; fileRef = 3F0ADCE627DE181A007F1823 /* schema.json */; };
+		3F0ADCE927DE1836007F1823 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F0ADCE827DE1836007F1823 /* API.swift */; };
+		3F0ADCFE27DE186B007F1823 /* FindIdPw.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F0ADCEB27DE1869007F1823 /* FindIdPw.swift */; };
+		3F0ADCFF27DE186B007F1823 /* Signup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F0ADCEC27DE1869007F1823 /* Signup.swift */; };
+		3F0ADD0027DE186B007F1823 /* Login_View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F0ADCEE27DE186A007F1823 /* Login_View.swift */; };
+		3F0ADD0127DE186B007F1823 /* Login_Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F0ADCEF27DE186A007F1823 /* Login_Model.swift */; };
+		3F0ADD0227DE186B007F1823 /* Login_ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F0ADCF027DE186A007F1823 /* Login_ViewModel.swift */; };
+		3F0ADD0327DE186B007F1823 /* LoginCheck_Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F0ADCF227DE186B007F1823 /* LoginCheck_Model.swift */; };
+		3F0ADD0427DE186B007F1823 /* LoginCheck_View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F0ADCF327DE186B007F1823 /* LoginCheck_View.swift */; };
+		3F0ADD0527DE186B007F1823 /* LoginCheck_ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F0ADCF427DE186B007F1823 /* LoginCheck_ViewModel.swift */; };
+		3F0ADD0627DE186B007F1823 /* Repo_Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F0ADCF627DE186B007F1823 /* Repo_Model.swift */; };
+		3F0ADD0727DE186B007F1823 /* Repo_View_Git.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F0ADCF727DE186B007F1823 /* Repo_View_Git.swift */; };
+		3F0ADD0827DE186B007F1823 /* Repo_ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F0ADCF827DE186B007F1823 /* Repo_ViewModel.swift */; };
+		3F0ADD0927DE186B007F1823 /* Repo_View_Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F0ADCF927DE186B007F1823 /* Repo_View_Image.swift */; };
+		3F0ADD0A27DE186B007F1823 /* Repo_View_Directory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F0ADCFA27DE186B007F1823 /* Repo_View_Directory.swift */; };
+		3F0ADD0B27DE186B007F1823 /* Repo_View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F0ADCFB27DE186B007F1823 /* Repo_View.swift */; };
+		3F0ADD0C27DE186B007F1823 /* Repo_View_Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F0ADCFC27DE186B007F1823 /* Repo_View_Request.swift */; };
+		3F0ADD0D27DE186B007F1823 /* Repo_View_Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F0ADCFD27DE186B007F1823 /* Repo_View_Log.swift */; };
 		3F4B39EC27B38E8600EC0D8C /* LaunchList.graphql in Resources */ = {isa = PBXBuildFile; fileRef = 3F4B39EB27B38E8600EC0D8C /* LaunchList.graphql */; };
 		3F4B39F227B3A55A00EC0D8C /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F4B39F127B3A55A00EC0D8C /* Network.swift */; };
 		3F4B3A0427B4BAEF00EC0D8C /* ToastUI in Frameworks */ = {isa = PBXBuildFile; productRef = 3F4B3A0327B4BAEF00EC0D8C /* ToastUI */; };
@@ -23,24 +41,6 @@
 		B540D422278C604200479A63 /* libiconv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = B540D421278C604200479A63 /* libiconv.tbd */; };
 		B5F6B9B027AED04900C46E4B /* Apollo in Frameworks */ = {isa = PBXBuildFile; productRef = B5F6B9AF27AED04900C46E4B /* Apollo */; };
 		B5F6B9B227AED04900C46E4B /* ApolloWebSocket in Frameworks */ = {isa = PBXBuildFile; productRef = B5F6B9B127AED04900C46E4B /* ApolloWebSocket */; };
-		DA13071127DCF8F600F262EA /* schema.json in Resources */ = {isa = PBXBuildFile; fileRef = DA13071027DCF8F600F262EA /* schema.json */; };
-		DA13071327DCF95100F262EA /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA13071227DCF95100F262EA /* API.swift */; };
-		DA13072827DCF96C00F262EA /* LoginCheck_Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA13071527DCF96A00F262EA /* LoginCheck_Model.swift */; };
-		DA13072927DCF96C00F262EA /* LoginCheck_View.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA13071627DCF96A00F262EA /* LoginCheck_View.swift */; };
-		DA13072A27DCF96C00F262EA /* LoginCheck_ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA13071727DCF96A00F262EA /* LoginCheck_ViewModel.swift */; };
-		DA13072B27DCF96C00F262EA /* Login_View.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA13071927DCF96A00F262EA /* Login_View.swift */; };
-		DA13072C27DCF96C00F262EA /* Login_Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA13071A27DCF96A00F262EA /* Login_Model.swift */; };
-		DA13072D27DCF96C00F262EA /* Login_ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA13071B27DCF96A00F262EA /* Login_ViewModel.swift */; };
-		DA13072E27DCF96C00F262EA /* FindIdPw.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA13071D27DCF96B00F262EA /* FindIdPw.swift */; };
-		DA13072F27DCF96C00F262EA /* Signup.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA13071E27DCF96B00F262EA /* Signup.swift */; };
-		DA13073027DCF96C00F262EA /* Repo_Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA13072027DCF96C00F262EA /* Repo_Model.swift */; };
-		DA13073127DCF96C00F262EA /* Repo_View_Git.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA13072127DCF96C00F262EA /* Repo_View_Git.swift */; };
-		DA13073227DCF96C00F262EA /* Repo_ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA13072227DCF96C00F262EA /* Repo_ViewModel.swift */; };
-		DA13073327DCF96C00F262EA /* Repo_View_Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA13072327DCF96C00F262EA /* Repo_View_Image.swift */; };
-		DA13073427DCF96C00F262EA /* Repo_View_Directory.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA13072427DCF96C00F262EA /* Repo_View_Directory.swift */; };
-		DA13073527DCF96C00F262EA /* Repo_View.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA13072527DCF96C00F262EA /* Repo_View.swift */; };
-		DA13073627DCF96C00F262EA /* Repo_View_Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA13072627DCF96C00F262EA /* Repo_View_Request.swift */; };
-		DA13073727DCF96C00F262EA /* Repo_View_Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA13072727DCF96C00F262EA /* Repo_View_Log.swift */; };
 		DA253E13278DEE1500AEE18A /* ViewModifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA253E12278DEE1500AEE18A /* ViewModifiers.swift */; };
 		DA97B6A7278BE05D006C473E /* ClonetApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA97B6A6278BE05D006C473E /* ClonetApp.swift */; };
 		DA97B6A9278BE05D006C473E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA97B6A8278BE05D006C473E /* ContentView.swift */; };
@@ -62,6 +62,24 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3F0ADCE627DE181A007F1823 /* schema.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = schema.json; sourceTree = "<group>"; };
+		3F0ADCE827DE1836007F1823 /* API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
+		3F0ADCEB27DE1869007F1823 /* FindIdPw.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FindIdPw.swift; sourceTree = "<group>"; };
+		3F0ADCEC27DE1869007F1823 /* Signup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Signup.swift; sourceTree = "<group>"; };
+		3F0ADCEE27DE186A007F1823 /* Login_View.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Login_View.swift; sourceTree = "<group>"; };
+		3F0ADCEF27DE186A007F1823 /* Login_Model.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Login_Model.swift; sourceTree = "<group>"; };
+		3F0ADCF027DE186A007F1823 /* Login_ViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Login_ViewModel.swift; sourceTree = "<group>"; };
+		3F0ADCF227DE186B007F1823 /* LoginCheck_Model.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginCheck_Model.swift; sourceTree = "<group>"; };
+		3F0ADCF327DE186B007F1823 /* LoginCheck_View.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginCheck_View.swift; sourceTree = "<group>"; };
+		3F0ADCF427DE186B007F1823 /* LoginCheck_ViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginCheck_ViewModel.swift; sourceTree = "<group>"; };
+		3F0ADCF627DE186B007F1823 /* Repo_Model.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Repo_Model.swift; sourceTree = "<group>"; };
+		3F0ADCF727DE186B007F1823 /* Repo_View_Git.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Repo_View_Git.swift; sourceTree = "<group>"; };
+		3F0ADCF827DE186B007F1823 /* Repo_ViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Repo_ViewModel.swift; sourceTree = "<group>"; };
+		3F0ADCF927DE186B007F1823 /* Repo_View_Image.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Repo_View_Image.swift; sourceTree = "<group>"; };
+		3F0ADCFA27DE186B007F1823 /* Repo_View_Directory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Repo_View_Directory.swift; sourceTree = "<group>"; };
+		3F0ADCFB27DE186B007F1823 /* Repo_View.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Repo_View.swift; sourceTree = "<group>"; };
+		3F0ADCFC27DE186B007F1823 /* Repo_View_Request.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Repo_View_Request.swift; sourceTree = "<group>"; };
+		3F0ADCFD27DE186B007F1823 /* Repo_View_Log.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Repo_View_Log.swift; sourceTree = "<group>"; };
 		3F4B39EB27B38E8600EC0D8C /* LaunchList.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = LaunchList.graphql; sourceTree = "<group>"; };
 		3F4B39F127B3A55A00EC0D8C /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
 		3F6A1BB5279A814900146367 /* Repository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Repository.swift; sourceTree = "<group>"; };
@@ -73,24 +91,6 @@
 		B50BD822278C781700A7E3E0 /* GitTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitTest.swift; sourceTree = "<group>"; };
 		B540D41F278C603900479A63 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		B540D421278C604200479A63 /* libiconv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libiconv.tbd; path = usr/lib/libiconv.tbd; sourceTree = SDKROOT; };
-		DA13071027DCF8F600F262EA /* schema.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = schema.json; sourceTree = "<group>"; };
-		DA13071227DCF95100F262EA /* API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
-		DA13071527DCF96A00F262EA /* LoginCheck_Model.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginCheck_Model.swift; sourceTree = "<group>"; };
-		DA13071627DCF96A00F262EA /* LoginCheck_View.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginCheck_View.swift; sourceTree = "<group>"; };
-		DA13071727DCF96A00F262EA /* LoginCheck_ViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginCheck_ViewModel.swift; sourceTree = "<group>"; };
-		DA13071927DCF96A00F262EA /* Login_View.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Login_View.swift; sourceTree = "<group>"; };
-		DA13071A27DCF96A00F262EA /* Login_Model.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Login_Model.swift; sourceTree = "<group>"; };
-		DA13071B27DCF96A00F262EA /* Login_ViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Login_ViewModel.swift; sourceTree = "<group>"; };
-		DA13071D27DCF96B00F262EA /* FindIdPw.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FindIdPw.swift; sourceTree = "<group>"; };
-		DA13071E27DCF96B00F262EA /* Signup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Signup.swift; sourceTree = "<group>"; };
-		DA13072027DCF96C00F262EA /* Repo_Model.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Repo_Model.swift; sourceTree = "<group>"; };
-		DA13072127DCF96C00F262EA /* Repo_View_Git.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Repo_View_Git.swift; sourceTree = "<group>"; };
-		DA13072227DCF96C00F262EA /* Repo_ViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Repo_ViewModel.swift; sourceTree = "<group>"; };
-		DA13072327DCF96C00F262EA /* Repo_View_Image.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Repo_View_Image.swift; sourceTree = "<group>"; };
-		DA13072427DCF96C00F262EA /* Repo_View_Directory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Repo_View_Directory.swift; sourceTree = "<group>"; };
-		DA13072527DCF96C00F262EA /* Repo_View.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Repo_View.swift; sourceTree = "<group>"; };
-		DA13072627DCF96C00F262EA /* Repo_View_Request.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Repo_View_Request.swift; sourceTree = "<group>"; };
-		DA13072727DCF96C00F262EA /* Repo_View_Log.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Repo_View_Log.swift; sourceTree = "<group>"; };
 		DA253E12278DEE1500AEE18A /* ViewModifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModifiers.swift; sourceTree = "<group>"; };
 		DA97B6A3278BE05D006C473E /* Clonet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Clonet.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DA97B6A6278BE05D006C473E /* ClonetApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClonetApp.swift; sourceTree = "<group>"; };
@@ -130,6 +130,50 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3F0ADCEA27DE1869007F1823 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				3F0ADCEB27DE1869007F1823 /* FindIdPw.swift */,
+				3F0ADCEC27DE1869007F1823 /* Signup.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		3F0ADCED27DE186A007F1823 /* Login_MVVM */ = {
+			isa = PBXGroup;
+			children = (
+				3F0ADCEE27DE186A007F1823 /* Login_View.swift */,
+				3F0ADCEF27DE186A007F1823 /* Login_Model.swift */,
+				3F0ADCF027DE186A007F1823 /* Login_ViewModel.swift */,
+			);
+			path = Login_MVVM;
+			sourceTree = "<group>";
+		};
+		3F0ADCF127DE186B007F1823 /* LoginCheck_MVVM */ = {
+			isa = PBXGroup;
+			children = (
+				3F0ADCF227DE186B007F1823 /* LoginCheck_Model.swift */,
+				3F0ADCF327DE186B007F1823 /* LoginCheck_View.swift */,
+				3F0ADCF427DE186B007F1823 /* LoginCheck_ViewModel.swift */,
+			);
+			path = LoginCheck_MVVM;
+			sourceTree = "<group>";
+		};
+		3F0ADCF527DE186B007F1823 /* Repository_MVVM */ = {
+			isa = PBXGroup;
+			children = (
+				3F0ADCF627DE186B007F1823 /* Repo_Model.swift */,
+				3F0ADCF727DE186B007F1823 /* Repo_View_Git.swift */,
+				3F0ADCF827DE186B007F1823 /* Repo_ViewModel.swift */,
+				3F0ADCF927DE186B007F1823 /* Repo_View_Image.swift */,
+				3F0ADCFA27DE186B007F1823 /* Repo_View_Directory.swift */,
+				3F0ADCFB27DE186B007F1823 /* Repo_View.swift */,
+				3F0ADCFC27DE186B007F1823 /* Repo_View_Request.swift */,
+				3F0ADCFD27DE186B007F1823 /* Repo_View_Log.swift */,
+			);
+			path = Repository_MVVM;
+			sourceTree = "<group>";
+		};
 		3FD176B6278D69D50025CCD2 /* Main */ = {
 			isa = PBXGroup;
 			children = (
@@ -178,50 +222,6 @@
 			name = Packages;
 			sourceTree = "<group>";
 		};
-		DA13071427DCF96A00F262EA /* LoginCheck_MVVM */ = {
-			isa = PBXGroup;
-			children = (
-				DA13071527DCF96A00F262EA /* LoginCheck_Model.swift */,
-				DA13071627DCF96A00F262EA /* LoginCheck_View.swift */,
-				DA13071727DCF96A00F262EA /* LoginCheck_ViewModel.swift */,
-			);
-			path = LoginCheck_MVVM;
-			sourceTree = "<group>";
-		};
-		DA13071827DCF96A00F262EA /* Login_MVVM */ = {
-			isa = PBXGroup;
-			children = (
-				DA13071927DCF96A00F262EA /* Login_View.swift */,
-				DA13071A27DCF96A00F262EA /* Login_Model.swift */,
-				DA13071B27DCF96A00F262EA /* Login_ViewModel.swift */,
-			);
-			path = Login_MVVM;
-			sourceTree = "<group>";
-		};
-		DA13071C27DCF96B00F262EA /* Login */ = {
-			isa = PBXGroup;
-			children = (
-				DA13071D27DCF96B00F262EA /* FindIdPw.swift */,
-				DA13071E27DCF96B00F262EA /* Signup.swift */,
-			);
-			path = Login;
-			sourceTree = "<group>";
-		};
-		DA13071F27DCF96C00F262EA /* Repository_MVVM */ = {
-			isa = PBXGroup;
-			children = (
-				DA13072027DCF96C00F262EA /* Repo_Model.swift */,
-				DA13072127DCF96C00F262EA /* Repo_View_Git.swift */,
-				DA13072227DCF96C00F262EA /* Repo_ViewModel.swift */,
-				DA13072327DCF96C00F262EA /* Repo_View_Image.swift */,
-				DA13072427DCF96C00F262EA /* Repo_View_Directory.swift */,
-				DA13072527DCF96C00F262EA /* Repo_View.swift */,
-				DA13072627DCF96C00F262EA /* Repo_View_Request.swift */,
-				DA13072727DCF96C00F262EA /* Repo_View_Log.swift */,
-			);
-			path = Repository_MVVM;
-			sourceTree = "<group>";
-		};
 		DA97B69A278BE05D006C473E = {
 			isa = PBXGroup;
 			children = (
@@ -245,12 +245,12 @@
 		DA97B6A5278BE05D006C473E /* Clonet */ = {
 			isa = PBXGroup;
 			children = (
-				DA13071C27DCF96B00F262EA /* Login */,
-				DA13071827DCF96A00F262EA /* Login_MVVM */,
-				DA13071427DCF96A00F262EA /* LoginCheck_MVVM */,
-				DA13071F27DCF96C00F262EA /* Repository_MVVM */,
-				DA13071227DCF95100F262EA /* API.swift */,
-				DA13071027DCF8F600F262EA /* schema.json */,
+				3F0ADCEA27DE1869007F1823 /* Login */,
+				3F0ADCED27DE186A007F1823 /* Login_MVVM */,
+				3F0ADCF127DE186B007F1823 /* LoginCheck_MVVM */,
+				3F0ADCF527DE186B007F1823 /* Repository_MVVM */,
+				3F0ADCE827DE1836007F1823 /* API.swift */,
+				3F0ADCE627DE181A007F1823 /* schema.json */,
 				3F4B39EB27B38E8600EC0D8C /* LaunchList.graphql */,
 				3FE633BC278EED9F00143666 /* Git */,
 				3FD176B6278D69D50025CCD2 /* Main */,
@@ -380,7 +380,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DA13071127DCF8F600F262EA /* schema.json in Resources */,
+				3F0ADCE727DE181A007F1823 /* schema.json in Resources */,
 				DA97B6AE278BE05E006C473E /* Preview Assets.xcassets in Resources */,
 				3F4B39EC27B38E8600EC0D8C /* LaunchList.graphql in Resources */,
 				DA97B6AB278BE05E006C473E /* Assets.xcassets in Resources */,
@@ -422,33 +422,33 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DA13073727DCF96C00F262EA /* Repo_View_Log.swift in Sources */,
-				DA13073227DCF96C00F262EA /* Repo_ViewModel.swift in Sources */,
-				DA13071327DCF95100F262EA /* API.swift in Sources */,
-				DA13072A27DCF96C00F262EA /* LoginCheck_ViewModel.swift in Sources */,
+				3F0ADD0D27DE186B007F1823 /* Repo_View_Log.swift in Sources */,
+				3F0ADD0827DE186B007F1823 /* Repo_ViewModel.swift in Sources */,
+				3F0ADCE927DE1836007F1823 /* API.swift in Sources */,
 				DACAA65E278C7E5D007F3918 /* SocketIO.swift in Sources */,
 				3FE633B5278DD9AF00143666 /* PageViewController.swift in Sources */,
+				3F0ADD0427DE186B007F1823 /* LoginCheck_View.swift in Sources */,
+				3F0ADD0327DE186B007F1823 /* LoginCheck_Model.swift in Sources */,
 				B50BD823278C781700A7E3E0 /* GitTest.swift in Sources */,
-				DA13072C27DCF96C00F262EA /* Login_Model.swift in Sources */,
+				3F0ADD0227DE186B007F1823 /* Login_ViewModel.swift in Sources */,
 				3FD176BB278D83510025CCD2 /* JsonTest.swift in Sources */,
 				DA97B6A9278BE05D006C473E /* ContentView.swift in Sources */,
+				3F0ADD0C27DE186B007F1823 /* Repo_View_Request.swift in Sources */,
 				3F772E0C279C71790047F693 /* Credentials.swift in Sources */,
-				DA13073627DCF96C00F262EA /* Repo_View_Request.swift in Sources */,
-				DA13072B27DCF96C00F262EA /* Login_View.swift in Sources */,
-				DA13072E27DCF96C00F262EA /* FindIdPw.swift in Sources */,
-				DA13072927DCF96C00F262EA /* LoginCheck_View.swift in Sources */,
+				3F0ADD0127DE186B007F1823 /* Login_Model.swift in Sources */,
+				3F0ADCFF27DE186B007F1823 /* Signup.swift in Sources */,
+				3F0ADD0027DE186B007F1823 /* Login_View.swift in Sources */,
 				3F6A1BB6279A814900146367 /* Repository.swift in Sources */,
-				DA13072F27DCF96C00F262EA /* Signup.swift in Sources */,
-				DA13072827DCF96C00F262EA /* LoginCheck_Model.swift in Sources */,
-				DA13073427DCF96C00F262EA /* Repo_View_Directory.swift in Sources */,
-				DA13073127DCF96C00F262EA /* Repo_View_Git.swift in Sources */,
-				DA13073527DCF96C00F262EA /* Repo_View.swift in Sources */,
+				3F0ADD0527DE186B007F1823 /* LoginCheck_ViewModel.swift in Sources */,
+				3F0ADD0A27DE186B007F1823 /* Repo_View_Directory.swift in Sources */,
+				3F0ADD0727DE186B007F1823 /* Repo_View_Git.swift in Sources */,
+				3F0ADD0B27DE186B007F1823 /* Repo_View.swift in Sources */,
 				DA253E13278DEE1500AEE18A /* ViewModifiers.swift in Sources */,
 				DA97B6A7278BE05D006C473E /* ClonetApp.swift in Sources */,
-				DA13073327DCF96C00F262EA /* Repo_View_Image.swift in Sources */,
-				DA13073027DCF96C00F262EA /* Repo_Model.swift in Sources */,
+				3F0ADD0927DE186B007F1823 /* Repo_View_Image.swift in Sources */,
+				3F0ADD0627DE186B007F1823 /* Repo_Model.swift in Sources */,
+				3F0ADCFE27DE186B007F1823 /* FindIdPw.swift in Sources */,
 				3F4B39F227B3A55A00EC0D8C /* Network.swift in Sources */,
-				DA13072D27DCF96C00F262EA /* Login_ViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
