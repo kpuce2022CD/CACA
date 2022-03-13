@@ -72,7 +72,7 @@ const typeDefs = gql
     request_id(user_id: String): [request],
     request_repo(repo_name: String): [request],
     request_xy(x_pixel: String, y_pixel: String): [request],
-    diff_commit(first_commit: String, second_commit: String): String,
+    diff_commit(first_commit: String, second_commit: String, repo_name: String, file_name: String): String,
 
   }
   type Mutation {
@@ -282,4 +282,3 @@ const server = new ApolloServer({
 server.listen().then(({ url }) => {
   console.log(`🚀  Server ready at ${url}`);
 });
-
