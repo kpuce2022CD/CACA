@@ -9,8 +9,9 @@ import SwiftUI
 
 struct Repo_View_Request: View {
     @StateObject var userViewModel = log_repo_ViewModel()
-    @State var RequestName = ["RequestName1", "RequestName2", "RequestName3"]
-    @State var RequestText = ["RequestText1", "RequestText2", "RequestText3"]
+    @State var repoName: String
+//    @State var RequestName = ["RequestName1", "RequestName2", "RequestName3"]
+//    @State var RequestText = ["RequestText1", "RequestText2", "RequestText3"]
     
     var body: some View {
 
@@ -27,9 +28,10 @@ struct Repo_View_Request: View {
 //                .frame(maxWidth: .infinity)
 //            }
             Button(action: {
-                let alertHC = UIHostingController(rootView: AddUserAlert())
+                userViewModel.appear()
+                let alertHC = UIHostingController(rootView: AddUserAlert(repoName: repoName))
                 
-                alertHC.preferredContentSize = CGSize(width: 300, height: 200)
+                alertHC.preferredContentSize = CGSize(width: 300, height: 400)
                 alertHC.modalPresentationStyle = UIModalPresentationStyle.formSheet
                 
                 UIApplication.shared.windows[0].rootViewController?.present(alertHC, animated: true)}){
@@ -46,6 +48,6 @@ struct Repo_View_Request: View {
 
 struct Repo_View_Request_Previews: PreviewProvider {
     static var previews: some View {
-        Repo_View_Request()
+        Repo_View_Request(repoName: "repoName")
     }
 }

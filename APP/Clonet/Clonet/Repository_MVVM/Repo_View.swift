@@ -22,7 +22,7 @@ struct Repo_View: View {
                 Repo_View_Directory(repo_n: repoName, ec2_id: "13.209.116.111")
             }
             VStack{
-                Repo_View_Request()
+                Repo_View_Request(repoName: repoName)
                 Repo_View_Log(repo_n: repoName)
                 Repo_View_Git(repo_n: repoName, userID: userID)
             }
