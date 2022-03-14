@@ -10,6 +10,7 @@ import MobileCoreServices
 import Foundation
 import ToastUI
 import Combine
+import Apollo
 
 final class getFileList: ObservableObject{
     @State var repoName = ""
@@ -158,6 +159,8 @@ struct Repo_View_Directory: View {
     @State var fileNameImg_toast = "" // to Store File Name picked
     @State private var editText_toast : Bool = true // determine README or not
     @State private var location = CGPoint.zero
+    @State private var messageToast: Bool = false
+    @State private var messageInput = ""
     
     init(repo_n: String, ec2_id: String){
         self.repo_n = repo_n
@@ -330,11 +333,39 @@ struct Repo_View_Directory: View {
                                                         case .second(true, let drag):
                                                             location = drag?.location ?? .zero   // capture location !!
                                                             print("location:", location)
-                                                            
+                                                            messageToast = true
                                                         default:
                                                             break
                                                         }
                                                 })
+                                                .toast(isPresented: $messageToast) {
+                                                    ToastView {
+                                                        VStack{
+                                                            Section{
+                                                                Text("Add Message")
+                                                            }
+                                                            TextField("내용을 입력해주세요.", text: $messageInput)
+                                                            Section{
+                                                                HStack{
+                                                                    Button {
+                                                                        messageToast = false
+                                                                        messageInput = ""
+                                                                    } label: {
+                                                                        Text("Save")
+                                                                    }
+                                                                    Button {
+                                                                        messageToast = false
+                                                                        messageInput = ""
+                                                                    } label: {
+                                                                        Text("Cancel")
+                                                                    }
+                                                                }
+                                                            }
+                                                            
+                                                        }
+                                                    }
+                                                    .frame(width: 220, height: 80)
+                                                }
                                         }
                                     }.edgesIgnoringSafeArea(.all)
                             }
