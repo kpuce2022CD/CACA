@@ -84,11 +84,6 @@ final class log_repo_ViewModel: ObservableObject{
             switch result{
             case .success(let graphQLResult):
                 print("CreateRequestMutation Success")
-                print("CreateRequestMutation", user_id)
-                print("CreateRequestMutation", repo_name)
-                print("CreateRequestMutation", x_pixel)
-                print("CreateRequestMutation", y_pixel)
-                print("CreateRequestMutation", request_context)
             case .failure(let error):
                 print("CreateRequestMutation failure")
             }
@@ -298,7 +293,7 @@ struct AddUserAlert: View {
                     }
                     Spacer()
                 }.padding(0)
-                
+                    .frame(height: 50)
             }.background(Color(white: 0.9))
         }
     }

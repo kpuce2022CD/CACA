@@ -31,7 +31,7 @@ struct Repo_View_Request: View {
                 userViewModel.appear()
                 let alertHC = UIHostingController(rootView: AddUserAlert(repoName: repoName))
                 
-                alertHC.preferredContentSize = CGSize(width: 300, height: 400)
+                alertHC.preferredContentSize = CGSize(width: 300, height: 265)
                 alertHC.modalPresentationStyle = UIModalPresentationStyle.formSheet
                 
                 UIApplication.shared.windows[0].rootViewController?.present(alertHC, animated: true)}){
