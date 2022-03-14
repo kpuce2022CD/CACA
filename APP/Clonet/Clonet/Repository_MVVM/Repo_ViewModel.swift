@@ -78,6 +78,23 @@ final class log_repo_ViewModel: ObservableObject{
         }
     }
     
+    //MARK: CreateRequestMutation
+    func CreateRequest(user_id: String, repo_name: String, x_pixel: String, y_pixel: String, request_context: String){
+        Network.shared.apollo.perform(mutation: CreateRequestMutation(user_id: user_id, repo_name: repo_name, x_pixel: x_pixel, y_pixel: y_pixel, request_context: request_context)){ result in
+            switch result{
+            case .success(let graphQLResult):
+                print("CreateRequestMutation Success")
+                print("CreateRequestMutation", user_id)
+                print("CreateRequestMutation", repo_name)
+                print("CreateRequestMutation", x_pixel)
+                print("CreateRequestMutation", y_pixel)
+                print("CreateRequestMutation", request_context)
+            case .failure(let error):
+                print("CreateRequestMutation failure")
+            }
+        }
+    }
+    
     func Diff(first_commit: String, second_commit: String, repo_name: String, file_name: String){
         Network.shared.apollo.fetch(query: DiffCommitQuery(first_commit: first_commit, second_commit: second_commit, repo_name: repo_name, file_name: file_name), cachePolicy: CachePolicy.fetchIgnoringCacheData){ result in
             switch result {
@@ -99,18 +116,11 @@ final class log_repo_ViewModel: ObservableObject{
     }
     
     
-//    func loginCheck_alert(userID : String){
-//        let alert = UIHostingController(rootView: AddUserAlert(repoName: <#T##String#>))
-//
-//        alert.preferredContentSize = CGSize(width: 300, height: 200)
-//        alert.modalPresentationStyle = UIModalPresentationStyle.formSheet
-//
-//        UIApplication.shared.windows[0].rootViewController?.present(alert, animated: true)
-//    }
+
 }
 
 
-// MARK: AddUserAlert
+// MARK: AddUser Alert
 struct AddUserAlert: View {
     @ObservedObject var loginCheck_ViewModel = LoginCheck_ViewModel()
     

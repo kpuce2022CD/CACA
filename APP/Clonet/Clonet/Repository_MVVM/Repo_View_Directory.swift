@@ -12,6 +12,8 @@ import ToastUI
 import Combine
 import Apollo
 
+
+//MARK: getFileList
 final class getFileList: ObservableObject{
     @State var repoName = ""
     @Published var items = [String]() // Directory File List
@@ -139,6 +141,7 @@ struct Repo_View_Directory: View {
     
     @State var repo_n : String
     @State var ec2_id : String
+    @State var user_id : String
     
     
     @ObservedObject var dataList = getFileList()
@@ -156,15 +159,16 @@ struct Repo_View_Directory: View {
     @State private var presentingToast: Bool = false
     
     //Repo_Message_Toast
-    @State var fileNameImg_toast = "" // to Store File Name picked
+//    @State var fileNameImg_toast = "" // to Store File Name picked
     @State private var editText_toast : Bool = true // determine README or not
     @State private var location = CGPoint.zero
     @State private var messageToast: Bool = false
     @State private var messageInput = ""
     
-    init(repo_n: String, ec2_id: String){
+    init(repo_n: String, ec2_id: String, user_id: String){
         self.repo_n = repo_n
         self.ec2_id = ec2_id
+        self.user_id = user_id
         dataList.first(repo_n: self.repo_n)
         dataList.repoName = repo_n
     }
@@ -287,7 +291,7 @@ struct Repo_View_Directory: View {
                     Text("Image Message")
                 }
                 
-                // MARK: Image Message Toast
+                // MARK: Image REQUEST Toast
                 .toast(isPresented: $presentingToast){
                     HStack{
                         VStack{
@@ -314,20 +318,11 @@ struct Repo_View_Directory: View {
                                 }
                                 
                             } else {
-//                                Image(uiImage: load(fileName: fileNameImg)!)
-//                                    .resizable()
-//                                    .aspectRatio(contentMode: .fit) // Image 깨지지 않게 크기 처리
-//                                    .frame(width: 500, height: 500)
-//                                    .padding()
                                 GeometryReader { geometryProxy in
                                         ZStack {
                                             Image(uiImage: load(fileName: fileNameImg)!)
                                                 .resizable()
                                                 .aspectRatio(contentMode: .fit)
-//                                                .gesture(DragGesture(minimumDistance: 0).onEnded { value in
-//                                                    self.location = value.location // < here !!
-//                                                    print("location: ", self.location)
-//                                                })
                                                 .gesture(LongPressGesture(minimumDuration: 0.5).sequenced(before: DragGesture(minimumDistance: 0)).onEnded { value in
                                                     switch value {
                                                         case .second(true, let drag):
@@ -348,8 +343,18 @@ struct Repo_View_Directory: View {
                                                             Section{
                                                                 HStack{
                                                                     Button {
+                                                                        
+                                                                        var file_Name = "\(repo_n)_\(fileNameImg)"
+                                                                        var x_pixel = "\(location.x)"
+                                                                        var y_pixel = "\(location.y)"
+                                                                        
+                                                                        // Save Request && Fixel
+                                                                        var Repo_ViewModel = log_repo_ViewModel()
+                                                                            Repo_ViewModel.CreateRequest(user_id: user_id, repo_name: file_Name, x_pixel: x_pixel, y_pixel: y_pixel, request_context: messageInput)
+                                                                        
                                                                         messageToast = false
                                                                         messageInput = ""
+                                                                        
                                                                     } label: {
                                                                         Text("Save")
                                                                     }
@@ -436,6 +441,6 @@ struct Repo_View_Directory: View {
 
 struct Repo_View_Directory_Previews: PreviewProvider {
     static var previews: some View {
-        Repo_View_Directory(repo_n: "TEST", ec2_id: "3.34.194.172")
+        Repo_View_Directory(repo_n: "TEST", ec2_id: "3.34.194.172", user_id: "user_id")
     }
 }
