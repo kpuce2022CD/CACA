@@ -364,6 +364,7 @@
 				B5F6B9AE27AED04900C46E4B /* XCRemoteSwiftPackageReference "apollo-ios" */,
 				3F4B3A0227B4BAEF00EC0D8C /* XCRemoteSwiftPackageReference "ToastUI" */,
 				3F4B3A0527B69EC700EC0D8C /* XCRemoteSwiftPackageReference "Swift-SMTP" */,
+				DAD68E0227DF7E7C008012AD /* XCRemoteSwiftPackageReference "url-image" */,
 			);
 			productRefGroup = DA97B6A4278BE05D006C473E /* Products */;
 			projectDirPath = "";
@@ -787,6 +788,14 @@
 			requirement = {
 				branch = main;
 				kind = branch;
+			};
+		};
+		DAD68E0227DF7E7C008012AD /* XCRemoteSwiftPackageReference "url-image" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/dmytro-anokhin/url-image.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.0.0;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
