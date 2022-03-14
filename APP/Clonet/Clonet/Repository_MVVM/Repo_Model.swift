@@ -13,6 +13,7 @@ import SwiftUI
 
 typealias logrepoData = LogRepoQuery.Data.LogRepo
 typealias iprepoData = SelectRepoQuery.Data.SelectRepo
+typealias requestData = RequestRepoQuery.Data.RequestRepo
 
 struct Log_repo: Decodable {
     var id = UUID()
@@ -52,23 +53,27 @@ struct Ip_repo : Decodable {
     }
 }
 
-//struct Request : Decodable {
-//    var id = UUID()
-//    var user_id : String
-//    var repo_name : String
-//    var x_pixel : String
-//    var y_pixel : String
-//    var request_context : String
-//
-//    init(){
-//        self.user_id = ""
-//        self.repo_name = ""
-//        self.x_pixel = ""
-//        self.y_pixel = ""
-//        self.request_context = ""
-//    }
-//
-//    init(_ lauches: iprepoData?){
-//        self.user_id = lauches?.user_id ?? ""
-//    }
-//}
+struct Request : Decodable {
+    var id = UUID()
+    var user_id : String
+    var repo_name : String
+    var x_pixel : String
+    var y_pixel : String
+    var request_context : String
+
+    init(){
+        self.user_id = ""
+        self.repo_name = ""
+        self.x_pixel = ""
+        self.y_pixel = ""
+        self.request_context = ""
+    }
+
+    init(_ lauches: requestData?){
+        self.user_id = lauches?.userId ?? ""
+        self.repo_name = lauches?.repoName ?? ""
+        self.x_pixel = lauches?.xPixel ?? ""
+        self.y_pixel = lauches?.yPixel ?? ""
+        self.request_context = lauches?.requestContext ?? ""
+    }
+}

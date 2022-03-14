@@ -16,6 +16,7 @@ import Combine
 final class log_repo_ViewModel: ObservableObject{
     @Published var launches: Log_repo = Log_repo.init()
     @Published var launches_ip: Ip_repo = Ip_repo.init()
+    @Published var launches_req: Request = Request.init()
     @Published var Log_repo_list : [Log_repo] = []
     @Published var repo_n: String = ""
     @Published var repoIP_Addr : String = ""
@@ -27,7 +28,6 @@ final class log_repo_ViewModel: ObservableObject{
         Log_repo_list.removeAll()
         fetch(Repo_Name: repo_n)
         print("init : ", Log_repo_list)
-        
     }
     
     func appear(){
@@ -78,6 +78,26 @@ final class log_repo_ViewModel: ObservableObject{
         }
     }
     
+    //MARK: Request List
+    func Request_fetch(Repo_Name: String){
+        Network.shared.apollo.fetch(query: RequestRepoQuery(repo_name: Repo_Name), cachePolicy: CachePolicy.fetchIgnoringCacheData){ result in
+            switch result {
+            case .success(let graphQLResult):
+                if let requestRepos = graphQLResult.data?.requestRepo {
+                    for i in requestRepos.indices{
+                        self.launches_req = self.process_req(data: graphQLResult.data?.requestRepo![i] ?? requestData.init(userId: "", repoName: "", xPixel: "", yPixel: "", requestContext: ""))
+                        print("Req_repo_list fetch", self.launches_req)
+                    }
+                } else if let errors = graphQLResult.errors {
+                    print("GraphQL errors \(errors)")
+                }
+                
+            case .failure(let error):
+                print("Failure! Error: \(error)")
+            }
+        }
+    }
+    
     //MARK: CreateRequestMutation
     func CreateRequest(user_id: String, repo_name: String, x_pixel: String, y_pixel: String, request_context: String){
         Network.shared.apollo.perform(mutation: CreateRequestMutation(user_id: user_id, repo_name: repo_name, x_pixel: x_pixel, y_pixel: y_pixel, request_context: request_context)){ result in
@@ -110,6 +130,9 @@ final class log_repo_ViewModel: ObservableObject{
         return Ip_repo(data)
     }
     
+    func process_req(data: requestData) -> Request {
+        return Request(data)
+    }
     
 
 }

@@ -164,6 +164,8 @@ struct Repo_View_Directory: View {
     @State private var location = CGPoint.zero
     @State private var messageToast: Bool = false
     @State private var messageInput = ""
+    @State var Repo_ViewModel_req = log_repo_ViewModel()
+    @State var Req_repo_list : [Request] = []
     
     init(repo_n: String, ec2_id: String, user_id: String){
         self.repo_n = repo_n
@@ -275,7 +277,12 @@ struct Repo_View_Directory: View {
                                 } else{
                                     editText = false
                                 }
-                                
+                                var fileName_Req = repo_n + "_" + fileNameImg
+                                Repo_ViewModel_req.Request_fetch(Repo_Name: "test_photo.psd")
+                                print("Repo_ViewModel_req.Req_repo_list1", Repo_ViewModel_req.launches_req)
+////                                Req_repo_list.removeAll()
+                                Req_repo_list.append(Repo_ViewModel_req.launches_req)
+//                                print("Req_repo_list.append", Req_repo_list)
                             })
                         }
                     }
@@ -295,10 +302,13 @@ struct Repo_View_Directory: View {
                 .toast(isPresented: $presentingToast){
                     HStack{
                         VStack{
-                            //Show File List
                             List{
-                                
-                                
+                                ForEach(Req_repo_list, id: \.id) { s in
+                                    Button(s.request_context, action: {
+                                        print(s.request_context)
+                                    })
+                                    
+                                }
                             }.frame(width: 300)
                             Button {
                                 presentingToast = false
