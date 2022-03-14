@@ -16,8 +16,11 @@ http.createServer(function (req, res) {
     var query = url.parse(uri, true).query;
 
     if (req.method == "GET") {
-      res.writeHead(200, { "Content-type": "text/html" });
-      res.end("ID: " + query.user_id + "repo_name: " + query.repo_name);
+      // res.writeHead(200, { "Content-type": "text/html" });
+      // res.end("ID: " + query.user_id + "repo_name: " + query.repo_name);
+
+      console.log(query.user_id)
+      console.log(query.repo_name)
 
       if(query.user_id != "" && query.repo_name != ""){
         knex('mapping_repo_user').insert({ user_id: query.user_id, repo_name: query.repo_name })
@@ -25,10 +28,8 @@ http.createServer(function (req, res) {
             console.log(result)
         });
       }
-
-      
     }
   })
-  .listen(8080, function () {
-    console.log("server running on 8080.");
+  .listen(5312, function () {
+    console.log("server running on 5312 for SMTP.");
   });

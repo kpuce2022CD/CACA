@@ -99,14 +99,14 @@ final class log_repo_ViewModel: ObservableObject{
     }
     
     
-    func loginCheck_alert(userID : String){
-        let alert = UIHostingController(rootView: AddUserAlert(uuserID: userID))
-        
-        alert.preferredContentSize = CGSize(width: 300, height: 200)
-        alert.modalPresentationStyle = UIModalPresentationStyle.formSheet
-        
-        UIApplication.shared.windows[0].rootViewController?.present(alert, animated: true)
-    }
+//    func loginCheck_alert(userID : String){
+//        let alert = UIHostingController(rootView: AddUserAlert(repoName: <#T##String#>))
+//
+//        alert.preferredContentSize = CGSize(width: 300, height: 200)
+//        alert.modalPresentationStyle = UIModalPresentationStyle.formSheet
+//
+//        UIApplication.shared.windows[0].rootViewController?.present(alert, animated: true)
+//    }
 }
 
 
@@ -117,7 +117,9 @@ struct AddUserAlert: View {
     @State private var selectionString: String? = nil
     @State var showingAlert = true
     @State var input_userEmail = ""
+    @State var input_userId = ""
     var uuserID = ""
+    @State var repoName: String
     
     @State private var presentingToast_true: Bool = false
     @State private var presentingToast_false: Bool = false
@@ -127,7 +129,8 @@ struct AddUserAlert: View {
             VStack {
                 Text("사용자 추가하기").font(.headline).padding()
                 
-                TextField("추가할 사용자의 이메일을 입력해주세요.", text: $input_userEmail).textFieldStyle(RoundedBorderTextFieldStyle()).padding()
+                TextField("초대 메시지를 보낼 이메일을 입력해주세요.", text: $input_userEmail).textFieldStyle(RoundedBorderTextFieldStyle()).padding()
+                TextField("추가할 사용자의 아이디를 입력해주세요", text: $input_userId).textFieldStyle(RoundedBorderTextFieldStyle()).padding()
                 Divider()
                 
                 
@@ -205,7 +208,15 @@ struct AddUserAlert: View {
                                                                         <div class="m_-7513422647994330679btn" style="Margin-bottom:20px;text-align:center">
                                                                           <u></u><a
                                                                             style="border-radius:4px;display:inline-block;font-size:14px;font-weight:bold;line-height:24px;padding:12px 24px;text-align:center;text-decoration:none!important;color:#ffffff!important;border:1px solid #fff;font-family:Avenir,sans-serif"
-                                                                            href="http://localhost:8080/?user_id=hyemin&&repo_name=test" target="_blank"
+                                                                            href="http://13.209.116.111:5312/?user_id=
+                            """
+                             + input_userId +
+                            """
+                            &&repo_name=
+                            """
+                             + repoName +
+                            """
+                            " target="_blank"
                                                                             data-saferedirecturl="https://www.google.com/url?q=https://kpu.cmail20.com/t/y-l-bzjilk-ihikujkidl-r/&amp;source=gmail&amp;ust=1642312571573000&amp;usg=AOvVaw310-sElFsJqD1fZ3lwkT9K">JOIN
                                                                             THE PROJECT</a><u></u>
                                                                         </div>
