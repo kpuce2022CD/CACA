@@ -17,7 +17,7 @@ http.createServer(function (req, res) {
 
     if (req.method == "GET") {
       // res.writeHead(200, { "Content-type": "text/html" });
-      // res.end("ID: " + query.user_id + "repo_name: " + query.repo_name);
+      res.end("완료! WELCOME TO CLONET!");
 
       console.log(query.user_id)
       console.log(query.repo_name)
