@@ -151,7 +151,90 @@ struct AddUserAlert: View {
                             from: mail_from,
                             to: [mail_to],
                             subject: "Invite to CLONET",
-                            text: "WELCOME"
+                            text:
+                                """
+                                <!DOCTYPE html>
+
+                                <div class="m_-7513422647994330679main" style="margin:0;padding:0">
+
+                                  <table class="m_-7513422647994330679wrapper"
+                                    style="border-collapse:collapse;table-layout:fixed;min-width:320px;width:100%;background-color:#131814"
+                                    cellpadding="0" cellspacing="0" role="presentation">
+                                    <tbody>
+                                      <tr>
+                                        <td>
+                                          <div style="Margin-left:20px;Margin-right:20px">
+                                            <div style="line-height:150px;font-size:1px">&nbsp;</div>
+                                          </div>
+                                          <div align="center">
+                                            <img
+                                              src="https://i1.createsend1.com/ei/y/5B/AD7/FD8/164801/csfinal/KakaoTalk_Photo_2022-01-15-14-39-19.png" height="200">
+                                          </div>
+                                        </td>
+                                      </tr>
+                                    </tbody>
+                                  </table>
+                                </div>
+
+                                </div>
+                                <div>
+                                  <div
+                                    style="background-color:#131814;background:0px 0px/auto auto repeat url(https://ci4.googleusercontent.com/proxy/Xy2jV1jWTuQw1FY6zXOZtnaFbefQVZDdWiI-5wRe9_3pjvkBsto1uUMG_3RtDB4XJPOwH022-8Ylq__rcy83ncFeLHUcYVXHq-b3GrueZdXgVDmMOaNfhLN-pyrI=s0-d-e1-ft#http://i1.cmail20.com/ei/y/5B/AD7/FD8/164801/csfinal/image-beautiful-2.jpg) #131814;background-position:0px 0px;background-image:url(https://ci4.googleusercontent.com/proxy/Xy2jV1jWTuQw1FY6zXOZtnaFbefQVZDdWiI-5wRe9_3pjvkBsto1uUMG_3RtDB4XJPOwH022-8Ylq__rcy83ncFeLHUcYVXHq-b3GrueZdXgVDmMOaNfhLN-pyrI=s0-d-e1-ft#http://i1.cmail20.com/ei/y/5B/AD7/FD8/164801/csfinal/image-beautiful-2.jpg);background-repeat:repeat;background-size:auto auto">
+                                    <div class="m_-7513422647994330679layout m_-7513422647994330679one-col m_-7513422647994330679stack"
+                                      style="Margin:0 auto;max-width:600px;min-width:320px;width:320px;width:calc(28000% - 167400px);word-wrap:break-word;word-break:break-word">
+                                      <div class="m_-7513422647994330679layout__inner" style="border-collapse:collapse;display:table;width:100%">
+
+                                        <div class="m_-7513422647994330679column"
+                                          style="text-align:left;color:#a6b0b3;font-size:14px;line-height:21px;font-family:Roboto,Tahoma,sans-serif">
+
+                                          <div style="Margin-left:20px;Margin-right:20px;Margin-top:12px">
+
+                                            <div style="line-height:28px;font-size:1px">&nbsp;</div>
+                                          </div>
+
+                                          <div style="Margin-left:20px;Margin-right:20px">
+                                            <div style="vertical-align:middle">
+                                              <h2
+                                                style="Margin-top:0;Margin-bottom:0;font-style:normal;font-weight:normal;color:#fff;font-size:22px;line-height:31px;font-family:Avenir,sans-serif;text-align:center">
+                                                W E &nbsp; W E N T &nbsp; T O</h2>
+                                              <h1
+                                                style="Margin-top:16px;Margin-bottom:20px;font-style:normal;font-weight:normal;color:#fff;font-size:40px;line-height:47px;font-family:Avenir,sans-serif;text-align:center">
+                                                Clonet</h1>
+                                            </div>
+                                          </div>
+
+                                          <div style="Margin-left:20px;Margin-right:20px">
+                                            <div style="line-height:20px;font-size:1px">&nbsp;</div>
+                                          </div>
+
+                                          <div style="Margin-left:20px;Margin-right:20px">
+                                            <div class="m_-7513422647994330679btn" style="Margin-bottom:20px;text-align:center">
+                                              <u></u><a
+                                                style="border-radius:4px;display:inline-block;font-size:14px;font-weight:bold;line-height:24px;padding:12px 24px;text-align:center;text-decoration:none!important;color:#ffffff!important;border:1px solid #fff;font-family:Avenir,sans-serif"
+                                                href="http://localhost:8080/?user_id=hyemin&&repo_name=test" target="_blank"
+                                                data-saferedirecturl="https://www.google.com/url?q=https://kpu.cmail20.com/t/y-l-bzjilk-ihikujkidl-r/&amp;source=gmail&amp;ust=1642312571573000&amp;usg=AOvVaw310-sElFsJqD1fZ3lwkT9K">JOIN
+                                                THE PROJECT</a><u></u>
+                                            </div>
+                                          </div>
+
+                                          <div style="Margin-left:20px;Margin-right:20px;Margin-bottom:12px">
+                                            <div style="line-height:230px;font-size:1px">&nbsp;</div>
+                                          </div>
+
+                                          <div style="Margin-left:20px;Margin-right:20px">
+                                            <div style="line-height:150px;font-size:1px">&nbsp;</div>
+                                          </div>
+
+                                        </div>
+
+                                      </div>
+                                    </div>
+                                  </div>
+
+                                  <div style="line-height:30px;font-size:30px">&nbsp;</div>
+
+                                </div>
+                                """
                         )
                         
                         smtp.send(mail){ (error) in
