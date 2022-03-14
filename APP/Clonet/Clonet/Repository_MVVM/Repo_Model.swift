@@ -51,3 +51,24 @@ struct Ip_repo : Decodable {
         self.repo_ec2_ip = launches?.repoEc2Ip ?? ""
     }
 }
+
+//struct Request : Decodable {
+//    var id = UUID()
+//    var user_id : String
+//    var repo_name : String
+//    var x_pixel : String
+//    var y_pixel : String
+//    var request_context : String
+//
+//    init(){
+//        self.user_id = ""
+//        self.repo_name = ""
+//        self.x_pixel = ""
+//        self.y_pixel = ""
+//        self.request_context = ""
+//    }
+//
+//    init(_ lauches: iprepoData?){
+//        self.user_id = lauches?.user_id ?? ""
+//    }
+//}
