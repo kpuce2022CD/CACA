@@ -289,12 +289,28 @@ struct Repo_View_Git: View {
                                         NavigationView{
                                             VStack{
                                                 ZStack{
-                                                    AsyncImage(url: URL(string: "http://13.209.116.111/images/\( log_repoViewModel_a.Log_repo_list[log_number1].commitId)_\(FileList.items[file_number])"))
+                                                    AsyncImage(url: URL(string: "http://13.209.116.111/images/\( log_repoViewModel_a.Log_repo_list[log_number1].commitId)_\(FileList.items[file_number])"), scale: 2){ image in
+                                                        image
+                                                            .resizable()
+                                                            .aspectRatio(contentMode: .fill)
+                                                    } placeholder: {
+                                                        ProgressView()
+                                                            .progressViewStyle(.circular)
+                                                    }
                                                     .frame(width: 200, height: 200, alignment: .center)
                                                     .cornerRadius(20)
-                                                    AsyncImage(url: URL(string: "http://13.209.116.111/images/\( log_repoViewModel_a.Log_repo_list[log_number2].commitId)_\(FileList.items[file_number])"))
-                                                        .frame(width: 200, height: 200, alignment: .center)
-                                                        .cornerRadius(20)
+                                                    
+                                                    AsyncImage(url: URL(string: "http://13.209.116.111/images/\( log_repoViewModel_a.Log_repo_list[log_number2].commitId)_\(FileList.items[file_number])"),scale: 2){ image in
+                                                        image
+                                                            .resizable()
+                                                            .aspectRatio(contentMode: .fill)
+                                                            .opacity(ImgOpacity)
+                                                    } placeholder: {
+                                                        ProgressView()
+                                                            .progressViewStyle(.circular)
+                                                    }
+                                                    .frame(width: 400, height: 400, alignment: .center)
+                                                    .cornerRadius(20)
                                                 }
                                                 Text("\(ImgOpacity)")
                                                     .background(Color.red)
