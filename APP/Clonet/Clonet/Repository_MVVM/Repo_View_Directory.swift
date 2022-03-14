@@ -10,6 +10,7 @@ import MobileCoreServices
 import Foundation
 import ToastUI
 import Combine
+import Apollo
 
 final class getFileList: ObservableObject{
     @State var repoName = ""
@@ -152,8 +153,14 @@ struct Repo_View_Directory: View {
     
     @State var exportFileName : String = ""
 
+    @State private var presentingToast: Bool = false
     
-    
+    //Repo_Message_Toast
+    @State var fileNameImg_toast = "" // to Store File Name picked
+    @State private var editText_toast : Bool = true // determine README or not
+    @State private var location = CGPoint.zero
+    @State private var messageToast: Bool = false
+    @State private var messageInput = ""
     
     init(repo_n: String, ec2_id: String){
         self.repo_n = repo_n
@@ -192,6 +199,8 @@ struct Repo_View_Directory: View {
         let applicationActivities: [UIActivity]? = nil
         let excludedActivityTypes: [UIActivity.ActivityType]? = nil
         let callback: Callback? = nil
+        
+        
         
         func makeUIViewController(context: Context) -> UIActivityViewController {
             let controller = UIActivityViewController(
@@ -271,6 +280,105 @@ struct Repo_View_Directory: View {
                     }
                     
                 }.frame(width: 300)
+                
+                Button {
+                    presentingToast = true
+                }label: {
+                    Text("Image Message")
+                }
+                
+                // MARK: Image Message Toast
+                .toast(isPresented: $presentingToast){
+                    HStack{
+                        VStack{
+                            //Show File List
+                            List{
+                                
+                                
+                            }.frame(width: 300)
+                            Button {
+                                presentingToast = false
+                            }label: {
+                                Text("Close")
+                            }
+                        }
+                        VStack{
+                            if editText {
+                                VStack{
+                                    Text(dataList.text)
+                                        .padding()
+                                        .foregroundColor(Color.black)
+                                        .lineSpacing(5) //줄 간격
+                                        .frame(width: 500, height: 500)
+                                        .border(Color.purple, width: 1)
+                                }
+                                
+                            } else {
+//                                Image(uiImage: load(fileName: fileNameImg)!)
+//                                    .resizable()
+//                                    .aspectRatio(contentMode: .fit) // Image 깨지지 않게 크기 처리
+//                                    .frame(width: 500, height: 500)
+//                                    .padding()
+                                GeometryReader { geometryProxy in
+                                        ZStack {
+                                            Image(uiImage: load(fileName: fileNameImg)!)
+                                                .resizable()
+                                                .aspectRatio(contentMode: .fit)
+//                                                .gesture(DragGesture(minimumDistance: 0).onEnded { value in
+//                                                    self.location = value.location // < here !!
+//                                                    print("location: ", self.location)
+//                                                })
+                                                .gesture(LongPressGesture(minimumDuration: 0.5).sequenced(before: DragGesture(minimumDistance: 0)).onEnded { value in
+                                                    switch value {
+                                                        case .second(true, let drag):
+                                                            location = drag?.location ?? .zero   // capture location !!
+                                                            print("location:", location)
+                                                            messageToast = true
+                                                        default:
+                                                            break
+                                                        }
+                                                })
+                                                .toast(isPresented: $messageToast) {
+                                                    ToastView {
+                                                        VStack{
+                                                            Section{
+                                                                Text("Add Message")
+                                                            }
+                                                            TextField("내용을 입력해주세요.", text: $messageInput)
+                                                            Section{
+                                                                HStack{
+                                                                    Button {
+                                                                        messageToast = false
+                                                                        messageInput = ""
+                                                                    } label: {
+                                                                        Text("Save")
+                                                                    }
+                                                                    Button {
+                                                                        messageToast = false
+                                                                        messageInput = ""
+                                                                    } label: {
+                                                                        Text("Cancel")
+                                                                    }
+                                                                }
+                                                            }
+                                                            
+                                                        }
+                                                    }
+                                                    .frame(width: 220, height: 80)
+                                                }
+                                        }
+                                    }.edgesIgnoringSafeArea(.all)
+                            }
+                            
+                            
+                            
+                        }
+                        
+                    }
+                    
+                    .background(Color.white)
+                    
+                }
             }
             
             
@@ -321,6 +429,7 @@ struct Repo_View_Directory: View {
         }
         return nil
     }
+    
     
 }
 
