@@ -12,6 +12,18 @@ import ToastUI
 import Combine
 import Apollo
 
+class Pixel : ObservableObject {
+    @Published var RequestedLocation_x = 0.0
+    @Published var RequestedLocation_y = 0.0
+    
+    func change_Pixel(x: String, y: String){
+        RequestedLocation_x = Double(x) ?? 0.0
+        RequestedLocation_y = Double(y) ?? 0.0
+        print("processPixels Pixel()", RequestedLocation_x)
+        print("processPixels Pixel()", RequestedLocation_y)
+    }
+}
+
 // MARK: Repo_View_Directory: View
 struct Repo_View_Directory: View {
     
@@ -35,7 +47,6 @@ struct Repo_View_Directory: View {
     @State private var presentingToast: Bool = false
     
     //Repo_Message_Toast
-    //    @State var fileNameImg_toast = "" // to Store File Name picked
     @State private var editText_toast : Bool = true // determine README or not
     @State private var location = CGPoint.zero
     @State private var messageToast: Bool = false
@@ -43,8 +54,8 @@ struct Repo_View_Directory: View {
     @State var Repo_ViewModel_req = log_repo_ViewModel()
     @State var Req_repo_list : [Request] = []
     @State private var messagePoint: Bool = false
-    @State var RequestedLocation_x = CGFloat.init(100.0)
-    @State var RequestedLocation_y = CGFloat.init(100.0)
+    
+    @ObservedObject var pixel = Pixel()
     
     init(repo_n: String, ec2_id: String, user_id: String){
         self.repo_n = repo_n
@@ -166,6 +177,9 @@ struct Repo_View_Directory: View {
                         deleteFile(at: $0)
                     }
                     
+                    Text("\(pixel.RequestedLocation_x)")
+                    
+                    
                 }.frame(width: 300)
                 
                 Button {
@@ -184,15 +198,11 @@ struct Repo_View_Directory: View {
                                         print("processPixels")
                                         messagePoint = true
                                         
-                                        // overlay
-                                        RequestedLocation_x = CGFloat.init(500.0)
-                                        RequestedLocation_y = CGFloat.init(500.0)
+                                        pixel.change_Pixel(x: s.x_pixel, y: s.y_pixel)
                                         
-                                        print("processPixels", RequestedLocation_x)
-                                        print("processPixels", RequestedLocation_y)
-    
+                                        print("processPixels", pixel.RequestedLocation_x)
+                                        print("processPixels", pixel.RequestedLocation_y)
                                     })
-                                    
                                 }
                             }.frame(width: 300)
                             
@@ -208,7 +218,7 @@ struct Repo_View_Directory: View {
                                 Repo_ViewModel_req.Request_fetch(Repo_Name: fileName_Req)
                                 print("Repo_ViewModel_req.Req_repo_list1", Repo_ViewModel_req.Req_repo_list)
                                 
-                                var timer: Timer? = Timer.scheduledTimer(withTimeInterval: 3, repeats: true, block: { _ in
+                                var timer: Timer? = Timer.scheduledTimer(withTimeInterval: 6, repeats: true, block: { _ in
                                     var fileName_Req = repo_n + "_" + fileNameImg
                                     print("fileName_Req", fileName_Req)
                                     Repo_ViewModel_req.Request_fetch(Repo_Name: fileName_Req)
@@ -230,6 +240,13 @@ struct Repo_View_Directory: View {
                             } else {
                                 GeometryReader { geometryProxy in
                                     ZStack {
+                                        Circle()
+                                            .foregroundColor(Color.red)
+                                            .frame(width: 20.0, height: 20.0)
+                                            .offset(x: pixel.RequestedLocation_x,y: pixel.RequestedLocation_y)
+                                            .zIndex(1)
+                                        
+                                        
                                         Image(uiImage: load(fileName: fileNameImg)!)
                                             .resizable()
                                             .aspectRatio(contentMode: .fit)
@@ -244,14 +261,9 @@ struct Repo_View_Directory: View {
                                                 }
                                                 
                                             })
-                                            .overlay(
-                                                Circle()
-                                                    .foregroundColor(Color.red)
-                                                    .frame(width: 20.0, height: 20.0)
-                                                    .position(x: RequestedLocation_x, y: RequestedLocation_y)
-                                                    .opacity( (true) ? 1 : 0 )
-                                                    .allowsHitTesting(false)
-                                            )
+                                        
+                                        
+                                        // MARK: Long click to Create Request
                                             .toast(isPresented: $messageToast) {
                                                 ToastView {
                                                     VStack{
@@ -298,6 +310,9 @@ struct Repo_View_Directory: View {
                     .background(Color.white)
                 }
             }
+            
+            
+            
             
             
             //MARK: Repo_View_Image
