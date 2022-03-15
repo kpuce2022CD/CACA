@@ -12,6 +12,353 @@ import ToastUI
 import Combine
 import Apollo
 
+// MARK: Repo_View_Directory: View
+struct Repo_View_Directory: View {
+    
+    @State var repo_n : String
+    @State var ec2_id : String
+    @State var user_id : String
+    
+    
+    @ObservedObject var dataList = getFileList()
+    @State var show = false
+    @State var exportShow = false
+    @State var alert = false
+    
+    //Repo_View_Image
+    @State var fileNameImg = "" // to Store File Name picked
+    @State private var editText : Bool = true // determine README or not
+    @State var saveCheck : Bool = false
+    
+    @State var exportFileName : String = ""
+    
+    @State private var presentingToast: Bool = false
+    
+    //Repo_Message_Toast
+    //    @State var fileNameImg_toast = "" // to Store File Name picked
+    @State private var editText_toast : Bool = true // determine README or not
+    @State private var location = CGPoint.zero
+    @State private var messageToast: Bool = false
+    @State private var messageInput = ""
+    @State var Repo_ViewModel_req = log_repo_ViewModel()
+    @State var Req_repo_list : [Request] = []
+    @State private var messagePoint: Bool = false
+    @State var RequestedLocation_x = CGFloat.init(100.0)
+    @State var RequestedLocation_y = CGFloat.init(100.0)
+    
+    init(repo_n: String, ec2_id: String, user_id: String){
+        self.repo_n = repo_n
+        self.ec2_id = ec2_id
+        self.user_id = user_id
+        dataList.first(repo_n: self.repo_n)
+        dataList.repoName = repo_n
+    }
+    
+    var documentsUrl: URL {
+        return FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+    }
+    
+    func deleteFile(at offsets: IndexSet){
+        print("IndexSet \(offsets[offsets.startIndex])")
+        print("IndexSet name : " + "\(self.repo_n)/" + "\(dataList.items[offsets[offsets.startIndex]])")
+        
+        // delete File
+        let fileManager = FileManager.default
+        let path = documentsUrl.path
+        
+        do{
+            try fileManager.removeItem(atPath: path + "/\(self.repo_n)/" + "\(dataList.items[offsets[offsets.startIndex]])")
+        }catch let e {
+            print("\(e)")
+        }
+        
+        dataList.items.remove(atOffsets: offsets)
+    }
+    
+    // MARK: EXPORT
+    struct ShareSheet: UIViewControllerRepresentable {
+        typealias Callback = (_ activityType: UIActivity.ActivityType?, _ completed: Bool, _ returnedItems: [Any]?, _ error: Error?) -> Void
+        
+        let activityItems: [Any]
+        let applicationActivities: [UIActivity]? = nil
+        let excludedActivityTypes: [UIActivity.ActivityType]? = nil
+        let callback: Callback? = nil
+        
+        
+        
+        func makeUIViewController(context: Context) -> UIActivityViewController {
+            let controller = UIActivityViewController(
+                activityItems: activityItems,
+                applicationActivities: applicationActivities)
+            
+            controller.excludedActivityTypes = excludedActivityTypes
+            controller.completionWithItemsHandler = callback
+            return controller
+        }
+        
+        func updateUIViewController(_ uiViewController: UIActivityViewController, context: Context) {
+            // nothing to do here
+        }
+    }
+    
+    
+    var body: some View {
+        HStack{
+            VStack{
+                
+                HStack{
+                    Spacer()
+                    // MARK: Document Picker Button (To add)
+                    Button(action:{
+                        self.show.toggle()
+                    }){
+                        Image(systemName: "square.and.arrow.down")
+                            .frame(width: 30.0, height: 30.0)
+                    }
+                    .sheet(isPresented: $show){
+                        DocumentPicker(alert: self.$alert, repo_name: self.$repo_n, img_name: self.$fileNameImg)
+                    }
+                    .alert(isPresented: $alert) {
+                        Alert(title: Text("Message"), message: Text("Upload Successfully"), dismissButton: .default(Text("OK")))
+                    }
+                    Spacer()
+                    
+                    // MARK: EXPORT Document Picker
+                    
+                    Button(action: {
+                        exportShow = true
+                    }) {
+                        Image(systemName: "square.and.arrow.up")
+                            .frame(width: 30.0, height: 30.0)
+                    }
+                    .sheet(isPresented: $exportShow) {
+                        if let dir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
+                            let fileURL = dir.appendingPathComponent(repo_n + "/")
+                            ShareSheet(activityItems: [fileURL])
+                        }
+                    }
+                    Spacer()
+                }
+                
+                
+                // MARK: Show File List
+                List{
+                    ForEach(dataList.items, id: \.self){ i in
+                        if(i != ".git"){
+                            Button(i, action: {
+                                fileNameImg = i
+                                var fileNameTxt = fileNameImg.components(separatedBy: ".")
+                                if(fileNameTxt[1] == "md" || fileNameTxt[1] == "txt"){
+                                    print("dataList:", fileNameImg)
+                                    dataList.readMELoad(repoName: repo_n, fileName: fileNameImg)
+                                    editText = true
+                                } else{
+                                    editText = false
+                                }
+                                var fileName_Req = repo_n + "_" + i
+                                print("fileName_Req", fileName_Req)
+                                Repo_ViewModel_req.Request_fetch(Repo_Name: fileName_Req)
+                                print("Repo_ViewModel_req.Req_repo_list1", Repo_ViewModel_req.Req_repo_list)
+                            })
+                        }
+                    }
+                    .onDelete{
+                        deleteFile(at: $0)
+                    }
+                    
+                }.frame(width: 300)
+                
+                Button {
+                    presentingToast = true
+                }label: {
+                    Text("Image Message")
+                }
+                
+                // MARK: Image REQUEST Toast
+                .toast(isPresented: $presentingToast){
+                    HStack{
+                        VStack{
+                            List{
+                                ForEach(Repo_ViewModel_req.Req_repo_list, id: \.id) { s in
+                                    Button(s.request_context, action: {
+                                        print("processPixels")
+                                        messagePoint = true
+                                        
+                                        // overlay
+                                        RequestedLocation_x = CGFloat.init(500.0)
+                                        RequestedLocation_y = CGFloat.init(500.0)
+                                        
+                                        print("processPixels", RequestedLocation_x)
+                                        print("processPixels", RequestedLocation_y)
+    
+                                    })
+                                    
+                                }
+                            }.frame(width: 300)
+                            
+                            
+                            Button {
+                                presentingToast = false
+                            }label: {
+                                Text("Close")
+                            }
+                            .onAppear {
+                                var fileName_Req = repo_n + "_" + fileNameImg
+                                print("fileName_Req", fileName_Req)
+                                Repo_ViewModel_req.Request_fetch(Repo_Name: fileName_Req)
+                                print("Repo_ViewModel_req.Req_repo_list1", Repo_ViewModel_req.Req_repo_list)
+                                
+                                var timer: Timer? = Timer.scheduledTimer(withTimeInterval: 3, repeats: true, block: { _ in
+                                    var fileName_Req = repo_n + "_" + fileNameImg
+                                    print("fileName_Req", fileName_Req)
+                                    Repo_ViewModel_req.Request_fetch(Repo_Name: fileName_Req)
+                                    print("Repo_ViewModel_req.Req_repo_list1", Repo_ViewModel_req.Req_repo_list)
+                                })
+                            }
+                        }
+                        VStack{
+                            if editText {
+                                VStack{
+                                    Text(dataList.text)
+                                        .padding()
+                                        .foregroundColor(Color.black)
+                                        .lineSpacing(5) //줄 간격
+                                        .frame(width: 500, height: 500)
+                                        .border(Color.purple, width: 1)
+                                }
+                                
+                            } else {
+                                GeometryReader { geometryProxy in
+                                    ZStack {
+                                        Image(uiImage: load(fileName: fileNameImg)!)
+                                            .resizable()
+                                            .aspectRatio(contentMode: .fit)
+                                            .gesture(LongPressGesture(minimumDuration: 0.5).sequenced(before: DragGesture(minimumDistance: 0)).onEnded { value in
+                                                switch value {
+                                                case .second(true, let drag):
+                                                    location = drag?.location ?? .zero   // capture location !!
+                                                    print("location:", location)
+                                                    messageToast = true
+                                                default:
+                                                    break
+                                                }
+                                                
+                                            })
+                                            .overlay(
+                                                Circle()
+                                                    .foregroundColor(Color.red)
+                                                    .frame(width: 20.0, height: 20.0)
+                                                    .position(x: RequestedLocation_x, y: RequestedLocation_y)
+                                                    .opacity( (true) ? 1 : 0 )
+                                                    .allowsHitTesting(false)
+                                            )
+                                            .toast(isPresented: $messageToast) {
+                                                ToastView {
+                                                    VStack{
+                                                        Section{
+                                                            Text("Add Message")
+                                                        }
+                                                        TextField("내용을 입력해주세요.", text: $messageInput)
+                                                        Section{
+                                                            HStack{
+                                                                Button {
+                                                                    
+                                                                    let file_Name = "\(repo_n)_\(fileNameImg)"
+                                                                    let x_pixel = "\(location.x)"
+                                                                    let y_pixel = "\(location.y)"
+                                                                    
+                                                                    // Save Request && Fixel
+                                                                    let Repo_ViewModel = log_repo_ViewModel()
+                                                                    Repo_ViewModel.CreateRequest(user_id: user_id, repo_name: file_Name, x_pixel: x_pixel, y_pixel: y_pixel, request_context: messageInput)
+                                                                    
+                                                                    messageToast = false
+                                                                    messageInput = ""
+                                                                    
+                                                                } label: {
+                                                                    Text("Save")
+                                                                }
+                                                                Button {
+                                                                    messageToast = false
+                                                                    messageInput = ""
+                                                                } label: {
+                                                                    Text("Cancel")
+                                                                }
+                                                            }
+                                                        }
+                                                        
+                                                    }
+                                                }
+                                                .frame(width: 220, height: 80)
+                                            }
+                                    }
+                                }.edgesIgnoringSafeArea(.all)
+                            }
+                        }
+                    }
+                    .background(Color.white)
+                }
+            }
+            
+            
+            //MARK: Repo_View_Image
+            VStack{
+                if editText {
+                    VStack{
+                        TextEditor(text: $dataList.text)
+                            .padding()
+                            .foregroundColor(Color.black)
+                            .lineSpacing(5) //줄 간격
+                        
+                            .frame(width: 500, height: 500)
+                            .border(Color.yellow, width: 1)
+                            .onAppear(perform: {print("dataText: ", dataList.text)})
+                        Button("Save", action: {
+                            dataList.readMEsave(repoName: repo_n, text: dataList.text, fileName: fileNameImg)
+                            self.saveCheck = dataList.saveCheck
+                            print("self.saveCheck \(saveCheck) : Repo_View")
+                        })
+                            .toast(isPresented: $saveCheck, dismissAfter: 0.5) {
+                                print("SAVE SUCCESS")
+                            } content: {
+                                ToastView("SAVE SUCCESS")
+                            }
+                    }
+                    
+                } else {
+                    Image(uiImage: load(fileName: fileNameImg)!)
+                        .resizable()
+                        .aspectRatio(contentMode: .fit) // Image 깨지지 않게 크기 처리
+                        .frame(width: 500, height: 500)
+                        .padding()
+                }
+                
+            }
+        }
+    }
+    
+    // MARK: LOAD IMAGE FILE
+    private func load(fileName: String) -> UIImage? {
+        let fileURL = documentsUrl.appendingPathComponent(repo_n+"/"+fileName)
+        do {
+            let imageData = try Data(contentsOf: fileURL)
+            return UIImage(data: imageData)
+        } catch {
+            print("Error loading image : \(error)")
+        }
+        return nil
+    }
+    
+    
+}
+
+
+struct Repo_View_Directory_Previews: PreviewProvider {
+    static var previews: some View {
+        Repo_View_Directory(repo_n: "TEST", ec2_id: "3.34.194.172", user_id: "user_id")
+    }
+}
+
+
 
 //MARK: getFileList
 final class getFileList: ObservableObject{
@@ -132,358 +479,5 @@ struct DocumentPicker : UIViewControllerRepresentable {
                 print("fileManager Error")
             }
         }
-    }
-}
-
-// MARK: Repo_View_Directory: View
-struct Repo_View_Directory: View {
-    
-    @State var repo_n : String
-    @State var ec2_id : String
-    @State var user_id : String
-    
-    
-    @ObservedObject var dataList = getFileList()
-    @State var show = false
-    @State var exportShow = false
-    @State var alert = false
-    
-    //Repo_View_Image
-    @State var fileNameImg = "" // to Store File Name picked
-    @State private var editText : Bool = true // determine README or not
-    @State var saveCheck : Bool = false
-    
-    @State var exportFileName : String = ""
-    
-    @State private var presentingToast: Bool = false
-    
-    //Repo_Message_Toast
-    //    @State var fileNameImg_toast = "" // to Store File Name picked
-    @State private var editText_toast : Bool = true // determine README or not
-    @State private var location = CGPoint.zero
-    @State private var messageToast: Bool = false
-    @State private var messageInput = ""
-    @State var Repo_ViewModel_req = log_repo_ViewModel()
-    @State var Req_repo_list : [Request] = []
-    @State private var messagePoint: Bool = false
-    @State var RequestedLocation = CGPoint.zero
-    
-    init(repo_n: String, ec2_id: String, user_id: String){
-        self.repo_n = repo_n
-        self.ec2_id = ec2_id
-        self.user_id = user_id
-        dataList.first(repo_n: self.repo_n)
-        dataList.repoName = repo_n
-        RequestedLocation = CGPoint.init(x: -5.0, y: -5.0)
-    }
-    
-    var documentsUrl: URL {
-        return FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
-    }
-    
-    func deleteFile(at offsets: IndexSet){
-        print("IndexSet \(offsets[offsets.startIndex])")
-        print("IndexSet name : " + "\(self.repo_n)/" + "\(dataList.items[offsets[offsets.startIndex]])")
-        
-        // delete File
-        let fileManager = FileManager.default
-        let path = documentsUrl.path
-        
-        do{
-            try fileManager.removeItem(atPath: path + "/\(self.repo_n)/" + "\(dataList.items[offsets[offsets.startIndex]])")
-        }catch let e {
-            print("\(e)")
-        }
-        
-        dataList.items.remove(atOffsets: offsets)
-    }
-    
-    // MARK: EXPORT
-    
-    struct ShareSheet: UIViewControllerRepresentable {
-        typealias Callback = (_ activityType: UIActivity.ActivityType?, _ completed: Bool, _ returnedItems: [Any]?, _ error: Error?) -> Void
-        
-        let activityItems: [Any]
-        let applicationActivities: [UIActivity]? = nil
-        let excludedActivityTypes: [UIActivity.ActivityType]? = nil
-        let callback: Callback? = nil
-        
-        
-        
-        func makeUIViewController(context: Context) -> UIActivityViewController {
-            let controller = UIActivityViewController(
-                activityItems: activityItems,
-                applicationActivities: applicationActivities)
-            
-            controller.excludedActivityTypes = excludedActivityTypes
-            controller.completionWithItemsHandler = callback
-            return controller
-        }
-        
-        func updateUIViewController(_ uiViewController: UIActivityViewController, context: Context) {
-            // nothing to do here
-        }
-    }
-    
-    
-    var body: some View {
-        HStack{
-            VStack{
-                
-                HStack{
-                    Spacer()
-                    // MARK: Document Picker Button (To add)
-                    Button(action:{
-                        self.show.toggle()
-                    }){
-                        Image(systemName: "square.and.arrow.down")
-                            .frame(width: 30.0, height: 30.0)
-                    }
-                    .sheet(isPresented: $show){
-                        DocumentPicker(alert: self.$alert, repo_name: self.$repo_n, img_name: self.$fileNameImg)
-                    }
-                    .alert(isPresented: $alert) {
-                        Alert(title: Text("Message"), message: Text("Upload Successfully"), dismissButton: .default(Text("OK")))
-                    }
-                    Spacer()
-                    
-                    // MARK: EXPORT Document Picker
-                    
-                    Button(action: {
-                        exportShow = true
-                    }) {
-                        Image(systemName: "square.and.arrow.up")
-                            .frame(width: 30.0, height: 30.0)
-                    }
-                    .sheet(isPresented: $exportShow) {
-                        if let dir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
-                            let fileURL = dir.appendingPathComponent(repo_n + "/")
-                            ShareSheet(activityItems: [fileURL])
-                        }
-                    }
-                    Spacer()
-                }
-                
-                
-                // MARK: Show File List
-                List{
-                    ForEach(dataList.items, id: \.self){ i in
-                        if(i != ".git"){
-                            Button(i, action: {
-                                fileNameImg = i
-                                var fileNameTxt = fileNameImg.components(separatedBy: ".")
-                                if(fileNameTxt[1] == "md" || fileNameTxt[1] == "txt"){
-                                    print("dataList:", fileNameImg)
-                                    dataList.readMELoad(repoName: repo_n, fileName: fileNameImg)
-                                    editText = true
-                                } else{
-                                    editText = false
-                                }
-                                var fileName_Req = repo_n + "_" + i
-                                print("fileName_Req", fileName_Req)
-                                Repo_ViewModel_req.Request_fetch(Repo_Name: fileName_Req)
-                                print("Repo_ViewModel_req.Req_repo_list1", Repo_ViewModel_req.Req_repo_list)
-                            })
-                        }
-                    }
-                    .onDelete{
-                        deleteFile(at: $0)
-                    }
-                    
-                }.frame(width: 300)
-                
-                Button {
-                    presentingToast = true
-                }label: {
-                    Text("Image Message")
-                }
-                
-                // MARK: Image REQUEST Toast
-                .toast(isPresented: $presentingToast){
-                    HStack{
-                        VStack{
-                            List{
-                                ForEach(Repo_ViewModel_req.Req_repo_list, id: \.id) { s in
-                                    Button(s.request_context, action: {
-                                        print("processPixels")
-                                        messagePoint = true
-                                        
-                                        // overlay
-//                                        RequestedLocation.x = CGFloat((s.x_pixel as NSString).floatValue)
-//                                        RequestedLocation.y = CGFloat((s.y_pixel as NSString).floatValue)
-//                                        print("RequestedLocation", RequestedLocation.x )
-//                                        print("RequestedLocation", RequestedLocation.y )
-                                        
-                                        RequestedLocation = CGPoint.init(x: CGFloat((s.x_pixel as NSString).floatValue), y: CGFloat((s.y_pixel as NSString).floatValue))
-    
-                                    })
-                                    
-                                }
-                            }.frame(width: 300)
-                            
-                            
-                            Button {
-                                presentingToast = false
-                            }label: {
-                                Text("Close")
-                            }
-                            .onAppear {
-                                var fileName_Req = repo_n + "_" + fileNameImg
-                                print("fileName_Req", fileName_Req)
-                                Repo_ViewModel_req.Request_fetch(Repo_Name: fileName_Req)
-                                print("Repo_ViewModel_req.Req_repo_list1", Repo_ViewModel_req.Req_repo_list)
-                                
-                                var timer: Timer? = Timer.scheduledTimer(withTimeInterval: 3, repeats: true, block: { _ in
-                                    var fileName_Req = repo_n + "_" + fileNameImg
-                                    print("fileName_Req", fileName_Req)
-                                    Repo_ViewModel_req.Request_fetch(Repo_Name: fileName_Req)
-                                    print("Repo_ViewModel_req.Req_repo_list1", Repo_ViewModel_req.Req_repo_list)
-                                })
-                            }
-                        }
-                        VStack{
-                            if editText {
-                                VStack{
-                                    Text(dataList.text)
-                                        .padding()
-                                        .foregroundColor(Color.black)
-                                        .lineSpacing(5) //줄 간격
-                                        .frame(width: 500, height: 500)
-                                        .border(Color.purple, width: 1)
-                                }
-                                
-                            } else {
-                                GeometryReader { geometryProxy in
-                                    ZStack {
-                                        Image(uiImage: load(fileName: fileNameImg)!)
-                                            .resizable()
-                                            .aspectRatio(contentMode: .fit)
-                                            .gesture(LongPressGesture(minimumDuration: 0.5).sequenced(before: DragGesture(minimumDistance: 0)).onEnded { value in
-                                                switch value {
-                                                case .second(true, let drag):
-                                                    location = drag?.location ?? .zero   // capture location !!
-                                                    print("location:", location)
-                                                    messageToast = true
-                                                default:
-                                                    break
-                                                }
-                                                
-                                            })
-                                            .overlay(
-                                                Rectangle()
-                                                    .foregroundColor(Color.red)
-                                                    .frame(width: 10.0, height: 10.0)
-                                                    .position(RequestedLocation)
-                                                    
-                                            )
-                                            .toast(isPresented: $messageToast) {
-                                                ToastView {
-                                                    VStack{
-                                                        Section{
-                                                            Text("Add Message")
-                                                        }
-                                                        TextField("내용을 입력해주세요.", text: $messageInput)
-                                                        Section{
-                                                            HStack{
-                                                                Button {
-                                                                    
-                                                                    var file_Name = "\(repo_n)_\(fileNameImg)"
-                                                                    var x_pixel = "\(location.x)"
-                                                                    var y_pixel = "\(location.y)"
-                                                                    
-                                                                    // Save Request && Fixel
-                                                                    var Repo_ViewModel = log_repo_ViewModel()
-                                                                    Repo_ViewModel.CreateRequest(user_id: user_id, repo_name: file_Name, x_pixel: x_pixel, y_pixel: y_pixel, request_context: messageInput)
-                                                                    
-                                                                    messageToast = false
-                                                                    messageInput = ""
-                                                                    
-                                                                } label: {
-                                                                    Text("Save")
-                                                                }
-                                                                Button {
-                                                                    messageToast = false
-                                                                    messageInput = ""
-                                                                } label: {
-                                                                    Text("Cancel")
-                                                                }
-                                                            }
-                                                        }
-                                                        
-                                                    }
-                                                }
-                                                .frame(width: 220, height: 80)
-                                            }
-                                    }
-                                }.edgesIgnoringSafeArea(.all)
-                            }
-                            
-                            
-                            
-                        }
-                        
-                    }
-                    
-                    .background(Color.white)
-                    
-                }
-            }
-            
-            
-            //MARK: Repo_View_Image
-            VStack{
-                if editText {
-                    VStack{
-                        TextEditor(text: $dataList.text)
-                            .padding()
-                            .foregroundColor(Color.black)
-                            .lineSpacing(5) //줄 간격
-                        
-                            .frame(width: 500, height: 500)
-                            .border(Color.yellow, width: 1)
-                            .onAppear(perform: {print("dataText: ", dataList.text)})
-                        Button("Save", action: {
-                            dataList.readMEsave(repoName: repo_n, text: dataList.text, fileName: fileNameImg)
-                            self.saveCheck = dataList.saveCheck
-                            print("self.saveCheck \(saveCheck) : Repo_View")
-                        })
-                            .toast(isPresented: $saveCheck, dismissAfter: 0.5) {
-                                print("SAVE SUCCESS")
-                            } content: {
-                                ToastView("SAVE SUCCESS")
-                            }
-                    }
-                    
-                } else {
-                    Image(uiImage: load(fileName: fileNameImg)!)
-                        .resizable()
-                        .aspectRatio(contentMode: .fit) // Image 깨지지 않게 크기 처리
-                        .frame(width: 500, height: 500)
-                        .padding()
-                }
-                
-            }
-        }
-    }
-    
-    // MARK: LOAD IMAGE FILE
-    private func load(fileName: String) -> UIImage? {
-        let fileURL = documentsUrl.appendingPathComponent(repo_n+"/"+fileName)
-        do {
-            let imageData = try Data(contentsOf: fileURL)
-            return UIImage(data: imageData)
-        } catch {
-            print("Error loading image : \(error)")
-        }
-        return nil
-    }
-    
-    
-}
-
-
-struct Repo_View_Directory_Previews: PreviewProvider {
-    static var previews: some View {
-        Repo_View_Directory(repo_n: "TEST", ec2_id: "3.34.194.172", user_id: "user_id")
     }
 }
