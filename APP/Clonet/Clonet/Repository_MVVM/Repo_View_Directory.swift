@@ -55,6 +55,8 @@ struct Repo_View_Directory: View {
     @State var Req_repo_list : [Request] = []
     @State private var messagePoint: Bool = false
     
+    @State private var pointShowing : Bool = false
+    
     @ObservedObject var pixel = Pixel()
     
     init(repo_n: String, ec2_id: String, user_id: String){
@@ -63,6 +65,7 @@ struct Repo_View_Directory: View {
         self.user_id = user_id
         dataList.first(repo_n: self.repo_n)
         dataList.repoName = repo_n
+        
     }
     
     var documentsUrl: URL {
@@ -151,66 +154,51 @@ struct Repo_View_Directory: View {
                     Spacer()
                 }
                 
-                
-                // MARK: Show File List
-                List{
-                    ForEach(dataList.items, id: \.self){ i in
-                        if(i != ".git"){
-                            Button(i, action: {
-                                fileNameImg = i
-                                var fileNameTxt = fileNameImg.components(separatedBy: ".")
-                                if(fileNameTxt[1] == "md" || fileNameTxt[1] == "txt"){
-                                    print("dataList:", fileNameImg)
-                                    dataList.readMELoad(repoName: repo_n, fileName: fileNameImg)
-                                    editText = true
-                                } else{
-                                    editText = false
-                                }
-                                var fileName_Req = repo_n + "_" + i
-                                print("fileName_Req", fileName_Req)
-                                Repo_ViewModel_req.Request_fetch(Repo_Name: fileName_Req)
-                                print("Repo_ViewModel_req.Req_repo_list1", Repo_ViewModel_req.Req_repo_list)
-                            })
-                        }
-                    }
-                    .onDelete{
-                        deleteFile(at: $0)
-                    }
-                    
-                    Text("\(pixel.RequestedLocation_x)")
-                    
-                    
-                }.frame(width: 300)
-                
-                Button {
-                    presentingToast = true
-                }label: {
-                    Text("Image Message")
-                }
-                
-                // MARK: Image REQUEST Toast
-                .toast(isPresented: $presentingToast){
-                    HStack{
-                        VStack{
-                            List{
-                                ForEach(Repo_ViewModel_req.Req_repo_list, id: \.id) { s in
-                                    Button(s.request_context, action: {
-                                        print("processPixels")
-                                        messagePoint = true
-                                        
-                                        pixel.change_Pixel(x: s.x_pixel, y: s.y_pixel)
-                                        
-                                        print("processPixels", pixel.RequestedLocation_x)
-                                        print("processPixels", pixel.RequestedLocation_y)
+                VStack{
+                    // MARK: Show File List
+                    List{
+                        Section(header: Text("File List").font(.largeTitle)) {
+                            ForEach(dataList.items, id: \.self){ i in
+                                if(i != ".git"){
+                                    Button(i, action: {
+                                        fileNameImg = i
+                                        var fileNameTxt = fileNameImg.components(separatedBy: ".")
+                                        if(fileNameTxt[1] == "md" || fileNameTxt[1] == "txt"){
+                                            print("dataList:", fileNameImg)
+                                            dataList.readMELoad(repoName: repo_n, fileName: fileNameImg)
+                                            editText = true
+                                        } else{
+                                            editText = false
+                                        }
+                                        var fileName_Req = repo_n + "_" + i
+                                        print("fileName_Req", fileName_Req)
+                                        Repo_ViewModel_req.Request_fetch(Repo_Name: fileName_Req)
+                                        print("Repo_ViewModel_req.Req_repo_list1", Repo_ViewModel_req.Req_repo_list)
                                     })
                                 }
-                            }.frame(width: 300)
+                            }
+                            .onDelete{
+                                deleteFile(at: $0)
+                            }
+                        }
+                        
+                        //                        Text("\(pixel.RequestedLocation_x)")
+                        
+                        
+                        Section(header: Text("Message").font(.largeTitle)) {
                             
-                            
-                            Button {
-                                presentingToast = false
-                            }label: {
-                                Text("Close")
+                            ForEach(Repo_ViewModel_req.Req_repo_list, id: \.id) { s in
+                                Button(s.request_context, action: {
+                                    print("processPixels")
+                                    messagePoint = true
+                                    
+                                    pixel.change_Pixel(x: s.x_pixel, y: s.y_pixel)
+                                    
+                                    print("processPixels", pixel.RequestedLocation_x)
+                                    print("processPixels", pixel.RequestedLocation_y)
+                                    
+                                    pointShowing = true
+                                })
                             }
                             .onAppear {
                                 var fileName_Req = repo_n + "_" + fileNameImg
@@ -225,90 +213,49 @@ struct Repo_View_Directory: View {
                                     print("Repo_ViewModel_req.Req_repo_list1", Repo_ViewModel_req.Req_repo_list)
                                 })
                             }
+                            Button(action: {
+                                pointShowing = false
+                            },
+                                   label: {Text("Cancel").foregroundColor(Color.red)})
                         }
-                        VStack{
-                            if editText {
-                                VStack{
-                                    Text(dataList.text)
-                                        .padding()
-                                        .foregroundColor(Color.black)
-                                        .lineSpacing(5) //줄 간격
-                                        .frame(width: 500, height: 500)
-                                        .border(Color.purple, width: 1)
-                                }
-                                
-                            } else {
-                                GeometryReader { geometryProxy in
-                                    ZStack {
-                                        Circle()
-                                            .foregroundColor(Color.red)
-                                            .frame(width: 20.0, height: 20.0)
-                                            .offset(x: pixel.RequestedLocation_x,y: pixel.RequestedLocation_y)
-                                            .zIndex(1)
-                                        
-                                        
-                                        Image(uiImage: load(fileName: fileNameImg)!)
-                                            .resizable()
-                                            .aspectRatio(contentMode: .fit)
-                                            .gesture(LongPressGesture(minimumDuration: 0.5).sequenced(before: DragGesture(minimumDistance: 0)).onEnded { value in
-                                                switch value {
-                                                case .second(true, let drag):
-                                                    location = drag?.location ?? .zero   // capture location !!
-                                                    print("location:", location)
-                                                    messageToast = true
-                                                default:
-                                                    break
-                                                }
-                                                
-                                            })
-                                        
-                                        
-                                        // MARK: Long click to Create Request
-                                            .toast(isPresented: $messageToast) {
-                                                ToastView {
-                                                    VStack{
-                                                        Section{
-                                                            Text("Add Message")
-                                                        }
-                                                        TextField("내용을 입력해주세요.", text: $messageInput)
-                                                        Section{
-                                                            HStack{
-                                                                Button {
-                                                                    
-                                                                    let file_Name = "\(repo_n)_\(fileNameImg)"
-                                                                    let x_pixel = "\(location.x)"
-                                                                    let y_pixel = "\(location.y)"
-                                                                    
-                                                                    // Save Request && Fixel
-                                                                    let Repo_ViewModel = log_repo_ViewModel()
-                                                                    Repo_ViewModel.CreateRequest(user_id: user_id, repo_name: file_Name, x_pixel: x_pixel, y_pixel: y_pixel, request_context: messageInput)
-                                                                    
-                                                                    messageToast = false
-                                                                    messageInput = ""
-                                                                    
-                                                                } label: {
-                                                                    Text("Save")
-                                                                }
-                                                                Button {
-                                                                    messageToast = false
-                                                                    messageInput = ""
-                                                                } label: {
-                                                                    Text("Cancel")
-                                                                }
-                                                            }
-                                                        }
-                                                        
-                                                    }
-                                                }
-                                                .frame(width: 220, height: 80)
-                                            }
-                                    }
-                                }.edgesIgnoringSafeArea(.all)
-                            }
-                        }
-                    }
-                    .background(Color.white)
+                        
+                    }.frame(width: 300)
+                    
+                    
+                    
+                    //                    Spacer()
+                    //                    // MARK: Image REQUEST Toast
+                    //                    List{
+                    //                        ForEach(Repo_ViewModel_req.Req_repo_list, id: \.id) { s in
+                    //                            Button(s.request_context, action: {
+                    //                                print("processPixels")
+                    //                                messagePoint = true
+                    //
+                    //                                pixel.change_Pixel(x: s.x_pixel, y: s.y_pixel)
+                    //
+                    //                                print("processPixels", pixel.RequestedLocation_x)
+                    //                                print("processPixels", pixel.RequestedLocation_y)
+                    //                            })
+                    //                        }
+                    //                    }
+                    //                    .onAppear {
+                    //                        var fileName_Req = repo_n + "_" + fileNameImg
+                    //                        print("fileName_Req", fileName_Req)
+                    //                        Repo_ViewModel_req.Request_fetch(Repo_Name: fileName_Req)
+                    //                        print("Repo_ViewModel_req.Req_repo_list1", Repo_ViewModel_req.Req_repo_list)
+                    //
+                    //                                                var timer: Timer? = Timer.scheduledTimer(withTimeInterval: 6, repeats: true, block: { _ in
+                    //                                                    var fileName_Req = repo_n + "_" + fileNameImg
+                    //                                                    print("fileName_Req", fileName_Req)
+                    //                                                    Repo_ViewModel_req.Request_fetch(Repo_Name: fileName_Req)
+                    //                                                    print("Repo_ViewModel_req.Req_repo_list1", Repo_ViewModel_req.Req_repo_list)
+                    //                                                })
+                    //                    }
+                    //                    .frame(width: 300, height: 300)
                 }
+                
+                
+                
             }
             
             
@@ -332,21 +279,82 @@ struct Repo_View_Directory: View {
                             self.saveCheck = dataList.saveCheck
                             print("self.saveCheck \(saveCheck) : Repo_View")
                         })
-                            .toast(isPresented: $saveCheck, dismissAfter: 0.5) {
-                                print("SAVE SUCCESS")
-                            } content: {
-                                ToastView("SAVE SUCCESS")
-                            }
+                        .toast(isPresented: $saveCheck, dismissAfter: 0.5) {
+                            print("SAVE SUCCESS")
+                        } content: {
+                            ToastView("SAVE SUCCESS")
+                        }
                     }
                     
                 } else {
-                    Image(uiImage: load(fileName: fileNameImg)!)
-                        .resizable()
-                        .aspectRatio(contentMode: .fit) // Image 깨지지 않게 크기 처리
-                        .frame(width: 500, height: 500)
-                        .padding()
+                    ZStack{
+                        if pointShowing{
+                            Circle()
+                                .foregroundColor(Color.red)
+                                .frame(width: 20.0, height: 20.0)
+                                .offset(x: pixel.RequestedLocation_x,y: pixel.RequestedLocation_y)
+                                .zIndex(1)
+                        }
+                        
+                        Image(uiImage: load(fileName: fileNameImg)!)
+                            .resizable()
+                            .aspectRatio(contentMode: .fit) // Image 깨지지 않게 크기 처리
+                            .frame(width: 500, height: 500)
+                            .padding()
+                            .gesture(LongPressGesture(minimumDuration: 0.5).sequenced(before: DragGesture(minimumDistance: 0)).onEnded { value in
+                                switch value {
+                                case .second(true, let drag):
+                                    location = drag?.location ?? .zero   // capture location !!
+                                    print("location:", location)
+                                    messageToast = true
+                                default:
+                                    break
+                                }
+                                
+                            })
+                        
+                        
+                        // MARK: Long click to Create Request
+                            .toast(isPresented: $messageToast) {
+                                ToastView {
+                                    VStack{
+                                        Section{
+                                            Text("Add Message")
+                                        }
+                                        TextField("내용을 입력해주세요.", text: $messageInput)
+                                        Section{
+                                            HStack{
+                                                Button {
+                                                    
+                                                    let file_Name = "\(repo_n)_\(fileNameImg)"
+                                                    let x_pixel = "\(location.x)"
+                                                    let y_pixel = "\(location.y)"
+                                                    
+                                                    // Save Request && Fixel
+                                                    let Repo_ViewModel = log_repo_ViewModel()
+                                                    Repo_ViewModel.CreateRequest(user_id: user_id, repo_name: file_Name, x_pixel: x_pixel, y_pixel: y_pixel, request_context: messageInput)
+                                                    
+                                                    messageToast = false
+                                                    messageInput = ""
+                                                    
+                                                } label: {
+                                                    Text("Save")
+                                                }
+                                                Button {
+                                                    messageToast = false
+                                                    messageInput = ""
+                                                } label: {
+                                                    Text("Cancel")
+                                                }
+                                            }
+                                        }
+                                        
+                                    }
+                                }
+                                .frame(width: 220, height: 80)
+                            }
+                    }
                 }
-                
             }
         }
     }
