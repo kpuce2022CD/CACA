@@ -277,11 +277,12 @@ struct Repo_View_Directory: View {
                                 } else{
                                     editText = false
                                 }
-                                var fileName_Req = repo_n + "_" + fileNameImg
-                                Repo_ViewModel_req.Request_fetch(Repo_Name: "test_photo.psd")
-                                print("Repo_ViewModel_req.Req_repo_list1", Repo_ViewModel_req.launches_req)
-////                                Req_repo_list.removeAll()
-                                Req_repo_list.append(Repo_ViewModel_req.launches_req)
+//                                var fileName_Req = repo_n + "_" + i
+//                                print("fileName_Req", fileName_Req)
+//                                Repo_ViewModel_req.Request_fetch(Repo_Name: fileName_Req)
+//                                print("Repo_ViewModel_req.Req_repo_list1", Repo_ViewModel_req.launches_req)
+//                                Req_repo_list.removeAll()
+//                                Req_repo_list.append(Repo_ViewModel_req.launches_req)
 //                                print("Req_repo_list.append", Req_repo_list)
                             })
                         }
@@ -294,6 +295,14 @@ struct Repo_View_Directory: View {
                 
                 Button {
                     presentingToast = true
+                    
+                    var fileName_Req = repo_n + "_" + fileNameImg
+                    print("fileName_Req1", fileName_Req)
+                    Repo_ViewModel_req.Request_fetch(Repo_Name: fileName_Req)
+//                    print("Repo_ViewModel_req.Req_repo_list1", Repo_ViewModel_req.launches_req)
+                    Req_repo_list.removeAll()
+                    Req_repo_list.append(Repo_ViewModel_req.launches_req)
+//                    print("Req_repo_list.append", Req_repo_list)
                 }label: {
                     Text("Image Message")
                 }
@@ -314,6 +323,22 @@ struct Repo_View_Directory: View {
                                 presentingToast = false
                             }label: {
                                 Text("Close")
+                            }
+                            .onAppear {
+                                var fileName_Req = repo_n + "_" + fileNameImg
+                                print("fileName_Req2", fileName_Req)
+                                Repo_ViewModel_req.Request_fetch(Repo_Name: fileName_Req)
+//                                print("Repo_ViewModel_req.Req_repo_list1", Repo_ViewModel_req.launches_req)
+                                Req_repo_list.removeAll()
+                                Req_repo_list.append(Repo_ViewModel_req.launches_req)
+//                                print("Req_repo_list.append", Req_repo_list)
+                                
+                                var timer: Timer? = Timer.scheduledTimer(withTimeInterval: 3, repeats: true, block: { _ in
+                                    Repo_ViewModel_req.Request_fetch(Repo_Name: fileName_Req)
+                                    Req_repo_list.removeAll()
+                                    Req_repo_list.append(Repo_ViewModel_req.launches_req)
+                                    print("Req_repo_list.append", Req_repo_list)
+                                })
                             }
                         }
                         VStack{
