@@ -22,6 +22,9 @@ final class log_repo_ViewModel: ObservableObject{
     @Published var repo_n: String = ""
     @Published var repoIP_Addr : String = ""
     
+    @Published var URL1: String = ""
+    @Published var URL2: String = ""
+    @Published var diffSuccess: Bool = false
     
     
     init(){
@@ -29,6 +32,8 @@ final class log_repo_ViewModel: ObservableObject{
         Log_repo_list.removeAll()
         fetch(Repo_Name: repo_n)
         print("init : ", Log_repo_list)
+        
+        diffSuccess = false
     }
     
     func appear(){
@@ -118,6 +123,14 @@ final class log_repo_ViewModel: ObservableObject{
             switch result {
             case .success(let graphQLResult):
                 print("DiffCommitQuery Success")
+                self.URL1 = "http://13.209.116.111/images/\(first_commit)_\(file_name)"
+                self.URL2 = "http://13.209.116.111/images/\(second_commit)_\(file_name)"
+                self.diffSuccess = true
+                
+//                print("IMAGEDIFF \(diffSuccess)")
+                
+//                Repo_View_Diff(ImgOpacity: 0.5, url1: URL1, url2: URL2)
+//                Repo_View_Diff(ImgOpacity: 0.5, url1: "http://13.209.116.111/images/\(first_commit)_\(file_name)", url2: "http://13.209.116.111/images/\(second_commit)_\(file_name)")
             case .failure(_):
                 print("DiffCommitQuery Failure")
             }

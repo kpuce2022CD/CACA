@@ -42,6 +42,7 @@
 		B5F6B9B027AED04900C46E4B /* Apollo in Frameworks */ = {isa = PBXBuildFile; productRef = B5F6B9AF27AED04900C46E4B /* Apollo */; };
 		B5F6B9B227AED04900C46E4B /* ApolloWebSocket in Frameworks */ = {isa = PBXBuildFile; productRef = B5F6B9B127AED04900C46E4B /* ApolloWebSocket */; };
 		DA253E13278DEE1500AEE18A /* ViewModifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA253E12278DEE1500AEE18A /* ViewModifiers.swift */; };
+		DA4BB52527E0A633002D5A86 /* Repo_View_Diff.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA4BB52427E0A633002D5A86 /* Repo_View_Diff.swift */; };
 		DA97B6A7278BE05D006C473E /* ClonetApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA97B6A6278BE05D006C473E /* ClonetApp.swift */; };
 		DA97B6A9278BE05D006C473E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA97B6A8278BE05D006C473E /* ContentView.swift */; };
 		DA97B6AB278BE05E006C473E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DA97B6AA278BE05E006C473E /* Assets.xcassets */; };
@@ -92,6 +93,7 @@
 		B540D41F278C603900479A63 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		B540D421278C604200479A63 /* libiconv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libiconv.tbd; path = usr/lib/libiconv.tbd; sourceTree = SDKROOT; };
 		DA253E12278DEE1500AEE18A /* ViewModifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModifiers.swift; sourceTree = "<group>"; };
+		DA4BB52427E0A633002D5A86 /* Repo_View_Diff.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Repo_View_Diff.swift; sourceTree = "<group>"; };
 		DA97B6A3278BE05D006C473E /* Clonet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Clonet.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DA97B6A6278BE05D006C473E /* ClonetApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClonetApp.swift; sourceTree = "<group>"; };
 		DA97B6A8278BE05D006C473E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -170,6 +172,7 @@
 				3F0ADCFB27DE186B007F1823 /* Repo_View.swift */,
 				3F0ADCFC27DE186B007F1823 /* Repo_View_Request.swift */,
 				3F0ADCFD27DE186B007F1823 /* Repo_View_Log.swift */,
+				DA4BB52427E0A633002D5A86 /* Repo_View_Diff.swift */,
 			);
 			path = Repository_MVVM;
 			sourceTree = "<group>";
@@ -426,6 +429,7 @@
 				3F0ADD0D27DE186B007F1823 /* Repo_View_Log.swift in Sources */,
 				3F0ADD0827DE186B007F1823 /* Repo_ViewModel.swift in Sources */,
 				3F0ADCE927DE1836007F1823 /* API.swift in Sources */,
+				DA4BB52527E0A633002D5A86 /* Repo_View_Diff.swift in Sources */,
 				DACAA65E278C7E5D007F3918 /* SocketIO.swift in Sources */,
 				3FE633B5278DD9AF00143666 /* PageViewController.swift in Sources */,
 				3F0ADD0427DE186B007F1823 /* LoginCheck_View.swift in Sources */,
