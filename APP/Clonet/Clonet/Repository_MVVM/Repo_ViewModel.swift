@@ -86,7 +86,7 @@ final class log_repo_ViewModel: ObservableObject{
     
     //MARK: Request List
     func Request_fetch(Repo_Name: String){
-        self.Req_repo_list = []
+        self.Req_repo_list.removeAll()
         Network.shared.apollo.fetch(query: RequestRepoQuery(repo_name: Repo_Name), cachePolicy: CachePolicy.fetchIgnoringCacheData){ result in
             switch result {
             case .success(let graphQLResult):

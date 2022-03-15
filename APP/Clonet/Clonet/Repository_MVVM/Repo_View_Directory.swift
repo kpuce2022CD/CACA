@@ -203,15 +203,10 @@ struct Repo_View_Directory: View {
                             .onAppear {
                                 var fileName_Req = repo_n + "_" + fileNameImg
                                 print("fileName_Req", fileName_Req)
+    
                                 Repo_ViewModel_req.Request_fetch(Repo_Name: fileName_Req)
                                 print("Repo_ViewModel_req.Req_repo_list1", Repo_ViewModel_req.Req_repo_list)
-                                
-                                var timer: Timer? = Timer.scheduledTimer(withTimeInterval: 6, repeats: true, block: { _ in
-                                    var fileName_Req = repo_n + "_" + fileNameImg
-                                    print("fileName_Req", fileName_Req)
-                                    Repo_ViewModel_req.Request_fetch(Repo_Name: fileName_Req)
-                                    print("Repo_ViewModel_req.Req_repo_list1", Repo_ViewModel_req.Req_repo_list)
-                                })
+                      
                             }
                             Button(action: {
                                 pointShowing = false
