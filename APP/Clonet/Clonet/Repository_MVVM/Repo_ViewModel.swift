@@ -18,6 +18,7 @@ final class log_repo_ViewModel: ObservableObject{
     @Published var launches_ip: Ip_repo = Ip_repo.init()
     @Published var launches_req: Request = Request.init()
     @Published var Log_repo_list : [Log_repo] = []
+    @Published var Req_repo_list : [Request] = []
     @Published var repo_n: String = ""
     @Published var repoIP_Addr : String = ""
     
@@ -80,14 +81,16 @@ final class log_repo_ViewModel: ObservableObject{
     
     //MARK: Request List
     func Request_fetch(Repo_Name: String){
+        self.Req_repo_list = []
         Network.shared.apollo.fetch(query: RequestRepoQuery(repo_name: Repo_Name), cachePolicy: CachePolicy.fetchIgnoringCacheData){ result in
             switch result {
             case .success(let graphQLResult):
                 if let requestRepos = graphQLResult.data?.requestRepo {
                     for i in requestRepos.indices{
                         self.launches_req = self.process_req(data: graphQLResult.data?.requestRepo![i] ?? requestData.init(userId: "", repoName: "", xPixel: "", yPixel: "", requestContext: ""))
-                        print("Req_repo_list fetch", self.launches_req)
+                        self.Req_repo_list.append(self.launches_req)
                     }
+                    print("Req_repo_list fetch", self.Req_repo_list)
                 } else if let errors = graphQLResult.errors {
                     print("GraphQL errors \(errors)")
                 }
@@ -134,7 +137,7 @@ final class log_repo_ViewModel: ObservableObject{
         return Request(data)
     }
     
-
+    
 }
 
 
@@ -238,11 +241,11 @@ struct AddUserAlert: View {
                                                                             style="border-radius:4px;display:inline-block;font-size:14px;font-weight:bold;line-height:24px;padding:12px 24px;text-align:center;text-decoration:none!important;color:#ffffff!important;border:1px solid #fff;font-family:Avenir,sans-serif"
                                                                             href="http://13.209.116.111:5312/?user_id=
                             """
-                             + input_userId +
+                            + input_userId +
                             """
                             &&repo_name=
                             """
-                             + repoName +
+                            + repoName +
                             """
                             " target="_blank"
                                                                             data-saferedirecturl="https://www.google.com/url?q=https://kpu.cmail20.com/t/y-l-bzjilk-ihikujkidl-r/&amp;source=gmail&amp;ust=1642312571573000&amp;usg=AOvVaw310-sElFsJqD1fZ3lwkT9K">JOIN

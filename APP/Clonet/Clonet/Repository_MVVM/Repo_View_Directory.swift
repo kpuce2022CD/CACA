@@ -23,7 +23,7 @@ final class getFileList: ObservableObject{
     
     //Timer
     var timer: Timer?
-
+    
     func first(repo_n: String){
         self.repoName = repo_n
         location(repoName: repo_n)
@@ -155,11 +155,11 @@ struct Repo_View_Directory: View {
     @State var saveCheck : Bool = false
     
     @State var exportFileName : String = ""
-
+    
     @State private var presentingToast: Bool = false
     
     //Repo_Message_Toast
-//    @State var fileNameImg_toast = "" // to Store File Name picked
+    //    @State var fileNameImg_toast = "" // to Store File Name picked
     @State private var editText_toast : Bool = true // determine README or not
     @State private var location = CGPoint.zero
     @State private var messageToast: Bool = false
@@ -222,7 +222,7 @@ struct Repo_View_Directory: View {
             // nothing to do here
         }
     }
-
+    
     
     var body: some View {
         HStack{
@@ -261,7 +261,7 @@ struct Repo_View_Directory: View {
                     }
                     Spacer()
                 }
-
+                
                 
                 // MARK: Show File List
                 List{
@@ -277,13 +277,10 @@ struct Repo_View_Directory: View {
                                 } else{
                                     editText = false
                                 }
-//                                var fileName_Req = repo_n + "_" + i
-//                                print("fileName_Req", fileName_Req)
-//                                Repo_ViewModel_req.Request_fetch(Repo_Name: fileName_Req)
-//                                print("Repo_ViewModel_req.Req_repo_list1", Repo_ViewModel_req.launches_req)
-//                                Req_repo_list.removeAll()
-//                                Req_repo_list.append(Repo_ViewModel_req.launches_req)
-//                                print("Req_repo_list.append", Req_repo_list)
+                                var fileName_Req = repo_n + "_" + i
+                                print("fileName_Req", fileName_Req)
+                                Repo_ViewModel_req.Request_fetch(Repo_Name: fileName_Req)
+                                print("Repo_ViewModel_req.Req_repo_list1", Repo_ViewModel_req.Req_repo_list)
                             })
                         }
                     }
@@ -295,14 +292,6 @@ struct Repo_View_Directory: View {
                 
                 Button {
                     presentingToast = true
-                    
-                    var fileName_Req = repo_n + "_" + fileNameImg
-                    print("fileName_Req1", fileName_Req)
-                    Repo_ViewModel_req.Request_fetch(Repo_Name: fileName_Req)
-//                    print("Repo_ViewModel_req.Req_repo_list1", Repo_ViewModel_req.launches_req)
-                    Req_repo_list.removeAll()
-                    Req_repo_list.append(Repo_ViewModel_req.launches_req)
-//                    print("Req_repo_list.append", Req_repo_list)
                 }label: {
                     Text("Image Message")
                 }
@@ -312,7 +301,7 @@ struct Repo_View_Directory: View {
                     HStack{
                         VStack{
                             List{
-                                ForEach(Req_repo_list, id: \.id) { s in
+                                ForEach(Repo_ViewModel_req.Req_repo_list, id: \.id) { s in
                                     Button(s.request_context, action: {
                                         print(s.request_context)
                                     })
@@ -326,18 +315,15 @@ struct Repo_View_Directory: View {
                             }
                             .onAppear {
                                 var fileName_Req = repo_n + "_" + fileNameImg
-                                print("fileName_Req2", fileName_Req)
+                                print("fileName_Req", fileName_Req)
                                 Repo_ViewModel_req.Request_fetch(Repo_Name: fileName_Req)
-//                                print("Repo_ViewModel_req.Req_repo_list1", Repo_ViewModel_req.launches_req)
-                                Req_repo_list.removeAll()
-                                Req_repo_list.append(Repo_ViewModel_req.launches_req)
-//                                print("Req_repo_list.append", Req_repo_list)
+                                print("Repo_ViewModel_req.Req_repo_list1", Repo_ViewModel_req.Req_repo_list)
                                 
                                 var timer: Timer? = Timer.scheduledTimer(withTimeInterval: 3, repeats: true, block: { _ in
+                                    var fileName_Req = repo_n + "_" + fileNameImg
+                                    print("fileName_Req", fileName_Req)
                                     Repo_ViewModel_req.Request_fetch(Repo_Name: fileName_Req)
-                                    Req_repo_list.removeAll()
-                                    Req_repo_list.append(Repo_ViewModel_req.launches_req)
-                                    print("Req_repo_list.append", Req_repo_list)
+                                    print("Repo_ViewModel_req.Req_repo_list1", Repo_ViewModel_req.Req_repo_list)
                                 })
                             }
                         }
@@ -354,60 +340,60 @@ struct Repo_View_Directory: View {
                                 
                             } else {
                                 GeometryReader { geometryProxy in
-                                        ZStack {
-                                            Image(uiImage: load(fileName: fileNameImg)!)
-                                                .resizable()
-                                                .aspectRatio(contentMode: .fit)
-                                                .gesture(LongPressGesture(minimumDuration: 0.5).sequenced(before: DragGesture(minimumDistance: 0)).onEnded { value in
-                                                    switch value {
-                                                        case .second(true, let drag):
-                                                            location = drag?.location ?? .zero   // capture location !!
-                                                            print("location:", location)
-                                                            messageToast = true
-                                                        default:
-                                                            break
+                                    ZStack {
+                                        Image(uiImage: load(fileName: fileNameImg)!)
+                                            .resizable()
+                                            .aspectRatio(contentMode: .fit)
+                                            .gesture(LongPressGesture(minimumDuration: 0.5).sequenced(before: DragGesture(minimumDistance: 0)).onEnded { value in
+                                                switch value {
+                                                case .second(true, let drag):
+                                                    location = drag?.location ?? .zero   // capture location !!
+                                                    print("location:", location)
+                                                    messageToast = true
+                                                default:
+                                                    break
+                                                }
+                                            })
+                                            .toast(isPresented: $messageToast) {
+                                                ToastView {
+                                                    VStack{
+                                                        Section{
+                                                            Text("Add Message")
                                                         }
-                                                })
-                                                .toast(isPresented: $messageToast) {
-                                                    ToastView {
-                                                        VStack{
-                                                            Section{
-                                                                Text("Add Message")
-                                                            }
-                                                            TextField("내용을 입력해주세요.", text: $messageInput)
-                                                            Section{
-                                                                HStack{
-                                                                    Button {
-                                                                        
-                                                                        var file_Name = "\(repo_n)_\(fileNameImg)"
-                                                                        var x_pixel = "\(location.x)"
-                                                                        var y_pixel = "\(location.y)"
-                                                                        
-                                                                        // Save Request && Fixel
-                                                                        var Repo_ViewModel = log_repo_ViewModel()
-                                                                            Repo_ViewModel.CreateRequest(user_id: user_id, repo_name: file_Name, x_pixel: x_pixel, y_pixel: y_pixel, request_context: messageInput)
-                                                                        
-                                                                        messageToast = false
-                                                                        messageInput = ""
-                                                                        
-                                                                    } label: {
-                                                                        Text("Save")
-                                                                    }
-                                                                    Button {
-                                                                        messageToast = false
-                                                                        messageInput = ""
-                                                                    } label: {
-                                                                        Text("Cancel")
-                                                                    }
+                                                        TextField("내용을 입력해주세요.", text: $messageInput)
+                                                        Section{
+                                                            HStack{
+                                                                Button {
+                                                                    
+                                                                    var file_Name = "\(repo_n)_\(fileNameImg)"
+                                                                    var x_pixel = "\(location.x)"
+                                                                    var y_pixel = "\(location.y)"
+                                                                    
+                                                                    // Save Request && Fixel
+                                                                    var Repo_ViewModel = log_repo_ViewModel()
+                                                                    Repo_ViewModel.CreateRequest(user_id: user_id, repo_name: file_Name, x_pixel: x_pixel, y_pixel: y_pixel, request_context: messageInput)
+                                                                    
+                                                                    messageToast = false
+                                                                    messageInput = ""
+                                                                    
+                                                                } label: {
+                                                                    Text("Save")
+                                                                }
+                                                                Button {
+                                                                    messageToast = false
+                                                                    messageInput = ""
+                                                                } label: {
+                                                                    Text("Cancel")
                                                                 }
                                                             }
-                                                            
                                                         }
+                                                        
                                                     }
-                                                    .frame(width: 220, height: 80)
                                                 }
-                                        }
-                                    }.edgesIgnoringSafeArea(.all)
+                                                .frame(width: 220, height: 80)
+                                            }
+                                    }
+                                }.edgesIgnoringSafeArea(.all)
                             }
                             
                             
