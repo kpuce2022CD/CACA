@@ -135,7 +135,6 @@ struct DocumentPicker : UIViewControllerRepresentable {
     }
 }
 
-
 // MARK: Repo_View_Directory: View
 struct Repo_View_Directory: View {
     
@@ -166,6 +165,7 @@ struct Repo_View_Directory: View {
     @State private var messageInput = ""
     @State var Repo_ViewModel_req = log_repo_ViewModel()
     @State var Req_repo_list : [Request] = []
+    @State private var messagePoint: Bool = false
     
     init(repo_n: String, ec2_id: String, user_id: String){
         self.repo_n = repo_n
@@ -304,6 +304,7 @@ struct Repo_View_Directory: View {
                                 ForEach(Repo_ViewModel_req.Req_repo_list, id: \.id) { s in
                                     Button(s.request_context, action: {
                                         print("processPixels")
+                                        messagePoint = true
                                     })
                                     
                                 }
@@ -342,11 +343,10 @@ struct Repo_View_Directory: View {
                                 
                             } else {
                                 GeometryReader { geometryProxy in
-                                    VStack {
-                                        
+                                    ZStack {
                                         // MARK: Fixel Diff
-                                        Image(uiImage: processPixels(in: load(fileName: fileNameImg)!) ?? load(fileName: fileNameImg)!)
-                                            .frame(width: 10, height: 10)
+                                        
+                                        
                                         
                                         Image(uiImage: load(fileName: fileNameImg)!)
                                             .resizable()
@@ -362,6 +362,12 @@ struct Repo_View_Directory: View {
                                                 }
                                                 
                                             })
+                                            .overlay(
+                                                Rectangle()
+                                                    .foregroundColor(Color.red)
+                                                    .frame(width: 50.0, height: 50.0)
+                                                    
+                                            )
                                             .toast(isPresented: $messageToast) {
                                                 ToastView {
                                                     VStack{
