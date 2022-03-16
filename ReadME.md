@@ -33,27 +33,6 @@ terraform init
 terraform apply
 ```
 
-## Flow Chart
-### APP
-```mermaid
-  graph TD;
-      AA[SignUp]-->A[Login]-->B;
-      C-->BB[Invite User]-->CC[Send Mail]-->C;
-      
-      B[Create Repository]-->C[Show Repository]-->D[Clone or Pull];
-      D-->E[Add, Commit, Push];
-      D-->F[Reset];
-      D-->G[Compare];
-      D-->H[Create Branch]-->I[Checkout Branch];
-      D-->J[Show Log];
-      D-->K[Show Request]-->L[Create Request];
-```
-### WEB
-```mermaid
-  graph TD;
-    AA[Login]-->A[Select MasterPiece]-->B[Select Theme]-->C[Create Link];
-    D[Click Link]-->E[Show portfolio];
-```
 ## DB
 https://dbdiagram.io/d/622854b261d06e6eadcb3436
 
