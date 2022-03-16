@@ -37,19 +37,12 @@ struct Repo_View_Diff: View {
     
     var body: some View{
         VStack {
-//            Text("GEE \(logNumber.url1)")
-//            Text("GEE \(logNumber.url2)")
-            
-            HStack{
-                if(logNumber.url1.contains(".txt") == true || logNumber.url1.contains(".md") == true){
-//                    Button(action: {
-//                        mdList.MDView(url: logNumber.url1)
-//                    }, label: {Text("aa")})
+            if(logNumber.url1.contains(".txt") == true || logNumber.url1.contains(".md") == true){
+                HStack{
                     VStack{
                         Text("**First Commit**")
                             .font(.system(size: 20))
                             .foregroundColor(.blue)
-                        Spacer()
                         Text("\(text1)")
                             .font(.system(size: 17))
                             .frame(width: 400, height: 400, alignment: .center)
@@ -59,45 +52,50 @@ struct Repo_View_Diff: View {
                         Text("**Second Commit**")
                             .font(.system(size: 20))
                             .foregroundColor(.blue)
-                        Spacer()
                         Text("\(text2)")
                             .font(.system(size: 17))
                             .frame(width: 400, height: 400, alignment: .center)
                             .cornerRadius(20)
                     }
-                }else{
-                    AsyncImage(url: URL(string: logNumber.url1), scale: 2){ image in
-                        image
-                            .resizable()
-                            .aspectRatio(contentMode: .fill)
-                    } placeholder: {
-                        ProgressView()
-                            .progressViewStyle(.circular)
-                    }
-                    .frame(width: 400, height: 400, alignment: .center)
-                    .cornerRadius(20)
-                    
-                    AsyncImage(url: URL(string: logNumber.url2),scale: 2){ image in
-                        image
-                            .resizable()
-                            .aspectRatio(contentMode: .fill)
-                            .opacity(ImgOpacity)
-                    } placeholder: {
-                        ProgressView()
-                            .progressViewStyle(.circular)
-                    }
-                    .frame(width: 400, height: 400, alignment: .center)
-                    .cornerRadius(20)
                 }
+            }else{
+                HStack{
+                    VStack{
+                        Text("**First Commit**")
+                            .font(.system(size: 20))
+                            .foregroundColor(.blue)
+                        AsyncImage(url: URL(string: logNumber.url1), scale: 2){ image in
+                            image
+                                .resizable()
+                                .aspectRatio(contentMode: .fill)
+                        } placeholder: {
+                            ProgressView()
+                                .progressViewStyle(.circular)
+                        }
+                        .frame(width: 400, height: 400, alignment: .center)
+                        .cornerRadius(20)
+                    }
+                    VStack{
+                        Text("**Second Commit**")
+                            .font(.system(size: 20))
+                            .foregroundColor(.blue)
+                        AsyncImage(url: URL(string: logNumber.url2),scale: 2){ image in
+                            image
+                                .resizable()
+                                .aspectRatio(contentMode: .fill)
+                                .opacity(ImgOpacity)
+                        } placeholder: {
+                            ProgressView()
+                                .progressViewStyle(.circular)
+                        }
+                        .frame(width: 400, height: 400, alignment: .center)
+                        .cornerRadius(20)
+                    }
+                }
+                Slider(value: self.$ImgOpacity, in: 0.0...1.0)
             }
+            
             Spacer()
-            
-            Text("Now you see me \(ImgOpacity)")
-                .padding()
-                .background(Color.red)
-                .opacity(ImgOpacity)
-            
-            Slider(value: self.$ImgOpacity, in: 0.0...1.0)
         }.padding()
             .onAppear(perform: {
                 print("self.logNumber.url", logNumber.url1)
