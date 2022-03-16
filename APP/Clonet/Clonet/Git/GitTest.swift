@@ -28,10 +28,10 @@ struct GitTest: View {
     @State var lastCMtime = Date()
     
     
-    let faceLocation = documentURL.appendingPathComponent("A")
-    let localRepoLocation = documentURL.appendingPathComponent("A")
-    let remoteRepoLocation = "http://3.34.194.172/git-repositories/A.git"
-    let test = "http://3.34.194.172/git-repositories/A.git"
+    let faceLocation = documentURL.appendingPathComponent("test")
+    let localRepoLocation = documentURL.appendingPathComponent("test")
+    let remoteRepoLocation = "http://13.209.116.111/git-repositories/test.git"
+    let test = "http://13.209.116.1112/git-repositories/test.git"
     
     init() {
         // git_libgit2_init()
@@ -197,7 +197,7 @@ struct GitTest: View {
             //MARK: commit
             let sig = Signature(name: "name",email: "name@gmail.com",time: Date(),timeZone: TimeZone.current)
             let latestCommit = repo.commit(message: "asdf", signature: sig)
-            
+            print("commit:", latestCommit)
         case let .failure(error):
             message = "Could not clone repository: \(error)"
         }
@@ -207,6 +207,7 @@ struct GitTest: View {
         let result = Repository.at(localRepoLocation)
         switch result {
         case let .success(repo):
+            
             //MARK: add
             let add_commit = repo.add(path: ".")
             
@@ -215,7 +216,7 @@ struct GitTest: View {
             let latestCommit = repo.commit(message: "asdf", signature: sig)
             
             //MARK: push
-            let commit_push = repo.push(repo, "ubuntu", "qwer1234", nil)
+            let commit_push = repo.push(repo, "ubuntu", "qwer1234", "master")
             
             //            print(commit_push)
             switch latestCommit {

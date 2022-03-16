@@ -17,10 +17,6 @@
 
 <img src="https://img.shields.io/badge/Github-181717?style=flat-square&logo=Github&logoColor=white"/>
 
-
-## Architecture
-![architecture drawio (3)](https://user-images.githubusercontent.com/79956705/154617966-c5f6b172-c957-42c9-bf8c-0937cddd2c9d.png)
-
 ## Trello
 https://trello.com/b/0S6KfZjD/caca
 ## Apollo
@@ -32,49 +28,6 @@ cd Terraform
 terraform init
 terraform apply
 ```
-
-## Flow Chart
-### APP
-```mermaid
-  graph TD;
-      AA[SignUp]-->A[Login]-->B;
-      C-->BB[Invite User]-->CC[Send Mail]-->C;
-      
-      B[Create Repository]-->C[Show Repository]-->D[Clone or Pull];
-      D-->E[Add, Commit, Push];
-      D-->F[Reset];
-      D-->G[Compare];
-      D-->H[Create Branch]-->I[Checkout Branch];
-      D-->J[Show Log];
-      D-->K[Show Request]-->L[Create Request];
-```
-### WEB
-```mermaid
-  graph TD;
-    AA[Login]-->A[Select MasterPiece]-->B[Select Theme]-->C[Create Link];
-    D[Click Link]-->E[Show portfolio];
-```
-## DB
-https://dbdiagram.io/d/622854b261d06e6eadcb3436
-
-## Git - Commit Message Convention
-| Command  | Description |
-| -------- | ----------- |
-| **Feat** |새로운 기능을 추가할 경우|
-|**Fix**|버그를 고친 경우|
-|**Design**| CSS 등 사용자 UI 디자인 변경|
-|**!BREAKING CHANGE**| 커다란 API 변경의 경우|
-|**!HOTFIX**| 급하게 치명적인 버그를 고쳐야하는 경우|
-|**Style**| 코드 포맷 변경, 세미 콜론 누락, 코드 수정이 없는 경우|
-|**Refactor**| 프로덕션 코드 리팩토링|
-|**Comment**| 필요한 주석 추가 및 변경|
-|**Docs**| 문서를 수정한 경우|
-|**Test**| 테스트 추가, 테스트 리팩토링(프로덕션 코드 변경 X)|
-|**Chore**| 빌드 태스트 업데이트, 패키지 매니저를 설정하는 경우(프로덕션 코드 변경 X)|
-|**Rename**| 파일 혹은 폴더명을 수정하거나 옮기는 작업만인 경우|
-|**Remove**| 파일을 삭제하는 작업만 수행한 경우|
-|**Merge**| 병합 충돌|
-
 
 ## Email
 * pavi03@kpu.ac.kr

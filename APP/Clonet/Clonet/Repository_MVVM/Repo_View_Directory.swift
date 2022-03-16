@@ -191,12 +191,7 @@ struct Repo_View_Directory: View {
                                 Button(s.request_context, action: {
                                     print("processPixels")
                                     messagePoint = true
-                                    
                                     pixel.change_Pixel(x: s.x_pixel, y: s.y_pixel)
-                                    
-                                    print("processPixels", pixel.RequestedLocation_x)
-                                    print("processPixels", pixel.RequestedLocation_y)
-                                    
                                     pointShowing = true
                                 })
                             }
@@ -216,41 +211,7 @@ struct Repo_View_Directory: View {
                         
                     }.frame(width: 300)
                     
-                    
-                    
-                    //                    Spacer()
-                    //                    // MARK: Image REQUEST Toast
-                    //                    List{
-                    //                        ForEach(Repo_ViewModel_req.Req_repo_list, id: \.id) { s in
-                    //                            Button(s.request_context, action: {
-                    //                                print("processPixels")
-                    //                                messagePoint = true
-                    //
-                    //                                pixel.change_Pixel(x: s.x_pixel, y: s.y_pixel)
-                    //
-                    //                                print("processPixels", pixel.RequestedLocation_x)
-                    //                                print("processPixels", pixel.RequestedLocation_y)
-                    //                            })
-                    //                        }
-                    //                    }
-                    //                    .onAppear {
-                    //                        var fileName_Req = repo_n + "_" + fileNameImg
-                    //                        print("fileName_Req", fileName_Req)
-                    //                        Repo_ViewModel_req.Request_fetch(Repo_Name: fileName_Req)
-                    //                        print("Repo_ViewModel_req.Req_repo_list1", Repo_ViewModel_req.Req_repo_list)
-                    //
-                    //                                                var timer: Timer? = Timer.scheduledTimer(withTimeInterval: 6, repeats: true, block: { _ in
-                    //                                                    var fileName_Req = repo_n + "_" + fileNameImg
-                    //                                                    print("fileName_Req", fileName_Req)
-                    //                                                    Repo_ViewModel_req.Request_fetch(Repo_Name: fileName_Req)
-                    //                                                    print("Repo_ViewModel_req.Req_repo_list1", Repo_ViewModel_req.Req_repo_list)
-                    //                                                })
-                    //                    }
-                    //                    .frame(width: 300, height: 300)
                 }
-                
-                
-                
             }
             
             
