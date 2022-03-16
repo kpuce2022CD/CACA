@@ -226,28 +226,7 @@ struct Repo_View_Git: View {
                             VStack{
                                 Picker(selection: $pullBranch, label: Text("")) {
                                     ForEach(branchArr, id: \.self){b in
-                                        Button(b){
-                                            DispatchQueue.global().sync{
-                                                log_repoViewModel_a.Log_repo_list.removeAll()
-                                                log_repoViewModel_a.appear()
-                                                print("repo_n:", log_repoViewModel_a.Log_repo_list.first?.commitId)
-                                            }
-                                            DispatchQueue.global().async{
-                                                
-                                                // MARK: FETCH
-                                                fetchGitRepo(localRepoLocation: documentURL.appendingPathComponent(repo_n))
-                                                print("url", documentURL.appendingPathComponent(repo_n))
-                                                // MARK: MERGE
-                                                mergeGitRepo(localRepoLocation: documentURL.appendingPathComponent(repo_n),remoteRepoLocation: log_repoViewModel_a.repoIP_Addr, hexString: log_repoViewModel_a.Log_repo_list.first?.commitId ?? "")
-                                                // MARK: COMMIT
-                                                var merge_commit_m : String = log_repoViewModel_a.Log_repo_list.first?.commitMsg ?? ""
-                                                commitGitRepo(localRepoLocation: documentURL.appendingPathComponent(repo_n), name: userID, email: userEmail, commit_msg: "병합 : \(merge_commit_m)", addFileName: ".", branch: pullBranch)
-                                                // MARK: PUSH_FORCE
-                                                push_f_GitRepo(localRepoLocation: documentURL.appendingPathComponent(repo_n))
-                                                
-                                            }
-                                            print("log_repoViewModel_a.launches.commitId",log_repoViewModel_a.Log_repo_list.first?.commitId)
-                                        }
+                                        Text(b)
                                 }
                             }
                                 .pickerStyle(WheelPickerStyle())
@@ -257,6 +236,26 @@ struct Repo_View_Git: View {
                         HStack{
                             Button("Pull", action: {
                                 presentingToast_pull = false
+                                DispatchQueue.global().sync{
+                                    log_repoViewModel_a.Log_repo_list.removeAll()
+                                    log_repoViewModel_a.appear()
+                                    print("repo_n:", log_repoViewModel_a.Log_repo_list.first?.commitId)
+                                }
+                                DispatchQueue.global().async{
+                                    
+                                    // MARK: FETCH
+                                    fetchGitRepo(localRepoLocation: documentURL.appendingPathComponent(repo_n))
+                                    print("url", documentURL.appendingPathComponent(repo_n))
+                                    // MARK: MERGE
+                                    mergeGitRepo(localRepoLocation: documentURL.appendingPathComponent(repo_n),remoteRepoLocation: log_repoViewModel_a.repoIP_Addr, hexString: log_repoViewModel_a.Log_repo_list.first?.commitId ?? "")
+                                    // MARK: COMMIT
+                                    var merge_commit_m : String = log_repoViewModel_a.Log_repo_list.first?.commitMsg ?? ""
+                                    commitGitRepo(localRepoLocation: documentURL.appendingPathComponent(repo_n), name: userID, email: userEmail, commit_msg: "병합 : \(merge_commit_m)", addFileName: ".", branch: pullBranch)
+                                    // MARK: PUSH_FORCE
+                                    push_f_GitRepo(localRepoLocation: documentURL.appendingPathComponent(repo_n))
+                                    
+                                }
+                                print("log_repoViewModel_a.launches.commitId",log_repoViewModel_a.Log_repo_list.first?.commitId)
                             })
                             
                             Divider()
