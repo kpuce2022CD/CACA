@@ -295,6 +295,8 @@ struct Repo_View_Git: View {
                                         
                                         logNumber.url2 = "http://13.209.116.111/images/\( log_repoViewModel_a.Log_repo_list[log_number2].commitId)_\(FileList.items[file_number])"
                                         
+                                        log_repoViewModel_a.Diff(first_commit: log_repoViewModel_a.Log_repo_list[log_number1].commitId, second_commit: log_repoViewModel_a.Log_repo_list[log_number2].commitId, repo_name: repo_n, file_name: FileList.items[file_number])
+                                        
                                         print("logNumber.url1", logNumber.url1)
                                     } label: {
                                         Text("OK")
