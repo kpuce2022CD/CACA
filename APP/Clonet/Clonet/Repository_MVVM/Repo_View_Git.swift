@@ -35,6 +35,9 @@ struct Repo_View_Git: View {
     @StateObject var log_repoViewModel_a = log_repo_ViewModel()
     @State private var presentingToast: Bool = false
     @State private var presentingToast2: Bool = false
+    @State private var presentingToast_pull: Bool = false
+    @State private var presentingToast_commit: Bool = false
+    @State var pullBranch = 0
     
     // Diff
     @State var log_number1 = 0
@@ -102,7 +105,8 @@ struct Repo_View_Git: View {
             
             // MARK: Commit Button
             Button(action: {
-                alertView()
+                presentingToast_commit = true
+                branchArr = BranchGitRepo(localRepoLocation: documentURL.appendingPathComponent(repo_n))
             }){
                 HStack{
                     Image(systemName: "opticaldiscdrive.fill")
@@ -118,6 +122,40 @@ struct Repo_View_Git: View {
             }
             .background(Color.black)
             .cornerRadius(15)
+            .toast(isPresented: $presentingToast_commit){ // , dismissAfter: 2.0
+                ToastView {
+                    Text("Commit Message")
+                    TextField("Enter Commit Message", text: $commit_msg).textFieldStyle(RoundedBorderTextFieldStyle()).padding()
+                    Divider()
+                    Text("Choose Branch")
+                        VStack{
+                            Picker(selection: $pullBranch, label: Text("")) {
+                            ForEach(branchArr, id: \.self){b in
+                                Button(b){
+                                    // PULL
+                                }
+                            }
+                        }
+                            .pickerStyle(WheelPickerStyle())
+                            .frame(height: 70)
+                    }
+                    
+                    Divider()
+                    HStack{
+                        Button("Save", action: {
+                            presentingToast_commit = false
+                            
+                            
+                        })
+                        
+                        Divider()
+                        Button("Cancel", role: .cancel){
+                            presentingToast_commit = false
+                        }
+                    }
+                    .frame(height: 50)
+                }.frame(width: 300)
+            }
             
             // Clone & Pull Button
             HStack{
@@ -143,26 +181,29 @@ struct Repo_View_Git: View {
                 
                 // MARK: Pull Button
                 Button(action: {
-                    DispatchQueue.global().sync{
-                        log_repoViewModel_a.Log_repo_list.removeAll()
-                        log_repoViewModel_a.appear()
-                        print("repo_n:", log_repoViewModel_a.Log_repo_list.first?.commitId)
-                    }
-                    DispatchQueue.global().async{
-                        
-                        // MARK: FETCH
-                        fetchGitRepo(localRepoLocation: documentURL.appendingPathComponent(repo_n))
-                        print("url", documentURL.appendingPathComponent(repo_n))
-                        // MARK: MERGE
-                        mergeGitRepo(localRepoLocation: documentURL.appendingPathComponent(repo_n),remoteRepoLocation: log_repoViewModel_a.repoIP_Addr, hexString: log_repoViewModel_a.Log_repo_list.first?.commitId ?? "")
-                        // MARK: COMMIT
-                        var merge_commit_m : String = log_repoViewModel_a.Log_repo_list.first?.commitMsg ?? ""
-                        commitGitRepo(localRepoLocation: documentURL.appendingPathComponent(repo_n), name: userID, email: userEmail, commit_msg: "병합 : \(merge_commit_m)", addFileName: ".")
-                        // MARK: PUSH_FORCE
-                        push_f_GitRepo(localRepoLocation: documentURL.appendingPathComponent(repo_n))
-                        
-                    }
-                    print("log_repoViewModel_a.launches.commitId",log_repoViewModel_a.Log_repo_list.first?.commitId)
+//                    DispatchQueue.global().sync{
+//                        log_repoViewModel_a.Log_repo_list.removeAll()
+//                        log_repoViewModel_a.appear()
+//                        print("repo_n:", log_repoViewModel_a.Log_repo_list.first?.commitId)
+//                    }
+//                    DispatchQueue.global().async{
+//
+//                        // MARK: FETCH
+//                        fetchGitRepo(localRepoLocation: documentURL.appendingPathComponent(repo_n))
+//                        print("url", documentURL.appendingPathComponent(repo_n))
+//                        // MARK: MERGE
+//                        mergeGitRepo(localRepoLocation: documentURL.appendingPathComponent(repo_n),remoteRepoLocation: log_repoViewModel_a.repoIP_Addr, hexString: log_repoViewModel_a.Log_repo_list.first?.commitId ?? "")
+//                        // MARK: COMMIT
+//                        var merge_commit_m : String = log_repoViewModel_a.Log_repo_list.first?.commitMsg ?? ""
+//                        commitGitRepo(localRepoLocation: documentURL.appendingPathComponent(repo_n), name: userID, email: userEmail, commit_msg: "병합 : \(merge_commit_m)", addFileName: ".")
+//                        // MARK: PUSH_FORCE
+//                        push_f_GitRepo(localRepoLocation: documentURL.appendingPathComponent(repo_n))
+//
+//                    }
+//                    print("log_repoViewModel_a.launches.commitId",log_repoViewModel_a.Log_repo_list.first?.commitId)
+                    
+                    presentingToast_pull = true
+                    branchArr = BranchGitRepo(localRepoLocation: documentURL.appendingPathComponent(repo_n))
                 }){
                     HStack{
                         Image(systemName: "square.and.arrow.down")
@@ -178,6 +219,35 @@ struct Repo_View_Git: View {
                 }
                 .background(Color.black)
                 .cornerRadius(15)
+                
+                // MARK: PULL Toast
+                .toast(isPresented: $presentingToast_pull){ // , dismissAfter: 2.0
+                    ToastView {
+                            VStack{
+                                Picker(selection: $pullBranch, label: Text("")) {
+                                ForEach(branchArr, id: \.self){b in
+                                    Button(b){
+                                        // PULL
+                                    }
+                                }
+                            }
+                                .pickerStyle(WheelPickerStyle())
+                        }
+                        
+                        Divider()
+                        HStack{
+                            Button("Pull", action: {
+                                presentingToast_pull = false
+                            })
+                            
+                            Divider()
+                            Button("Cancel", role: .cancel){
+                                presentingToast_pull = false
+                            }
+                        }
+                        .frame(height: 50)
+                    }.frame(width: 300)
+                }
             }
             
             
