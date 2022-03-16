@@ -11,7 +11,6 @@ import ToastUI
 
 
 class LogNumber : ObservableObject {
-    
     @Published var url1 : String = ""
     @Published var url2 : String = ""
 }
@@ -289,15 +288,13 @@ struct Repo_View_Git: View {
                                     NavigationLink(destination: Repo_View_Diff(ImgOpacity: 0.5, logNumber: logNumber)) { }
                                     
                                         .buttonStyle(PlainButtonStyle()).frame(width:0).opacity(0)
-                                    //                                    if(log_repoViewModel_a.diffSuccess == true){
-                                    //
-                                    ////                                        NavigationLink(destination: Repo_View_Diff(ImgOpacity: 0.5, url1: log_repoViewModel_a.URL1, url2: log_repoViewModel_a.URL2), tag: "true", selection: $selectionString) { }
-                                    //                                            .buttonStyle(PlainButtonStyle()).frame(width:0).opacity(0)
-                                    //                                    }else{}
+
                                     Button {
                                         self.selectionString = "true"
                                         logNumber.url1 = "http://13.209.116.111/images/\( log_repoViewModel_a.Log_repo_list[log_number1].commitId)_\(FileList.items[file_number])"
+                                        
                                         logNumber.url2 = "http://13.209.116.111/images/\( log_repoViewModel_a.Log_repo_list[log_number2].commitId)_\(FileList.items[file_number])"
+                                        
                                         print("logNumber.url1", logNumber.url1)
                                     } label: {
                                         Text("OK")
