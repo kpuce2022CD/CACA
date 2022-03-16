@@ -198,10 +198,10 @@ struct Repo_View_Directory: View {
                             .onAppear {
                                 var fileName_Req = repo_n + "_" + fileNameImg
                                 print("fileName_Req", fileName_Req)
-    
+                                
                                 Repo_ViewModel_req.Request_fetch(Repo_Name: fileName_Req)
                                 print("Repo_ViewModel_req.Req_repo_list1", Repo_ViewModel_req.Req_repo_list)
-                      
+                                
                             }
                             Button(action: {
                                 pointShowing = false
@@ -209,7 +209,32 @@ struct Repo_View_Directory: View {
                                    label: {Text("Cancel").foregroundColor(Color.red)})
                         }
                         
-                    }.frame(width: 300)
+                        Section(header: Text("Log").font(.largeTitle)) {
+                            ForEach(Repo_ViewModel_req.Log_repo_list, id: \.id) { log_l in
+                                Button(log_l.userId + " : " + log_l.commitMsg){
+                                    
+                                }
+                                
+                            }.onAppear(){
+                                Repo_ViewModel_req.repo_n = self.repo_n
+                                Repo_ViewModel_req.appear()
+                                Repo_ViewModel_req.fetch(Repo_Name: repo_n)
+                                print("log_repoViewModel_aasdfasdf \(Repo_ViewModel_req.Log_repo_list)")
+                                
+                                // Timer to reload log
+                                var timer: Timer? = Timer.scheduledTimer(withTimeInterval: 3, repeats: true, block: { _ in
+                                    Repo_ViewModel_req.Log_repo_list.removeAll()
+                                    Repo_ViewModel_req.fetch(Repo_Name: repo_n)
+                                })
+                                
+                            }
+                        }
+                    }
+                    .refreshable{
+                        Repo_ViewModel_req.Log_repo_list.removeAll()
+                        Repo_ViewModel_req.fetch(Repo_Name: repo_n)
+                    }
+                    .frame(width: 300)
                     
                 }
             }
@@ -235,11 +260,11 @@ struct Repo_View_Directory: View {
                             self.saveCheck = dataList.saveCheck
                             print("self.saveCheck \(saveCheck) : Repo_View")
                         })
-                        .toast(isPresented: $saveCheck, dismissAfter: 0.5) {
-                            print("SAVE SUCCESS")
-                        } content: {
-                            ToastView("SAVE SUCCESS")
-                        }
+                            .toast(isPresented: $saveCheck, dismissAfter: 0.5) {
+                                print("SAVE SUCCESS")
+                            } content: {
+                                ToastView("SAVE SUCCESS")
+                            }
                     }
                     
                 } else {
@@ -248,8 +273,8 @@ struct Repo_View_Directory: View {
                             Circle()
                                 .foregroundColor(Color.red)
                                 .frame(width: 20.0, height: 20.0)
-//                                .offset(x: pixel.RequestedLocation_x,y: pixel.RequestedLocation_y)
-//                                .position(x: pixel.RequestedLocation_x, y: pixel.RequestedLocation_y)
+                            //                                .offset(x: pixel.RequestedLocation_x,y: pixel.RequestedLocation_y)
+                            //                                .position(x: pixel.RequestedLocation_x, y: pixel.RequestedLocation_y)
                                 .position(CGPoint.init(x: pixel.RequestedLocation_x, y: pixel.RequestedLocation_y+100))
                                 .zIndex(1)
                         }
@@ -312,12 +337,12 @@ struct Repo_View_Directory: View {
                                 .frame(width: 220, height: 80)
                             }
                     }
-//                    .frame(maxWidth: .infinity)
-//                    .ignoresSafeArea()
-//                    .edgesIgnoringSafeArea(.top)
+                    //                    .frame(maxWidth: .infinity)
+                    //                    .ignoresSafeArea()
+                    //                    .edgesIgnoringSafeArea(.top)
                 }
             }
-//            .ignoresSafeArea()
+            //            .ignoresSafeArea()
         }
     }
     

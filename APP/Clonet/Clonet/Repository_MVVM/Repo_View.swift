@@ -23,7 +23,7 @@ struct Repo_View: View {
             }
             VStack{
                 Repo_View_Request(repoName: repoName)
-                Repo_View_Log(repo_n: repoName)
+//                Repo_View_Log(repo_n: repoName)
                 Repo_View_Git(repo_n: repoName, userID: userID)
             }
         }

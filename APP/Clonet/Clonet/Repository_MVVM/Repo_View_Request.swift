@@ -14,19 +14,14 @@ struct Repo_View_Request: View {
 //    @State var RequestText = ["RequestText1", "RequestText2", "RequestText3"]
     
     var body: some View {
-
-        // Request 목록 불러오기
-        ScrollView(){
-//            ForEach(0..<RequestName.count){listCount in
-//                HStack(){
-//                    Image(systemName: "person.circle.fill")
-//                    Text(RequestName[listCount])
-//                    Text(" : ")
-//                    Text(RequestText[listCount])
-//                }
-//                .padding(.bottom, 2.0)
-//                .frame(maxWidth: .infinity)
-//            }
+        VStack{
+            List{
+                Section(header: Text("User List").font(.title)){
+                    Text("user1")
+                    Text("user2")
+                    Text("user3")
+                }
+            }
             Button(action: {
                 userViewModel.appear()
                 let alertHC = UIHostingController(rootView: AddUserAlert(repoName: repoName))
@@ -39,10 +34,23 @@ struct Repo_View_Request: View {
                         .resizable()
                         .foregroundColor(Color.black)
                         .frame(width: 60, height: 50)
-                    
                 }
         }
-        .padding()
+        
+        // Request 목록 불러오기
+//        ScrollView(){
+//            ForEach(0..<RequestName.count){listCount in
+//                HStack(){
+//                    Image(systemName: "person.circle.fill")
+//                    Text(RequestName[listCount])
+//                    Text(" : ")
+//                    Text(RequestText[listCount])
+//                }
+//                .padding(.bottom, 2.0)
+//                .frame(maxWidth: .infinity)
+//            }
+//        }
+//        .padding()
     }
 }
 
