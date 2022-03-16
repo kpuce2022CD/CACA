@@ -17,10 +17,6 @@
 
 <img src="https://img.shields.io/badge/Github-181717?style=flat-square&logo=Github&logoColor=white"/>
 
-
-## Architecture
-![architecture drawio (3)](https://user-images.githubusercontent.com/79956705/154617966-c5f6b172-c957-42c9-bf8c-0937cddd2c9d.png)
-
 ## Trello
 https://trello.com/b/0S6KfZjD/caca
 ## Apollo
@@ -32,10 +28,6 @@ cd Terraform
 terraform init
 terraform apply
 ```
-
-## DB
-https://dbdiagram.io/d/622854b261d06e6eadcb3436
-
 
 ## Email
 * pavi03@kpu.ac.kr
