@@ -250,7 +250,7 @@ struct Repo_View_Directory: View {
                                 .frame(width: 20.0, height: 20.0)
 //                                .offset(x: pixel.RequestedLocation_x,y: pixel.RequestedLocation_y)
 //                                .position(x: pixel.RequestedLocation_x, y: pixel.RequestedLocation_y)
-                                .position(CGPoint.init(x: pixel.RequestedLocation_x, y: pixel.RequestedLocation_y))
+                                .position(CGPoint.init(x: pixel.RequestedLocation_x, y: pixel.RequestedLocation_y+100))
                                 .zIndex(1)
                         }
                         
@@ -312,8 +312,12 @@ struct Repo_View_Directory: View {
                                 .frame(width: 220, height: 80)
                             }
                     }
+//                    .frame(maxWidth: .infinity)
+//                    .ignoresSafeArea()
+//                    .edgesIgnoringSafeArea(.top)
                 }
             }
+//            .ignoresSafeArea()
         }
     }
     
