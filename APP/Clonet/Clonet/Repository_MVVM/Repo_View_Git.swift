@@ -414,7 +414,7 @@ struct Repo_View_Git: View {
                 FileList.location(repoName: repo_n)
                 
                 // Timer to reload log
-                var timer: Timer? = Timer.scheduledTimer(withTimeInterval: 6, repeats: true, block: { _ in
+                var timer: Timer? = Timer.scheduledTimer(withTimeInterval: 30, repeats: true, block: { _ in
                     log_repoViewModel_a.Log_repo_list.removeAll()
                     log_repoViewModel_a.fetch(Repo_Name: repo_n)
                 })

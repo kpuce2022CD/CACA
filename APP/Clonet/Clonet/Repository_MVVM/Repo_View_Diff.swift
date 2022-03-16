@@ -60,10 +60,7 @@ struct Repo_View_Diff: View {
                 }
             }else{
                 HStack{
-                    VStack{
-                        Text("**First Commit**")
-                            .font(.system(size: 20))
-                            .foregroundColor(.blue)
+                    ZStack{
                         AsyncImage(url: URL(string: logNumber.url1), scale: 2){ image in
                             image
                                 .resizable()
@@ -74,11 +71,7 @@ struct Repo_View_Diff: View {
                         }
                         .frame(width: 400, height: 400, alignment: .center)
                         .cornerRadius(20)
-                    }
-                    VStack{
-                        Text("**Second Commit**")
-                            .font(.system(size: 20))
-                            .foregroundColor(.blue)
+                        
                         AsyncImage(url: URL(string: logNumber.url2),scale: 2){ image in
                             image
                                 .resizable()
