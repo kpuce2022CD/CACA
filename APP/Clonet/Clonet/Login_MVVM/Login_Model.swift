@@ -20,6 +20,8 @@ final class Login_Model: ObservableObject {
 }
 typealias LoginData = LoginQuery.Data.Login
 
+
+
 //public struct loginStruct {
 //    
 //    init(){

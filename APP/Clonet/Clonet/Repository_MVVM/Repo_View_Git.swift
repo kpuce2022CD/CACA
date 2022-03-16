@@ -392,6 +392,7 @@ struct Repo_View_Git: View {
                 FileList.first(repo_n: repo_n)
                 FileList.location(repoName: repo_n)
                 
+                
                 // Timer to reload log
                 var timer: Timer? = Timer.scheduledTimer(withTimeInterval: 30, repeats: true, block: { _ in
                     log_repoViewModel_a.Log_repo_list.removeAll()
@@ -425,7 +426,7 @@ struct Repo_View_Git: View {
     
     
     
-    //MARK: COMMIT_FUNC
+    //MARK: COMMIT_FUNCgetUserList
     func commitGitRepo(localRepoLocation localRepoLocation: URL, name name: String, email email: String, commit_msg commit_msg : String, addFileName addFileName: String, branch: String) {
         print("commit btn clicked!! ")
         let result = Repository.at(localRepoLocation)

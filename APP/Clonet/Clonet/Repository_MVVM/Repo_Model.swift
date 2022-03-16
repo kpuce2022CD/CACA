@@ -14,6 +14,23 @@ import SwiftUI
 typealias logrepoData = LogRepoQuery.Data.LogRepo
 typealias iprepoData = SelectRepoQuery.Data.SelectRepo
 typealias requestData = RequestRepoQuery.Data.RequestRepo
+typealias groupUserData = GroupUserQuery.Data.GroupUser
+
+struct UserList_repo: Decodable {
+    var id = UUID()
+    var user_id : String
+    var repo_name: String
+    
+    init(){
+        self.user_id = ""
+        self.repo_name = ""
+    }
+    
+    init(_ mappings: groupUserData?){
+        self.user_id = mappings?.userId ?? ""
+        self.repo_name = mappings?.repoName ?? ""
+    }
+}
 
 class Log_repo: ObservableObject {
     @Published var id = UUID()

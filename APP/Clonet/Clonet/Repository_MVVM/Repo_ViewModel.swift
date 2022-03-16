@@ -17,8 +17,10 @@ final class log_repo_ViewModel: ObservableObject {
     @Published var launches: Log_repo = Log_repo.init()
     @Published var launches_ip: Ip_repo = Ip_repo.init()
     @Published var launches_req: Request = Request.init()
+    @Published var launches_user: UserList_repo = UserList_repo.init()
     @Published var Log_repo_list : [Log_repo] = []
     @Published var Req_repo_list : [Request] = []
+    @Published var User_repo_list: [UserList_repo] = []
     @Published var repo_n: String = ""
     @Published var repoIP_Addr : String = ""
     
@@ -40,6 +42,27 @@ final class log_repo_ViewModel: ObservableObject {
         Log_repo_list.removeAll()
         fetch(Repo_Name: self.repo_n)
         repoIP(Repo_Name: self.repo_n)
+    }
+    
+    //MARK: UserListQuery(GroupUserQuery)
+    func getUserList(Repo_Name: String){
+        Network.shared.apollo.fetch(query: GroupUserQuery(repo_name: Repo_Name)){ result in
+            switch result {
+            case .success(let graphQLResult):
+                if let user_repos = graphQLResult.data?.groupUser{
+                    for i in user_repos.indices{
+                        self.launches_user = self.process_user(data: user_repos[i] ?? groupUserData.init(userId: "", repoName: ""))
+                        self.User_repo_list.append(self.launches_user)
+                        print("User_repo_list fetch", self.User_repo_list)
+                    }
+                } else if let errors = graphQLResult.errors {
+                    print("GraphQL errors \(errors)")
+                }
+                
+            case .failure(let error):
+                print("Failure! Error: \(error)")
+            }
+        }
     }
     
     //MARK: SelectRepoQuery
@@ -144,6 +167,10 @@ final class log_repo_ViewModel: ObservableObject {
     
     func process_req(data: requestData) -> Request {
         return Request(data)
+    }
+    
+    func process_user(data: groupUserData) -> UserList_repo {
+        return UserList_repo(data)
     }
     
     
