@@ -288,62 +288,21 @@ struct Repo_View_Git: View {
                                 ZStack {
                                     NavigationLink(destination: Repo_View_Diff(ImgOpacity: 0.5, logNumber: logNumber)) { }
                                     
-                                    .buttonStyle(PlainButtonStyle()).frame(width:0).opacity(0)
-//                                    if(log_repoViewModel_a.diffSuccess == true){
-//
-////                                        NavigationLink(destination: Repo_View_Diff(ImgOpacity: 0.5, url1: log_repoViewModel_a.URL1, url2: log_repoViewModel_a.URL2), tag: "true", selection: $selectionString) { }
-//                                            .buttonStyle(PlainButtonStyle()).frame(width:0).opacity(0)
-//                                    }else{}
-                                Button {
-                                    self.selectionString = "true"
-                                    logNumber.url1 = "http://13.209.116.111/images/\( log_repoViewModel_a.Log_repo_list[log_number1].commitId)_\(FileList.items[file_number])"
-                                    logNumber.url2 = "http://13.209.116.111/images/\( log_repoViewModel_a.Log_repo_list[log_number2].commitId)_\(FileList.items[file_number])"
-                                    print("logNumber.url1", logNumber.url1)
-                                } label: {
-                                    Text("OK")
-                                }
-//                                .toast(isPresented: $presentingToast3){
-//                                    NavigationView{
-//                                        VStack{
-//                                            ZStack{
-//                                                AsyncImage(url: URL(string: "http://13.209.116.111/images/\( log_repoViewModel_a.Log_repo_list[log_number1].commitId)_\(FileList.items[file_number])"), scale: 2){ image in
-//                                                    image
-//                                                        .resizable()
-//                                                        .aspectRatio(contentMode: .fill)
-//                                                } placeholder: {
-//                                                    ProgressView()
-//                                                        .progressViewStyle(.circular)
-//                                                }
-//                                                .frame(width: 400, height: 400, alignment: .center)
-//                                                .cornerRadius(20)
-//
-//                                                AsyncImage(url: URL(string: "http://13.209.116.111/images/\( log_repoViewModel_a.Log_repo_list[log_number2].commitId)_\(FileList.items[file_number])"),scale: 2){ image in
-//                                                    image
-//                                                        .resizable()
-//                                                        .aspectRatio(contentMode: .fill)
-//                                                } placeholder: {
-//                                                    ProgressView()
-//                                                        .progressViewStyle(.circular)
-//                                                }
-//                                                .frame(width: 400, height: 400, alignment: .center)
-//                                                .cornerRadius(20)
-//                                            }
-//                                            OpacitySlider(ImgOpacity: .constant(0.5))
-////                                            Text("\(ImgOpacity)")
-////                                                .background(Color.red)
-////                                                .opacity(ImgOpacity)
-////                                            Slider(value: $ImgOpacity, in: 0...1)
-////                                                .padding()
-//                                            Button {
-//                                                presentingToast3 = false
-//                                            } label: {
-//                                                Text("OK")
-//                                            }
-//                                        }
-//                                    }
-//                                    .hiddenNavigationBarStyle()
-//                                    .navigationViewStyle(StackNavigationViewStyle())
-//                                }
+                                        .buttonStyle(PlainButtonStyle()).frame(width:0).opacity(0)
+                                    //                                    if(log_repoViewModel_a.diffSuccess == true){
+                                    //
+                                    ////                                        NavigationLink(destination: Repo_View_Diff(ImgOpacity: 0.5, url1: log_repoViewModel_a.URL1, url2: log_repoViewModel_a.URL2), tag: "true", selection: $selectionString) { }
+                                    //                                            .buttonStyle(PlainButtonStyle()).frame(width:0).opacity(0)
+                                    //                                    }else{}
+                                    Button {
+                                        self.selectionString = "true"
+                                        logNumber.url1 = "http://13.209.116.111/images/\( log_repoViewModel_a.Log_repo_list[log_number1].commitId)_\(FileList.items[file_number])"
+                                        logNumber.url2 = "http://13.209.116.111/images/\( log_repoViewModel_a.Log_repo_list[log_number2].commitId)_\(FileList.items[file_number])"
+                                        print("logNumber.url1", logNumber.url1)
+                                    } label: {
+                                        Text("OK")
+                                    }
+                                    
                                 }
                                 
                                 Button {
