@@ -54,7 +54,7 @@ extension Repository {
     // MARK: merge
     public func merge(_ repo: Repository){
         var revert_git_oid = git_oid()
-        let nameToIDResult = git_oid_fromstr(&revert_git_oid, "cb7f62896e0fcae18731727dada7c3a8e2d5b77a")
+        let nameToIDResult = git_oid_fromstr(&revert_git_oid, "f24d3d043112aa5a8ce1d1d426d1981d624b6cf0")
         print("git_oid_fromstr : ", nameToIDResult)
         
         var git_annotated_commit_from_fetchhead_out : OpaquePointer? = nil

@@ -21,7 +21,7 @@ struct Repo_View_Git: View {
     
     @State var UserName = ""
     @State var userEmail = "UserEmail"
-    @State var commit_msg = "commit_msg"
+    @State var commit_msg = ""
     @State var branchArr : [String] = []
     
     @State private var showingAlert = false
@@ -37,7 +37,7 @@ struct Repo_View_Git: View {
     @State private var presentingToast2: Bool = false
     @State private var presentingToast_pull: Bool = false
     @State private var presentingToast_commit: Bool = false
-    @State var pullBranch = 0
+    @State var pullBranch = "master"
     
     // Diff
     @State var log_number1 = 0
@@ -145,7 +145,7 @@ struct Repo_View_Git: View {
                         Button("Save", action: {
                             presentingToast_commit = false
                             
-                            
+                            commitGitRepo(localRepoLocation: documentURL.appendingPathComponent(repo_n), name: userID, email: userEmail, commit_msg: commit_msg, addFileName: addFileName, branch: pullBranch)
                         })
                         
                         Divider()
@@ -225,10 +225,29 @@ struct Repo_View_Git: View {
                     ToastView {
                             VStack{
                                 Picker(selection: $pullBranch, label: Text("")) {
-                                ForEach(branchArr, id: \.self){b in
-                                    Button(b){
-                                        // PULL
-                                    }
+                                    ForEach(branchArr, id: \.self){b in
+                                        Button(b){
+                                            DispatchQueue.global().sync{
+                                                log_repoViewModel_a.Log_repo_list.removeAll()
+                                                log_repoViewModel_a.appear()
+                                                print("repo_n:", log_repoViewModel_a.Log_repo_list.first?.commitId)
+                                            }
+                                            DispatchQueue.global().async{
+                                                
+                                                // MARK: FETCH
+                                                fetchGitRepo(localRepoLocation: documentURL.appendingPathComponent(repo_n))
+                                                print("url", documentURL.appendingPathComponent(repo_n))
+                                                // MARK: MERGE
+                                                mergeGitRepo(localRepoLocation: documentURL.appendingPathComponent(repo_n),remoteRepoLocation: log_repoViewModel_a.repoIP_Addr, hexString: log_repoViewModel_a.Log_repo_list.first?.commitId ?? "")
+                                                // MARK: COMMIT
+                                                var merge_commit_m : String = log_repoViewModel_a.Log_repo_list.first?.commitMsg ?? ""
+                                                commitGitRepo(localRepoLocation: documentURL.appendingPathComponent(repo_n), name: userID, email: userEmail, commit_msg: "병합 : \(merge_commit_m)", addFileName: ".", branch: pullBranch)
+                                                // MARK: PUSH_FORCE
+                                                push_f_GitRepo(localRepoLocation: documentURL.appendingPathComponent(repo_n))
+                                                
+                                            }
+                                            print("log_repoViewModel_a.launches.commitId",log_repoViewModel_a.Log_repo_list.first?.commitId)
+                                        }
                                 }
                             }
                                 .pickerStyle(WheelPickerStyle())
@@ -427,7 +446,7 @@ struct Repo_View_Git: View {
     
     
     //MARK: COMMIT_FUNC
-    func commitGitRepo(localRepoLocation localRepoLocation: URL, name name: String, email email: String, commit_msg commit_msg : String, addFileName addFileName: String) {
+    func commitGitRepo(localRepoLocation localRepoLocation: URL, name name: String, email email: String, commit_msg commit_msg : String, addFileName addFileName: String, branch: String) {
         print("commit btn clicked!! ")
         let result = Repository.at(localRepoLocation)
         switch result {
@@ -440,7 +459,7 @@ struct Repo_View_Git: View {
             let latestCommit = repo.commit(message: commit_msg, signature: sig)
             
             //MARK: push
-            let commit_push = repo.push(repo, "ubuntu", "qwer1234", nil)
+            let commit_push = repo.push(repo, "ubuntu", "qwer1234", branch)
             
             
         case let .failure(error):
@@ -591,34 +610,34 @@ struct Repo_View_Git: View {
         }
     }
     
-    // MARK: alertView
-    func alertView(){
-        print("!!commit alertView clicked")
-        let alert = UIAlertController(title: "commig message", message: "Enter your message", preferredStyle: .alert)
-        
-        alert.addTextField{ i in
-            i.placeholder = "commit msg"
-        }
-        
-        let completeAction = UIAlertAction(title: "Save", style: .default){ (_) in
-            print("complete clicked")
-            commit_msg = alert.textFields![0].text!
-            print("commit complete: \(commit_msg)")
-            commitGitRepo(localRepoLocation: documentURL.appendingPathComponent(repo_n), name: userID, email: userEmail, commit_msg: commit_msg, addFileName: addFileName)
-        }
-        
-        let cancelAction = UIAlertAction(title: "Cancel", style: .destructive){ (_) in
-            print("cancel clicked")
-        }
-        
-        alert.addAction(completeAction)
-        alert.addAction(cancelAction)
-        
-        UIApplication.shared.windows.first?.rootViewController?.present(alert, animated: true, completion: {
-            
-        })
-        
-    }
+//    // MARK: alertView
+//    func alertView(){
+//        print("!!commit alertView clicked")
+//        let alert = UIAlertController(title: "commig message", message: "Enter your message", preferredStyle: .alert)
+//
+//        alert.addTextField{ i in
+//            i.placeholder = "commit msg"
+//        }
+//
+//        let completeAction = UIAlertAction(title: "Save", style: .default){ (_) in
+//            print("complete clicked")
+//            commit_msg = alert.textFields![0].text!
+//            print("commit complete: \(commit_msg)")
+//            commitGitRepo(localRepoLocation: documentURL.appendingPathComponent(repo_n), name: userID, email: userEmail, commit_msg: commit_msg, addFileName: addFileName)
+//        }
+//
+//        let cancelAction = UIAlertAction(title: "Cancel", style: .destructive){ (_) in
+//            print("cancel clicked")
+//        }
+//
+//        alert.addAction(completeAction)
+//        alert.addAction(cancelAction)
+//
+//        UIApplication.shared.windows.first?.rootViewController?.present(alert, animated: true, completion: {
+//
+//        })
+//
+//    }
 }
 
 struct Repo_View_Git_Previews: PreviewProvider {
