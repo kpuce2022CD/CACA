@@ -182,9 +182,7 @@ struct Repo_View_Directory: View {
                             }
                         }
                         
-                        //                        Text("\(pixel.RequestedLocation_x)")
-                        
-                        
+                        // MARK: Request List
                         Section(header: Text("Message").font(.largeTitle)) {
                             
                             ForEach(Repo_ViewModel_req.Req_repo_list, id: \.id) { s in
@@ -209,6 +207,7 @@ struct Repo_View_Directory: View {
                                    label: {Text("Cancel").foregroundColor(Color.red)})
                         }
                         
+                        // MARK: Log List
                         Section(header: Text("Log").font(.largeTitle)) {
                             ForEach(Repo_ViewModel_req.Log_repo_list, id: \.id) { log_l in
                                 Button(log_l.userId + " : " + log_l.commitMsg){
@@ -216,22 +215,13 @@ struct Repo_View_Directory: View {
                                 }
                                 
                             }.onAppear(){
-                                Repo_ViewModel_req.repo_n = self.repo_n
-                                Repo_ViewModel_req.appear()
                                 Repo_ViewModel_req.fetch(Repo_Name: repo_n)
                                 print("log_repoViewModel_aasdfasdf \(Repo_ViewModel_req.Log_repo_list)")
-                                
-                                // Timer to reload log
-                                var timer: Timer? = Timer.scheduledTimer(withTimeInterval: 3, repeats: true, block: { _ in
-                                    Repo_ViewModel_req.Log_repo_list.removeAll()
-                                    Repo_ViewModel_req.fetch(Repo_Name: repo_n)
-                                })
                                 
                             }
                         }
                     }
                     .refreshable{
-                        Repo_ViewModel_req.Log_repo_list.removeAll()
                         Repo_ViewModel_req.fetch(Repo_Name: repo_n)
                     }
                     .frame(width: 300)
@@ -337,12 +327,8 @@ struct Repo_View_Directory: View {
                                 .frame(width: 220, height: 80)
                             }
                     }
-                    //                    .frame(maxWidth: .infinity)
-                    //                    .ignoresSafeArea()
-                    //                    .edgesIgnoringSafeArea(.top)
                 }
             }
-            //            .ignoresSafeArea()
         }
     }
     

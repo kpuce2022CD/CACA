@@ -46,13 +46,15 @@ struct LoginCheck_View: View {
                     }
                     List{
                         ForEach(logincheck_ViewModel.Repo_List, id: \.id) { s in
-                            NavigationLink(destination: Repo_View(userID: userID, repoName: s.repo_name)){
+                            NavigationLink(destination: Repo_View(userID: userID, repoName: s.repo_name).onAppear(perform: {
+                                deleteFile(repoName: s.repo_name)
+                                cloneGitRepo(remoteRepoLocation: "http://13.209.116.111/git-repositories/" + s.repo_name + ".git", localRepoLocation: documentURL.appendingPathComponent(s.repo_name))
+                            })){
                                 VStack{
                                     Text("repo_name: \(s.repo_name)")
                                 }
                             }
                             .ignoresSafeArea(edges: .all)
-                            
                         }
                         .buttonStyle(PlainButtonStyle())
                     }
@@ -75,5 +77,44 @@ struct LoginCheck_View: View {
             logincheck_ViewModel.fetch(user_id: userID)
         }
 
+    }
+    
+    
+    //MARK: Delete file
+    var documentsUrl: URL {
+        return FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+    }
+    
+    func deleteFile(repoName: String){
+        
+        // delete File
+        let fileManager = FileManager.default
+        let path = documentsUrl.path
+        
+        do{
+            try fileManager.removeItem(atPath: path + "/\(repoName)/")
+            print("deletePath:", path + "/\(repoName)/")
+        }catch let e {
+            print("\(e)")
+        }
+        
+    }
+    
+    //MARK: CLONE_FUNC
+    func cloneGitRepo(remoteRepoLocation remoteRepoLocation : String, localRepoLocation localRepoLocation : URL) {
+        let remote: URL = URL(string: remoteRepoLocation)!
+        
+        let result = Repository.clone(from: remote, to: localRepoLocation)
+        switch result {
+        case let .success(repo):
+            let latestCommit = repo
+                .HEAD()
+                .flatMap {
+                    repo.commit($0.oid)
+                }
+            
+        case let .failure(error):
+            print(error)
+        }
     }
 }
