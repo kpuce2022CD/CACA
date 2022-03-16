@@ -32,7 +32,7 @@ struct Repo_View_Git: View {
     // Toast Variables
     @State var repo_n: String
     @State var userID: String
-    @StateObject var log_repoViewModel_a = log_repo_ViewModel()
+    @ObservedObject var log_repoViewModel_a = log_repo_ViewModel()
     @State private var presentingToast: Bool = false
     @State private var presentingToast2: Bool = false
     @State private var presentingToast_pull: Bool = false
@@ -512,7 +512,7 @@ struct Repo_View_Git: View {
             do {
                 let remote_r = try remote.get()
                 let merge_result = repo.merge_func(repo, remoteRepoLocation: remoteRepoLocation, hexString: hexString )
-                
+                print("hexString", hexString)
                 let message = "merge result : \(merge_result)"
                 
             }catch{
