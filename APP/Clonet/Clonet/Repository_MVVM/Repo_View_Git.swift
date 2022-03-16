@@ -9,8 +9,16 @@ import SwiftUI
 import SwiftGit2
 import ToastUI
 
+
+class LogNumber : ObservableObject {
+    
+    @Published var url1 : String = ""
+    @Published var url2 : String = ""
+}
+
 struct Repo_View_Git: View {
     @ObservedObject var directory = getFileList()
+    @StateObject var logNumber : LogNumber = LogNumber()
     
     @State var UserName = ""
     @State var userEmail = "UserEmail"
@@ -30,8 +38,8 @@ struct Repo_View_Git: View {
     @State private var presentingToast2: Bool = false
     
     // Diff
-    @State private var log_number1 = 0
-    @State private var log_number2 = 0
+    @State var log_number1 = 0
+    @State var log_number2 = 0
     @State private var file_number = 0
     @State private var FileList = getFileList()
     @State private var presentingToast3: Bool = false
@@ -278,7 +286,7 @@ struct Repo_View_Git: View {
                             
                             Section{
                                 ZStack {
-                                    NavigationLink(destination: Repo_View_Diff(ImgOpacity: 0.5, url1: "http://13.209.116.111/images/\( log_repoViewModel_a.Log_repo_list[log_number1].commitId)_\(FileList.items[file_number])", url2: "http://13.209.116.111/images/\( log_repoViewModel_a.Log_repo_list[log_number2].commitId)_\(FileList.items[file_number])")) { }
+                                    NavigationLink(destination: Repo_View_Diff(ImgOpacity: 0.5, logNumber: logNumber)) { }
                                     
                                     .buttonStyle(PlainButtonStyle()).frame(width:0).opacity(0)
 //                                    if(log_repoViewModel_a.diffSuccess == true){
@@ -288,7 +296,9 @@ struct Repo_View_Git: View {
 //                                    }else{}
                                 Button {
                                     self.selectionString = "true"
-                                    log_repoViewModel_a.Diff(first_commit: log_repoViewModel_a.Log_repo_list[log_number1].commitId, second_commit: log_repoViewModel_a.Log_repo_list[log_number2].commitId, repo_name: repo_n, file_name: FileList.items[file_number])
+                                    logNumber.url1 = "http://13.209.116.111/images/\( log_repoViewModel_a.Log_repo_list[log_number1].commitId)_\(FileList.items[file_number])"
+                                    logNumber.url2 = "http://13.209.116.111/images/\( log_repoViewModel_a.Log_repo_list[log_number2].commitId)_\(FileList.items[file_number])"
+                                    print("logNumber.url1", logNumber.url1)
                                 } label: {
                                     Text("OK")
                                 }
