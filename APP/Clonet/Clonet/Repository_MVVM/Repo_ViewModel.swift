@@ -13,7 +13,7 @@ import ToastUI
 import Combine
 
 // MARK: log_repo_ViewModel
-final class log_repo_ViewModel: ObservableObject{
+final class log_repo_ViewModel: ObservableObject {
     @Published var launches: Log_repo = Log_repo.init()
     @Published var launches_ip: Ip_repo = Ip_repo.init()
     @Published var launches_req: Request = Request.init()

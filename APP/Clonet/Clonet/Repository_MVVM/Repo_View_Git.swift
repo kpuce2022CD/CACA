@@ -32,7 +32,7 @@ struct Repo_View_Git: View {
     // Toast Variables
     @State var repo_n: String
     @State var userID: String
-    @StateObject var log_repoViewModel_a = log_repo_ViewModel()
+    @ObservedObject var log_repoViewModel_a = log_repo_ViewModel()
     @State private var presentingToast: Bool = false
     @State private var presentingToast2: Bool = false
     @State private var presentingToast_pull: Bool = false
@@ -181,27 +181,6 @@ struct Repo_View_Git: View {
                 
                 // MARK: Pull Button
                 Button(action: {
-//                    DispatchQueue.global().sync{
-//                        log_repoViewModel_a.Log_repo_list.removeAll()
-//                        log_repoViewModel_a.appear()
-//                        print("repo_n:", log_repoViewModel_a.Log_repo_list.first?.commitId)
-//                    }
-//                    DispatchQueue.global().async{
-//
-//                        // MARK: FETCH
-//                        fetchGitRepo(localRepoLocation: documentURL.appendingPathComponent(repo_n))
-//                        print("url", documentURL.appendingPathComponent(repo_n))
-//                        // MARK: MERGE
-//                        mergeGitRepo(localRepoLocation: documentURL.appendingPathComponent(repo_n),remoteRepoLocation: log_repoViewModel_a.repoIP_Addr, hexString: log_repoViewModel_a.Log_repo_list.first?.commitId ?? "")
-//                        // MARK: COMMIT
-//                        var merge_commit_m : String = log_repoViewModel_a.Log_repo_list.first?.commitMsg ?? ""
-//                        commitGitRepo(localRepoLocation: documentURL.appendingPathComponent(repo_n), name: userID, email: userEmail, commit_msg: "병합 : \(merge_commit_m)", addFileName: ".")
-//                        // MARK: PUSH_FORCE
-//                        push_f_GitRepo(localRepoLocation: documentURL.appendingPathComponent(repo_n))
-//
-//                    }
-//                    print("log_repoViewModel_a.launches.commitId",log_repoViewModel_a.Log_repo_list.first?.commitId)
-                    
                     presentingToast_pull = true
                     branchArr = BranchGitRepo(localRepoLocation: documentURL.appendingPathComponent(repo_n))
                 }){
@@ -248,11 +227,11 @@ struct Repo_View_Git: View {
                                     print("url", documentURL.appendingPathComponent(repo_n))
                                     // MARK: MERGE
                                     mergeGitRepo(localRepoLocation: documentURL.appendingPathComponent(repo_n),remoteRepoLocation: log_repoViewModel_a.repoIP_Addr, hexString: log_repoViewModel_a.Log_repo_list.first?.commitId ?? "")
-                                    // MARK: COMMIT
-                                    var merge_commit_m : String = log_repoViewModel_a.Log_repo_list.first?.commitMsg ?? ""
-                                    commitGitRepo(localRepoLocation: documentURL.appendingPathComponent(repo_n), name: userID, email: userEmail, commit_msg: "병합 : \(merge_commit_m)", addFileName: ".", branch: pullBranch)
-                                    // MARK: PUSH_FORCE
-                                    push_f_GitRepo(localRepoLocation: documentURL.appendingPathComponent(repo_n))
+//                                    // MARK: COMMIT
+//                                    var merge_commit_m : String = log_repoViewModel_a.Log_repo_list.first?.commitMsg ?? ""
+//                                    commitGitRepo(localRepoLocation: documentURL.appendingPathComponent(repo_n), name: userID, email: userEmail, commit_msg: "병합 : \(merge_commit_m)", addFileName: ".", branch: pullBranch)
+//                                    // MARK: PUSH_FORCE
+//                                    push_f_GitRepo(localRepoLocation: documentURL.appendingPathComponent(repo_n))
                                     
                                 }
                                 print("log_repoViewModel_a.launches.commitId",log_repoViewModel_a.Log_repo_list.first?.commitId)
@@ -533,7 +512,7 @@ struct Repo_View_Git: View {
             do {
                 let remote_r = try remote.get()
                 let merge_result = repo.merge_func(repo, remoteRepoLocation: remoteRepoLocation, hexString: hexString )
-                
+                print("hexString", hexString)
                 let message = "merge result : \(merge_result)"
                 
             }catch{

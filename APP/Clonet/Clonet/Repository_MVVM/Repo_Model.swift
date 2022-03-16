@@ -15,12 +15,12 @@ typealias logrepoData = LogRepoQuery.Data.LogRepo
 typealias iprepoData = SelectRepoQuery.Data.SelectRepo
 typealias requestData = RequestRepoQuery.Data.RequestRepo
 
-struct Log_repo: Decodable {
-    var id = UUID()
-    var commitMsg : String
-    var date : String
-    var commitId : String
-    var userId : String
+class Log_repo: ObservableObject {
+    @Published var id = UUID()
+    @Published var commitMsg : String
+    @Published var date : String
+    @Published var commitId : String
+    @Published var userId : String
     
     init(){
         self.commitMsg = ""
