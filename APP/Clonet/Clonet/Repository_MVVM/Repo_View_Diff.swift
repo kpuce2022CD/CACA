@@ -7,9 +7,28 @@
 
 import SwiftUI
 
+class MDResult: ObservableObject{
+    @Published var text : String = ""
+    
+    func MDView(url: String) -> String{
+        var result = ""
+        do{
+            text = try String(contentsOf: URL(string: url)!, encoding: .utf8)
+            print("MDMDMDMDREAD",text, url)
+            return text
+        }
+        catch {print("fail to load readme")}
+        
+        return result
+    }
+}
+
 struct Repo_View_Diff: View {
     @State var ImgOpacity = 0.5
+    @State var text1: String = ""
+    @State var text2: String = ""
     @ObservedObject var logNumber : LogNumber
+    @ObservedObject var mdList = MDResult()
     
     init(ImgOpacity: Double, logNumber: LogNumber){
         self.ImgOpacity = ImgOpacity
@@ -18,32 +37,58 @@ struct Repo_View_Diff: View {
     
     var body: some View{
         VStack {
-            Text("GEE \(logNumber.url1)")
-            Text("GEE \(logNumber.url2)")
+//            Text("GEE \(logNumber.url1)")
+//            Text("GEE \(logNumber.url2)")
+            
             HStack{
-                AsyncImage(url: URL(string: logNumber.url1), scale: 2){ image in
-                    image
-                        .resizable()
-                        .aspectRatio(contentMode: .fill)
-                } placeholder: {
-                    ProgressView()
-                        .progressViewStyle(.circular)
+                if(logNumber.url1.contains(".txt") == true || logNumber.url1.contains(".md") == true){
+//                    Button(action: {
+//                        mdList.MDView(url: logNumber.url1)
+//                    }, label: {Text("aa")})
+                    VStack{
+                        Text("**First Commit**")
+                            .font(.system(size: 20))
+                            .foregroundColor(.blue)
+                        Spacer()
+                        Text("\(text1)")
+                            .font(.system(size: 17))
+                            .frame(width: 400, height: 400, alignment: .center)
+                            .cornerRadius(20)
+                    }
+                    VStack{
+                        Text("**Second Commit**")
+                            .font(.system(size: 20))
+                            .foregroundColor(.blue)
+                        Spacer()
+                        Text("\(text2)")
+                            .font(.system(size: 17))
+                            .frame(width: 400, height: 400, alignment: .center)
+                            .cornerRadius(20)
+                    }
+                }else{
+                    AsyncImage(url: URL(string: logNumber.url1), scale: 2){ image in
+                        image
+                            .resizable()
+                            .aspectRatio(contentMode: .fill)
+                    } placeholder: {
+                        ProgressView()
+                            .progressViewStyle(.circular)
+                    }
+                    .frame(width: 400, height: 400, alignment: .center)
+                    .cornerRadius(20)
+                    
+                    AsyncImage(url: URL(string: logNumber.url2),scale: 2){ image in
+                        image
+                            .resizable()
+                            .aspectRatio(contentMode: .fill)
+                            .opacity(ImgOpacity)
+                    } placeholder: {
+                        ProgressView()
+                            .progressViewStyle(.circular)
+                    }
+                    .frame(width: 400, height: 400, alignment: .center)
+                    .cornerRadius(20)
                 }
-                .frame(width: 400, height: 400, alignment: .center)
-                .cornerRadius(20)
-                
-                AsyncImage(url: URL(string: logNumber.url2),scale: 2){ image in
-                    image
-                        .resizable()
-                        .aspectRatio(contentMode: .fill)
-                        .opacity(ImgOpacity)
-                } placeholder: {
-                    ProgressView()
-                        .progressViewStyle(.circular)
-                }
-                .frame(width: 400, height: 400, alignment: .center)
-                .cornerRadius(20)
-                
             }
             Spacer()
             
@@ -56,8 +101,8 @@ struct Repo_View_Diff: View {
         }.padding()
             .onAppear(perform: {
                 print("self.logNumber.url", logNumber.url1)
-                
-               
+                self.text1 = mdList.MDView(url: logNumber.url1)
+                self.text2 = mdList.MDView(url: logNumber.url2)
             })
     }
 }

@@ -278,7 +278,9 @@ struct Repo_View_Git: View {
                                 }
                                 Picker("Choose File", selection: $file_number) {
                                     ForEach(FileList.items.indices) {
-                                        Text("\(FileList.items[$0])")
+                                        if(FileList.items[$0] != ".git"){
+                                            Text("\(FileList.items[$0])")
+                                        }
                                     }
                                 }
                             }
@@ -286,14 +288,14 @@ struct Repo_View_Git: View {
                             Section{
                                 ZStack {
                                     NavigationLink(destination: Repo_View_Diff(ImgOpacity: 0.5, logNumber: logNumber)) { }
+                                    .buttonStyle(PlainButtonStyle()).frame(width:0).opacity(0)
                                     
-                                        .buttonStyle(PlainButtonStyle()).frame(width:0).opacity(0)
-
                                     Button {
                                         self.selectionString = "true"
                                         logNumber.url1 = "http://13.209.116.111/images/\( log_repoViewModel_a.Log_repo_list[log_number1].commitId)_\(FileList.items[file_number])"
                                         
                                         logNumber.url2 = "http://13.209.116.111/images/\( log_repoViewModel_a.Log_repo_list[log_number2].commitId)_\(FileList.items[file_number])"
+                                        
                                         
                                         log_repoViewModel_a.Diff(first_commit: log_repoViewModel_a.Log_repo_list[log_number1].commitId, second_commit: log_repoViewModel_a.Log_repo_list[log_number2].commitId, repo_name: repo_n, file_name: FileList.items[file_number])
                                         
