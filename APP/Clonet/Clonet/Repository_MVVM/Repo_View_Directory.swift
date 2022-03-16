@@ -248,7 +248,9 @@ struct Repo_View_Directory: View {
                             Circle()
                                 .foregroundColor(Color.red)
                                 .frame(width: 20.0, height: 20.0)
-                                .offset(x: pixel.RequestedLocation_x,y: pixel.RequestedLocation_y)
+//                                .offset(x: pixel.RequestedLocation_x,y: pixel.RequestedLocation_y)
+//                                .position(x: pixel.RequestedLocation_x, y: pixel.RequestedLocation_y)
+                                .position(CGPoint.init(x: pixel.RequestedLocation_x, y: pixel.RequestedLocation_y))
                                 .zIndex(1)
                         }
                         
