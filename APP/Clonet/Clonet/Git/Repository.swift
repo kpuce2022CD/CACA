@@ -104,22 +104,11 @@ extension Repository {
         print("new branch: \(newBranch)")
         
         let result = repo.localBranch(named: newBranch)
-//        let branchResult = repo.localBranches()
         switch result {
         case .success(let branches):
             let checkoutRet = checkout(branches, strategy: .Force)
             print("checkoutrerere: \(checkoutRet)")
-//            for branch in branches {
-//                if(branch.name == newBranch){
-//                    print("kekw")
-//                    let checkoutRet = checkout(branch, strategy: .Force)
-//                    print(checkoutRet)
-//                    break;
-//                } else {
-//                    print("aabbbbbbbbb")
-//                    break;
-//                }
-//            }
+
             break
         case .failure:
             print("Failed to get any branches...")
@@ -161,7 +150,51 @@ extension Repository {
                     print(success)
                     
                     let ret = git_branch_create(&output, repository, branchName, pointerToCommitInLibGit2, 1)
+                    
                     print("kek \(ret)")
+                    
+                    let checkout = checkout_branch(repo, branchName: branchName)
+                    
+                    // push
+                    let credentials: Credentials = Credentials.plaintext(username: "ubuntu", password: "qwer1234")
+                    var options = pushOptions(credentials: credentials)
+                    
+                    let repository: OpaquePointer = repo.pointer
+                    var remote: OpaquePointer? = nil
+                    let result_git_remote_lookup = git_remote_lookup(&remote, repository, "origin" )
+                    
+                    
+                    func localBranches() -> Result<[Branch], NSError> {
+                        return references(withPrefix: "refs/heads/")
+                            .map { (refs: [ReferenceType]) in
+                                return refs.map { $0 as! Branch }
+                            }
+                    }
+                    
+                    var master = "refs/heads/" + branchName!
+                    
+                    let strings: UnsafeMutablePointer<UnsafeMutablePointer<CChar>?> = [master].withUnsafeBufferPointer {
+                        let buffer = UnsafeMutablePointer<UnsafeMutablePointer<CChar>?>.allocate(capacity: $0.count + 1)
+                        let val = $0.map
+                        { $0.withCString(strdup) }
+                        buffer.initialize(from: val, count: 1)
+                        buffer[$0.count] = nil
+                        return buffer
+                    }
+                    var gitstr = git_strarray()
+                    gitstr.strings = strings
+                    gitstr.count = 1
+                    
+                    let push_result = git_remote_push(remote, &gitstr, &options)
+                    print(push_result)
+                    git_remote_free(remote)
+                    
+                    
+//                    // upstream
+//                    let upstream = git_branch_set_upstream(output, branchName)
+                    
+//                    print("kek \(upstream)")
+                    
                     break;
                 }
             }

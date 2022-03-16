@@ -578,7 +578,7 @@ struct createBranch_View: View {
             HStack {
                 Spacer()
                 Button(action: {
-                    create_localBranch(localRepoLocation: documentURL.appendingPathComponent(localRepoLocation), branch_name: new_branch_name, name: name, email: email)
+                    create_Branch(localRepoLocation: documentURL.appendingPathComponent(localRepoLocation), branch_name: new_branch_name, name: name, email: email)
                     UIApplication.shared.windows[0].rootViewController?.dismiss(animated: true, completion: {})
                 }) {
                     
@@ -603,7 +603,7 @@ struct createBranch_View: View {
     
     
     //MARK: Make Branch FUNC
-    func create_localBranch(localRepoLocation localRepoLocation : URL, branch_name branch_name : String, name name: String, email email: String){
+    func create_Branch(localRepoLocation localRepoLocation : URL, branch_name branch_name : String, name name: String, email email: String){
         
         let result = Repository.at(localRepoLocation)
         switch result {
@@ -613,6 +613,7 @@ struct createBranch_View: View {
             switch branch_commit{
             case let .success(commit):
                 let createbranch_result = repo.create_localBranch(repo, at: commit, branch_name)
+                
             case .failure(_):
                 print("error")
             }
