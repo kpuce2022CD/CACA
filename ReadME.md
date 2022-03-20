@@ -1,7 +1,3 @@
-<!-- <div align='center' ><h1> ⋆⁺₊⋆ Clonet ⋆⁺₊⋆ </h1> </div> -->
-            
-<!-- <h4> 원격 저장소를 활용한 그림 협업 & 버전관리 툴</h4> -->
-
 ![landing](https://user-images.githubusercontent.com/80253983/159113895-5290944b-81a5-4d1a-ac0f-2520d8610fae.png)
 
 
