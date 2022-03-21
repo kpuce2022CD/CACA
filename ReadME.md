@@ -1,7 +1,5 @@
 ![landing](https://user-images.githubusercontent.com/80253983/159113895-5290944b-81a5-4d1a-ac0f-2520d8610fae.png)
 
-
-
 ## 개발환경
 #### 📱 APP 📱
 <img src="https://img.shields.io/badge/SwiftUI-F05138?style=flat-square&logo=Swift&logoColor=white"/> <img src="https://img.shields.io/badge/Apollo-311C87?style=flat-square&logo=ApolloGraphQL&logoColor=white"/> <img src="https://img.shields.io/badge/GraphQL-E10098?style=flat-square&logo=GraphQL&logoColor=white"/> 
