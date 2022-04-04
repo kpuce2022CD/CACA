@@ -35,6 +35,5 @@ terraform apply
 * petitejini@kpu.ac.kr
 
 
-
 ## Our Email
 clonet.caca@gmail.com
