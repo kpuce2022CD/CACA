@@ -28,6 +28,10 @@ cd Terraform
 terraform init
 terraform apply
 ```
+### Don't run
+```
+terraform destroy
+```
 
 ## Email
 * pavi03@kpu.ac.kr
