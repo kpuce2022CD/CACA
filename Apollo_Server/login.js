@@ -3,10 +3,6 @@ const fs = require('fs');
 const shell = require('shelljs');
 const { ApolloServer, gql } = require('apollo-server');
 const { exec } = require('child_process');
-// const path = require('path');
-// const { json } = require('body-parser');
-// const pubsub = new PubSub();
-// const express = require('expr ess');
 
 const knex = require('knex')({
   client: 'mysql',
