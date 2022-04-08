@@ -72,7 +72,6 @@ struct LoginCheck_View: View {
         .navigationBarTitle("")
         .navigationBarHidden(true)
         .hiddenNavigationBarStyle()
-//        .navigationViewStyle(StackNavigationViewStyle())
         .onAppear {
             logincheck_ViewModel.fetch(user_id: userID)
         }
