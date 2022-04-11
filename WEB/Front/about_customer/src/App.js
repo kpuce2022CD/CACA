@@ -1,8 +1,9 @@
 import logo from './logo.svg';
 import './App.css';
-import Root from './Theme1.js';
+// import Root from './Theme1.js';
 import default_image from './Clonet_logo.jpeg';
 import {useEffect, useState} from 'react';
+import Root from './about_customer.js';
 
 // function App() {
 //
@@ -56,7 +57,7 @@ function App() {
     return (
         <div>
         <h2>ddddd </h2>
-            <Root />
+         <Root />
         </div>
     );
 }

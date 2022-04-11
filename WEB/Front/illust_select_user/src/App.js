@@ -67,11 +67,11 @@ function App() {
                 tempor.</p>
             </div>
             <ul class="nav">
-              <li><a href="./index.html" title="">Home</a></li>
-              <li><a href="./about.html" title="">About</a></li>
-              <li><a href="./services.html" title="">Services</a></li>
-              <li><a href="./contact.html" title="">Contact</a></li>
-              <li><a href="./components.html" title="">Components</a></li>
+            <li><a href="./index.html" title="">Home</a></li>
+            <li><a href="http://localhost:8002/about.html" title="">About</a></li>
+            <li><a href="http://localhost:8007/service.html" title="">Project</a></li>
+            <li><a href="http://localhost:8004/contact.html" title="">Contact</a></li>
+            {/* <li><a href="./components.html" title="">Components</a></li> */}
 
             </ul>
 
