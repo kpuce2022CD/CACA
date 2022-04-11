@@ -250,83 +250,89 @@ struct Repo_View_Directory: View {
                             self.saveCheck = dataList.saveCheck
                             print("self.saveCheck \(saveCheck) : Repo_View")
                         })
-                            .toast(isPresented: $saveCheck, dismissAfter: 0.5) {
-                                print("SAVE SUCCESS")
-                            } content: {
-                                ToastView("SAVE SUCCESS")
-                            }
+                        .toast(isPresented: $saveCheck, dismissAfter: 0.5) {
+                            print("SAVE SUCCESS")
+                        } content: {
+                            ToastView("SAVE SUCCESS")
+                        }
                     }
                     
                 } else {
-                    ZStack{
-                        if pointShowing{
-                            Circle()
-                                .foregroundColor(Color.red)
-                                .frame(width: 20.0, height: 20.0)
-                            //                                .offset(x: pixel.RequestedLocation_x,y: pixel.RequestedLocation_y)
-                            //                                .position(x: pixel.RequestedLocation_x, y: pixel.RequestedLocation_y)
-                                .position(CGPoint.init(x: pixel.RequestedLocation_x, y: pixel.RequestedLocation_y+100))
-                                .zIndex(1)
+                    
+                    GeometryReader { innerProxy in
+                        let local = innerProxy.frame(in: .local)
+                        let global = innerProxy.frame(in: .global)
+                        ZStack{
+                            if pointShowing{
+                                Circle()
+                                    .foregroundColor(Color.red)
+                                    .frame(width: 20.0, height: 20.0)
+                                    .position(CGPoint.init(x: pixel.RequestedLocation_x, y: pixel.RequestedLocation_y))
+                                    .zIndex(1)
+                            }
+                            
+                            Image(uiImage: load(fileName: fileNameImg)!)
+                                .resizable()
+                                .aspectRatio(contentMode: .fit) // Image 깨지지 않게 크기 처리
+                                .frame(width: 500, height: 500, alignment: .center)
+                                .padding()
+                                }
+                        }
+                    .gesture(LongPressGesture(minimumDuration: 0.5).sequenced(before: DragGesture(minimumDistance: 0)).onEnded { value in
+                        switch value {
+                        case .second(true, let drag):
+                            location = drag?.location ?? .zero   // capture location !!
+                            messageToast = true
+                        default:
+                            break
                         }
                         
-                        Image(uiImage: load(fileName: fileNameImg)!)
-                            .resizable()
-                            .aspectRatio(contentMode: .fit) // Image 깨지지 않게 크기 처리
-                            .frame(width: 500, height: 500)
-                            .padding()
-                            .gesture(LongPressGesture(minimumDuration: 0.5).sequenced(before: DragGesture(minimumDistance: 0)).onEnded { value in
-                                switch value {
-                                case .second(true, let drag):
-                                    location = drag?.location ?? .zero   // capture location !!
-                                    print("location:", location)
-                                    messageToast = true
-                                default:
-                                    break
+                    })
+                
+                
+                // MARK: Long click to Create Request
+                    .toast(isPresented: $messageToast) {
+                        ToastView {
+                            VStack{
+                                Section{
+                                    Text("Add Message")
                                 }
-                                
-                            })
-                        
-                        
-                        // MARK: Long click to Create Request
-                            .toast(isPresented: $messageToast) {
-                                ToastView {
-                                    VStack{
-                                        Section{
-                                            Text("Add Message")
+                                TextField("내용을 입력해주세요.", text: $messageInput)
+                                Section{
+                                    HStack{
+                                        Button {
+                                            
+                                            let file_Name = "\(repo_n)_\(fileNameImg)"
+                                            
+                                            let x_pixel = "\(location.x)"
+                                            let y_pixel = "\(location.y)"
+                                            
+                                            // Save Request && Fixel
+                                            let Repo_ViewModel = log_repo_ViewModel()
+                                            Repo_ViewModel.CreateRequest(user_id: user_id, repo_name: file_Name, x_pixel: x_pixel, y_pixel: y_pixel, request_context: messageInput)
+                                            
+                                            messageToast = false
+                                            messageInput = ""
+                                            
+                                        } label: {
+                                            Text("Save")
                                         }
-                                        TextField("내용을 입력해주세요.", text: $messageInput)
-                                        Section{
-                                            HStack{
-                                                Button {
-                                                    
-                                                    let file_Name = "\(repo_n)_\(fileNameImg)"
-                                                    let x_pixel = "\(location.x)"
-                                                    let y_pixel = "\(location.y)"
-                                                    
-                                                    // Save Request && Fixel
-                                                    let Repo_ViewModel = log_repo_ViewModel()
-                                                    Repo_ViewModel.CreateRequest(user_id: user_id, repo_name: file_Name, x_pixel: x_pixel, y_pixel: y_pixel, request_context: messageInput)
-                                                    
-                                                    messageToast = false
-                                                    messageInput = ""
-                                                    
-                                                } label: {
-                                                    Text("Save")
-                                                }
-                                                Button {
-                                                    messageToast = false
-                                                    messageInput = ""
-                                                } label: {
-                                                    Text("Cancel")
-                                                }
-                                            }
+                                        Button {
+                                            messageToast = false
+                                            messageInput = ""
+                                        } label: {
+                                            Text("Cancel")
                                         }
-                                        
                                     }
                                 }
-                                .frame(width: 220, height: 80)
+                                
                             }
+                        }
+                        .frame(width: 220, height: 80)
+                        
                     }
+                    .frame(width: 500, height: 500, alignment: .center)
+                
                 }
             }
         }
@@ -388,7 +394,7 @@ final class getFileList: ObservableObject{
         var remoteString = urlString.replacingOccurrences(of: "file://", with: "")
         do{
             items = try fileManager.contentsOfDirectory(atPath: remoteString)
-            print("items : \(items)")
+            //            print("items : \(items)")
         }catch{
             print("error")
         }
