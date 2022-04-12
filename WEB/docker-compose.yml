@@ -205,7 +205,17 @@ services:
     volumes:
       - ./prometheus.yml:/etc/prometheus/prometheus.yml
       # - ./alert_rules.yml:/etc/prometheus/alert_rules.yml #writeBy 최혜민
-########################################     
+######################################## 
+  grafana:
+    container_name: grafana_con
+    image: grafana/grafana
+    restart: on-failure
+    ports:
+      - 3000:3000
+    networks:
+      clonet_network:
+        ipv4_address: 172.18.0.88
+########################################  
 networks:
   clonet_network:
     external: true
