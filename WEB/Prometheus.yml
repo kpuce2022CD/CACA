@@ -12,7 +12,7 @@ scrape_configs:
     scrape_timeout: 15s
     metrics_path: '/actuator/prometheus'
     static_configs:
-      - targets: ['localhost:8081']
+      - targets: ['172.18.0.13:8081']
 
   # - job_name: 'about_customer_back'
   #   scrape_timeout: 15s
