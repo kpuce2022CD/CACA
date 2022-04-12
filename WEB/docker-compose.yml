@@ -193,6 +193,19 @@ services:
       clonet_network:
         ipv4_address: 172.18.0.20
 ########################################
+  prometheus:
+    container_name: prometheus_con
+    image: prom/prometheus
+    restart: on-failure
+    ports:
+      - 9090:9090
+    networks:
+      clonet_network:
+        ipv4_address: 172.18.0.77
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+      # - ./alert_rules.yml:/etc/prometheus/alert_rules.yml #writeBy 최혜민
+########################################     
 networks:
   clonet_network:
     external: true
