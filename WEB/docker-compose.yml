@@ -204,7 +204,7 @@ services:
         ipv4_address: 172.18.0.77
     volumes:
       - ./prometheus.yml:/etc/prometheus/prometheus.yml
-      # - ./alert_rules.yml:/etc/prometheus/alert_rules.yml #writeBy 최혜민
+      - ./alert_rules.yml:/etc/prometheus/alert_rules.yml
 ######################################## 
   grafana:
     container_name: grafana_con
@@ -216,15 +216,16 @@ services:
       clonet_network:
         ipv4_address: 172.18.0.88
 ########################################  
-
-  # nginx:
-  #   container_name: nginx
-  #   image: nginx:latest
-  #   ports:
-  #     - "80:80"
-  #   networks:
-  #     clonet_network:
-  #       ipv4_address: 172.18.0.98
+  alertmanager:
+    image: prom/alertmanager
+    user: root
+    ports:
+    - "9093:9093"
+    volumes:
+    - ./alertmanager.yml:/etc/alertmanager/alertmanager.yml
+    networks:
+      clonet_network:
+        ipv4_address: 172.18.0.99
 
 ######################################## 
 
