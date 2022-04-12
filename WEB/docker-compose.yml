@@ -216,6 +216,18 @@ services:
       clonet_network:
         ipv4_address: 172.18.0.88
 ########################################  
+
+  # nginx:
+  #   container_name: nginx
+  #   image: nginx:latest
+  #   ports:
+  #     - "80:80"
+  #   networks:
+  #     clonet_network:
+  #       ipv4_address: 172.18.0.98
+
+######################################## 
+
 networks:
   clonet_network:
     external: true

@@ -4,5 +4,18 @@ global:
 
 scrape_configs:
   - job_name: node 
+    scrape_timeout: 15s
     static_configs:
       - targets: ['localhost:9090']  # 메트릭을 수집해 모니터링 할 서버를 지정 한다.
+
+  - job_name: 'about_customer_front'
+    scrape_timeout: 15s
+    metrics_path: '/actuator/prometheus'
+    static_configs:
+      - targets: ['localhost:8081']
+
+  # - job_name: 'about_customer_back'
+  #   scrape_timeout: 15s
+  #   # metrics_path: '/about_customer_front/actuator/prometheus'
+  #   static_configs:
+  #     - targets: ['localhost:8081']
