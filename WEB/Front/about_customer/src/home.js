@@ -1,22 +1,12 @@
 import logo from './logo.svg';
-// import './Theme1.css';
-import {default_image} from './Clonet_logo.jpeg';
 import {useEffect, useState} from 'react';
-import { Route, Link } from 'react-router-dom';
-import Contact_cst from './contact_customer.js';
+
+import './Theme1.css';
 // import './Theme2.css'
 // import './Theme3.css';
 // import './Theme4.css';
 
-function Root() {
-    const [text, setText] = useState("");
-    const onChange = (e) => {
-        setText(e.target.value);
-    };
-
-    const onReset = () => {
-        setText("");
-    };
+function home() {
     return (
         <div>
             <header className="">
@@ -29,7 +19,7 @@ function Root() {
                     </button>
                     <a href="./index.html" className="navbar-brand">Mashup Template</a>
                 </div>
-
+    
                 <nav className="sidebar">
                     <div className="navbar-collapse" id="navbar-collapse">
                         <div className="site-header hidden-xs">
@@ -46,13 +36,10 @@ function Root() {
                             <li><a href="http://localhost:8006/project.html" title="">Project</a></li>
                             {/*<li><a href="http://localhost:8003/contact.html" title="">Contact</a></li>*/}
                             {/* <li><a href="./components.html" title="">Components</a></li> */}
-
-                            {/*<li><Link to="/contct_customer">Contact</Link></li>*/}
                             <li><a href="http://localhost:8001/contct_customer" title="">Contact</a></li>
-
-
+    
                         </ul>
-
+    
                         <nav className="nav-footer">
                             <p className="nav-footer-social-buttons">
                                 <a className="fa-icon" href="https://www.instagram.com/" title="">
@@ -74,46 +61,24 @@ function Root() {
                     </div>
                 </nav>
             </header>
-
             <main className="" id="main-collapse">
-            <div className="row">
-                <div className="col-xs-12 col-md-6">
-                    <img className="img-responsive" alt="" src="./assets/images/img-10.jpg"/>
+                <div className="row">
+                    <div>
+                        <center>
+                            <header>
+                                <img src="http://13.209.116.111/images/Clonet_logo.jpeg" className="App-logo" alt="logo" />
+                                <p className="clonet-head">CLONET</p>
+                            </header>
+                        </center>
+    
+                    </div>
                 </div>
-                <div className="col-xs-12 col-md-6">
-                    <h1>About me</h1>
-
-                    <p>Duis aute irure dolor in reprehenderit in voluptate velit esse
-                        cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-                        proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-
-                    <h3>Incididunt ut labore </h3>
-
-                    <p>Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.
-                        Phasellus
-                        iaculis magna sagittis elit sagittis, at hendrerit lorem venenatis. Morbi accumsan iaculis
-                        blandit.
-                        Cras ultrices hendrerit nisl.</p>
-
-                    <h3>Ut enim ad minim veniam </h3>
-
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas luctus at sem quis varius.
-                        Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.
-                        Phasellus iaculis magna sagittis elit sagittis, at hendrerit lorem venenatis. Morbi accumsan
-                        iaculis
-                        blandit. Cras ultrices hendrerit nisl.</p>
-                    <h3>Phasellus iaculis magna </h3>
-                    <p>Duis aute irure dolor in reprehenderit in voluptate velit esse
-                        cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-                        proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-
-                    <a href="contact.html" className="btn btn-primary" title=""> Get in touch</a>
-                </div>
-            </div>
-        </main>
-</div>
+    
+    
+            </main>
+        </div>
 )
     ;
 }
 
-export default Root;
+export default home;
