@@ -27,6 +27,6 @@ public class TestController {
     String user_id = "user1";
     @RequestMapping(value = "/about_customer1", method = RequestMethod.GET)
     public List<TestDto> getUser() {
-        return testService.getUserList(user_id);
+        return testService.getUserList("user1");
     }
 }

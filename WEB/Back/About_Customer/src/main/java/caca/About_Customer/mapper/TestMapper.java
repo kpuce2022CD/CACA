@@ -7,5 +7,5 @@ import java.util.List;
 
 @Mapper
 public interface TestMapper {
-    List<TestDto> getUserList() ;
+    List<TestDto> getUserList(String user_id) ;
 }

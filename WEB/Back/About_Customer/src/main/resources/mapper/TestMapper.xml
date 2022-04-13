@@ -2,6 +2,6 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="caca.About_Customer.mapper.TestMapper">
     <select id="getUserList" resultType="caca.About_Customer.dto.TestDto">
-        SELECT * FROM user WHERE user_id = "user1"
+        SELECT * FROM user WHERE user_id = #{userId}
     </select>
 </mapper>
