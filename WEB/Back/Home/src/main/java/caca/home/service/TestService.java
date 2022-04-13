@@ -6,4 +6,6 @@ import java.util.List;
 
 public interface TestService {
     public List<TestDto> getUserList();
+    public List<TestDto> getLogin(String user_id, String user_pw);
 }
+
