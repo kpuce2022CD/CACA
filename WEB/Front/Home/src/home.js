@@ -33,7 +33,7 @@ function home() {
                         <ul className="nav">
                             <li><a href="http://localhost:8005/home" title="">Home</a></li>
                             <li><a href="http://localhost:8005/about" title="">About</a></li>
-                            <li><a href="http://localhost:8006/project.html" title="">Project</a></li>
+                            <li><a href="http://localhost:8007/" title="">Project</a></li>
                             <li><a href="http://localhost:8005/contact" title="">Contact</a></li>
                             <li><a href="http://localhost:8005/login" title="">login</a></li>
                             {/* <li><a href="./components.html" title="">Components</a></li> */}

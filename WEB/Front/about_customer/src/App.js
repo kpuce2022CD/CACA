@@ -6,7 +6,7 @@ import {useEffect, useState} from 'react';
 import About_customer from './about_customer.js';
 import Contact_cst from './contact_customer.js';
 import Home from './home.js';
-import { BrowserRouter, Route, Link, Switch } from 'react-router-dom';
+import { BrowserRouter, Route, Link, Routes } from 'react-router-dom';
 
 // function App() {
 //
@@ -60,20 +60,28 @@ function App() {
     return (
         <BrowserRouter>
             <div>
-                <Switch>
-                    <Route exact path="/">
-                        <Home />
-                    </Route>
-                    <Route exact path="/home_customer">
-                        <Home />
-                    </Route>
-                    <Route path="/about_customer">
-                        <About_customer />
-                    </Route>
-                    <Route path="/contct_customer" component={Contact_cst}>
-                        <Contact_cst/>
-                    </Route>
-                </Switch>
+                {/*<Routes>*/}
+                {/*    <Route exact path="/">*/}
+                {/*        <Home />*/}
+                {/*    </Route>*/}
+                {/*    <Route exact path="/home_customer">*/}
+                {/*        <Home />*/}
+                {/*    </Route>*/}
+                {/*    <Route path="/about_customer">*/}
+                {/*        <About_customer />*/}
+                {/*    </Route>*/}
+                {/*    <Route path="/contct_customer" component={Contact_cst}>*/}
+                {/*        <Contact_cst/>*/}
+                {/*    </Route>*/}
+                {/*</Routes>*/}
+                <Routes>
+
+                    <Route path="/" element={<Home />} />
+                    <Route path="/home_customer" element={<Home />} />
+                    <Route path="/about_customer" element={<About_customer />} />
+                    <Route path="/contct_customer" element={<Contact_cst />} />
+
+                </Routes>
 
             </div>
 
