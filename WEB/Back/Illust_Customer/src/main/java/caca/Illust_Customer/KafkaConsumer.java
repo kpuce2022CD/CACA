@@ -9,9 +9,10 @@ import java.io.IOException;
 public class KafkaConsumer {
 
     @KafkaListener(
-            topics = "jinmin",
-            groupId = "foo"
+        topics = "jinmin",
+        groupId = "foo"
     )
+
     public void listen(String msg) throws IOException {
         System.out.println(String.format("Consumed message : %s", msg));
     }
