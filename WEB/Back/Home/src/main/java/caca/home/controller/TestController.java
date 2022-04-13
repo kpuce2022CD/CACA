@@ -28,9 +28,13 @@ public class TestController {
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.GET) 
-    public List<TestDto> login_param(HttpServletRequest req) {
+    public Boolean login_param(HttpServletRequest req) {
         String user_id = req.getParameter("user_id");
         String user_pw = req.getParameter("user_pw");
-        return testService.getLogin(user_id, user_pw);
+        if(testService.getLogin(user_id, user_pw) != null){
+            return true;
+        }else{
+            return false;
+        }
     }
 }
