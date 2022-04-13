@@ -1,23 +1,72 @@
 import logo from './logo.svg';
-// import './Theme1.css';
-import {default_image} from './Clonet_logo.jpeg';
+import add_image from './add_image.png';
+import './App.css';
 import {useEffect, useState} from 'react';
-import { Route, Link } from 'react-router-dom';
-import Contact_cst from './contact_customer.js';
-// import './Theme2.css'
-// import './Theme3.css';
-// import './Theme4.css';
 
-function Root() {
-    const [text, setText] = useState("");
-    const onChange = (e) => {
-        setText(e.target.value);
-    };
+// function App() {
+//
+//   const [message, setMessage] = useState("1")
+//   const [message2, setMessage2] = useState("2")
+//
+//   useEffect(()=>{
+//     fetch("/about_edit_user1")
+//         .then(res => res.text())
+//         .then(m=>setMessage(m))
+//   }, [])
+//
+//   useEffect(()=>{
+//     fetch("/about_edit_user2")
+//         .then(res => res.text())
+//         .then(m=>setMessage2(m))
+//   }, [])
+//
+//   return (
+//       <div className="App">
+//         <header className="App-header">
+//           <img src={logo} className="App-logo" alt="logo" />
+//           <p>
+//             {message}
+//           </p>
+//           <p>
+//             {message2}
+//           </p>
+//           <a
+//               className="App-link"
+//               href="https://reactjs.org"
+//               target="_blank"
+//               rel="noopener noreferrer"
+//           >
+//             Learn React
+//           </a>
+//         </header>
+//       </div>
+//   );
+// }
 
-    const onReset = () => {
-        setText("");
-    };
+
+function about_edit_user() {
+    // const [text, setText] = useState("");
+    // const onChange = (e) => {
+    //     setText(e.target.value);
+    // };
+    //
+    // const onReset = () => {
+    //     setText("");
+    // };
     return (
+        // <div className="App">
+        //   <header className="about_edit_user">
+        //       About_Edit_User
+        //   </header>
+        //     <img src={add_image} alt="add_image" width={200} height={200}/>
+        //     <input onChange={onChange} value={text} />
+        //     <div>
+        //         <button>Save</button>
+        //         <button>Cancel</button>
+        //     </div>
+        //
+        //
+        // </div>
         <div>
             <header className="">
                 <div className="navbar navbar-default visible-xs">
@@ -42,14 +91,10 @@ function Root() {
                         </div>
                         <ul className="nav">
                             <li><a href="http://localhost:8005/home" title="">Home</a></li>
-                            <li><a href="http://localhost:8001/about_customer" title="">About</a></li>
+                            <li><a href="http://localhost:8005/about" title="">About</a></li>
                             <li><a href="http://localhost:8006/project.html" title="">Project</a></li>
-                            {/*<li><a href="http://localhost:8003/contact.html" title="">Contact</a></li>*/}
-                            {/* <li><a href="./components.html" title="">Components</a></li> */}
-
-                            <li><Link to="/contct_customer">Contact</Link></li>
-
-
+                            <li><a href="http://localhost:8005/contact" title="">Contact</a></li>
+                            <li><a href="http://localhost:8005/login" title="">login</a></li>
                         </ul>
 
                         <nav className="nav-footer">
@@ -75,44 +120,23 @@ function Root() {
             </header>
 
             <main className="" id="main-collapse">
-            <div className="row">
-                <div className="col-xs-12 col-md-6">
-                    <img className="img-responsive" alt="" src="./assets/images/img-10.jpg"/>
+                <div className="row">
+                    <div className="col-xs-12 col-md-6">
+                        <img className="img-responsive" alt="" src={add_image}/>
+                    </div>
+                    <div className="col-xs-12 col-md-6">
+                        <div className="form-group">
+                            <textarea className="form-control" rows="25" placeholder="Enter your message"></textarea>
+                        </div>
+                        <button type="submit" className="btn btn-primary btn-lg">Save</button>
+                    </div>
                 </div>
-                <div className="col-xs-12 col-md-6">
-                    <h1>About me</h1>
+            </main>
+        </div>
 
-                    <p>Duis aute irure dolor in reprehenderit in voluptate velit esse
-                        cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-                        proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
 
-                    <h3>Incididunt ut labore </h3>
+);
 
-                    <p>Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.
-                        Phasellus
-                        iaculis magna sagittis elit sagittis, at hendrerit lorem venenatis. Morbi accumsan iaculis
-                        blandit.
-                        Cras ultrices hendrerit nisl.</p>
-
-                    <h3>Ut enim ad minim veniam </h3>
-
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas luctus at sem quis varius.
-                        Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.
-                        Phasellus iaculis magna sagittis elit sagittis, at hendrerit lorem venenatis. Morbi accumsan
-                        iaculis
-                        blandit. Cras ultrices hendrerit nisl.</p>
-                    <h3>Phasellus iaculis magna </h3>
-                    <p>Duis aute irure dolor in reprehenderit in voluptate velit esse
-                        cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-                        proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-
-                    <a href="contact.html" className="btn btn-primary" title=""> Get in touch</a>
-                </div>
-            </div>
-        </main>
-</div>
-)
-    ;
 }
 
-export default Root;
+export default about_edit_user;

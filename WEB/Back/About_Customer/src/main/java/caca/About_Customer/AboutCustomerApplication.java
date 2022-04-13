@@ -18,6 +18,16 @@ public class AboutCustomerApplication {
 		return "Hello about_customer2 World";
 	}
 
+	@GetMapping("/contact_customer1")
+	public String contact_customer1() {
+		return "Hello contact_customer1 World";
+	}
+
+	@GetMapping("/contact_customer2")
+	public String contact_customer2() {
+		return "Hello contact_customer2 World";
+	}
+
 	public static void main(String[] args) {
 		SpringApplication.run(AboutCustomerApplication.class, args);
 	}

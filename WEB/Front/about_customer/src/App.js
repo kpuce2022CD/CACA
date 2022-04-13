@@ -4,6 +4,8 @@ import './App.css';
 import default_image from './Clonet_logo.jpeg';
 import {useEffect, useState} from 'react';
 import Root from './about_customer.js';
+import Contact_cst from './contact_customer.js';
+import { BrowserRouter, Route, Link, Switch } from 'react-router-dom';
 
 // function App() {
 //
@@ -55,10 +57,24 @@ function App() {
         setText("");
     };
     return (
-        <div>
-        <h2>ddddd </h2>
-         <Root />
-        </div>
+        <BrowserRouter>
+            <div>
+                <Switch>
+                    <Route exact path="/">
+                        <Root />
+                    </Route>
+                    <Route exact path="/about_customer">
+                        <Root />
+                    </Route>
+                    <Route path="/contct_customer" component={Contact_cst}>
+                        <Contact_cst/>
+                    </Route>
+                </Switch>
+
+            </div>
+
+        </BrowserRouter>
+
     );
 }
 

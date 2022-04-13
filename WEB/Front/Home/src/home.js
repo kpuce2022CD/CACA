@@ -31,10 +31,11 @@ function home() {
                                 tempor.</p>
                         </div>
                         <ul className="nav">
-                            <li><a href="http://localhost:8005/index.html" title="">Home</a></li>
-                            <li><a href="http://localhost:8001/about.html" title="">About</a></li>
+                            <li><a href="http://localhost:8005/home" title="">Home</a></li>
+                            <li><a href="http://localhost:8005/about" title="">About</a></li>
                             <li><a href="http://localhost:8006/project.html" title="">Project</a></li>
-                            <li><a href="http://localhost:8003/contact.html" title="">Contact</a></li>
+                            <li><a href="http://localhost:8005/contact" title="">Contact</a></li>
+                            <li><a href="http://localhost:8005/login" title="">login</a></li>
                             {/* <li><a href="./components.html" title="">Components</a></li> */}
     
                         </ul>
