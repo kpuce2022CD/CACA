@@ -42,3 +42,5 @@ xcuserdata/
 # End of https://www.toptal.com/developers/gitignore/api/xcode,visualstudiocode
 
 *.DS_Store
+
+/WEB/Back/Illust_Customer/src/main/webapp/config/config.properties

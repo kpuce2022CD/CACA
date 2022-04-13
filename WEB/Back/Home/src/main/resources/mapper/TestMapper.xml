@@ -4,4 +4,8 @@
     <select id="getUserList" resultType="caca.home.dto.TestDto">
         SELECT * from user
     </select>
+    <select id="getLogin" resultType="caca.home.dto.TestDto">
+        SELECT * from user where user_id = #{user_id} AND user_pw = #{user_pw}
+    </select>
+
 </mapper>
