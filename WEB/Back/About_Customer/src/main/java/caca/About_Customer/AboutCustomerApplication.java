@@ -8,10 +8,6 @@ import org.springframework.web.bind.annotation.RestController;
 @SpringBootApplication
 @RestController
 public class AboutCustomerApplication {
-	@GetMapping("/about_customer1")
-	public String about_customer1() {
-		return "Hello about_customer1 World";
-	}
 
 	@GetMapping("/about_customer2")
 	public String about_customer2() { 

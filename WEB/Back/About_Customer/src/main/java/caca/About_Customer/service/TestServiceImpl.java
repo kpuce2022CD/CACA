@@ -12,8 +12,10 @@ import java.util.List;
 public class TestServiceImpl implements TestService {
     private final TestMapper testMapper;
 
+    String user_id = "user1";
+
     @Override
-    public List<TestDto> getUserList() {
+    public List<TestDto> getUserList(String user_id) {
         return testMapper.getUserList();
     }
 }

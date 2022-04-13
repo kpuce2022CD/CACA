@@ -5,6 +5,7 @@ import default_image from './Clonet_logo.jpeg';
 import {useEffect, useState} from 'react';
 import About_customer from './about_customer.js';
 import Contact_cst from './contact_customer.js';
+import AboutTest from "./about_cst_test.jsx"
 import Home from './home.js';
 import { BrowserRouter, Route, Link, Routes } from 'react-router-dom';
 
@@ -75,11 +76,12 @@ function App() {
                 {/*    </Route>*/}
                 {/*</Routes>*/}
                 <Routes>
-
+                
                     <Route path="/" element={<Home />} />
                     <Route path="/home_customer" element={<Home />} />
-                    <Route path="/about_customer" element={<About_customer />} />
-                    <Route path="/contct_customer" element={<Contact_cst />} />
+                    <Route path="/about_customer" element={<AboutTest />} />
+                    <Route path="/contact_customer" element={<Contact_cst />} />
+                    {/* <Route path="/test" element={<AboutTest />} /> */}
 
                 </Routes>
 

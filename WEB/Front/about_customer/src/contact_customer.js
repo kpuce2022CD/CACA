@@ -50,10 +50,10 @@ function contact_customer() {
                 tempor.</p>
             </div>
             <ul className="nav">
-            <li><a href="http://localhost:8001/home_customer" title="">Home</a></li>
-            <li><a href="http://localhost:8001/about_customer" title="">About</a></li>
-            <li><a href="http://localhost:8006/project.html" title="">Project</a></li>
-            <li><a href="http://localhost:8001/contct_customer" title="">Contact</a></li>
+            <li><a href="/home_customer" title="">Home</a></li>
+            <li><a href="/about_customer" title="">About</a></li>
+            <li><a href="project.html" title="">Project</a></li>
+            <li><a href="/contct_customer" title="">Contact</a></li>
               {/* <li><a href="./components.html" title="">Components</a></li> */}
 
             </ul>

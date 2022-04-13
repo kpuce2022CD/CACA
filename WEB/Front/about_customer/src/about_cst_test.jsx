@@ -1,24 +1,26 @@
-import logo from './logo.svg';
-// import './Theme1.css';
-import {default_image} from './Clonet_logo.jpeg';
-import {useEffect, useState} from 'react';
-import axios from 'axios';
-import { Route, Link } from 'react-router-dom';
-import Contact_cst from './contact_customer.js';
-// import './Theme2.css'
-// import './Theme3.css';
-// import './Theme4.css';
+import React, { Component } from 'react';
+import aboutService from './aboutService.js';
+import './Theme1.css';
 
-function Root() {
-    const [text, setText] = useState("");
-    const onChange = (e) => {
-        setText(e.target.value);
-    };
+class about_cst_test extends Component {
+    constructor(props) {
+        super(props)
 
-    const onReset = () => {
-        setText("");
-    };
-    return (
+        this.state = { 
+            userAbout: []
+        }
+		
+    }
+
+    componentDidMount() {
+        aboutService.getUser().then((res) => {
+            this.setState({ userAbout: res.data});
+        });
+    }
+
+
+    render() {
+        return (
         <div>
             <header className="">
                 <div className="navbar navbar-default visible-xs">
@@ -82,9 +84,30 @@ function Root() {
                     <img className="img-responsive" alt="" src="./assets/images/img-10.jpg"/>
                 </div>
                 <div className="col-xs-12 col-md-6">
-                    <h1>About me</h1>
+                    {/* <h1>About me</h1> */}
+                    <div>
+                    <table>
+                        <thread>
+                            <tr>
+                                <th><h1>About me</h1></th>
+                            </tr>
+                        </thread>
+                    <tbody>
+                        {   
+                            this.state.userAbout.map(
+                                board =>
+                                <tr key = {board.user_id}>
+                                    <td><p>{board.user_id}</p></td>
+                                    <td><p>{board.about}</p></td>
+                                </tr>
+                            )
+                        }
+                    </tbody>
+                    </table>
+                    </div>
+                    
 
-                    <p>Duis aute irure dolor in reprehenderit in voluptate velit esse
+                    {/* <p>Duis aute irure dolor in reprehenderit in voluptate velit esse
                         cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
                         proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
 
@@ -106,14 +129,52 @@ function Root() {
                     <h3>Phasellus iaculis magna </h3>
                     <p>Duis aute irure dolor in reprehenderit in voluptate velit esse
                         cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-                        proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                        proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p> */}
 
-                    <a href="contact.html" className="btn btn-primary" title=""> Get in touch</a>
+                    <a href="/contact_customer" className="btn btn-primary" title=""> Get in touch</a>
                 </div>
             </div>
         </main>
 </div>
 );
-}
+        // render(){
+        //     return (
+        //         <div>
+        //             <h2 className="text-center">Boards List</h2>
+        //             <div className ="row">
+        //                 <table className="table table-striped table-bordered">
+        //                     <thead>
+        //                         <tr>
+        //                             <th>글 번호</th>
+        //                             <th>타이틀 </th>
+        //                             <th>작성자 </th>
+        //                             <th>작성일 </th>
+        //                             <th>갱신일 </th>
+        //                             <th>좋아요수</th>
+        //                             {/* <th>조회수</th> */}
+        //                         </tr>
+        //                     </thead>
+        //                     <tbody>
+        //                         {
+        //                             this.state.userAbout.map(
+        //                                 board => 
+        //                                 <tr key = {board.user_id}>
+        //                                     <td> {board.user_id} </td>
+        //                                     <td> {board.user_pw} </td>
+        //                                     <td> {board.user_email} </td>
+        //                                     <td> {board.profilePic} </td>
+        //                                     <td> {board.about} </td>
+        //                                     <td> {board.contact} </td>
+        //                                     {/* <td> {board.counts} </td> */}
+        //                                 </tr>
+        //                             )
+        //                         }
+        //                     </tbody>
+        //                 </table>
+        //             </div>
+        //         </div>
+        //     );
+        }
+};
 
-export default Root;
+export default about_cst_test;
