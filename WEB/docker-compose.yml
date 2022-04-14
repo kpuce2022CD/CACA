@@ -25,57 +25,57 @@ services:
   #     clonet_network:
   #       ipv4_address: 172.18.0.13
 # ########################################
-  home_front:
-    container_name: home_front_con
-    build:
-      context: .
-      dockerfile: Front/home/Dockerfile
-    ports:
-      - 8005:80
-    networks:
-      clonet_network:
-        ipv4_address: 172.18.0.7
+  # home_front:
+  #   container_name: home_front_con
+  #   build:
+  #     context: .
+  #     dockerfile: Front/home/Dockerfile
+  #   ports:
+  #     - 8005:80
+  #   networks:
+  #     clonet_network:
+  #       ipv4_address: 172.18.0.7
 
-  home_back:
-    container_name: home_back_con
-    build:
-      context: .
-      dockerfile: Back/Home/Dockerfile
-      args:
-        JAR_FILE: ./Back/Home/build/libs/*.jar
-    ports:
-      - 8085:8085
-    networks:
-      clonet_network:
-        ipv4_address:
-          172.18.0.17
+  # home_back:
+  #   container_name: home_back_con
+  #   build:
+  #     context: .
+  #     dockerfile: Back/Home/Dockerfile
+  #     args:
+  #       JAR_FILE: ./Back/Home/build/libs/*.jar
+  #   ports:
+  #     - 8085:8085
+  #   networks:
+  #     clonet_network:
+  #       ipv4_address:
+  #         172.18.0.17
 #######################################
-#  illust_customer_front:
-#    container_name: illust_customer_front_con
-#    build:
-#     context: .
-#     dockerfile: Front/illust_customer/Dockerfile
-#    ports:
-#     - 8006:80
-#    networks:
-#     clonet_network:
-#       ipv4_address: 172.18.0.8
-#
-#  illust_customer_back:
-#    container_name: illust_customer_back_con
-#    build:
-#     context: .
-#     dockerfile: Back/Illust_Customer/Dockerfile
-#     args:
-#       JAR_FILE: ./Back/Illust_Customer/build/libs/*.jar
-#    ports:
-#     - 8086:8086
-#    depends_on :
-#     - kafka
-#     - zookeeper
-#    networks:
-#     clonet_network:
-#       ipv4_address: 172.18.0.18
+ illust_customer_front:
+   container_name: illust_customer_front_con
+   build:
+    context: .
+    dockerfile: Front/illust_customer/Dockerfile
+   ports:
+    - 8006:80
+   networks:
+    clonet_network:
+      ipv4_address: 172.18.0.8
+
+ illust_customer_back:
+   container_name: illust_customer_back_con
+   build:
+    context: .
+    dockerfile: Back/Illust_Customer/Dockerfile
+    args:
+      JAR_FILE: ./Back/Illust_Customer/build/libs/*.jar
+   ports:
+    - 8086:8086
+   depends_on :
+    - kafka
+    - zookeeper
+   networks:
+    clonet_network:
+      ipv4_address: 172.18.0.18
 ########################################
   # illust_select_user_front:
   #   container_name: illust_select_user_front_con
@@ -145,8 +145,8 @@ services:
 #    networks:
 #      clonet_network:
 #        ipv4_address: 172.18.0.33
-#
-#
+
+
 #  kafka:
 #    container_name: kafka_con
 #    image: wurstmeister/kafka:2.12-2.5.0
@@ -160,7 +160,7 @@ services:
 #    networks:
 #      clonet_network:
 #        ipv4_address: 172.18.0.44
-#
+
 ######################################## 
 
 networks:
