@@ -2,24 +2,41 @@
 
 // import logo from './logo.svg';
 import './App.css';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 
-function login() {
+function useLogin() {
 
-  // const [message, setMessage] = useState("1")
-  // const [message2, setMessage2] = useState("2")
-  //
-  // useEffect(()=>{
-  //   fetch("/login1")
-  //       .then(res => res.text())
-  //       .then(m=>setMessage(m))
-  // }, [])
-  //
-  // useEffect(()=>{
-  //   fetch("/login2")
-  //       .then(res => res.text())
-  //       .then(m=>setMessage2(m))
-  // }, [])
+  const [user_id, setMessage_id] = useState("");
+  const [user_pw, setMessage_pw] = useState("");
+
+  const onChangeId = (e) => {
+    setMessage_id(e.target.value);
+  };
+  const onChangePw = (e) => {
+    setMessage_pw(e.target.value);
+  };
+
+  const handleClick = (e) => {
+    e.preventDefault()
+    // form tag 때문에 preventDefault()로 막아줘야함.
+    fetch("http://localhost:8085/login?user_id="+user_id+"&user_pw="+user_pw, {
+      method: "POST",
+      headers: new Headers({
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      }),
+      // body: "user_id="+user_id+"&user_pw="+user_pw
+    }) // ====== button login : 백엔드에 요청 끝 ======
+        .then((response) => response.json())
+        // reponse : fetch의 return 값을 의미 string
+        .then((result) => {
+          // result : response.json()의 return 을 의미 Obj
+          console.log("=============");
+          console.log("백엔드에서 오는 응답 메세지 ", result);
+
+        });
+  }
+
 
   return (
       <div>
@@ -49,7 +66,7 @@ function login() {
                 <li><a href="http://localhost:8005/about" title="">About</a></li>
                 <li><a href="http://localhost:8007/" title="">Project</a></li>
                 <li><a href="http://localhost:8005/contact" title="">Contact</a></li>
-                <li><a href="http://localhost:8005/login" title="">login</a></li>
+                <li><a href="http://localhost:8005/login" title="">Login</a></li>
 
               </ul>
 
@@ -79,12 +96,12 @@ function login() {
             <center>
               <div aria-setsize={2}>
                 <div className="form-group">
-                  <input type="text" className="form-control" id="user_id" placeholder="ID"/>
+                  <input className="form-control" onChange={onChangeId} value={user_id} placeholder="ID"/>
                 </div>
                 <div className="form-group">
-                  <input type="text" className="form-control" id="user_pw" placeholder="Password"/>
+                  <input className="form-control" onChange={onChangePw} value={user_pw} placeholder="Password"/>
                 </div>
-                <button type="submit" className="btn btn-primary btn-lg">Login</button>
+                <button type="submit" className="btn btn-primary btn-lg" onClick={handleClick}>Login</button>
               </div>
             </center>
 
@@ -96,4 +113,4 @@ function login() {
   );
 }
 
-export default login;
+export default useLogin;

@@ -27,14 +27,11 @@ public class TestController {
         return testService.getUserList(); 
     }
 
-    @RequestMapping(value = "/login", method = RequestMethod.GET) 
-    public Boolean login_param(HttpServletRequest req) {
+    @RequestMapping(value = "/login", method = {RequestMethod.GET, RequestMethod.POST})
+    public boolean login_param(HttpServletRequest req) {
         String user_id = req.getParameter("user_id");
         String user_pw = req.getParameter("user_pw");
-        if(testService.getLogin(user_id, user_pw) != null){
-            return true;
-        }else{
-            return false;
-        }
+
+        return !testService.getLogin(user_id, user_pw).isEmpty();
     }
 }
