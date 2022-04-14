@@ -1,5 +1,8 @@
 package caca.Illust_Customer;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -35,6 +38,12 @@ public class IllustCustomerApplication {
         kafkaProducer.sendMessgae(message);
         return "Successful Sending!!";
     }
+
+	@PostMapping("/piece")
+	public String sendPieceName(@RequestParam("piece") ArrayList<String> arr){
+		kafkaProducer.sendPieceNameMessage(arr);
+		return "Succeess sendPieceName";
+	}
 
 	public static void main(String[] args) {
 		SpringApplication.run(IllustCustomerApplication.class, args);
