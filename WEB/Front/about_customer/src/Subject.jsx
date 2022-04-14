@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import logo from './images/clonet_logo_white.png';
 
 class Subject extends Component {
     render() {
@@ -12,18 +13,17 @@ class Subject extends Component {
                             <span className="icon-bar"></span>
                             <span className="icon-bar"></span>
                         </button>
-                        <a href="./index.html" className="navbar-brand">Mashup Template</a>
+                        <a href="/home_customer" className="navbar-brand">Clonet</a>
                     </div>
 
                     <nav className="sidebar">
                         <div className="navbar-collapse" id="navbar-collapse">
-                            <div className="site-header hidden-xs">
-                                <a className="site-brand" href="./index.html" title="">
-                                    <img className="img-responsive site-logo" alt="" src="./assets/images/mashup-logo.svg" />
-                                    Mashup Template
+                            <div className="site-header hidden-xs"> 
+                                <a className="site-brand" href="/home_customer" title="">
+                                    <img className="img-responsive site-logo" alt="" src={logo} width="40" height="40" />
+                                    Clonet
                                 </a>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                                    tempor.</p>
+                                {/* <p>portfolio</p> */}
                             </div>
                             <ul className="nav">
                                 <li><a href="/home_customer" title="">Home</a></li>
@@ -32,10 +32,7 @@ class Subject extends Component {
                                 <li><a href="/contact_customer" title="">Contact</a></li>
                                 {/*<li><a href="http://localhost:8003/contact.html" title="">Contact</a></li>*/}
                                 {/* <li><a href="./components.html" title="">Components</a></li> */}
-
                                 {/*<li><Link to="/contct_customer">Contact</Link></li>*/}
-
-
                             </ul>
 
                             <nav className="nav-footer">
