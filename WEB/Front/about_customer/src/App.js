@@ -3,8 +3,7 @@ import './App.css';
 // import Root from './Theme1.js';
 import default_image from './Clonet_logo.jpeg';
 import {useEffect, useState} from 'react';
-import About_customer from './about_customer.js';
-import Contact_cst from './contact_customer.js';
+import Contact_cst from './contact_cst.jsx';
 import AboutTest from "./about_cst_test.jsx"
 import Home from './home.js';
 import { BrowserRouter, Route, Link, Routes } from 'react-router-dom';
