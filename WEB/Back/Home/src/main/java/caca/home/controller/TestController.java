@@ -20,6 +20,7 @@ public class TestController {
     private final TestService testService;
     private static final String LOGIN_MEMBER = "";
     private TestService user_id;
+    private HttpSession session;
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public Object test() {
@@ -37,11 +38,17 @@ public class TestController {
         String user_pw = req.getParameter("user_pw");
 
         if(!testService.getLogin(user_id, user_pw).isEmpty()){
-            HttpSession session = req.getSession(); // 세션에 로그인 회원 정보 보관
+            session = req.getSession(); // 세션에 로그인 회원 정보 보관
             session.setAttribute(LOGIN_MEMBER, user_id);
             System.out.println("login!!! "+session.getAttribute(LOGIN_MEMBER));
         }
 
         return !testService.getLogin(user_id, user_pw).isEmpty();
+    }
+
+    @RequestMapping(value = "/auth", method = {RequestMethod.GET, RequestMethod.POST})
+    public Object userLogin() {
+
+        return session.getAttribute(LOGIN_MEMBER);
     }
 }

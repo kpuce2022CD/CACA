@@ -2,11 +2,30 @@ import logo from './logo.svg';
 import {useEffect, useState} from 'react';
 
 import './Theme1.css';
+import ReactDOM from "react-dom";
 // import './Theme2.css'
 // import './Theme3.css';
 // import './Theme4.css';
 
 function home() {
+    // fetch("http://localhost:8085/auth", {
+    //     method: "POST",
+    //     headers: new Headers({
+    //         'Accept': 'application/json',
+    //         'Content-Type': 'application/json'
+    //     }),
+    // })
+    //     .then((response) => response.json())
+    //     .then((result) => {
+    //         // console.log("백엔드에서 오는 응답 메세지 ", result);
+    //         if(result.toString() != null){
+    //             console.log("백엔드에서 오는 응답 메세지 ", result);
+    //         } else{
+    //             console.log("백엔드에서 못가져옴");
+    //         }
+    //
+    //     });
+
     return (
         <div>
             <header className="">
@@ -19,7 +38,7 @@ function home() {
                     </button>
                     <a href="./index.html" className="navbar-brand">Mashup Template</a>
                 </div>
-    
+
                 <nav className="sidebar">
                     <div className="navbar-collapse" id="navbar-collapse">
                         <div className="site-header hidden-xs">
@@ -37,9 +56,9 @@ function home() {
                             <li><a href="http://localhost:8005/contact" title="">Contact</a></li>
                             <li><a href="http://localhost:8005/login" title="">Login</a></li>
                             {/* <li><a href="./components.html" title="">Components</a></li> */}
-    
+
                         </ul>
-    
+
                         <nav className="nav-footer">
                             <p className="nav-footer-social-buttons">
                                 <a className="fa-icon" href="https://www.instagram.com/" title="">
@@ -70,15 +89,15 @@ function home() {
                                 <p className="clonet-head">CLONET</p>
                             </header>
                         </center>
-    
+
                     </div>
                 </div>
-    
-    
+
+
             </main>
         </div>
-)
-    ;
+    )
+        ;
 }
 
 export default home;
