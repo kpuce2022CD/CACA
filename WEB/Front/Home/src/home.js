@@ -2,11 +2,37 @@ import logo from './logo.svg';
 import {useEffect, useState} from 'react';
 
 import './Theme1.css';
+import ReactDOM from "react-dom";
 // import './Theme2.css'
 // import './Theme3.css';
 // import './Theme4.css';
 
-function home() {
+function useHome() {
+    const [user_login, setMessageLogin] = useState("Login");
+    fetch("http://localhost:8085/auth", {
+        method: "POST",
+        headers: new Headers({
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        }),
+    })
+        .then(res => {
+            if (!res.ok) {
+                throw Error("could not fetch the data that resource");
+            }
+            return res.text();
+        })
+        .then(data => {
+
+            if(data != null){
+                console.log('로그인 성공', data);
+                setMessageLogin(data+"  님");
+            } else{
+                console.log('로그인 안됨', data);
+            }
+        });
+
+
     return (
         <div>
             <header className="">
@@ -19,7 +45,7 @@ function home() {
                     </button>
                     <a href="./index.html" className="navbar-brand">Mashup Template</a>
                 </div>
-    
+
                 <nav className="sidebar">
                     <div className="navbar-collapse" id="navbar-collapse">
                         <div className="site-header hidden-xs">
@@ -35,11 +61,11 @@ function home() {
                             <li><a href="http://localhost:8005/about" title="">About</a></li>
                             <li><a href="http://localhost:8007/" title="">Project</a></li>
                             <li><a href="http://localhost:8005/contact" title="">Contact</a></li>
-                            <li><a href="http://localhost:8005/login" title="">Login</a></li>
+                            <li><a href="http://localhost:8005/login" title="">{user_login}</a></li>
                             {/* <li><a href="./components.html" title="">Components</a></li> */}
-    
+
                         </ul>
-    
+
                         <nav className="nav-footer">
                             <p className="nav-footer-social-buttons">
                                 <a className="fa-icon" href="https://www.instagram.com/" title="">
@@ -70,15 +96,15 @@ function home() {
                                 <p className="clonet-head">CLONET</p>
                             </header>
                         </center>
-    
+
                     </div>
                 </div>
-    
-    
+
+
             </main>
         </div>
-)
-    ;
+    )
+        ;
 }
 
-export default home;
+export default useHome;

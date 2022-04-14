@@ -4,7 +4,7 @@
 import './App.css';
 import { useEffect, useState, useRef } from 'react';
 import Home from './home.js'
-import { BrowserRouter, Route, Link, Routes } from 'react-router-dom';
+import { BrowserRouter, Route, Link, Routes, useNavigate } from 'react-router-dom';
 import ReactDOM from 'react-dom';
 function useLogin() {
 
@@ -19,35 +19,27 @@ function useLogin() {
     setMessage_pw(e.target.value);
   };
 
+  const navigate = useNavigate();
   const handleClick = (e) => {
     e.preventDefault()
-    // form tag 때문에 preventDefault()로 막아줘야함.
     fetch("http://localhost:8085/login?user_id="+user_id+"&user_pw="+user_pw, {
       method: "POST",
       headers: new Headers({
         'Accept': 'application/json',
         'Content-Type': 'application/json'
       }),
-      // body: "user_id="+user_id+"&user_pw="+user_pw
-    }) // ====== button login : 백엔드에 요청 끝 ======
+    })
         .then((response) => response.json())
-        // reponse : fetch의 return 값을 의미 string
         .then((result) => {
-          // result : response.json()의 return 을 의미 Obj
-
           console.log("백엔드에서 오는 응답 메세지 ", result);
           if(result.toString() == "true"){
-            ReactDOM.render(
-                <BrowserRouter>
-                  <Home />
-                </BrowserRouter>,
-                document.getElementById('root')
-            );
+            navigate("../",  { replace: true});
           } else{
             alert('로그인에 실패했습니다. 다시 시도해주세요.');
           }
 
         });
+
   }
 
 
