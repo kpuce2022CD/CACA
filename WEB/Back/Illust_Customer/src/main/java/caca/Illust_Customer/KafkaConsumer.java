@@ -9,7 +9,7 @@ import java.io.IOException;
 public class KafkaConsumer {
 
     @KafkaListener(
-        topics = "jinmin",
+        topics = "clonet",
         groupId = "foo"
     )
 

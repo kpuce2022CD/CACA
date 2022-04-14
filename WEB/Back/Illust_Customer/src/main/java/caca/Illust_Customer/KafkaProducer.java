@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 @Service
 @RequiredArgsConstructor
 public class KafkaProducer {
-    private static final String TOPIC = "jinmin";
+    private static final String TOPIC = "clonet";
     private final KafkaTemplate<String, String> kafkaTemplate;
 
     public void sendMessgae(String msg) {
