@@ -3,11 +3,14 @@
 // import logo from './logo.svg';
 import './App.css';
 import { useEffect, useState, useRef } from 'react';
-
+import Home from './home.js'
+import { BrowserRouter, Route, Link, Routes } from 'react-router-dom';
+import ReactDOM from 'react-dom';
 function useLogin() {
 
   const [user_id, setMessage_id] = useState("");
   const [user_pw, setMessage_pw] = useState("");
+
 
   const onChangeId = (e) => {
     setMessage_id(e.target.value);
@@ -31,8 +34,18 @@ function useLogin() {
         // reponse : fetch의 return 값을 의미 string
         .then((result) => {
           // result : response.json()의 return 을 의미 Obj
-          console.log("=============");
+
           console.log("백엔드에서 오는 응답 메세지 ", result);
+          if(result.toString() == "true"){
+            ReactDOM.render(
+                <BrowserRouter>
+                  <Home />
+                </BrowserRouter>,
+                document.getElementById('root')
+            );
+          } else{
+            alert('로그인에 실패했습니다. 다시 시도해주세요.');
+          }
 
         });
   }

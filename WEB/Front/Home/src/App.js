@@ -29,23 +29,6 @@ function App() {
   return (
     <BrowserRouter>
         <div>
-            {/*<Routes>*/}
-            {/*    <Route exact path="/">*/}
-            {/*        <Home />*/}
-            {/*    </Route>*/}
-            {/*    <Route exact path="/home" component={Home}>*/}
-            {/*        <Home />*/}
-            {/*    </Route>*/}
-            {/*    <Route exact path="/about" component={About_edit_user}>*/}
-            {/*        <About_edit_user />*/}
-            {/*    </Route>*/}
-            {/*    <Route path="/contact" component={Contact_edit_user}>*/}
-            {/*        <Contact_edit_user/>*/}
-            {/*    </Route>*/}
-            {/*    <Route path="/login" component={Login}>*/}
-            {/*        <Login/>*/}
-            {/*    </Route>*/}
-            {/*</Routes>*/}
             <Routes>
 
                 <Route path="/" element={<Home />} />

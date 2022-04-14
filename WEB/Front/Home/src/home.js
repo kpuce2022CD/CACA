@@ -35,7 +35,7 @@ function home() {
                             <li><a href="http://localhost:8005/about" title="">About</a></li>
                             <li><a href="http://localhost:8007/" title="">Project</a></li>
                             <li><a href="http://localhost:8005/contact" title="">Contact</a></li>
-                            <li><a href="http://localhost:8005/login" title="">login</a></li>
+                            <li><a href="http://localhost:8005/login" title="">Login</a></li>
                             {/* <li><a href="./components.html" title="">Components</a></li> */}
     
                         </ul>
