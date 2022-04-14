@@ -47,7 +47,7 @@ class about_cst_test extends Component {
                             <li><a href="/home_customer" title="">Home</a></li>
                             <li><a href="/about_customer" title="">About</a></li>
                             <li><a href="project.html" title="">Project</a></li>
-                            <li><a href="/contct_customer" title="">Contact</a></li>
+                            <li><a href="/contact_customer" title="">Contact</a></li>
                             {/*<li><a href="http://localhost:8003/contact.html" title="">Contact</a></li>*/}
                             {/* <li><a href="./components.html" title="">Components</a></li> */}
 
