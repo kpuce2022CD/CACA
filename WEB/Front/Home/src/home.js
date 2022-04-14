@@ -7,24 +7,31 @@ import ReactDOM from "react-dom";
 // import './Theme3.css';
 // import './Theme4.css';
 
-function home() {
-    // fetch("http://localhost:8085/auth", {
-    //     method: "POST",
-    //     headers: new Headers({
-    //         'Accept': 'application/json',
-    //         'Content-Type': 'application/json'
-    //     }),
-    // })
-    //     .then((response) => response.json())
-    //     .then((result) => {
-    //         // console.log("백엔드에서 오는 응답 메세지 ", result);
-    //         if(result.toString() != null){
-    //             console.log("백엔드에서 오는 응답 메세지 ", result);
-    //         } else{
-    //             console.log("백엔드에서 못가져옴");
-    //         }
-    //
-    //     });
+function useHome() {
+    const [user_login, setMessageLogin] = useState("Login");
+    fetch("http://localhost:8085/auth", {
+        method: "POST",
+        headers: new Headers({
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        }),
+    })
+        .then(res => {
+            if (!res.ok) {
+                throw Error("could not fetch the data that resource");
+            }
+            return res.text();
+        })
+        .then(data => {
+
+            if(data != null){
+                console.log('로그인 성공', data);
+                setMessageLogin(data+"  님");
+            } else{
+                console.log('로그인 안됨', data);
+            }
+        });
+
 
     return (
         <div>
@@ -54,7 +61,7 @@ function home() {
                             <li><a href="http://localhost:8005/about" title="">About</a></li>
                             <li><a href="http://localhost:8007/" title="">Project</a></li>
                             <li><a href="http://localhost:8005/contact" title="">Contact</a></li>
-                            <li><a href="http://localhost:8005/login" title="">Login</a></li>
+                            <li><a href="http://localhost:8005/login" title="">{user_login}</a></li>
                             {/* <li><a href="./components.html" title="">Components</a></li> */}
 
                         </ul>
@@ -100,4 +107,4 @@ function home() {
         ;
 }
 
-export default home;
+export default useHome;

@@ -21,9 +21,7 @@ function useLogin() {
 
   const navigate = useNavigate();
   const handleClick = (e) => {
-
     e.preventDefault()
-    // form tag 때문에 preventDefault()로 막아줘야함.
     fetch("http://localhost:8085/login?user_id="+user_id+"&user_pw="+user_pw, {
       method: "POST",
       headers: new Headers({
@@ -33,21 +31,15 @@ function useLogin() {
     })
         .then((response) => response.json())
         .then((result) => {
-
           console.log("백엔드에서 오는 응답 메세지 ", result);
           if(result.toString() == "true"){
-            // ReactDOM.render(
-            //     <BrowserRouter>
-            //       <Home />
-            //     </BrowserRouter>,
-            //     document.getElementById('#root')
-            // );
             navigate("../",  { replace: true});
           } else{
             alert('로그인에 실패했습니다. 다시 시도해주세요.');
           }
 
         });
+
   }
 
 
