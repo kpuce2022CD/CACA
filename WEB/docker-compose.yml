@@ -1,6 +1,6 @@
 version: '3'
 services:
-########################################
+  ########################################
   # about_customer_front:
   #   container_name: about_customer_front_con
   #   build:
@@ -24,144 +24,148 @@ services:
   #   networks:
   #     clonet_network:
   #       ipv4_address: 172.18.0.13
-# ########################################
-  home_front:
-    container_name: home_front_con
+  # ########################################
+  # home_front:
+  #   container_name: home_front_con
+  #   build:
+  #     context: .
+  #     dockerfile: Front/home/Dockerfile
+  #   ports:
+  #     - 8005:80
+  #   networks:
+  #     clonet_network:
+  #       ipv4_address: 172.18.0.7
+
+  # home_back:
+  #   container_name: home_back_con
+  #   build:
+  #     context: .
+  #     dockerfile: Back/Home/Dockerfile
+  #     args:
+  #       JAR_FILE: ./Back/Home/build/libs/*.jar
+  #   ports:
+  #     - 8085:8085
+  #   networks:
+  #     clonet_network:
+  #       ipv4_address:
+  #         172.18.0.17
+  #######################################
+  # illust_customer_front:
+  #  container_name: illust_customer_front_con
+  #  build:
+  #    context: .
+  #    dockerfile: Front/illust_customer/Dockerfile
+  #  ports:
+  #    - 8006:80
+  #  networks:
+  #    clonet_network:
+  #      ipv4_address: 172.18.0.8
+
+  # illust_customer_back:
+  #   container_name: illust_customer_back_con
+  #   build:
+  #    context: .
+  #    dockerfile: Back/Illust_Customer/Dockerfile
+  #    args:
+  #      JAR_FILE: ./Back/Illust_Customer/build/libs/*.jar
+  #   ports:
+  #    - 8086:8086
+  #   depends_on :
+  #    - kafka
+  #    - zookeeper
+  #   networks:
+  #    clonet_network:
+  #      ipv4_address: 172.18.0.18
+    ########################################
+  illust_select_user_front:
+    container_name: illust_select_user_front_con
     build:
       context: .
-      dockerfile: Front/home/Dockerfile
+      dockerfile: Front/illust_select_user/Dockerfile
     ports:
-      - 8005:80
+      - 8007:80
     networks:
       clonet_network:
-        ipv4_address: 172.18.0.7
+        ipv4_address: 172.18.0.9
 
-  home_back:
-    container_name: home_back_con
+  illust_select_user_back:
+    container_name: illust_select_user_back_con
     build:
       context: .
-      dockerfile: Back/Home/Dockerfile
+      dockerfile: Back/Illust_Select_User/Dockerfile
       args:
-        JAR_FILE: ./Back/Home/build/libs/*.jar
+        JAR_FILE: ./Back/Illust_Select_User/build/libs/*.jar
     ports:
-      - 8085:8085
+      - 8087:8087
+    depends_on:
+      - kafka
+      - zookeeper
     networks:
       clonet_network:
         ipv4_address:
-          172.18.0.17
-#######################################
-#  illust_customer_front:
-#    container_name: illust_customer_front_con
-#    build:
-#     context: .
-#     dockerfile: Front/illust_customer/Dockerfile
-#    ports:
-#     - 8006:80
-#    networks:
-#     clonet_network:
-#       ipv4_address: 172.18.0.8
-#
-#  illust_customer_back:
-#    container_name: illust_customer_back_con
-#    build:
-#     context: .
-#     dockerfile: Back/Illust_Customer/Dockerfile
-#     args:
-#       JAR_FILE: ./Back/Illust_Customer/build/libs/*.jar
-#    ports:
-#     - 8086:8086
-#    depends_on :
-#     - kafka
-#     - zookeeper
-#    networks:
-#     clonet_network:
-#       ipv4_address: 172.18.0.18
-########################################
-  # illust_select_user_front:
-  #   container_name: illust_select_user_front_con
-  #   build:
-  #     context: .
-  #     dockerfile: Front/illust_select_user/Dockerfile
-  #   ports:
-  #     - 8007:80
-  #   networks:
-  #     clonet_network:
-  #       ipv4_address: 172.18.0.9
+          172.18.0.19
+  ########################################
+  #   prometheus:
+  #     container_name: prometheus_con
+  #     image: prom/prometheus
+  #     restart: on-failure
+  #     ports:
+  #       - 9090:9090
+  #     networks:
+  #       clonet_network:
+  #         ipv4_address: 172.18.0.77
+  #     volumes:
+  #       - ./prometheus.yml:/etc/prometheus/prometheus.yml
+  #       - ./alert_rules.yml:/etc/prometheus/alert_rules.yml
+  # ########################################
+  #   grafana:
+  #     container_name: grafana_con
+  #     image: grafana/grafana
+  #     restart: on-failure
+  #     ports:
+  #       - 3000:3000
+  #     networks:
+  #       clonet_network:
+  #         ipv4_address: 172.18.0.88
+  # ########################################
+  #   alertmanager:
+  #     container_name: alertmanager_con
+  #     image: prom/alertmanager
+  #     user: root
+  #     ports:
+  #     - "9093:9093"
+  #     volumes:
+  #     - ./alertmanager.yml:/etc/alertmanager/alertmanager.yml
+  #     networks:
+  #       clonet_network:
+  #         ipv4_address: 172.18.0.99
 
-  # illust_select_user_back:
-  #   container_name: illust_select_user_back_con
-  #   build:
-  #     context: .
-  #     dockerfile: Back/Illust_Select_User/Dockerfile
-  #     args:
-  #       JAR_FILE: ./Back/Illust_Select_User/build/libs/*.jar
-  #   ports:
-  #     - 8087:8087
-  #   networks:
-  #     clonet_network:
-  #       ipv4_address: 172.18.0.19
-########################################
-#   prometheus:
-#     container_name: prometheus_con
-#     image: prom/prometheus
-#     restart: on-failure
-#     ports:
-#       - 9090:9090
-#     networks:
-#       clonet_network:
-#         ipv4_address: 172.18.0.77
-#     volumes:
-#       - ./prometheus.yml:/etc/prometheus/prometheus.yml
-#       - ./alert_rules.yml:/etc/prometheus/alert_rules.yml
-# ######################################## 
-#   grafana:
-#     container_name: grafana_con
-#     image: grafana/grafana
-#     restart: on-failure
-#     ports:
-#       - 3000:3000
-#     networks:
-#       clonet_network:
-#         ipv4_address: 172.18.0.88
-# ########################################  
-#   alertmanager:
-#     container_name: alertmanager_con
-#     image: prom/alertmanager
-#     user: root
-#     ports:
-#     - "9093:9093"
-#     volumes:
-#     - ./alertmanager.yml:/etc/alertmanager/alertmanager.yml
-#     networks:
-#       clonet_network:
-#         ipv4_address: 172.18.0.99
+  #######################################
+  zookeeper:
+    container_name: zookeeper_con
+    image: wurstmeister/zookeeper:latest
+    ports:
+      - "2181:2181"
+    networks:
+      clonet_network:
+        ipv4_address: 172.18.0.33
 
-####################################### 
-#  zookeeper:
-#    container_name: zookeeper_con
-#    image: wurstmeister/zookeeper:latest
-#    ports:
-#     - "2181:2181"
-#    networks:
-#      clonet_network:
-#        ipv4_address: 172.18.0.33
-#
-#
-#  kafka:
-#    container_name: kafka_con
-#    image: wurstmeister/kafka:2.12-2.5.0
-#    ports:
-#     - "9092:9092"
-#    environment:
-#      KAFKA_ADVERTISED_HOST_NAME: 172.18.0.44
-#      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
-#    volumes:
-#     - /var/run/docker.sock:/var/run/docker.sock
-#    networks:
-#      clonet_network:
-#        ipv4_address: 172.18.0.44
-#
-######################################## 
+
+  kafka:
+    container_name: kafka_con
+    image: wurstmeister/kafka:2.12-2.5.0
+    ports:
+      - "9092:9092"
+    environment:
+      KAFKA_ADVERTISED_HOST_NAME: 172.18.0.44
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    networks:
+      clonet_network:
+        ipv4_address: 172.18.0.44
+
+########################################
 
 networks:
   clonet_network:

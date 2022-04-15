@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 @Service
 @RequiredArgsConstructor
 public class KafkaProducer {
-    // private static final String TOPIC = "clonet";
+    
     private final KafkaTemplate<String, String> kafkaTemplate;
 
     public void sendMessgae(String msg) {
@@ -20,9 +20,16 @@ public class KafkaProducer {
         kafkaTemplate.send(TOPIC, msg);
     }
 
-    public void sendPieceNameMessage(ArrayList<String> arr) {
+    public void sendPieceNameMessage(String arr) {
         String TOPIC = "piece";
-        System.out.println(String.format("Produce Piece message : %s", arr));
-        kafkaTemplate.send(TOPIC, arr.toString());
+
+        String[] array = arr.split(",");
+
+        for(String s : array){
+            // splitArray[0] = RepositoryName, splitArray[1] = Filename
+            String[] splitArray = s.split("/");
+            System.out.println(String.format("Produce Piece message : %s", splitArray[0]));
+            kafkaTemplate.send(TOPIC, splitArray[0]);
+        }
     }
 }
