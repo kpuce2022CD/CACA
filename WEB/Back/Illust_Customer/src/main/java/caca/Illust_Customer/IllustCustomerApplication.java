@@ -1,9 +1,5 @@
 package caca.Illust_Customer;
 
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -11,14 +7,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
 
-import caca.Illust_Customer.KafkaConsumer;
-import caca.Illust_Customer.KafkaProducer;
+// import caca.Illust_Customer.KafkaConsumer;
+// import caca.Illust_Customer.KafkaProducer;
 
 @SpringBootApplication
 @RestController
@@ -27,7 +21,6 @@ import caca.Illust_Customer.KafkaProducer;
 public class IllustCustomerApplication {
 
 	private final KafkaProducer kafkaProducer;
-	// private final KafkaConsumer kafkaConsumer;
 
 	@GetMapping("/illust_customer1")
 	public String about_customer1() {

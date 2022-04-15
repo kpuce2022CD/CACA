@@ -16,30 +16,26 @@ function useIllust_customer() {
   // Front Parameter 받기
   const piece = getQueryVariable("piece");
   function getQueryVariable(variable){
-        var query = window.location.search.substring(1);
-        var vars = query.split("&");
-        for (var i=0;i<vars.length;i++) {
-          var pair = vars[i].split("=");
-          if(pair[0] == variable){
-            return pair[1];
-          }
-        }
-         return(false);
+    var query = window.location.search.substring(1);
+    var vars = query.split("&");
+    for (var i=0;i<vars.length;i++) {
+      var pair = vars[i].split("=");
+      if(pair[0] == variable){
+        return pair[1];
+      }
+    }
+    return(false);
   }
 
   // Back으로 보내기
-    const config = {
-      headers : {
-        'Accept' : 'application/json'
-      }
+  const config = {
+    headers : {
+      'Accept' : 'application/json'
     }
-    fetch(`http://localhost:8086/piece?piece=${piece}`, config)
-    // .then((res) => res.text())
-    // .then((data) => {
-    //   console.log(data);
-    // })
+  }
+  fetch(`http://localhost:8086/piece?piece=${piece}`, config)
 
-
+  // View
     return (
         <div>
       <header className="">
