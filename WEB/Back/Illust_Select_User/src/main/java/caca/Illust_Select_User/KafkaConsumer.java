@@ -32,7 +32,7 @@ public class KafkaConsumer {
 
         String host="13.209.116.111";
 	    String username="ubuntu";
-	    String password="qweR1234@";
+	    String password="@";
         int port = 22;
 
         String Final_result = "";
