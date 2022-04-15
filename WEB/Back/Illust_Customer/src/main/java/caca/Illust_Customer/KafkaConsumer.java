@@ -14,7 +14,8 @@ public class KafkaConsumer {
     }
 
     @KafkaListener(topics = "piece", groupId = "foo")
-    public void listenPieceNameMessage(String msg) throws IOException {
+    public String listenPieceNameMessage(String msg) throws IOException {
         System.out.println(String.format("Consumed message : %s", msg));
+        return msg;
     }
 }

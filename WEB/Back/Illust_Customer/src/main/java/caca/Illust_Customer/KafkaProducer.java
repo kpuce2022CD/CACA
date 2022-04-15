@@ -20,9 +20,14 @@ public class KafkaProducer {
         kafkaTemplate.send(TOPIC, msg);
     }
 
-    public void sendPieceNameMessage(ArrayList<String> arr) {
+    public void sendPieceNameMessage(String arr) {
         String TOPIC = "piece";
-        System.out.println(String.format("Produce Piece message : %s", arr));
-        kafkaTemplate.send(TOPIC, arr.toString());
+
+        String[] array = arr.split(",");
+
+        for(String s : array){
+            System.out.println(String.format("Produce Piece message : %s", s));
+            kafkaTemplate.send(TOPIC, s);
+        }
     }
 }
