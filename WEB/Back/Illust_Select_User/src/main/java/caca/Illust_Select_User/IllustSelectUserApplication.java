@@ -33,11 +33,11 @@ public class IllustSelectUserApplication {
 		return "Successful Sending!!";
 	}
 
-	@PostMapping("/piece")
-	public String sendPieceName(@RequestParam("piece") String arr){
-		kafkaProducer.sendPieceNameMessage(arr);
-		return "Succeess sendPieceName";
-	}
+	// @PostMapping("/piece")
+	// public String sendPieceName(@RequestParam("piece") String arr){
+	// 	kafkaProducer.sendPieceNameMessage(arr);
+	// 	return "Succeess sendPieceName";
+	// }
 
 	public static void main(String[] args) {
 		SpringApplication.run(IllustSelectUserApplication.class, args);
