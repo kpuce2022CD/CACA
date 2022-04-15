@@ -51,8 +51,9 @@ function useIllust_customer() {
                   <a href="./project.html" class="project-description">
                     <div class="project-text-holder">
                       <div class="project-text-inner">
-                        <h3>I want</h3>
-                        <p>Discover more</p>
+                        {photo}
+                        {/* <h3>I want</h3> */}
+                        {/* <p>Discover more</p> */}
                       </div>
                       <p>http://13.209.116.111/clonet-repo/${photo}</p>
                     </div>
