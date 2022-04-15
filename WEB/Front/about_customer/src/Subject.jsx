@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import logo from './images/clonet_logo_white.png';
+import './Theme1.css';
 
 class Subject extends Component {
     render() {
@@ -13,23 +14,23 @@ class Subject extends Component {
                             <span className="icon-bar"></span>
                             <span className="icon-bar"></span>
                         </button>
-                        <a href="/home_customer" className="navbar-brand">Clonet</a>
+                        <a href="http://localhost:8001/home_customer" className="navbar-brand">Clonet</a>
                     </div>
 
                     <nav className="sidebar">
                         <div className="navbar-collapse" id="navbar-collapse">
                             <div className="site-header hidden-xs"> 
-                                <a className="site-brand" href="/home_customer" title="">
+                                <a className="site-brand" href="http://localhost:8001/home_customer" title="">
                                     <img className="img-responsive site-logo" alt="" src={logo} width="40" height="40" />
                                     Clonet
                                 </a>
                                 {/* <p>portfolio</p> */}
                             </div>
                             <ul className="nav">
-                                <li><a href="/home_customer" title="">Home</a></li>
-                                <li><a href="/about_customer" title="">About</a></li>
+                                <li><a href="http://localhost:8001/home_customer" title="">Home</a></li>
+                                <li><a href="http://localhost:8001/about_customer" title="">About</a></li>
                                 <li><a href="http://localhost:8006/project.html" title="">Project</a></li>
-                                <li><a href="/contact_customer" title="">Contact</a></li>
+                                <li><a href="http://localhost:8001/contact_customer" title="">Contact</a></li>
                                 {/*<li><a href="http://localhost:8003/contact.html" title="">Contact</a></li>*/}
                                 {/* <li><a href="./components.html" title="">Components</a></li> */}
                                 {/*<li><Link to="/contct_customer">Contact</Link></li>*/}
