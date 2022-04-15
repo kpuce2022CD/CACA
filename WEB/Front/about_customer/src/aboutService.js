@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const USER_API_BASE_URL = "http://localhost:8081/api/about_customer1"; 
+const USER_API_BASE_URL = "http://localhost:8081/user"; 
 
 class aboutService {
     getUser() {
@@ -8,4 +8,3 @@ class aboutService {
     }
 }
 export default new aboutService();
-
