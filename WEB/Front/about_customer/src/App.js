@@ -65,15 +65,6 @@ function App() {
             }
             return res.text();
         })
-        // .then(data => {
-
-        //     if(data != null){
-        //         console.log('로그인 성공', data);
-        //         setMessage_id(data+"  님");
-        //     } else{
-        //         console.log('로그인 안됨', data);
-        //     }
-        // });
         
     const onChange = (e) => {
         setText(e.target.value);

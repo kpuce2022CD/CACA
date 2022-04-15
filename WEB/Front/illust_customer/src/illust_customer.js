@@ -1,4 +1,5 @@
-import './Theme3.css';
+import './Theme1.css';
+import Subject from './Subject.jsx'
 
 function useIllust_customer() {
   // const numbers = ['img-12.jpg', 'img-11.jpg', 'img-10.jpg', 'img-09.jpg', 'img-08.jpg', 'img-07.jpg', 'img-06.jpg', 'img-05.jpg'];
@@ -34,57 +35,7 @@ function useIllust_customer() {
   // View
     return (
         <div>
-      <header className="">
-            <div className="navbar navbar-default visible-xs">
-                <button type="button" className="navbar-toggle collapsed">
-                    <span className="sr-only">Toggle navigation</span>
-                    <span className="icon-bar"></span>
-                    <span className="icon-bar"></span>
-                    <span className="icon-bar"></span>
-                </button>
-                <a href="./index.html" className="navbar-brand">Mashup Template</a>
-            </div>
-
-            <nav className="sidebar">
-                <div className="navbar-collapse" id="navbar-collapse">
-                    <div className="site-header hidden-xs">
-                        <a className="site-brand" href="./index.html" title="">
-                            <img className="img-responsive site-logo" alt="" src="./assets/images/mashup-logo.svg"/>
-                            Mashup Template
-                        </a>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                            tempor.</p>
-                    </div>
-                    <ul className="nav">
-                            <li><a href="http://localhost:8005/index.html" title="">Home</a></li>
-                            <li><a href="http://localhost:8001/about.html" title="">About</a></li>
-                            <li><a href="http://localhost:8006/project.html" title="">Project</a></li>
-                            <li><a href="http://localhost:8003/contact.html" title="">Contact</a></li>
-                        {/* <li><a href="./components.html" title="">Components</a></li> */}
-
-                    </ul>
-
-                    <nav className="nav-footer">
-                        <p className="nav-footer-social-buttons">
-                            <a className="fa-icon" href="https://www.instagram.com/" title="">
-                                <i className="fa fa-instagram"></i>
-                            </a>
-                            <a className="fa-icon" href="https://dribbble.com/" title="">
-                                <i className="fa fa-dribbble"></i>
-                            </a>
-                            <a className="fa-icon" href="https://twitter.com/" title="">
-                                <i className="fa fa-twitter"></i>
-                            </a>
-                        </p>
-                        <p>© Untitled | Website created with <a href="http://www.mashup-template.com/"
-                                                                title="Create website with free html template">Mashup
-                            Template</a>/<a href="https://www.unsplash.com/"
-                                            title="Beautiful Free Images">Unsplash</a>
-                        </p>
-                    </nav>
-                </div>
-            </nav>
-        </header>
+      <Subject />
       <main class="" id="main-collapse">
 
 
@@ -109,11 +60,8 @@ function useIllust_customer() {
                 </div>
               ))}
             </div>
-
           </div>
         </div>
-
-
       </main>
     </div>
 )
