@@ -13,6 +13,8 @@ function App() {
 
     // 로그인 정보 받아와서 로그인 확인하기
     const [user_login, setMessageLogin] = useState("Login");
+
+
     fetch("http://localhost:8085/auth", {
         method: "POST",
         headers: new Headers({
@@ -24,17 +26,14 @@ function App() {
             if (!res.ok) {
                 throw Error("could not fetch the data that resource");
             }
-            return res.text();
-        })
-        .then(data => {
+            return res.text().then(function (data){
+                if (data != null) {
+                    console.log('로그인 성공_select_user', data);
+                    setMessageLogin(data + "  님");
 
-            if (data != null) {
-                console.log('로그인 성공_select_user', data);
-                setMessageLogin(data + "  님");
+                    // DB에서 아이디로 Repository 정보 받아오기 http://localhost:8087/piece_u?user_id=user1
 
-                // DB에서 아이디로 Repository 정보 받아오기 http://localhost:8087/piece_u?user_id=user1
-
-                    fetch("http://localhost:8087/piece_u?user_id=" + data, {
+                    return fetch("http://localhost:8087/piece_u?user_id=" + data, {
                         method: "POST",
                         headers: new Headers({
                             'Accept': 'application/json',
@@ -59,14 +58,47 @@ function App() {
                             });
                         })
 
-                    return;
-
-            } else {
-                console.log('로그인 안됨', data);
-                return;
-            }
-            return;
+                } else {
+                    console.log('로그인 안됨', data);
+                }
+            })
         })
+        // .then(data => {
+            // if (data != null) {
+            //     console.log('로그인 성공_select_user', data);
+            //     setMessageLogin(data + "  님");
+            //
+            //     // DB에서 아이디로 Repository 정보 받아오기 http://localhost:8087/piece_u?user_id=user1
+            //
+            //         fetch("http://localhost:8087/piece_u?user_id=" + data, {
+            //             method: "POST",
+            //             headers: new Headers({
+            //                 'Accept': 'application/json',
+            //                 'Content-Type': 'application/json'
+            //             }),
+            //         })
+            //             .then(res => {
+            //                 rr = res.clone();
+            //                 res.text();
+            //                 rr.text().then(function (text){
+            //                     console.log(text)
+            //                     num = text.toString().split(",")
+            //
+            //                     // console.log(num);
+            //                     for(var i=0; i < num.length; i++) {
+            //                         if (num[i].includes(".png")) {
+            //                             setMessage_numbers([...numbers, num[i]]);
+            //                         }
+            //                     }
+            //                     console.log(numbers);
+            //                     return;
+            //                 });
+            //             })
+            //
+            // } else {
+            //     console.log('로그인 안됨', data);
+            // }
+        // })
 
     // Front Parameter 받기
 
