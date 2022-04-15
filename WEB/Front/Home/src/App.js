@@ -1,11 +1,9 @@
-
-
 import logo from './logo.svg';
 import './App.css';
 import { useEffect, useState } from 'react';
 import Home from './home.js'
-import About_edit_user from './about_edit_user.js'
-import Contact_edit_user from './contact_edit_user.js'
+import About_edit_user from './about_edit_user.jsx'
+import Contact_edit_user from './contact_edit_user.jsx'
 import Login from './login.js'
 import { BrowserRouter, Route, Link, Routes } from 'react-router-dom';
 
@@ -30,16 +28,13 @@ function App() {
     <BrowserRouter>
         <div>
             <Routes>
-
                 <Route path="/" element={<Home />} />
                 <Route path="/home" element={<Home />} />
                 <Route path="/about" element={<About_edit_user />} />
                 <Route path="/contact" element={<Contact_edit_user />} />
                 <Route path="/login" element={<Login />} />
             </Routes>
-
         </div>
-
     </BrowserRouter>
   );
 }

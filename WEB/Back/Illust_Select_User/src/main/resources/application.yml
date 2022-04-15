@@ -17,7 +17,7 @@ spring:
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
       value-serializer: org.apache.kafka.common.serialization.StringSerializer
   datasource:
-    url: jdbc:mysql://caca.c4splqgvcmiu.ap-northeast-2.rds.amazonaws.com:3306/clonet_database?characterEncoding=utf8&useSSL=false
+    url: {}:3306/clonet_database?characterEncoding=utf8&useSSL=false
     username: admin
     password: qwer1234
     driver-class-name:
