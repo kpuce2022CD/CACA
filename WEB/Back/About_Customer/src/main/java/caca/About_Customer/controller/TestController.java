@@ -9,24 +9,31 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
 @CrossOrigin(origins = "http://localhost:8001")
-@RequestMapping("/api")
+//@RequestMapping("/api")
 public class TestController {
     @Autowired
     private final TestService testService;
+    private static final String userID ="";
+    private HttpSession session;
 
-    @RequestMapping(value = "/", method = RequestMethod.GET)
-    public Object test() {
-        return "Hello DB!";
+    @RequestMapping(value = "/", method = {RequestMethod.GET, RequestMethod.POST})
+    public List<TestDto> getUser(HttpServletRequest req) {
+        String user_id = req.getParameter("user_id");
+        session = req.getSession();
+        session.setAttribute(userID, user_id);
+        return testService.getUserList(user_id);
     }
 
-    String user_id = "user1";
-    @RequestMapping(value = "/about_customer1", method = RequestMethod.GET)
-    public List<TestDto> getUser() {
-        return testService.getUserList("user1");
+    @RequestMapping(value = "/user", method = RequestMethod.GET)
+    public List<TestDto> getUserID(HttpServletRequest req) {
+        return testService.getUserList((String) session.getAttribute(userID));
     }
+
 }
