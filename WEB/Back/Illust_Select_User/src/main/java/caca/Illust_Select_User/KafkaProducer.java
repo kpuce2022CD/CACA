@@ -2,16 +2,13 @@ package caca.Illust_Select_User;
 
 import lombok.RequiredArgsConstructor;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
 public class KafkaProducer {
-    // private static final String TOPIC = "clonet";
+
     private final KafkaTemplate<String, String> kafkaTemplate;
 
     public void sendMessgae(String msg) {

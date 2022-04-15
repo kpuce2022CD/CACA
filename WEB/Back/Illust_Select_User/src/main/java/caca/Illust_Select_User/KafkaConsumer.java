@@ -19,7 +19,7 @@ public class KafkaConsumer {
     }
 
     @KafkaListener(topics = "piece_u", groupId = "foo")
-    public String listenPieceNameMessage(String msg) throws IOException {
+    public void listenPieceNameMessage(String msg) throws IOException {
         System.out.println(String.format("Consumed message : %s", msg));
 
         // EC2 이미지 생성
@@ -27,15 +27,11 @@ public class KafkaConsumer {
         // git clone test.git ../clonet-repo/test
         String cmd_clone = String.format("git clone /var/www/html/git-repositories/%s.git /var/www/html/clonet-repo/%s", msg, msg);
         // System.out.println(String.format("Consumed message : %s", cmd_clone));
-        String cmd_ls = String.format("ls /var/www/html/clonet-repo/%s/", msg);
-        // System.out.println(String.format("Consumed message : %s", cmd_ls));
 
         String host="13.209.116.111";
 	    String username="ubuntu";
-	    String password="@";
+	    String password="qweR1234@";
         int port = 22;
-
-        String Final_result = "";
 
         try {
             // EC2 Delete Repository
@@ -44,21 +40,10 @@ public class KafkaConsumer {
             // EC2 Clone
             listFolderStructure(username, password, host, port, cmd_clone);
 
-            // EC2 get Repository List
-            String result = listFolderStructure(username, password, host, port, cmd_ls);
-            String[] Result = result.split("\n");
-            for (int i=0 ; i < Result.length; i++){
-                // System.out.println(String.format("Consumed message : %s", String.format("%s/%s", msg, Result[i])));
-                Final_result += String.format("%s/%s,", msg, Result[i]);
-            }
-            
-            // System.out.println(Final_result);
-
         } catch (Exception e) {
             e.printStackTrace();
         }
-
-        return Final_result;
+        
     }
 
     public static String listFolderStructure(String username, String password, String host, int port, String command) throws Exception {
