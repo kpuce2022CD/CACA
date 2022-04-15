@@ -20,6 +20,7 @@ public class KafkaConsumer {
 
     @KafkaListener(topics = "piece", groupId = "foo")
     public void listenPieceNameMessage(String msg) {
+        String cmd_rm = String.format("rm -rf /var/www/html/clonet-repo/%s", msg);
         System.out.println(String.format("Consumed message : %s", msg));
 
         // EC2 이미지 생성

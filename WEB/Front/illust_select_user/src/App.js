@@ -5,9 +5,10 @@ import React, { useEffect, useState } from 'react';
 function App() {
   const [style, setStyle] = useState("unclicked");
   const [image, setImage] = useState([]);
-  const numbers = ['img-12.jpg', 'img-11.jpg', 'img-10.jpg'];
+  const numbers = [];
   const clicked_photo = [];
 
+  // 로그인 정보 받아와서 로그인 확인하기
   const [user_login, setMessageLogin] = useState("Login");
   fetch("http://localhost:8085/auth", {
     method: "POST",
@@ -25,10 +26,11 @@ function App() {
       .then(data => {
 
         if(data != null){
-          console.log('로그인 성공', data);
+          console.log('로그인 성공_select_user', data);
           setMessageLogin(data+"  님");
 
-          fetch("http://localhost:8087/userRepo?user_id="+data, {
+          // DB에서 아이디로 Repository 정보 받아오기 http://localhost:8087/piece_u?user_id=user1
+          fetch("http://localhost:8087/piece_u?user_id="+data, {
             method: "POST",
             headers: new Headers({
               'Accept': 'application/json',
@@ -43,6 +45,24 @@ function App() {
               })
               .then(data => {
                 console.log('userRepo:', data);
+
+                // 이미지 불러오기
+                numbers = data.toString().split(',');
+                console.log(numbers);
+
+                numbers.map((photo, index) => (
+                    console.log("http://13.209.116.111/clonet-repo/" + photo)
+                ))
+
+                // const piece = getQueryVariable("piece_u");
+
+                // Back으로 보내기
+                // const config = {
+                //   headers : {
+                //     'Accept' : 'application/json'
+                //   }
+                // }
+                // fetch(`http://localhost:8087/piece_u?piece=${piece}`, config)
               });
         } else{
           console.log('로그인 안됨', data);
@@ -50,7 +70,24 @@ function App() {
       })
 
 
+  // Front Parameter 받기
 
+  function getQueryVariable(variable){
+    var query = window.location.search.substring(1);
+    var vars = query.split("&");
+    for (var i=0;i<vars.length;i++) {
+      var pair = vars[i].split("=");
+      if(pair[0] == variable){
+        return pair[1];
+      }
+    }
+    return(false);
+  }
+
+
+
+
+  // 이미지 선택
   function inputClickEvent(element_id) { // 클릭 이벤트 삽입
     var input = document.getElementById(element_id)
 		input.addEventListener('click', function(e) { // input 에 이벤트 리스너 삽입.
@@ -125,7 +162,8 @@ function App() {
 
       <div>
       {numbers.map((photo, index) => (
-        <img id={photo} class="img-responsive" alt="" src={photo} onClick={() => inputClickEvent(photo)}/>
+          <img id={photo} className="img-responsive" alt="" src={"http://13.209.116.111/clonet-repo/" + photo} onClick={() => inputClickEvent(photo)}/>
+        // <img id={photo} class="img-responsive" alt="" src={photo} onClick={() => inputClickEvent(photo)}/>
       ))}
     </div>
     </div>
