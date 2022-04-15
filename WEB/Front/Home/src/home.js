@@ -33,10 +33,9 @@ function useHome() {
             }
         });
 
-
     return (
         <div>
-            <Subject />
+            <Subject name={user_login} />
             <main className="" id="main-collapse">
                 <div className="row">
                     <div>
