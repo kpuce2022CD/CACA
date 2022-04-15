@@ -3,11 +3,8 @@ package caca.home.controller;
 import caca.home.dto.TestDto;
 import caca.home.service.TestService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -29,7 +26,24 @@ public class TestController {
 
     @RequestMapping(value = "/user", method = RequestMethod.GET) 
     public List<TestDto> getUser() { 
-        return testService.getUserList(); 
+        return testService.getUserList((String) session.getAttribute(LOGIN_MEMBER));
+    }
+
+    @RequestMapping(value = "/email", method = {RequestMethod.GET, RequestMethod.POST})
+    public Object updateEmail(HttpServletRequest req) {
+        String user_email = req.getParameter("user_email");
+        System.out.println("aaa "+user_email);
+        testService.updateEmail((String) session.getAttribute(LOGIN_MEMBER), user_email);
+        return user_email;
+    }
+
+    @RequestMapping(value = "/user_about", method = {RequestMethod.GET, RequestMethod.POST})
+    public Object updateAbout(HttpServletRequest req) {
+        String about = req.getParameter("about");
+        System.out.println("aaa" + about);
+        testService.updateAbout((String) session.getAttribute(LOGIN_MEMBER), about);
+
+        return about;
     }
 
     @RequestMapping(value = "/login", method = {RequestMethod.GET, RequestMethod.POST})
