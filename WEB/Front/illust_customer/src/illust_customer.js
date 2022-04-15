@@ -34,10 +34,10 @@ function useIllust_customer() {
       }
     }
     fetch(`http://localhost:8086/piece?piece=${piece}`, config)
-    .then((res) => res.text())
-    .then((data) => {
-      console.log(data);
-    })
+    // .then((res) => res.text())
+    // .then((data) => {
+    //   console.log(data);
+    // })
 
 
     return (

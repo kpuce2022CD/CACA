@@ -22,7 +22,12 @@ public class KafkaProducer {
 
     public void sendPieceNameMessage(String arr) {
         String TOPIC = "piece";
-        System.out.println(String.format("Produce Piece message : %s", arr));
-        kafkaTemplate.send(TOPIC, arr.trim());
+
+        String[] array = arr.split(",");
+
+        for(String s : array){
+            System.out.println(String.format("Produce Piece message : %s", s));
+            kafkaTemplate.send(TOPIC, s);
+        }
     }
 }

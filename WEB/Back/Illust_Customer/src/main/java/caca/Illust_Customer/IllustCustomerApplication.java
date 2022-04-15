@@ -26,7 +26,7 @@ import caca.Illust_Customer.KafkaProducer;
 @CrossOrigin("*")
 public class IllustCustomerApplication {
 
-	// private final KafkaProducer kafkaProducer;
+	private final KafkaProducer kafkaProducer;
 	// private final KafkaConsumer kafkaConsumer;
 
 	@GetMapping("/illust_customer1")
@@ -47,7 +47,7 @@ public class IllustCustomerApplication {
 
 	@RequestMapping(value = "/piece", method = {RequestMethod.GET, RequestMethod.POST})
 	public String sendPieceName(@RequestParam("piece") String arr){
-		// kafkaProducer.sendPieceNameMessage(arr);
+		kafkaProducer.sendPieceNameMessage(arr);
 		return arr.toString();
 	}
 
