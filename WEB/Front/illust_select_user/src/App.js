@@ -8,6 +8,49 @@ function App() {
   const numbers = ['img-12.jpg', 'img-11.jpg', 'img-10.jpg'];
   const clicked_photo = [];
 
+  const [user_login, setMessageLogin] = useState("Login");
+  fetch("http://localhost:8085/auth", {
+    method: "POST",
+    headers: new Headers({
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    }),
+  })
+      .then(res => {
+        if (!res.ok) {
+          throw Error("could not fetch the data that resource");
+        }
+        return res.text();
+      })
+      .then(data => {
+
+        if(data != null){
+          console.log('로그인 성공', data);
+          setMessageLogin(data+"  님");
+
+          fetch("http://localhost:8087/userRepo?user_id="+data, {
+            method: "POST",
+            headers: new Headers({
+              'Accept': 'application/json',
+              'Content-Type': 'application/json'
+            }),
+          })
+              .then(res => {
+                if (!res.ok) {
+                  throw Error("could not fetch the data that resource");
+                }
+                return res.text();
+              })
+              .then(data => {
+                console.log('userRepo:', data);
+              });
+        } else{
+          console.log('로그인 안됨', data);
+        }
+      })
+
+
+
   function inputClickEvent(element_id) { // 클릭 이벤트 삽입
     var input = document.getElementById(element_id)
 		input.addEventListener('click', function(e) { // input 에 이벤트 리스너 삽입.
@@ -26,22 +69,6 @@ function App() {
 			}
 		})
 	}
-
-
-  // const [message, setMessage] = useState("1")
-  // const [message2, setMessage2] = useState("2")
-
-  // useEffect(()=>{
-  //   fetch("/illust_select_user1")
-  //       .then(res => res.text())
-  //       .then(m=>setMessage(m))
-  // }, [])
-
-  // useEffect(()=>{
-  //   fetch("/illust_select_user2")
-  //       .then(res => res.text())
-  //       .then(m=>setMessage2(m))
-  // }, [])
 
   return (
     <div>
@@ -67,10 +94,11 @@ function App() {
                 tempor.</p>
             </div>
             <ul class="nav">
-            <li><a href="./index.html" title="">Home</a></li>
-            <li><a href="http://localhost:8002/about.html" title="">About</a></li>
-            <li><a href="http://localhost:8007/service.html" title="">Project</a></li>
-            <li><a href="http://localhost:8004/contact.html" title="">Contact</a></li>
+              <li><a href="http://localhost:8005/home" title="">Home</a></li>
+              <li><a href="http://localhost:8005/about" title="">About</a></li>
+              <li><a href="http://localhost:8007/" title="">Project</a></li>
+              <li><a href="http://localhost:8005/contact" title="">Contact</a></li>
+              <li><a href="http://localhost:8005/login" title="">{user_login}</a></li>
             {/* <li><a href="./components.html" title="">Components</a></li> */}
 
             </ul>
