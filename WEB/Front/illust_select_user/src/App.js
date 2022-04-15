@@ -2,16 +2,21 @@ import logo from './logo.svg';
 import './App.css';
 import React, {useEffect, useState} from 'react';
 import ReactDOM from "react-dom";
+import illustLink from './illustLink.js';
 
 function App() {
     const [style, setStyle] = useState("unclicked");
     const clicked_photo = [];
     const [numbers, setMessage_numbers] = useState([]);
     const [link, setLink] = useState("http://localhost:8006/piece?user_id=");
+    var final_link
 
     const handleClick = (e) => {
-        var final_link = link + clicked_photo.toString().trim()
+        final_link = ""
+        final_link = link + clicked_photo.toString().trim()
         console.log(final_link);
+
+        window.location.href=final_link
     }
 
     var rr;
@@ -210,6 +215,8 @@ function App() {
                     // <img id={photo} class="img-responsive" alt="" src={photo} onClick={() => inputClickEvent(photo)}/>
                 ))}
                 <button type="submit" className="btn btn-primary btn-lg" onClick={handleClick}>Link</button>
+                <illustLink link={final_link}/>
+
             </div>
         </div>
 
