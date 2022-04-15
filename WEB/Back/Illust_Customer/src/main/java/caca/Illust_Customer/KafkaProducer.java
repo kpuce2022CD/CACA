@@ -26,8 +26,10 @@ public class KafkaProducer {
         String[] array = arr.split(",");
 
         for(String s : array){
-            System.out.println(String.format("Produce Piece message : %s", s));
-            kafkaTemplate.send(TOPIC, s);
+            // splitArray[0] = RepositoryName, splitArray[1] = Filename
+            String[] splitArray = s.split("/");
+            System.out.println(String.format("Produce Piece message : %s", splitArray[0]));
+            kafkaTemplate.send(TOPIC, splitArray[0]);
         }
     }
 }

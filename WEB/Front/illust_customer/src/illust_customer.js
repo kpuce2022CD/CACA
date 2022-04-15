@@ -3,9 +3,12 @@ import './Theme3.css';
 function useIllust_customer() {
   // const numbers = ['img-12.jpg', 'img-11.jpg', 'img-10.jpg', 'img-09.jpg', 'img-08.jpg', 'img-07.jpg', 'img-06.jpg', 'img-05.jpg'];
 
-  const numbers = getQueryVariable("piece").split(',');
+  const numbers = getQueryVariable("piece").toString().split(',');
+  console.log(numbers);
 
-
+  numbers.map((photo, index) => (
+    console.log("http://13.209.116.111/clonet-repo/" + photo)
+  ))
   // Front Parameter 받기
   const piece = getQueryVariable("piece");
   function getQueryVariable(variable){
@@ -93,29 +96,18 @@ function useIllust_customer() {
             <div>
               {numbers.map((photo, index) => (
                 <div class="grid-item">
-                  <img id={photo} class="img-responsive" alt="" src={photo} />
+                  <img id={photo} class="img-responsive" alt="" src={"http://13.209.116.111/clonet-repo/" + photo} />
                   <a href="./project.html" class="project-description">
                     <div class="project-text-holder">
                       <div class="project-text-inner">
                         <h3>I want</h3>
                         <p>Discover more</p>
                       </div>
+                      <p>http://13.209.116.111/clonet-repo/${photo}</p>
                     </div>
                   </a>
                 </div>
               ))}
-            </div>
-
-            <div class="grid-item">
-              <img class="img-responsive" alt="" src="img-12.jpg" />
-              <a href="./project.html" class="project-description">
-                <div class="project-text-holder">
-                  <div class="project-text-inner">
-                    <h3>Vivamus vestibulum</h3>
-                    <p>Discover more</p>
-                  </div>
-                </div>
-              </a>
             </div>
 
           </div>
