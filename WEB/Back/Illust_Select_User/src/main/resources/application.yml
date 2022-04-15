@@ -16,3 +16,12 @@ spring:
       bootstrap-servers: 172.18.0.44:9092
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
       value-serializer: org.apache.kafka.common.serialization.StringSerializer
+  datasource:
+    url: {}/clonet_database?characterEncoding=utf8&useSSL=false
+    username: admin
+    password: qwer1234
+    driver-class-name:
+      com.mysql.cj.jdbc.Driver
+
+mybatis:
+  mapper-locations: classpath:mapper/**.xml

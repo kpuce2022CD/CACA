@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="caca.Illust_Select_User.mapper.TestMapper">
+    <select id="getUserList" resultType="caca.Illust_Select_User.dto.TestDto">
+        SELECT * from user
+    </select>
+
+    <select id="getUserRepoList" resultType="caca.Illust_Select_User.dto.RepoDto">
+        SELECT * from mapping_repo_user where user_id = #{user_id}
+    </select>
+<!--    <select id="getLogin" resultType="caca.Illust_Select_User.dto.TestDto">-->
+<!--        SELECT * from user where user_id = #{user_id} AND user_pw = #{user_pw}-->
+<!--    </select>-->
+
+</mapper>
