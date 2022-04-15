@@ -7,6 +7,12 @@ function App() {
     const [style, setStyle] = useState("unclicked");
     const clicked_photo = [];
     const [numbers, setMessage_numbers] = useState([]);
+    const [link, setLink] = useState("http://localhost:8006/piece?user_id=");
+
+    const handleClick = (e) => {
+        var final_link = link + clicked_photo.toString().trim()
+        console.log(final_link);
+    }
 
     var rr;
     var num;
@@ -31,6 +37,7 @@ function App() {
                     if (data != null) {
                         console.log('로그인 성공_select_user', data);
                         setMessageLogin(data + "  님");
+                        setLink(link + data + "&piece=")
     
                         return fetch("http://localhost:8087/piece_u?user_id=" + data, {
                             method: "POST",
@@ -202,6 +209,7 @@ function App() {
                          onClick={() => inputClickEvent(photo)}/>
                     // <img id={photo} class="img-responsive" alt="" src={photo} onClick={() => inputClickEvent(photo)}/>
                 ))}
+                <button type="submit" className="btn btn-primary btn-lg" onClick={handleClick}>Link</button>
             </div>
         </div>
 
