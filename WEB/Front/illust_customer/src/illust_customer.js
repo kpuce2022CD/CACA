@@ -1,10 +1,3 @@
-import logo from './logo.svg';
-import {useEffect, useState} from 'react';
-import { BrowserRouter, Route, Link, Routes, useNavigate } from 'react-router-dom';
-import ReactDOM from 'react-dom';
-
-// import './Theme1.css';
-// import './Theme2.css'
 import './Theme3.css';
 
 function useIllust_customer() {
