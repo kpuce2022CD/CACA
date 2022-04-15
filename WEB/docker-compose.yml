@@ -77,33 +77,33 @@ services:
 #      clonet_network:
 #        ipv4_address: 172.18.0.18
     ########################################
-  illust_select_user_front:
-    container_name: illust_select_user_front_con
-    build:
-      context: .
-      dockerfile: Front/illust_select_user/Dockerfile
-    ports:
-      - 8007:80
-    networks:
-      clonet_network:
-        ipv4_address: 172.18.0.9
+  # illust_select_user_front:
+  #   container_name: illust_select_user_front_con
+  #   build:
+  #     context: .
+  #     dockerfile: Front/illust_select_user/Dockerfile
+  #   ports:
+  #     - 8007:80
+  #   networks:
+  #     clonet_network:
+  #       ipv4_address: 172.18.0.9
 
-  illust_select_user_back:
-    container_name: illust_select_user_back_con
-    build:
-      context: .
-      dockerfile: Back/Illust_Select_User/Dockerfile
-      args:
-        JAR_FILE: ./Back/Illust_Select_User/build/libs/*.jar
-    ports:
-      - 8087:8087
-    depends_on:
-      - kafka
-      - zookeeper
-    networks:
-      clonet_network:
-        ipv4_address:
-          172.18.0.19
+  # illust_select_user_back:
+  #   container_name: illust_select_user_back_con
+  #   build:
+  #     context: .
+  #     dockerfile: Back/Illust_Select_User/Dockerfile
+  #     args:
+  #       JAR_FILE: ./Back/Illust_Select_User/build/libs/*.jar
+  #   ports:
+  #     - 8087:8087
+  #   depends_on:
+  #     - kafka
+  #     - zookeeper
+  #   networks:
+  #     clonet_network:
+  #       ipv4_address:
+  #         172.18.0.19
   ########################################
   #   prometheus:
   #     container_name: prometheus_con

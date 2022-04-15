@@ -32,6 +32,13 @@ dependencies {
 
 	implementation 'org.json:json:20190722'
 	implementation 'com.googlecode.json-simple:json-simple:1.1.1'
+
+	// https://mvnrepository.com/artifact/com.jcraft/jsch
+	implementation 'com.jcraft:jsch:0.1.44-1'
+
+	// https://mvnrepository.com/artifact/com.hierynomus/sshj
+	implementation 'com.hierynomus:sshj:0.32.0'
+
 }
 
 tasks.named('test') {
