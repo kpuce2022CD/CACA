@@ -61,13 +61,13 @@ function App() {
 
                                     // console.log(num);
                                     for (var i = 0; i < num.length; i++) {
-                                        if (num[i].includes(".png")) {
+                                        if (num[i].includes(".png") || num[i].includes(".JPG")) {
                                             numbers.push(num[i]);
                                         }
                                     }
                                     console.log(numbers);
                                     // reload
-                                    setMessage_numbers([...numbers, "^"]);
+                                    setMessage_numbers([...numbers, ""]);
                                     return;
                                 });
                             })
@@ -156,16 +156,23 @@ function App() {
     return (
         <div>
             <Subject name={user_login} />
-            <div id="reRender">
-                {numbers.map((photo, index) => (
-                    <img id={photo} className="img-responsive" alt="" src={"http://13.209.116.111/clonet-repo/" + photo}
-                        onClick={() => inputClickEvent(photo)} />
-                    // <img id={photo} class="img-responsive" alt="" src={photo} onClick={() => inputClickEvent(photo)}/>
-                ))}
+            <div align={"right"}>
                 <button type="submit" className="btn btn-primary btn-lg" onClick={handleClick}>Link</button>
-                <illustLink link={final_link} />
 
+                <div id="reRender">
+                    {numbers.map((photo, index) => (
+                        <img id={photo} className="img-responsive" width="500px" height="500px" alt="" src={"http://13.209.116.111/clonet-repo/" + photo}
+                             onClick={() => inputClickEvent(photo)} />
+                        // <img id={photo} class="img-responsive" alt="" src={photo} onClick={() => inputClickEvent(photo)}/>
+                    ))}
+
+
+                </div>
             </div>
+
+
+
+
         </div>
 
     );

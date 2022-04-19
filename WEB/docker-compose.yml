@@ -1,29 +1,31 @@
 version: '3'
 services:
   ########################################
-  # about_customer_front:
-  #   container_name: about_customer_front_con
-  #   build:
-  #     context: .
-  #     dockerfile: Front/about_customer/Dockerfile
-  #   ports:
-  #     - 8001:80
-  #   networks:
-  #     clonet_network:
-  #       ipv4_address: 172.18.0.3
+  about_customer_front:
+    container_name: about_customer_front_con
+    build:
+      context: .
+      dockerfile: Front/about_customer/Dockerfile
+    ports:
+      - 8001:80
+    networks:
+      clonet_network:
+        ipv4_address:
+          172.18.0.3
 
-  # about_customer_back:
-  #   container_name: about_customer_back_con
-  #   build:
-  #     context: .
-  #     dockerfile: Back/About_Customer/Dockerfile
-  #     args:
-  #       JAR_FILE: ./Back/About_Customer/build/libs/*.jar
-  #   ports:
-  #     - 8081:8081
-  #   networks:
-  #     clonet_network:
-  #       ipv4_address: 172.18.0.13
+  about_customer_back:
+    container_name: about_customer_back_con
+    build:
+      context: .
+      dockerfile: Back/About_Customer/Dockerfile
+      args:
+        JAR_FILE: ./Back/About_Customer/build/libs/*.jar
+    ports:
+      - 8081:8081
+    networks:
+      clonet_network:
+        ipv4_address:
+          172.18.0.13
   # ########################################
   home_front:
     container_name: home_front_con
@@ -107,40 +109,42 @@ services:
         ipv4_address:
           172.18.0.19
   ########################################
-  #   prometheus:
-  #     container_name: prometheus_con
-  #     image: prom/prometheus
-  #     restart: on-failure
-  #     ports:
-  #       - 9090:9090
-  #     networks:
-  #       clonet_network:
-  #         ipv4_address: 172.18.0.77
-  #     volumes:
-  #       - ./prometheus.yml:/etc/prometheus/prometheus.yml
-  #       - ./alert_rules.yml:/etc/prometheus/alert_rules.yml
-  # ########################################
-  #   grafana:
-  #     container_name: grafana_con
-  #     image: grafana/grafana
-  #     restart: on-failure
-  #     ports:
-  #       - 3000:3000
-  #     networks:
-  #       clonet_network:
-  #         ipv4_address: 172.18.0.88
-  # ########################################
-  #   alertmanager:
-  #     container_name: alertmanager_con
-  #     image: prom/alertmanager
-  #     user: root
-  #     ports:
-  #     - "9093:9093"
-  #     volumes:
-  #     - ./alertmanager.yml:/etc/alertmanager/alertmanager.yml
-  #     networks:
-  #       clonet_network:
-  #         ipv4_address: 172.18.0.99
+  prometheus:
+    container_name: prometheus_con
+    image: prom/prometheus
+    restart: on-failure
+    ports:
+      - 9090:9090
+    networks:
+      clonet_network:
+        ipv4_address: 172.18.0.77
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+      - ./alert_rules.yml:/etc/prometheus/alert_rules.yml
+   ########################################
+  grafana:
+    container_name: grafana_con
+    image: grafana/grafana
+    restart: on-failure
+    ports:
+      - 3000:3000
+    networks:
+      clonet_network:
+        ipv4_address:
+          172.18.0.88
+   ########################################
+  alertmanager:
+    container_name: alertmanager_con
+    image: prom/alertmanager
+    user: root
+    ports:
+      - "9093:9093"
+    volumes:
+      - ./alertmanager.yml:/etc/alertmanager/alertmanager.yml
+    networks:
+      clonet_network:
+        ipv4_address:
+          172.18.0.99
 
   #######################################
   zookeeper:
