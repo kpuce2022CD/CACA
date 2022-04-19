@@ -535,7 +535,7 @@ struct Repo_View_Git: View {
         let result = Repository.at(localRepoLocation)
         switch result {
         case let .success(repo):
-            let remoteBranch_result = repo.localBranches()
+            let remoteBranch_result = repo.remoteBranches()
             switch remoteBranch_result{
             case let .success(branch):
                 resultBranch = branch
