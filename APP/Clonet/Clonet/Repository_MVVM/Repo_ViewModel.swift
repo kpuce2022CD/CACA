@@ -210,7 +210,7 @@ struct AddUserAlert: View {
                         let smtp = SMTP(
                             hostname: "smtp.gmail.com",
                             email: "clonet.caca@gmail.com",
-                            password: "qweR1234@"
+                            password: "uqjyvrvxeigddgem"
                         )
                         
                         let NewUser = input_userEmail.components(separatedBy: "@")
