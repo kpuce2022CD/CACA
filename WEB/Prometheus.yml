@@ -23,23 +23,23 @@ scrape_configs:
     static_configs:
       - targets: ['172.18.0.13:8081']
 
-  - job_name: 'about_edit_user_back'
-    scrape_timeout: 15s
-    metrics_path: '/actuator/prometheus'
-    static_configs:
-      - targets: [ '172.18.0.14:8082' ]
+  # - job_name: 'about_edit_user_back'
+  #   scrape_timeout: 15s
+  #   metrics_path: '/actuator/prometheus'
+  #   static_configs:
+  #     - targets: [ '172.18.0.14:8082' ]
 
-  - job_name: 'contact_customer_back'
-    scrape_timeout: 15s
-    metrics_path: '/actuator/prometheus'
-    static_configs:
-      - targets: [ '172.18.0.15:8083' ]
+  # - job_name: 'contact_customer_back'
+  #   scrape_timeout: 15s
+  #   metrics_path: '/actuator/prometheus'
+  #   static_configs:
+  #     - targets: [ '172.18.0.15:8083' ]
 
-  - job_name: 'contact_edit_user_back'
-    scrape_timeout: 15s
-    metrics_path: '/actuator/prometheus'
-    static_configs:
-      - targets: [ '172.18.0.16:8084' ]
+  # - job_name: 'contact_edit_user_back'
+  #   scrape_timeout: 15s
+  #   metrics_path: '/actuator/prometheus'
+  #   static_configs:
+  #     - targets: [ '172.18.0.16:8084' ]
 
   - job_name: 'home_back'
     scrape_timeout: 15s
@@ -59,8 +59,8 @@ scrape_configs:
     static_configs:
       - targets: [ '172.18.0.19:8087' ]
 
-  - job_name: 'login_back'
-    scrape_timeout: 15s
-    metrics_path: '/actuator/prometheus'
-    static_configs:
-      - targets: [ '172.18.0.20:8088' ]
+  # - job_name: 'login_back'
+  #   scrape_timeout: 15s
+  #   metrics_path: '/actuator/prometheus'
+  #   static_configs:
+  #     - targets: [ '172.18.0.20:8088' ]
