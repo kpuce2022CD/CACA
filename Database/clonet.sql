@@ -77,7 +77,6 @@ select * From user;
 
 use mysql;
 
--- INSERT INTO user (user_id, user_pw, user_name, user_email) VALUES ('jimmy', 'qwer1234', 'jimin', 'saidakin7@gmail.com');
 -- flush privileges; 
 
 -- FLUSH PRIVILEGES;
