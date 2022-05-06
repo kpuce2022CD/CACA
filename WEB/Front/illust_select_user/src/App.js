@@ -67,7 +67,7 @@ function App() {
                                     }
                                     console.log(numbers);
                                     // reload
-                                    setMessage_numbers([...numbers, ""]);
+                                    setMessage_numbers([...numbers]);
                                     return;
                                 });
                             })
