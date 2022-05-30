@@ -37,7 +37,6 @@ struct Repo_View_Git: View {
     @State private var presentingToast2: Bool = false
     @State private var presentingToast_pull: Bool = false
     @State private var presentingToast_commit: Bool = false
-    @State var pullBranch = "master"
     
     // Diff
     @State var log_number1 = 0
@@ -46,6 +45,9 @@ struct Repo_View_Git: View {
     @State private var FileList = getFileList()
     @State private var presentingToast3: Bool = false
     @State private var selectionString: String? = nil
+    
+    // 현재 브랜치 이름
+    @State var currentBranchName = "origin/master"
     
     init(repo_n: String, userID: String) {
         self.repo_n = repo_n
@@ -131,7 +133,7 @@ struct Repo_View_Git: View {
                         Button("Save", action: {
                             presentingToast_commit = false
                             
-                            commitGitRepo(localRepoLocation: documentURL.appendingPathComponent(repo_n), name: userID, email: userEmail, commit_msg: commit_msg, addFileName: addFileName, branch: pullBranch)
+                            commitGitRepo(localRepoLocation: documentURL.appendingPathComponent(repo_n), name: userID, email: userEmail, commit_msg: commit_msg, addFileName: addFileName)
                         })
                         .frame(minWidth: 100, maxWidth: .infinity, minHeight: 40, maxHeight: 40, alignment: .center)
                         Divider()
@@ -143,98 +145,7 @@ struct Repo_View_Git: View {
                     .fixedSize(horizontal: false, vertical: true)
                 }.frame(width: 300)
             }
-            
-//            // Clone & Pull Button
-//            HStack{
-//                // MARK: Clone Button
-//                Button(action: {
-//                    cloneGitRepo(remoteRepoLocation: log_repoViewModel_a.repoIP_Addr, localRepoLocation: documentURL.appendingPathComponent(repo_n))
-//                    directory.location(repoName: repo_n)
-//                }){
-//                    HStack{
-//                        Image(systemName: "square.and.arrow.down")
-//                        Text("Clone")
-//                    }
-//
-//                    .frame(width: 100, height: 50)
-//                    .foregroundColor(.white)
-//                    .overlay(
-//                        RoundedRectangle(cornerRadius: 15)
-//                            .stroke(Color.white, lineWidth: 2)
-//                    )
-//                }
-//                .background(Color.black)
-//                .cornerRadius(15)
-                
-//                // MARK: Pull Button
-//                Button(action: {
-//                    presentingToast_pull = true
-//                    branchArr = BranchGitRepo(localRepoLocation: documentURL.appendingPathComponent(repo_n))
-//                }){
-//                    HStack{
-//                        Image(systemName: "square.and.arrow.down")
-//                        Text("Pull")
-//                    }
-//
-//                    .frame(width: 100, height: 50)
-//                    .foregroundColor(.white)
-//                    .overlay(
-//                        RoundedRectangle(cornerRadius: 15)
-//                            .stroke(Color.white, lineWidth: 2)
-//                    )
-//                }
-//                .background(Color.black)
-//                .cornerRadius(15)
-//
-//                // MARK: PULL Toast
-//                .toast(isPresented: $presentingToast_pull){ // , dismissAfter: 2.0
-//                    ToastView {
-//                            VStack{
-//                                Picker(selection: $pullBranch, label: Text("")) {
-//                                    ForEach(branchArr, id: \.self){b in
-//                                        Text(b)
-//                                }
-//                            }
-//                                .pickerStyle(WheelPickerStyle())
-//                        }
-//
-//                        Divider()
-//                        HStack{
-//                            Button("Pull", action: {
-//                                presentingToast_pull = false
-//                                DispatchQueue.global().sync{
-//                                    log_repoViewModel_a.Log_repo_list.removeAll()
-//                                    log_repoViewModel_a.appear()
-//                                    print("repo_n:", log_repoViewModel_a.Log_repo_list.first?.commitId)
-//                                }
-//                                DispatchQueue.global().async{
-//
-//                                    // MARK: FETCH
-//                                    fetchGitRepo(localRepoLocation: documentURL.appendingPathComponent(repo_n))
-//                                    print("url", documentURL.appendingPathComponent(repo_n))
-//                                    // MARK: MERGE
-//                                    mergeGitRepo(localRepoLocation: documentURL.appendingPathComponent(repo_n),remoteRepoLocation: log_repoViewModel_a.repoIP_Addr, hexString: log_repoViewModel_a.Log_repo_list.first?.commitId ?? "")
-////                                    // MARK: COMMIT
-////                                    var merge_commit_m : String = log_repoViewModel_a.Log_repo_list.first?.commitMsg ?? ""
-////                                    commitGitRepo(localRepoLocation: documentURL.appendingPathComponent(repo_n), name: userID, email: userEmail, commit_msg: "병합 : \(merge_commit_m)", addFileName: ".", branch: pullBranch)
-////                                    // MARK: PUSH_FORCE
-////                                    push_f_GitRepo(localRepoLocation: documentURL.appendingPathComponent(repo_n))
-//
-//                                }
-//                                print("log_repoViewModel_a.launches.commitId",log_repoViewModel_a.Log_repo_list.first?.commitId)
-//                            })
-//
-//                            Divider()
-//                            Button("Cancel", role: .cancel){
-//                                presentingToast_pull = false
-//                            }
-//                        }
-//                        .frame(height: 50)
-//                    }.frame(width: 300)
-//                }
-//            }
-            
-            
+
             
             // MARK: Branch Button
             HStack{
@@ -414,7 +325,7 @@ struct Repo_View_Git: View {
     
     
     //MARK: COMMIT_FUNCgetUserList
-    func commitGitRepo(localRepoLocation localRepoLocation: URL, name name: String, email email: String, commit_msg commit_msg : String, addFileName addFileName: String, branch: String) {
+    func commitGitRepo(localRepoLocation localRepoLocation: URL, name name: String, email email: String, commit_msg commit_msg : String, addFileName addFileName: String) {
         print("commit btn clicked!! ")
         let result = Repository.at(localRepoLocation)
         switch result {
@@ -427,7 +338,7 @@ struct Repo_View_Git: View {
             let latestCommit = repo.commit(message: commit_msg, signature: sig)
             
             //MARK: push
-            let commit_push = repo.push(repo, "ubuntu", "qwer1234", branch)
+            let commit_push = repo.push(repo, "ubuntu", "qwer1234", currentBranchName)
             
             
         case let .failure(error):
@@ -546,25 +457,6 @@ struct Repo_View_Git: View {
         return branchArr
     }
     
-    //    //MARK: Make Branch FUNC
-    //    func create_localBranch(localRepoLocation localRepoLocation : URL, branch_name branch_name : String, name name: String, email email: String){
-    //
-    //        let result = Repository.at(localRepoLocation)
-    //        switch result {
-    //        case let .success(repo):
-    //            let sig = Signature(name: name,email: email, time: Date(),timeZone: TimeZone.current)
-    //            let branch_commit = repo.commit(message: "create Branchname : " + branch_name, signature: sig)
-    //            switch branch_commit{
-    //            case let .success(commit):
-    //                let createbranch_result = repo.create_localBranch(repo, at: commit, branch_name)
-    //            case .failure(_):
-    //                print("error")
-    //            }
-    //        case let .failure(error):
-    //            print("\(error)")
-    //        }
-    //    }
-    
     
     //MARK: CHECKOUT_FUNC
     func checkout_Branch(localRepoLocation localRepoLocation : URL, branchname branch_name : String){
@@ -573,39 +465,12 @@ struct Repo_View_Git: View {
         switch result {
         case let .success(repo):
             let branch_commit = repo.checkout_branch(repo, branchName: branch_name)
+            self.currentBranchName = branch_name
         case let .failure(error):
             print(error)
         }
     }
     
-//    // MARK: alertView
-//    func alertView(){
-//        print("!!commit alertView clicked")
-//        let alert = UIAlertController(title: "commig message", message: "Enter your message", preferredStyle: .alert)
-//
-//        alert.addTextField{ i in
-//            i.placeholder = "commit msg"
-//        }
-//
-//        let completeAction = UIAlertAction(title: "Save", style: .default){ (_) in
-//            print("complete clicked")
-//            commit_msg = alert.textFields![0].text!
-//            print("commit complete: \(commit_msg)")
-//            commitGitRepo(localRepoLocation: documentURL.appendingPathComponent(repo_n), name: userID, email: userEmail, commit_msg: commit_msg, addFileName: addFileName)
-//        }
-//
-//        let cancelAction = UIAlertAction(title: "Cancel", style: .destructive){ (_) in
-//            print("cancel clicked")
-//        }
-//
-//        alert.addAction(completeAction)
-//        alert.addAction(cancelAction)
-//
-//        UIApplication.shared.windows.first?.rootViewController?.present(alert, animated: true, completion: {
-//
-//        })
-//
-//    }
 }
 
 struct Repo_View_Git_Previews: PreviewProvider {
