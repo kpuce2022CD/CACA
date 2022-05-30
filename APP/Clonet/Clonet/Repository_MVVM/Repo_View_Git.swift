@@ -127,33 +127,20 @@ struct Repo_View_Git: View {
                     Text("Commit Message")
                     TextField("Enter Commit Message", text: $commit_msg).textFieldStyle(RoundedBorderTextFieldStyle()).padding()
                     Divider()
-                    Text("Choose Branch")
-                        VStack{
-                            Picker(selection: $pullBranch, label: Text("")) {
-                            ForEach(branchArr, id: \.self){b in
-                                Button(b){
-                                    // PULL
-                                }
-                            }
-                        }
-                            .pickerStyle(WheelPickerStyle())
-                            .frame(height: 70)
-                    }
-                    
-                    Divider()
                     HStack{
                         Button("Save", action: {
                             presentingToast_commit = false
                             
                             commitGitRepo(localRepoLocation: documentURL.appendingPathComponent(repo_n), name: userID, email: userEmail, commit_msg: commit_msg, addFileName: addFileName, branch: pullBranch)
                         })
-                        
+                        .frame(minWidth: 100, maxWidth: .infinity, minHeight: 40, maxHeight: 40, alignment: .center)
                         Divider()
                         Button("Cancel", role: .cancel){
                             presentingToast_commit = false
                         }
+                        .frame(minWidth: 100, maxWidth: .infinity, minHeight: 40, maxHeight: 40, alignment: .center)
                     }
-                    .frame(height: 50)
+                    .fixedSize(horizontal: false, vertical: true)
                 }.frame(width: 300)
             }
             
