@@ -16,6 +16,7 @@ struct Repo_View: View {
     
     var backButton : some View {
         Button(action: {
+            // MARK: 절대 지우면 안됨 (Back 경고창 띄우기)
 //            presentingToast_back = true
             self.presentationMode.wrappedValue.dismiss()
         }){

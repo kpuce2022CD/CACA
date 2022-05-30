@@ -28,7 +28,7 @@ final class Login_ViewModel : ObservableObject {
     
     init(){
         isLogin = false
-        login(id: "", passwd: "")
+        showingAlert = false
     }
     
     func login(id: String, passwd: String) {
@@ -45,8 +45,10 @@ final class Login_ViewModel : ObservableObject {
                     
                     if(passwd == self.logins.user_pw && self.logins.user_pw != ""){
                         self.isLogin = true
+                        self.showingAlert = false
                     } else {
                         self.isLogin = false
+                        self.showingAlert = true
                     }
                 } else if let errors = graphQLResult.errors {
                     print("GraphQL errors \(errors)")

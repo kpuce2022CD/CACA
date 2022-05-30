@@ -8,8 +8,8 @@
 import SwiftUI
 
 struct Login_View: View {
-    @StateObject private var viewModel = Login_ViewModel()
-//    @ObservedObject var userAuth_VM : UserAuth = UserAuth()
+    @ObservedObject private var viewModel = Login_ViewModel()
+    //    @ObservedObject var userAuth_VM : UserAuth = UserAuth()
     @State private var selectionString: String? = nil
     @State var userID : String = ""
     @State var userPW : String = ""
@@ -48,7 +48,7 @@ struct Login_View: View {
                         HStack(alignment: .center) { // passwd input
                             Image(systemName: "lock").padding()
                             TextField("PASSWORD", text: $userPW)
-//                            SecureField("PASSWORD", text: $userAuth_VM.user_pw)
+                            //                            SecureField("PASSWORD", text: $userAuth_VM.user_pw)
                                 .frame(width: 200)
                                 .padding()
                         }
@@ -57,31 +57,18 @@ struct Login_View: View {
                     
                     // Login Btn
                     ZStack {
-//                        ForEach(viewModel.login_msg, id: \.self) { msg in
-                            if(viewModel.isLogin == true){
-                                NavigationLink(destination: LoginCheck_View(userID: userID), tag: "true", selection: $selectionString) { }
+                        if(viewModel.isLogin == true){
+                            NavigationLink(destination: LoginCheck_View(userID: userID), tag: "true", selection: $selectionString) { }
                                 .buttonStyle(PlainButtonStyle()).frame(width:0).opacity(0)
-//                                Button("Login") {
-//                                    self.selectionString = "signupButton"
-//                                }
-//                                .onAppear(perform: {print(viewModel.isLogin)})
-                            } else{
-//                                NavigationLink(destination: Login_View(), tag: "true", selection: $selectionString) { }
-//                                .buttonStyle(PlainButtonStyle()).frame(width:0).opacity(0)
-                                
-//                                Button("Login") {
-//                                    self.selectionString = "signupButton"
-//                                }
-//                                .alert(isPresented: $viewModel.showingAlert) {
-//                                    Alert(title: Text("로그인에 실패했습니다"), message: nil,
-//                                          dismissButton: .default(Text("확인")))
-//                                }
-//                                .onAppear(perform: {print(viewModel.isLogin)})
-                            }
-//                        }
+                        }
                         Button("Login") {
                             self.selectionString = "true"
                             viewModel.login(id: userID, passwd: userPW)
+                        }
+                        .alert(isPresented: $viewModel.showingAlert) {
+                            Alert(title: Text("로그인에 실패했습니다"), message: nil,
+                                  dismissButton: .default(Text("확인")))
+                            
                         }
                     }
                     .font(.headline)
@@ -111,11 +98,11 @@ struct Login_View: View {
                     // Sign up
                     NavigationLink(destination: Signup(),
                                    label: {Text("SIGN UP")})
-                        .padding()
+                    .padding()
                     // Find ID && PASSWORD
                     NavigationLink(destination: FindIdPw(),
                                    label: {Text("ID / PASSWORD 찾기")})
-                        //.padding()
+                    //.padding()
                 }.padding()
             }
         }
