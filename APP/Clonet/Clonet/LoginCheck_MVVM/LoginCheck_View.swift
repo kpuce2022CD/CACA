@@ -12,7 +12,7 @@ import SwiftGit2
 
 struct LoginCheck_View: View {
     @StateObject var logincheck_ViewModel = LoginCheck_ViewModel()
-    
+    @State var Repo_ViewModel_req = log_repo_ViewModel()
     @State var userID : String
     
     var body: some View {
