@@ -141,7 +141,7 @@ struct GitTest: View {
             let branch_commit = repo.commit(message: "create Branchname : " + branch_name, signature: sig)
             switch branch_commit{
             case let .success(commit):
-                let createbranch_result = repo.create_localBranch(repo, at: commit, branch_name)
+                let createbranch_result = repo.create_Branch(repo, at: commit, branch_name)
             case .failure(_):
                 print("error")
             }

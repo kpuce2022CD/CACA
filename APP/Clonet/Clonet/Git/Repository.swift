@@ -81,6 +81,11 @@ extension Repository {
         git_repository_state_cleanup(repo.pointer)
     }
     
+    // MARK: CLONE WITH BRANCH
+    public func cloneBranch(_ repo: Repository, branchName: String?){
+
+    }
+    
     
     // MARK: CHECKOUT
     public func checkout_branch(_ repo: Repository, branchName: String?){
@@ -109,10 +114,8 @@ extension Repository {
     }
     
     // MARK: CREATE_LOCAL_BRANCH
-    public func create_localBranch(_ repo: Repository, at commit: Commit, _ branchName: String?){
-        
-        let newBranch: String = "\(branchName!)"
-        
+    public func create_Branch(_ repo: Repository, at commit: Commit, _ branchName: String?){
+
         let repository: OpaquePointer = repo.pointer
         var remote: OpaquePointer? = nil
         let result_git_remote_lookup = git_remote_lookup(&remote, repository, "origin" )
@@ -120,81 +123,56 @@ extension Repository {
             // Error
         }
         
-        /// git_object, does not exist
-        let branchResult = repo.localBranches()
-        switch branchResult {
-        case .success(let branches):
-            for branch in branches {
-                if(branch.name == newBranch){
-                    print("kekw")
-                    let checkoutRet = checkout(branch, strategy: .Force)
-                    print(checkoutRet)
-                    break;
-                } else {
-                    //create the branch....
-                    
-                    var output: OpaquePointer? = nil
-                    var copy = commit.oid.oid
-                    var pointerToCommitInLibGit2: OpaquePointer? = nil
-                    
-                    let success = git_object_lookup(&pointerToCommitInLibGit2, repository, &copy, GIT_OBJECT_COMMIT)
-                    
-                    print(success)
-                    
-                    let ret = git_branch_create(&output, repository, branchName, pointerToCommitInLibGit2, 1)
-                    
-                    print("kek \(ret)")
-                    
-                    let checkout = checkout_branch(repo, branchName: branchName)
-                    
-                    // push
-                    let credentials: Credentials = Credentials.plaintext(username: "ubuntu", password: "qwer1234")
-                    var options = pushOptions(credentials: credentials)
-                    
-                    let repository: OpaquePointer = repo.pointer
-                    var remote: OpaquePointer? = nil
-                    let result_git_remote_lookup = git_remote_lookup(&remote, repository, "origin" )
-                    
-                    
-                    func localBranches() -> Result<[Branch], NSError> {
-                        return references(withPrefix: "refs/heads/")
-                            .map { (refs: [ReferenceType]) in
-                                return refs.map { $0 as! Branch }
-                            }
-                    }
-                    
-                    var master = "refs/heads/" + branchName!
-                    
-                    let strings: UnsafeMutablePointer<UnsafeMutablePointer<CChar>?> = [master].withUnsafeBufferPointer {
-                        let buffer = UnsafeMutablePointer<UnsafeMutablePointer<CChar>?>.allocate(capacity: $0.count + 1)
-                        let val = $0.map
-                        { $0.withCString(strdup) }
-                        buffer.initialize(from: val, count: 1)
-                        buffer[$0.count] = nil
-                        return buffer
-                    }
-                    var gitstr = git_strarray()
-                    gitstr.strings = strings
-                    gitstr.count = 1
-                    
-                    let push_result = git_remote_push(remote, &gitstr, &options)
-                    print(push_result)
-                    git_remote_free(remote)
-                    
-                    
+        
+        //create the branch....
+        
+        var output: OpaquePointer? = nil
+        var copy = commit.oid.oid
+        var pointerToCommitInLibGit2: OpaquePointer? = nil
+        
+        let success = git_object_lookup(&pointerToCommitInLibGit2, repository, &copy, GIT_OBJECT_COMMIT)
+        
+        print(success)
+        
+        // create localBranch
+        let ret = git_branch_create(&output, repository, branchName, pointerToCommitInLibGit2, 1)
+        
+        let checkout = checkout_branch(repo, branchName: branchName)
+        
+        // push : create RemoteBranch
+        let credentials: Credentials = Credentials.plaintext(username: "ubuntu", password: "qwer1234")
+        var options = pushOptions(credentials: credentials)
+
+
+        func localBranches() -> Result<[Branch], NSError> {
+            return references(withPrefix: "refs/heads/")
+                .map { (refs: [ReferenceType]) in
+                    return refs.map { $0 as! Branch }
+                }
+        }
+
+        var master = "refs/heads/" + branchName!
+
+        let strings: UnsafeMutablePointer<UnsafeMutablePointer<CChar>?> = [master].withUnsafeBufferPointer {
+            let buffer = UnsafeMutablePointer<UnsafeMutablePointer<CChar>?>.allocate(capacity: $0.count + 1)
+            let val = $0.map
+            { $0.withCString(strdup) }
+            buffer.initialize(from: val, count: 1)
+            buffer[$0.count] = nil
+            return buffer
+        }
+        var gitstr = git_strarray()
+        gitstr.strings = strings
+        gitstr.count = 1
+
+        let push_result = git_remote_push(remote, &gitstr, &options)
+        print(push_result)
+        git_remote_free(remote)
+        
+        
 //                    // upstream
 //                    let upstream = git_branch_set_upstream(output, branchName)
-                    
-//                    print("kek \(upstream)")
-                    
-                    break;
-                }
-            }
-            break
-        case .failure:
-            print("Failed to get any branches...")
-            break
-        }
+//                    git_branch_set_upstream(output, master)
     }
     
     
