@@ -17,6 +17,7 @@
   background-color: #282c34;
   min-height: 100vh;
   display: flex;
+  resize:none;
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -1910,6 +1911,7 @@ output {
 }
 
 .form-control, output {
+  resize:none;
   display: block;
   font-size: 14px;
   line-height: 1.78;
@@ -1919,6 +1921,7 @@ output {
 .form-control {
   width: 100%;
   height: 40px;
+  resize:none;
   padding: 8px 20px;
   background-color: #fff;
   background-image: none;
@@ -1933,6 +1936,7 @@ output {
 
 .form-control:focus {
   border-color: #66afe9;
+  resize:none;
   -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgba(102, 175, 233, .6);
   box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgba(102, 175, 233, .6)
 }

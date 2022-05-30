@@ -7,6 +7,9 @@
     <select id="updateEmail" resultType="caca.home.dto.TestDto">
         UPDATE user SET user_email = #{user_email} WHERE user_id = #{user_id}
     </select>
+    <select id="updateContact" resultType="caca.home.dto.TestDto">
+        UPDATE user SET contact = #{contact} WHERE user_id = #{user_id}
+    </select>
     <select id="updateAbout" resultType="caca.home.dto.TestDto">
         UPDATE user SET about = #{about} WHERE user_id = #{user_id}
     </select>

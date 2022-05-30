@@ -37,6 +37,14 @@ public class TestController {
         return user_email;
     }
 
+    @RequestMapping(value = "/contact", method = {RequestMethod.GET, RequestMethod.POST})
+    public Object updateContact(HttpServletRequest req) {
+        String user_contact = req.getParameter("contact");
+        System.out.println("aaa "+user_contact);
+        testService.updateContact((String) session.getAttribute(LOGIN_MEMBER), user_contact);
+        return user_contact;
+    }
+
     @RequestMapping(value = "/user_about", method = {RequestMethod.GET, RequestMethod.POST})
     public Object updateAbout(HttpServletRequest req) {
         String about = req.getParameter("about");

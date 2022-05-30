@@ -17,6 +17,10 @@ public interface TestMapper {
             @Param("user_id") String user_id,
             @Param("about") String about
     ) ;
+    List<TestDto> updateContact(
+            @Param("user_id") String user_id,
+            @Param("contact") String contact
+    );
     List<TestDto> getLogin(
         @Param("user_id") String user_id,
         @Param("user_pw") String user_passwd
