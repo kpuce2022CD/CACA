@@ -501,6 +501,8 @@ struct createBranch_View: View {
                 Spacer()
                 Button(action: {
                     create_Branch(localRepoLocation: documentURL.appendingPathComponent(localRepoLocation), branch_name: new_branch_name, name: name, email: email)
+                
+                    
                     UIApplication.shared.windows[0].rootViewController?.dismiss(animated: true, completion: {})
                 }) {
                     
@@ -534,7 +536,7 @@ struct createBranch_View: View {
             let branch_commit = repo.commit(message: "create Branchname : " + branch_name, signature: sig)
             switch branch_commit{
             case let .success(commit):
-                let createbranch_result = repo.create_localBranch(repo, at: commit, branch_name)
+                let createbranch_result = repo.create_Branch(repo, at: commit, branch_name)
                 
             case .failure(_):
                 print("error")
