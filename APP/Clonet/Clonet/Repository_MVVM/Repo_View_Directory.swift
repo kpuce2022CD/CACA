@@ -182,7 +182,7 @@ struct Repo_View_Directory: View {
                             }
                         }
                         
-                        // MARK: Request List
+                        // MARK: Request Message List
                         Section(header: Text("Message").font(.largeTitle)) {
                             
                             ForEach(Repo_ViewModel_req.Req_repo_list, id: \.id) { s in
@@ -214,11 +214,12 @@ struct Repo_View_Directory: View {
                                     
                                 }
                                 
-                            }.onAppear(){
-                                Repo_ViewModel_req.fetch(Repo_Name: repo_n)
-                                print("log_repoViewModel_aasdfasdf \(Repo_ViewModel_req.Log_repo_list)")
-                                
                             }
+                        }
+                        .onAppear(){
+                            Repo_ViewModel_req.fetch(Repo_Name: repo_n)
+                            print("log_repoViewModel_aasdfasdf \(Repo_ViewModel_req.Log_repo_list)")
+                            
                         }
                     }
                     .refreshable{
