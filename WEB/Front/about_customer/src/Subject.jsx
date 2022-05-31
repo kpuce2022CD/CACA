@@ -3,6 +3,23 @@ import logo from './images/clonet_logo_white.png';
 import './Theme1.css';
 
 class Subject extends Component {
+    constructor(props) {
+        super(props)
+
+        this.state = {
+            link: ''
+        }
+    }
+
+    componentDidMount() {
+        fetch("http://localhost:8081/link")
+        .then(response => response.text())
+        .then(message => {
+            this.setState({ link: message });
+            console.log('url =>' + this.state.link);
+        });
+    }
+
     render() {
         return (
             <div>
@@ -29,7 +46,7 @@ class Subject extends Component {
                             <ul className="nav">
                                 <li><a href="http://localhost:8001/home_customer" title="">Home</a></li>
                                 <li><a href="http://localhost:8001/about_customer" title="">About</a></li>
-                                <li><a href="http://localhost:8006/project.html" title="">Project</a></li>
+                                <li><a href={this.state.link} title="">Project</a></li>
                                 <li><a href="http://localhost:8001/contact_customer" title="">Contact</a></li>
                                 {/*<li><a href="http://localhost:8003/contact.html" title="">Contact</a></li>*/}
                                 {/* <li><a href="./components.html" title="">Components</a></li> */}

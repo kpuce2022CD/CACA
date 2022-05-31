@@ -8,7 +8,7 @@ import './Theme1.css';
 // import './Theme3.css';
 // import './Theme4.css';
 
-function home() {
+function Home() {
     return (
         <div>
             <Subject />
@@ -33,4 +33,4 @@ function home() {
     ;
 }
 
-export default home;
+export default Home;

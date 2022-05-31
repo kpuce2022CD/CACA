@@ -70,7 +70,6 @@ public class TestController {
 
     @RequestMapping(value = "/auth", method = {RequestMethod.GET, RequestMethod.POST})
     public Object userLogin() {
-
         return session.getAttribute(LOGIN_MEMBER);
     }
 }

@@ -34,22 +34,23 @@ function useIllust_customer() {
 
   const user_id = getQueryVariable("user_id");
   console.log("user_id: "+ user_id);
-  const [link, setLink] = useState("http://localhost:8006/piece?"+"user_id="+user_id+"&piece=" + piece);
-  
+  console.log("pieceList: "+ piece);
+  const [link, setLink] = useState("http://localhost:8006/piece?piece=" + piece+ "&user_id=" + user_id );
   console.log("입력된 url: " + link);
-  fetch("http://localhost:8081/?user_id=" + user_id, {
+
+  fetch("http://localhost:8081/?user_id=" + user_id + "&piece=" + piece, {
         method: "POST",
         headers: new Headers({
             'Accept': 'application/json',
             'Content-Type': 'application/json'
         }),
     })
-        .then(res => {
-            if (!res.ok) {
-                throw Error("could not fetch the data that resource");
-            }
-            return res.text();
-        })
+        // .then(res => {
+        //     if (!res.ok) {
+        //         throw Error("could not fetch the data that resource");
+        //     }
+        //     return res.text();
+        // })
 
        
   // View
