@@ -10,6 +10,7 @@ import Foundation
 //import Result
 import SwiftGit2
 import Clibgit2
+import SwiftUI
 //import libgit2
 
 
@@ -17,6 +18,45 @@ import Clibgit2
 let gitAuthor = Signature.init(name: "Git Writing", email: "gitwriting@example.com")
 
 extension Repository {
+    
+    
+    // MARK: Branch Log List
+    public func branchLog(_ repo: Repository, branchName: String){
+        let result = repo.remoteBranch(named: "origin/\(branchName)")
+        switch result {
+        case .success(let remoteBranches):
+            print("remoteBranches.commit")
+            print(remoteBranches.commit.oid.description)
+            
+            var walk: OpaquePointer? = nil
+            var newWalk = git_revwalk_new(&walk, repo.pointer)
+            print("newWalk", newWalk)
+            
+            var pushHead = git_revwalk_push_head(walk)
+            print("pushHead", pushHead)
+            
+            var pointOut : git_oid = remoteBranches.commit.oid.oid
+
+            while ((git_revwalk_next(&pointOut, walk)) == 0){
+                print("--")
+                // commitLook
+                var commitOp : OpaquePointer? = nil
+                var commitLook = git_commit_lookup(&commitOp, repo.pointer, &pointOut)
+                print("commitLook", commitLook)
+
+                var commit = Commit.init(commitOp!)
+                print("oid", commit.oid)
+                print("author", commit.author)
+                print("committer", commit.committer)
+                print("message", commit.message)
+            }
+
+            break
+        case .failure(_):
+            break
+        }
+    }
+    
     
     //MARK: reset
     public func log_reset(_ repo: Repository, reset_id: String){

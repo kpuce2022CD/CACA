@@ -155,6 +155,7 @@ struct Repo_View_Git: View {
             // MARK: Branch Button
             HStack{
                 Button(action: {
+
                     showingAlert = true
                     branchArr = BranchGitRepo(localRepoLocation: documentURL.appendingPathComponent(repo_n))
                     for i in branchArr.indices{ // origin 빼고 branch 이름만 띄우기
@@ -480,6 +481,9 @@ struct Repo_View_Git: View {
         case let .success(repo):
 //          create Locoal Branch AND CHECKOUT
             var resultClone = repo.checkoutTOLocalBranch(repo, branchName: branch_name)
+            
+            //
+            repo.branchLog(repo, branchName: branchNameObject.currentBranchName)
 
         case let .failure(error):
             print(error)
