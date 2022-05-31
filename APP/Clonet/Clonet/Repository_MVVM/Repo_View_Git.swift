@@ -16,7 +16,7 @@ class LogNumber : ObservableObject {
 }
 
 class BranchName : ObservableObject{
-    @Published var currentBranchName : String = "origin/master"
+    @Published var currentBranchName : String = "master"
 }
 
 struct Repo_View_Git: View {
@@ -157,6 +157,9 @@ struct Repo_View_Git: View {
                 Button(action: {
                     showingAlert = true
                     branchArr = BranchGitRepo(localRepoLocation: documentURL.appendingPathComponent(repo_n))
+                    for i in branchArr.indices{ // origin 빼고 branch 이름만 띄우기
+                        branchArr[i] = branchArr[i].components(separatedBy: "/")[1]
+                    }
                     
                 })
                 {
@@ -177,8 +180,10 @@ struct Repo_View_Git: View {
                 .alert("Branch", isPresented: $showingAlert){
                     ForEach(branchArr, id: \.self){b in
                         Button(b){
+                            // checkout
                             checkout_Branch(localRepoLocation: documentURL.appendingPathComponent(repo_n), branchname: b)
                             
+                            // 현재 branchName 표시
                             branchNameObject.currentBranchName = b
                             
                             
@@ -471,11 +476,8 @@ struct Repo_View_Git: View {
     //MARK: CHECKOUT_FUNC
     func checkout_Branch(localRepoLocation localRepoLocation : URL, branchname branch_name : String){
         let result = Repository.at(localRepoLocation)
-        print("branch_name : ", branch_name)
         switch result {
         case let .success(repo):
-            let branch_commit = repo.checkout_branch(repo, branchName: branch_name)
-
 //          create Locoal Branch AND CHECKOUT
             var resultClone = repo.checkoutTOLocalBranch(repo, branchName: branch_name)
 
@@ -495,6 +497,8 @@ struct Repo_View_Git_Previews: PreviewProvider {
 
 
 struct createBranch_View: View {
+    
+    // 새로운 브랜치 이름
     @State private var new_branch_name: String = ""
     
     var localRepoLocation : String
