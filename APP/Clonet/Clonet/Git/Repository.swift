@@ -148,7 +148,7 @@ extension Repository {
         
         print("new branch: \(newBranch)")
         
-        let result = repo.remoteBranch(named: newBranch)
+        let result = repo.localBranch(named: newBranch)
         switch result {
         case .success(let branches):
             let checkoutRet = checkout(branches, strategy: .Force)
