@@ -14,8 +14,9 @@ final class Login_ViewModel : ObservableObject {
     @Published var logins: Logins = Logins.init()
     
 //    @ObservedObject var userAuth : UserAuth = UserAuth()
-    @ObservedObject var login_Model = Login_Model()
+    @Published var selectionString: String? = nil
     
+    @State private var showLinkTarget = false
     @Published var login_msg = [String]()
     @Published var result: Bool = false
     
@@ -26,9 +27,13 @@ final class Login_ViewModel : ObservableObject {
     
     @Published var paswd: String = ""
     
+    @Published var userID : String = ""
+    @Published var userPW : String = ""
+    
     init(){
         isLogin = false
         showingAlert = false
+//        autoLogin()
     }
     
     func login(id: String, passwd: String) {
@@ -42,10 +47,17 @@ final class Login_ViewModel : ObservableObject {
                     for i in logins.indices{
                         self.logins = self.process(data: logins[i] ?? LoginData.init(userId: "", userPw: "", userName: "", userEmail: "", profilePic: "", about: "", contact: ""))
                     }
-                    
+                    // 로그인성공
                     if(passwd == self.logins.user_pw && self.logins.user_pw != ""){
                         self.isLogin = true
                         self.showingAlert = false
+                        if self.isOn{
+//                            print("Auto Login")  // 자동 로그인 선택 시 로그인 하면서 uid, pwd 저장
+                            UserDefaults.standard.set(id, forKey: "id")
+                            UserDefaults.standard.set(passwd, forKey: "pwd")
+                            print("Auto Login", UserDefaults.standard.string(forKey: "pwd"))
+                        }
+                        
                     } else {
                         self.isLogin = false
                         self.showingAlert = true
@@ -62,5 +74,49 @@ final class Login_ViewModel : ObservableObject {
     
     func process(data: LoginData) -> Logins {
         return Logins(data)
+    }
+    
+    //MARK: 자동 로그인
+    func autoLogin() {
+        let userid = UserDefaults.standard.string(forKey: "id")
+        let pw = UserDefaults.standard.string(forKey: "pwd")
+        print("LOGIN!!!!!!!!", "\(userid!)", "\(pw!)")
+        if (userid != "" && pw != "") {
+            loginAutoNetwork(id: "\(userid!)", passwd:  "\(pw!)")
+            print("AUTO LOGIN!!!!!!!!", "\(userid!)", "\(pw!)")
+        }
+    }
+    
+    func loginAutoNetwork(id: String, passwd: String) {
+        
+        Network.shared.apollo.fetch(query: LoginQuery(userId: id)) { [self] result in // Change the query name to your query name
+            switch result {
+            case .success(let graphQLResult):
+                if let logins = graphQLResult.data?.login{
+                    print("Success! Result: \(logins.indices) \(logins.count)")
+                    print("\(graphQLResult)")
+
+                    for i in logins.indices{
+                        self.logins = self.process(data: logins[i] ?? LoginData.init(userId: "", userPw: "", userName: "", userEmail: "", profilePic: "", about: "", contact: ""))
+                    }
+                    // 로그인성공
+                    if(passwd == self.logins.user_pw && self.logins.user_pw != ""){
+//                        self.isLogin = true
+//                        LoginCheck_View(userID: id)
+                        self.selectionString = "true"
+                        self.isLogin = true
+                        userID = id
+                        print("AUTO LOGIN SUCCESS!!!!!!!!")
+                    } else {
+//                        self.isLogin = false
+                    }
+                } else if let errors = graphQLResult.errors {
+                    print("GraphQL errors \(errors)")
+                }
+                
+            case .failure(let error):
+                print("Failure! Error: \(error)")
+            }
+        }
     }
 }

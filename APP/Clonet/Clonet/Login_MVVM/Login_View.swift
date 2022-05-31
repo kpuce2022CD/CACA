@@ -7,18 +7,16 @@
 
 import SwiftUI
 
+
 struct Login_View: View {
-    @ObservedObject private var viewModel = Login_ViewModel()
-    //    @ObservedObject var userAuth_VM : UserAuth = UserAuth()
-    @State private var selectionString: String? = nil
-    @State var userID : String = ""
-    @State var userPW : String = ""
+    @ObservedObject var viewModel = Login_ViewModel()
+    
     init(){
-        userID = ""
-        userPW = ""
+        viewModel.autoLogin()
     }
     var body: some View {
         NavigationView {
+            
             VStack(alignment: .center) {
                 
                 HStack(alignment: .center){
@@ -33,6 +31,10 @@ struct Login_View: View {
                         .font(.largeTitle)
                         .bold()
                         .padding()
+                    Text(viewModel.selectionString ?? "nil")
+                        .font(.largeTitle)
+                        .bold()
+                        .padding()
                 }
                 Spacer(minLength: 25.0)
                 
@@ -41,13 +43,13 @@ struct Login_View: View {
                     VStack(alignment: .center){
                         HStack(alignment: .center) { // id input
                             Image(systemName: "envelope").padding()
-                            TextField("ID", text: $userID)
+                            TextField("ID", text: $viewModel.userID)
                                 .frame(width: 200)
                                 .padding()
                         }
                         HStack(alignment: .center) { // passwd input
                             Image(systemName: "lock").padding()
-                            TextField("PASSWORD", text: $userPW)
+                            TextField("PASSWORD", text: $viewModel.userPW)
                             //                            SecureField("PASSWORD", text: $userAuth_VM.user_pw)
                                 .frame(width: 200)
                                 .padding()
@@ -58,12 +60,12 @@ struct Login_View: View {
                     // Login Btn
                     ZStack {
                         if(viewModel.isLogin == true){
-                            NavigationLink(destination: LoginCheck_View(userID: userID), tag: "true", selection: $selectionString) { }
+                            NavigationLink(destination: LoginCheck_View(userID: viewModel.userID), tag: "true", selection: $viewModel.selectionString) { }
                                 .buttonStyle(PlainButtonStyle()).frame(width:0).opacity(0)
                         }
                         Button("Login") {
-                            self.selectionString = "true"
-                            viewModel.login(id: userID, passwd: userPW)
+                            viewModel.selectionString = "true"
+                            viewModel.login(id: viewModel.userID, passwd: viewModel.userPW)
                         }
                         .alert(isPresented: $viewModel.showingAlert) {
                             Alert(title: Text("로그인에 실패했습니다"), message: nil,
@@ -75,7 +77,6 @@ struct Login_View: View {
                     .foregroundColor(.white)
                     .frame(width: 250, height: 10)
                     .padding()
-                    //.background(LinearGradient(gradient: Gradient(colors: [.purple, .blue]), startPoint: .top, endPoint: .bottom).edgesIgnoringSafeArea(.all))
                     .background(
                         AngularGradient(gradient: Gradient(colors: [Color.purple, Color.blue]),
                                         center: .topLeading,

@@ -10,22 +10,15 @@ import SocketIO
 import Combine
 
 //로그인 정보 보내기
-final class Login_Model: ObservableObject {
-//    @Published var logins : Logins
-//    
-//    init(){
-//        logins.init()
-//    }
-    
-}
+ 
 typealias LoginData = LoginQuery.Data.Login
 
 
 
 //public struct loginStruct {
-//    
+//
 //    init(){
-//        
+//
 //    }
 //    struct Logins: Decodable {
 //        var user_id : String
