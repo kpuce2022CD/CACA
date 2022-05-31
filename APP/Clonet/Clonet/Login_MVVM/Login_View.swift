@@ -31,10 +31,6 @@ struct Login_View: View {
                         .font(.largeTitle)
                         .bold()
                         .padding()
-                    Text(viewModel.selectionString ?? "nil")
-                        .font(.largeTitle)
-                        .bold()
-                        .padding()
                 }
                 Spacer(minLength: 25.0)
                 

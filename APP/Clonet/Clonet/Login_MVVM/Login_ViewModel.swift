@@ -80,8 +80,8 @@ final class Login_ViewModel : ObservableObject {
     func autoLogin() {
         let userid = UserDefaults.standard.string(forKey: "id")
         let pw = UserDefaults.standard.string(forKey: "pwd")
-        print("LOGIN!!!!!!!!", "\(userid!)", "\(pw!)")
-        if (userid != "" && pw != "") {
+//        print("LOGIN!!!!!!!!", "\(userid!)", "\(pw!)")
+        if (userid != nil && pw != nil) {
             loginAutoNetwork(id: "\(userid!)", passwd:  "\(pw!)")
             print("AUTO LOGIN!!!!!!!!", "\(userid!)", "\(pw!)")
         }
