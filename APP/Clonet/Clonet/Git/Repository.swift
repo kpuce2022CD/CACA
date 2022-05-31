@@ -238,9 +238,8 @@ extension Repository {
                 }
         }
         
-        var branchName = branch.components(separatedBy: "/")
-        var master = "+refs/heads/\(branchName[1]):refs/heads/\(branchName[1])"
-        print("Repository Push ", master)
+
+        var master = "+refs/heads/\(branch):refs/heads/\(branch)"
         
         let strings: UnsafeMutablePointer<UnsafeMutablePointer<CChar>?> = [master].withUnsafeBufferPointer {
             let buffer = UnsafeMutablePointer<UnsafeMutablePointer<CChar>?>.allocate(capacity: $0.count + 1)
