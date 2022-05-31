@@ -15,6 +15,10 @@ class LogNumber : ObservableObject {
     @Published var url2 : String = ""
 }
 
+class BranchName : ObservableObject{
+    @Published var currentBranchName : String = "origin/master"
+}
+
 struct Repo_View_Git: View {
     @ObservedObject var directory = getFileList()
     @StateObject var logNumber : LogNumber = LogNumber()
@@ -47,17 +51,18 @@ struct Repo_View_Git: View {
     @State private var selectionString: String? = nil
     
     // 현재 브랜치 이름
-    @State var currentBranchName = "origin/master"
-    
-    init(repo_n: String, userID: String) {
+    @ObservedObject var branchNameObject : BranchName
+    init(repo_n: String, userID: String, branchName: BranchName) {
         self.repo_n = repo_n
         Repository.initialize_libgit2()
         self.userID = userID
+        self.branchNameObject = branchName
     }
-    
+    ////
     var body: some View {
         
         VStack{
+            
             // MARK: RollBack Button
             Button(action: {
                 presentingToast = true
@@ -173,6 +178,10 @@ struct Repo_View_Git: View {
                     ForEach(branchArr, id: \.self){b in
                         Button(b){
                             checkout_Branch(localRepoLocation: documentURL.appendingPathComponent(repo_n), branchname: b)
+                            
+                            branchNameObject.currentBranchName = b
+                            
+                            
                         }
                     }
                     Button("Cancel", role: .cancel){}
@@ -339,7 +348,7 @@ struct Repo_View_Git: View {
             let latestCommit = repo.commit(message: commit_msg, signature: sig)
             
             //MARK: push
-            let commit_push = repo.push(repo, "ubuntu", "qwer1234", currentBranchName)
+            let commit_push = repo.push(repo, "ubuntu", "qwer1234", branchNameObject.currentBranchName)
             
             
         case let .failure(error):
@@ -465,12 +474,11 @@ struct Repo_View_Git: View {
         print("branch_name : ", branch_name)
         switch result {
         case let .success(repo):
-            let branch_commit = repo.checkout_branch(repo, branchName: branch_name)
-            self.currentBranchName = branch_name
+//            let branch_commit = repo.checkout_branch(repo, branchName: branch_name)
 
-//             branchClone
+//          create Locoal Branch AND CHECKOUT
             var resultClone = repo.checkoutTOLocalBranch(repo, branchName: branch_name)
-            
+
         case let .failure(error):
             print(error)
         }
@@ -480,7 +488,7 @@ struct Repo_View_Git: View {
 
 struct Repo_View_Git_Previews: PreviewProvider {
     static var previews: some View {
-        Repo_View_Git(repo_n: "", userID: "")
+        Repo_View_Git(repo_n: "", userID: "", branchName: BranchName.init())
     }
 }
 

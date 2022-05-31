@@ -13,7 +13,7 @@ struct Repo_View: View {
     var repoName : String = ""
     @State private var presentingToast_back: Bool = false
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
-    
+    @StateObject var branchName = BranchName()
     var backButton : some View {
         Button(action: {
             // MARK: 절대 지우면 안됨 (Back 경고창 띄우기)
@@ -43,13 +43,18 @@ struct Repo_View: View {
     
     var body: some View {
         HStack{
+            
             VStack{
                 Repo_View_Directory(repo_n: repoName, ec2_id: "13.209.116.111", user_id: userID)
             }
             VStack{
+                // MARK: BranchName
+                VStack{
+                    Text("현재 브랜치 \(branchName.currentBranchName)")
+                }
                 Repo_View_Request(repoName: repoName)
                 //                Repo_View_Log(repo_n: repoName)
-                Repo_View_Git(repo_n: repoName, userID: userID)
+                Repo_View_Git(repo_n: repoName, userID: userID, branchName: branchName)
             }
         }
         .navigationBarBackButtonHidden(true)

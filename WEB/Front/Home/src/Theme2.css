@@ -480,6 +480,7 @@ p {
 .contact-form .form-control {
 	color: #000;
 	background-color: transparent;
+	resize:none;
 	border-color: #000;
 	border-width: 0 0 2px 0;
 	border-radius: 0;
@@ -488,11 +489,13 @@ p {
 }
 
 .form-control::-webkit-input-placeholder {
+	resize:none;
 	color: #000;
 	opacity: 0.6;
 }
 
 .form-control {
+	resize:none;
 	padding: 1.5rem 16rem 1.5rem 0.75rem
 }
 

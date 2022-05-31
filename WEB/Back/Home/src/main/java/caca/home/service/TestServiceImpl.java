@@ -24,6 +24,11 @@ public class TestServiceImpl implements TestService {
     }
 
     @Override
+    public List<TestDto> updateContact(String user_id, String contact){
+        return testMapper.updateContact(user_id, contact);
+    }
+
+    @Override
     public List<TestDto> updateAbout(String user_id, String about) {
         return testMapper.updateAbout(user_id, about);
     }

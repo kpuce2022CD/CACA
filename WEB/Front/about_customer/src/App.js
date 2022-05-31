@@ -50,21 +50,6 @@ import { BrowserRouter, Route, Link, Routes } from 'react-router-dom';
 
 function App() {
     const [text, setText] = useState("");
-    const [user_id, setMessage_id] = useState("");
-
-    fetch("http://localhost:8085/?user_id="+user_id, {
-        method: "POST",
-        headers: new Headers({
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-        }),
-    })
-        .then(res => {
-            if (!res.ok) {
-                throw Error("could not fetch the data that resource");
-            }
-            return res.text();
-        })
         
     const onChange = (e) => {
         setText(e.target.value);
