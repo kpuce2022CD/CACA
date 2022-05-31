@@ -82,8 +82,42 @@ extension Repository {
     }
     
     // MARK: CLONE WITH BRANCH
-    public func cloneBranch(_ repo: Repository, branchName: String?){
+    public func checkoutTOLocalBranch(_ repo: Repository, branchName: String) {
 
+        //create the LOCAL branch....
+        let result = repo.remoteBranch(named: branchName)
+        switch result {
+        case .success(let branches):
+            
+            var output: OpaquePointer? = nil
+            var copy = branches.oid.oid
+            var pointerToCommitInLibGit2: OpaquePointer? = nil
+            
+            let success = git_object_lookup(&pointerToCommitInLibGit2, repo.pointer, &copy, GIT_OBJECT_COMMIT)
+            
+            // create
+            let ret = git_branch_create(&output, repo.pointer, branches.name.components(separatedBy: "/")[1], pointerToCommitInLibGit2, 1)
+            
+            // checkout to localBranch
+            let localResult = repo.localBranch(named: branches.name.components(separatedBy: "/")[1])
+            switch localResult{
+            case .success(let localBranches):
+                let checkoutRet = checkout(localBranches, strategy: .Force)
+                break
+            case.failure(_):
+                break
+            }
+        
+            
+
+            break
+        case .failure:
+            print("Failed to get any branches...")
+            break
+        }
+        
+
+        
     }
     
     
@@ -111,6 +145,7 @@ extension Repository {
             print("Failed to get any branches...")
             break
         }
+        
     }
     
     // MARK: CREATE_LOCAL_BRANCH

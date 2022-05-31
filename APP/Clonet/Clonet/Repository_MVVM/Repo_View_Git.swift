@@ -177,6 +177,7 @@ struct Repo_View_Git: View {
                     }
                     Button("Cancel", role: .cancel){}
                 }
+
                 
                 
                 //MARK: Make Branch
@@ -466,6 +467,10 @@ struct Repo_View_Git: View {
         case let .success(repo):
             let branch_commit = repo.checkout_branch(repo, branchName: branch_name)
             self.currentBranchName = branch_name
+
+//             branchClone
+            var resultClone = repo.checkoutTOLocalBranch(repo, branchName: branch_name)
+            
         case let .failure(error):
             print(error)
         }
