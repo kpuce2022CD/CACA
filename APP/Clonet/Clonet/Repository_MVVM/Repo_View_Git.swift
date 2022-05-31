@@ -474,7 +474,7 @@ struct Repo_View_Git: View {
         print("branch_name : ", branch_name)
         switch result {
         case let .success(repo):
-//            let branch_commit = repo.checkout_branch(repo, branchName: branch_name)
+            let branch_commit = repo.checkout_branch(repo, branchName: branch_name)
 
 //          create Locoal Branch AND CHECKOUT
             var resultClone = repo.checkoutTOLocalBranch(repo, branchName: branch_name)

@@ -102,22 +102,36 @@ extension Repository {
             let localResult = repo.localBranch(named: branches.name.components(separatedBy: "/")[1])
             switch localResult{
             case .success(let localBranches):
+                
                 let checkoutRet = checkout(localBranches, strategy: .Force)
+               
+                // upstream
+                var branchN = "\(localBranches.name)"
+                var upstreamName = "origin/\(localBranches.name)"
+                
+                
+                // find upstream branch
+                var branchOut: OpaquePointer? = nil
+                var branchLookup = git_branch_lookup(&branchOut, repo.pointer, branchN.cString(using: .utf8), GIT_BRANCH_LOCAL)
+                print("branchLookup", branchLookup)
+                
+                // set local upstream to upstream
+                var upstreamResult = git_branch_set_upstream(branchOut, upstreamName.cString(using: .utf8))
+                print("upstreamResult", upstreamResult)
+
+                
                 break
+                
+                
             case.failure(_):
                 break
             }
-        
-            
 
             break
         case .failure:
             print("Failed to get any branches...")
             break
         }
-        
-
-        
     }
     
     
@@ -203,11 +217,7 @@ extension Repository {
         let push_result = git_remote_push(remote, &gitstr, &options)
         print(push_result)
         git_remote_free(remote)
-        
-        
-//                    // upstream
-//                    let upstream = git_branch_set_upstream(output, branchName)
-//                    git_branch_set_upstream(output, master)
+
     }
     
     
