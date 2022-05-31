@@ -15,7 +15,7 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@CrossOrigin(origins = "http://localhost:8001")
+@CrossOrigin("*")
 //@RequestMapping("/api")
 public class TestController {
     @Autowired

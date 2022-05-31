@@ -1,9 +1,9 @@
 import './Theme1.css';
 import Subject from './Subject.jsx'
+import {useEffect, useState} from 'react';
 
 function useIllust_customer() {
   // const numbers = ['img-12.jpg', 'img-11.jpg', 'img-10.jpg', 'img-09.jpg', 'img-08.jpg', 'img-07.jpg', 'img-06.jpg', 'img-05.jpg'];
-
   const numbers = getQueryVariable("piece").toString().split(',');
   console.log(numbers);
 
@@ -32,10 +32,30 @@ function useIllust_customer() {
   }
   fetch(`http://localhost:8086/piece?piece=${piece}`, config)
 
+  const user_id = getQueryVariable("user_id");
+  console.log("user_id: "+ user_id);
+  const [link, setLink] = useState("http://localhost:8006/piece?"+"user_id="+user_id+"&piece=" + piece);
+  
+  console.log("입력된 url: " + link);
+  fetch("http://localhost:8081/?user_id=" + user_id, {
+        method: "POST",
+        headers: new Headers({
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        }),
+    })
+        .then(res => {
+            if (!res.ok) {
+                throw Error("could not fetch the data that resource");
+            }
+            return res.text();
+        })
+
+       
   // View
     return (
         <div>
-      <Subject />
+      <Subject link={link}/>
       <main class="" id="main-collapse">
 
 

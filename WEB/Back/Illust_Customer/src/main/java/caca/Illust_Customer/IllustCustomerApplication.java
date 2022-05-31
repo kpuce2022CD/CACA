@@ -19,7 +19,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 @RequiredArgsConstructor
 @CrossOrigin("*")
 public class IllustCustomerApplication {
-
+	private static final String userID ="";
+	private static final String pieceList ="";
 	private final KafkaProducer kafkaProducer;
 
 	@GetMapping("/illust_customer1")
