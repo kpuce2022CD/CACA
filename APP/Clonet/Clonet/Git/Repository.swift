@@ -81,9 +81,57 @@ extension Repository {
         git_repository_state_cleanup(repo.pointer)
     }
     
-    // MARK: CLONE WITH BRANCH
-    public func cloneBranch(_ repo: Repository, branchName: String?){
+    // MARK: Checkout Local&Remote WITH BRANCH
+    public func checkoutTOLocalBranch(_ repo: Repository, branchName: String) {
 
+        //create the LOCAL branch....
+        let result = repo.remoteBranch(named: "origin/\(branchName)")
+        switch result {
+        case .success(let remoteBranches):
+            
+            var output: OpaquePointer? = nil
+            var copy = remoteBranches.oid.oid
+            var pointerToCommitInLibGit2: OpaquePointer? = nil
+            
+            let success = git_object_lookup(&pointerToCommitInLibGit2, repo.pointer, &copy, GIT_OBJECT_COMMIT)
+            
+            // create
+            let ret = git_branch_create(&output, repo.pointer, branchName, pointerToCommitInLibGit2, 1)
+            
+            // checkout to localBranch
+            let localResult = repo.localBranch(named: branchName)
+            switch localResult{
+            case .success(let localBranches):
+                
+                let checkoutRet = checkout(localBranches, strategy: .Force)
+               
+                // upstream
+                var branchN = "\(localBranches.name)"
+                var upstreamName = "origin/\(localBranches.name)"
+                
+                
+                // find upstream branch
+                var branchOut: OpaquePointer? = nil
+                var branchLookup = git_branch_lookup(&branchOut, repo.pointer, branchN.cString(using: .utf8), GIT_BRANCH_LOCAL)
+                print("branchLookup", branchLookup)
+                
+                // set local upstream to upstream
+                var upstreamResult = git_branch_set_upstream(branchOut, upstreamName.cString(using: .utf8))
+                print("upstreamResult", upstreamResult)
+
+                
+                break
+                
+                
+            case.failure(_):
+                break
+            }
+
+            break
+        case .failure:
+            print("Failed to get any branches...")
+            break
+        }
     }
     
     
@@ -100,7 +148,7 @@ extension Repository {
         
         print("new branch: \(newBranch)")
         
-        let result = repo.remoteBranch(named: newBranch)
+        let result = repo.localBranch(named: newBranch)
         switch result {
         case .success(let branches):
             let checkoutRet = checkout(branches, strategy: .Force)
@@ -111,6 +159,7 @@ extension Repository {
             print("Failed to get any branches...")
             break
         }
+        
     }
     
     // MARK: CREATE_LOCAL_BRANCH
@@ -122,8 +171,7 @@ extension Repository {
         if(result_git_remote_lookup < 0){
             // Error
         }
-        
-        
+
         //create the branch....
         
         var output: OpaquePointer? = nil
@@ -142,8 +190,6 @@ extension Repository {
         // push : create RemoteBranch
         let credentials: Credentials = Credentials.plaintext(username: "ubuntu", password: "qwer1234")
         var options = pushOptions(credentials: credentials)
-
-
         func localBranches() -> Result<[Branch], NSError> {
             return references(withPrefix: "refs/heads/")
                 .map { (refs: [ReferenceType]) in
@@ -152,7 +198,6 @@ extension Repository {
         }
 
         var master = "refs/heads/" + branchName!
-
         let strings: UnsafeMutablePointer<UnsafeMutablePointer<CChar>?> = [master].withUnsafeBufferPointer {
             let buffer = UnsafeMutablePointer<UnsafeMutablePointer<CChar>?>.allocate(capacity: $0.count + 1)
             let val = $0.map
@@ -169,10 +214,9 @@ extension Repository {
         print(push_result)
         git_remote_free(remote)
         
-        
-//                    // upstream
-//                    let upstream = git_branch_set_upstream(output, branchName)
-//                    git_branch_set_upstream(output, master)
+        // Checkout Local&Remote WITH BRANCH
+        checkoutTOLocalBranch(repo, branchName: branchName!)
+
     }
     
     
@@ -194,9 +238,8 @@ extension Repository {
                 }
         }
         
-        var branchName = branch.components(separatedBy: "/")
-        var master = "+refs/heads/\(branchName[1]):refs/heads/\(branchName[1])"
-        print("Repository Push ", master)
+
+        var master = "+refs/heads/\(branch):refs/heads/\(branch)"
         
         let strings: UnsafeMutablePointer<UnsafeMutablePointer<CChar>?> = [master].withUnsafeBufferPointer {
             let buffer = UnsafeMutablePointer<UnsafeMutablePointer<CChar>?>.allocate(capacity: $0.count + 1)
