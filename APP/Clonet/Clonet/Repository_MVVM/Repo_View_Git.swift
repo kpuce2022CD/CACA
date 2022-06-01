@@ -133,6 +133,8 @@ struct Repo_View_Git: View {
                                     rollbackGit(localRepoLocation: documentURL.appendingPathComponent(repo_n), name: userID, email: userEmail, commit_msg: commit_msg, reset_id: Log_repo_list.Log_repo_list[log_number1].commitId, branchName: branchNameObject.currentBranchName)
                                     // 초기화
                                     log_number1 = 0
+                                    Log_repo_list.getBranchLog(repo_n: self.repo_n, currentBranchName: self.branchNameObject.currentBranchName)
+                                    branchNameObject.currentBranchName = branchNameObject.currentBranchName
                                 } label: {
                                     Text("OK")
                                 }
