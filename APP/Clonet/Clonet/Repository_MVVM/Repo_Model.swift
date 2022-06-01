@@ -52,6 +52,13 @@ class Log_repo: ObservableObject {
         self.commitId = launches?.commitId ?? ""
         self.userId = launches?.userId ?? ""
     }
+    
+    init(commitMsg: String, date: String, commitId: String, userId: String){
+        self.commitMsg = commitMsg
+        self.date = date
+        self.commitId = commitId
+        self.userId = userId
+    }
 
 }
 
