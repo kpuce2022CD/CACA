@@ -44,13 +44,8 @@ extension Repository {
                 // commitLook
                 var commitOp : OpaquePointer? = nil
                 var commitLook = git_commit_lookup(&commitOp, repo.pointer, &pointOut)
-                print("commitLook", commitLook)
 
                 var commit = Commit.init(commitOp!)
-                print("oid", commit.oid)
-                print("author", commit.author)
-                print("committer", commit.committer)
-                print("message", commit.message)
                 
                 var logRepo = Log_repo.init(commitMsg: commit.message, date: String(commit.author.time.description.dropLast(5)), commitId: commit.oid.description, userId: commit.author.name)
                 Log_repo_list.append(logRepo)

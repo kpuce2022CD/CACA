@@ -20,6 +20,9 @@ class BranchName : ObservableObject{
     init(){
         currentBranchName = "master"
     }
+    func newBranch(branchName: String){
+        currentBranchName = branchName
+    }
 }
 
 class LogList : ObservableObject {
@@ -72,6 +75,8 @@ struct Repo_View_Git: View {
     @State private var presentingToast_pull: Bool = false
     @State private var presentingToast_commit: Bool = false
     
+    
+    
     // Diff
     @State var log_number1 = 0 // diff & reset
     @State var log_number2 = 0 // diff
@@ -82,6 +87,12 @@ struct Repo_View_Git: View {
     
     // 현재 브랜치 이름
     @ObservedObject var branchNameObject : BranchName
+    
+    // 브랜치 만들기
+    @State private var new_branch_name: String = ""
+    @State var name : String = ""
+    @State var email : String = ""
+    
     // log
     @ObservedObject var Log_repo_list : LogList
     
@@ -195,12 +206,12 @@ struct Repo_View_Git: View {
                     .fixedSize(horizontal: false, vertical: true)
                 }.frame(width: 300)
             }
-
+            
             
             // MARK: Branch Button
             HStack{
                 Button(action: {
-
+                    
                     showingAlert = true
                     branchArr = BranchGitRepo(localRepoLocation: documentURL.appendingPathComponent(repo_n))
                     for i in branchArr.indices{ // origin 빼고 branch 이름만 띄우기
@@ -237,17 +248,18 @@ struct Repo_View_Git: View {
                     }
                     Button("Cancel", role: .cancel){}
                 }
-
                 
                 
                 //MARK: Make Branch
                 Button(action: {
-                    let alertHC = UIHostingController(rootView: createBranch_View(localRepoLocation: repo_n, name: userID, email: userEmail))
+                    //                    let alertHC = UIHostingController(rootView: createBranch_View(localRepoLocation: repo_n, name: userID, email: userEmail, repo_n: repo_n))
+                    //
+                    //                    alertHC.preferredContentSize = CGSize(width: 300, height: 200)
+                    //                    alertHC.modalPresentationStyle = UIModalPresentationStyle.formSheet
+                    //
+                    //                    UIApplication.shared.windows[0].rootViewController?.present(alertHC, animated: true)
                     
-                    alertHC.preferredContentSize = CGSize(width: 300, height: 200)
-                    alertHC.modalPresentationStyle = UIModalPresentationStyle.formSheet
-                    
-                    UIApplication.shared.windows[0].rootViewController?.present(alertHC, animated: true)
+                    showingAlert_makeBranch = true
                     
                 })
                 {
@@ -265,6 +277,34 @@ struct Repo_View_Git: View {
                 }
                 .background(Color.black)
                 .cornerRadius(15)
+                .toast(isPresented: $showingAlert_makeBranch){ // , dismissAfter: 2.0
+                    ToastView {
+                        Text("Enter Input Branch Name").font(.headline).padding()
+                        TextField("Enter Input Branch Name.", text: $new_branch_name).textFieldStyle(RoundedBorderTextFieldStyle()).padding()
+                        Divider()
+                        HStack{
+                            Button(action: {
+                                create_Branch(localRepoLocation: documentURL.appendingPathComponent(repo_n), branch_name: new_branch_name, name: userID, email: userEmail)
+                                
+//                                checkout_Branch(localRepoLocation: documentURL.appendingPathComponent(repo_n), branchname: new_branch_name)
+                                branchNameObject.currentBranchName = self.new_branch_name
+                                Log_repo_list.getBranchLog(repo_n: repo_n, currentBranchName: new_branch_name)
+                                
+                                showingAlert_makeBranch = false
+                            }) {
+                                
+                                Text("Done")
+                            }
+                            .frame(minWidth: 100, maxWidth: .infinity, minHeight: 40, maxHeight: 40, alignment: .center)
+                            Divider()
+                            Button("Cancel", role: .cancel){
+                                showingAlert_makeBranch = false
+                            }
+                            .frame(minWidth: 100, maxWidth: .infinity, minHeight: 40, maxHeight: 40, alignment: .center)
+                        }
+                        .fixedSize(horizontal: false, vertical: true)
+                    }.frame(width: 300)
+                }
             }
             
             
@@ -318,7 +358,7 @@ struct Repo_View_Git: View {
                             Section{
                                 ZStack {
                                     NavigationLink(destination: Repo_View_Diff(ImgOpacity: 0.5, logNumber: logNumber)) { }
-                                    .buttonStyle(PlainButtonStyle()).frame(width:0).opacity(0)
+                                        .buttonStyle(PlainButtonStyle()).frame(width:0).opacity(0)
                                     
                                     Button {
                                         self.selectionString = "true"
@@ -352,7 +392,7 @@ struct Repo_View_Git: View {
             .onAppear(){
                 // reLoad branch Log
                 Log_repo_list.getBranchLog(repo_n: self.repo_n, currentBranchName: self.branchNameObject.currentBranchName)
-
+                
                 // Directory
                 FileList.first(repo_n: repo_n)
                 FileList.location(repoName: repo_n)
@@ -406,18 +446,18 @@ struct Repo_View_Git: View {
         }
     }
     
-//    //MARK: PUSH_FORCE
-//    public func push_f_GitRepo(localRepoLocation localRepoLocation : URL){
-//        let result = Repository.at(localRepoLocation)
-//        switch result {
-//        case let .success(repo):
-//            //MARK: push
-//            let commit_push = repo.push_force(repo, "ubuntu", "qwer1234", nil)
-//
-//        case let .failure(error):
-//            print("\(error)")
-//        }
-//    }
+    //    //MARK: PUSH_FORCE
+    //    public func push_f_GitRepo(localRepoLocation localRepoLocation : URL){
+    //        let result = Repository.at(localRepoLocation)
+    //        switch result {
+    //        case let .success(repo):
+    //            //MARK: push
+    //            let commit_push = repo.push_force(repo, "ubuntu", "qwer1234", nil)
+    //
+    //        case let .failure(error):
+    //            print("\(error)")
+    //        }
+    //    }
     
     //MARK: CLONE_FUNC
     func cloneGitRepo(remoteRepoLocation remoteRepoLocation : String, localRepoLocation localRepoLocation : URL) {
@@ -523,77 +563,20 @@ struct Repo_View_Git: View {
         let result = Repository.at(localRepoLocation)
         switch result {
         case let .success(repo):
-//          create Locoal Branch AND CHECKOUT
+            //          create Locoal Branch AND CHECKOUT
             var resultClone = repo.checkoutTOLocalBranch(repo, branchName: branch_name)
             
             //
             repo.branchLog(repo, branchNameObject.currentBranchName)
-
+            
         case let .failure(error):
             print(error)
         }
     }
     
-}
-
-struct Repo_View_Git_Previews: PreviewProvider {
-    static var previews: some View {
-        Repo_View_Git(repo_n: "", userID: "", branchName: BranchName.init())
-    }
-}
-
-
-
-struct createBranch_View: View {
-    
-    // 새로운 브랜치 이름
-    @State private var new_branch_name: String = ""
-    
-    var localRepoLocation : String
-    var name : String
-    var email : String
-    
-    var body: some View {
-        
-        VStack {
-            Text("Enter Input Branch Name").font(.headline).padding()
-            
-            TextField("Enter Input Branch Name.", text: $new_branch_name).textFieldStyle(RoundedBorderTextFieldStyle()).padding()
-            
-            
-            Divider()
-            HStack {
-                Spacer()
-                Button(action: {
-                    create_Branch(localRepoLocation: documentURL.appendingPathComponent(localRepoLocation), branch_name: new_branch_name, name: name, email: email)
-                
-                    
-                    UIApplication.shared.windows[0].rootViewController?.dismiss(animated: true, completion: {})
-                }) {
-                    
-                    Text("Done")
-                }
-                Spacer()
-                
-                Divider()
-                
-                Spacer()
-                Button(action: {
-                    UIApplication.shared.windows[0].rootViewController?.dismiss(animated: true, completion: {})
-                }) {
-                    Text("Cancel")
-                }
-                Spacer()
-            }.padding(0)
-            
-            
-        }.background(Color(white: 0.9))
-    }
-    
-    
     //MARK: Make Branch FUNC
     func create_Branch(localRepoLocation localRepoLocation : URL, branch_name branch_name : String, name name: String, email email: String){
-        
+
         let result = Repository.at(localRepoLocation)
         switch result {
         case let .success(repo):
@@ -602,7 +585,7 @@ struct createBranch_View: View {
             switch branch_commit{
             case let .success(commit):
                 let createbranch_result = repo.create_Branch(repo, at: commit, branch_name)
-                
+
             case .failure(_):
                 print("error")
             }
@@ -611,3 +594,10 @@ struct createBranch_View: View {
         }
     }
 }
+
+struct Repo_View_Git_Previews: PreviewProvider {
+    static var previews: some View {
+        Repo_View_Git(repo_n: "", userID: "", branchName: BranchName.init())
+    }
+}
+
