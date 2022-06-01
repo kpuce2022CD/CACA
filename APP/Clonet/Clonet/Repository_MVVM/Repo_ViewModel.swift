@@ -195,9 +195,10 @@ struct AddUserAlert: View {
         VStack {
             VStack {
                 Text("사용자 추가하기").font(.headline).padding()
-                
-                TextField("초대 메시지를 보낼 이메일을 입력해주세요.", text: $input_userEmail).textFieldStyle(RoundedBorderTextFieldStyle()).padding()
-                TextField("추가할 사용자의 아이디를 입력해주세요", text: $input_userId).textFieldStyle(RoundedBorderTextFieldStyle()).padding()
+                Text("Email")
+                TextField("초대 메시지를 보낼 이메일을 입력해주세요.", text: $input_userEmail).textFieldStyle(RoundedBorderTextFieldStyle())
+                Text("ID")
+                TextField("추가할 사용자의 아이디를 입력해주세요", text: $input_userId).textFieldStyle(RoundedBorderTextFieldStyle())
                 Divider()
                 
                 
