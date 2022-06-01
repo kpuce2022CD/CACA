@@ -35,6 +35,10 @@
 		3F772E0A279C70BC0047F693 /* SwiftGit2 in Frameworks */ = {isa = PBXBuildFile; productRef = 3F772E09279C70BC0047F693 /* SwiftGit2 */; };
 		3F772E0C279C71790047F693 /* Credentials.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F772E0B279C71790047F693 /* Credentials.swift */; };
 		3FD176BB278D83510025CCD2 /* JsonTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD176BA278D83510025CCD2 /* JsonTest.swift */; };
+		3FDC202128479E190034B273 /* LoginCheckTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FDC202028479E190034B273 /* LoginCheckTest.swift */; };
+		3FDC202328479E190034B273 /* LoginCheckTestLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FDC202228479E190034B273 /* LoginCheckTestLaunchTests.swift */; };
+		3FDC20302847A0990034B273 /* LoginTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FDC202F2847A0990034B273 /* LoginTest.swift */; };
+		3FDC20322847A0990034B273 /* LoginTestLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FDC20312847A0990034B273 /* LoginTestLaunchTests.swift */; };
 		3FE633B5278DD9AF00143666 /* PageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE633B4278DD9AF00143666 /* PageViewController.swift */; };
 		B50BD823278C781700A7E3E0 /* GitTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50BD822278C781700A7E3E0 /* GitTest.swift */; };
 		B540D420278C603900479A63 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = B540D41F278C603900479A63 /* libz.tbd */; };
@@ -47,12 +51,25 @@
 		DA97B6A9278BE05D006C473E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA97B6A8278BE05D006C473E /* ContentView.swift */; };
 		DA97B6AB278BE05E006C473E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DA97B6AA278BE05E006C473E /* Assets.xcassets */; };
 		DA97B6AE278BE05E006C473E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DA97B6AD278BE05E006C473E /* Preview Assets.xcassets */; };
-		DA989E1227B96BFD00BF5FF0 /* ClonetTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA989E1127B96BFD00BF5FF0 /* ClonetTests.swift */; };
 		DACAA65B278C7BFB007F3918 /* SocketIO in Frameworks */ = {isa = PBXBuildFile; productRef = DACAA65A278C7BFB007F3918 /* SocketIO */; };
 		DACAA65E278C7E5D007F3918 /* SocketIO.swift in Sources */ = {isa = PBXBuildFile; fileRef = DACAA65D278C7E5D007F3918 /* SocketIO.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		3FDC202428479E190034B273 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DA97B69B278BE05D006C473E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = DA97B6A2278BE05D006C473E;
+			remoteInfo = Clonet;
+		};
+		3FDC20332847A0990034B273 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DA97B69B278BE05D006C473E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = DA97B6A2278BE05D006C473E;
+			remoteInfo = Clonet;
+		};
 		DA989E1327B96BFD00BF5FF0 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = DA97B69B278BE05D006C473E /* Project object */;
@@ -88,6 +105,12 @@
 		3F772E07279C6E210047F693 /* SwiftGit2 */ = {isa = PBXFileReference; lastKnownFileType = folder; name = SwiftGit2; path = Carthage/Checkouts/SwiftGit2; sourceTree = "<group>"; };
 		3F772E0B279C71790047F693 /* Credentials.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Credentials.swift; sourceTree = "<group>"; };
 		3FD176BA278D83510025CCD2 /* JsonTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JsonTest.swift; sourceTree = "<group>"; };
+		3FDC201E28479E190034B273 /* LoginCheckTest.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LoginCheckTest.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		3FDC202028479E190034B273 /* LoginCheckTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginCheckTest.swift; sourceTree = "<group>"; };
+		3FDC202228479E190034B273 /* LoginCheckTestLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginCheckTestLaunchTests.swift; sourceTree = "<group>"; };
+		3FDC202D2847A0990034B273 /* LoginTest.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LoginTest.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		3FDC202F2847A0990034B273 /* LoginTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginTest.swift; sourceTree = "<group>"; };
+		3FDC20312847A0990034B273 /* LoginTestLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginTestLaunchTests.swift; sourceTree = "<group>"; };
 		3FE633B4278DD9AF00143666 /* PageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageViewController.swift; sourceTree = "<group>"; };
 		B50BD822278C781700A7E3E0 /* GitTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitTest.swift; sourceTree = "<group>"; };
 		B540D41F278C603900479A63 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
@@ -100,11 +123,24 @@
 		DA97B6AA278BE05E006C473E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DA97B6AD278BE05E006C473E /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		DA989E0F27B96BFC00BF5FF0 /* ClonetTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ClonetTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		DA989E1127B96BFD00BF5FF0 /* ClonetTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClonetTests.swift; sourceTree = "<group>"; };
 		DACAA65D278C7E5D007F3918 /* SocketIO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocketIO.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		3FDC201B28479E190034B273 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3FDC202A2847A0990034B273 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		DA97B6A0278BE05D006C473E /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -197,6 +233,24 @@
 			path = Test;
 			sourceTree = "<group>";
 		};
+		3FDC201F28479E190034B273 /* LoginCheckTest */ = {
+			isa = PBXGroup;
+			children = (
+				3FDC202028479E190034B273 /* LoginCheckTest.swift */,
+				3FDC202228479E190034B273 /* LoginCheckTestLaunchTests.swift */,
+			);
+			path = LoginCheckTest;
+			sourceTree = "<group>";
+		};
+		3FDC202E2847A0990034B273 /* LoginTest */ = {
+			isa = PBXGroup;
+			children = (
+				3FDC202F2847A0990034B273 /* LoginTest.swift */,
+				3FDC20312847A0990034B273 /* LoginTestLaunchTests.swift */,
+			);
+			path = LoginTest;
+			sourceTree = "<group>";
+		};
 		3FE633BC278EED9F00143666 /* Git */ = {
 			isa = PBXGroup;
 			children = (
@@ -230,7 +284,8 @@
 			children = (
 				B593818E278C5E4A00C5B28F /* Packages */,
 				DA97B6A5278BE05D006C473E /* Clonet */,
-				DA989E1027B96BFC00BF5FF0 /* ClonetTests */,
+				3FDC201F28479E190034B273 /* LoginCheckTest */,
+				3FDC202E2847A0990034B273 /* LoginTest */,
 				DA97B6A4278BE05D006C473E /* Products */,
 				B540D41C278C602B00479A63 /* Frameworks */,
 			);
@@ -241,6 +296,8 @@
 			children = (
 				DA97B6A3278BE05D006C473E /* Clonet.app */,
 				DA989E0F27B96BFC00BF5FF0 /* ClonetTests.xctest */,
+				3FDC201E28479E190034B273 /* LoginCheckTest.xctest */,
+				3FDC202D2847A0990034B273 /* LoginTest.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -273,17 +330,45 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
-		DA989E1027B96BFC00BF5FF0 /* ClonetTests */ = {
-			isa = PBXGroup;
-			children = (
-				DA989E1127B96BFD00BF5FF0 /* ClonetTests.swift */,
-			);
-			path = ClonetTests;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		3FDC201D28479E190034B273 /* LoginCheckTest */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3FDC202828479E190034B273 /* Build configuration list for PBXNativeTarget "LoginCheckTest" */;
+			buildPhases = (
+				3FDC201A28479E190034B273 /* Sources */,
+				3FDC201B28479E190034B273 /* Frameworks */,
+				3FDC201C28479E190034B273 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				3FDC202528479E190034B273 /* PBXTargetDependency */,
+			);
+			name = LoginCheckTest;
+			productName = LoginCheckTest;
+			productReference = 3FDC201E28479E190034B273 /* LoginCheckTest.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+		3FDC202C2847A0990034B273 /* LoginTest */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3FDC20352847A0990034B273 /* Build configuration list for PBXNativeTarget "LoginTest" */;
+			buildPhases = (
+				3FDC20292847A0990034B273 /* Sources */,
+				3FDC202A2847A0990034B273 /* Frameworks */,
+				3FDC202B2847A0990034B273 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				3FDC20342847A0990034B273 /* PBXTargetDependency */,
+			);
+			name = LoginTest;
+			productName = LoginTest;
+			productReference = 3FDC202D2847A0990034B273 /* LoginTest.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 		DA97B6A2278BE05D006C473E /* Clonet */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = DA97B6B1278BE05E006C473E /* Build configuration list for PBXNativeTarget "Clonet" */;
@@ -340,6 +425,14 @@
 				LastSwiftUpdateCheck = 1320;
 				LastUpgradeCheck = 1320;
 				TargetAttributes = {
+					3FDC201D28479E190034B273 = {
+						CreatedOnToolsVersion = 13.2.1;
+						TestTargetID = DA97B6A2278BE05D006C473E;
+					};
+					3FDC202C2847A0990034B273 = {
+						CreatedOnToolsVersion = 13.2.1;
+						TestTargetID = DA97B6A2278BE05D006C473E;
+					};
 					DA97B6A2278BE05D006C473E = {
 						CreatedOnToolsVersion = 13.2.1;
 					};
@@ -375,11 +468,27 @@
 			targets = (
 				DA97B6A2278BE05D006C473E /* Clonet */,
 				DA989E0E27B96BFC00BF5FF0 /* ClonetTests */,
+				3FDC201D28479E190034B273 /* LoginCheckTest */,
+				3FDC202C2847A0990034B273 /* LoginTest */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		3FDC201C28479E190034B273 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3FDC202B2847A0990034B273 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		DA97B6A1278BE05D006C473E /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -422,6 +531,24 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		3FDC201A28479E190034B273 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3FDC202128479E190034B273 /* LoginCheckTest.swift in Sources */,
+				3FDC202328479E190034B273 /* LoginCheckTestLaunchTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3FDC20292847A0990034B273 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3FDC20322847A0990034B273 /* LoginTestLaunchTests.swift in Sources */,
+				3FDC20302847A0990034B273 /* LoginTest.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		DA97B69F278BE05D006C473E /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -461,13 +588,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DA989E1227B96BFD00BF5FF0 /* ClonetTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		3FDC202528479E190034B273 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = DA97B6A2278BE05D006C473E /* Clonet */;
+			targetProxy = 3FDC202428479E190034B273 /* PBXContainerItemProxy */;
+		};
+		3FDC20342847A0990034B273 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = DA97B6A2278BE05D006C473E /* Clonet */;
+			targetProxy = 3FDC20332847A0990034B273 /* PBXContainerItemProxy */;
+		};
 		DA989E1427B96BFD00BF5FF0 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = DA97B6A2278BE05D006C473E /* Clonet */;
@@ -476,6 +612,74 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		3FDC202628479E190034B273 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 9RLMLKY389;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = caca.filil.branchios.LoginCheckTest;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Clonet;
+			};
+			name = Debug;
+		};
+		3FDC202728479E190034B273 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 9RLMLKY389;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = caca.filil.branchios.LoginCheckTest;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Clonet;
+			};
+			name = Release;
+		};
+		3FDC20362847A0990034B273 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 9RLMLKY389;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = caca.filil.branchios.LoginTest;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Clonet;
+			};
+			name = Debug;
+		};
+		3FDC20372847A0990034B273 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 9RLMLKY389;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = caca.filil.branchios.LoginTest;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Clonet;
+			};
+			name = Release;
+		};
 		DA97B6AF278BE05E006C473E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -701,6 +905,24 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		3FDC202828479E190034B273 /* Build configuration list for PBXNativeTarget "LoginCheckTest" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3FDC202628479E190034B273 /* Debug */,
+				3FDC202728479E190034B273 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3FDC20352847A0990034B273 /* Build configuration list for PBXNativeTarget "LoginTest" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3FDC20362847A0990034B273 /* Debug */,
+				3FDC20372847A0990034B273 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		DA97B69E278BE05D006C473E /* Build configuration list for PBXProject "Clonet" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

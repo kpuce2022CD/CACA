@@ -84,8 +84,6 @@ final class LoginCheck_ViewModel: ObservableObject {
     
     init(){
         fetch(user_id: user_id)
-//        first(user_id: user_id)
-//        create_repo(repoName: repoName, user_id: user_id)
     }
     
     deinit {
@@ -104,6 +102,7 @@ final class LoginCheck_ViewModel: ObservableObject {
         
     }
     
+    // MARK: CREATE REPO
     func create_repo(repoName: String, user_id: String){
         if(repoName != ""){
             Network.shared.apollo.perform(mutation: CreateRepoMutation(repo_name: repoName, repo_ec2_ip: repoIP, user_id: user_id)){ result in
@@ -119,6 +118,7 @@ final class LoginCheck_ViewModel: ObservableObject {
         }
     }
     
+    // MARK: GET REPO LIST
     func fetch(user_id: String){
         Network.shared.apollo.fetch(query: RepoListQuery(user_id: user_id), cachePolicy: CachePolicy.fetchIgnoringCacheData){ result in
             switch result {
