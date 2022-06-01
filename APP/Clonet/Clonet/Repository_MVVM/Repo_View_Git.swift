@@ -52,6 +52,8 @@ struct Repo_View_Git: View {
     
     // 현재 브랜치 이름
     @ObservedObject var branchNameObject : BranchName
+    // log
+    @State var Log_repo_list : Array<Log_repo> = []
     
     // init
     init(repo_n: String, userID: String, branchName: BranchName) {
@@ -59,6 +61,7 @@ struct Repo_View_Git: View {
         Repository.initialize_libgit2()
         self.userID = userID
         self.branchNameObject = branchName
+        self.getBranchLog()
     }
     ////
     var body: some View {
@@ -250,13 +253,16 @@ struct Repo_View_Git: View {
                         Form {
                             Section {
                                 Picker("Choose First Diff Commit", selection: $log_number1) {
-                                    ForEach(log_repoViewModel_a.Log_repo_list.indices) {
-                                        Text("\(log_repoViewModel_a.Log_repo_list[$0].userId) : \(log_repoViewModel_a.Log_repo_list[$0].commitMsg)")
+//                                    ForEach(Log_repo_list, id: \.id){ index in
+//                                        Text(index.userId + " : " + index.commitMsg)
+//                                    }
+                                    ForEach(Log_repo_list.indices) {
+                                        Text("\(Log_repo_list[$0].userId) : \(Log_repo_list[$0].commitMsg)")
                                     }
                                 }
                                 Picker("Choose Second Diff Commit", selection: $log_number2) {
-                                    ForEach(log_repoViewModel_a.Log_repo_list.indices) {
-                                        Text("\(log_repoViewModel_a.Log_repo_list[$0].userId) : \(log_repoViewModel_a.Log_repo_list[$0].commitMsg)")
+                                    ForEach(Log_repo_list.indices) {
+                                        Text("\(Log_repo_list[$0].userId) : \(Log_repo_list[$0].commitMsg)")
                                     }
                                 }
                                 Picker("Choose File", selection: $file_number) {
@@ -266,7 +272,11 @@ struct Repo_View_Git: View {
                                         }
                                     }
                                 }
+                            }.onAppear(){
+                                // reLoad branch Log
+                                self.getBranchLog()
                             }
+                            
                             
                             Section{
                                 ZStack {
@@ -300,20 +310,12 @@ struct Repo_View_Git: View {
                 }
             }
             .onAppear(){
-                log_repoViewModel_a.repo_n = self.repo_n
-                log_repoViewModel_a.appear()
-                print("log_repoViewModel_a \(log_repoViewModel_a.Log_repo_list)")
+                // reLoad branch Log
+                self.getBranchLog()
                 
                 // Directory
                 FileList.first(repo_n: repo_n)
                 FileList.location(repoName: repo_n)
-                
-                
-                // Timer to reload log
-                var timer: Timer? = Timer.scheduledTimer(withTimeInterval: 30, repeats: true, block: { _ in
-                    log_repoViewModel_a.Log_repo_list.removeAll()
-                    log_repoViewModel_a.fetch(Repo_Name: repo_n)
-                })
             }
             .padding()
         }
@@ -489,6 +491,23 @@ struct Repo_View_Git: View {
 
         case let .failure(error):
             print(error)
+        }
+    }
+    
+    // MARK: get Branch Log List
+    func getBranchLog(){
+        let localRepoLocation = documentURL.appendingPathComponent(repo_n)
+        let result = Repository.at(localRepoLocation)
+        switch result {
+        case let .success(repo):
+            Log_repo_list.removeAll()
+            
+            Log_repo_list = repo.branchLog(repo, branchNameObject.currentBranchName).map({
+                Log_repo.init(log: $0 as! Log_repo)
+            })
+            break
+        case .failure(_):
+            break
         }
     }
     
