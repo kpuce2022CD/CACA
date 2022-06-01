@@ -251,18 +251,24 @@ struct Repo_View_Directory: View {
                             .foregroundColor(Color.black)
                             .lineSpacing(5) //줄 간격
                             .frame(width: 500, height: 500)
-                            .border(Color.yellow, width: 1)
+                            .border(Color.black, width: 1)
                             .onAppear(perform: {print("dataText: ", dataList.text)})
-                        Button("Save", action: {
+                        Button(action: {
                             dataList.readMEsave(repoName: repo_n, text: dataList.text, fileName: fileNameImg)
                             self.saveCheck = dataList.saveCheck
                             print("self.saveCheck \(saveCheck) : Repo_View")
-                        })
+                        }){
+                            Text("Save")
+                                .frame(width: 100 , height: 50, alignment: .center)
+                        }
                         .toast(isPresented: $saveCheck, dismissAfter: 0.5) {
                             print("SAVE SUCCESS")
                         } content: {
                             ToastView("SAVE SUCCESS")
                         }
+                        .background(Color.black)
+                        .foregroundColor(Color.white)
+                        .cornerRadius(5)
                     }
                     
                 } else {
