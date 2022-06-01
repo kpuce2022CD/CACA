@@ -32,7 +32,7 @@ final class log_repo_ViewModel: ObservableObject {
     init(){
         repoIP(Repo_Name: self.repo_n)
         Log_repo_list.removeAll()
-        fetch(Repo_Name: repo_n)
+//        fetch(Repo_Name: repo_n)
         print("init : ", Log_repo_list)
         
         diffSuccess = false
@@ -40,7 +40,7 @@ final class log_repo_ViewModel: ObservableObject {
     
     func appear(){
         Log_repo_list.removeAll()
-        fetch(Repo_Name: self.repo_n)
+//        fetch(Repo_Name: self.repo_n)
         repoIP(Repo_Name: self.repo_n)
     }
     
@@ -86,26 +86,26 @@ final class log_repo_ViewModel: ObservableObject {
         }
     }
     
-    //MARK: LogRepoQuery
-    func fetch(Repo_Name: String){
-        Log_repo_list.removeAll()
-        Network.shared.apollo.fetch(query: LogRepoQuery(repo_name: Repo_Name), cachePolicy: CachePolicy.fetchIgnoringCacheData){ result in
-            switch result {
-            case .success(let graphQLResult):
-                if let log_repos = graphQLResult.data?.logRepo {
-                    for i in log_repos.indices{
-                        self.launches = self.process(data: graphQLResult.data?.logRepo![i] ?? logrepoData.init(commitMsg: "", date: "", commitId: "", userId: ""))
-                        self.Log_repo_list.append(self.launches)
-                    }
-                } else if let errors = graphQLResult.errors {
-                    print("GraphQL errors \(errors)")
-                }
-                
-            case .failure(let error):
-                print("Failure! Error: \(error)")
-            }
-        }
-    }
+//    //MARK: LogRepoQuery
+//    func fetch(Repo_Name: String){
+//        Log_repo_list.removeAll()
+//        Network.shared.apollo.fetch(query: LogRepoQuery(repo_name: Repo_Name), cachePolicy: CachePolicy.fetchIgnoringCacheData){ result in
+//            switch result {
+//            case .success(let graphQLResult):
+//                if let log_repos = graphQLResult.data?.logRepo {
+//                    for i in log_repos.indices{
+//                        self.launches = self.process(data: graphQLResult.data?.logRepo![i] ?? logrepoData.init(commitMsg: "", date: "", commitId: "", userId: ""))
+//                        self.Log_repo_list.append(self.launches)
+//                    }
+//                } else if let errors = graphQLResult.errors {
+//                    print("GraphQL errors \(errors)")
+//                }
+//
+//            case .failure(let error):
+//                print("Failure! Error: \(error)")
+//            }
+//        }
+//    }
     
     //MARK: Request List
     func Request_fetch(Repo_Name: String){

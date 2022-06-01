@@ -227,7 +227,7 @@ struct Repo_View_Directory: View {
                         }
                     }
                     .refreshable{
-                        Repo_ViewModel_req.fetch(Repo_Name: repo_n)
+//                        Repo_ViewModel_req.fetch(Repo_Name: repo_n)
                         self.getBranchLog()
                     }
                     .frame(width: 300)

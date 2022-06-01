@@ -17,6 +17,16 @@ class LogNumber : ObservableObject {
 
 class BranchName : ObservableObject{
     @Published var currentBranchName : String = "master"
+    init(){
+        currentBranchName = "master"
+    }
+}
+
+class LogList : ObservableObject {
+    @Published var Log_repo_list : Array<Log_repo> = []
+    init(){
+        Log_repo_list = Array<Log_repo>.init()
+    }
 }
 
 struct Repo_View_Git: View {
@@ -53,14 +63,15 @@ struct Repo_View_Git: View {
     // 현재 브랜치 이름
     @ObservedObject var branchNameObject : BranchName
     // log
-    @State var Log_repo_list : Array<Log_repo> = []
+    @ObservedObject var Log_repo_list : LogList
     
     // init
     init(repo_n: String, userID: String, branchName: BranchName) {
         self.repo_n = repo_n
         Repository.initialize_libgit2()
         self.userID = userID
-        self.branchNameObject = branchName
+        self.branchNameObject = BranchName.init()
+        self.Log_repo_list = LogList.init()
         self.getBranchLog()
     }
     ////
@@ -256,13 +267,13 @@ struct Repo_View_Git: View {
 //                                    ForEach(Log_repo_list, id: \.id){ index in
 //                                        Text(index.userId + " : " + index.commitMsg)
 //                                    }
-                                    ForEach(Log_repo_list.indices) {
-                                        Text("\(Log_repo_list[$0].userId) : \(Log_repo_list[$0].commitMsg)")
+                                    ForEach(Log_repo_list.Log_repo_list.indices) {
+                                        Text("\(Log_repo_list.Log_repo_list[$0].userId) : \(Log_repo_list.Log_repo_list[$0].commitMsg)")
                                     }
                                 }
                                 Picker("Choose Second Diff Commit", selection: $log_number2) {
-                                    ForEach(Log_repo_list.indices) {
-                                        Text("\(Log_repo_list[$0].userId) : \(Log_repo_list[$0].commitMsg)")
+                                    ForEach(Log_repo_list.Log_repo_list.indices) {
+                                        Text("\(Log_repo_list.Log_repo_list[$0].userId) : \(Log_repo_list.Log_repo_list[$0].commitMsg)")
                                     }
                                 }
                                 Picker("Choose File", selection: $file_number) {
@@ -285,12 +296,12 @@ struct Repo_View_Git: View {
                                     
                                     Button {
                                         self.selectionString = "true"
-                                        logNumber.url1 = "http://13.209.116.111/images/\( Log_repo_list[log_number1].commitId)_\(FileList.items[file_number])"
+                                        logNumber.url1 = "http://13.209.116.111/images/\( Log_repo_list.Log_repo_list[log_number1].commitId)_\(FileList.items[file_number])"
                                         
-                                        logNumber.url2 = "http://13.209.116.111/images/\( Log_repo_list[log_number2].commitId)_\(FileList.items[file_number])"
+                                        logNumber.url2 = "http://13.209.116.111/images/\( Log_repo_list.Log_repo_list[log_number2].commitId)_\(FileList.items[file_number])"
                                         
                                         
-                                        log_repoViewModel_a.Diff(first_commit: Log_repo_list[log_number1].commitId, second_commit: Log_repo_list[log_number2].commitId, repo_name: repo_n, file_name: FileList.items[file_number])
+                                        log_repoViewModel_a.Diff(first_commit: Log_repo_list.Log_repo_list[log_number1].commitId, second_commit: Log_repo_list.Log_repo_list[log_number2].commitId, repo_name: repo_n, file_name: FileList.items[file_number])
                                         
                                         print("logNumber.url1", logNumber.url1)
                                     } label: {
@@ -500,9 +511,9 @@ struct Repo_View_Git: View {
         let result = Repository.at(localRepoLocation)
         switch result {
         case let .success(repo):
-            Log_repo_list.removeAll()
+            Log_repo_list.Log_repo_list.removeAll()
             
-            Log_repo_list = repo.branchLog(repo, branchNameObject.currentBranchName).map({
+            Log_repo_list.Log_repo_list = repo.branchLog(repo, self.branchNameObject.currentBranchName).map({
                 Log_repo.init(log: $0 as! Log_repo)
             })
             break
