@@ -52,6 +52,8 @@ struct Repo_View_Git: View {
     
     // 현재 브랜치 이름
     @ObservedObject var branchNameObject : BranchName
+    
+    // init
     init(repo_n: String, userID: String, branchName: BranchName) {
         self.repo_n = repo_n
         Repository.initialize_libgit2()
@@ -483,7 +485,7 @@ struct Repo_View_Git: View {
             var resultClone = repo.checkoutTOLocalBranch(repo, branchName: branch_name)
             
             //
-            repo.branchLog(repo, branchName: branchNameObject.currentBranchName)
+            repo.branchLog(repo, branchNameObject.currentBranchName)
 
         case let .failure(error):
             print(error)

@@ -9,8 +9,9 @@ import SwiftUI
 import MobileCoreServices
 import Foundation
 import ToastUI
-import Combine
+//import Combine
 import Apollo
+import SwiftGit2
 
 class Pixel : ObservableObject {
     @Published var RequestedLocation_x = 0.0
@@ -23,6 +24,7 @@ class Pixel : ObservableObject {
         print("processPixels Pixel()", RequestedLocation_y)
     }
 }
+
 
 // MARK: Repo_View_Directory: View
 struct Repo_View_Directory: View {
@@ -59,13 +61,19 @@ struct Repo_View_Directory: View {
     
     @ObservedObject var pixel = Pixel()
     
+    // 현재 브랜치 이름
+    @ObservedObject var branchNameObject : BranchName = BranchName()
+    // log
+    @State var Log_repo_list : Array<Log_repo> = []
+    
     init(repo_n: String, ec2_id: String, user_id: String){
+        Repository.initialize_libgit2()
+        
         self.repo_n = repo_n
         self.ec2_id = ec2_id
         self.user_id = user_id
         dataList.first(repo_n: self.repo_n)
         dataList.repoName = repo_n
-        
     }
     
     var documentsUrl: URL {
@@ -171,9 +179,9 @@ struct Repo_View_Directory: View {
                                             editText = false
                                         }
                                         var fileName_Req = repo_n + "_" + i
-                                        print("fileName_Req", fileName_Req)
+//                                        print("fileName_Req", fileName_Req)
                                         Repo_ViewModel_req.Request_fetch(Repo_Name: fileName_Req)
-                                        print("Repo_ViewModel_req.Req_repo_list1", Repo_ViewModel_req.Req_repo_list)
+//                                        print("Repo_ViewModel_req.Req_repo_list1", Repo_ViewModel_req.Req_repo_list)
                                     })
                                 }
                             }
@@ -195,35 +203,35 @@ struct Repo_View_Directory: View {
                             }
                             .onAppear {
                                 var fileName_Req = repo_n + "_" + fileNameImg
-                                print("fileName_Req", fileName_Req)
+//                                print("fileName_Req", fileName_Req)
                                 
                                 Repo_ViewModel_req.Request_fetch(Repo_Name: fileName_Req)
-                                print("Repo_ViewModel_req.Req_repo_list1", Repo_ViewModel_req.Req_repo_list)
+//                                print("Repo_ViewModel_req.Req_repo_list1", Repo_ViewModel_req.Req_repo_list)
                                 
                             }
                             Button(action: {
                                 pointShowing = false
                             },
-                                   label: {Text("Cancel").foregroundColor(Color.red)})
+                            label: {Text("Cancel").foregroundColor(Color.red)})
                         }
                         
                         // MARK: Log List
                         Section(header: Text("Log").font(.largeTitle)) {
-                            ForEach(Repo_ViewModel_req.Log_repo_list, id: \.id) { log_l in
-                                Button(log_l.userId + " : " + log_l.commitMsg){
+         
+                            ForEach(Log_repo_list, id: \.id){ index in
+                                Button(index.userId + " : " + index.commitMsg){
                                     
                                 }
-                                
                             }
+
                         }
                         .onAppear(){
-                            Repo_ViewModel_req.fetch(Repo_Name: repo_n)
-                            print("log_repoViewModel_aasdfasdf \(Repo_ViewModel_req.Log_repo_list)")
-                            
+                            self.getBranchLog()
                         }
                     }
                     .refreshable{
                         Repo_ViewModel_req.fetch(Repo_Name: repo_n)
+                        self.getBranchLog()
                     }
                     .frame(width: 300)
                     
@@ -349,6 +357,28 @@ struct Repo_View_Directory: View {
             print("Error loading image : \(error)")
         }
         return nil
+    }
+    
+    // MARK: get Branch Log List
+    public func getBranchLog(){
+        let localRepoLocation = documentURL.appendingPathComponent(repo_n)
+        let result = Repository.at(localRepoLocation)
+        switch result {
+        case let .success(repo):
+            Log_repo_list.removeAll()
+            
+            Log_repo_list = repo.branchLog(repo, branchNameObject.currentBranchName).map({
+                Log_repo.init(log: $0 as! Log_repo)
+            })
+            
+//            for i in anyArray.indices{
+//                Log_repo_list.append(Log_repo.init(log: anyArray.))
+//            }
+
+            break
+        case .failure(_):
+            break
+        }
     }
     
     

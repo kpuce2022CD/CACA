@@ -21,7 +21,7 @@ extension Repository {
     
     
     // MARK: Branch Log List
-    public func branchLog(_ repo: Repository, branchName: String) -> Array<Any> {
+    public func branchLog(_ repo: Repository, _ branchName: String) -> Array<Any>{
         var Log_repo_list : [Log_repo] = []
         
         let result = repo.remoteBranch(named: "origin/\(branchName)")
@@ -52,10 +52,11 @@ extension Repository {
                 print("committer", commit.committer)
                 print("message", commit.message)
                 
-                var logRepo = Log_repo.init(commitMsg: commit.message, date: commit.author.time.description, commitId: commit.oid.description, userId: commit.author.name)
+                var logRepo = Log_repo.init(commitMsg: commit.message, date: String(commit.author.time.description.dropLast(5)), commitId: commit.oid.description, userId: commit.author.name)
                 Log_repo_list.append(logRepo)
             }
-
+            return Log_repo_list
+            
             break
         case .failure(_):
             break

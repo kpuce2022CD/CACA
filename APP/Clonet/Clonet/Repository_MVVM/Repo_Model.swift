@@ -59,6 +59,13 @@ class Log_repo: ObservableObject {
         self.commitId = commitId
         self.userId = userId
     }
+    
+    init(log: Log_repo){
+        self.commitMsg = log.commitMsg
+        self.date = log.date
+        self.commitId = log.commitId
+        self.userId = log.userId
+    }
 
 }
 
