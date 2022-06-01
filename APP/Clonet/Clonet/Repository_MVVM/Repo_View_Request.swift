@@ -10,8 +10,6 @@ import SwiftUI
 struct Repo_View_Request: View {
     @StateObject var userViewModel = log_repo_ViewModel()
     @State var repoName: String
-    //    @State var RequestName = ["RequestName1", "RequestName2", "RequestName3"]
-    //    @State var RequestText = ["RequestText1", "RequestText2", "RequestText3"]
     
     init(repoName: String){
         self.repoName = repoName
