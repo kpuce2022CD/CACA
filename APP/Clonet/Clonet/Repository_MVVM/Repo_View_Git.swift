@@ -55,8 +55,8 @@ struct Repo_View_Git: View {
     @State private var presentingToast_commit: Bool = false
     
     // Diff
-    @State var log_number1 = 0
-    @State var log_number2 = 0
+    @State var log_number1 = 0 // diff & reset
+    @State var log_number2 = 0 // diff
     @State private var file_number = 0
     @State private var FileList = getFileList()
     @State private var presentingToast3: Bool = false
@@ -111,11 +111,15 @@ struct Repo_View_Git: View {
                                 Button {
                                     presentingToast = false
                                     rollbackGit(localRepoLocation: documentURL.appendingPathComponent(repo_n), name: userID, email: userEmail, commit_msg: commit_msg, reset_id: Log_repo_list.Log_repo_list[log_number1].commitId, branchName: branchNameObject.currentBranchName)
+                                    // 초기화
+                                    log_number1 = 0
                                 } label: {
                                     Text("OK")
                                 }
                                 Button {
                                     presentingToast = false
+                                    // 초기화
+                                    log_number1 = 0
                                 } label: {
                                     Text("CANCEL")
                                 }
@@ -314,6 +318,9 @@ struct Repo_View_Git: View {
                                 
                                 Button {
                                     presentingToast2 = false
+                                    // 초기화
+                                    log_number1 = 0
+                                    log_number2 = 0
                                 } label: {
                                     Text("CANCEL")
                                 }
