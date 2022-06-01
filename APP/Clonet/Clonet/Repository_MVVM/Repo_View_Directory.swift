@@ -203,10 +203,7 @@ struct Repo_View_Directory: View {
                             }
                             .onAppear {
                                 var fileName_Req = repo_n + "_" + fileNameImg
-//                                print("fileName_Req", fileName_Req)
-                                
                                 Repo_ViewModel_req.Request_fetch(Repo_Name: fileName_Req)
-//                                print("Repo_ViewModel_req.Req_repo_list1", Repo_ViewModel_req.Req_repo_list)
                                 
                             }
                             Button(action: {
@@ -370,11 +367,6 @@ struct Repo_View_Directory: View {
             Log_repo_list = repo.branchLog(repo, branchNameObject.currentBranchName).map({
                 Log_repo.init(log: $0 as! Log_repo)
             })
-            
-//            for i in anyArray.indices{
-//                Log_repo_list.append(Log_repo.init(log: anyArray.))
-//            }
-
             break
         case .failure(_):
             break
