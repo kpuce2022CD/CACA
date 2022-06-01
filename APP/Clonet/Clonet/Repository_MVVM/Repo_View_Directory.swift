@@ -64,7 +64,8 @@ struct Repo_View_Directory: View {
     // 현재 브랜치 이름
     @ObservedObject var branchNameObject : BranchName = BranchName()
     // log
-    @State var Log_repo_list : Array<Log_repo> = []
+//    @State var Log_repo_list : Array<Log_repo> = []
+    @ObservedObject var logList : LogList
     
     init(repo_n: String, ec2_id: String, user_id: String){
         Repository.initialize_libgit2()
@@ -72,8 +73,10 @@ struct Repo_View_Directory: View {
         self.repo_n = repo_n
         self.ec2_id = ec2_id
         self.user_id = user_id
+        self.logList = LogList.init()
         dataList.first(repo_n: self.repo_n)
         dataList.repoName = repo_n
+        logList.getBranchLog(repo_n: repo_n, currentBranchName: branchNameObject.currentBranchName)
     }
     
     var documentsUrl: URL {
@@ -215,7 +218,7 @@ struct Repo_View_Directory: View {
                         // MARK: Log List
                         Section(header: Text("Log").font(.largeTitle)) {
          
-                            ForEach(Log_repo_list, id: \.id){ index in
+                            ForEach(logList.Log_repo_list, id: \.id){ index in
                                 Button(index.userId + " : " + index.commitMsg){
                                     
                                 }
@@ -223,12 +226,12 @@ struct Repo_View_Directory: View {
 
                         }
                         .onAppear(){
-                            self.getBranchLog()
+                            logList.getBranchLog(repo_n: repo_n, currentBranchName: branchNameObject.currentBranchName)
                         }
                     }
                     .refreshable{
 //                        Repo_ViewModel_req.fetch(Repo_Name: repo_n)
-                        self.getBranchLog()
+                        logList.getBranchLog(repo_n: repo_n, currentBranchName: branchNameObject.currentBranchName)
                     }
                     .frame(width: 300)
                     
@@ -247,7 +250,6 @@ struct Repo_View_Directory: View {
                             .padding()
                             .foregroundColor(Color.black)
                             .lineSpacing(5) //줄 간격
-                        
                             .frame(width: 500, height: 500)
                             .border(Color.yellow, width: 1)
                             .onAppear(perform: {print("dataText: ", dataList.text)})
@@ -356,23 +358,6 @@ struct Repo_View_Directory: View {
         return nil
     }
     
-    // MARK: get Branch Log List
-    public func getBranchLog(){
-        let localRepoLocation = documentURL.appendingPathComponent(repo_n)
-        let result = Repository.at(localRepoLocation)
-        switch result {
-        case let .success(repo):
-            Log_repo_list.removeAll()
-            
-            Log_repo_list = repo.branchLog(repo, branchNameObject.currentBranchName).map({
-                Log_repo.init(log: $0 as! Log_repo)
-            })
-            break
-        case .failure(_):
-            break
-        }
-    }
-    
     
 }
 
@@ -454,6 +439,7 @@ final class getFileList: ObservableObject{
             }
         }
     }
+    
 }
 
 
