@@ -100,6 +100,8 @@ struct Repo_View_Git: View {
                 ToastView {
                     NavigationView {
                         Form {
+                            Text("되돌리기는 복구할 수 없습니다")
+                                .foregroundColor(.red)
                             Section {
                                 Picker("Choose Roll Back Commit", selection: $log_number1) {
                                     ForEach(Log_repo_list.Log_repo_list.indices) {
