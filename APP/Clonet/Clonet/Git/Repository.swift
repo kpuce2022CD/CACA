@@ -335,7 +335,7 @@ extension Repository {
     }
     
     // MARK: PUSH_FORCE
-    public func push_force(_ repo: Repository, _ username: String, _ password: String, _ branch: String? = nil){
+    public func push_force(_ repo: Repository, _ username: String, _ password: String, _ branch: String){
         // todo get this properly
         
         let credentials: Credentials = Credentials.plaintext(username: username, password: password)
@@ -343,7 +343,7 @@ extension Repository {
         
         let repository: OpaquePointer = repo.pointer
         var remote: OpaquePointer? = nil
-        let result_git_remote_lookup = git_remote_lookup(&remote, repository, "origin" )
+        let result_git_remote_lookup = git_remote_lookup(&remote, repository, "origin")
         
         
         func localBranches() -> Result<[Branch], NSError> {
@@ -353,42 +353,7 @@ extension Repository {
                 }
         }
         
-        var master: String = ""
-        if(branch == nil){
-            if case .success = reference(named: "refs/heads/master") {
-                master = "+refs/heads/master:refs/heads/master"
-                print("master-main")
-            } else {
-                let branchResult = repo.localBranches()
-                switch branchResult {
-                case .success(let branches):
-                    print("found repo to use: \(branches[0].longName)") //get the first one for now :)
-                    master = branches[0].longName
-                    break
-                case .failure:
-                    print("Failed to get any branches...")
-                    break
-                }
-            }
-        } else {
-            if case .success = reference(named: branch!) {
-                master = "\(branch!)"
-                print("master")
-            } else {
-                // Branch not found.
-                var gitBranch: OpaquePointer?
-                
-                git_branch_create(&gitBranch, repository, branch!, nil, 1);
-                print("Branch not found")
-                master = "\(branch!)"
-            }
-        }
-        
-        if(master == ""){
-            master = "refs/heads/master" // Prevents a crash below
-        }
-        
-        
+        let master: String = "+refs/heads/\(branch):refs/heads/\(branch)"
         print(master)
         
         let strings: UnsafeMutablePointer<UnsafeMutablePointer<CChar>?> = [master].withUnsafeBufferPointer {

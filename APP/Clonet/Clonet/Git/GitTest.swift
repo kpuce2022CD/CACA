@@ -55,7 +55,7 @@ struct GitTest: View {
                     Button("REVERT", action: revert)
                     Button("fetch", action: fetchGitRepo)
                     Button("MERGE", action: mergeGitRepo)
-                    Button("PUSH_F", action: push_f_GitRepo)
+//                    Button("PUSH_F", action: push_f_GitRepo)
                     Button("_RESET_", action: reset)
                 }
                 VStack{
@@ -74,17 +74,17 @@ struct GitTest: View {
         
     }
     
-    public func push_f_GitRepo(){
-        let result = Repository.at(localRepoLocation)
-        switch result {
-        case let .success(repo):
-            //MARK: push
-            let commit_push = repo.push_force(repo, "ubuntu", "qwer1234", nil)
-            
-        case let .failure(error):
-            print("\(error)")
-        }
-    }
+//    public func push_f_GitRepo(){
+//        let result = Repository.at(localRepoLocation)
+//        switch result {
+//        case let .success(repo):
+//            //MARK: push
+//            let commit_push = repo.push_force(repo, "ubuntu", "qwer1234", nil)
+//
+//        case let .failure(error):
+//            print("\(error)")
+//        }
+//    }
     
     //MARK: reset
     func reset(){

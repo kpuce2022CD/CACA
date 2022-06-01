@@ -43,11 +43,13 @@ struct Repo_View_Git: View {
     @State var merge_id : String = ""
     @State var addFileName : String = "."
     
-    // Toast Variables
+    // apollo
     @State var repo_n: String
     @State var userID: String
     @ObservedObject var log_repoViewModel_a = log_repo_ViewModel()
-    @State private var presentingToast: Bool = false
+    
+    // Toast Variables
+    @State private var presentingToast: Bool = false // reset
     @State private var presentingToast2: Bool = false
     @State private var presentingToast_pull: Bool = false
     @State private var presentingToast_commit: Bool = false
@@ -100,15 +102,15 @@ struct Repo_View_Git: View {
                         Form {
                             Section {
                                 Picker("Choose Roll Back Commit", selection: $log_number1) {
-                                    ForEach(log_repoViewModel_a.Log_repo_list.indices) {
-                                        Text("\(log_repoViewModel_a.Log_repo_list[$0].userId) : \(log_repoViewModel_a.Log_repo_list[$0].commitMsg)")
+                                    ForEach(Log_repo_list.Log_repo_list.indices) {
+                                        Text("\(Log_repo_list.Log_repo_list[$0].userId) : \(Log_repo_list.Log_repo_list[$0].commitMsg)")
                                     }
                                 }
                             }
                             Section{
                                 Button {
                                     presentingToast = false
-                                    rollbackGit(localRepoLocation: documentURL.appendingPathComponent(repo_n), name: userID, email: userEmail, commit_msg: commit_msg, reset_id: log_repoViewModel_a.Log_repo_list[log_number1].commitId)
+                                    rollbackGit(localRepoLocation: documentURL.appendingPathComponent(repo_n), name: userID, email: userEmail, commit_msg: commit_msg, reset_id: Log_repo_list.Log_repo_list[log_number1].commitId, branchName: branchNameObject.currentBranchName)
                                 } label: {
                                     Text("OK")
                                 }
@@ -121,6 +123,9 @@ struct Repo_View_Git: View {
                             }
                         }
                     }
+                }
+                .onAppear(){
+                    self.getBranchLog()
                 }
             }
             .background(Color.black)
@@ -264,9 +269,6 @@ struct Repo_View_Git: View {
                         Form {
                             Section {
                                 Picker("Choose First Diff Commit", selection: $log_number1) {
-//                                    ForEach(Log_repo_list, id: \.id){ index in
-//                                        Text(index.userId + " : " + index.commitMsg)
-//                                    }
                                     ForEach(Log_repo_list.Log_repo_list.indices) {
                                         Text("\(Log_repo_list.Log_repo_list[$0].userId) : \(Log_repo_list.Log_repo_list[$0].commitMsg)")
                                     }
@@ -334,7 +336,7 @@ struct Repo_View_Git: View {
     
     
     // MARK: ROLLBACK_FUNC
-    func rollbackGit(localRepoLocation localRepoLocation: URL, name name: String, email email: String, commit_msg commit_msg : String, reset_id: String){
+    func rollbackGit(localRepoLocation localRepoLocation: URL, name name: String, email email: String, commit_msg commit_msg : String, reset_id: String, branchName: String){
         var message : String = ""
         let result = Repository.at(localRepoLocation)
         switch result {
@@ -344,7 +346,7 @@ struct Repo_View_Git: View {
             let reset_result = repo.log_reset(repo, reset_id: reset_id ?? "")
             
             //MARK: push_force
-            let commit_push_force = repo.push_force(repo, "ubuntu", "qwer1234", nil)
+            let commit_push_force = repo.push_force(repo, "ubuntu", "qwer1234", branchName)
             print(message)
         case let .failure(error):
             message = "Could not open repository: \(error)"
@@ -377,18 +379,18 @@ struct Repo_View_Git: View {
         }
     }
     
-    //MARK: PUSH_FORCE
-    public func push_f_GitRepo(localRepoLocation localRepoLocation : URL){
-        let result = Repository.at(localRepoLocation)
-        switch result {
-        case let .success(repo):
-            //MARK: push
-            let commit_push = repo.push_force(repo, "ubuntu", "qwer1234", nil)
-            
-        case let .failure(error):
-            print("\(error)")
-        }
-    }
+//    //MARK: PUSH_FORCE
+//    public func push_f_GitRepo(localRepoLocation localRepoLocation : URL){
+//        let result = Repository.at(localRepoLocation)
+//        switch result {
+//        case let .success(repo):
+//            //MARK: push
+//            let commit_push = repo.push_force(repo, "ubuntu", "qwer1234", nil)
+//
+//        case let .failure(error):
+//            print("\(error)")
+//        }
+//    }
     
     //MARK: CLONE_FUNC
     func cloneGitRepo(remoteRepoLocation remoteRepoLocation : String, localRepoLocation localRepoLocation : URL) {
