@@ -50,7 +50,8 @@ struct Repo_View: View {
             VStack{
                 // MARK: BranchName
                 VStack{
-                    Text("현재 브랜치 \(branchName.currentBranchName)")
+                    Text("브랜치 : \(branchName.currentBranchName)")
+                        .font(.system(size: 30, weight: .bold))
                 }
                 Repo_View_Request(repoName: repoName)
                 //                Repo_View_Log(repo_n: repoName)

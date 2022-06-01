@@ -27,6 +27,24 @@ class LogList : ObservableObject {
     init(){
         Log_repo_list = Array<Log_repo>.init()
     }
+    
+    // MARK: get Branch Log List
+    public func getBranchLog(repo_n: String, currentBranchName : String){
+        let localRepoLocation = documentURL.appendingPathComponent(repo_n)
+        let result = Repository.at(localRepoLocation)
+        switch result {
+        case let .success(repo):
+            Log_repo_list.removeAll()
+            
+            Log_repo_list = repo.branchLog(repo, currentBranchName).map({
+                Log_repo.init(log: $0 as! Log_repo)
+            })
+            print("Log_repo_list", Log_repo_list)
+            break
+        case .failure(_):
+            break
+        }
+    }
 }
 
 struct Repo_View_Git: View {
@@ -72,9 +90,9 @@ struct Repo_View_Git: View {
         self.repo_n = repo_n
         Repository.initialize_libgit2()
         self.userID = userID
-        self.branchNameObject = BranchName.init()
+        self.branchNameObject = branchName
         self.Log_repo_list = LogList.init()
-        self.getBranchLog()
+        Log_repo_list.getBranchLog(repo_n: self.repo_n, currentBranchName: self.branchNameObject.currentBranchName)
     }
     ////
     var body: some View {
@@ -115,6 +133,8 @@ struct Repo_View_Git: View {
                                     rollbackGit(localRepoLocation: documentURL.appendingPathComponent(repo_n), name: userID, email: userEmail, commit_msg: commit_msg, reset_id: Log_repo_list.Log_repo_list[log_number1].commitId, branchName: branchNameObject.currentBranchName)
                                     // 초기화
                                     log_number1 = 0
+                                    Log_repo_list.getBranchLog(repo_n: self.repo_n, currentBranchName: self.branchNameObject.currentBranchName)
+                                    branchNameObject.currentBranchName = branchNameObject.currentBranchName
                                 } label: {
                                     Text("OK")
                                 }
@@ -131,7 +151,7 @@ struct Repo_View_Git: View {
                     }
                 }
                 .onAppear(){
-                    self.getBranchLog()
+                    Log_repo_list.getBranchLog(repo_n: self.repo_n, currentBranchName: self.branchNameObject.currentBranchName)
                 }
             }
             .background(Color.black)
@@ -293,7 +313,7 @@ struct Repo_View_Git: View {
                                 }
                             }.onAppear(){
                                 // reLoad branch Log
-                                self.getBranchLog()
+                                Log_repo_list.getBranchLog(repo_n: self.repo_n, currentBranchName: self.branchNameObject.currentBranchName)
                             }
                             
                             
@@ -333,8 +353,8 @@ struct Repo_View_Git: View {
             }
             .onAppear(){
                 // reLoad branch Log
-                self.getBranchLog()
-                
+                Log_repo_list.getBranchLog(repo_n: self.repo_n, currentBranchName: self.branchNameObject.currentBranchName)
+
                 // Directory
                 FileList.first(repo_n: repo_n)
                 FileList.location(repoName: repo_n)
@@ -513,23 +533,6 @@ struct Repo_View_Git: View {
 
         case let .failure(error):
             print(error)
-        }
-    }
-    
-    // MARK: get Branch Log List
-    func getBranchLog(){
-        let localRepoLocation = documentURL.appendingPathComponent(repo_n)
-        let result = Repository.at(localRepoLocation)
-        switch result {
-        case let .success(repo):
-            Log_repo_list.Log_repo_list.removeAll()
-            
-            Log_repo_list.Log_repo_list = repo.branchLog(repo, self.branchNameObject.currentBranchName).map({
-                Log_repo.init(log: $0 as! Log_repo)
-            })
-            break
-        case .failure(_):
-            break
         }
     }
     

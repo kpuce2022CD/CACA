@@ -10,8 +10,6 @@ import SwiftUI
 struct Repo_View_Request: View {
     @StateObject var userViewModel = log_repo_ViewModel()
     @State var repoName: String
-    //    @State var RequestName = ["RequestName1", "RequestName2", "RequestName3"]
-    //    @State var RequestText = ["RequestText1", "RequestText2", "RequestText3"]
     
     init(repoName: String){
         self.repoName = repoName
@@ -20,13 +18,14 @@ struct Repo_View_Request: View {
     var body: some View {
         VStack{
             Spacer()
-            
-            Section(header: Text("User List").font(.largeTitle)){
-                List(userViewModel.User_repo_list, id: \.id){ i in
-                    Text(i.user_id)
-                }.refreshable{
-                    userViewModel.User_repo_list.removeAll()
-                    userViewModel.getUserList(Repo_Name: repoName)
+            List{
+                Section(header: Text("User List").font(.title)){
+                    ForEach(userViewModel.User_repo_list, id: \.id){ i in
+                        Text(i.user_id)
+                    }.refreshable{
+                        userViewModel.User_repo_list.removeAll()
+                        userViewModel.getUserList(Repo_Name: repoName)
+                    }
                 }
             }
             Button(action: {
@@ -36,7 +35,8 @@ struct Repo_View_Request: View {
                 alertHC.preferredContentSize = CGSize(width: 300, height: 265)
                 alertHC.modalPresentationStyle = UIModalPresentationStyle.formSheet
                 
-                UIApplication.shared.windows[0].rootViewController?.present(alertHC, animated: true)}){
+                UIApplication.shared.windows[0].rootViewController?.present(alertHC, animated: true)})
+            {
                     Image(systemName: "person.crop.circle.fill.badge.plus")
                         .resizable()
                         .foregroundColor(Color.black)
@@ -46,21 +46,6 @@ struct Repo_View_Request: View {
         .onAppear(){
             userViewModel.getUserList(Repo_Name: repoName)
         }
-        
-        // Request 목록 불러오기
-        //        ScrollView(){
-        //            ForEach(0..<RequestName.count){listCount in
-        //                HStack(){
-        //                    Image(systemName: "person.circle.fill")
-        //                    Text(RequestName[listCount])
-        //                    Text(" : ")
-        //                    Text(RequestText[listCount])
-        //                }
-        //                .padding(.bottom, 2.0)
-        //                .frame(maxWidth: .infinity)
-        //            }
-        //        }
-        //        .padding()
     }
 }
 
