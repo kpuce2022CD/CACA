@@ -21,7 +21,13 @@ class ClonetUITests: XCTestCase {
     override func tearDownWithError() throws {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
+    
+    func testExample() throws {
+        try testLogin()
+        try testRepoListNClone()
+    }
 
+    // Login Test
     func testLogin() throws {
         // UI tests must launch the application that they test.
         let app = XCUIApplication()
@@ -51,6 +57,32 @@ class ClonetUITests: XCTestCase {
 
         // Use recording to get started writing UI tests.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
+    }
+    
+    // RepoList & Clone Test
+    func testRepoListNClone() throws {
+        // UI tests must launch the application that they test.
+        let app = XCUIApplication()
+        app.launch()
+        
+        // 페이지 넘어갈 때까지 잠깐 기다리기
+        app.waitForExistence(timeout: 5)
+        
+        // repoList 받아오기
+        let repository = app.staticTexts["repo_name: ClonetDemo"]
+        XCTAssert(repository.exists)
+        
+        // Clone
+        repository.click()
+        
+        // 페이지 넘어갈 때까지 잠깐 기다리기
+        app.waitForExistence(timeout: 5)
+        
+        // Repository Page 접속 확인 = clone 정상
+        let SaveButton = app.buttons["SaveButton"]
+        XCTAssert(SaveButton.exists)
+        SaveButton.click()
+        
     }
 
     func testLaunchPerformance() throws {

@@ -262,6 +262,7 @@ struct Repo_View_Directory: View {
                             Text("Save")
                                 .frame(width: 100 , height: 50, alignment: .center)
                         }
+                        .accessibilityIdentifier("SaveButton")
                         .toast(isPresented: $saveCheck, dismissAfter: 0.5) {
                             print("SAVE SUCCESS")
                         } content: {
