@@ -1,13 +1,13 @@
 //
-//  LoginTest.swift
-//  LoginTest
+//  ClonetUITests.swift
+//  ClonetUITests
 //
-//  Created by Hye Min Choi on 2022/06/01.
+//  Created by Hye Min Choi on 2022/06/02.
 //
 
 import XCTest
 
-class LoginTest: XCTestCase {
+class ClonetUITests: XCTestCase {
 
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
@@ -22,7 +22,7 @@ class LoginTest: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
 
-    func testExample() throws {
+    func testLogin() throws {
         // UI tests must launch the application that they test.
         let app = XCUIApplication()
         app.launch()
@@ -48,7 +48,6 @@ class LoginTest: XCTestCase {
         
         // clonet_logo_white를 인식하면 로그인 성공!
         var clonetImage = app.images["clonet_logo_white"]
-    
 
         // Use recording to get started writing UI tests.
         // Use XCTAssert and related functions to verify your tests produce the correct results.

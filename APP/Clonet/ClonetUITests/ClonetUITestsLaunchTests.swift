@@ -1,13 +1,13 @@
 //
-//  LoginCheckTestLaunchTests.swift
-//  LoginCheckTest
+//  ClonetUITestsLaunchTests.swift
+//  ClonetUITests
 //
-//  Created by Hye Min Choi on 2022/06/01.
+//  Created by Hye Min Choi on 2022/06/02.
 //
 
 import XCTest
 
-class LoginCheckTestLaunchTests: XCTestCase {
+class ClonetUITestsLaunchTests: XCTestCase {
 
     override class var runsForEachTargetApplicationUIConfiguration: Bool {
         true
