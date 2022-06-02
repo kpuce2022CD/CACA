@@ -57,11 +57,12 @@ struct Signup: View {
                             if(signin()){
                                 service.signup(id: id, passwd: password, name: name, userEmail: email)
                                 print("signupResult", service.userId)
-                                if(service.userId == ""){ // signUp 실패
-                                    alertText = "Signup False"
-                                    showingAlert = true
-                                }else{ // signUp 성공
+                                print("signupResult", service.returnResult())
+                                if(service.returnResult() == ""){ // signUp 성공
                                     alertText = "Signup True"
+                                    showingAlert = true
+                                }else{ // signUp 실패
+                                    alertText = "Signup False"
                                     showingAlert = true
                                 }
                             }
@@ -80,7 +81,6 @@ struct Signup: View {
                 }
                 .background(Color.white)
             }
-//            .ignoresSafeArea(edges: .top)
         }
         .hiddenNavigationBarStyle()
         .navigationViewStyle(StackNavigationViewStyle())
