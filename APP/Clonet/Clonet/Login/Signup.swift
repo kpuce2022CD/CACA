@@ -5,45 +5,6 @@
 //  Created by Hye Min Choi on 2022/01/11.
 //
 import SwiftUI
-import SocketIO
-
-//회원가입 정보 보내기
-//final class Service_signup: ObservableObject {
-//    private var manager = SocketManager(socketURL: URL(string: "ws://localhost:3000")!, config: [.log(true), .compress])
-//
-//    @Published var messages = [String]()
-//    @Published var signupJSON = ""
-//    @State var json: String = ""
-//
-//    func signup_button(json: String){
-//        let socket = manager.defaultSocket
-//        socket.connect()        // 서버 연결
-//
-//        socket.on(clientEvent: .connect){ (data, ack) in        // 서버와 연결되면 회원가입 정보 json 형식으로
-//            print("Connected")
-//            self.signupJSON = json
-//            socket.emit("signup", self.signupJSON)
-//
-////            sleep(5)
-////            socket.disconnect()
-//        }
-//
-//        socket.on("signup_result"){ [weak self] (data, ack) in
-//            print("datadataaa:", data)
-//            if let data = data[0] as? [String: String],
-//               let rawMessage = data["signup_RESULT"] {
-//                DispatchQueue.main.async {
-//                    self?.messages.append(rawMessage)
-////                    print("rawMessage: ", data[0])
-//                    socket.disconnect()
-//                }
-//            }
-//        }
-//
-//
-//    }
-//}
-
 
 struct Signup: View {
     
@@ -133,14 +94,6 @@ struct Signup: View {
             return false
         }
     }
-//
-//    func signinCheck() -> Bool{
-//        if(id == "A"){
-//            return true
-//        }else{
-//            return false
-//        }
-//    }
 }
 
 struct Signup_Previews: PreviewProvider {
