@@ -9,8 +9,6 @@ import XCTest
 @testable import Clonet
 
 class LoginCheckTest: XCTestCase {
-    
-//    var LoginCheck_ViewModel: LoginCheck_ViewModel = Clonet.LoginCheck_ViewModel()
 
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
@@ -24,12 +22,22 @@ class LoginCheckTest: XCTestCase {
     override func tearDownWithError() throws {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
+    
+//    override func setUp() {
+//        LoginCheckViewModel = LoginCheck_ViewModel()
+//        LoginCheckViewModel.fetch(user_id: "user1")
+//
+//    }
 
     func testExample() throws {
         // UI tests must launch the application that they test.
         let app = XCUIApplication()
         app.launch()
-//        LoginCheck_ViewModel.fetch(user_id: "user1")
+        
+        // "repo_name: ClonetDemo"인 list 항목이 있다. = RepoList를 잘 받아 온다.
+        let repoName = app.staticTexts["repo_name: ClonetDemo"]
+        XCTAssert(repoName.exists)
+      
         // Use recording to get started writing UI tests.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
     }

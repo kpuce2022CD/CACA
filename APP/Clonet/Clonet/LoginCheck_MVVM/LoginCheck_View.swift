@@ -27,6 +27,7 @@ struct LoginCheck_View: View {
                         .offset(y: -130)
                         .padding(.bottom, -130)
                         .padding()
+                        .accessibilityIdentifier("clonet_logo_white")
                     
                     VStack(alignment: .center){
                         Text(userID)

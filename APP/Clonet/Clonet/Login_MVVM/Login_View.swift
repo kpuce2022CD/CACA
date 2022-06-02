@@ -42,13 +42,15 @@ struct Login_View: View {
                             TextField("ID", text: $viewModel.userID)
                                 .frame(width: 200)
                                 .padding()
+                                .accessibilityIdentifier("ID")
                         }
                         HStack(alignment: .center) { // passwd input
                             Image(systemName: "lock").padding()
                             TextField("PASSWORD", text: $viewModel.userPW)
-                            //                            SecureField("PASSWORD", text: $userAuth_VM.user_pw)
+                            //  SecureField("PASSWORD", text: $userAuth_VM.user_pw)
                                 .frame(width: 200)
                                 .padding()
+                                .accessibilityIdentifier("PASSWORD")
                         }
                     }.padding([.leading, .bottom, .trailing])
                     
@@ -67,6 +69,7 @@ struct Login_View: View {
                             viewModel.login(id: viewModel.userID, passwd: viewModel.userPW)
                             
                         }
+                        .accessibilityIdentifier("LoginButton")
                         .alert(isPresented: $viewModel.showingAlert) {
                             Alert(title: Text("로그인에 실패했습니다"), message: nil,
                                   dismissButton: .default(Text("확인")))

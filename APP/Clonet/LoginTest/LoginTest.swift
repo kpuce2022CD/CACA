@@ -26,6 +26,29 @@ class LoginTest: XCTestCase {
         // UI tests must launch the application that they test.
         let app = XCUIApplication()
         app.launch()
+        
+        // .accessibilityIdentifier("PASSWORD")
+        
+        // id 입력
+        let IDTextField = app.textFields["ID"]
+        IDTextField.tap()
+        IDTextField.typeText("user1\n") // 입력 후 키보드 내림
+
+        // passwd 입력
+        let PWTextField = app.textFields["PASSWORD"]
+        PWTextField.tap()
+        PWTextField.typeText("passwd\n") // 입력 후 키보드 내림
+        
+        // loginButton Click
+        let LoginButton = app.buttons["LoginButton"]
+        LoginButton.click()
+        
+        // 페이지 넘어갈 때까지 잠깐 기다리기
+        app.waitForExistence(timeout: 1)
+        
+        // clonet_logo_white를 인식하면 로그인 성공!
+        var clonetImage = app.images["clonet_logo_white"]
+    
 
         // Use recording to get started writing UI tests.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
