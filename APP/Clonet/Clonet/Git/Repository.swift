@@ -40,7 +40,6 @@ extension Repository {
             var pointOut : git_oid = remoteBranches.commit.oid.oid
 
             while ((git_revwalk_next(&pointOut, walk)) == 0){
-                print("--")
                 // commitLook
                 var commitOp : OpaquePointer? = nil
                 var commitLook = git_commit_lookup(&commitOp, repo.pointer, &pointOut)

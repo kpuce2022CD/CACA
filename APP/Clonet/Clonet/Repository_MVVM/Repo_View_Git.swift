@@ -75,8 +75,6 @@ struct Repo_View_Git: View {
     @State private var presentingToast_pull: Bool = false
     @State private var presentingToast_commit: Bool = false
     
-    
-    
     // Diff
     @State var log_number1 = 0 // diff & reset
     @State var log_number2 = 0 // diff
@@ -197,6 +195,9 @@ struct Repo_View_Git: View {
                             presentingToast_commit = false
                             
                             commitGitRepo(localRepoLocation: documentURL.appendingPathComponent(repo_n), name: userID, email: userEmail, commit_msg: commit_msg, addFileName: addFileName)
+                            
+                            // reLoad Git Log
+                            Log_repo_list.getBranchLog(repo_n: repo_n, currentBranchName: new_branch_name)
                         })
                         .frame(minWidth: 100, maxWidth: .infinity, minHeight: 40, maxHeight: 40, alignment: .center)
                         Divider()
