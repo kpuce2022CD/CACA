@@ -194,10 +194,13 @@ struct Repo_View_Git: View {
                         Button("Save", action: {
                             presentingToast_commit = false
                             
-                            commitGitRepo(localRepoLocation: documentURL.appendingPathComponent(repo_n), name: userID, email: userEmail, commit_msg: commit_msg, addFileName: addFileName)
+                            // 순차 실행
+                            DispatchQueue.global(qos: .background).sync {
+                                commitGitRepo(localRepoLocation: documentURL.appendingPathComponent(repo_n), name: userID, email: userEmail, commit_msg: commit_msg, addFileName: addFileName)
+                                // reLoad Git Log
+                                branchNameObject.currentBranchName = branchNameObject.currentBranchName
+                            }
                             
-                            // reLoad Git Log
-                            Log_repo_list.getBranchLog(repo_n: repo_n, currentBranchName: new_branch_name)
                         })
                         .frame(minWidth: 100, maxWidth: .infinity, minHeight: 40, maxHeight: 40, alignment: .center)
                         Divider()
