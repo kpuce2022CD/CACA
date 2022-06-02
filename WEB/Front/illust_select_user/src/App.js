@@ -156,27 +156,19 @@ function App() {
     return (
         <div>
             <Subject name={user_login} />
-            <div align={"right"}>
-                <button type="submit" className="btn btn-primary btn-lg" onClick={handleClick}>Link</button>
-
+            <div align={"center"}>
                 <div id="reRender">
                     {numbers.map((photo, index) => (
                         <img id={photo} className="img-responsive" width="500px" height="500px" alt="" src={"http://13.209.116.111/clonet-repo/" + photo}
                              onClick={() => inputClickEvent(photo)} />
                         // <img id={photo} class="img-responsive" alt="" src={photo} onClick={() => inputClickEvent(photo)}/>
                     ))}
-
-
                 </div>
+                
+                <button type="submit" className="btn btn-primary btn-lg" onClick={handleClick}>Link</button>
             </div>
-
-
-
-
         </div>
-
     );
-
 }
 
 

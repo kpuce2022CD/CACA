@@ -16,6 +16,10 @@ class about_cst_test extends Component {
         aboutService.getUser().then((res) => {
             this.setState({ userAbout: res.data });
         });
+        // console.log("this is userAbout" + this.state.userAbout.map(
+        //     i =>
+        //     {i.profilePic}
+        // ));
     }
 
     render() {
@@ -25,7 +29,13 @@ class about_cst_test extends Component {
                 <main className="" id="main-collapse">
                     <div className="row">
                         <div className="col-xs-12 col-md-6">
-                            <img className="img-responsive" alt="" src="./assets/images/img-10.jpg" />
+                            {
+                                this.state.userAbout.map(
+                                    board =>
+                                    <img className="img-responsive" alt="./assets/images/img-10.jpg" src={board.profilePic } width="300" height="300" />
+                                )
+                            }
+                            {/* <img className="img-responsive" alt="" src="./assets/images/img-10.jpg" /> */}
                         </div>
                         <div className="col-xs-12 col-md-6">
                             <h1>About me</h1>
