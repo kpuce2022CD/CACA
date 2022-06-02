@@ -12,7 +12,7 @@ import Apollo
 
 final class Signup_ViewModel : ObservableObject {
     
-    @State var userId = ""
+    @Published var userId: String = ""
     
     
     func signup(id: String, passwd: String, name: String, userEmail: String){
@@ -20,11 +20,16 @@ final class Signup_ViewModel : ObservableObject {
             switch result {
             case .success(let graphQLResult):
                 print(graphQLResult.data?.signup)
-                self.userId = "success"
+                self.userId = "false"
 
             case .failure(let error):
                 print("Failure! Error: \(error)")
+                
             }
         }
+    }
+    
+    func returnResult() -> String{
+        return userId
     }
 }
