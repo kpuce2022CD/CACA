@@ -170,7 +170,6 @@ struct Repo_View_Directory: View {
                     List{
                         Section(header: Text("File List").font(.largeTitle)) {
                             ForEach(dataList.items, id: \.self){ i in
-//                                if(i != ".git" || i != ".DS_Store"){
                                 if(i.hasPrefix(".") == false ){
                                     Button(i, action: {
                                         fileNameImg = i
