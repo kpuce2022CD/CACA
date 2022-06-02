@@ -41,7 +41,7 @@ function useHome() {
                     <div>
                         <center>
                             <header>
-                                <img src="http://13.209.116.111/images/Clonet_logo.jpeg" className="App-logo" alt="logo" />
+                                {/* <img src="http://13.209.116.111/images/Clonet_logo.jpeg" className="App-logo" alt="logo" /> */}
                                 <p className="clonet-head">CLONET</p>
                             </header>
                         </center>
