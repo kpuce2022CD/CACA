@@ -74,7 +74,7 @@ class about_edit_user extends Component {
                                 this.state.userAbout.map(
                                     board =>
                                         <div>
-                                            <img className="img-responsive" alt={add_image} src={board.profilePic} width="300" height="300" />
+                                            <img className="img-responsive" alt={add_image} src={board.profilePic } width="300" height="300" />
                                         </div>
                                 )
                             }

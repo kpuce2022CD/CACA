@@ -31,12 +31,12 @@ class contact_cst extends Component {
                             <div class="section-container-spacer">
                                 <div>
                                     <h1>Contact</h1>
-                                    {
+                                    {/* {
                                         this.state.userAbout.map(
                                             board =>
                                                 <p>{board.contact}</p>
                                         )
-                                    }
+                                    } */}
                                 </div>
                             </div>
                             <div class="section-container-spacer">
@@ -45,7 +45,7 @@ class contact_cst extends Component {
                                     {
                                         this.state.userAbout.map(
                                             board =>
-                                                <Email user_email={board.user_email} user_name={board.user_name} />
+                                                <Email user_email={board.contact} user_name={board.user_name} />
                                         )
                                     }
                                     <div class="col-md-6">
@@ -57,7 +57,7 @@ class contact_cst extends Component {
                                                 {
                                                     this.state.userAbout.map(
                                                         board =>
-                                                            board.user_email
+                                                            board.contact
                                                     )
                                                 }
                                             </li>
