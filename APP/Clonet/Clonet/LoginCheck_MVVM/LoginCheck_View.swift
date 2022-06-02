@@ -11,6 +11,7 @@ import Foundation
 import SwiftGit2
 
 struct LoginCheck_View: View {
+    @Environment(\.presentationMode) var presentationMode
     @StateObject var logincheck_ViewModel = LoginCheck_ViewModel()
     @State var userID : String
     
@@ -26,12 +27,18 @@ struct LoginCheck_View: View {
                         .offset(y: -130)
                         .padding(.bottom, -130)
                         .padding()
+                    
                     VStack(alignment: .center){
                         Text(userID)
                             .font(.title)
                     }
                     .padding()
+                    Button(action:{ self.presentationMode.wrappedValue.dismiss()
+                    }){
+                        Text("Logout")
+                    }
                     Spacer()
+                    
                 }
                 VStack{
                     HStack{
@@ -73,8 +80,9 @@ struct LoginCheck_View: View {
         .hiddenNavigationBarStyle()
         .onAppear {
             logincheck_ViewModel.fetch(user_id: userID)
+            
         }
-
+        
     }
     
     

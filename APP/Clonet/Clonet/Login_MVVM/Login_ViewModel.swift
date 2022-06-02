@@ -33,7 +33,7 @@ final class Login_ViewModel : ObservableObject {
     init(){
         isLogin = false
         showingAlert = false
-//        autoLogin()
+        autoLogin()
     }
     
     func login(id: String, passwd: String) {
@@ -55,7 +55,6 @@ final class Login_ViewModel : ObservableObject {
 //                            print("Auto Login")  // 자동 로그인 선택 시 로그인 하면서 uid, pwd 저장
                             UserDefaults.standard.set(id, forKey: "id")
                             UserDefaults.standard.set(passwd, forKey: "pwd")
-                            print("Auto Login", UserDefaults.standard.string(forKey: "pwd"))
                         }
                         
                     } else {
@@ -80,10 +79,10 @@ final class Login_ViewModel : ObservableObject {
     func autoLogin() {
         let userid = UserDefaults.standard.string(forKey: "id")
         let pw = UserDefaults.standard.string(forKey: "pwd")
-//        print("LOGIN!!!!!!!!", "\(userid!)", "\(pw!)")
         if (userid != nil && pw != nil) {
             loginAutoNetwork(id: "\(userid!)", passwd:  "\(pw!)")
-            print("AUTO LOGIN!!!!!!!!", "\(userid!)", "\(pw!)")
+        } else {
+            self.selectionString = nil
         }
     }
     
@@ -101,21 +100,21 @@ final class Login_ViewModel : ObservableObject {
                     }
                     // 로그인성공
                     if(passwd == self.logins.user_pw && self.logins.user_pw != ""){
-//                        self.isLogin = true
-//                        LoginCheck_View(userID: id)
                         self.selectionString = "true"
                         self.isLogin = true
                         userID = id
-                        print("AUTO LOGIN SUCCESS!!!!!!!!")
                     } else {
 //                        self.isLogin = false
+                        self.selectionString = nil
                     }
                 } else if let errors = graphQLResult.errors {
                     print("GraphQL errors \(errors)")
+                    self.selectionString = nil
                 }
                 
             case .failure(let error):
                 print("Failure! Error: \(error)")
+                self.selectionString = nil
             }
         }
     }

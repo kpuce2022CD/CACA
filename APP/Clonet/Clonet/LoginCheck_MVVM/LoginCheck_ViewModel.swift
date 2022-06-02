@@ -158,5 +158,4 @@ final class LoginCheck_ViewModel: ObservableObject {
         fetch(user_id: userID)
     }
     
-    
 }

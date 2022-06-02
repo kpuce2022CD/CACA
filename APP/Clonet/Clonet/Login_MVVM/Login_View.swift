@@ -12,7 +12,7 @@ struct Login_View: View {
     @ObservedObject var viewModel = Login_ViewModel()
     
     init(){
-        viewModel.autoLogin()
+//        viewModel.autoLogin()
     }
     var body: some View {
         NavigationView {
@@ -56,12 +56,16 @@ struct Login_View: View {
                     // Login Btn
                     ZStack {
                         if(viewModel.isLogin == true){
-                            NavigationLink(destination: LoginCheck_View(userID: viewModel.userID), tag: "true", selection: $viewModel.selectionString) { }
+                            NavigationLink(destination: LoginCheck_View(userID: viewModel.userID), tag: "true", selection: $viewModel.selectionString) {
+                                
+                            }
                                 .buttonStyle(PlainButtonStyle()).frame(width:0).opacity(0)
+                            
                         }
                         Button("Login") {
                             viewModel.selectionString = "true"
                             viewModel.login(id: viewModel.userID, passwd: viewModel.userPW)
+                            
                         }
                         .alert(isPresented: $viewModel.showingAlert) {
                             Alert(title: Text("로그인에 실패했습니다"), message: nil,

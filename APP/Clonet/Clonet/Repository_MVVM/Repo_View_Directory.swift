@@ -197,7 +197,7 @@ struct Repo_View_Directory: View {
                         Section(header: Text("Message").font(.largeTitle)) {
                             
                             ForEach(Repo_ViewModel_req.Req_repo_list, id: \.id) { s in
-                                Button(s.request_context, action: {
+                                Button("\(s.user_id) : \(s.request_context)", action: {
                                     print("processPixels")
                                     messagePoint = true
                                     pixel.change_Pixel(x: s.x_pixel, y: s.y_pixel)
