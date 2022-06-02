@@ -39,6 +39,7 @@
 		3FDC202328479E190034B273 /* LoginCheckTestLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FDC202228479E190034B273 /* LoginCheckTestLaunchTests.swift */; };
 		3FDC20302847A0990034B273 /* LoginTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FDC202F2847A0990034B273 /* LoginTest.swift */; };
 		3FDC20322847A0990034B273 /* LoginTestLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FDC20312847A0990034B273 /* LoginTestLaunchTests.swift */; };
+		3FDC203928485B440034B273 /* Signup_ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FDC203828485B440034B273 /* Signup_ViewModel.swift */; };
 		3FE633B5278DD9AF00143666 /* PageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE633B4278DD9AF00143666 /* PageViewController.swift */; };
 		B50BD823278C781700A7E3E0 /* GitTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50BD822278C781700A7E3E0 /* GitTest.swift */; };
 		B540D420278C603900479A63 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = B540D41F278C603900479A63 /* libz.tbd */; };
@@ -111,6 +112,7 @@
 		3FDC202D2847A0990034B273 /* LoginTest.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LoginTest.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3FDC202F2847A0990034B273 /* LoginTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginTest.swift; sourceTree = "<group>"; };
 		3FDC20312847A0990034B273 /* LoginTestLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginTestLaunchTests.swift; sourceTree = "<group>"; };
+		3FDC203828485B440034B273 /* Signup_ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Signup_ViewModel.swift; sourceTree = "<group>"; };
 		3FE633B4278DD9AF00143666 /* PageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageViewController.swift; sourceTree = "<group>"; };
 		B50BD822278C781700A7E3E0 /* GitTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitTest.swift; sourceTree = "<group>"; };
 		B540D41F278C603900479A63 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
@@ -173,6 +175,7 @@
 			children = (
 				3F0ADCEB27DE1869007F1823 /* FindIdPw.swift */,
 				3F0ADCEC27DE1869007F1823 /* Signup.swift */,
+				3FDC203828485B440034B273 /* Signup_ViewModel.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -580,6 +583,7 @@
 				3F0ADD0927DE186B007F1823 /* Repo_View_Image.swift in Sources */,
 				3F0ADD0627DE186B007F1823 /* Repo_Model.swift in Sources */,
 				3F0ADCFE27DE186B007F1823 /* FindIdPw.swift in Sources */,
+				3FDC203928485B440034B273 /* Signup_ViewModel.swift in Sources */,
 				3F4B39F227B3A55A00EC0D8C /* Network.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
