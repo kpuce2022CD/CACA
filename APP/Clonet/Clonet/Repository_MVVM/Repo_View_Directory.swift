@@ -77,6 +77,7 @@ struct Repo_View_Directory: View {
         dataList.first(repo_n: self.repo_n)
         dataList.repoName = repo_n
         logList.getBranchLog(repo_n: repo_n, currentBranchName: branchNameObject.currentBranchName)
+        dataList.readMELoad(repoName: repo_n, fileName: "README.md")
     }
     
     var documentsUrl: URL {
