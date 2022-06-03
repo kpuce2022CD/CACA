@@ -7,18 +7,17 @@
 
 import SwiftUI
 
-class MDResult: ObservableObject{
-    @Published var text : String = ""
-    
-    func MDView(url: String) -> String{
+class MDResult: ObservableObject {
+    @Published var text: String = ""
+
+    func MDView(url: String) -> String {
         var result = ""
-        do{
+        do {
             text = try String(contentsOf: URL(string: url)!, encoding: .utf8)
-            print("MDMDMDMDREAD",text, url)
+            print("MDMDMDMDREAD", text, url)
             return text
-        }
-        catch {print("fail to load readme")}
-        
+        } catch {print("fail to load readme")}
+
         return result
     }
 }
@@ -27,19 +26,19 @@ struct Repo_View_Diff: View {
     @State var ImgOpacity = 0.5
     @State var text1: String = ""
     @State var text2: String = ""
-    @ObservedObject var logNumber : LogNumber
+    @ObservedObject var logNumber: LogNumber
     @ObservedObject var mdList = MDResult()
-    
-    init(ImgOpacity: Double, logNumber: LogNumber){
+
+    init(ImgOpacity: Double, logNumber: LogNumber) {
         self.ImgOpacity = ImgOpacity
         self.logNumber = logNumber
     }
-    
-    var body: some View{
+
+    var body: some View {
         VStack {
-            if(logNumber.url1.contains(".txt") == true || logNumber.url1.contains(".md") == true){
-                HStack{
-                    VStack{
+            if logNumber.url1.contains(".txt") == true || logNumber.url1.contains(".md") == true {
+                HStack {
+                    VStack {
                         Text("**First Commit**")
                             .font(.system(size: 20))
                             .foregroundColor(.blue)
@@ -48,7 +47,7 @@ struct Repo_View_Diff: View {
                             .frame(width: 400, height: 400, alignment: .center)
                             .cornerRadius(20)
                     }
-                    VStack{
+                    VStack {
                         Text("**Second Commit**")
                             .font(.system(size: 20))
                             .foregroundColor(.blue)
@@ -58,10 +57,10 @@ struct Repo_View_Diff: View {
                             .cornerRadius(20)
                     }
                 }
-            }else{
-                HStack{
-                    ZStack{
-                        AsyncImage(url: URL(string: logNumber.url1), scale: 2){ image in
+            } else {
+                HStack {
+                    ZStack {
+                        AsyncImage(url: URL(string: logNumber.url1), scale: 2) { image in
                             image
                                 .resizable()
                                 .aspectRatio(contentMode: .fill)
@@ -71,8 +70,8 @@ struct Repo_View_Diff: View {
                         }
                         .frame(width: 400, height: 400, alignment: .center)
                         .cornerRadius(20)
-                        
-                        AsyncImage(url: URL(string: logNumber.url2),scale: 2){ image in
+
+                        AsyncImage(url: URL(string: logNumber.url2), scale: 2) { image in
                             image
                                 .resizable()
                                 .aspectRatio(contentMode: .fill)
@@ -87,7 +86,7 @@ struct Repo_View_Diff: View {
                 }
                 Slider(value: self.$ImgOpacity, in: 0.0...1.0)
             }
-            
+
             Spacer()
         }.padding()
             .onAppear(perform: {
@@ -100,6 +99,6 @@ struct Repo_View_Diff: View {
 
 struct Repo_View_Diff_Previews: PreviewProvider {
     static var previews: some View {
-        Repo_View_Diff(ImgOpacity: 0.5, logNumber:LogNumber())
+        Repo_View_Diff(ImgOpacity: 0.5, logNumber: LogNumber())
     }
 }

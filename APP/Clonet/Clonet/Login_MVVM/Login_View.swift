@@ -7,36 +7,35 @@
 
 import SwiftUI
 
-
 struct Login_View: View {
     @ObservedObject var viewModel = Login_ViewModel()
-    
-    init(){
+
+    init() {
 //        viewModel.autoLogin()
     }
     var body: some View {
         NavigationView {
-            
+
             VStack(alignment: .center) {
-                
-                HStack(alignment: .center){
+
+                HStack(alignment: .center) {
                     Image("clonet_logo_white")
                         .resizable()
                         .scaledToFit()
                         .aspectRatio(contentMode: .fit)
                         .frame(width: 80, height: 80)
                         .shadow(radius: 5)
-                    
+
                     Text("CLONET")
                         .font(.largeTitle)
                         .bold()
                         .padding()
                 }
                 Spacer(minLength: 25.0)
-                
+
                 // input
                 VStack(alignment: .center) {
-                    VStack(alignment: .center){
+                    VStack(alignment: .center) {
                         HStack(alignment: .center) { // id input
                             Image(systemName: "envelope").padding()
                             TextField("ID", text: $viewModel.userID)
@@ -53,27 +52,26 @@ struct Login_View: View {
                                 .accessibilityIdentifier("PASSWORD")
                         }
                     }.padding([.leading, .bottom, .trailing])
-                    
-                    
+
                     // Login Btn
                     ZStack {
-                        if(viewModel.isLogin == true){
+                        if viewModel.isLogin == true {
                             NavigationLink(destination: LoginCheck_View(userID: viewModel.userID), tag: "true", selection: $viewModel.selectionString) {
-                                
+
                             }
-                                .buttonStyle(PlainButtonStyle()).frame(width:0).opacity(0)
-                            
+                                .buttonStyle(PlainButtonStyle()).frame(width: 0).opacity(0)
+
                         }
                         Button("Login") {
                             viewModel.selectionString = "true"
                             viewModel.login(id: viewModel.userID, passwd: viewModel.userPW)
-                            
+
                         }
                         .accessibilityIdentifier("LoginButton")
                         .alert(isPresented: $viewModel.showingAlert) {
                             Alert(title: Text("로그인에 실패했습니다"), message: nil,
                                   dismissButton: .default(Text("확인")))
-                            
+
                         }
                     }
                     .font(.headline)
@@ -87,18 +85,17 @@ struct Login_View: View {
                     )
                     .cornerRadius(15.0)
                 }
-                
+
                 Toggle(isOn: $viewModel.isOn) { // AUTO LOGIN TOGGLE
                     Text("AUTO")
                 }
                 .frame(width: 140, height: 20)
                 .padding()
                 .tint(.blue)
-                
-                
+
                 // ID PASSWORD FIND
                 Spacer()
-                HStack (spacing:20) {
+                HStack(spacing: 20) {
                     // Sign up
                     NavigationLink(destination: Signup(),
                                    label: {Text("SIGN UP")})
@@ -106,7 +103,7 @@ struct Login_View: View {
                     // Find ID && PASSWORD
                     NavigationLink(destination: FindIdPw(),
                                    label: {Text("ID / PASSWORD 찾기")})
-                    //.padding()
+                    // .padding()
                 }.padding()
             }
         }

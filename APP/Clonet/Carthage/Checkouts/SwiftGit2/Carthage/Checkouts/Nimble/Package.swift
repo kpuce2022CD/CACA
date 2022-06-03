@@ -8,12 +8,12 @@ let package = Package(
     ],
     targets: [
         .target(
-            name: "Nimble", 
+            name: "Nimble",
             dependencies: []
         ),
         .testTarget(
-            name: "NimbleTests", 
-            dependencies: ["Nimble"], 
+            name: "NimbleTests",
+            dependencies: ["Nimble"],
             exclude: ["objc"]
         ),
     ],

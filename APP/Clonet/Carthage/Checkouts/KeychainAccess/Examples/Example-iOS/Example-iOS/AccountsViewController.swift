@@ -44,7 +44,7 @@ class AccountsViewController: UITableViewController {
         super.didReceiveMemoryWarning()
     }
 
-    // MARK:
+    // MARK: 
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         if itemsGroupedByService != nil {
@@ -124,7 +124,7 @@ class AccountsViewController: UITableViewController {
     }
     #endif
 
-    // MARK:
+    // MARK: 
 
     func reloadData() {
         let items = Keychain.allItems(.genericPassword)
@@ -137,8 +137,8 @@ class AccountsViewController: UITableViewController {
     }
 }
 
-private func groupBy<C: Collection, K: Hashable>(_ xs: C, key: (C.Iterator.Element) -> K) -> [K:[C.Iterator.Element]] {
-    var gs: [K:[C.Iterator.Element]] = [:]
+private func groupBy<C: Collection, K: Hashable>(_ xs: C, key: (C.Iterator.Element) -> K) -> [K: [C.Iterator.Element]] {
+    var gs: [K: [C.Iterator.Element]] = [:]
     for x in xs {
         let k = key(x)
         var ys = gs[k] ?? []

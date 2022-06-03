@@ -12,7 +12,7 @@ import XCTest
 
 public protocol XCTestCaseProviderStatic {
     // This should be explicitly implemented by XCTestCase subclasses
-    static var __allTests: [(String, (Self) -> () -> ())] { get }
+    static var __allTests: [(String, (Self) -> () -> Void)] { get }
 }
 
 public protocol XCTestCaseNameProvider {

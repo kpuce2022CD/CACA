@@ -5,7 +5,6 @@
 //  Created by Jimin on 2022/02/09.
 //
 
-
 import SwiftUI
 import Foundation
 import SwiftGit2
@@ -13,12 +12,12 @@ import SwiftGit2
 struct LoginCheck_View: View {
     @Environment(\.presentationMode) var presentationMode
     @StateObject var logincheck_ViewModel = LoginCheck_ViewModel()
-    @State var userID : String
-    
+    @State var userID: String
+
     var body: some View {
-        NavigationView{
-            HStack{
-                VStack{
+        NavigationView {
+            HStack {
+                VStack {
                     Spacer()
                     Image("clonet_logo_white")
                         .resizable()
@@ -28,21 +27,21 @@ struct LoginCheck_View: View {
                         .padding(.bottom, -130)
                         .padding()
                         .accessibilityIdentifier("clonet_logo_white")
-                    
-                    VStack(alignment: .center){
+
+                    VStack(alignment: .center) {
                         Text(userID)
                             .font(.title)
                     }
                     .padding()
-                    Button(action:{ self.presentationMode.wrappedValue.dismiss()
-                    }){
+                    Button(action: { self.presentationMode.wrappedValue.dismiss()
+                    }) {
                         Text("Logout")
                     }
                     Spacer()
-                    
+
                 }
-                VStack{
-                    HStack{
+                VStack {
+                    HStack {
                         Spacer()
                         Button(action: {
                             logincheck_ViewModel.loginCheck_alert(userID: userID)
@@ -51,13 +50,13 @@ struct LoginCheck_View: View {
                         }
                         .padding()
                     }
-                    List{
+                    List {
                         ForEach(logincheck_ViewModel.Repo_List, id: \.id) { s in
                             NavigationLink(destination: Repo_View(userID: userID, repoName: s.repo_name).onAppear(perform: {
                                 deleteFile(repoName: s.repo_name)
                                 cloneGitRepo(remoteRepoLocation: "http://13.209.116.111/git-repositories/" + s.repo_name + ".git", localRepoLocation: documentURL.appendingPathComponent(s.repo_name))
-                            })){
-                                VStack{
+                            })) {
+                                VStack {
                                     Text("repo_name: \(s.repo_name)")
                                 }
                             }
@@ -81,36 +80,35 @@ struct LoginCheck_View: View {
         .hiddenNavigationBarStyle()
         .onAppear {
             logincheck_ViewModel.fetch(user_id: userID)
-            
+
         }
-        
+
     }
-    
-    
-    //MARK: Delete file
+
+    // MARK: Delete file
     var documentsUrl: URL {
         return FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
     }
-    
-    func deleteFile(repoName: String){
-        
+
+    func deleteFile(repoName: String) {
+
         // delete File
         let fileManager = FileManager.default
         let path = documentsUrl.path
-        
-        do{
+
+        do {
             try fileManager.removeItem(atPath: path + "/\(repoName)/")
             print("deletePath:", path + "/\(repoName)/")
-        }catch let e {
+        } catch let e {
             print("\(e)")
         }
-        
+
     }
-    
-    //MARK: CLONE_FUNC
-    func cloneGitRepo(remoteRepoLocation remoteRepoLocation : String, localRepoLocation localRepoLocation : URL) {
+
+    // MARK: CLONE_FUNC
+    func cloneGitRepo(remoteRepoLocation remoteRepoLocation: String, localRepoLocation localRepoLocation: URL) {
         let remote: URL = URL(string: remoteRepoLocation)!
-        
+
         let result = Repository.clone(from: remote, to: localRepoLocation)
         switch result {
         case let .success(repo):
@@ -119,7 +117,7 @@ struct LoginCheck_View: View {
                 .flatMap {
                     repo.commit($0.oid)
                 }
-            
+
         case let .failure(error):
             print(error)
         }

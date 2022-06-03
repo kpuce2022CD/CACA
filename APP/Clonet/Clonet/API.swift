@@ -32,7 +32,7 @@ public final class UserQuery: GraphQLQuery {
 
     public static var selections: [GraphQLSelection] {
       return [
-        GraphQLField("User", type: .list(.object(User.selections))),
+        GraphQLField("User", type: .list(.object(User.selections)))
       ]
     }
 
@@ -67,7 +67,7 @@ public final class UserQuery: GraphQLQuery {
           GraphQLField("user_email", type: .scalar(String.self)),
           GraphQLField("profilePic", type: .scalar(String.self)),
           GraphQLField("about", type: .scalar(String.self)),
-          GraphQLField("contact", type: .scalar(String.self)),
+          GraphQLField("contact", type: .scalar(String.self))
         ]
       }
 
@@ -179,7 +179,7 @@ public final class RepositoryQuery: GraphQLQuery {
 
     public static var selections: [GraphQLSelection] {
       return [
-        GraphQLField("Repository", type: .list(.object(Repository.selections))),
+        GraphQLField("Repository", type: .list(.object(Repository.selections)))
       ]
     }
 
@@ -209,7 +209,7 @@ public final class RepositoryQuery: GraphQLQuery {
         return [
           GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
           GraphQLField("repo_name", type: .scalar(String.self)),
-          GraphQLField("repo_ec2_ip", type: .scalar(String.self)),
+          GraphQLField("repo_ec2_ip", type: .scalar(String.self))
         ]
       }
 
@@ -276,7 +276,7 @@ public final class MappingRepoUserQuery: GraphQLQuery {
 
     public static var selections: [GraphQLSelection] {
       return [
-        GraphQLField("mapping_repo_user", type: .list(.object(MappingRepoUser.selections))),
+        GraphQLField("mapping_repo_user", type: .list(.object(MappingRepoUser.selections)))
       ]
     }
 
@@ -306,7 +306,7 @@ public final class MappingRepoUserQuery: GraphQLQuery {
         return [
           GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
           GraphQLField("user_id", type: .scalar(String.self)),
-          GraphQLField("repo_name", type: .scalar(String.self)),
+          GraphQLField("repo_name", type: .scalar(String.self))
         ]
       }
 
@@ -376,7 +376,7 @@ public final class RequestQuery: GraphQLQuery {
 
     public static var selections: [GraphQLSelection] {
       return [
-        GraphQLField("request", type: .list(.object(Request.selections))),
+        GraphQLField("request", type: .list(.object(Request.selections)))
       ]
     }
 
@@ -409,7 +409,7 @@ public final class RequestQuery: GraphQLQuery {
           GraphQLField("repo_name", type: .scalar(String.self)),
           GraphQLField("x_pixel", type: .scalar(String.self)),
           GraphQLField("y_pixel", type: .scalar(String.self)),
-          GraphQLField("request_context", type: .scalar(String.self)),
+          GraphQLField("request_context", type: .scalar(String.self))
         ]
       }
 
@@ -513,7 +513,7 @@ public final class RequestIdQuery: GraphQLQuery {
 
     public static var selections: [GraphQLSelection] {
       return [
-        GraphQLField("request_id", arguments: ["user_id": GraphQLVariable("user_id")], type: .list(.object(RequestId.selections))),
+        GraphQLField("request_id", arguments: ["user_id": GraphQLVariable("user_id")], type: .list(.object(RequestId.selections)))
       ]
     }
 
@@ -546,7 +546,7 @@ public final class RequestIdQuery: GraphQLQuery {
           GraphQLField("repo_name", type: .scalar(String.self)),
           GraphQLField("x_pixel", type: .scalar(String.self)),
           GraphQLField("y_pixel", type: .scalar(String.self)),
-          GraphQLField("request_context", type: .scalar(String.self)),
+          GraphQLField("request_context", type: .scalar(String.self))
         ]
       }
 
@@ -650,7 +650,7 @@ public final class RequestRepoQuery: GraphQLQuery {
 
     public static var selections: [GraphQLSelection] {
       return [
-        GraphQLField("request_repo", arguments: ["repo_name": GraphQLVariable("repo_name")], type: .list(.object(RequestRepo.selections))),
+        GraphQLField("request_repo", arguments: ["repo_name": GraphQLVariable("repo_name")], type: .list(.object(RequestRepo.selections)))
       ]
     }
 
@@ -683,7 +683,7 @@ public final class RequestRepoQuery: GraphQLQuery {
           GraphQLField("repo_name", type: .scalar(String.self)),
           GraphQLField("x_pixel", type: .scalar(String.self)),
           GraphQLField("y_pixel", type: .scalar(String.self)),
-          GraphQLField("request_context", type: .scalar(String.self)),
+          GraphQLField("request_context", type: .scalar(String.self))
         ]
       }
 
@@ -789,7 +789,7 @@ public final class RequestXyQuery: GraphQLQuery {
 
     public static var selections: [GraphQLSelection] {
       return [
-        GraphQLField("request_xy", arguments: ["x_pixel": GraphQLVariable("x_pixel"), "y_pixel": GraphQLVariable("y_pixel")], type: .list(.object(RequestXy.selections))),
+        GraphQLField("request_xy", arguments: ["x_pixel": GraphQLVariable("x_pixel"), "y_pixel": GraphQLVariable("y_pixel")], type: .list(.object(RequestXy.selections)))
       ]
     }
 
@@ -822,7 +822,7 @@ public final class RequestXyQuery: GraphQLQuery {
           GraphQLField("repo_name", type: .scalar(String.self)),
           GraphQLField("x_pixel", type: .scalar(String.self)),
           GraphQLField("y_pixel", type: .scalar(String.self)),
-          GraphQLField("request_context", type: .scalar(String.self)),
+          GraphQLField("request_context", type: .scalar(String.self))
         ]
       }
 
@@ -930,7 +930,7 @@ public final class DiffCommitQuery: GraphQLQuery {
 
     public static var selections: [GraphQLSelection] {
       return [
-        GraphQLField("diff_commit", arguments: ["first_commit": GraphQLVariable("first_commit"), "second_commit": GraphQLVariable("second_commit"), "repo_name": GraphQLVariable("repo_name"), "file_name": GraphQLVariable("file_name")], type: .scalar(String.self)),
+        GraphQLField("diff_commit", arguments: ["first_commit": GraphQLVariable("first_commit"), "second_commit": GraphQLVariable("second_commit"), "repo_name": GraphQLVariable("repo_name"), "file_name": GraphQLVariable("file_name")], type: .scalar(String.self))
       ]
     }
 
@@ -990,7 +990,7 @@ public final class LoginQuery: GraphQLQuery {
 
     public static var selections: [GraphQLSelection] {
       return [
-        GraphQLField("login", arguments: ["user_id": GraphQLVariable("userId")], type: .list(.object(Login.selections))),
+        GraphQLField("login", arguments: ["user_id": GraphQLVariable("userId")], type: .list(.object(Login.selections)))
       ]
     }
 
@@ -1025,7 +1025,7 @@ public final class LoginQuery: GraphQLQuery {
           GraphQLField("user_email", type: .scalar(String.self)),
           GraphQLField("profilePic", type: .scalar(String.self)),
           GraphQLField("about", type: .scalar(String.self)),
-          GraphQLField("contact", type: .scalar(String.self)),
+          GraphQLField("contact", type: .scalar(String.self))
         ]
       }
 
@@ -1149,7 +1149,7 @@ public final class FindIdQuery: GraphQLQuery {
 
     public static var selections: [GraphQLSelection] {
       return [
-        GraphQLField("findId", arguments: ["user_email": GraphQLVariable("userEmail")], type: .list(.object(FindId.selections))),
+        GraphQLField("findId", arguments: ["user_email": GraphQLVariable("userEmail")], type: .list(.object(FindId.selections)))
       ]
     }
 
@@ -1184,7 +1184,7 @@ public final class FindIdQuery: GraphQLQuery {
           GraphQLField("user_email", type: .scalar(String.self)),
           GraphQLField("profilePic", type: .scalar(String.self)),
           GraphQLField("about", type: .scalar(String.self)),
-          GraphQLField("contact", type: .scalar(String.self)),
+          GraphQLField("contact", type: .scalar(String.self))
         ]
       }
 
@@ -1308,7 +1308,7 @@ public final class FindPwQuery: GraphQLQuery {
 
     public static var selections: [GraphQLSelection] {
       return [
-        GraphQLField("findPw", arguments: ["user_id": GraphQLVariable("user_id")], type: .list(.object(FindPw.selections))),
+        GraphQLField("findPw", arguments: ["user_id": GraphQLVariable("user_id")], type: .list(.object(FindPw.selections)))
       ]
     }
 
@@ -1343,7 +1343,7 @@ public final class FindPwQuery: GraphQLQuery {
           GraphQLField("user_email", type: .scalar(String.self)),
           GraphQLField("profilePic", type: .scalar(String.self)),
           GraphQLField("about", type: .scalar(String.self)),
-          GraphQLField("contact", type: .scalar(String.self)),
+          GraphQLField("contact", type: .scalar(String.self))
         ]
       }
 
@@ -1462,7 +1462,7 @@ public final class RepoListQuery: GraphQLQuery {
 
     public static var selections: [GraphQLSelection] {
       return [
-        GraphQLField("repoList", arguments: ["user_id": GraphQLVariable("user_id")], type: .list(.object(RepoList.selections))),
+        GraphQLField("repoList", arguments: ["user_id": GraphQLVariable("user_id")], type: .list(.object(RepoList.selections)))
       ]
     }
 
@@ -1492,7 +1492,7 @@ public final class RepoListQuery: GraphQLQuery {
         return [
           GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
           GraphQLField("user_id", type: .scalar(String.self)),
-          GraphQLField("repo_name", type: .scalar(String.self)),
+          GraphQLField("repo_name", type: .scalar(String.self))
         ]
       }
 
@@ -1571,7 +1571,7 @@ public final class SelectProfilePicQuery: GraphQLQuery {
 
     public static var selections: [GraphQLSelection] {
       return [
-        GraphQLField("select_profilePic", arguments: ["user_id": GraphQLVariable("user_id")], type: .list(.object(SelectProfilePic.selections))),
+        GraphQLField("select_profilePic", arguments: ["user_id": GraphQLVariable("user_id")], type: .list(.object(SelectProfilePic.selections)))
       ]
     }
 
@@ -1606,7 +1606,7 @@ public final class SelectProfilePicQuery: GraphQLQuery {
           GraphQLField("user_email", type: .scalar(String.self)),
           GraphQLField("profilePic", type: .scalar(String.self)),
           GraphQLField("about", type: .scalar(String.self)),
-          GraphQLField("contact", type: .scalar(String.self)),
+          GraphQLField("contact", type: .scalar(String.self))
         ]
       }
 
@@ -1730,7 +1730,7 @@ public final class CheckUserQuery: GraphQLQuery {
 
     public static var selections: [GraphQLSelection] {
       return [
-        GraphQLField("checkUser", arguments: ["user_id": GraphQLVariable("user_id")], type: .list(.object(CheckUser.selections))),
+        GraphQLField("checkUser", arguments: ["user_id": GraphQLVariable("user_id")], type: .list(.object(CheckUser.selections)))
       ]
     }
 
@@ -1765,7 +1765,7 @@ public final class CheckUserQuery: GraphQLQuery {
           GraphQLField("user_email", type: .scalar(String.self)),
           GraphQLField("profilePic", type: .scalar(String.self)),
           GraphQLField("about", type: .scalar(String.self)),
-          GraphQLField("contact", type: .scalar(String.self)),
+          GraphQLField("contact", type: .scalar(String.self))
         ]
       }
 
@@ -1884,7 +1884,7 @@ public final class GroupUserQuery: GraphQLQuery {
 
     public static var selections: [GraphQLSelection] {
       return [
-        GraphQLField("groupUser", arguments: ["repo_name": GraphQLVariable("repo_name")], type: .list(.object(GroupUser.selections))),
+        GraphQLField("groupUser", arguments: ["repo_name": GraphQLVariable("repo_name")], type: .list(.object(GroupUser.selections)))
       ]
     }
 
@@ -1914,7 +1914,7 @@ public final class GroupUserQuery: GraphQLQuery {
         return [
           GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
           GraphQLField("user_id", type: .scalar(String.self)),
-          GraphQLField("repo_name", type: .scalar(String.self)),
+          GraphQLField("repo_name", type: .scalar(String.self))
         ]
       }
 
@@ -1988,7 +1988,7 @@ public final class SelectRepoQuery: GraphQLQuery {
 
     public static var selections: [GraphQLSelection] {
       return [
-        GraphQLField("select_repo", arguments: ["repo_name": GraphQLVariable("repo_name")], type: .list(.object(SelectRepo.selections))),
+        GraphQLField("select_repo", arguments: ["repo_name": GraphQLVariable("repo_name")], type: .list(.object(SelectRepo.selections)))
       ]
     }
 
@@ -2018,7 +2018,7 @@ public final class SelectRepoQuery: GraphQLQuery {
         return [
           GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
           GraphQLField("repo_name", type: .scalar(String.self)),
-          GraphQLField("repo_ec2_ip", type: .scalar(String.self)),
+          GraphQLField("repo_ec2_ip", type: .scalar(String.self))
         ]
       }
 
@@ -2092,7 +2092,7 @@ public final class SelectEc2Query: GraphQLQuery {
 
     public static var selections: [GraphQLSelection] {
       return [
-        GraphQLField("select_ec2", arguments: ["repo_ec2_ip": GraphQLVariable("repo_ec2_ip")], type: .list(.object(SelectEc2.selections))),
+        GraphQLField("select_ec2", arguments: ["repo_ec2_ip": GraphQLVariable("repo_ec2_ip")], type: .list(.object(SelectEc2.selections)))
       ]
     }
 
@@ -2122,7 +2122,7 @@ public final class SelectEc2Query: GraphQLQuery {
         return [
           GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
           GraphQLField("repo_name", type: .scalar(String.self)),
-          GraphQLField("repo_ec2_ip", type: .scalar(String.self)),
+          GraphQLField("repo_ec2_ip", type: .scalar(String.self))
         ]
       }
 
@@ -2198,7 +2198,7 @@ public final class LogRepoQuery: GraphQLQuery {
 
     public static var selections: [GraphQLSelection] {
       return [
-        GraphQLField("log_repo", arguments: ["repo_name": GraphQLVariable("repo_name")], type: .list(.object(LogRepo.selections))),
+        GraphQLField("log_repo", arguments: ["repo_name": GraphQLVariable("repo_name")], type: .list(.object(LogRepo.selections)))
       ]
     }
 
@@ -2230,7 +2230,7 @@ public final class LogRepoQuery: GraphQLQuery {
           GraphQLField("commit_msg", type: .scalar(String.self)),
           GraphQLField("date", type: .scalar(String.self)),
           GraphQLField("commit_id", type: .scalar(String.self)),
-          GraphQLField("user_id", type: .scalar(String.self)),
+          GraphQLField("user_id", type: .scalar(String.self))
         ]
       }
 
@@ -2329,7 +2329,7 @@ public final class SignupMutation: GraphQLMutation {
 
     public static var selections: [GraphQLSelection] {
       return [
-        GraphQLField("signup", arguments: ["user_id": GraphQLVariable("user_id"), "user_pw": GraphQLVariable("user_pw"), "user_name": GraphQLVariable("user_name"), "user_email": GraphQLVariable("user_email")], type: .scalar(String.self)),
+        GraphQLField("signup", arguments: ["user_id": GraphQLVariable("user_id"), "user_pw": GraphQLVariable("user_pw"), "user_name": GraphQLVariable("user_name"), "user_email": GraphQLVariable("user_email")], type: .scalar(String.self))
       ]
     }
 
@@ -2384,7 +2384,7 @@ public final class CreateRepoMutation: GraphQLMutation {
 
     public static var selections: [GraphQLSelection] {
       return [
-        GraphQLField("create_repo", arguments: ["repo_name": GraphQLVariable("repo_name"), "repo_ec2_ip": GraphQLVariable("repo_ec2_ip"), "user_id": GraphQLVariable("user_id")], type: .scalar(String.self)),
+        GraphQLField("create_repo", arguments: ["repo_name": GraphQLVariable("repo_name"), "repo_ec2_ip": GraphQLVariable("repo_ec2_ip"), "user_id": GraphQLVariable("user_id")], type: .scalar(String.self))
       ]
     }
 
@@ -2437,7 +2437,7 @@ public final class InsertProfilePicMutation: GraphQLMutation {
 
     public static var selections: [GraphQLSelection] {
       return [
-        GraphQLField("insert_profilePic", arguments: ["user_id": GraphQLVariable("user_id"), "profilePic": GraphQLVariable("profilePic")], type: .scalar(String.self)),
+        GraphQLField("insert_profilePic", arguments: ["user_id": GraphQLVariable("user_id"), "profilePic": GraphQLVariable("profilePic")], type: .scalar(String.self))
       ]
     }
 
@@ -2490,7 +2490,7 @@ public final class PlusUserMutation: GraphQLMutation {
 
     public static var selections: [GraphQLSelection] {
       return [
-        GraphQLField("plusUser", arguments: ["user_id": GraphQLVariable("user_id"), "repo_name": GraphQLVariable("repo_name")], type: .scalar(String.self)),
+        GraphQLField("plusUser", arguments: ["user_id": GraphQLVariable("user_id"), "repo_name": GraphQLVariable("repo_name")], type: .scalar(String.self))
       ]
     }
 
@@ -2555,7 +2555,7 @@ public final class CreateRequestMutation: GraphQLMutation {
 
     public static var selections: [GraphQLSelection] {
       return [
-        GraphQLField("create_request", arguments: ["user_id": GraphQLVariable("user_id"), "repo_name": GraphQLVariable("repo_name"), "x_pixel": GraphQLVariable("x_pixel"), "y_pixel": GraphQLVariable("y_pixel"), "request_context": GraphQLVariable("request_context")], type: .scalar(String.self)),
+        GraphQLField("create_request", arguments: ["user_id": GraphQLVariable("user_id"), "repo_name": GraphQLVariable("repo_name"), "x_pixel": GraphQLVariable("x_pixel"), "y_pixel": GraphQLVariable("y_pixel"), "request_context": GraphQLVariable("request_context")], type: .scalar(String.self))
       ]
     }
 
@@ -2608,7 +2608,7 @@ public final class UpdateUserpwMutation: GraphQLMutation {
 
     public static var selections: [GraphQLSelection] {
       return [
-        GraphQLField("update_userpw", arguments: ["user_id": GraphQLVariable("user_id"), "user_pw": GraphQLVariable("user_pw")], type: .scalar(String.self)),
+        GraphQLField("update_userpw", arguments: ["user_id": GraphQLVariable("user_id"), "user_pw": GraphQLVariable("user_pw")], type: .scalar(String.self))
       ]
     }
 
@@ -2661,7 +2661,7 @@ public final class UpdateNameMutation: GraphQLMutation {
 
     public static var selections: [GraphQLSelection] {
       return [
-        GraphQLField("update_name", arguments: ["user_id": GraphQLVariable("user_id"), "user_name": GraphQLVariable("user_name")], type: .scalar(String.self)),
+        GraphQLField("update_name", arguments: ["user_id": GraphQLVariable("user_id"), "user_name": GraphQLVariable("user_name")], type: .scalar(String.self))
       ]
     }
 
@@ -2714,7 +2714,7 @@ public final class UpdateEmailMutation: GraphQLMutation {
 
     public static var selections: [GraphQLSelection] {
       return [
-        GraphQLField("update_email", arguments: ["user_id": GraphQLVariable("user_id"), "user_email": GraphQLVariable("user_email")], type: .scalar(String.self)),
+        GraphQLField("update_email", arguments: ["user_id": GraphQLVariable("user_id"), "user_email": GraphQLVariable("user_email")], type: .scalar(String.self))
       ]
     }
 
@@ -2767,7 +2767,7 @@ public final class UpdateProfilePicMutation: GraphQLMutation {
 
     public static var selections: [GraphQLSelection] {
       return [
-        GraphQLField("update_profilePic", arguments: ["user_id": GraphQLVariable("user_id"), "profilePic": GraphQLVariable("profilePic")], type: .scalar(String.self)),
+        GraphQLField("update_profilePic", arguments: ["user_id": GraphQLVariable("user_id"), "profilePic": GraphQLVariable("profilePic")], type: .scalar(String.self))
       ]
     }
 
@@ -2820,7 +2820,7 @@ public final class UpdateAboutMutation: GraphQLMutation {
 
     public static var selections: [GraphQLSelection] {
       return [
-        GraphQLField("update_about", arguments: ["user_id": GraphQLVariable("user_id"), "about": GraphQLVariable("about")], type: .scalar(String.self)),
+        GraphQLField("update_about", arguments: ["user_id": GraphQLVariable("user_id"), "about": GraphQLVariable("about")], type: .scalar(String.self))
       ]
     }
 
@@ -2873,7 +2873,7 @@ public final class UpdateContactMutation: GraphQLMutation {
 
     public static var selections: [GraphQLSelection] {
       return [
-        GraphQLField("update_contact", arguments: ["user_id": GraphQLVariable("user_id"), "contact": GraphQLVariable("contact")], type: .scalar(String.self)),
+        GraphQLField("update_contact", arguments: ["user_id": GraphQLVariable("user_id"), "contact": GraphQLVariable("contact")], type: .scalar(String.self))
       ]
     }
 
@@ -2924,7 +2924,7 @@ public final class DeleteRequestUserIdMutation: GraphQLMutation {
 
     public static var selections: [GraphQLSelection] {
       return [
-        GraphQLField("delete_request_userID", arguments: ["user_id": GraphQLVariable("user_id")], type: .scalar(String.self)),
+        GraphQLField("delete_request_userID", arguments: ["user_id": GraphQLVariable("user_id")], type: .scalar(String.self))
       ]
     }
 
@@ -2975,7 +2975,7 @@ public final class DeleteRequestRepoMutation: GraphQLMutation {
 
     public static var selections: [GraphQLSelection] {
       return [
-        GraphQLField("delete_request_repo", arguments: ["repo_name": GraphQLVariable("repo_name")], type: .scalar(String.self)),
+        GraphQLField("delete_request_repo", arguments: ["repo_name": GraphQLVariable("repo_name")], type: .scalar(String.self))
       ]
     }
 
@@ -3028,7 +3028,7 @@ public final class DeleteRequestXyMutation: GraphQLMutation {
 
     public static var selections: [GraphQLSelection] {
       return [
-        GraphQLField("delete_request_xy", arguments: ["x_pixel": GraphQLVariable("x_pixel"), "y_pixel": GraphQLVariable("y_pixel")], type: .scalar(String.self)),
+        GraphQLField("delete_request_xy", arguments: ["x_pixel": GraphQLVariable("x_pixel"), "y_pixel": GraphQLVariable("y_pixel")], type: .scalar(String.self))
       ]
     }
 

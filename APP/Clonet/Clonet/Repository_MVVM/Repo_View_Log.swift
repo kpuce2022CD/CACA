@@ -11,12 +11,11 @@ import Apollo
 import Combine
 
 struct Repo_View_Log: View {
-    
+
     @State var repo_n: String
     @StateObject var log_repoViewModel_a = log_repo_ViewModel()
-    
-    
-    init(repo_n: String){
+
+    init(repo_n: String) {
         self.repo_n = repo_n
     }
 
@@ -24,18 +23,18 @@ struct Repo_View_Log: View {
         List(log_repoViewModel_a.Log_repo_list, id: \.id) { log_l in
             Text(log_l.userId + " : " + log_l.commitMsg)
 
-        }.onAppear(){
+        }.onAppear {
             log_repoViewModel_a.repo_n = self.repo_n
             log_repoViewModel_a.appear()
             print("log_repoViewModel_a \(log_repoViewModel_a.Log_repo_list)")
-            
+
 //            // Timer to reload log
 //            var timer: Timer? = Timer.scheduledTimer(withTimeInterval: 3, repeats: true, block: { _ in
 //                log_repoViewModel_a.Log_repo_list.removeAll()
 //                log_repoViewModel_a.fetch(Repo_Name: repo_n)
 //            })
         }
-        
+
     }
 }
 

@@ -92,12 +92,12 @@ final class ResultTests: XCTestCase {
 	#endif
 
 	// MARK: Try - Catch
-	
+
 	func testTryCatchProducesSuccesses() {
 		let result: Result<String, AnyError> = Result(try tryIsSuccess("success"))
 		XCTAssert(result == success)
 	}
-	
+
 	func testTryCatchProducesFailures() {
 		let result: Result<String, AnyError> = Result(try tryIsSuccess(nil))
 		XCTAssert(result.error == error)
@@ -246,7 +246,6 @@ final class AnyErrorTests: XCTestCase {
 	}
 }
 
-
 // MARK: - Fixtures
 
 private enum Error: Swift.Error, LocalizedError {
@@ -310,7 +309,7 @@ extension NSError {
 	var function: String? {
 		return userInfo[Result<(), NSError>.functionKey] as? String
 	}
-	
+
 	var file: String? {
 		return userInfo[Result<(), NSError>.fileKey] as? String
 	}
@@ -351,7 +350,7 @@ extension ResultTests {
 //			("testTryProducesSuccessesForBooleanAPI", testTryProducesSuccessesForBooleanAPI),
 //			("testTryProducesSuccessesForOptionalAPI", testTryProducesSuccessesForOptionalAPI),
 			("testTryMapProducesSuccess", testTryMapProducesSuccess),
-			("testTryMapProducesFailure", testTryMapProducesFailure),
+			("testTryMapProducesFailure", testTryMapProducesFailure)
 
 //			These tests fail on linux, root cause possibly https://bugs.swift.org/browse/SR-3565
 //          Try again when it's fixed

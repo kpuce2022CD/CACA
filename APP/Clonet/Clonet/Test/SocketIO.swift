@@ -11,17 +11,17 @@ import zlib
 
 final class Service: ObservableObject {
     private var manager = SocketManager(socketURL: URL(string: "ws://13.125.160.209:3000")!, config: [.log(true), .compress])
-    
+
     @Published var messages = [String]()
-    
-    init(){
+
+    init() {
         let socket = manager.defaultSocket
-        socket.on(clientEvent: .connect){ (data, ack) in
+        socket.on(clientEvent: .connect) { (_, _) in
             print("Connected")
             socket.emit("NodeJS Server Port", "self.json")
         }
-        
-        socket.on("iOS Client Port"){ [weak self] (data, ack) in
+
+        socket.on("iOS Client Port") { [weak self] (data, _) in
             if let data = data[0] as? [String: String],
                let rawMessage = data["msg"] {
                 DispatchQueue.main.async {
@@ -29,19 +29,18 @@ final class Service: ObservableObject {
                 }
             }
         }
-        
+
         socket.connect()
     }
-    
-    
+
 }
 
 struct SocketIO: View {
     @ObservedObject var service = Service()
-    
+
     var body: some View {
 //        GitTest()
-        VStack{
+        VStack {
             Text("Received messages form Node.js: ")
                 .font(.largeTitle)
             ForEach(service.messages, id: \.self) { msg in

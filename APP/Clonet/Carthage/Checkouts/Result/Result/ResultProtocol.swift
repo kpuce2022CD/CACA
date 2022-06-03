@@ -4,13 +4,13 @@
 public protocol ResultProtocol {
 	associatedtype Value
 	associatedtype Error: Swift.Error
-	
+
 	/// Constructs a successful result wrapping a `value`.
 	init(value: Value)
 
 	/// Constructs a failed result wrapping an `error`.
 	init(error: Error)
-	
+
 	/// Case analysis for ResultProtocol.
 	///
 	/// Returns the value produced by appliying `ifFailure` to the error if self represents a failure, or `ifSuccess` to the result value if self represents a success.
@@ -28,12 +28,12 @@ public protocol ResultProtocol {
 }
 
 public extension ResultProtocol {
-	
+
 	/// Returns the value if self represents a success, `nil` otherwise.
 	public var value: Value? {
 		return analysis(ifSuccess: { $0 }, ifFailure: { _ in nil })
 	}
-	
+
 	/// Returns the error if self represents a failure, `nil` otherwise.
 	public var error: Error? {
 		return analysis(ifSuccess: { _ in nil }, ifFailure: { $0 })
@@ -54,8 +54,7 @@ public extension ResultProtocol {
 	/// Returns a Result with a tuple of the receiver and `other` values if both
 	/// are `Success`es, or re-wrapping the error of the earlier `Failure`.
 	public func fanout<R: ResultProtocol>(_ other: @autoclosure () -> R) -> Result<(Value, R.Value), Error>
-		where Error == R.Error
-	{
+		where Error == R.Error {
 		return self.flatMap { left in other().map { right in (left, right) } }
 	}
 
@@ -109,8 +108,7 @@ public extension ResultProtocol where Error: ErrorConvertible {
 		return flatMap { value in
 			do {
 				return .success(try transform(value))
-			}
-			catch {
+			} catch {
 				let convertedError = Error.error(from: error)
 				// Revisit this in a future version of Swift. https://twitter.com/jckarter/status/672931114944696321
 				return .failure(convertedError)
@@ -126,8 +124,7 @@ infix operator &&& : LogicalConjunctionPrecedence
 /// Returns a Result with a tuple of `left` and `right` values if both are `Success`es, or re-wrapping the error of the earlier `Failure`.
 @available(*, deprecated, renamed: "ResultProtocol.fanout(self:_:)")
 public func &&& <L: ResultProtocol, R: ResultProtocol> (left: L, right: @autoclosure () -> R) -> Result<(L.Value, R.Value), L.Error>
-	where L.Error == R.Error
-{
+	where L.Error == R.Error {
 	return left.fanout(right)
 }
 
@@ -148,8 +145,7 @@ public func >>- <T: ResultProtocol, U> (result: T, transform: (T.Value) -> Resul
 
 /// Returns `true` if `left` and `right` are both `Success`es and their values are equal, or if `left` and `right` are both `Failure`s and their errors are equal.
 public func == <T: ResultProtocol> (left: T, right: T) -> Bool
-	where T.Value: Equatable, T.Error: Equatable
-{
+	where T.Value: Equatable, T.Error: Equatable {
 	if let left = left.value, let right = right.value {
 		return left == right
 	} else if let left = left.error, let right = right.error {
@@ -160,8 +156,7 @@ public func == <T: ResultProtocol> (left: T, right: T) -> Bool
 
 /// Returns `true` if `left` and `right` represent different cases, or if they represent the same case but different values.
 public func != <T: ResultProtocol> (left: T, right: T) -> Bool
-	where T.Value: Equatable, T.Error: Equatable
-{
+	where T.Value: Equatable, T.Error: Equatable {
 	return !(left == right)
 }
 

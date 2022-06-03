@@ -4,9 +4,9 @@ let package = Package(
 	name: "CwlPreconditionTesting",
 	targets: [
 		Target(name: "CwlPreconditionTesting", dependencies: [
-			"CwlMachBadInstructionHandler"
+			"CwlMachBadInstructionHandler",
 		]),
-		Target(name: "CwlMachBadInstructionHandler")
+		Target(name: "CwlMachBadInstructionHandler"),
 	],
 	dependencies: [
 		.Package(url: "https://github.com/mattgallagher/CwlCatchException.git", Version(1, 0, 2, prereleaseIdentifiers: ["beta", "3"])),

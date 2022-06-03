@@ -312,7 +312,6 @@
 				7750BA3CEA77F5FB26926361 /* Pods-Clonet-ClonetUITests.debug.xcconfig */,
 				A695D50CF2355EEDD23695B7 /* Pods-Clonet-ClonetUITests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -347,6 +346,7 @@
 				DA97B69F278BE05D006C473E /* Sources */,
 				DA97B6A0278BE05D006C473E /* Frameworks */,
 				DA97B6A1278BE05D006C473E /* Resources */,
+				3F56996D2849AACF00185312 /* SwiftLint */,
 			);
 			buildRules = (
 			);
@@ -396,15 +396,15 @@
 			);
 			mainGroup = DA97B69A278BE05D006C473E;
 			packageReferences = (
-				DACAA659278C7BFB007F3918 /* XCRemoteSwiftPackageReference "socket.io-client-swift.git" */,
-				DACAA65C278C7C0B007F3918 /* XCRemoteSwiftPackageReference "swift-nio-zlib-support.git" */,
-				3F6A1BBC279A839300146367 /* XCRemoteSwiftPackageReference "KeychainAccess.git" */,
-				3F6A1BC2279AADDE00146367 /* XCRemoteSwiftPackageReference "Result.git" */,
-				3F772E08279C6FC40047F693 /* XCRemoteSwiftPackageReference "SwiftGit2.git" */,
+				DACAA659278C7BFB007F3918 /* XCRemoteSwiftPackageReference "socket.io-client-swift" */,
+				DACAA65C278C7C0B007F3918 /* XCRemoteSwiftPackageReference "swift-nio-zlib-support" */,
+				3F6A1BBC279A839300146367 /* XCRemoteSwiftPackageReference "KeychainAccess" */,
+				3F6A1BC2279AADDE00146367 /* XCRemoteSwiftPackageReference "Result" */,
+				3F772E08279C6FC40047F693 /* XCRemoteSwiftPackageReference "SwiftGit2" */,
 				B5F6B9AE27AED04900C46E4B /* XCRemoteSwiftPackageReference "apollo-ios" */,
-				3F4B3A0227B4BAEF00EC0D8C /* XCRemoteSwiftPackageReference "ToastUI.git" */,
-				3F4B3A0527B69EC700EC0D8C /* XCRemoteSwiftPackageReference "Swift-SMTP.git" */,
-				DAD68E0227DF7E7C008012AD /* XCRemoteSwiftPackageReference "url-image.git" */,
+				3F4B3A0227B4BAEF00EC0D8C /* XCRemoteSwiftPackageReference "ToastUI" */,
+				3F4B3A0527B69EC700EC0D8C /* XCRemoteSwiftPackageReference "Swift-SMTP" */,
+				DAD68E0227DF7E7C008012AD /* XCRemoteSwiftPackageReference "url-image" */,
 			);
 			productRefGroup = DA97B6A4278BE05D006C473E /* Products */;
 			projectDirPath = "";
@@ -459,6 +459,24 @@
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
+		};
+		3F56996D2849AACF00185312 /* SwiftLint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = SwiftLint;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n${PODS_ROOT}/SwiftLint/swiftlint autocorrect\n";
 		};
 		4ED3892C60B735A9EB5FBDB5 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -821,7 +839,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		3F4B3A0227B4BAEF00EC0D8C /* XCRemoteSwiftPackageReference "ToastUI.git" */ = {
+		3F4B3A0227B4BAEF00EC0D8C /* XCRemoteSwiftPackageReference "ToastUI" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/quanshousio/ToastUI.git";
 			requirement = {
@@ -829,7 +847,7 @@
 				minimumVersion = 2.0.0;
 			};
 		};
-		3F4B3A0527B69EC700EC0D8C /* XCRemoteSwiftPackageReference "Swift-SMTP.git" */ = {
+		3F4B3A0527B69EC700EC0D8C /* XCRemoteSwiftPackageReference "Swift-SMTP" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Kitura/Swift-SMTP.git";
 			requirement = {
@@ -837,7 +855,7 @@
 				minimumVersion = 6.0.0;
 			};
 		};
-		3F6A1BBC279A839300146367 /* XCRemoteSwiftPackageReference "KeychainAccess.git" */ = {
+		3F6A1BBC279A839300146367 /* XCRemoteSwiftPackageReference "KeychainAccess" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/kishikawakatsumi/KeychainAccess.git";
 			requirement = {
@@ -845,7 +863,7 @@
 				kind = branch;
 			};
 		};
-		3F6A1BC2279AADDE00146367 /* XCRemoteSwiftPackageReference "Result.git" */ = {
+		3F6A1BC2279AADDE00146367 /* XCRemoteSwiftPackageReference "Result" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/antitypical/Result.git";
 			requirement = {
@@ -853,7 +871,7 @@
 				kind = branch;
 			};
 		};
-		3F772E08279C6FC40047F693 /* XCRemoteSwiftPackageReference "SwiftGit2.git" */ = {
+		3F772E08279C6FC40047F693 /* XCRemoteSwiftPackageReference "SwiftGit2" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/light-tech/SwiftGit2.git";
 			requirement = {
@@ -869,7 +887,7 @@
 				minimumVersion = 0.49.0;
 			};
 		};
-		DACAA659278C7BFB007F3918 /* XCRemoteSwiftPackageReference "socket.io-client-swift.git" */ = {
+		DACAA659278C7BFB007F3918 /* XCRemoteSwiftPackageReference "socket.io-client-swift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/socketio/socket.io-client-swift.git";
 			requirement = {
@@ -877,7 +895,7 @@
 				kind = branch;
 			};
 		};
-		DACAA65C278C7C0B007F3918 /* XCRemoteSwiftPackageReference "swift-nio-zlib-support.git" */ = {
+		DACAA65C278C7C0B007F3918 /* XCRemoteSwiftPackageReference "swift-nio-zlib-support" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/apple/swift-nio-zlib-support.git";
 			requirement = {
@@ -885,7 +903,7 @@
 				kind = branch;
 			};
 		};
-		DAD68E0227DF7E7C008012AD /* XCRemoteSwiftPackageReference "url-image.git" */ = {
+		DAD68E0227DF7E7C008012AD /* XCRemoteSwiftPackageReference "url-image" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/dmytro-anokhin/url-image.git";
 			requirement = {
@@ -898,27 +916,27 @@
 /* Begin XCSwiftPackageProductDependency section */
 		3F4B3A0327B4BAEF00EC0D8C /* ToastUI */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 3F4B3A0227B4BAEF00EC0D8C /* XCRemoteSwiftPackageReference "ToastUI.git" */;
+			package = 3F4B3A0227B4BAEF00EC0D8C /* XCRemoteSwiftPackageReference "ToastUI" */;
 			productName = ToastUI;
 		};
 		3F4B3A0627B69EC700EC0D8C /* SwiftSMTP */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 3F4B3A0527B69EC700EC0D8C /* XCRemoteSwiftPackageReference "Swift-SMTP.git" */;
+			package = 3F4B3A0527B69EC700EC0D8C /* XCRemoteSwiftPackageReference "Swift-SMTP" */;
 			productName = SwiftSMTP;
 		};
 		3F6A1BBD279A839300146367 /* KeychainAccess */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 3F6A1BBC279A839300146367 /* XCRemoteSwiftPackageReference "KeychainAccess.git" */;
+			package = 3F6A1BBC279A839300146367 /* XCRemoteSwiftPackageReference "KeychainAccess" */;
 			productName = KeychainAccess;
 		};
 		3F6A1BC3279AADDE00146367 /* Result */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 3F6A1BC2279AADDE00146367 /* XCRemoteSwiftPackageReference "Result.git" */;
+			package = 3F6A1BC2279AADDE00146367 /* XCRemoteSwiftPackageReference "Result" */;
 			productName = Result;
 		};
 		3F772E09279C70BC0047F693 /* SwiftGit2 */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 3F772E08279C6FC40047F693 /* XCRemoteSwiftPackageReference "SwiftGit2.git" */;
+			package = 3F772E08279C6FC40047F693 /* XCRemoteSwiftPackageReference "SwiftGit2" */;
 			productName = SwiftGit2;
 		};
 		B5F6B9AF27AED04900C46E4B /* Apollo */ = {
@@ -933,7 +951,7 @@
 		};
 		DACAA65A278C7BFB007F3918 /* SocketIO */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = DACAA659278C7BFB007F3918 /* XCRemoteSwiftPackageReference "socket.io-client-swift.git" */;
+			package = DACAA659278C7BFB007F3918 /* XCRemoteSwiftPackageReference "socket.io-client-swift" */;
 			productName = SocketIO;
 		};
 /* End XCSwiftPackageProductDependency section */

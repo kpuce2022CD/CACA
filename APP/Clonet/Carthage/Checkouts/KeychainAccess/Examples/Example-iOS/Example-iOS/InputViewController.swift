@@ -46,7 +46,7 @@ class InputViewController: UITableViewController {
         super.didReceiveMemoryWarning()
     }
 
-    // MARK:
+    // MARK: 
 
     @IBAction func cancelAction(sender: UIBarButtonItem) {
         dismiss(animated: true, completion: nil)

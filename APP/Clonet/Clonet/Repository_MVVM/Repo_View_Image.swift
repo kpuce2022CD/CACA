@@ -5,9 +5,9 @@
 ////  Created by Hye Min Choi on 2022/02/04.
 ////
 //
-//import SwiftUI
+// import SwiftUI
 //
-//struct Repo_View_Image: View {
+// struct Repo_View_Image: View {
 //
 //    @State var ImageName : String = "Clonet_logo"
 //    @State var CommitTime : String = "21.09.20"
@@ -53,11 +53,11 @@
 //        }
 //        return nil
 //    }
-//}
+// }
 //
-//struct Repo_View_Image_Previews: PreviewProvider {
+// struct Repo_View_Image_Previews: PreviewProvider {
 //    static var previews: some View {
 //        Repo_View_Image()
-//.previewInterfaceOrientation(.landscapeRight)
+// .previewInterfaceOrientation(.landscapeRight)
 //    }
-//}
+// }

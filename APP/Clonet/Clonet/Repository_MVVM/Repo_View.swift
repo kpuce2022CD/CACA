@@ -9,8 +9,8 @@ import SwiftUI
 import ToastUI
 
 struct Repo_View: View {
-    var userID : String = ""
-    var repoName : String = ""
+    var userID: String = ""
+    var repoName: String = ""
     @State private var presentingToast_back: Bool = false
 //    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @StateObject var branchName = BranchName()
@@ -34,22 +34,21 @@ struct Repo_View: View {
 //
 //
 //    }
-    
-    
-    init(userID: String, repoName: String){
+
+    init(userID: String, repoName: String) {
         self.userID = userID
         self.repoName = repoName
     }
-    
+
     var body: some View {
-        HStack{
-            
-            VStack{
+        HStack {
+
+            VStack {
                 Repo_View_Directory(repo_n: repoName, ec2_id: "13.209.116.111", user_id: userID)
             }
-            VStack{
+            VStack {
                 // MARK: BranchName
-                VStack{
+                VStack {
                     Text("브랜치 : \(branchName.currentBranchName)")
                         .font(.system(size: 30, weight: .bold))
                 }

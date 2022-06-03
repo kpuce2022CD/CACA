@@ -9,20 +9,20 @@ import Foundation
 import SocketIO
 import Combine
 
-//로그인 정보 보내기
- 
+// 로그인 정보 보내기
+
 typealias LoginData = LoginQuery.Data.Login
 
 struct Logins: Decodable {
-    var user_id : String
-    var user_pw : String
-    var user_name : String
-    var user_email : String
-    var profilePic : String
-    var about : String
-    var contact : String
-    
-    init(){
+    var user_id: String
+    var user_pw: String
+    var user_name: String
+    var user_email: String
+    var profilePic: String
+    var about: String
+    var contact: String
+
+    init() {
         self.user_id = ""
         self.user_pw = ""
         self.user_name = ""
@@ -31,8 +31,8 @@ struct Logins: Decodable {
         self.about = ""
         self.contact = ""
     }
-    
-    init(_ users: LoginData?){
+
+    init(_ users: LoginData?) {
         self.user_id = users?.userId ?? ""
         self.user_pw = users?.userPw ?? ""
         self.user_name = users?.userName ?? ""

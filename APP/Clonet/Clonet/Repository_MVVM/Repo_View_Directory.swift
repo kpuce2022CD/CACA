@@ -9,15 +9,15 @@ import SwiftUI
 import MobileCoreServices
 import Foundation
 import ToastUI
-//import Combine
+// import Combine
 import Apollo
 import SwiftGit2
 
-class Pixel : ObservableObject {
+class Pixel: ObservableObject {
     @Published var RequestedLocation_x = 0.0
     @Published var RequestedLocation_y = 0.0
-    
-    func change_Pixel(x: String, y: String){
+
+    func change_Pixel(x: String, y: String) {
         RequestedLocation_x = Double(x) ?? 0.0
         RequestedLocation_y = Double(y) ?? 0.0
         print("processPixels Pixel()", RequestedLocation_x)
@@ -25,51 +25,49 @@ class Pixel : ObservableObject {
     }
 }
 
-
 // MARK: Repo_View_Directory: View
 struct Repo_View_Directory: View {
-    
-    @State var repo_n : String
-    @State var ec2_id : String
-    @State var user_id : String
-    
-    
+
+    @State var repo_n: String
+    @State var ec2_id: String
+    @State var user_id: String
+
     @ObservedObject var dataList = getFileList()
     @State var show = false
     @State var exportShow = false
     @State var alert = false
-    
-    //Repo_View_Image
+
+    // Repo_View_Image
     @State var fileNameImg = "" // to Store File Name picked
-    @State private var editText : Bool = true // determine README or not
-    @State var saveCheck : Bool = false
-    
-    @State var exportFileName : String = ""
-    
+    @State private var editText: Bool = true // determine README or not
+    @State var saveCheck: Bool = false
+
+    @State var exportFileName: String = ""
+
     @State private var presentingToast: Bool = false
-    
-    //Repo_Message_Toast
-    @State private var editText_toast : Bool = true // determine README or not
+
+    // Repo_Message_Toast
+    @State private var editText_toast: Bool = true // determine README or not
     @State private var location = CGPoint.zero
     @State private var messageToast: Bool = false
     @State private var messageInput = ""
     @State var Repo_ViewModel_req = log_repo_ViewModel()
-    @State var Req_repo_list : [Request] = []
+    @State var Req_repo_list: [Request] = []
     @State private var messagePoint: Bool = false
-    
-    @State private var pointShowing : Bool = false
-    
+
+    @State private var pointShowing: Bool = false
+
     @ObservedObject var pixel = Pixel()
-    
+
     // 현재 브랜치 이름
-    @ObservedObject var branchNameObject : BranchName = BranchName()
+    @ObservedObject var branchNameObject: BranchName = BranchName()
     // log
 //    @State var Log_repo_list : Array<Log_repo> = []
-    @ObservedObject var logList : LogList
-    
-    init(repo_n: String, ec2_id: String, user_id: String){
+    @ObservedObject var logList: LogList
+
+    init(repo_n: String, ec2_id: String, user_id: String) {
         Repository.initialize_libgit2()
-        
+
         self.repo_n = repo_n
         self.ec2_id = ec2_id
         self.user_id = user_id
@@ -79,78 +77,75 @@ struct Repo_View_Directory: View {
         logList.getBranchLog(repo_n: repo_n, currentBranchName: branchNameObject.currentBranchName)
         dataList.readMELoad(repoName: repo_n, fileName: "README.md")
     }
-    
+
     var documentsUrl: URL {
         return FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
     }
-    
-    func deleteFile(at offsets: IndexSet){
+
+    func deleteFile(at offsets: IndexSet) {
         print("IndexSet \(offsets[offsets.startIndex])")
         print("IndexSet name : " + "\(self.repo_n)/" + "\(dataList.items[offsets[offsets.startIndex]])")
-        
+
         // delete File
         let fileManager = FileManager.default
         let path = documentsUrl.path
-        
-        do{
+
+        do {
             try fileManager.removeItem(atPath: path + "/\(self.repo_n)/" + "\(dataList.items[offsets[offsets.startIndex]])")
-        }catch let e {
+        } catch let e {
             print("\(e)")
         }
-        
+
         dataList.items.remove(atOffsets: offsets)
     }
-    
+
     // MARK: EXPORT
     struct ShareSheet: UIViewControllerRepresentable {
         typealias Callback = (_ activityType: UIActivity.ActivityType?, _ completed: Bool, _ returnedItems: [Any]?, _ error: Error?) -> Void
-        
+
         let activityItems: [Any]
         let applicationActivities: [UIActivity]? = nil
         let excludedActivityTypes: [UIActivity.ActivityType]? = nil
         let callback: Callback? = nil
-        
-        
-        
+
         func makeUIViewController(context: Context) -> UIActivityViewController {
             let controller = UIActivityViewController(
                 activityItems: activityItems,
                 applicationActivities: applicationActivities)
-            
+
             controller.excludedActivityTypes = excludedActivityTypes
             controller.completionWithItemsHandler = callback
             return controller
         }
-        
+
         func updateUIViewController(_ uiViewController: UIActivityViewController, context: Context) {
             // nothing to do here
         }
     }
-    
-    
+
     var body: some View {
-        HStack{
-            VStack{
-                
-                HStack{
+        HStack {
+            VStack {
+
+                HStack {
                     Spacer()
                     // MARK: Document Picker Button (To add)
-                    Button(action:{
+                    Button(action: {
                         self.show.toggle()
-                    }){
+                    }) {
                         Image(systemName: "square.and.arrow.down")
                             .frame(width: 30.0, height: 30.0)
                     }
-                    .sheet(isPresented: $show){
+                    .sheet(isPresented: $show) {
                         DocumentPicker(alert: self.$alert, repo_name: self.$repo_n, img_name: self.$fileNameImg)
                     }
                     .alert(isPresented: $alert) {
                         Alert(title: Text("Message"), message: Text("Upload Successfully"), dismissButton: .default(Text("OK")))
                     }
                     Spacer()
-                    
+
                     // MARK: EXPORT Document Picker
-                    
+
                     Button(action: {
                         exportShow = true
                     }) {
@@ -165,21 +160,21 @@ struct Repo_View_Directory: View {
                     }
                     Spacer()
                 }
-                
-                VStack{
+
+                VStack {
                     // MARK: Show File List
-                    List{
+                    List {
                         Section(header: Text("File List").font(.largeTitle)) {
-                            ForEach(dataList.items, id: \.self){ i in
-                                if(i.hasPrefix(".") == false ){
+                            ForEach(dataList.items, id: \.self) { i in
+                                if i.hasPrefix(".") == false {
                                     Button(i, action: {
                                         fileNameImg = i
                                         var fileNameTxt = fileNameImg.components(separatedBy: ".")
-                                        if(fileNameTxt[1] == "md" || fileNameTxt[1] == "txt"){
+                                        if fileNameTxt[1] == "md" || fileNameTxt[1] == "txt" {
                                             print("dataList:", fileNameImg)
                                             dataList.readMELoad(repoName: repo_n, fileName: fileNameImg)
                                             editText = true
-                                        } else{
+                                        } else {
                                             editText = false
                                         }
                                         var fileName_Req = repo_n + "_" + i
@@ -189,14 +184,14 @@ struct Repo_View_Directory: View {
                                     })
                                 }
                             }
-                            .onDelete{
+                            .onDelete {
                                 deleteFile(at: $0)
                             }
                         }
-                        
+
                         // MARK: Request Message List
                         Section(header: Text("Message").font(.largeTitle)) {
-                            
+
                             ForEach(Repo_ViewModel_req.Req_repo_list, id: \.id) { s in
                                 Button("\(s.user_id) : \(s.request_context)", action: {
                                     print("processPixels")
@@ -208,49 +203,45 @@ struct Repo_View_Directory: View {
                             .onAppear {
                                 var fileName_Req = repo_n + "_" + fileNameImg
                                 Repo_ViewModel_req.Request_fetch(Repo_Name: fileName_Req)
-                                
+
                             }
                             Button(action: {
                                 pointShowing = false
                             },
                             label: {Text("Cancel").foregroundColor(Color.red)})
                         }
-                        
+
                         // MARK: Log List
                         Section(header: Text("Log").font(.largeTitle)) {
-         
-                            ForEach(logList.Log_repo_list, id: \.id){ index in
-                                Button(index.userId + " : " + index.commitMsg){
-                                    
+
+                            ForEach(logList.Log_repo_list, id: \.id) { index in
+                                Button(index.userId + " : " + index.commitMsg) {
+
                                 }
                             }
 
                         }
-                        .onAppear(){
+                        .onAppear {
                             logList.getBranchLog(repo_n: repo_n, currentBranchName: branchNameObject.currentBranchName)
                         }
                     }
-                    .refreshable{
+                    .refreshable {
 //                        Repo_ViewModel_req.fetch(Repo_Name: repo_n)
                         logList.getBranchLog(repo_n: repo_n, currentBranchName: branchNameObject.currentBranchName)
                     }
                     .frame(width: 300)
-                    
+
                 }
             }
-            
-            
-            
-            
-            
-            //MARK: Repo_View_Image
-            VStack{
+
+            // MARK: Repo_View_Image
+            VStack {
                 if editText {
-                    VStack{
+                    VStack {
                         TextEditor(text: $dataList.text)
                             .padding()
                             .foregroundColor(Color.black)
-                            .lineSpacing(5) //줄 간격
+                            .lineSpacing(5) // 줄 간격
                             .frame(width: 500, height: 500)
                             .border(Color.black, width: 1)
                             .onAppear(perform: {print("dataText: ", dataList.text)})
@@ -258,9 +249,9 @@ struct Repo_View_Directory: View {
                             dataList.readMEsave(repoName: repo_n, text: dataList.text, fileName: fileNameImg)
                             self.saveCheck = dataList.saveCheck
                             print("self.saveCheck \(saveCheck) : Repo_View")
-                        }){
+                        }) {
                             Text("Save")
-                                .frame(width: 100 , height: 50, alignment: .center)
+                                .frame(width: 100, height: 50, alignment: .center)
                         }
                         .accessibilityIdentifier("SaveButton")
                         .toast(isPresented: $saveCheck, dismissAfter: 0.5) {
@@ -272,21 +263,21 @@ struct Repo_View_Directory: View {
                         .foregroundColor(Color.white)
                         .cornerRadius(5)
                     }
-                    
+
                 } else {
-                    
+
                     GeometryReader { innerProxy in
                         let local = innerProxy.frame(in: .local)
                         let global = innerProxy.frame(in: .global)
-                        ZStack{
-                            if pointShowing{
+                        ZStack {
+                            if pointShowing {
                                 Circle()
                                     .foregroundColor(Color.red)
                                     .frame(width: 20.0, height: 20.0)
                                     .position(CGPoint.init(x: pixel.RequestedLocation_x, y: pixel.RequestedLocation_y))
                                     .zIndex(1)
                             }
-                            
+
                             Image(uiImage: load(fileName: fileNameImg)!)
                                 .resizable()
                                 .aspectRatio(contentMode: .fit) // Image 깨지지 않게 크기 처리
@@ -302,34 +293,33 @@ struct Repo_View_Directory: View {
                         default:
                             break
                         }
-                        
+
                     })
-                
-                
+
                 // MARK: Long click to Create Request
                     .toast(isPresented: $messageToast) {
                         ToastView {
-                            VStack{
-                                Section{
+                            VStack {
+                                Section {
                                     Text("Add Message")
                                 }
                                 TextField("내용을 입력해주세요.", text: $messageInput)
-                                Section{
-                                    HStack{
+                                Section {
+                                    HStack {
                                         Button {
-                                            
+
                                             let file_Name = "\(repo_n)_\(fileNameImg)"
-                                            
+
                                             let x_pixel = "\(location.x)"
                                             let y_pixel = "\(location.y)"
-                                            
+
                                             // Save Request && Fixel
                                             let Repo_ViewModel = log_repo_ViewModel()
                                             Repo_ViewModel.CreateRequest(user_id: user_id, repo_name: file_Name, x_pixel: x_pixel, y_pixel: y_pixel, request_context: messageInput)
-                                            
+
                                             messageToast = false
                                             messageInput = ""
-                                            
+
                                         } label: {
                                             Text("Save")
                                         }
@@ -341,19 +331,19 @@ struct Repo_View_Directory: View {
                                         }
                                     }
                                 }
-                                
+
                             }
                         }
                         .frame(width: 220, height: 80)
-                        
+
                     }
                     .frame(width: 500, height: 500, alignment: .center)
-                
+
                 }
             }
         }
     }
-    
+
     // MARK: LOAD IMAGE FILE
     private func load(fileName: String) -> UIImage? {
         let fileURL = documentsUrl.appendingPathComponent(repo_n+"/"+fileName)
@@ -365,10 +355,8 @@ struct Repo_View_Directory: View {
         }
         return nil
     }
-    
-    
-}
 
+}
 
 struct Repo_View_Directory_Previews: PreviewProvider {
     static var previews: some View {
@@ -376,64 +364,61 @@ struct Repo_View_Directory_Previews: PreviewProvider {
     }
 }
 
-
-
-//MARK: getFileList
-final class getFileList: ObservableObject{
+// MARK: getFileList
+final class getFileList: ObservableObject {
     @State var repoName = ""
     @Published var items = [String]() // Directory File List
-    @Published var text : String = ""
-    @State var saveCheck : Bool = true
+    @Published var text: String = ""
+    @State var saveCheck: Bool = true
     @State var fileName = ""
-    
-    //Timer
+
+    // Timer
     var timer: Timer?
-    
-    func first(repo_n: String){
+
+    func first(repo_n: String) {
         self.repoName = repo_n
         location(repoName: repo_n)
-        
+
         // Timer to get Data
         timer = Timer.scheduledTimer(withTimeInterval: 2, repeats: true, block: { _ in
             self.location(repoName: repo_n)
         })
     }
-    
+
     deinit {
         timer?.invalidate()
     }
-    
+
     // MARK: GET FILE LIST
-    func location(repoName: String){
+    func location(repoName: String) {
         let urlString = documentURL.appendingPathComponent(repoName).absoluteString
         let fileManager = FileManager.default
         var remoteString = urlString.replacingOccurrences(of: "file://", with: "")
-        do{
+        do {
             items = try fileManager.contentsOfDirectory(atPath: remoteString)
             //            print("items : \(items)")
-        }catch{
+        } catch {
             print("error")
         }
     }
-    
+
     // MARK: READ STRING FILE
     func readMELoad(repoName: String, fileName: String) -> String {
         var result = ""
         if let dir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
             let fileURL = dir.appendingPathComponent(repoName+"/"+fileName)
-            
+
             do {
                 text = try String(contentsOf: fileURL, encoding: .utf8)
                 return text
-            }
-            catch {print("fail to load readme")}
+            } catch {print("fail to load readme")}
         }
         return result
     }
-    
+
     // MARK: SAVE STRING FILE
     // MARK: 이 함수 README.md 말고 다른 파일도 저장할 수 있도록 바꿔주세요
-    func readMEsave(repoName: String, text: String, fileName: String){
+    func readMEsave(repoName: String, text: String, fileName: String) {
         if let dir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
             let fileURL = dir.appendingPathComponent(repoName+"/"+fileName)
             do {
@@ -447,44 +432,41 @@ final class getFileList: ObservableObject{
             }
         }
     }
-    
+
 }
 
-
-
 // MARK: DocumentPicker Struct
-struct DocumentPicker : UIViewControllerRepresentable {
+struct DocumentPicker: UIViewControllerRepresentable {
     func makeCoordinator() -> Coordinator {
         return DocumentPicker.Coordinator(parent1: self, repo_name: repo_name, img_name: img_name)
     }
-    
-    @Binding var alert : Bool
+
+    @Binding var alert: Bool
     @Binding var repo_name: String
     @Binding var img_name: String
-    
+
     func makeUIViewController(context: UIViewControllerRepresentableContext<DocumentPicker>) ->
-    UIDocumentPickerViewController{
+    UIDocumentPickerViewController {
         let picker = UIDocumentPickerViewController(documentTypes: [String(kUTTypeItem)], in: .import)
         picker.allowsMultipleSelection = false
         picker.delegate = context.coordinator
         return picker
     }
-    func updateUIViewController(_ uiViewController: UIDocumentPickerViewController, context: UIViewControllerRepresentableContext<DocumentPicker>){
-        
+    func updateUIViewController(_ uiViewController: UIDocumentPickerViewController, context: UIViewControllerRepresentableContext<DocumentPicker>) {
+
     }
-    
-    class Coordinator : NSObject,UIDocumentPickerDelegate{
-        var parent : DocumentPicker
+
+    class Coordinator: NSObject, UIDocumentPickerDelegate {
+        var parent: DocumentPicker
         var repo_name: String
         var img_name: String
-        
-        
-        init(parent1: DocumentPicker, repo_name: String, img_name: String){
+
+        init(parent1: DocumentPicker, repo_name: String, img_name: String) {
             parent = parent1
             self.repo_name = repo_name
             self.img_name = img_name
         }
-        
+
         func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentsAt urls: [URL]) {
             guard let selectedFileURL = urls.first else {
                 return
@@ -492,9 +474,9 @@ struct DocumentPicker : UIViewControllerRepresentable {
             // add File
             let fileManager = FileManager.default
             let directoryURL = documentURL.appendingPathComponent("\(self.repo_name)/\(selectedFileURL.lastPathComponent)")
-            do{
+            do {
                 try fileManager.copyItem(at: urls.first!, to: directoryURL)
-            }catch let e {
+            } catch let e {
                 print("fileManager Error")
             }
         }

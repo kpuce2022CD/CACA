@@ -18,39 +18,38 @@ final class log_repo_ViewModel: ObservableObject {
     @Published var launches_ip: Ip_repo = Ip_repo.init()
     @Published var launches_req: Request = Request.init()
     @Published var launches_user: UserList_repo = UserList_repo.init()
-    @Published var Log_repo_list : [Log_repo] = []
-    @Published var Req_repo_list : [Request] = []
+    @Published var Log_repo_list: [Log_repo] = []
+    @Published var Req_repo_list: [Request] = []
     @Published var User_repo_list: [UserList_repo] = []
     @Published var repo_n: String = ""
-    @Published var repoIP_Addr : String = ""
-    
+    @Published var repoIP_Addr: String = ""
+
     @Published var URL1: String = ""
     @Published var URL2: String = ""
     @Published var diffSuccess: Bool = false
-    
-    
-    init(){
+
+    init() {
         repoIP(Repo_Name: self.repo_n)
         Log_repo_list.removeAll()
 //        fetch(Repo_Name: repo_n)
         print("init : ", Log_repo_list)
-        
+
         diffSuccess = false
     }
-    
-    func appear(){
+
+    func appear() {
         Log_repo_list.removeAll()
 //        fetch(Repo_Name: self.repo_n)
         repoIP(Repo_Name: self.repo_n)
     }
-    
-    //MARK: UserListQuery(GroupUserQuery)
-    func getUserList(Repo_Name: String){
-        Network.shared.apollo.fetch(query: GroupUserQuery(repo_name: Repo_Name)){ result in
+
+    // MARK: UserListQuery(GroupUserQuery)
+    func getUserList(Repo_Name: String) {
+        Network.shared.apollo.fetch(query: GroupUserQuery(repo_name: Repo_Name)) { result in
             switch result {
             case .success(let graphQLResult):
-                if let user_repos = graphQLResult.data?.groupUser{
-                    for i in user_repos.indices{
+                if let user_repos = graphQLResult.data?.groupUser {
+                    for i in user_repos.indices {
                         self.launches_user = self.process_user(data: user_repos[i] ?? groupUserData.init(userId: "", repoName: ""))
                         self.User_repo_list.append(self.launches_user)
                         print("User_repo_list fetch", self.User_repo_list)
@@ -58,20 +57,20 @@ final class log_repo_ViewModel: ObservableObject {
                 } else if let errors = graphQLResult.errors {
                     print("GraphQL errors \(errors)")
                 }
-                
+
             case .failure(let error):
                 print("Failure! Error: \(error)")
             }
         }
     }
-    
-    //MARK: SelectRepoQuery
-    func repoIP(Repo_Name: String){
-        Network.shared.apollo.fetch(query: SelectRepoQuery(repo_name: Repo_Name)){ result in
+
+    // MARK: SelectRepoQuery
+    func repoIP(Repo_Name: String) {
+        Network.shared.apollo.fetch(query: SelectRepoQuery(repo_name: Repo_Name)) { result in
             switch result {
             case .success(let graphQLResult):
                 if let ip_repos = graphQLResult.data?.selectRepo {
-                    for i in ip_repos.indices{
+                    for i in ip_repos.indices {
                         self.launches_ip = self.process_ip(data: ip_repos[i] ?? iprepoData.init(repoName: "", repoEc2Ip: ""))
                         self.repoIP_Addr = "http://" + self.launches_ip.repo_ec2_ip + "/git-repositories/" + self.repo_n + ".git"
                         print("launces_ip:", self.repoIP_Addr)
@@ -79,14 +78,14 @@ final class log_repo_ViewModel: ObservableObject {
                 } else if let errors = graphQLResult.errors {
                     print("GraphQL errors \(errors)")
                 }
-                
+
             case .failure(let error):
                 print("Failure! Error: \(error)")
             }
         }
     }
-    
-//    //MARK: LogRepoQuery
+
+// MARK: LogRepoQuery
 //    func fetch(Repo_Name: String){
 //        Log_repo_list.removeAll()
 //        Network.shared.apollo.fetch(query: LogRepoQuery(repo_name: Repo_Name), cachePolicy: CachePolicy.fetchIgnoringCacheData){ result in
@@ -106,15 +105,15 @@ final class log_repo_ViewModel: ObservableObject {
 //            }
 //        }
 //    }
-    
-    //MARK: Request List
-    func Request_fetch(Repo_Name: String){
+
+    // MARK: Request List
+    func Request_fetch(Repo_Name: String) {
         self.Req_repo_list.removeAll()
-        Network.shared.apollo.fetch(query: RequestRepoQuery(repo_name: Repo_Name), cachePolicy: CachePolicy.fetchIgnoringCacheData){ result in
+        Network.shared.apollo.fetch(query: RequestRepoQuery(repo_name: Repo_Name), cachePolicy: CachePolicy.fetchIgnoringCacheData) { result in
             switch result {
             case .success(let graphQLResult):
                 if let requestRepos = graphQLResult.data?.requestRepo {
-                    for i in requestRepos.indices{
+                    for i in requestRepos.indices {
                         self.launches_req = self.process_req(data: graphQLResult.data?.requestRepo![i] ?? requestData.init(userId: "", repoName: "", xPixel: "", yPixel: "", requestContext: ""))
                         self.Req_repo_list.append(self.launches_req)
                     }
@@ -122,17 +121,17 @@ final class log_repo_ViewModel: ObservableObject {
                 } else if let errors = graphQLResult.errors {
                     print("GraphQL errors \(errors)")
                 }
-                
+
             case .failure(let error):
                 print("Failure! Error: \(error)")
             }
         }
     }
-    
-    //MARK: CreateRequestMutation
-    func CreateRequest(user_id: String, repo_name: String, x_pixel: String, y_pixel: String, request_context: String){
-        Network.shared.apollo.perform(mutation: CreateRequestMutation(user_id: user_id, repo_name: repo_name, x_pixel: x_pixel, y_pixel: y_pixel, request_context: request_context)){ result in
-            switch result{
+
+    // MARK: CreateRequestMutation
+    func CreateRequest(user_id: String, repo_name: String, x_pixel: String, y_pixel: String, request_context: String) {
+        Network.shared.apollo.perform(mutation: CreateRequestMutation(user_id: user_id, repo_name: repo_name, x_pixel: x_pixel, y_pixel: y_pixel, request_context: request_context)) { result in
+            switch result {
             case .success(let graphQLResult):
                 print("CreateRequestMutation Success")
             case .failure(let error):
@@ -140,57 +139,54 @@ final class log_repo_ViewModel: ObservableObject {
             }
         }
     }
-    
-    func Diff(first_commit: String, second_commit: String, repo_name: String, file_name: String){
-        Network.shared.apollo.fetch(query: DiffCommitQuery(first_commit: first_commit, second_commit: second_commit, repo_name: repo_name, file_name: file_name), cachePolicy: CachePolicy.fetchIgnoringCacheData){ result in
+
+    func Diff(first_commit: String, second_commit: String, repo_name: String, file_name: String) {
+        Network.shared.apollo.fetch(query: DiffCommitQuery(first_commit: first_commit, second_commit: second_commit, repo_name: repo_name, file_name: file_name), cachePolicy: CachePolicy.fetchIgnoringCacheData) { result in
             switch result {
             case .success(let graphQLResult):
                 print("DiffCommitQuery Success")
 //                self.URL1 = "http://13.209.116.111/images/\(first_commit)_\(file_name)"
 //                self.URL2 = "http://13.209.116.111/images/\(second_commit)_\(file_name)"
 //                self.diffSuccess = true
- 
-            case .failure(_):
+
+            case .failure:
                 print("DiffCommitQuery Failure")
             }
         }
     }
-    
-    
+
     func process(data: logrepoData) -> Log_repo {
         return Log_repo(data)
     }
-    
+
     func process_ip(data: iprepoData) -> Ip_repo {
         return Ip_repo(data)
     }
-    
+
     func process_req(data: requestData) -> Request {
         return Request(data)
     }
-    
+
     func process_user(data: groupUserData) -> UserList_repo {
         return UserList_repo(data)
     }
-    
-    
-}
 
+}
 
 // MARK: AddUser Alert
 struct AddUserAlert: View {
     @ObservedObject var loginCheck_ViewModel = LoginCheck_ViewModel()
-    
-    @State private var selectionString: String? = nil
+
+    @State private var selectionString: String?
     @State var showingAlert = true
     @State var input_userEmail = ""
     @State var input_userId = ""
     var uuserID = ""
     @State var repoName: String
-    
+
     @State private var presentingToast_true: Bool = false
     @State private var presentingToast_false: Bool = false
-    
+
     var body: some View {
         VStack {
             VStack {
@@ -200,28 +196,27 @@ struct AddUserAlert: View {
                 Text("ID")
                 TextField("추가할 사용자의 아이디를 입력해주세요", text: $input_userId).textFieldStyle(RoundedBorderTextFieldStyle())
                 Divider()
-                
-                
+
                 HStack {
                     Spacer()
                     Button(action: {
-                        
+
                         // Send Email
                         let smtp = SMTP(
                             hostname: "smtp.gmail.com",
                             email: "clonet.caca@gmail.com",
                             password: "uqjyvrvxeigddgem"
                         )
-                        
+
                         let NewUser = input_userEmail.components(separatedBy: "@")
-                        
+
                         let mail_from = Mail.User(name: "clonet.caca", email: "clonet.caca@gmail.com")
                         let mail_to = Mail.User(name: NewUser[0], email: input_userEmail)
-                        
+
                         let htmlAttachment = Attachment(
                             htmlContent: """
                                                             <div class="m_-7513422647994330679main" style="margin:0;padding:0">
-                            
+
                                                               <table class="m_-7513422647994330679wrapper"
                                                                 style="border-collapse:collapse;table-layout:fixed;min-width:320px;width:100%;background-color:#131814"
                                                                 cellpadding="0" cellspacing="0" role="presentation">
@@ -240,7 +235,7 @@ struct AddUserAlert: View {
                                                                 </tbody>
                                                               </table>
                                                             </div>
-                            
+
                                                             </div>
                                                             <div>
                                                               <div
@@ -248,15 +243,15 @@ struct AddUserAlert: View {
                                                                 <div class="m_-7513422647994330679layout m_-7513422647994330679one-col m_-7513422647994330679stack"
                                                                   style="Margin:0 auto;max-width:600px;min-width:320px;width:320px;width:calc(28000% - 167400px);word-wrap:break-word;word-break:break-word">
                                                                   <div class="m_-7513422647994330679layout__inner" style="border-collapse:collapse;display:table;width:100%">
-                            
+
                                                                     <div class="m_-7513422647994330679column"
                                                                       style="text-align:left;color:#a6b0b3;font-size:14px;line-height:21px;font-family:Roboto,Tahoma,sans-serif">
-                            
+
                                                                       <div style="Margin-left:20px;Margin-right:20px;Margin-top:12px">
-                            
+
                                                                         <div style="line-height:28px;font-size:1px">&nbsp;</div>
                                                                       </div>
-                            
+
                                                                       <div style="Margin-left:20px;Margin-right:20px">
                                                                         <div style="vertical-align:middle">
                                                                           <h2
@@ -267,11 +262,11 @@ struct AddUserAlert: View {
                                                                             Clonet</h1>
                                                                         </div>
                                                                       </div>
-                            
+
                                                                       <div style="Margin-left:20px;Margin-right:20px">
                                                                         <div style="line-height:20px;font-size:1px">&nbsp;</div>
                                                                       </div>
-                            
+
                                                                       <div style="Margin-left:20px;Margin-right:20px">
                                                                         <div class="m_-7513422647994330679btn" style="Margin-bottom:20px;text-align:center">
                                                                           <u></u><a
@@ -289,45 +284,45 @@ struct AddUserAlert: View {
                                                                             THE PROJECT</a><u></u>
                                                                         </div>
                                                                       </div>
-                            
+
                                                                       <div style="Margin-left:20px;Margin-right:20px;Margin-bottom:12px">
                                                                         <div style="line-height:230px;font-size:1px">&nbsp;</div>
                                                                       </div>
-                            
+
                                                                       <div style="Margin-left:20px;Margin-right:20px">
                                                                         <div style="line-height:150px;font-size:1px">&nbsp;</div>
                                                                       </div>
-                            
+
                                                                     </div>
-                            
+
                                                                   </div>
                                                                 </div>
                                                               </div>
-                            
+
                                                               <div style="line-height:30px;font-size:30px">&nbsp;</div>
-                            
+
                                                             </div>
                             """
                         )
-                        
+
                         let mail = Mail(
                             from: mail_from,
                             to: [mail_to],
                             subject: "Invite to CLONET",
                             attachments: [htmlAttachment]
                         )
-                        
-                        smtp.send(mail){ (error) in
+
+                        smtp.send(mail) { (error) in
                             if let error = error {
                                 presentingToast_false = true
                                 print(error)
-                            }else{
+                            } else {
                                 presentingToast_true = true
                             }
                         }
-                        
+
                         UIApplication.shared.windows[0].rootViewController?.dismiss(animated: true, completion: {})
-                        
+
                     }) {
                         Text("Invite")
                     }
@@ -343,11 +338,11 @@ struct AddUserAlert: View {
                     //                        ToastView("메일 전송 실패")
                     //                            .toastViewStyle(IndefiniteProgressToastViewStyle())
                     //                    }
-                    
+
                     Spacer()
-                    
+
                     Divider()
-                    
+
                     Spacer()
                     Button(action: {
                         UIApplication.shared.windows[0].rootViewController?.dismiss(animated: true, completion: {})

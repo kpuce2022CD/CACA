@@ -44,7 +44,7 @@ class KeychainAccessTests: XCTestCase {
         super.tearDown()
     }
 
-    // MARK:
+    // MARK: 
 
     func testGenericPassword() {
         do {
@@ -177,7 +177,6 @@ class KeychainAccessTests: XCTestCase {
             do { try keychainWithAccessGroup.remove("username") } catch {}
             do { try keychainWithAccessGroup.remove("password") } catch {}
 
-
             XCTAssertNil(try! keychainWithAccessGroup.get("username"))
             XCTAssertNil(try! keychainWithAccessGroup.get("password"))
 
@@ -247,7 +246,7 @@ class KeychainAccessTests: XCTestCase {
         }
     }
 
-    // MARK:
+    // MARK: 
 
     func testInternetPassword() {
         do {
@@ -380,7 +379,6 @@ class KeychainAccessTests: XCTestCase {
             do { try keychainWithAccessGroup.remove("username") } catch {}
             do { try keychainWithAccessGroup.remove("password") } catch {}
 
-
             XCTAssertNil(try! keychainWithAccessGroup.get("username"))
             XCTAssertNil(try! keychainWithAccessGroup.get("password"))
 
@@ -450,8 +448,7 @@ class KeychainAccessTests: XCTestCase {
         }
     }
 
-
-    // MARK:
+    // MARK: 
 
     func testDefaultInitializer() {
         let keychain = Keychain()
@@ -526,7 +523,7 @@ class KeychainAccessTests: XCTestCase {
         }
     }
 
-    // MARK:
+    // MARK: 
 
     func testContains() {
         let keychain = Keychain(service: "Twitter")
@@ -543,7 +540,7 @@ class KeychainAccessTests: XCTestCase {
         XCTAssertTrue(try! keychain.contains("password"), "stored password")
     }
 
-    // MARK:
+    // MARK: 
 
     func testSetString() {
         let keychain = Keychain(service: "Twitter")
@@ -677,7 +674,7 @@ class KeychainAccessTests: XCTestCase {
 
         do {
             try keychain.set(data as Data, key: "RandomData")
-            let _ = try keychain.getString("RandomData")
+            _ = try keychain.getString("RandomData")
             XCTFail("no error occurred")
         } catch let error as NSError {
             XCTAssertEqual(error.domain, KeychainAccessErrorDomain)
@@ -689,7 +686,7 @@ class KeychainAccessTests: XCTestCase {
 
         do {
             try keychain.set(data as Data, key: "RandomData")
-            let _ = try keychain.getString("RandomData")
+            _ = try keychain.getString("RandomData")
             XCTFail("no error occurred")
         } catch Status.conversionError {
             XCTAssertTrue(true)
@@ -1030,7 +1027,7 @@ class KeychainAccessTests: XCTestCase {
         XCTAssertNil(try! keychain.getData("JSONData"), "removed JSON data")
     }
 
-    // MARK:
+    // MARK: 
 
     func testSubscripting() {
         let keychain = Keychain(service: "Twitter")
@@ -1072,7 +1069,7 @@ class KeychainAccessTests: XCTestCase {
         XCTAssertNil(keychain[data:"JSONData"], "removed JSON data")
     }
 
-    // MARK:
+    // MARK: 
 
     func testErrorHandling() {
         do {
@@ -1168,7 +1165,7 @@ class KeychainAccessTests: XCTestCase {
                 XCTFail("error occurred")
             }
         }
-        
+
         do {
             // Remove Keychain items
             let keychain = Keychain(service: "Twitter")
@@ -1188,7 +1185,7 @@ class KeychainAccessTests: XCTestCase {
         }
     }
 
-    // MARK:
+    // MARK: 
 
     func testSetStringWithCustomService() {
         let username_1 = "kishikawakatsumi"
@@ -1313,7 +1310,7 @@ class KeychainAccessTests: XCTestCase {
         XCTAssertNil(try! Keychain(service: service_2).get("password"), "removed password")
     }
 
-    // MARK:
+    // MARK: 
 
     func testProperties() {
         guard #available(OSX 10.10, *) else {
@@ -1335,7 +1332,7 @@ class KeychainAccessTests: XCTestCase {
         XCTAssertEqual(keychain.authenticationPrompt("Prompt").authenticationPrompt, "Prompt")
     }
 
-    // MARK:
+    // MARK: 
 
     func testAllKeys() {
         do {
@@ -1595,7 +1592,7 @@ class KeychainAccessTests: XCTestCase {
         }
     }
 
-    // MARK:
+    // MARK: 
 
     func testAuthenticationPolicy() {
         guard #available(iOS 9.0, OSX 10.11, *) else {
@@ -1854,7 +1851,7 @@ class KeychainAccessTests: XCTestCase {
         do { try keychainSynchronizable.remove("username", ignoringAttributeSynchronizable: false) } catch {}
         XCTAssertNil(try! keychain.get("username", ignoringAttributeSynchronizable: false), "not stored username")
         XCTAssertNil(try! keychainSynchronizable.get("username", ignoringAttributeSynchronizable: false), "not stored username")
-        
+
         XCTAssertEqual(try! keychain.get("password", ignoringAttributeSynchronizable: false), "password1234", "stored password")
         XCTAssertEqual(try! keychainSynchronizable.get("password", ignoringAttributeSynchronizable: false), "password1234_synchronizable", "stored password")
 

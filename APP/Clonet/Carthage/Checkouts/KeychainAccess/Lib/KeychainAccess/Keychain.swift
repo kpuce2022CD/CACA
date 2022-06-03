@@ -475,7 +475,7 @@ public final class Keychain {
 
     fileprivate let options: Options
 
-    // MARK:
+    // MARK: 
 
     public convenience init() {
         var options = Options()
@@ -525,7 +525,7 @@ public final class Keychain {
         options = opts
     }
 
-    // MARK:
+    // MARK: 
 
     public func accessibility(_ accessibility: Accessibility) -> Keychain {
         var options = self.options
@@ -590,14 +590,14 @@ public final class Keychain {
     }
     #endif
 
-    // MARK:
+    // MARK: 
 
     public func get(_ key: String, ignoringAttributeSynchronizable: Bool = true) throws -> String? {
         return try getString(key, ignoringAttributeSynchronizable: ignoringAttributeSynchronizable)
     }
 
     public func getString(_ key: String, ignoringAttributeSynchronizable: Bool = true) throws -> String? {
-        guard let data = try getData(key, ignoringAttributeSynchronizable: ignoringAttributeSynchronizable) else  {
+        guard let data = try getData(key, ignoringAttributeSynchronizable: ignoringAttributeSynchronizable) else {
             return nil
         }
         guard let string = String(data: data, encoding: .utf8) else {
@@ -659,7 +659,7 @@ public final class Keychain {
         }
     }
 
-    // MARK:
+    // MARK: 
 
     public func set(_ value: String, key: String, ignoringAttributeSynchronizable: Bool = true) throws {
         guard let data = value.data(using: .utf8, allowLossyConversion: false) else {
@@ -809,7 +809,7 @@ public final class Keychain {
         }
     }
 
-    // MARK:
+    // MARK: 
 
     public func remove(_ key: String, ignoringAttributeSynchronizable: Bool = true) throws {
         var query = options.query(ignoringAttributeSynchronizable: ignoringAttributeSynchronizable)
@@ -833,7 +833,7 @@ public final class Keychain {
         }
     }
 
-    // MARK:
+    // MARK: 
 
     public func contains(_ key: String, withoutAuthenticationUI: Bool = false) throws -> Bool {
         var query = options.query()
@@ -868,7 +868,7 @@ public final class Keychain {
                 }
             }
         }
-        
+
         let status = SecItemCopyMatching(query as CFDictionary, nil)
         switch status {
         case errSecSuccess:
@@ -885,7 +885,7 @@ public final class Keychain {
         }
     }
 
-    // MARK:
+    // MARK: 
 
     public class func allKeys(_ itemClass: ItemClass) -> [(String, String)] {
         var query = [String: Any]()
@@ -961,9 +961,9 @@ public final class Keychain {
 
     #if os(iOS) && !targetEnvironment(macCatalyst)
     @available(iOS 8.0, *)
-    public func getSharedPassword(_ completion: @escaping (_ account: String?, _ password: String?, _ error: Error?) -> () = { account, password, error -> () in }) {
+    public func getSharedPassword(_ completion: @escaping (_ account: String?, _ password: String?, _ error: Error?) -> Void = { _, _, _ -> Void in }) {
         if let domain = server.host {
-            type(of: self).requestSharedWebCredential(domain: domain, account: nil) { (credentials, error) -> () in
+            type(of: self).requestSharedWebCredential(domain: domain, account: nil) { (credentials, error) -> Void in
                 if let credential = credentials.first {
                     let account = credential["account"]
                     let password = credential["password"]
@@ -981,9 +981,9 @@ public final class Keychain {
 
     #if os(iOS) && !targetEnvironment(macCatalyst)
     @available(iOS 8.0, *)
-    public func getSharedPassword(_ account: String, completion: @escaping (_ password: String?, _ error: Error?) -> () = { password, error -> () in }) {
+    public func getSharedPassword(_ account: String, completion: @escaping (_ password: String?, _ error: Error?) -> Void = { _, _ -> Void in }) {
         if let domain = server.host {
-            type(of: self).requestSharedWebCredential(domain: domain, account: account) { (credentials, error) -> () in
+            type(of: self).requestSharedWebCredential(domain: domain, account: account) { (credentials, error) -> Void in
                 if let credential = credentials.first {
                     if let password = credential["password"] {
                         completion(password, error)
@@ -1003,16 +1003,16 @@ public final class Keychain {
 
     #if os(iOS) && !targetEnvironment(macCatalyst)
     @available(iOS 8.0, *)
-    public func setSharedPassword(_ password: String, account: String, completion: @escaping (_ error: Error?) -> () = { e -> () in }) {
+    public func setSharedPassword(_ password: String, account: String, completion: @escaping (_ error: Error?) -> Void = { _ -> Void in }) {
         setSharedPassword(password as String?, account: account, completion: completion)
     }
     #endif
 
     #if os(iOS) && !targetEnvironment(macCatalyst)
     @available(iOS 8.0, *)
-    fileprivate func setSharedPassword(_ password: String?, account: String, completion: @escaping (_ error: Error?) -> () = { e -> () in }) {
+    fileprivate func setSharedPassword(_ password: String?, account: String, completion: @escaping (_ error: Error?) -> Void = { _ -> Void in }) {
         if let domain = server.host {
-            SecAddSharedWebCredential(domain as CFString, account as CFString, password as CFString?) { error -> () in
+            SecAddSharedWebCredential(domain as CFString, account as CFString, password as CFString?) { error -> Void in
                 if let error = error {
                     completion(error.error)
                 } else {
@@ -1028,36 +1028,36 @@ public final class Keychain {
 
     #if os(iOS) && !targetEnvironment(macCatalyst)
     @available(iOS 8.0, *)
-    public func removeSharedPassword(_ account: String, completion: @escaping (_ error: Error?) -> () = { e -> () in }) {
+    public func removeSharedPassword(_ account: String, completion: @escaping (_ error: Error?) -> Void = { _ -> Void in }) {
         setSharedPassword(nil, account: account, completion: completion)
     }
     #endif
 
     #if os(iOS) && !targetEnvironment(macCatalyst)
     @available(iOS 8.0, *)
-    public class func requestSharedWebCredential(_ completion: @escaping (_ credentials: [[String: String]], _ error: Error?) -> () = { credentials, error -> () in }) {
+    public class func requestSharedWebCredential(_ completion: @escaping (_ credentials: [[String: String]], _ error: Error?) -> Void = { _, _ -> Void in }) {
         requestSharedWebCredential(domain: nil, account: nil, completion: completion)
     }
     #endif
 
     #if os(iOS) && !targetEnvironment(macCatalyst)
     @available(iOS 8.0, *)
-    public class func requestSharedWebCredential(domain: String, completion: @escaping (_ credentials: [[String: String]], _ error: Error?) -> () = { credentials, error -> () in }) {
+    public class func requestSharedWebCredential(domain: String, completion: @escaping (_ credentials: [[String: String]], _ error: Error?) -> Void = { _, _ -> Void in }) {
         requestSharedWebCredential(domain: domain, account: nil, completion: completion)
     }
     #endif
 
     #if os(iOS) && !targetEnvironment(macCatalyst)
     @available(iOS 8.0, *)
-    public class func requestSharedWebCredential(domain: String, account: String, completion: @escaping (_ credentials: [[String: String]], _ error: Error?) -> () = { credentials, error -> () in }) {
+    public class func requestSharedWebCredential(domain: String, account: String, completion: @escaping (_ credentials: [[String: String]], _ error: Error?) -> Void = { _, _ -> Void in }) {
         requestSharedWebCredential(domain: Optional(domain), account: Optional(account)!, completion: completion)
     }
     #endif
 
     #if os(iOS) && !targetEnvironment(macCatalyst)
     @available(iOS 8.0, *)
-    fileprivate class func requestSharedWebCredential(domain: String?, account: String?, completion: @escaping (_ credentials: [[String: String]], _ error: Error?) -> ()) {
-        SecRequestSharedWebCredential(domain as CFString?, account as CFString?) { (credentials, error) -> () in
+    fileprivate class func requestSharedWebCredential(domain: String?, account: String?, completion: @escaping (_ credentials: [[String: String]], _ error: Error?) -> Void) {
+        SecRequestSharedWebCredential(domain as CFString?, account as CFString?) { (credentials, error) -> Void in
             var remoteError: NSError?
             if let error = error {
                 remoteError = error.error
@@ -1100,7 +1100,7 @@ public final class Keychain {
     }
     #endif
 
-    // MARK:
+    // MARK: 
 
     fileprivate func items() -> [[String: Any]] {
         var query = options.query()
@@ -1132,7 +1132,7 @@ public final class Keychain {
             var item = [String: Any]()
 
             item["class"] = itemClass.description
-            
+
             if let accessGroup = attributes[AttributeAccessGroup] as? String {
                 item["accessGroup"] = accessGroup
             }
@@ -1164,7 +1164,7 @@ public final class Keychain {
             if let data = attributes[ValueData] as? Data {
                 if let text = String(data: data, encoding: .utf8) {
                     item["value"] = text
-                } else  {
+                } else {
                     item["value"] = data
                 }
             }
@@ -1183,7 +1183,7 @@ public final class Keychain {
         return items
     }
 
-    // MARK:
+    // MARK: 
 
     @discardableResult
     fileprivate class func securityError(status: OSStatus) -> Error {
@@ -1205,7 +1205,7 @@ struct Options {
     var itemClass: ItemClass = .genericPassword
 
     var service: String = ""
-    var accessGroup: String? = nil
+    var accessGroup: String?
 
     var server: URL!
     var protocolType: ProtocolType!
@@ -1408,7 +1408,7 @@ extension Options {
     }
 }
 
-// MARK:
+// MARK: 
 
 extension Attributes: CustomStringConvertible, CustomDebugStringConvertible {
     public var description: String {
@@ -3068,7 +3068,7 @@ extension Status: CustomNSError {
         return Int(rawValue)
     }
 
-    public var errorUserInfo: [String : Any] {
+    public var errorUserInfo: [String: Any] {
         return [NSLocalizedDescriptionKey: description]
     }
 }

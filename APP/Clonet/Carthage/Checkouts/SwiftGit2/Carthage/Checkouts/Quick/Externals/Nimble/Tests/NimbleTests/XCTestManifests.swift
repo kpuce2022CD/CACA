@@ -7,7 +7,7 @@ extension AllPassTest {
         ("testAllPassCollectionsWithOptionalsUnwrappingOneOptionalLayer", testAllPassCollectionsWithOptionalsUnwrappingOneOptionalLayer),
         ("testAllPassMatcher", testAllPassMatcher),
         ("testAllPassSet", testAllPassSet),
-        ("testAllPassWithNilAsExpectedValue", testAllPassWithNilAsExpectedValue),
+        ("testAllPassWithNilAsExpectedValue", testAllPassWithNilAsExpectedValue)
     ]
 }
 
@@ -26,21 +26,21 @@ extension AsyncTest {
         ("testWaitUntilPositiveMatches", testWaitUntilPositiveMatches),
         ("testWaitUntilTimesOutIfNotCalled", testWaitUntilTimesOutIfNotCalled),
         ("testWaitUntilTimesOutWhenExceedingItsTime", testWaitUntilTimesOutWhenExceedingItsTime),
-        ("testWaitUntilWithCustomDefaultsTimeout", testWaitUntilWithCustomDefaultsTimeout),
+        ("testWaitUntilWithCustomDefaultsTimeout", testWaitUntilWithCustomDefaultsTimeout)
     ]
 }
 
 extension BeAKindOfObjCTest {
     static let __allTests = [
         ("testFailureMessages", testFailureMessages),
-        ("testPositiveMatch", testPositiveMatch),
+        ("testPositiveMatch", testPositiveMatch)
     ]
 }
 
 extension BeAKindOfSwiftTest {
     static let __allTests = [
         ("testFailureMessages", testFailureMessages),
-        ("testPositiveMatch", testPositiveMatch),
+        ("testPositiveMatch", testPositiveMatch)
     ]
 }
 
@@ -49,7 +49,7 @@ extension BeAnInstanceOfTest {
         ("testFailureMessages", testFailureMessages),
         ("testFailureMessagesSwiftTypes", testFailureMessagesSwiftTypes),
         ("testPositiveMatch", testPositiveMatch),
-        ("testPositiveMatchSwiftTypes", testPositiveMatchSwiftTypes),
+        ("testPositiveMatchSwiftTypes", testPositiveMatchSwiftTypes)
     ]
 }
 
@@ -67,7 +67,7 @@ extension BeCloseToTest {
         ("testBeCloseToWithNSDate", testBeCloseToWithNSDate),
         ("testBeCloseToWithNSNumber", testBeCloseToWithNSNumber),
         ("testPlusMinusOperator", testPlusMinusOperator),
-        ("testPlusMinusOperatorWithDate", testPlusMinusOperatorWithDate),
+        ("testPlusMinusOperatorWithDate", testPlusMinusOperatorWithDate)
     ]
 }
 
@@ -75,7 +75,7 @@ extension BeEmptyTest {
     static let __allTests = [
         ("testBeEmptyNegative", testBeEmptyNegative),
         ("testBeEmptyPositive", testBeEmptyPositive),
-        ("testNilMatches", testNilMatches),
+        ("testNilMatches", testNilMatches)
     ]
 }
 
@@ -83,7 +83,7 @@ extension BeFalseTest {
     static let __allTests = [
         ("testShouldMatchFalse", testShouldMatchFalse),
         ("testShouldNotMatchNilBools", testShouldNotMatchNilBools),
-        ("testShouldNotMatchTrue", testShouldNotMatchTrue),
+        ("testShouldNotMatchTrue", testShouldNotMatchTrue)
     ]
 }
 
@@ -93,21 +93,21 @@ extension BeFalsyTest {
         ("testShouldMatchNilBools", testShouldMatchNilBools),
         ("testShouldMatchNilTypes", testShouldMatchNilTypes),
         ("testShouldNotMatchNonNilTypes", testShouldNotMatchNonNilTypes),
-        ("testShouldNotMatchTrue", testShouldNotMatchTrue),
+        ("testShouldNotMatchTrue", testShouldNotMatchTrue)
     ]
 }
 
 extension BeGreaterThanOrEqualToTest {
     static let __allTests = [
         ("testGreaterThanOrEqualTo", testGreaterThanOrEqualTo),
-        ("testGreaterThanOrEqualToOperator", testGreaterThanOrEqualToOperator),
+        ("testGreaterThanOrEqualToOperator", testGreaterThanOrEqualToOperator)
     ]
 }
 
 extension BeGreaterThanTest {
     static let __allTests = [
         ("testGreaterThan", testGreaterThan),
-        ("testGreaterThanOperator", testGreaterThanOperator),
+        ("testGreaterThanOperator", testGreaterThanOperator)
     ]
 }
 
@@ -118,7 +118,7 @@ extension BeIdenticalToObjectTest {
         ("testBeIdenticalToPositive", testBeIdenticalToPositive),
         ("testBeIdenticalToPositiveMessage", testBeIdenticalToPositiveMessage),
         ("testFailsOnNils", testFailsOnNils),
-        ("testOperators", testOperators),
+        ("testOperators", testOperators)
     ]
 }
 
@@ -129,27 +129,27 @@ extension BeIdenticalToTest {
         ("testBeIdenticalToNegativeMessage", testBeIdenticalToNegativeMessage),
         ("testBeIdenticalToPositive", testBeIdenticalToPositive),
         ("testBeIdenticalToPositiveMessage", testBeIdenticalToPositiveMessage),
-        ("testOperators", testOperators),
+        ("testOperators", testOperators)
     ]
 }
 
 extension BeLessThanOrEqualToTest {
     static let __allTests = [
         ("testLessThanOrEqualTo", testLessThanOrEqualTo),
-        ("testLessThanOrEqualToOperator", testLessThanOrEqualToOperator),
+        ("testLessThanOrEqualToOperator", testLessThanOrEqualToOperator)
     ]
 }
 
 extension BeLessThanTest {
     static let __allTests = [
         ("testLessThan", testLessThan),
-        ("testLessThanOperator", testLessThanOperator),
+        ("testLessThanOperator", testLessThanOperator)
     ]
 }
 
 extension BeNilTest {
     static let __allTests = [
-        ("testBeNil", testBeNil),
+        ("testBeNil", testBeNil)
     ]
 }
 
@@ -157,7 +157,7 @@ extension BeTrueTest {
     static let __allTests = [
         ("testShouldMatchTrue", testShouldMatchTrue),
         ("testShouldNotMatchFalse", testShouldNotMatchFalse),
-        ("testShouldNotMatchNilBools", testShouldNotMatchNilBools),
+        ("testShouldNotMatchNilBools", testShouldNotMatchNilBools)
     ]
 }
 
@@ -169,20 +169,20 @@ extension BeTruthyTest {
         ("testShouldNotMatchBoolConvertibleTypesThatConvertToFalse", testShouldNotMatchBoolConvertibleTypesThatConvertToFalse),
         ("testShouldNotMatchFalse", testShouldNotMatchFalse),
         ("testShouldNotMatchNilBools", testShouldNotMatchNilBools),
-        ("testShouldNotMatchNilTypes", testShouldNotMatchNilTypes),
+        ("testShouldNotMatchNilTypes", testShouldNotMatchNilTypes)
     ]
 }
 
 extension BeVoidTest {
     static let __allTests = [
-        ("testBeVoid", testBeVoid),
+        ("testBeVoid", testBeVoid)
     ]
 }
 
 extension BeginWithTest {
     static let __allTests = [
         ("testNegativeMatches", testNegativeMatches),
-        ("testPositiveMatches", testPositiveMatches),
+        ("testPositiveMatches", testPositiveMatches)
     ]
 }
 
@@ -193,7 +193,7 @@ extension ContainElementSatisfyingTest {
         ("testContainElementSatisfyingNegativeCase", testContainElementSatisfyingNegativeCase),
         ("testContainElementSatisfyingNegativeCaseDefaultErrorMessage", testContainElementSatisfyingNegativeCaseDefaultErrorMessage),
         ("testContainElementSatisfyingNegativeCaseSpecificErrorMessage", testContainElementSatisfyingNegativeCaseSpecificErrorMessage),
-        ("testContainElementSatisfyingSpecificErrorMessage", testContainElementSatisfyingSpecificErrorMessage),
+        ("testContainElementSatisfyingSpecificErrorMessage", testContainElementSatisfyingSpecificErrorMessage)
     ]
 }
 
@@ -204,20 +204,20 @@ extension ContainTest {
         ("testContainSequence", testContainSequence),
         ("testContainSetAlgebra", testContainSetAlgebra),
         ("testContainSubstring", testContainSubstring),
-        ("testVariadicArguments", testVariadicArguments),
+        ("testVariadicArguments", testVariadicArguments)
     ]
 }
 
 extension ElementsEqualTest {
     static let __allTests = [
-        ("testSequenceElementsEquality", testSequenceElementsEquality),
+        ("testSequenceElementsEquality", testSequenceElementsEquality)
     ]
 }
 
 extension EndWithTest {
     static let __allTests = [
         ("testEndWithNegatives", testEndWithNegatives),
-        ("testEndWithPositives", testEndWithPositives),
+        ("testEndWithPositives", testEndWithPositives)
     ]
 }
 
@@ -235,7 +235,7 @@ extension EqualTest {
         ("testOperatorEqualityWithArrays", testOperatorEqualityWithArrays),
         ("testOperatorEqualityWithDictionaries", testOperatorEqualityWithDictionaries),
         ("testOptionalEquality", testOptionalEquality),
-        ("testSetEquality", testSetEquality),
+        ("testSetEquality", testSetEquality)
     ]
 }
 
@@ -243,7 +243,7 @@ extension HaveCountTest {
     static let __allTests = [
         ("testHaveCountForArray", testHaveCountForArray),
         ("testHaveCountForDictionary", testHaveCountForDictionary),
-        ("testHaveCountForSet", testHaveCountForSet),
+        ("testHaveCountForSet", testHaveCountForSet)
     ]
 }
 
@@ -255,7 +255,7 @@ extension MatchErrorTest {
         ("testMatchNegativeMessage", testMatchNegativeMessage),
         ("testMatchNSErrorNegative", testMatchNSErrorNegative),
         ("testMatchNSErrorPositive", testMatchNSErrorPositive),
-        ("testMatchPositiveMessage", testMatchPositiveMessage),
+        ("testMatchPositiveMessage", testMatchPositiveMessage)
     ]
 }
 
@@ -265,7 +265,7 @@ extension MatchTest {
         ("testMatchNegativeMessage", testMatchNegativeMessage),
         ("testMatchNils", testMatchNils),
         ("testMatchPositive", testMatchPositive),
-        ("testMatchPositiveMessage", testMatchPositiveMessage),
+        ("testMatchPositiveMessage", testMatchPositiveMessage)
     ]
 }
 
@@ -277,21 +277,21 @@ extension PostNotificationTest {
         ("testPassesWhenAllExpectedNotificationsArePosted", testPassesWhenAllExpectedNotificationsArePosted),
         ("testPassesWhenExpectedNotificationEventuallyIsPosted", testPassesWhenExpectedNotificationEventuallyIsPosted),
         ("testPassesWhenExpectedNotificationIsPosted", testPassesWhenExpectedNotificationIsPosted),
-        ("testPassesWhenNoNotificationsArePosted", testPassesWhenNoNotificationsArePosted),
+        ("testPassesWhenNoNotificationsArePosted", testPassesWhenNoNotificationsArePosted)
     ]
 }
 
 extension SatisfyAllOfTest {
     static let __allTests = [
         ("testOperatorAnd", testOperatorAnd),
-        ("testSatisfyAllOf", testSatisfyAllOf),
+        ("testSatisfyAllOf", testSatisfyAllOf)
     ]
 }
 
 extension SatisfyAnyOfTest {
     static let __allTests = [
         ("testOperatorOr", testOperatorOr),
-        ("testSatisfyAnyOf", testSatisfyAnyOf),
+        ("testSatisfyAnyOf", testSatisfyAnyOf)
     ]
 }
 
@@ -310,7 +310,7 @@ extension SynchronousTest {
         ("testToProvidesActualValueExpression", testToProvidesActualValueExpression),
         ("testToProvidesAMemoizedActualValueExpression", testToProvidesAMemoizedActualValueExpression),
         ("testToProvidesAMemoizedActualValueExpressionIsEvaluatedAtMatcherControl", testToProvidesAMemoizedActualValueExpressionIsEvaluatedAtMatcherControl),
-        ("testUnexpectedErrorsThrownFails", testUnexpectedErrorsThrownFails),
+        ("testUnexpectedErrorsThrownFails", testUnexpectedErrorsThrownFails)
     ]
 }
 
@@ -322,13 +322,13 @@ extension ThrowErrorTest {
         ("testNegativeNegatedMatches", testNegativeNegatedMatches),
         ("testPositiveMatches", testPositiveMatches),
         ("testPositiveMatchesWithClosures", testPositiveMatchesWithClosures),
-        ("testPositiveNegatedMatches", testPositiveNegatedMatches),
+        ("testPositiveNegatedMatches", testPositiveNegatedMatches)
     ]
 }
 
 extension ToSucceedTest {
     static let __allTests = [
-        ("testToSucceed", testToSucceed),
+        ("testToSucceed", testToSucceed)
     ]
 }
 
@@ -339,7 +339,7 @@ extension UserDescriptionTest {
         ("testToEventuallyNotMatch_CustomFailureMessage", testToEventuallyNotMatch_CustomFailureMessage),
         ("testToMatcher_CustomFailureMessage", testToMatcher_CustomFailureMessage),
         ("testToNotEventuallyMatch_CustomFailureMessage", testToNotEventuallyMatch_CustomFailureMessage),
-        ("testToNotMatcher_CustomFailureMessage", testToNotMatcher_CustomFailureMessage),
+        ("testToNotMatcher_CustomFailureMessage", testToNotMatcher_CustomFailureMessage)
     ]
 }
 
@@ -380,7 +380,7 @@ public func __allTests() -> [XCTestCaseEntry] {
         testCase(SynchronousTest.__allTests),
         testCase(ThrowErrorTest.__allTests),
         testCase(ToSucceedTest.__allTests),
-        testCase(UserDescriptionTest.__allTests),
+        testCase(UserDescriptionTest.__allTests)
     ]
 }
 #endif

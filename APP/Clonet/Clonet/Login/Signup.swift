@@ -7,23 +7,23 @@
 import SwiftUI
 
 struct Signup: View {
-    
+
     @ObservedObject var service = Signup_ViewModel()
-    
+
     @State var id = ""
     @State var password = ""
     @State var passwordCheck = ""
     @State var email = ""
     @State var name = ""
-    @State var selection: Int? = nil
-    
+    @State var selection: Int?
+
     @State var showingAlert = false
     @State var alertText = ""
-    
+
     var body: some View {
-        NavigationView{
-            VStack(alignment: .center)  {
-                
+        NavigationView {
+            VStack(alignment: .center) {
+
                 Text("SIGN UP")
                     .font(.largeTitle)
                     .multilineTextAlignment(.center)
@@ -31,8 +31,8 @@ struct Signup: View {
                     .navigationBarTitle("")
                     .navigationBarHidden(true)
                     .hiddenNavigationBarStyle()
-                
-                Form{
+
+                Form {
                     Section(header: Text("INPUT YOUR ID")) {
                         TextField("ID", text: $id)
                             .padding()
@@ -51,27 +51,25 @@ struct Signup: View {
                         TextField("NAME", text: $name)
                             .padding()
                     }
-                    
+
                     ZStack {
                         Button("Sign UP") {
-                            if(signin()){
+                            if signin() {
                                 service.signup(id: id, passwd: password, name: name, userEmail: email)
                                 print("signupResult", service.userId)
                                 print("signupResult", service.returnResult())
-                                if(service.returnResult() == ""){ // signUp 성공
+                                if service.returnResult() == "" { // signUp 성공
                                     alertText = "Signup True"
                                     showingAlert = true
-                                }else{ // signUp 실패
+                                } else { // signUp 실패
                                     alertText = "Signup False"
                                     showingAlert = true
                                 }
-                            }
-                            else { // password check 실패
+                            } else { // password check 실패
                                 alertText = "Password Check False"
                                 showingAlert = true
                             }
-                            
-                            
+
                         }
                         .alert(isPresented: $showingAlert) {
                             Alert(title: Text("\(alertText)"), message: nil,
@@ -84,13 +82,13 @@ struct Signup: View {
         }
         .hiddenNavigationBarStyle()
         .navigationViewStyle(StackNavigationViewStyle())
-        
+
     }
-    
+
     func signin() -> Bool {
-        if(id != "" && password != "" && passwordCheck != "" && email != ""){
+        if id != "" && password != "" && passwordCheck != "" && email != "" {
             return true
-        }else{
+        } else {
             return false
         }
     }

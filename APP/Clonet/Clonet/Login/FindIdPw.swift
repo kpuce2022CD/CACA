@@ -12,24 +12,24 @@ import SocketIO
 // 이메일 요청 보내기
 final class Service_FindPW: ObservableObject {
     private var manager = SocketManager(socketURL: URL(string: "ws://localhost:3000")!, config: [.log(true), .compress])
-    
+
     @Published var messages = [String]()
     @Published var REemail = ""
     @State var email: String = ""
-    
-    func find_button(email: String){
+
+    func find_button(email: String) {
         let socket = manager.defaultSocket
         socket.connect()
-        
-        socket.on(clientEvent: .connect){ (data, ack) in
+
+        socket.on(clientEvent: .connect) { (_, _) in
             self.REemail = email
             socket.emit("IDEmail", self.REemail)
-            
+
             sleep(2)
             socket.disconnect()
         }
-        
-        socket.on("find_result"){ [weak self] (data, ack) in
+
+        socket.on("find_result") { [weak self] (data, _) in
             //            print(email)
             //            print(data)
             if let data = data[0] as? [String: String],
@@ -39,24 +39,24 @@ final class Service_FindPW: ObservableObject {
                     socket.disconnect()
                 }
             }
-            
+
             socket.connect()
         }
-        
+
     }
-    
+
 }
 
 struct FindIdPw: View {
-    
+
     @ObservedObject var service = Service_FindPW()
-    
+
     @State var email = ""
     @State var showingAlert = false
-    
+
     var body: some View {
-        NavigationView{
-            VStack(alignment: .center)  {
+        NavigationView {
+            VStack(alignment: .center) {
                 //                VStack{
                 //
                 //                    Text("Received messages form Node.js: ")
@@ -64,7 +64,7 @@ struct FindIdPw: View {
                 //                        Text(msg).padding()
                 //                    }
                 //                }
-                
+
                 Text("FIND ID && PASSWORD")
                     .font(.largeTitle)
                     .multilineTextAlignment(.center)
@@ -72,13 +72,13 @@ struct FindIdPw: View {
                     .navigationBarTitle("")
                     .navigationBarHidden(true)
                     .hiddenNavigationBarStyle()
-                
-                Form{
+
+                Form {
                     Section(header: Text("FIND ID")) {
                         TextField("EMAIL", text: $email)
                             .padding()
-                        
-                        if(email == ""){ // 이메일을 입력하지 않았을 경우
+
+                        if email == "" { // 이메일을 입력하지 않았을 경우
                             Button(action: {
                                 self.showingAlert = true
                             }) {
@@ -87,25 +87,24 @@ struct FindIdPw: View {
                             .alert(isPresented: $showingAlert) {
                                 Alert(title: Text("이메일을 입력해주세요."), dismissButton: .default(Text("확인")))
                             }
-                        }else{
+                        } else {
                             Button(action: {
                                 service.find_button(email: self.email)
                                 self.showingAlert=true
-                            }){
+                            }) {
                                 Text("complete")
                             }
-                            .alert(isPresented: $showingAlert){
-                                Alert(title: Text(email + "의 아이디 확인"),dismissButton: .default(Text("확인")))
+                            .alert(isPresented: $showingAlert) {
+                                Alert(title: Text(email + "의 아이디 확인"), dismissButton: .default(Text("확인")))
                             }
                         }
-                        
+
                     }
-                    
-                    
+
                     Section(header: Text("FIND PASSWORD")) {
                         TextField("EMAIL", text: $email)
                             .padding()
-                        Button(action:  {
+                        Button(action: {
                             service.find_button(email: self.email)
                             self.showingAlert = true
                         }) {
@@ -122,7 +121,7 @@ struct FindIdPw: View {
         .hiddenNavigationBarStyle()
         .navigationViewStyle(StackNavigationViewStyle())
     }
-    
+
     //    func EmailMatch() -> Bool{
     //        print("Matching")
     //        if(emailID == "DD"){

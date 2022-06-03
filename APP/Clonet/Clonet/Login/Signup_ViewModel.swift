@@ -10,12 +10,11 @@ import SwiftUI
 import Network
 import Apollo
 
-final class Signup_ViewModel : ObservableObject {
-    
+final class Signup_ViewModel: ObservableObject {
+
     @Published var userId: String = ""
-    
-    
-    func signup(id: String, passwd: String, name: String, userEmail: String){
+
+    func signup(id: String, passwd: String, name: String, userEmail: String) {
         Network.shared.apollo.perform(mutation: SignupMutation(user_id: id, user_pw: passwd, user_name: name, user_email: userEmail)) { result in // Change the query name to your query name
             switch result {
             case .success(let graphQLResult):
@@ -24,12 +23,12 @@ final class Signup_ViewModel : ObservableObject {
 
             case .failure(let error):
                 print("Failure! Error: \(error)")
-                
+
             }
         }
     }
-    
-    func returnResult() -> String{
+
+    func returnResult() -> String {
         return userId
     }
 }

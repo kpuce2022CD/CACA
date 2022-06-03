@@ -41,7 +41,7 @@ class SharedCredentialTests: XCTestCase {
 
             let keychain = Keychain(server: "https://kishikawakatsumi.com", protocolType: .https)
 
-            keychain.getSharedPassword("kishikawakatsumi") { (password, error) -> () in
+            keychain.getSharedPassword("kishikawakatsumi") { (password, error) -> Void in
                 XCTAssertNil(password)
                 XCTAssertNotNil(error)
                 expectation.fulfill()
@@ -54,7 +54,7 @@ class SharedCredentialTests: XCTestCase {
 
             let keychain = Keychain(server: "https://kishikawakatsumi.com", protocolType: .https)
 
-            keychain.getSharedPassword { (account, password, error) -> () in
+            keychain.getSharedPassword { (account, password, error) -> Void in
                 XCTAssertNil(account)
                 XCTAssertNil(password)
                 XCTAssertNotNil(error)

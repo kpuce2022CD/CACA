@@ -16,7 +16,7 @@ extension Credentials {
     static func fromPointer_A(_ pointer: UnsafeMutableRawPointer) -> Credentials {
         return Unmanaged<Wrapper<Credentials>>.fromOpaque(UnsafeRawPointer(pointer)).takeRetainedValue().value
     }
-    
+
 }
 
 func credentialsCallback(
@@ -44,7 +44,6 @@ func credentialsCallback(
 
     return (result != GIT_OK.rawValue) ? -1 : 0
 }
-
 
 class Wrapper<T> {
     let value: T

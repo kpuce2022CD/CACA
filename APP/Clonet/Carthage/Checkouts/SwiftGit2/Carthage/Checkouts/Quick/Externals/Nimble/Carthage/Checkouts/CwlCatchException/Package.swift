@@ -4,6 +4,6 @@ let package = Package(
 	name: "CwlCatchException",
 	targets: [
 		Target(name: "CwlCatchException", dependencies: ["CwlCatchExceptionSupport"]),
-		Target(name: "CwlCatchExceptionSupport")
+		Target(name: "CwlCatchExceptionSupport"),
 	]
 )
