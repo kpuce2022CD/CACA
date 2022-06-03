@@ -88,6 +88,7 @@
 		3F0ADCFD27DE186B007F1823 /* Repo_View_Log.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Repo_View_Log.swift; sourceTree = "<group>"; };
 		3F4B39EB27B38E8600EC0D8C /* LaunchList.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = LaunchList.graphql; sourceTree = "<group>"; };
 		3F4B39F127B3A55A00EC0D8C /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
+		3F56996E2849AC9900185312 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		3F6A1BB5279A814900146367 /* Repository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Repository.swift; sourceTree = "<group>"; };
 		3F772E06279C6DED0047F693 /* SwiftGit2 */ = {isa = PBXFileReference; lastKnownFileType = folder; name = SwiftGit2; path = Carthage/Checkouts/SwiftGit2; sourceTree = "<group>"; };
 		3F772E07279C6E210047F693 /* SwiftGit2 */ = {isa = PBXFileReference; lastKnownFileType = folder; name = SwiftGit2; path = Carthage/Checkouts/SwiftGit2; sourceTree = "<group>"; };
@@ -256,6 +257,7 @@
 		DA97B69A278BE05D006C473E = {
 			isa = PBXGroup;
 			children = (
+				3F56996E2849AC9900185312 /* .swiftlint.yml */,
 				B593818E278C5E4A00C5B28F /* Packages */,
 				DA97B6A5278BE05D006C473E /* Clonet */,
 				3FDC20572848FB830034B273 /* ClonetUITests */,
