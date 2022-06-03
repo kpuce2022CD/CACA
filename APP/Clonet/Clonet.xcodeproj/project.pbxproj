@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1ED8255A4B6B514449D4321A /* Pods_Clonet.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F0CC38589D289F2A47AD3DD3 /* Pods_Clonet.framework */; };
+		20D8CF7100B4BA7C9230A3E1 /* Pods_Clonet_ClonetUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 207B5096F05D5B55376090ED /* Pods_Clonet_ClonetUITests.framework */; };
 		3F0ADCE727DE181A007F1823 /* schema.json in Resources */ = {isa = PBXBuildFile; fileRef = 3F0ADCE627DE181A007F1823 /* schema.json */; };
 		3F0ADCE927DE1836007F1823 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F0ADCE827DE1836007F1823 /* API.swift */; };
 		3F0ADCFE27DE186B007F1823 /* FindIdPw.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F0ADCEB27DE1869007F1823 /* FindIdPw.swift */; };
@@ -65,6 +67,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		207B5096F05D5B55376090ED /* Pods_Clonet_ClonetUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Clonet_ClonetUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3F0ADCE627DE181A007F1823 /* schema.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = schema.json; sourceTree = "<group>"; };
 		3F0ADCE827DE1836007F1823 /* API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		3F0ADCEB27DE1869007F1823 /* FindIdPw.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FindIdPw.swift; sourceTree = "<group>"; };
@@ -97,9 +100,13 @@
 		3FDC20582848FB830034B273 /* ClonetUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClonetUITests.swift; sourceTree = "<group>"; };
 		3FDC205A2848FB830034B273 /* ClonetUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClonetUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		3FE633B4278DD9AF00143666 /* PageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageViewController.swift; sourceTree = "<group>"; };
+		47D1EFF2F1476870B0A901A5 /* Pods-Clonet.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Clonet.release.xcconfig"; path = "Target Support Files/Pods-Clonet/Pods-Clonet.release.xcconfig"; sourceTree = "<group>"; };
+		7750BA3CEA77F5FB26926361 /* Pods-Clonet-ClonetUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Clonet-ClonetUITests.debug.xcconfig"; path = "Target Support Files/Pods-Clonet-ClonetUITests/Pods-Clonet-ClonetUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		A695D50CF2355EEDD23695B7 /* Pods-Clonet-ClonetUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Clonet-ClonetUITests.release.xcconfig"; path = "Target Support Files/Pods-Clonet-ClonetUITests/Pods-Clonet-ClonetUITests.release.xcconfig"; sourceTree = "<group>"; };
 		B50BD822278C781700A7E3E0 /* GitTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitTest.swift; sourceTree = "<group>"; };
 		B540D41F278C603900479A63 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		B540D421278C604200479A63 /* libiconv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libiconv.tbd; path = usr/lib/libiconv.tbd; sourceTree = SDKROOT; };
+		C6E88A265E9805AE955F6586 /* Pods-Clonet.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Clonet.debug.xcconfig"; path = "Target Support Files/Pods-Clonet/Pods-Clonet.debug.xcconfig"; sourceTree = "<group>"; };
 		DA253E12278DEE1500AEE18A /* ViewModifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModifiers.swift; sourceTree = "<group>"; };
 		DA4BB52427E0A633002D5A86 /* Repo_View_Diff.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Repo_View_Diff.swift; sourceTree = "<group>"; };
 		DA97B6A3278BE05D006C473E /* Clonet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Clonet.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -108,6 +115,7 @@
 		DA97B6AA278BE05E006C473E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DA97B6AD278BE05E006C473E /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		DACAA65D278C7E5D007F3918 /* SocketIO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocketIO.swift; sourceTree = "<group>"; };
+		F0CC38589D289F2A47AD3DD3 /* Pods_Clonet.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Clonet.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,6 +123,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				20D8CF7100B4BA7C9230A3E1 /* Pods_Clonet_ClonetUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -132,6 +141,7 @@
 				3F4B3A0427B4BAEF00EC0D8C /* ToastUI in Frameworks */,
 				B5F6B9B027AED04900C46E4B /* Apollo in Frameworks */,
 				DACAA65B278C7BFB007F3918 /* SocketIO in Frameworks */,
+				1ED8255A4B6B514449D4321A /* Pods_Clonet.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -228,6 +238,8 @@
 			children = (
 				B540D421278C604200479A63 /* libiconv.tbd */,
 				B540D41F278C603900479A63 /* libz.tbd */,
+				F0CC38589D289F2A47AD3DD3 /* Pods_Clonet.framework */,
+				207B5096F05D5B55376090ED /* Pods_Clonet_ClonetUITests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -250,6 +262,7 @@
 				DA97B6A4278BE05D006C473E /* Products */,
 				B540D41C278C602B00479A63 /* Frameworks */,
 				3FDC203B2848F6FF0034B273 /* ClonetTests-Bridging-Header.h */,
+				EB801005D292351C990200EE /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -291,6 +304,18 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
+		EB801005D292351C990200EE /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				C6E88A265E9805AE955F6586 /* Pods-Clonet.debug.xcconfig */,
+				47D1EFF2F1476870B0A901A5 /* Pods-Clonet.release.xcconfig */,
+				7750BA3CEA77F5FB26926361 /* Pods-Clonet-ClonetUITests.debug.xcconfig */,
+				A695D50CF2355EEDD23695B7 /* Pods-Clonet-ClonetUITests.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -298,6 +323,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3FDC205E2848FB830034B273 /* Build configuration list for PBXNativeTarget "ClonetUITests" */;
 			buildPhases = (
+				4ED3892C60B735A9EB5FBDB5 /* [CP] Check Pods Manifest.lock */,
 				3FDC20522848FB830034B273 /* Sources */,
 				3FDC20532848FB830034B273 /* Frameworks */,
 				3FDC20542848FB830034B273 /* Resources */,
@@ -316,6 +342,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = DA97B6B1278BE05E006C473E /* Build configuration list for PBXNativeTarget "Clonet" */;
 			buildPhases = (
+				1C71929A79AC50F31D47E1FE /* [CP] Check Pods Manifest.lock */,
 				B5F6B9B327AED09A00C46E4B /* Apollo */,
 				DA97B69F278BE05D006C473E /* Sources */,
 				DA97B6A0278BE05D006C473E /* Frameworks */,
@@ -369,15 +396,15 @@
 			);
 			mainGroup = DA97B69A278BE05D006C473E;
 			packageReferences = (
-				DACAA659278C7BFB007F3918 /* XCRemoteSwiftPackageReference "socket.io-client-swift" */,
-				DACAA65C278C7C0B007F3918 /* XCRemoteSwiftPackageReference "swift-nio-zlib-support" */,
-				3F6A1BBC279A839300146367 /* XCRemoteSwiftPackageReference "KeychainAccess" */,
-				3F6A1BC2279AADDE00146367 /* XCRemoteSwiftPackageReference "Result" */,
-				3F772E08279C6FC40047F693 /* XCRemoteSwiftPackageReference "SwiftGit2" */,
+				DACAA659278C7BFB007F3918 /* XCRemoteSwiftPackageReference "socket.io-client-swift.git" */,
+				DACAA65C278C7C0B007F3918 /* XCRemoteSwiftPackageReference "swift-nio-zlib-support.git" */,
+				3F6A1BBC279A839300146367 /* XCRemoteSwiftPackageReference "KeychainAccess.git" */,
+				3F6A1BC2279AADDE00146367 /* XCRemoteSwiftPackageReference "Result.git" */,
+				3F772E08279C6FC40047F693 /* XCRemoteSwiftPackageReference "SwiftGit2.git" */,
 				B5F6B9AE27AED04900C46E4B /* XCRemoteSwiftPackageReference "apollo-ios" */,
-				3F4B3A0227B4BAEF00EC0D8C /* XCRemoteSwiftPackageReference "ToastUI" */,
-				3F4B3A0527B69EC700EC0D8C /* XCRemoteSwiftPackageReference "Swift-SMTP" */,
-				DAD68E0227DF7E7C008012AD /* XCRemoteSwiftPackageReference "url-image" */,
+				3F4B3A0227B4BAEF00EC0D8C /* XCRemoteSwiftPackageReference "ToastUI.git" */,
+				3F4B3A0527B69EC700EC0D8C /* XCRemoteSwiftPackageReference "Swift-SMTP.git" */,
+				DAD68E0227DF7E7C008012AD /* XCRemoteSwiftPackageReference "url-image.git" */,
 			);
 			productRefGroup = DA97B6A4278BE05D006C473E /* Products */;
 			projectDirPath = "";
@@ -411,6 +438,50 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		1C71929A79AC50F31D47E1FE /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Clonet-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		4ED3892C60B735A9EB5FBDB5 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Clonet-ClonetUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
 		B5F6B9B327AED09A00C46E4B /* Apollo */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 8;
@@ -490,6 +561,7 @@
 /* Begin XCBuildConfiguration section */
 		3FDC205F2848FB830034B273 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7750BA3CEA77F5FB26926361 /* Pods-Clonet-ClonetUITests.debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -507,6 +579,7 @@
 		};
 		3FDC20602848FB830034B273 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A695D50CF2355EEDD23695B7 /* Pods-Clonet-ClonetUITests.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -645,6 +718,7 @@
 		};
 		DA97B6B2278BE05E006C473E /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C6E88A265E9805AE955F6586 /* Pods-Clonet.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -680,6 +754,7 @@
 		};
 		DA97B6B3278BE05E006C473E /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 47D1EFF2F1476870B0A901A5 /* Pods-Clonet.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -746,7 +821,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		3F4B3A0227B4BAEF00EC0D8C /* XCRemoteSwiftPackageReference "ToastUI" */ = {
+		3F4B3A0227B4BAEF00EC0D8C /* XCRemoteSwiftPackageReference "ToastUI.git" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/quanshousio/ToastUI.git";
 			requirement = {
@@ -754,7 +829,7 @@
 				minimumVersion = 2.0.0;
 			};
 		};
-		3F4B3A0527B69EC700EC0D8C /* XCRemoteSwiftPackageReference "Swift-SMTP" */ = {
+		3F4B3A0527B69EC700EC0D8C /* XCRemoteSwiftPackageReference "Swift-SMTP.git" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Kitura/Swift-SMTP.git";
 			requirement = {
@@ -762,7 +837,7 @@
 				minimumVersion = 6.0.0;
 			};
 		};
-		3F6A1BBC279A839300146367 /* XCRemoteSwiftPackageReference "KeychainAccess" */ = {
+		3F6A1BBC279A839300146367 /* XCRemoteSwiftPackageReference "KeychainAccess.git" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/kishikawakatsumi/KeychainAccess.git";
 			requirement = {
@@ -770,7 +845,7 @@
 				kind = branch;
 			};
 		};
-		3F6A1BC2279AADDE00146367 /* XCRemoteSwiftPackageReference "Result" */ = {
+		3F6A1BC2279AADDE00146367 /* XCRemoteSwiftPackageReference "Result.git" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/antitypical/Result.git";
 			requirement = {
@@ -778,7 +853,7 @@
 				kind = branch;
 			};
 		};
-		3F772E08279C6FC40047F693 /* XCRemoteSwiftPackageReference "SwiftGit2" */ = {
+		3F772E08279C6FC40047F693 /* XCRemoteSwiftPackageReference "SwiftGit2.git" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/light-tech/SwiftGit2.git";
 			requirement = {
@@ -794,7 +869,7 @@
 				minimumVersion = 0.49.0;
 			};
 		};
-		DACAA659278C7BFB007F3918 /* XCRemoteSwiftPackageReference "socket.io-client-swift" */ = {
+		DACAA659278C7BFB007F3918 /* XCRemoteSwiftPackageReference "socket.io-client-swift.git" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/socketio/socket.io-client-swift.git";
 			requirement = {
@@ -802,7 +877,7 @@
 				kind = branch;
 			};
 		};
-		DACAA65C278C7C0B007F3918 /* XCRemoteSwiftPackageReference "swift-nio-zlib-support" */ = {
+		DACAA65C278C7C0B007F3918 /* XCRemoteSwiftPackageReference "swift-nio-zlib-support.git" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/apple/swift-nio-zlib-support.git";
 			requirement = {
@@ -810,7 +885,7 @@
 				kind = branch;
 			};
 		};
-		DAD68E0227DF7E7C008012AD /* XCRemoteSwiftPackageReference "url-image" */ = {
+		DAD68E0227DF7E7C008012AD /* XCRemoteSwiftPackageReference "url-image.git" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/dmytro-anokhin/url-image.git";
 			requirement = {
@@ -823,27 +898,27 @@
 /* Begin XCSwiftPackageProductDependency section */
 		3F4B3A0327B4BAEF00EC0D8C /* ToastUI */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 3F4B3A0227B4BAEF00EC0D8C /* XCRemoteSwiftPackageReference "ToastUI" */;
+			package = 3F4B3A0227B4BAEF00EC0D8C /* XCRemoteSwiftPackageReference "ToastUI.git" */;
 			productName = ToastUI;
 		};
 		3F4B3A0627B69EC700EC0D8C /* SwiftSMTP */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 3F4B3A0527B69EC700EC0D8C /* XCRemoteSwiftPackageReference "Swift-SMTP" */;
+			package = 3F4B3A0527B69EC700EC0D8C /* XCRemoteSwiftPackageReference "Swift-SMTP.git" */;
 			productName = SwiftSMTP;
 		};
 		3F6A1BBD279A839300146367 /* KeychainAccess */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 3F6A1BBC279A839300146367 /* XCRemoteSwiftPackageReference "KeychainAccess" */;
+			package = 3F6A1BBC279A839300146367 /* XCRemoteSwiftPackageReference "KeychainAccess.git" */;
 			productName = KeychainAccess;
 		};
 		3F6A1BC3279AADDE00146367 /* Result */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 3F6A1BC2279AADDE00146367 /* XCRemoteSwiftPackageReference "Result" */;
+			package = 3F6A1BC2279AADDE00146367 /* XCRemoteSwiftPackageReference "Result.git" */;
 			productName = Result;
 		};
 		3F772E09279C70BC0047F693 /* SwiftGit2 */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 3F772E08279C6FC40047F693 /* XCRemoteSwiftPackageReference "SwiftGit2" */;
+			package = 3F772E08279C6FC40047F693 /* XCRemoteSwiftPackageReference "SwiftGit2.git" */;
 			productName = SwiftGit2;
 		};
 		B5F6B9AF27AED04900C46E4B /* Apollo */ = {
@@ -858,7 +933,7 @@
 		};
 		DACAA65A278C7BFB007F3918 /* SocketIO */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = DACAA659278C7BFB007F3918 /* XCRemoteSwiftPackageReference "socket.io-client-swift" */;
+			package = DACAA659278C7BFB007F3918 /* XCRemoteSwiftPackageReference "socket.io-client-swift.git" */;
 			productName = SocketIO;
 		};
 /* End XCSwiftPackageProductDependency section */

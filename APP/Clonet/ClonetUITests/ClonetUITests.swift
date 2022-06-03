@@ -83,6 +83,13 @@ class ClonetUITests: XCTestCase {
         XCTAssert(SaveButton.exists)
         SaveButton.click()
         
+        // 잠깐 기다리기
+        app.waitForExistence(timeout: 5)
+        
+        // Current Branch 확인
+        let Branch = app.staticTexts["브랜치 : master"]
+        XCTAssert(Branch.exists)
+        
     }
 
     func testLaunchPerformance() throws {
