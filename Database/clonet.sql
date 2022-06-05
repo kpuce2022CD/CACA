@@ -75,7 +75,7 @@ insert into user values('user3', 'passwd', '유저삼', 'user1@gmail.com', "", "
 select * FROM user where user_id="user3";
 select * From user;
 
-use mysql;
+-- use mysql;
 
 -- flush privileges; 
 
