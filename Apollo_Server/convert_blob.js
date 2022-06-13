@@ -1,3 +1,5 @@
+// NO_USE
+
 const { exec } = require('child_process');
 
 const repository_name = "test"
