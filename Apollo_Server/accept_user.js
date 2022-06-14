@@ -1,3 +1,5 @@
+// NO_USE (for AWS Repository)
+
 const knex = require("knex")({
   client: "mysql",
   connection: {
