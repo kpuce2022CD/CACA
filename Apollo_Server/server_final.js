@@ -1,3 +1,6 @@
+// For iOS 
+// Apollo & GraphQL Server
+
 const graphql = require('graphql');
 const fs = require('fs');
 const shell = require('shelljs');
