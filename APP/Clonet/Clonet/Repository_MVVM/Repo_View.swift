@@ -59,8 +59,6 @@ struct Repo_View: View {
                 Repo_View_Git(repo_n: repoName, userID: userID, branchName: branchName, userIP: userIP)
             }
         }
-//        .navigationBarBackButtonHidden(true)
-//        .navigationBarItems(leading: backButton)
     }
 }
 
