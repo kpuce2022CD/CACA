@@ -279,7 +279,7 @@ struct Repo_View_Git: View {
                 }
                 .background(Color.black)
                 .cornerRadius(15)
-                .toast(isPresented: $showingAlert_makeBranch) { // , dismissAfter: 2.0
+                .toast(isPresented: $showingAlert_makeBranch) {
                     ToastView {
                         Text("Enter Input Branch Name").font(.headline).padding()
                         TextField("Enter Input Branch Name.", text: $new_branch_name).textFieldStyle(RoundedBorderTextFieldStyle()).padding()
