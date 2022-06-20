@@ -26,8 +26,13 @@
 ```
 cd Terraform
 terraform init
+// terraform import aws_instance.app_server i-07~
+terraform plan
 terraform apply
+
+sudo systemctl start docker
 docker network create --gateway 172.18.0.1 --subnet 172.18.0.0/16 clonet_network 
+sudo docker-compose up --build -d
 ```
 ### Don't run
 ```
