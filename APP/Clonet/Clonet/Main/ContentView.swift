@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct ContentView: View {
-//    @EnvironmentObject var launchViewModela: LaunchViewModel
 
     var userIP = "3.35.46.50"
     var body: some View {
