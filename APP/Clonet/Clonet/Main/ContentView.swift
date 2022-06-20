@@ -12,7 +12,6 @@ struct ContentView: View {
     var userIP = "3.35.46.50"
     var body: some View {
         Login_View(userIP: userIP)
-//        GitTest()
     }
 }
 
