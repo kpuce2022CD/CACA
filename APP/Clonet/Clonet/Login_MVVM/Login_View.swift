@@ -9,9 +9,11 @@ import SwiftUI
 
 struct Login_View: View {
     @ObservedObject var viewModel = Login_ViewModel()
+    @State var userIP: String
 
-    init() {
+    init(userIP: String) {
 //        viewModel.autoLogin()
+        self.userIP = userIP
     }
     var body: some View {
         NavigationView {
@@ -56,7 +58,7 @@ struct Login_View: View {
                     // Login Btn
                     ZStack {
                         if viewModel.isLogin == true {
-                            NavigationLink(destination: LoginCheck_View(userID: viewModel.userID), tag: "true", selection: $viewModel.selectionString) {
+                            NavigationLink(destination: LoginCheck_View(userID: viewModel.userID, userIP: self.userIP), tag: "true", selection: $viewModel.selectionString) {
 
                             }
                                 .buttonStyle(PlainButtonStyle()).frame(width: 0).opacity(0)
@@ -117,6 +119,6 @@ struct Login_View: View {
 
 struct Login_View_Previews: PreviewProvider {
     static var previews: some View {
-        Login_View()
+        Login_View(userIP: "")
     }
 }

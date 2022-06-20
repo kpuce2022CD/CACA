@@ -13,6 +13,7 @@ struct LoginCheck_View: View {
     @Environment(\.presentationMode) var presentationMode
     @StateObject var logincheck_ViewModel = LoginCheck_ViewModel()
     @State var userID: String
+    @State var userIP: String
 
     var body: some View {
         NavigationView {
@@ -52,9 +53,9 @@ struct LoginCheck_View: View {
                     }
                     List {
                         ForEach(logincheck_ViewModel.Repo_List, id: \.id) { s in
-                            NavigationLink(destination: Repo_View(userID: userID, repoName: s.repo_name).onAppear(perform: {
+                            NavigationLink(destination: Repo_View(userID: userID, repoName: s.repo_name, userIP: userIP).onAppear(perform: {
                                 deleteFile(repoName: s.repo_name)
-                                cloneGitRepo(remoteRepoLocation: "http://13.209.116.111/git-repositories/" + s.repo_name + ".git", localRepoLocation: documentURL.appendingPathComponent(s.repo_name))
+                                cloneGitRepo(remoteRepoLocation: "http://"+userIP+"/git-repositories/" + s.repo_name + ".git", localRepoLocation: documentURL.appendingPathComponent(s.repo_name))
                             })) {
                                 VStack {
                                     Text("\(s.repo_name)")

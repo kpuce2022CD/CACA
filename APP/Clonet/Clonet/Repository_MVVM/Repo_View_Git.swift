@@ -56,6 +56,7 @@ struct Repo_View_Git: View {
     @State var UserName = ""
     @State var userEmail = "UserEmail"
     @State var commit_msg = ""
+    @State var userIP = ""
     @State var branchArr: [String] = []
 
     @State private var showingAlert = false
@@ -94,11 +95,12 @@ struct Repo_View_Git: View {
     @ObservedObject var Log_repo_list: LogList
 
     // init
-    init(repo_n: String, userID: String, branchName: BranchName) {
+    init(repo_n: String, userID: String, branchName: BranchName, userIP: String) {
         self.repo_n = repo_n
         Repository.initialize_libgit2()
         self.userID = userID
         self.branchNameObject = branchName
+        self.userIP = userIP
         self.Log_repo_list = LogList.init()
         Log_repo_list.getBranchLog(repo_n: self.repo_n, currentBranchName: self.branchNameObject.currentBranchName)
     }
@@ -359,9 +361,9 @@ struct Repo_View_Git: View {
 
                                     Button {
                                         self.selectionString = "true"
-                                        logNumber.url1 = "http://13.209.116.111/images/\( Log_repo_list.Log_repo_list[log_number1].commitId)_\(FileList.items[file_number])"
+                                        logNumber.url1 = "http://"+userIP+"/images/\( Log_repo_list.Log_repo_list[log_number1].commitId)_\(FileList.items[file_number])"
 
-                                        logNumber.url2 = "http://13.209.116.111/images/\( Log_repo_list.Log_repo_list[log_number2].commitId)_\(FileList.items[file_number])"
+                                        logNumber.url2 = "http://"+userIP+"/images/\( Log_repo_list.Log_repo_list[log_number2].commitId)_\(FileList.items[file_number])"
 
                                         log_repoViewModel_a.Diff(first_commit: Log_repo_list.Log_repo_list[log_number1].commitId, second_commit: Log_repo_list.Log_repo_list[log_number2].commitId, repo_name: repo_n, file_name: FileList.items[file_number])
 
@@ -587,6 +589,6 @@ struct Repo_View_Git: View {
 
 struct Repo_View_Git_Previews: PreviewProvider {
     static var previews: some View {
-        Repo_View_Git(repo_n: "", userID: "", branchName: BranchName.init())
+        Repo_View_Git(repo_n: "", userID: "", branchName: BranchName.init(), userIP: "")
     }
 }

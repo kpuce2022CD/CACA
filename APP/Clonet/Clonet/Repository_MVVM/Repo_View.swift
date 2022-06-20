@@ -11,6 +11,7 @@ import ToastUI
 struct Repo_View: View {
     var userID: String = ""
     var repoName: String = ""
+    var userIP: String = ""
     @State private var presentingToast_back: Bool = false
 //    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @StateObject var branchName = BranchName()
@@ -35,16 +36,17 @@ struct Repo_View: View {
 //
 //    }
 
-    init(userID: String, repoName: String) {
+    init(userID: String, repoName: String, userIP: String) {
         self.userID = userID
         self.repoName = repoName
+        self.userIP = userIP
     }
 
     var body: some View {
         HStack {
 
             VStack {
-                Repo_View_Directory(repo_n: repoName, ec2_id: "13.209.116.111", user_id: userID)
+                Repo_View_Directory(repo_n: repoName, ec2_id: userIP, user_id: userID)
             }
             VStack {
                 // MARK: BranchName
@@ -54,7 +56,7 @@ struct Repo_View: View {
                 }
                 Repo_View_Request(repoName: repoName)
                 //                Repo_View_Log(repo_n: repoName)
-                Repo_View_Git(repo_n: repoName, userID: userID, branchName: branchName)
+                Repo_View_Git(repo_n: repoName, userID: userID, branchName: branchName, userIP: userIP)
             }
         }
 //        .navigationBarBackButtonHidden(true)
@@ -64,6 +66,6 @@ struct Repo_View: View {
 
 struct Repo_View_Previews: PreviewProvider {
     static var previews: some View {
-        Repo_View(userID: "", repoName: "")
+        Repo_View(userID: "", repoName: "", userIP: "")
     }
 }

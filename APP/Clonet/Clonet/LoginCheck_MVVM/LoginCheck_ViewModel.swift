@@ -8,6 +8,7 @@
 import Foundation
 import Apollo
 import SwiftUI
+import ToastUI
 
 struct CircleImage: View {
     var image: Image
@@ -26,7 +27,7 @@ struct CircleImage: View {
 struct MyAlert: View {
     //    @ObservedObject var userAuth : UserAuth = UserAuth()
     @ObservedObject var loginCheck_ViewModel = LoginCheck_ViewModel()
-
+    @State private var presentingToast: Bool = false
     @State private var selectionString: String?
     @State var showingAlert = true
     @State var input_repoName = ""

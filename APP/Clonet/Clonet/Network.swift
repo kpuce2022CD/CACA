@@ -11,7 +11,7 @@ import Apollo
 class Network {
   static let shared = Network()
 
-    let url = "http://13.209.116.111:4000/" // Udapte this link with your API link
+    let url = "http://3.35.46.50:4000/" // Udapte this link with your API link
 
     private(set) lazy var apollo = ApolloClient(url: URL(string: url)!)
 }
