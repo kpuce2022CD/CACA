@@ -1060,13 +1060,13 @@ class KeychainAccessTests: XCTestCase {
         let JSONObject = ["username": "kishikawakatsumi", "password": "password1234"]
         let JSONData = try! JSONSerialization.data(withJSONObject: JSONObject, options: [])
 
-        XCTAssertNil(keychain[data:"JSONData"], "not stored JSON data")
+        XCTAssertNil(keychain[data: "JSONData"], "not stored JSON data")
 
         keychain[data: "JSONData"] = JSONData
         XCTAssertEqual(keychain[data: "JSONData"], JSONData, "stored JSON data")
 
         keychain[data: "JSONData"] = nil
-        XCTAssertNil(keychain[data:"JSONData"], "removed JSON data")
+        XCTAssertNil(keychain[data: "JSONData"], "removed JSON data")
     }
 
     // MARK: 
