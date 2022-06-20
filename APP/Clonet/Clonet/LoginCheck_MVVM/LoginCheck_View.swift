@@ -57,7 +57,8 @@ struct LoginCheck_View: View {
                                 cloneGitRepo(remoteRepoLocation: "http://13.209.116.111/git-repositories/" + s.repo_name + ".git", localRepoLocation: documentURL.appendingPathComponent(s.repo_name))
                             })) {
                                 VStack {
-                                    Text("repo_name: \(s.repo_name)")
+                                    Text("\(s.repo_name)")
+                                        .font(.title2)
                                 }
                             }
                             .ignoresSafeArea(edges: .all)
