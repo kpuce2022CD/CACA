@@ -17,7 +17,7 @@ provider "aws" {
 
 resource "aws_security_group" "instance" { // security group
 
-    name = "CLONET_REPOSITORY_SECURITY_GROUP"
+    name = "CLONET_SECURITY_GROUP"
 
     ingress {
       from_port = 80
@@ -51,6 +51,13 @@ resource "aws_security_group" "instance" { // security group
     ingress {
       from_port = 5312
       to_port = 5312
+      protocol = "tcp"
+      cidr_blocks = ["0.0.0.0/0"]
+    }
+
+    ingress {
+      from_port = 1111
+      to_port = 1111
       protocol = "tcp"
       cidr_blocks = ["0.0.0.0/0"]
     }
