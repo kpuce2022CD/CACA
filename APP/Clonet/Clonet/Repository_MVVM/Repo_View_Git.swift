@@ -288,7 +288,6 @@ struct Repo_View_Git: View {
                             Button(action: {
                                 create_Branch(localRepoLocation: documentURL.appendingPathComponent(repo_n), branch_name: new_branch_name, name: userID, email: userEmail)
 
-//                                checkout_Branch(localRepoLocation: documentURL.appendingPathComponent(repo_n), branchname: new_branch_name)
                                 branchNameObject.currentBranchName = self.new_branch_name
                                 Log_repo_list.getBranchLog(repo_n: repo_n, currentBranchName: new_branch_name)
 
