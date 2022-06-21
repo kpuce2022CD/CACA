@@ -1,5 +1,7 @@
 {
   "dependencies": {
+    "cookie-parser": "^1.4.6",
+    "react-bootstrap": "^2.4.0",
     "react-dom": "^18.0.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "^5.0.1",

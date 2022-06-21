@@ -50,7 +50,7 @@ public class TestController {
         }
 
         // EC2 get Repository List
-        String host="13.209.116.111";
+        String host="3.35.46.50";
 	    String username="ubuntu";
 	    String password="qweR1234@";
         int port = 22;

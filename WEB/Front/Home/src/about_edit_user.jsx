@@ -92,12 +92,11 @@ class about_edit_user extends Component {
                             <div>
                                 <div className="form-group">
                                     <label>Edit</label>
-
-                                    <textarea className="form-control" rows="25" 
+                                    <textarea id="about_edit" name="about_edit" className="form-control" rows="25" 
                                         defaultValue={this.state.userAbout.map(i => i.about)}
                                         value={this.about} onChange={this.changeAboutHandler}></textarea>
                                 </div>
-                                <button type="submit" className="btn btn-primary btn-lg" onClick={this.updateAbout}>Save</button>
+                                <button id="about_submit" name="about_submit" type="submit" className="btn btn-primary btn-lg" onClick={this.updateAbout}>Save</button>
                             </div>
                         </div>
                     </div>

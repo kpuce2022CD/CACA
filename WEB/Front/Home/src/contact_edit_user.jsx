@@ -93,11 +93,11 @@ class contact_edit_user extends Component {
                                         </div>
                                         <div className="col-md-6">
                                             <div className="form-group" >
-                                                <textarea className="form-control" rows="1" 
+                                                <textarea id="contact_edit" name="contact_edit" className="form-control" rows="1" 
                                                     defaultValue={this.state.userAbout.map(i => i.contact)}
                                                     value={this.contact} onChange={this.changeContactHandler}></textarea>
                                             </div>
-                                            <button type="submit" className="btn btn-primary btn-lg" onClick={this.updateContact}>Save</button>
+                                            <button id="contact_submit" name="contact_submit" type="submit" className="btn btn-primary btn-lg" onClick={this.updateContact}>Save</button>
                                         </div>
                                     </div>
                                 </form>

@@ -28,7 +28,7 @@ public class KafkaConsumer {
         String cmd_clone = String.format("git clone /var/www/html/git-repositories/%s.git /var/www/html/clonet-repo/%s", msg, msg);
         // System.out.println(String.format("Consumed message : %s", cmd_clone));
 
-        String host="13.209.116.111";
+        String host="3.35.46.50";
 	    String username="ubuntu";
 	    String password="qweR1234@";
         int port = 22;

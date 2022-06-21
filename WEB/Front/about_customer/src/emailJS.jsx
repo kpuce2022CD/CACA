@@ -27,15 +27,15 @@ const ContactUs = (props) => {
                         <input type="text" value={props.user_name} class="form-control" name="to_name" placeholder="Subject" />
                     </div>
                     <div class="form-group">
-                        <input type="email" class="form-control" name="from_email" placeholder="Your Email" />
+                        <input type="email" id="customer_email" class="form-control" name="from_email" placeholder="Your Email" />
                     </div>
                     <div class="form-group">
-                        <input type="text" class="form-control" name="from_name" placeholder="Subject" />
+                        <input type="text" id="customer_subject" class="form-control" name="from_name" placeholder="Subject" />
                     </div>
                     <div class="form-group">
-                        <textarea class="form-control" rows="3" name="message" placeholder="Enter your message" />
+                        <textarea class="form-control" id="customer_message" rows="3" name="message" placeholder="Enter your message" />
                     </div>
-                    <button type="submit" value="Send" class="btn btn-primary btn-lg">Send</button>
+                    <button type="submit" id="contact_submit" value="Send" class="btn btn-primary btn-lg">Send</button>
                 </div>
             </Form>
         </div>

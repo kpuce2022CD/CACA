@@ -45,7 +45,7 @@ class about_cst_test extends Component {
                                         <p>{board.about}</p>
                                 )
                             }
-                            <a href="/contact_customer" className="btn btn-primary" title=""> Get in touch</a>
+                            <a href="/contact_customer" id="contact_customer" className="btn btn-primary" title=""> Get in touch</a>
                         </div>
                     </div>
                 </main>

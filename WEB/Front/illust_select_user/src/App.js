@@ -159,7 +159,7 @@ function App() {
             <div align={"center"}>
                 <div id="reRender">
                     {numbers.map((photo, index) => (
-                        <img id={photo} className="img-responsive" width="500px" height="500px" alt="" src={"http://13.209.116.111/clonet-repo/" + photo}
+                        <img id={photo} className="img-responsive" width="500px" height="500px" alt="" src={"http://3.35.46.50/clonet-repo/" + photo}
                              onClick={() => inputClickEvent(photo)} />
                         // <img id={photo} class="img-responsive" alt="" src={photo} onClick={() => inputClickEvent(photo)}/>
                     ))}

@@ -8,7 +8,7 @@ function useIllust_customer() {
   console.log(numbers);
 
   numbers.map((photo, index) => (
-    console.log("http://13.209.116.111/clonet-repo/" + photo)
+    console.log("http://3.35.46.50/clonet-repo/" + photo)
   ))
   // Front Parameter 받기
   const piece = getQueryVariable("piece");
@@ -68,7 +68,7 @@ function useIllust_customer() {
             <div>
               {numbers.map((photo, index) => (
                 <div class="grid-item">
-                  <img id={photo} class="img-responsive" alt="" src={"http://13.209.116.111/clonet-repo/" + photo} />
+                  <img id={photo} class="img-responsive" alt="" src={"http://3.35.46.50/clonet-repo/" + photo} />
                   <a href="./project.html" class="project-description">
                     <div class="project-text-holder">
                       <div class="project-text-inner">

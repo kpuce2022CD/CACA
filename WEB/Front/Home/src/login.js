@@ -49,12 +49,12 @@ function useLogin() {
             <center>
               <div aria-setsize={2}>
                 <div className="form-group">
-                  <input className="form-control" onChange={onChangeId} value={user_id} placeholder="ID"/>
+                  <input className="form-control" id="id" onChange={onChangeId} value={user_id} placeholder="ID"/>
                 </div>
                 <div className="form-group">
-                  <input className="form-control" onChange={onChangePw} value={user_pw} placeholder="Password"/>
+                  <input className="form-control" id="passwd" onChange={onChangePw} value={user_pw} placeholder="Password"/>
                 </div>
-                <button type="submit" className="btn btn-primary btn-lg" onClick={handleClick}>Login</button>
+                <button type="submit" id="login_submit" className="btn btn-primary btn-lg" onClick={handleClick}>Login</button>
               </div>
             </center>
 
