@@ -20,7 +20,7 @@ final class Login_ViewModel: ObservableObject {
     @Published var login_msg = [String]()
     @Published var result: Bool = false
 
-    @Published var isOn = false
+    @Published var isOn = true
     @Published var isLogin: Bool = false
     @Published var showingAlert: Bool = false
     @Published var selection: Int?
