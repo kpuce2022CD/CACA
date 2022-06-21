@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import './App.css';
 import React, { useEffect, useState, Component } from 'react';
 import Subject from './Subject.jsx';
@@ -7,7 +6,6 @@ import userService from './userService.js'
 class contact_edit_user extends Component {
     constructor(props) {
         super(props)
-
         this.state = {
             userAbout: [],
             contact: '',
@@ -70,12 +68,6 @@ class contact_edit_user extends Component {
                         <div className="col-xs-12">
                             <div className="section-container-spacer">
                                 <h1>Contact</h1>
-                                {/* {
-                                    this.state.userAbout.map(
-                                        board =>
-                                            <p>{board.contact}</p>
-                                    )
-                                } */}
                             </div>
                             <div className="section-container-spacer">
                                 <form action="" className="reveal-content">
@@ -104,8 +96,6 @@ class contact_edit_user extends Component {
                             </div>
                         </div>
                     </div>
-
-
                 </main>
             </div>
         )

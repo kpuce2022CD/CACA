@@ -7,11 +7,9 @@ import Subject from './Subject.jsx';
 class contact_cst extends Component {
     constructor(props) {
         super(props)
-
         this.state = {
             userAbout: []
         }
-
     }
 
     componentDidMount() {
@@ -19,7 +17,6 @@ class contact_cst extends Component {
             this.setState({ userAbout: res.data });
         });
     }
-
 
     render() {
         return (
@@ -31,17 +28,10 @@ class contact_cst extends Component {
                             <div class="section-container-spacer">
                                 <div>
                                     <h1>Contact</h1>
-                                    {/* {
-                                        this.state.userAbout.map(
-                                            board =>
-                                                <p>{board.contact}</p>
-                                        )
-                                    } */}
                                 </div>
                             </div>
                             <div class="section-container-spacer">
                                 <div class="row">
-                                    {/* <Email /> */}
                                     {
                                         this.state.userAbout.map(
                                             board =>

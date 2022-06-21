@@ -61,20 +61,6 @@ function App() {
     return (
         <BrowserRouter>
             <div>
-                {/*<Routes>*/}
-                {/*    <Route exact path="/">*/}
-                {/*        <Home />*/}
-                {/*    </Route>*/}
-                {/*    <Route exact path="/home_customer">*/}
-                {/*        <Home />*/}
-                {/*    </Route>*/}
-                {/*    <Route path="/about_customer">*/}
-                {/*        <About_customer />*/}
-                {/*    </Route>*/}
-                {/*    <Route path="/contct_customer" component={Contact_cst}>*/}
-                {/*        <Contact_cst/>*/}
-                {/*    </Route>*/}
-                {/*</Routes>*/}
                 <Routes>
                     <Route path="/" element={<Home />} />
                     <Route path="/home_customer" element={<Home />} />

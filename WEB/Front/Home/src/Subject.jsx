@@ -24,7 +24,6 @@ class Subject extends Component {
                                     <img className="img-responsive site-logo" alt="" src={logo} width="40" height="40" />
                                     Clonet
                                 </a>
-                                {/* <p>portfolio</p> */}
                             </div>
                             <ul className="nav">
                                 <li><a href="http://localhost:8005/home" title="">Home</a></li>
@@ -32,9 +31,6 @@ class Subject extends Component {
                                 <li><a href="http://localhost:8007/" title="">Project</a></li>
                                 <li><a href="http://localhost:8005/contact" title="">Contact</a></li>
                                 <li><a href="http://localhost:8005/login" title="">{this.props.name}</a></li>
-                                {/*<li><a href="http://localhost:8003/contact.html" title="">Contact</a></li>*/}
-                                {/* <li><a href="./components.html" title="">Components</a></li> */}
-                                {/*<li><Link to="/contct_customer">Contact</Link></li>*/}
                             </ul>
 
                             <nav className="nav-footer">

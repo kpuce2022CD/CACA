@@ -8,7 +8,6 @@ import userService from './userService.js'
 class about_edit_user extends Component {
     constructor(props) {
         super(props)
-
         this.state = {
             userAbout: [],
             about: '',
@@ -20,7 +19,6 @@ class about_edit_user extends Component {
         userService.getUser().then((res) => {
             this.setState({ userAbout: res.data });
         });
-
         fetch("http://localhost:8085/auth", {
             method: "POST",
             headers: new Headers({

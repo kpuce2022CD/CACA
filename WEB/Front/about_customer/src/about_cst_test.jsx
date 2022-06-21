@@ -6,7 +6,6 @@ import Subject from './Subject.jsx';
 class about_cst_test extends Component {
     constructor(props) {
         super(props)
-
         this.state = {
             userAbout: []
         }
@@ -16,10 +15,6 @@ class about_cst_test extends Component {
         aboutService.getUser().then((res) => {
             this.setState({ userAbout: res.data });
         });
-        // console.log("this is userAbout" + this.state.userAbout.map(
-        //     i =>
-        //     {i.profilePic}
-        // ));
     }
 
     render() {
@@ -35,7 +30,6 @@ class about_cst_test extends Component {
                                     <img className="img-responsive" alt="./assets/images/img-10.jpg" src={board.profilePic } width="300" height="300" />
                                 )
                             }
-                            {/* <img className="img-responsive" alt="" src="./assets/images/img-10.jpg" /> */}
                         </div>
                         <div className="col-xs-12 col-md-6">
                             <h1>About me</h1>

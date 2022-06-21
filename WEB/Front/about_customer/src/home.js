@@ -4,9 +4,6 @@ import Subject from './Subject.jsx';
 import logo1 from './images/clonet_logo_white.png';
 
 import './Theme1.css';
-// import './Theme2.css'
-// import './Theme3.css';
-// import './Theme4.css';
 
 function Home() {
     return (
