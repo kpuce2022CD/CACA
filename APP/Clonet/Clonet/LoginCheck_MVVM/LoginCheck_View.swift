@@ -37,7 +37,7 @@ struct LoginCheck_View: View {
                     Button(action: { self.presentationMode.wrappedValue.dismiss()
                         UserDefaults.standard.removeObject(forKey: "id")
                         UserDefaults.standard.removeObject(forKey: "pwd")
-                        UserDefaults.standard.synchronize()
+
                     }) {
                         Text("Logout")
                     }
