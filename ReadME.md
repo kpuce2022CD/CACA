@@ -31,6 +31,13 @@ xcodebuild -workspace Clonet.xcworkspace -scheme ClonetUITests -destination 'pla
 
 echo "precommit-finish"
 ################################################
+
+################################################ WEB
+
+cd ../../WEB/selenium/
+node test.js
+
+################################################
 ```
 
 
