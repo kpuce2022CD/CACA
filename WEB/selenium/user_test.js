@@ -85,7 +85,7 @@ function sleep(ms) {
     const illustSelect = await driver.findElement(By.xpath("//*[@id='navbar-collapse']/ul/li[3]/a"))
     await illustSelect.click();
     console.log('illustSelect 메뉴 클릭 완료');
-    sleep(3000);
+    sleep(8000);
 
     const firstReult = await driver.findElements(By.css('img'));
     console.log("이미지 결과 수: " + firstReult.length-1);
