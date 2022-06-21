@@ -1,0 +1,2 @@
+cd ../../WEB/selenium/
+node test.js
