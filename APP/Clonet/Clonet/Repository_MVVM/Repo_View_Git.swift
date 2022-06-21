@@ -255,13 +255,6 @@ struct Repo_View_Git: View {
 
                 // MARK: Make Branch
                 Button(action: {
-                    //                    let alertHC = UIHostingController(rootView: createBranch_View(localRepoLocation: repo_n, name: userID, email: userEmail, repo_n: repo_n))
-                    //
-                    //                    alertHC.preferredContentSize = CGSize(width: 300, height: 200)
-                    //                    alertHC.modalPresentationStyle = UIModalPresentationStyle.formSheet
-                    //
-                    //                    UIApplication.shared.windows[0].rootViewController?.present(alertHC, animated: true)
-
                     showingAlert_makeBranch = true
 
                 }) {
