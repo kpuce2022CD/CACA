@@ -85,7 +85,6 @@ struct LoginCheck_View: View {
         .hiddenNavigationBarStyle()
         .onAppear {
             logincheck_ViewModel.fetch(user_id: userID)
-
         }
 
     }
