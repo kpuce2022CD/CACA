@@ -21,6 +21,18 @@
 
 #### 📎 [Apollo](https://studio.apollographql.com/org/clonet/graphs)
 
+## Setting to Develop
+### pre-commit.sample to pre-commit & input this
+```
+################################################ iOS
+echo "precommit-start"
+cd APP/Clonet
+xcodebuild -workspace Clonet.xcworkspace -scheme ClonetUITests -destination 'platform=iOS Simulator,OS=15.2,name=iPad (9th generation)' test
+
+echo "precommit-finish"
+################################################
+```
+
 
 ## To Run
 ```
