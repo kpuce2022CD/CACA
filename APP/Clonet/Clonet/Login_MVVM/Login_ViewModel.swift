@@ -51,10 +51,11 @@ final class Login_ViewModel: ObservableObject {
                     if passwd == self.logins.user_pw && self.logins.user_pw != "" {
                         self.isLogin = true
                         self.showingAlert = false
-                        if self.isOn {
+                        if self.isOn == true {
 //                            print("Auto Login")  // 자동 로그인 선택 시 로그인 하면서 uid, pwd 저장
-                            UserDefaults.standard.set(id, forKey: "id")
-                            UserDefaults.standard.set(passwd, forKey: "pwd")
+                            UserDefaults.standard.set(id, forKey: "id")
+                            UserDefaults.standard.set(passwd, forKey: "pwd")
+                            UserDefaults.standard.synchronize()
                         }
 
                     } else {

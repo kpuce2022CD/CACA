@@ -35,6 +35,9 @@ struct LoginCheck_View: View {
                     }
                     .padding()
                     Button(action: { self.presentationMode.wrappedValue.dismiss()
+                        UserDefaults.standard.removeObject(forKey: "id")
+                        UserDefaults.standard.removeObject(forKey: "pwd")
+
                     }) {
                         Text("Logout")
                     }
@@ -82,7 +85,6 @@ struct LoginCheck_View: View {
         .hiddenNavigationBarStyle()
         .onAppear {
             logincheck_ViewModel.fetch(user_id: userID)
-
         }
 
     }

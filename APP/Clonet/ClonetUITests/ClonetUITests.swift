@@ -23,17 +23,15 @@ class ClonetUITests: XCTestCase {
     }
 
     func testExample() throws {
-        try testLogin()
-        try testRepoListNClone()
+        try Login()
+        try RepoListNClone()
     }
 
     // Login Test
-    func testLogin() throws {
+    func Login() throws {
         // UI tests must launch the application that they test.
         let app = XCUIApplication()
         app.launch()
-
-        // .accessibilityIdentifier("PASSWORD")
 
         // id 입력
         let IDTextField = app.textFields["ID"]
@@ -60,7 +58,7 @@ class ClonetUITests: XCTestCase {
     }
 
     // RepoList & Clone Test
-    func testRepoListNClone() throws {
+    func RepoListNClone() throws {
         // UI tests must launch the application that they test.
         let app = XCUIApplication()
         app.launch()
@@ -69,7 +67,7 @@ class ClonetUITests: XCTestCase {
         app.waitForExistence(timeout: 5)
 
         // repoList 받아오기
-        let repository = app.staticTexts["repo_name: ClonetDemo"]
+        let repository = app.staticTexts["ClonetDemo"]
         XCTAssert(repository.exists)
 
         // Clone
@@ -92,12 +90,12 @@ class ClonetUITests: XCTestCase {
 
     }
 
-    func testLaunchPerformance() throws {
-        if #available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 7.0, *) {
-            // This measures how long it takes to launch your application.
-            measure(metrics: [XCTApplicationLaunchMetric()]) {
-                XCUIApplication().launch()
-            }
-        }
-    }
+//    func testLaunchPerformance() throws {
+//        if #available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 7.0, *) {
+//            // This measures how long it takes to launch your application.
+//            measure(metrics: [XCTApplicationLaunchMetric()]) {
+//                XCUIApplication().launch()
+//            }
+//        }
+//    }
 }

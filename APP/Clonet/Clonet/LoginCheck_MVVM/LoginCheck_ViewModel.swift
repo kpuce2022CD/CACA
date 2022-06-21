@@ -76,8 +76,7 @@ final class LoginCheck_ViewModel: ObservableObject {
     @Published var launches: RepoNameList = RepoNameList.init()
     @Published var Repo_List: [RepoNameList] = []
 
-    @ObservedObject var login_ViewModel = Login_ViewModel()
-    @Published var repoIP = "13.209.116.111"
+    @Published var repoIP = "3.35.46.50"
     @Published var repoName = ""
     @Published var user_id = ""
     var timer: Timer?
