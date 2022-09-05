@@ -242,6 +242,9 @@ struct Repo_View_Git: View {
                 .alert("Branch", isPresented: $showingAlert) {
                     ForEach(branchArr, id: \.self) {b in
                         Button(b) {
+                            // 현재 파일 README.md로 바꿈
+                            FileList.readMELoad(repoName: repo_n, fileName: "README.md")
+
                             // checkout
                             checkout_Branch(localRepoLocation: documentURL.appendingPathComponent(repo_n), branchname: b)
 
