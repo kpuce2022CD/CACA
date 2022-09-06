@@ -98,6 +98,10 @@ struct Repo_View_Directory: View {
         dataList.items.remove(atOffsets: offsets)
     }
 
+    func deleteRequest(at offsets: IndexSet) {
+        print("Index selected")
+    }
+    
     // MARK: EXPORT
     struct ShareSheet: UIViewControllerRepresentable {
         typealias Callback = (_ activityType: UIActivity.ActivityType?, _ completed: Bool, _ returnedItems: [Any]?, _ error: Error?) -> Void
@@ -125,7 +129,6 @@ struct Repo_View_Directory: View {
     var body: some View {
         HStack {
             VStack {
-
                 HStack {
                     Spacer()
                     // MARK: Document Picker Button (To add)
@@ -199,6 +202,9 @@ struct Repo_View_Directory: View {
                                     pointShowing = true
                                 })
                             }
+                            .onDelete {
+                                deleteRequest(at: $0)
+                            }
                             .onAppear {
                                 var fileName_Req = repo_n + "_" + fileNameImg
                                 Repo_ViewModel_req.Request_fetch(Repo_Name: fileName_Req)
@@ -215,8 +221,10 @@ struct Repo_View_Directory: View {
 
                             ForEach(logList.Log_repo_list, id: \.id) { index in
                                 Button(index.userId + " : " + index.commitMsg) {
-
                                 }
+                            .foregroundColor(.black)
+                            .background(.white)
+                                .disabled(true)
                             }
 
                         }
