@@ -1,0 +1,15 @@
+global:
+  slack_api_url: 'https://hooks.slack.com/services/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'
+
+route:
+  receiver: 'slack-notifications'
+  repeat_interval: 1m
+
+
+receivers:
+  - name: 'slack-notifications'
+    slack_configs:
+    - channel: '#_monitoring'
+      send_resolved: true
+      title: "{{ range .Alerts }}{{ .Annotations.summary }}\n{{ end }}"
+      text: "{{ range .Alerts }}{{ .Annotations.description }}\n{{ end }}"
