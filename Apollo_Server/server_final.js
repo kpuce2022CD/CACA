@@ -308,7 +308,7 @@ const resolvers = {
     },
     
     delete_request_context: (parent, args, context, info) => {
-      knex('request').del().where('x_pixel', args.x_pixel).where('y_pixel', args.y_pixel).where('request_context', args.request_context).where('user_id', args.$user_id)
+      knex('request').del().where('x_pixel', args.x_pixel).where('y_pixel', args.y_pixel).where('request_context', args.request_context).where('user_id', args.user_id)
       return args.user_id
     },
 
