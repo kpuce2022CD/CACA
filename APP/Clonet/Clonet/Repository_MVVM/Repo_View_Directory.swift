@@ -39,7 +39,6 @@ struct Repo_View_Directory: View {
 
     // Repo_View_Image
     @State var fileNameImg = "" // to Store File Name picked
-    @State private var editText: Bool = true // determine README or not
     @State var saveCheck: Bool = false
 
     @State var exportFileName: String = ""
@@ -173,9 +172,9 @@ struct Repo_View_Directory: View {
                                         if fileNameTxt[1] == "md" || fileNameTxt[1] == "txt" {
                                             print("dataList:", fileNameImg)
                                             dataList.readMELoad(repoName: repo_n, fileName: fileNameImg)
-                                            editText = true
+                                            dataList.editText = true
                                         } else {
-                                            editText = false
+                                            dataList.editText = false
                                         }
                                         var fileName_Req = repo_n + "_" + i
 //                                        print("fileName_Req", fileName_Req)
@@ -236,7 +235,7 @@ struct Repo_View_Directory: View {
 
             // MARK: Repo_View_Image
             VStack {
-                if editText {
+                if dataList.editText {
                     VStack {
                         TextEditor(text: $dataList.text)
                             .padding()
@@ -371,6 +370,7 @@ final class getFileList: ObservableObject {
     @Published var text: String = ""
     @State var saveCheck: Bool = true
     @State var fileName = ""
+    @Published var editText: Bool = true // determine README or not
 
     // Timer
     var timer: Timer?
@@ -405,6 +405,7 @@ final class getFileList: ObservableObject {
     // MARK: READ STRING FILE
     func readMELoad(repoName: String, fileName: String) -> String {
         var result = ""
+        editText = true
         if let dir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
             let fileURL = dir.appendingPathComponent(repoName+"/"+fileName)
 
