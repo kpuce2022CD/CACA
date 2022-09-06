@@ -101,7 +101,7 @@ struct Repo_View_Directory: View {
     func deleteRequest(at offsets: IndexSet) {
         print("Index selected")
     }
-    
+
     // MARK: EXPORT
     struct ShareSheet: UIViewControllerRepresentable {
         typealias Callback = (_ activityType: UIActivity.ActivityType?, _ completed: Bool, _ returnedItems: [Any]?, _ error: Error?) -> Void
@@ -167,6 +167,13 @@ struct Repo_View_Directory: View {
                     // MARK: Show File List
                     List {
                         Section(header: Text("File List").font(.largeTitle)) {
+                            Button("README.md", action: {
+                                fileNameImg = "README.md"
+                                dataList.readMELoad(repoName: repo_n, fileName: "README.md")
+                                dataList.editText = true
+                                var fileName_Req = repo_n + "_" + "README.md"
+                                Repo_ViewModel_req.Request_fetch(Repo_Name: fileName_Req)
+                            })
                             ForEach(dataList.items, id: \.self) { i in
                                 if i.hasPrefix(".") == false {
                                     Button(i, action: {
@@ -404,6 +411,9 @@ final class getFileList: ObservableObject {
         var remoteString = urlString.replacingOccurrences(of: "file://", with: "")
         do {
             items = try fileManager.contentsOfDirectory(atPath: remoteString)
+            if let index = items.firstIndex(of: "README.md") {
+                items.remove(at: index)
+            }
             //            print("items : \(items)")
         } catch {
             print("error")
