@@ -1,0 +1,46 @@
+version: 1
+task_definition:
+  services:
+    ########################################
+    about_customer_front:
+      cpu_shares: 512
+      mem_limit: 983m
+
+    about_customer_back:
+      cpu_shares: 512
+      mem_limit: 983m
+    # ########################################
+    home_front:
+      cpu_shares: 512
+      mem_limit: 983m
+
+    home_back:
+      cpu_shares: 512
+      mem_limit: 983m
+    #######################################
+    illust_customer_front:
+      cpu_shares: 512
+      mem_limit: 983m
+
+    illust_customer_back:
+      cpu_shares: 512
+      mem_limit: 983m
+    ########################################
+    illust_select_user_front:
+      cpu_shares: 512
+      mem_limit: 983m
+
+    illust_select_user_back:
+      cpu_shares: 512
+      mem_limit: 983m
+    ########################################
+
+    #######################################
+    zookeeper:
+      cpu_shares: 512
+      mem_limit: 983m
+
+    #######################################
+    kafka:
+      cpu_shares: 512
+      mem_limit: 983m

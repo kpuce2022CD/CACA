@@ -1,0 +1,66 @@
+
+global:
+  scrape_interval: 15s  # 15초마다 매트릭을 수집 한다.
+
+
+alerting:
+  alertmanagers:
+    - static_configs:
+        - targets:
+          - alertmanager:9093
+rule_files:
+    - "alert_rules.yml"
+
+scrape_configs:
+  - job_name: node 
+    scrape_timeout: 15s
+    static_configs:
+      - targets: ['localhost:9090']  # 메트릭을 수집해 모니터링 할 서버를 지정 한다.
+
+  - job_name: 'about_customer_back'
+    scrape_timeout: 15s
+    metrics_path: '/actuator/prometheus'
+    static_configs:
+      - targets: ['172.18.0.13:8081']
+
+  # - job_name: 'about_edit_user_back'
+  #   scrape_timeout: 15s
+  #   metrics_path: '/actuator/prometheus'
+  #   static_configs:
+  #     - targets: [ '172.18.0.14:8082' ]
+
+  # - job_name: 'contact_customer_back'
+  #   scrape_timeout: 15s
+  #   metrics_path: '/actuator/prometheus'
+  #   static_configs:
+  #     - targets: [ '172.18.0.15:8083' ]
+
+  # - job_name: 'contact_edit_user_back'
+  #   scrape_timeout: 15s
+  #   metrics_path: '/actuator/prometheus'
+  #   static_configs:
+  #     - targets: [ '172.18.0.16:8084' ]
+
+  - job_name: 'home_back'
+    scrape_timeout: 15s
+    metrics_path: '/actuator/prometheus'
+    static_configs:
+      - targets: [ '172.18.0.17:8085' ]
+
+  - job_name: 'illust_customer_back'
+    scrape_timeout: 15s
+    metrics_path: '/actuator/prometheus'
+    static_configs:
+      - targets: [ '172.18.0.18:8086' ]
+
+  - job_name: 'illust_select_user_back'
+    scrape_timeout: 15s
+    metrics_path: '/actuator/prometheus'
+    static_configs:
+      - targets: [ '172.18.0.19:8087' ]
+
+  # - job_name: 'login_back'
+  #   scrape_timeout: 15s
+  #   metrics_path: '/actuator/prometheus'
+  #   static_configs:
+  #     - targets: [ '172.18.0.20:8088' ]
