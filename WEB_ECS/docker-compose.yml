@@ -3,7 +3,7 @@ services:
   ########################################
   about_customer_front:
     container_name: about_customer_front_con
-    image: pavi03/clonet_about_customer_front
+    image: pavi03/clonet_about_customer_front:amd64
     ports:
       - 8001:80
     logging:
@@ -27,7 +27,7 @@ services:
   # ########################################
   home_front:
     container_name: home_front_con
-    image: pavi03/clonet_home_front
+    image: pavi03/clonet_home_front:amd64
     ports:
       - 8005:80
     logging:
@@ -39,7 +39,7 @@ services:
 
   home_back:
     container_name: home_back_con
-    image: pavi03/clonet_home_back
+    image: pavi03/clonet_home_back:amd64
     ports:
       - 8085:8085
     logging:
@@ -51,7 +51,7 @@ services:
   #######################################
   illust_customer_front:
     container_name: illust_customer_front_con
-    image: pavi03/clonet_illust_customer_front
+    image: pavi03/clonet_illust_customer_front:amd64
     ports:
      - 8006:80
     logging:
@@ -63,7 +63,7 @@ services:
 
   illust_customer_back:
     container_name: illust_customer_back_con
-    image: pavi03/clonet_illust_customer_back
+    image: pavi03/clonet_illust_customer_back:amd64
     ports:
      - 8086:8086
     depends_on :
@@ -78,7 +78,7 @@ services:
   ########################################
   illust_select_user_front:
     container_name: illust_select_user_front_con
-    image: pavi03/clonet_illust_select_user_front
+    image: pavi03/clonet_illust_select_user_front:amd64
     ports:
       - 8007:80
     logging:
@@ -90,7 +90,7 @@ services:
 
   illust_select_user_back:
     container_name: illust_select_user_back_con
-    image: pavi03/clonet_illust_select_user_back
+    image: pavi03/clonet_illust_select_user_back:amd64
     ports:
       - 8087:8087
     depends_on:
@@ -120,7 +120,7 @@ services:
 
   kafka:
     container_name: kafka_con
-    image: wurstmeister/kafka:2.12-2.5.0
+    image: wurstmeister/kafka:latest
     ports:
       - "9092:9092"
     environment:
@@ -135,4 +135,4 @@ services:
         awslogs-region: ap-northeast-2
         awslogs-stream-prefix: kafka
 
-########################################
+#########################################
