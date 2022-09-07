@@ -99,7 +99,6 @@ struct Repo_View_Directory: View {
     }
 
     func deleteRequest(at offsets: IndexSet) {
-        print("Index selected")
         Repo_ViewModel_req.DeleteRequest(user_id: Repo_ViewModel_req.Req_repo_list[offsets[offsets.startIndex]].user_id, x_pixel: Repo_ViewModel_req.Req_repo_list[offsets[offsets.startIndex]].x_pixel, y_pixel: Repo_ViewModel_req.Req_repo_list[offsets[offsets.startIndex]].y_pixel, request_context: Repo_ViewModel_req.Req_repo_list[offsets[offsets.startIndex]].request_context)
 
         Repo_ViewModel_req.Req_repo_list.remove(atOffsets: offsets)
