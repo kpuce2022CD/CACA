@@ -51,6 +51,9 @@ terraform apply
 sudo systemctl start docker
 docker network create --gateway 172.18.0.1 --subnet 172.18.0.0/16 clonet_network 
 sudo docker-compose up --build -d
+
+cd WEB_ECS
+sh ./run.sh
 ```
 ### Don't run
 ```
