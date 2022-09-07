@@ -138,18 +138,17 @@ final class log_repo_ViewModel: ObservableObject {
             }
         }
     }
-    
-    func DeleteRequest(user_id: String, x_pixel: String, y_pixel: String, request_context: String) {
-        Network.shared.apollo.perform(mutation: DeleteRequestContextMutation(user_id: user_id, x_pixel: x_pixel, y_pixel: y_pixel, request_context: request_context)) { result in
-            switch result {
-            case .success(let graphQLResult):
-                print("DeleteRequestMutation Success")
-            case .failure(let error):
-                print("DeleteRequestMutation failure")
-            }
-        }
-    }
 
+    func DeleteRequest(user_id: String, x_pixel: String, y_pixel: String, request_context: String) {
+//        Network.shared.apollo.perform(mutation: DeleteRequestContextMutation(user_id: user_id, x_pixel: x_pixel, y_pixel: y_pixel, request_context: request_context)) { result in
+//            switch result {
+//            case .success(let graphQLResult):
+//                print("DeleteRequestMutation Success")
+//            case .failure(let error):
+//                print("DeleteRequestMutation failure")
+//            }
+//        }
+    }
 
     func Diff(first_commit: String, second_commit: String, repo_name: String, file_name: String) {
         Network.shared.apollo.fetch(query: DiffCommitQuery(first_commit: first_commit, second_commit: second_commit, repo_name: repo_name, file_name: file_name), cachePolicy: CachePolicy.fetchIgnoringCacheData) { result in
