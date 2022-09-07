@@ -97,10 +97,6 @@ struct Repo_View_Directory: View {
 
         dataList.items.remove(atOffsets: offsets)
     }
-
-    func deleteRequest(at offsets: IndexSet) {
-        print("Index selected")
-    }
     
     func deleteRequest(at offsets: IndexSet) {
         print("Index selected")
