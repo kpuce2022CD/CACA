@@ -93,7 +93,7 @@ const typeDefs = gql
     delete_request_userID(user_id: String): String,
     delete_request_repo(repo_name: String): String,
     delete_request_xy(x_pixel: String, y_pixel: String): String,
-    delete_request_context(user_id: String, x_pixel: String, y_pixel: String, request_context: String): String,
+    delete_request_context(user_id: String, x_pixel: String, y_pixel: String, request_context: String): [request],
 
   }
   `;
@@ -308,8 +308,7 @@ const resolvers = {
     },
     
     delete_request_context: (parent, args, context, info) => {
-      knex('request').del().where('x_pixel', args.x_pixel).where('y_pixel', args.y_pixel).where('request_context', args.request_context).where('user_id', args.user_id)
-      return args.user_id
+      return knex('request').del().where('x_pixel', args.x_pixel).where('y_pixel', args.y_pixel).where('request_context', args.request_context).where('user_id', args.user_id)
     },
 
 
