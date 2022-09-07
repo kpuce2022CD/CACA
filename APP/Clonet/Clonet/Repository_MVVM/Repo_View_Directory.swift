@@ -97,7 +97,7 @@ struct Repo_View_Directory: View {
 
         dataList.items.remove(atOffsets: offsets)
     }
-    
+
     func deleteRequest(at offsets: IndexSet) {
         print("Index selected")
 //        print(Repo_ViewModel_req.Req_repo_list[offsets[offsets.startIndex]].user_id)
