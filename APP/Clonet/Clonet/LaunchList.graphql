@@ -205,3 +205,8 @@ mutation delete_request_repo($repo_name: String){
 mutation delete_request_xy($x_pixel: String, $y_pixel: String){
     delete_request_xy(x_pixel: $x_pixel, y_pixel: $y_pixel)
 }
+
+
+mutation delete_request_context($user_id: String, $x_pixel: String, $y_pixel: String, $request_context: String){
+    delete_request_context(user_id: $user_id, x_pixel: $x_pixel, y_pixel: $y_pixel, request_context: $request_context)
+}
