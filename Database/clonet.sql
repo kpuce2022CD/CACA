@@ -34,7 +34,7 @@ create table user(
 );
 
 create table repository(
-	repo_name char(15) primary key not null,
+    repo_name char(15) primary key not null,
     repo_ec2_ip char(15) not null
 );
 
@@ -50,22 +50,15 @@ create table mapping_repo_user(
     foreign key (repo_name) references Repository (repo_name)
 );
 
-create table mapping_repo_group(
-	repo_name char(15) not null,
-    group_id char(15) not null,
+create table clonet_database.request(
+	user_id char(10),
+	repo_name char(100),
+    x_pixel char(30),
+    y_pixel char(30),
+    request_context varchar(1000),
     
-    primary key(repo_name, group_id),
-    foreign key (repo_name) references repository (repo_name),
-    foreign key (group_id) references repo_group (group_id)
-);
-
-create table mapping_user_group(
-	user_id char(15) not null,
-    group_id char(15) not null,
     
-    primary key(user_id, group_id),
-    foreign key (user_id) references user (user_id),
-    foreign key (group_id) references repo_group (group_id)
+    foreign key (user_id) references user (user_id)
 );
 
 
