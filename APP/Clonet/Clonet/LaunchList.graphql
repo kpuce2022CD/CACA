@@ -207,6 +207,12 @@ mutation delete_request_xy($x_pixel: String, $y_pixel: String){
 }
 
 
-mutation delete_request_context($user_id: String, $x_pixel: String, $y_pixel: String, $request_context: String){
-    delete_request_context(user_id: $user_id, x_pixel: $x_pixel, y_pixel: $y_pixel, request_context: $request_context)
+mutation delete_request_context($deleteRequestContextUserId2: String, $xPixel: String, $yPixel: String, $requestContext: String) {
+  delete_request_context(user_id: $deleteRequestContextUserId2, x_pixel: $xPixel, y_pixel: $yPixel, request_context: $requestContext) {
+    user_id
+    repo_name
+    x_pixel
+    y_pixel
+    request_context
+  }
 }

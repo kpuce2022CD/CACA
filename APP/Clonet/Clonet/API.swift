@@ -3052,3 +3052,151 @@ public final class DeleteRequestXyMutation: GraphQLMutation {
     }
   }
 }
+
+public final class DeleteRequestContextMutation: GraphQLMutation {
+  /// The raw GraphQL definition of this operation.
+  public let operationDefinition: String =
+    """
+    mutation delete_request_context($deleteRequestContextUserId2: String, $xPixel: String, $yPixel: String, $requestContext: String) {
+      delete_request_context(
+        user_id: $deleteRequestContextUserId2
+        x_pixel: $xPixel
+        y_pixel: $yPixel
+        request_context: $requestContext
+      ) {
+        __typename
+        user_id
+        repo_name
+        x_pixel
+        y_pixel
+        request_context
+      }
+    }
+    """
+
+  public let operationName: String = "delete_request_context"
+
+  public var deleteRequestContextUserId2: String?
+  public var xPixel: String?
+  public var yPixel: String?
+  public var requestContext: String?
+
+  public init(deleteRequestContextUserId2: String? = nil, xPixel: String? = nil, yPixel: String? = nil, requestContext: String? = nil) {
+    self.deleteRequestContextUserId2 = deleteRequestContextUserId2
+    self.xPixel = xPixel
+    self.yPixel = yPixel
+    self.requestContext = requestContext
+  }
+
+  public var variables: GraphQLMap? {
+    return ["deleteRequestContextUserId2": deleteRequestContextUserId2, "xPixel": xPixel, "yPixel": yPixel, "requestContext": requestContext]
+  }
+
+  public struct Data: GraphQLSelectionSet {
+    public static let possibleTypes: [String] = ["Mutation"]
+
+    public static var selections: [GraphQLSelection] {
+      return [
+        GraphQLField("delete_request_context", arguments: ["user_id": GraphQLVariable("deleteRequestContextUserId2"), "x_pixel": GraphQLVariable("xPixel"), "y_pixel": GraphQLVariable("yPixel"), "request_context": GraphQLVariable("requestContext")], type: .list(.object(DeleteRequestContext.selections)))
+      ]
+    }
+
+    public private(set) var resultMap: ResultMap
+
+    public init(unsafeResultMap: ResultMap) {
+      self.resultMap = unsafeResultMap
+    }
+
+    public init(deleteRequestContext: [DeleteRequestContext?]? = nil) {
+      self.init(unsafeResultMap: ["__typename": "Mutation", "delete_request_context": deleteRequestContext.flatMap { (value: [DeleteRequestContext?]) -> [ResultMap?] in value.map { (value: DeleteRequestContext?) -> ResultMap? in value.flatMap { (value: DeleteRequestContext) -> ResultMap in value.resultMap } } }])
+    }
+
+    public var deleteRequestContext: [DeleteRequestContext?]? {
+      get {
+        return (resultMap["delete_request_context"] as? [ResultMap?]).flatMap { (value: [ResultMap?]) -> [DeleteRequestContext?] in value.map { (value: ResultMap?) -> DeleteRequestContext? in value.flatMap { (value: ResultMap) -> DeleteRequestContext in DeleteRequestContext(unsafeResultMap: value) } } }
+      }
+      set {
+        resultMap.updateValue(newValue.flatMap { (value: [DeleteRequestContext?]) -> [ResultMap?] in value.map { (value: DeleteRequestContext?) -> ResultMap? in value.flatMap { (value: DeleteRequestContext) -> ResultMap in value.resultMap } } }, forKey: "delete_request_context")
+      }
+    }
+
+    public struct DeleteRequestContext: GraphQLSelectionSet {
+      public static let possibleTypes: [String] = ["request"]
+
+      public static var selections: [GraphQLSelection] {
+        return [
+          GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+          GraphQLField("user_id", type: .scalar(String.self)),
+          GraphQLField("repo_name", type: .scalar(String.self)),
+          GraphQLField("x_pixel", type: .scalar(String.self)),
+          GraphQLField("y_pixel", type: .scalar(String.self)),
+          GraphQLField("request_context", type: .scalar(String.self))
+        ]
+      }
+
+      public private(set) var resultMap: ResultMap
+
+      public init(unsafeResultMap: ResultMap) {
+        self.resultMap = unsafeResultMap
+      }
+
+      public init(userId: String? = nil, repoName: String? = nil, xPixel: String? = nil, yPixel: String? = nil, requestContext: String? = nil) {
+        self.init(unsafeResultMap: ["__typename": "request", "user_id": userId, "repo_name": repoName, "x_pixel": xPixel, "y_pixel": yPixel, "request_context": requestContext])
+      }
+
+      public var __typename: String {
+        get {
+          return resultMap["__typename"]! as! String
+        }
+        set {
+          resultMap.updateValue(newValue, forKey: "__typename")
+        }
+      }
+
+      public var userId: String? {
+        get {
+          return resultMap["user_id"] as? String
+        }
+        set {
+          resultMap.updateValue(newValue, forKey: "user_id")
+        }
+      }
+
+      public var repoName: String? {
+        get {
+          return resultMap["repo_name"] as? String
+        }
+        set {
+          resultMap.updateValue(newValue, forKey: "repo_name")
+        }
+      }
+
+      public var xPixel: String? {
+        get {
+          return resultMap["x_pixel"] as? String
+        }
+        set {
+          resultMap.updateValue(newValue, forKey: "x_pixel")
+        }
+      }
+
+      public var yPixel: String? {
+        get {
+          return resultMap["y_pixel"] as? String
+        }
+        set {
+          resultMap.updateValue(newValue, forKey: "y_pixel")
+        }
+      }
+
+      public var requestContext: String? {
+        get {
+          return resultMap["request_context"] as? String
+        }
+        set {
+          resultMap.updateValue(newValue, forKey: "request_context")
+        }
+      }
+    }
+  }
+}
