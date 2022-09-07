@@ -23,7 +23,7 @@ ecs-cli configure \
 ecs-cli up \
     --capability-iam \
     --size 1 \
-    --instance-type t2.micro \
+    --instance-type t3.2xlarge \
     --cluster-config hello-cluster-config \
     --ecs-profile hello-profile
 
