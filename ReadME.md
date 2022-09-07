@@ -30,7 +30,6 @@ cd APP/Clonet
 xcodebuild -workspace Clonet.xcworkspace -scheme ClonetUITests -destination 'platform=iOS Simulator,OS=15.2,name=iPad (9th generation)' test
 
 echo "precommit-finish"
-################################################
 
 ################################################ WEB
 
