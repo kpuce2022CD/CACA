@@ -197,6 +197,10 @@ struct Repo_View_Directory: View {
                             }
                             .onDelete {
                                 deleteFile(at: $0)
+                                dataList.readMELoad(repoName: repo_n, fileName: "README.md")
+                                dataList.editText = true
+                                var fileName_Req = repo_n + "_" + "README.md"
+                                Repo_ViewModel_req.Request_fetch(Repo_Name: fileName_Req)
                             }
                         }
 
