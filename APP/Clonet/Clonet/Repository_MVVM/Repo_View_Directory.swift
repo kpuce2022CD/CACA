@@ -177,7 +177,10 @@ struct Repo_View_Directory: View {
                                 Repo_ViewModel_req.Request_fetch(Repo_Name: fileName_Req)
                             })
                             ForEach(dataList.items, id: \.self) { i in
-                                if i.hasPrefix(".") == false {
+                                if i.hasPrefix(".") == false && i != "README.md" {
+                                    if i == "README.md" {
+
+                                    }
                                     Button(i, action: {
                                         fileNameImg = i
                                         var fileNameTxt = fileNameImg.components(separatedBy: ".")
@@ -216,6 +219,7 @@ struct Repo_View_Directory: View {
                                 })
                             }
                             .onDelete {
+                                pointShowing = false
                                 deleteRequest(at: $0)
                             }
                             .onAppear {
@@ -417,9 +421,9 @@ final class getFileList: ObservableObject {
         var remoteString = urlString.replacingOccurrences(of: "file://", with: "")
         do {
             items = try fileManager.contentsOfDirectory(atPath: remoteString)
-            if let index = items.firstIndex(of: "README.md") {
-                items.remove(at: index)
-            }
+//            if let index = items.firstIndex(of: "README.md") {
+//                items.remove(at: index)
+//            }
             //            print("items : \(items)")
         } catch {
             print("error")

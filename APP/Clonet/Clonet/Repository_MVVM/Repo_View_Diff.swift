@@ -63,7 +63,8 @@ struct Repo_View_Diff: View {
                         AsyncImage(url: URL(string: logNumber.url1), scale: 2) { image in
                             image
                                 .resizable()
-                                .aspectRatio(contentMode: .fill)
+                                .aspectRatio(contentMode: .fit)
+//                                .aspectRatio(contentMode: .fill)
                         } placeholder: {
                             ProgressView()
                                 .progressViewStyle(.circular)
@@ -74,7 +75,8 @@ struct Repo_View_Diff: View {
                         AsyncImage(url: URL(string: logNumber.url2), scale: 2) { image in
                             image
                                 .resizable()
-                                .aspectRatio(contentMode: .fill)
+                                .aspectRatio(contentMode: .fit)
+//                                .aspectRatio(contentMode: .fill)
                                 .opacity(ImgOpacity)
                         } placeholder: {
                             ProgressView()
